@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Routines & Habits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d9488;          /* Teal */
+      --primary-hover: #0f766e;
+      --primary-light: #f0fdfa;
+      --primary-border: #99f6e4;
+      
+      --header-bg: #0f172a;        /* Deep Slate */
+      --accent: #f59e0b;          /* Warm Amber for highlights */
+      --accent-light: #fffbeb;
+      
+      --bg: #f1f5f9;              /* Slate 100 */
+      --surface: #ffffff;
+      --text: #0f172a;            /* Slate 900 */
+      --text-muted: #475569;      /* Slate 600 */
+      --border: #cbd5e1;          /* Slate 300 */
+      
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+      
+      --radius: 12px;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: var(--header-bg);
+      border-bottom: 4px solid var(--primary);
+      color: #ffffff;
+      padding: 2.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 1.5rem auto 0;
+      padding: 0 1rem;
+    }
+
+    /* Fixed Navigation Bar */
+    .tab-nav-wrapper {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0.4rem;
+    }
+
+    nav.tab-nav {
+      display: flex;
+      gap: 0.35rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 0.75rem 1.1rem;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(13, 148, 136, 0.3);
+      font-weight: 700;
+    }
+
+    .tab-pane {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      margin-top: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      color: var(--header-bg);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--primary-hover);
+      margin: 1.5rem 0 0.6rem;
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Exposure Tab Styles */
+    .reading-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .toggle-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .toggle-chip {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .toggle-chip.active-aff { 
+      background: #ccfbf1; 
+      color: #0f766e; 
+      border-color: #14b8a6; 
+    }
+    .toggle-chip.active-neg { 
+      background: #fee2e2; 
+      color: #991b1b; 
+      border-color: #f87171; 
+    }
+    .toggle-chip.active-q { 
+      background: #fef3c7; 
+      color: #92400e; 
+      border-color: #f59e0b; 
+    }
+
+    .target-aff, .target-neg, .target-q {
+      transition: all 0.2s ease;
+    }
+    .highlight-aff {
+      background-color: #99f6e4;
+      color: #134e4a;
+      font-weight: 600;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .highlight-neg {
+      background-color: #fecaca;
+      color: #7f1d1d;
+      font-weight: 600;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .highlight-q {
+      background-color: #fde68a;
+      color: #78350f;
+      font-weight: 600;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    /* Form Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      background: var(--surface);
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--primary-light);
+      color: var(--primary-hover);
+      font-weight: 700;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-teal { background: #ccfbf1; color: #0f766e; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+
+    /* Exercise Components */
+    .exercise-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--header-bg);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .exercise-number {
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .opt-btn {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .opt-btn.correct {
+      background: var(--success) !important;
+      color: white !important;
+      border-color: var(--success) !important;
+    }
+
+    .opt-btn.incorrect {
+      background: var(--error) !important;
+      color: white !important;
+      border-color: var(--error) !important;
+    }
+
+    select.inline-select {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+    }
+
+    select.inline-select:focus {
+      border-color: var(--primary);
+    }
+
+    select.inline-select.correct {
+      border-color: var(--success);
+      background-color: var(--success-bg);
+      color: #14532d;
+    }
+
+    select.inline-select.incorrect {
+      border-color: var(--error);
+      background-color: var(--error-bg);
+      color: #7f1d1d;
+    }
+
+    /* Word Bank / Scramble */
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 48px;
+      padding: 0.6rem;
+      background: var(--surface);
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+
+    .scramble-target {
+      min-height: 48px;
+      padding: 0.6rem;
+      background: #ffffff;
+      border: 2px solid var(--primary-border);
+      border-radius: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .word-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .word-chip:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* Buttons */
+    .action-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.65rem 1.35rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      margin-left: 0.35rem;
+    }
+    
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .feedback-msg {
+      font-size: 0.85rem;
+      margin-top: 0.6rem;
+      font-weight: 600;
+    }
+    .feedback-msg.success { color: var(--success); }
+    .feedback-msg.error { color: var(--error); }
+
+    /* Builder Layout */
+    .builder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .builder-column {
+      background: var(--surface);
+      padding: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .builder-column h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .preview-box {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-left: 5px solid var(--primary);
+      padding: 1.15rem;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--header-bg);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .tab-pane { padding: 1.25rem; }
+      header { padding: 1.75rem 1rem 1.5rem; }
+      header h1 { font-size: 1.5rem; }
+      .builder-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Daily Life & Everyday Habits</h1>
+    <p>Discover how professionals organize their days and master the structures for talking about routines.</p>
+  </header>
+
+  <div class="container">
+    <div class="tab-nav-wrapper">
+      <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(0)">1. Everyday Context</button>
+        <button class="tab-btn" onclick="switchTab(1)">2. Grammar Form</button>
+        <button class="tab-btn" onclick="switchTab(2)">3. Interactive Practice</button>
+        <button class="tab-btn" onclick="switchTab(3)">4. Routine Creator</button>
+      </nav>
+    </div>
+
+    <section class="tab-pane active" id="pane-0">
+      <h2>Elena's Productive Workday</h2>
+      <p style="margin-bottom: 1.25rem; color: var(--text-muted);">
+        Read the profile below. Use the filter controls underneath to highlight how affirmative statements, negatives, and questions function naturally in daily narratives.
+      </p>
+
+      <div class="reading-text" id="readingContainer">
+        Elena is an architect living in Milan. She <span class="target-aff">wakes up</span> at 6:30 AM every morning and <span class="target-aff">drinks</span> black coffee with breakfast. She <span class="target-neg">does not take</span> the underground; instead, she <span class="target-aff">cycles</span> to her studio because she <span class="target-aff">enjoys</span> fresh air. At work, Elena <span class="target-aff">designs</span> sustainable housing projects and <span class="target-aff">discusses</span> blueprints with her team. She <span class="target-neg">does not check</span> personal emails during design sessions. At 1:00 PM, she <span class="target-aff">has</span> lunch with colleagues, but she <span class="target-neg">does not eat</span> at her desk. 
+        <br><br>
+        Her manager often asks: "<span class="target-q">Do you finish</span> the drafts before Friday?" Elena usually smiles and replies: "Yes, our team <span class="target-aff">works</span> quickly, and my assistant <span class="target-aff">helps</span> with 3D renderings." In the evening, she <span class="target-neg">does not watch</span> television. She <span class="target-aff">reads</span> architecture journals or <span class="target-aff">relaxes</span> in the garden. How <span class="target-q">does she manage</span> everything? She <span class="target-aff">plans</span> her routine with care.
+      </div>
+
+      <div class="toggle-bar">
+        <button class="toggle-chip" id="chipAff" onclick="toggleHighlight('aff')">Highlight Affirmatives</button>
+        <button class="toggle-chip" id="chipNeg" onclick="toggleHighlight('neg')">Highlight Negatives</button>
+        <button class="toggle-chip" id="chipQ" onclick="toggleHighlight('q')">Highlight Questions</button>
+        <button class="toggle-chip" onclick="clearHighlights()">Clear Highlights</button>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top: 0;">Comprehension Check</h3>
+        <p>Why does Elena cycle to work?</p>
+        <div class="options-grid" id="comp-q1">
+          <button class="opt-btn" onclick="checkComp(this, false)">Because she does not own a vehicle.</button>
+          <button class="opt-btn" onclick="checkComp(this, true)">Because she enjoys fresh air.</button>
+          <button class="opt-btn" onclick="checkComp(this, false)">Because the metro is closed.</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-pane" id="pane-1">
+      <h2>Present Simple: Core Rules & Endings</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        The present simple describes regular habits, permanent facts, and standard routines.
+      </p>
+
+      <h3>1. Affirmative & Negative Formations</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Affirmative (+)</th>
+              <th>Negative (-)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>I / You / We / They</strong></td>
+              <td>work / live / cycle</td>
+              <td><strong>do not (don't)</strong> work</td>
+            </tr>
+            <tr>
+              <td><strong>He / She / It</strong></td>
+              <td>works / lives / cycle<strong>s</strong></td>
+              <td><strong>does not (doesn't)</strong> work</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2. Third Person (-s / -es / -ies) Spelling Rules</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Verb Ending</th>
+              <th>Rule</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Most verbs</td>
+              <td>Add <strong>-s</strong></td>
+              <td>read &rarr; <span class="badge badge-teal">reads</span>, drink &rarr; <span class="badge badge-teal">drinks</span></td>
+            </tr>
+            <tr>
+              <td>-ch, -sh, -ss, -x, -o</td>
+              <td>Add <strong>-es</strong></td>
+              <td>watch &rarr; <span class="badge badge-teal">watches</span>, relax &rarr; <span class="badge badge-teal">relaxes</span>, go &rarr; <span class="badge badge-teal">goes</span></td>
+            </tr>
+            <tr>
+              <td>Consonant + -y</td>
+              <td>Change <strong>-y</strong> to <strong>-ies</strong></td>
+              <td>study &rarr; <span class="badge badge-teal">studies</span>, carry &rarr; <span class="badge badge-teal">carries</span></td>
+            </tr>
+            <tr>
+              <td>Vowel + -y</td>
+              <td>Add <strong>-s</strong> (regular)</td>
+              <td>play &rarr; <span class="badge badge-amber">plays</span>, enjoy &rarr; <span class="badge badge-amber">enjoys</span></td>
+            </tr>
+            <tr>
+              <td>Irregular: <em>have</em></td>
+              <td>Changes to <strong>has</strong></td>
+              <td>have &rarr; <span class="badge badge-teal">has</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3. Questions & Short Answers</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Question Pattern</th>
+              <th>Short Answer (+)</th>
+              <th>Short Answer (-)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Do</strong> you / they drink coffee?</td>
+              <td>Yes, I / they <strong>do</strong>.</td>
+              <td>No, I / they <strong>don't</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Does</strong> he / she wake up early?</td>
+              <td>Yes, he / she <strong>does</strong>.</td>
+              <td>No, he / she <strong>doesn't</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Where do</strong> you work?</td>
+              <td colspan="2">I work in an architecture studio.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="tab-pane" id="pane-2">
+      <h2>Interactive Mastery Practice</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Complete all 8 targeted exercises covering spelling, sentence structures, and questions.
+      </p>
+
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>Exercise 1: Third-Person Singular Spelling</span>
+          <span class="exercise-number">1 / 8</span>
+        </div>
+        <p>Select the accurately spelled verb for <strong>"He / She"</strong>:</p>
+        <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            1. Elena (finish) work at 5:00 PM:
+            <select class="inline-select" onchange="validateSelect(this, 'finishes')">
+              <option value="">-- select --</option>
+              <option value="finishs">finishs</option>
+              <option value="finishes">finishes</option>
+              <option value="finishies">finishies</option>
+            </select>
+          </div>
+          <div>
+            2. He (tidy) his desk every evening:
+            <select class="inline-select" onchange="validateSelect(this, 'tidies')">
+              <option value="">-- select --</option>
+              <option value="tidys">tidys</option>
+              <option value="tidyes">tidyes</option>
+              <option value="tidies">tidies</option>
+            </select>
+          </div>
+          <div>
+            3. She (enjoy) her morning walk:
+            <select class="inline-select" onchange="validateSelect(this, 'enjoys')">
+              <option value="">-- select --</option>
+              <option value="enjoys">enjoys</option>
+              <option value="enjoies">enjoies</option>
+              <option value="enjoyes">enjoyes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>Exercise 2: Auxiliary Selection (Do vs. Does)</span>
+          <span class="exercise-number">2 / 8</span>
+        </div>
+        <p>Select the correct auxiliary verb to complete the routine question:</p>
+        <p style="margin-top:0.5rem;"><strong>"_____ your colleagues start work before 9:00 AM?"</strong></p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkChoice(this, false, 'ex2')">Does</button>
+          <button class="opt-btn" onclick="checkChoice(this, true, 'ex2')">Do</button>
+          <button class="opt-btn" onclick="checkChoice(this, false, 'ex2')">Are</button>
+        </div>
+        <div id="ex2-msg" class="feedback-msg"></div>
+      </div>
+
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>Exercise 3: Negative Statements in Context</span>
+          <span class="exercise-number">3 / 8</span>
+        </div>
+        <p>Complete the description of a remote worker's routine:</p>
+        <div style="margin-top: 0.75rem; line-height: 2.2;">
+          "Marcus works from home. He 
+          <select class="inline-select" onchange="validateSelect(this, 'doesn\'t commute')">
+            <option value="">-- select --</option>
+            <option value="don't commute">don't commute</option>
+            <option value="doesn't commute">doesn't commute</option>
+            <option value="doesn't commutes">doesn't commutes</option>
+          </select>
+          by train. His team members 
+          <select class="inline-select" onchange="validateSelect(this, 'don\'t share')">
+            <option value="">-- select --</option>
+            <option value="doesn't share">doesn't share</option>
+            <option value="don't share">don't share</option>
+            <option value="don't shares">don't shares</option>
+          </select>
+          a physical office, so they 
+          <select class="inline-select" onchange="validateSelect(this, 'don\'t meet')">
+            <option value="">-- select --</option>
+            <option value="don't meet">don't meet</option>
+            <option value="doesn't meet">doesn't meet</option>
+          </select>
+          in person every day."
+        </div>
+      </div>
+
+      <div class="exercise-block" id="scramble1">
+        <div class="exercise-title">
+          <span>Exercise 4: Sentence Unscramble (Affirmative Routine)</span>
+          <span class="exercise-number">4 / 8</span>
+        </div>
+        <p>Click words in sequence to assemble a valid statement:</p>
+        <div class="word-bank" id="bank1"></div>
+        <div class="scramble-target" id="target1"></div>
+        <button class="action-btn" onclick="checkScramble(1, ['Elena', 'prepares', 'detailed', 'blueprints', 'every', 'morning'])">Check Sentence</button>
+        <button class="action-btn btn-secondary" onclick="resetScramble(1)">Reset</button>
+        <div id="scramble1-msg" class="feedback-msg"></div>
+      </div>
+
+      <div class="exercise-block" id="scramble2">
+        <div class="exercise-title">
+          <span>Exercise 5: Sentence Unscramble (Question Order)</span>
+          <span class="exercise-number">5 / 8</span>
+        </div>
+        <p>Click words in sequence to formulate an accurate question:</p>
+        <div class="word-bank" id="bank2"></div>
+        <div class="scramble-target" id="target2"></div>
+        <button class="action-btn" onclick="checkScramble(2, ['Where', 'does', 'your', 'manager', 'have', 'lunch'])">Check Sentence</button>
+        <button class="action-btn btn-secondary" onclick="resetScramble(2)">Reset</button>
+        <div id="scramble2-msg" class="feedback-msg"></div>
+      </div>
+
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>Exercise 6: Error Identification</span>
+          <span class="exercise-number">6 / 8</span>
+        </div>
+        <p>Click the <strong>single incorrect segment</strong> in this sentence:</p>
+        <div class="options-grid" style="margin-top: 0.75rem;">
+          <button class="opt-btn" onclick="checkErrorHunt(this, false)">She always</button>
+          <button class="opt-btn" onclick="checkErrorHunt(this, false)">catches the bus</button>
+          <button class="opt-btn" onclick="checkErrorHunt(this, false)">but her brother</button>
+          <button class="opt-btn" onclick="checkErrorHunt(this, true)">don't like</button>
+          <button class="opt-btn" onclick="checkErrorHunt(this, false)">public transport.</button>
+        </div>
+        <div id="hunt-msg" class="feedback-msg"></div>
+      </div>
+
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>Exercise 7: Question & Short Answer Consistency</span>
+          <span class="exercise-number">7 / 8</span>
+        </div>
+        <p>Match the prompt with its correct short response:</p>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem;">
+          <div>
+            1. "Does your supervisor review your reports?" &rarr;
+            <select class="inline-select" onchange="validateSelect(this, 'Yes, she does.')">
+              <option value="">-- select --</option>
+              <option value="Yes, she is.">Yes, she is.</option>
+              <option value="Yes, she does.">Yes, she does.</option>
+              <option value="Yes, she reviews.">Yes, she reviews.</option>
+            </select>
+          </div>
+          <div>
+            2. "Do you and David take breaks together?" &rarr;
+            <select class="inline-select" onchange="validateSelect(this, 'No, we don\'t.')">
+              <option value="">-- select --</option>
+              <option value="No, we doesn't.">No, we doesn't.</option>
+              <option value="No, they don't.">No, they don't.</option>
+              <option value="No, we don't.">No, we don't.</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>Exercise 8: Comprehensive Routine Narrative</span>
+          <span class="exercise-number">8 / 8</span>
+        </div>
+        <p>Select the correct verb forms to complete the profile:</p>
+        <div style="line-height: 2.3; margin-top: 0.75rem;">
+          Dr. Aris 
+          <select class="inline-select" onchange="validateSelect(this, 'teaches')">
+            <option value="">-- select --</option>
+            <option value="teach">teach</option>
+            <option value="teaches">teaches</option>
+            <option value="teachies">teachies</option>
+          </select>
+          biology at the city college. He 
+          <select class="inline-select" onchange="validateSelect(this, 'doesn\'t drive')">
+            <option value="">-- select --</option>
+            <option value="don't drive">don't drive</option>
+            <option value="doesn't drive">doesn't drive</option>
+          </select>
+          to campus because parking is limited. Students often 
+          <select class="inline-select" onchange="validateSelect(this, 'ask')">
+            <option value="">-- select --</option>
+            <option value="asks">asks</option>
+            <option value="ask">ask</option>
+          </select>
+          questions after lecture, and he always 
+          <select class="inline-select" onchange="validateSelect(this, 'replies')">
+            <option value="">-- select --</option>
+            <option value="replys">replys</option>
+            <option value="replies">replies</option>
+          </select>
+          patiently.
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-pane" id="pane-3">
+      <h2>Interactive Routine Statement Builder</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Choose sentence components below to see how verb conjugation updates automatically in real time.
+      </p>
+
+      <div class="builder-grid">
+        <div class="builder-column">
+          <h4>1. Person / Subject</h4>
+          <select id="b-sub" class="inline-select" style="width: 100%;" onchange="updateBuilder()">
+            <option value="I">I</option>
+            <option value="My colleague">My colleague (he/she)</option>
+            <option value="We">We</option>
+            <option value="The managers">The managers (they)</option>
+          </select>
+        </div>
+
+        <div class="builder-column">
+          <h4>2. Form</h4>
+          <select id="b-type" class="inline-select" style="width: 100%;" onchange="updateBuilder()">
+            <option value="aff">Affirmative (+)</option>
+            <option value="neg">Negative (-)</option>
+          </select>
+        </div>
+
+        <div class="builder-column">
+          <h4>3. Habit / Activity</h4>
+          <select id="b-act" class="inline-select" style="width: 100%;" onchange="updateBuilder()">
+            <option value="check_email">check emails</option>
+            <option value="attend_meetings">attend client meetings</option>
+            <option value="drink_tea">drink green tea</option>
+            <option value="finish_early">finish projects early</option>
+          </select>
+        </div>
+
+        <div class="builder-column">
+          <h4>4. Time / Frequency</h4>
+          <select id="b-time" class="inline-select" style="width: 100%;" onchange="updateBuilder()">
+            <option value="every morning">every morning.</option>
+            <option value="before lunch">before lunch.</option>
+            <option value="on Fridays">on Fridays.</option>
+            <option value="at 6:00 PM">at 6:00 PM.</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top: 0;">Generated Sentence:</h3>
+        <div class="preview-box" id="builderResult">
+          I check emails every morning.
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          Notice how the auxiliary and verb endings adjust automatically depending on whether the subject is singular or plural.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Designed by Babak Alaee
+  </footer>
+
+  <script>
+    // Tab Navigation
+    function switchTab(index) {
+      const btns = document.querySelectorAll('.tab-btn');
+      const panes = document.querySelectorAll('.tab-pane');
+      btns.forEach((b, i) => b.classList.toggle('active', i === index));
+      panes.forEach((p, i) => p.classList.toggle('active', i === index));
+    }
+
+    // Exposure Tab Highlighting
+    let currentHighlight = null;
+    function toggleHighlight(type) {
+      clearHighlights();
+      currentHighlight = type;
+      
+      const elements = document.querySelectorAll('.target-' + type);
+      elements.forEach(el => el.classList.add('highlight-' + type));
+
+      if (type === 'aff') document.getElementById('chipAff').classList.add('active-aff');
+      if (type === 'neg') document.getElementById('chipNeg').classList.add('active-neg');
+      if (type === 'q') document.getElementById('chipQ').classList.add('active-q');
+    }
+
+    function clearHighlights() {
+      ['aff', 'neg', 'q'].forEach(t => {
+        document.querySelectorAll('.target-' + t).forEach(el => {
+          el.classList.remove('highlight-' + t);
+        });
+      });
+      document.getElementById('chipAff').classList.remove('active-aff');
+      document.getElementById('chipNeg').classList.remove('active-neg');
+      document.getElementById('chipQ').classList.remove('active-q');
+      currentHighlight = null;
+    }
+
+    function checkComp(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+      btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+    }
+
+    // Exercise Select Validation
+    function validateSelect(selectEl, correctValue) {
+      if (selectEl.value === '') {
+        selectEl.classList.remove('correct', 'incorrect');
+        return;
+      }
+      if (selectEl.value === correctValue) {
+        selectEl.classList.add('correct');
+        selectEl.classList.remove('incorrect');
+      } else {
+        selectEl.classList.add('incorrect');
+        selectEl.classList.remove('correct');
+      }
+    }
+
+    // Exercise Choice Validation
+    function checkChoice(btn, isCorrect, groupKey) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+      const msg = document.getElementById(groupKey + '-msg');
+      if (isCorrect) {
+        btn.classList.add('correct');
+        msg.textContent = "Correct! 'Your colleagues' is plural (they), so we use 'Do'.";
+        msg.className = "feedback-msg success";
+      } else {
+        btn.classList.add('incorrect');
+        msg.textContent = "Try again. Remember: 'colleagues' refers to 'they'.";
+        msg.className = "feedback-msg error";
+      }
+    }
+
+    // Error Hunt
+    function checkErrorHunt(btn, isActualError) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+      const msg = document.getElementById('hunt-msg');
+      
+      if (isActualError) {
+        btn.classList.add('correct');
+        msg.textContent = "Well spotted! 'Her brother' is singular (he), so it requires 'doesn't like'.";
+        msg.className = "feedback-msg success";
+      } else {
+        btn.classList.add('incorrect');
+        msg.textContent = "This segment is correct. Look closely at subject-verb agreement.";
+        msg.className = "feedback-msg error";
+      }
+    }
+
+    // Unscramble Exercises Setup
+    const scrambles = {
+      1: {
+        words: ['detailed', 'Elena', 'morning', 'every', 'blueprints', 'prepares'],
+        selected: []
+      },
+      2: {
+        words: ['lunch', 'does', 'your', 'Where', 'have', 'manager'],
+        selected: []
+      }
+    };
+
+    function initScrambles() {
+      [1, 2].forEach(id => renderScramble(id));
+    }
+
+    function renderScramble(id) {
+      const data = scrambles[id];
+      const bank = document.getElementById('bank' + id);
+      const target = document.getElementById('target' + id);
+      bank.innerHTML = '';
+      target.innerHTML = '';
+
+      data.words.forEach((word, idx) => {
+        if (!data.selected.includes(idx)) {
+          const chip = document.createElement('span');
+          chip.className = 'word-chip';
+          chip.textContent = word;
+          chip.onclick = () => selectWord(id, idx);
+          bank.appendChild(chip);
+        }
+      });
+
+      data.selected.forEach(idx => {
+        const chip = document.createElement('span');
+        chip.className = 'word-chip';
+        chip.textContent = data.words[idx];
+        chip.onclick = () => deselectWord(id, idx);
+        target.appendChild(chip);
+      });
+    }
+
+    function selectWord(id, index) {
+      scrambles[id].selected.push(index);
+      renderScramble(id);
+    }
+
+    function deselectWord(id, index) {
+      scrambles[id].selected = scrambles[id].selected.filter(i => i !== index);
+      renderScramble(id);
+    }
+
+    function resetScramble(id) {
+      scrambles[id].selected = [];
+      document.getElementById(`scramble${id}-msg`).textContent = '';
+      renderScramble(id);
+    }
+
+    function checkScramble(id, targetArray) {
+      const data = scrambles[id];
+      const currentWords = data.selected.map(i => data.words[i]);
+      const msg = document.getElementById(`scramble${id}-msg`);
+
+      if (currentWords.length !== targetArray.length) {
+        msg.textContent = "Please place all words in the box first.";
+        msg.className = "feedback-msg error";
+        return;
+      }
+
+      const isMatch = currentWords.every((val, idx) => val === targetArray[idx]);
+      if (isMatch) {
+        msg.textContent = "Excellent! Sentence structure is correct.";
+        msg.className = "feedback-msg success";
+      } else {
+        msg.textContent = "Not quite in order yet. Review word order and try again.";
+        msg.className = "feedback-msg error";
+      }
+    }
+
+    // Interactive Builder
+    function updateBuilder() {
+      const sub = document.getElementById('b-sub').value;
+      const type = document.getElementById('b-type').value;
+      const act = document.getElementById('b-act').value;
+      const time = document.getElementById('b-time').value;
+
+      const isSingular = (sub === 'My colleague');
+      let verbPhrase = '';
+
+      if (act === 'check_email') {
+        if (type === 'aff') verbPhrase = isSingular ? 'checks emails' : 'check emails';
+        else verbPhrase = isSingular ? "doesn't check emails" : "don't check emails";
+      } else if (act === 'attend_meetings') {
+        if (type === 'aff') verbPhrase = isSingular ? 'attends client meetings' : 'attend client meetings';
+        else verbPhrase = isSingular ? "doesn't attend client meetings" : "don't attend client meetings";
+      } else if (act === 'drink_tea') {
+        if (type === 'aff') verbPhrase = isSingular ? 'drinks green tea' : 'drink green tea';
+        else verbPhrase = isSingular ? "doesn't drink green tea" : "don't drink green tea";
+      } else if (act === 'finish_early') {
+        if (type === 'aff') verbPhrase = isSingular ? 'finishes projects early' : 'finish projects early';
+        else verbPhrase = isSingular ? "doesn't finish projects early" : "don't finish projects early";
+      }
+
+      document.getElementById('builderResult').textContent = `${sub} ${verbPhrase} ${time}`;
+    }
+
+    // Initialize on load
+    window.onload = () => {
+      initScrambles();
+      updateBuilder();
+    };
+  </script>
+</body>
+</html>
