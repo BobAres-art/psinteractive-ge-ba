@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business English: Operations & The Present Simple Passive</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --secondary: #0f766e;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --error: #dc2626;
+      --highlight: #fef08a;
+      --highlight-border: #ca8a04;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* Nav Tabs */
+    .tabs {
+      display: flex;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 1rem 0.5rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      background: var(--card-bg);
+    }
+
+    /* Tab Content Panels */
+    .tab-content {
+      display: none;
+      padding: 1.5rem;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Exposure Styles */
+    .reading-card {
+      background: #fdfdfd;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .passive-target {
+      /* Standard text styling - no visual difference before highlight */
+      color: inherit;
+      background: transparent;
+      border-bottom: none;
+      transition: all 0.3s ease;
+    }
+
+    .highlighted .passive-target {
+      background-color: var(--highlight);
+      border-bottom: 2px solid var(--highlight-border);
+      font-weight: 600;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    /* Form Styles */
+    .rule-card {
+      border-left: 4px solid var(--secondary);
+      background: #f0fdf4;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .formula-box {
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+    }
+
+    /* Practice Exercises */
+    .exercise-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      background: #fff;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .difficulty-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .q-item {
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .q-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .option-btn {
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .option-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .option-btn.selected {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .option-btn.correct {
+      background: #dcfce7 !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+      font-weight: bold;
+    }
+
+    .option-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: var(--error) !important;
+      color: var(--error) !important;
+    }
+
+    select {
+      padding: 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: white;
+      font-weight: 600;
+    }
+
+    /* Word Scramble Tiles */
+    .word-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      min-height: 40px;
+    }
+
+    .target-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 42px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 6px;
+      padding: 0.4rem;
+      margin-bottom: 0.5rem;
+      background: #f8fafc;
+    }
+
+    .word-tile {
+      background: #e2e8f0;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .word-tile.placed {
+      background: var(--primary-light);
+      color: white;
+    }
+
+    .feedback-banner {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    footer {
+      padding: 1.25rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0.25rem;
+      }
+      .tab-content {
+        padding: 1rem;
+      }
+      .tab-btn {
+        padding: 0.75rem 0.4rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Manufacturing & Logistics Operations</h1>
+    <p>Understanding production workflows with the Present Simple Passive</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="switchTab('exposure')">1. Operations Case</button>
+    <button class="tab-btn" onclick="switchTab('form')">2. Grammar Form</button>
+    <button class="tab-btn" onclick="switchTab('practice')">3. Interactive Practice</button>
+    <button class="tab-btn" onclick="switchTab('production')">4. Factory Floor Challenge</button>
+  </nav>
+
+  <!-- TAB 1: EXPOSURE -->
+  <div id="exposure" class="tab-content active">
+    <h2>From Factory to Client: The Supply Chain Workflow</h2>
+    <p style="margin-bottom: 1rem; color: var(--text-muted);">
+      Read how EcoBottles Ltd. produces and ships goods. Can you notice how business processes describe <em>what happens to the product</em> rather than <em>who does the action</em>?
+    </p>
+
+    <div class="reading-card" id="readingSection">
+      Every day, thousands of raw materials <span class="passive-target">are delivered</span> to the central manufacturing plant. First, each batch of recycled plastic <span class="passive-target">is inspected</span> by the quality control department. Impurities <span class="passive-target">are removed</span> during this stage.
+      <br><br>
+      Next, the plastic pellets <span class="passive-target">are melted</span> at high temperatures, and bottles <span class="passive-target">are formed</span> using specialized molding machinery. Once cooled, every finished container <span class="passive-target">is checked</span> for leaks. Labels <span class="passive-target">are printed</span> with batch numbers and company branding.
+      <br><br>
+      Finally, items <span class="passive-target">are packed</span> into eco-friendly cartons, orders <span class="passive-target">are loaded</span> onto delivery trucks, and invoices <span class="passive-target">are sent</span> automatically to corporate clients. In this system, efficiency <span class="passive-target">is maximized</span> and waste <span class="passive-target">is minimized</span>.
+    </div>
+
+    <button class="btn" id="highlightBtn" onclick="toggleHighlights()">
+      <span id="btnIcon">&#128065;</span> <span id="btnText">Highlight Process Verbs</span>
+    </button>
+  </div>
+
+  <!-- TAB 2: FORM -->
+  <div id="form" class="tab-content">
+    <h2>Present Simple Passive in Business</h2>
+    
+    <div class="rule-card">
+      <strong>Why use it in production & business?</strong>
+      <p>In business documentation, SOPs (Standard Operating Procedures), and production descriptions, the <strong>action</strong> and the <strong>product</strong> are more important than the specific worker doing the task.</p>
+    </div>
+
+    <div class="formula-box">
+      Subject + [ am / is / are ] + Past Participle (V3)
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Subject Type</th>
+          <th>To Be</th>
+          <th>Past Participle (V3)</th>
+          <th>Business Context Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Singular / Uncountable</td>
+          <td><strong>is</strong></td>
+          <td>checked / sent / stored</td>
+          <td>The raw material <strong>is tested</strong> daily.</td>
+        </tr>
+        <tr>
+          <td>Plural</td>
+          <td><strong>are</strong></td>
+          <td>packaged / shipped / built</td>
+          <td>Orders <strong>are dispatched</strong> at 4:00 PM.</td>
+        </tr>
+        <tr>
+          <td>Negative</td>
+          <td><strong>is / are not</strong></td>
+          <td>accepted / wasted</td>
+          <td>Faulty items <strong>are not sold</strong> to retailers.</td>
+        </tr>
+        <tr>
+          <td>Question</td>
+          <td><strong>Is / Are ... ?</strong></td>
+          <td>approved / required</td>
+          <td><strong>Is</strong> authorization <strong>needed</strong> for purchase?</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-card" style="border-left-color: var(--primary); background: #eff6ff;">
+      <strong>The "By" Agent (Optional):</strong>
+      <p>We only mention <em>by + agent</em> when the specific team or person adds vital business value:</p>
+      <p><em>"Every delivery <strong>is certified by an external auditor</strong>."</em></p>
+    </div>
+  </div>
+
+  <!-- TAB 3: PRACTICE -->
+  <div id="practice" class="tab-content">
+    <h2>Interactive Mastery Drills</h2>
+    <p style="margin-bottom: 1rem; color: var(--text-muted);">Complete the tasks in order from controlled identification to complex assembly.</p>
+
+    <!-- Ex 1: Auxiliary Identification -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 1: Auxiliary Match (is vs. are)</span>
+        <span class="difficulty-tag">Basic Identification</span>
+      </div>
+      <div class="q-item">
+        <p>1. Quality metrics <select id="ex1_1"><option value="">--</option><option value="is">is</option><option value="are">are</option></select> reviewed weekly by directors.</p>
+      </div>
+      <div class="q-item">
+        <p>2. The factory machinery <select id="ex1_2"><option value="">--</option><option value="is">is</option><option value="are">are</option></select> serviced every Sunday.</p>
+      </div>
+      <div class="q-item">
+        <p>3. Dangerous equipment <select id="ex1_3"><option value="">--</option><option value="is">is</option><option value="are">are</option></select> not operated without protection.</p>
+      </div>
+      <button class="btn btn-secondary" onclick="checkEx1()">Check Exercise 1</button>
+      <div id="fb1" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 2: Regular vs Irregular V3 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 2: Select the Correct Past Participle</span>
+        <span class="difficulty-tag">Verb Forms</span>
+      </div>
+      <div class="q-item">
+        <p>1. Invoices are (send / sent / sended) at the end of the month.</p>
+        <div class="options-grid" data-correct="sent" id="ex2_g1">
+          <button class="option-btn" onclick="selectOpt(this, 'ex2_g1')">send</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex2_g1')">sent</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex2_g1')">sended</button>
+        </div>
+      </div>
+      <div class="q-item">
+        <p>2. The metal components are (cutted / cut / cutting) using high-precision lasers.</p>
+        <div class="options-grid" data-correct="cut" id="ex2_g2">
+          <button class="option-btn" onclick="selectOpt(this, 'ex2_g2')">cutted</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex2_g2')">cut</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex2_g2')">cutting</button>
+        </div>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:0.75rem;" onclick="checkEx2()">Check Exercise 2</button>
+      <div id="fb2" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 3: Active to Passive Transformation Dropdowns -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 3: Workflow Shift (Active to Passive)</span>
+        <span class="difficulty-tag">Structural Transformation</span>
+      </div>
+      <p style="font-size:0.9rem; margin-bottom:0.75rem;">Transform: <em>"The warehouse team stores final products in Sector B."</em></p>
+      <div class="q-item">
+        <p>Final products <select id="ex3_1"><option value="">--</option><option value="is stored">is stored</option><option value="are stored">are stored</option><option value="stores">stores</option></select> in Sector B.</p>
+      </div>
+      <p style="font-size:0.9rem; margin-bottom:0.75rem; margin-top:0.5rem;">Transform: <em>"The manager approves all major budgets."</em></p>
+      <div class="q-item">
+        <p>All major budgets <select id="ex3_2"><option value="">--</option><option value="are approved">are approved</option><option value="is approved">is approved</option><option value="approved">approved</option></select> by the manager.</p>
+      </div>
+      <button class="btn btn-secondary" onclick="checkEx3()">Check Exercise 3</button>
+      <div id="fb3" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 4: Contextual Production Collocations -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 4: Manufacturing Collocation Completion</span>
+        <span class="difficulty-tag">Business Vocabulary</span>
+      </div>
+      <div class="q-item">
+        <p>1. Electronic waste is <select id="ex4_1"><option value="">--</option><option value="recycled">recycled</option><option value="drank">drank</option><option value="melt">melt</option></select> in line with state safety guidelines.</p>
+      </div>
+      <div class="q-item">
+        <p>2. New suppliers are <select id="ex4_2"><option value="">--</option><option value="evaluated">evaluated</option><option value="eaten">eaten</option><option value="packed">packed</option></select> according to cost and reliability.</p>
+      </div>
+      <div class="q-item">
+        <p>3. Raw timber is <select id="ex4_3"><option value="">--</option><option value="imported">imported</option><option value="emailed">emailed</option><option value="printed">printed</option></select> from sustainably managed forests.</p>
+      </div>
+      <button class="btn btn-secondary" onclick="checkEx4()">Check Exercise 4</button>
+      <div id="fb4" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 5: Scrambled Sentence (Drag/Click to arrange) -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 5: Unscramble the SOP Step</span>
+        <span class="difficulty-tag">Sentence Construction</span>
+      </div>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.5rem;">Click the scrambled blocks below to assemble the sentence in correct standard order.</p>
+      
+      <!-- Initially Scrambled Order -->
+      <div class="word-pool" id="pool5">
+        <span class="word-tile" onclick="moveTile(this, 'pool5', 'target5')">inspected</span>
+        <span class="word-tile" onclick="moveTile(this, 'pool5', 'target5')">Daily</span>
+        <span class="word-tile" onclick="moveTile(this, 'pool5', 'target5')">are</span>
+        <span class="word-tile" onclick="moveTile(this, 'pool5', 'target5')">shipments</span>
+        <span class="word-tile" onclick="moveTile(this, 'pool5', 'target5')">carefully</span>
+      </div>
+      <div class="target-zone" id="target5"></div>
+      <button class="btn btn-secondary" onclick="checkEx5()">Check Sentence</button>
+      <button class="btn btn-secondary" style="background:#fee2e2;" onclick="resetEx5()">Reset</button>
+      <div id="fb5" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 6: Negative Form Placement -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 6: Factory Safety Rules (Negatives)</span>
+        <span class="difficulty-tag">Negative Passive</span>
+      </div>
+      <div class="q-item">
+        <p>1. Uncertified personnel ________ into the cleanroom area.</p>
+        <div class="options-grid" data-correct="are not admitted" id="ex6_g1">
+          <button class="option-btn" onclick="selectOpt(this, 'ex6_g1')">is not admit</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex6_g1')">are not admitted</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex6_g1')">do not admitted</button>
+        </div>
+      </div>
+      <div class="q-item">
+        <p>2. Prototype data ________ outside the secure server.</p>
+        <div class="options-grid" data-correct="is not shared" id="ex6_g2">
+          <button class="option-btn" onclick="selectOpt(this, 'ex6_g2')">is not shared</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex6_g2')">are not share</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex6_g2')">does not shared</button>
+        </div>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:0.75rem;" onclick="checkEx6()">Check Exercise 6</button>
+      <div id="fb6" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 7: Question Formation Dropdown -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 7: Audit Inquiry (Questions)</span>
+        <span class="difficulty-tag">Interrogative Passive</span>
+      </div>
+      <div class="q-item">
+        <p>1. <select id="ex7_1a"><option value="">--</option><option value="Is">Is</option><option value="Are">Are</option><option value="Does">Does</option></select> the annual environmental certificate <select id="ex7_1b"><option value="">--</option><option value="renewed">renewed</option><option value="renew">renew</option><option value="renewing">renewing</option></select> every January?</p>
+      </div>
+      <div class="q-item">
+        <p>2. How often <select id="ex7_2a"><option value="">--</option><option value="is">is</option><option value="are">are</option><option value="do">do</option></select> spare machine components <select id="ex7_2b"><option value="">--</option><option value="ordered">ordered</option><option value="order">order</option></select>?</p>
+      </div>
+      <button class="btn btn-secondary" onclick="checkEx7()">Check Exercise 7</button>
+      <div id="fb7" class="feedback-banner"></div>
+    </div>
+
+    <!-- Ex 8: Error Identification & Correction -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 8: Process Audit (Spot the Error)</span>
+        <span class="difficulty-tag">Advanced Correction</span>
+      </div>
+      <div class="q-item">
+        <p>Identify the incorrect part in this production report sentence:</p>
+        <p style="font-style: italic; margin-top: 0.25rem;">"The assembled smartphones <strong>(A) is</strong> <strong>(B) packaged</strong> into boxes and <strong>(C) dispatched</strong> to distributors."</p>
+        <div class="options-grid" data-correct="A" id="ex8_g1">
+          <button class="option-btn" onclick="selectOpt(this, 'ex8_g1')">(A) is</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex8_g1')">(B) packaged</button>
+          <button class="option-btn" onclick="selectOpt(this, 'ex8_g1')">(C) dispatched</button>
+        </div>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:0.75rem;" onclick="checkEx8()">Check Exercise 8</button>
+      <div id="fb8" class="feedback-banner"></div>
+    </div>
+  </div>
+
+  <!-- TAB 4: CREATIVE EXPANSION -->
+  <div id="production" class="tab-content">
+    <h2>Factory Floor Simulation: Coffee Roasting Plant</h2>
+    <p style="margin-bottom: 1rem; color: var(--text-muted);">
+      Drag and order the manufacturing stages for an artisan coffee business, then describe the process using the Present Simple Passive.
+    </p>
+
+    <div class="rule-card" style="border-left-color: var(--primary);">
+      <strong>Step-by-step production flow:</strong>
+      <ol style="margin-left: 1.25rem; margin-top: 0.5rem; line-height: 1.8;">
+        <li>Raw green coffee beans <strong>are imported</strong> from South America and Africa.</li>
+        <li>Beans <strong>are roasted</strong> inside rotating gas ovens at 220°C.</li>
+        <li>The roast profile <strong>is monitored</strong> continuously on digital screens.</li>
+        <li>Beans <strong>are cooled</strong> rapidly with cold airflow.</li>
+        <li>Fresh batches <strong>are sealed</strong> in nitrogen-flushed packages to maintain aroma.</li>
+      </ol>
+    </div>
+
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Mini-Simulation: Factory Operations Checklist</span>
+      </div>
+      <p style="font-size:0.9rem; margin-bottom:0.75rem;">Match each operation stage with its passive description:</p>
+      <div class="q-item">
+        <p><strong>Storage:</strong> Green beans <select id="sim1"><option value="">-- select action --</option><option value="are stored in silos">are stored in silos</option><option value="stores in silos">stores in silos</option></select>.</p>
+      </div>
+      <div class="q-item">
+        <p><strong>Grinding:</strong> Medium roasts <select id="sim2"><option value="">-- select action --</option><option value="are grounded">are grounded</option><option value="are ground for espresso">are ground for espresso</option></select>.</p>
+      </div>
+      <div class="q-item">
+        <p><strong>Shipping:</strong> Pallets <select id="sim3"><option value="">-- select action --</option><option value="is delivered by train">is delivered by train</option><option value="are delivered by couriers">are delivered by couriers</option></select>.</p>
+      </div>
+      <button class="btn" onclick="checkSim()">Verify SOP Flow</button>
+      <div id="fbsim" class="feedback-banner"></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Operations & Grammar Practice Module</span>
+    <span>Designed by Babak Alaee</span>
+  </footer>
+</div>
+
+<script>
+  // Tab Switching Logic
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // Exposure Highlight Toggle
+  let highlighted = false;
+  function toggleHighlights() {
+    const readingSection = document.getElementById('readingSection');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+    
+    highlighted = !highlighted;
+    if (highlighted) {
+      readingSection.classList.add('highlighted');
+      btnText.textContent = "Hide Process Verbs";
+      btnIcon.innerHTML = "&#128064;";
+    } else {
+      readingSection.classList.remove('highlighted');
+      btnText.textContent = "Highlight Process Verbs";
+      btnIcon.innerHTML = "&#128065;";
+    }
+  }
+
+  // Option Button Selector Utility
+  function selectOpt(btn, groupId) {
+    const container = document.getElementById(groupId);
+    container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  }
+
+  // Check Helper
+  function showFeedback(elementId, isCorrect, message) {
+    const fb = document.getElementById(elementId);
+    fb.style.display = "block";
+    fb.style.color = isCorrect ? "var(--success)" : "var(--error)";
+    fb.textContent = message;
+  }
+
+  // Ex 1 Validation
+  function checkEx1() {
+    const a1 = document.getElementById('ex1_1').value;
+    const a2 = document.getElementById('ex1_2').value;
+    const a3 = document.getElementById('ex1_3').value;
+    const isCorrect = (a1 === 'are' && a2 === 'is' && a3 === 'is');
+    showFeedback('fb1', isCorrect, isCorrect ? "All correct! Metrics (plural) -> are, Machinery (uncountable) -> is, Equipment (uncountable) -> is." : "Review subject-verb agreement (singular/uncountable vs plural).");
+  }
+
+  // Ex 2 Validation
+  function checkEx2() {
+    const g1 = document.querySelector('#ex2_g1 .option-btn.selected');
+    const g2 = document.querySelector('#ex2_g2 .option-btn.selected');
+    if (!g1 || !g2) {
+      showFeedback('fb2', false, "Please select an answer for both sentences.");
+      return;
+    }
+    const c1 = g1.textContent.trim() === 'sent';
+    const c2 = g2.textContent.trim() === 'cut';
+    const isCorrect = c1 && c2;
+    showFeedback('fb2', isCorrect, isCorrect ? "Great job! 'Sent' and 'cut' are correct irregular past participles." : "Note: 'send' becomes 'sent', and 'cut' remains 'cut'.");
+  }
+
+  // Ex 3 Validation
+  function checkEx3() {
+    const a1 = document.getElementById('ex3_1').value;
+    const a2 = document.getElementById('ex3_2').value;
+    const isCorrect = (a1 === 'are stored' && a2 === 'are approved');
+    showFeedback('fb3', isCorrect, isCorrect ? "Correct transformations! Both 'products' and 'budgets' take 'are + V3'." : "Look closely at plural subjects: both 'products' and 'budgets' require 'are + past participle'.");
+  }
+
+  // Ex 4 Validation
+  function checkEx4() {
+    const a1 = document.getElementById('ex4_1').value;
+    const a2 = document.getElementById('ex4_2').value;
+    const a3 = document.getElementById('ex4_3').value;
+    const isCorrect = (a1 === 'recycled' && a2 === 'evaluated' && a3 === 'imported');
+    showFeedback('fb4', isCorrect, isCorrect ? "Accurate vocabulary combinations!" : "Review business operations context: waste is recycled, suppliers are evaluated, timber is imported.");
+  }
+
+  // Ex 5 Word Tile Logic
+  function moveTile(tile, fromId, toId) {
+    document.getElementById(toId).appendChild(tile);
+  }
+
+  function resetEx5() {
+    const target = document.getElementById('target5');
+    const pool = document.getElementById('pool5');
+    while (target.firstChild) {
+      pool.appendChild(target.firstChild);
+    }
+    document.getElementById('fb5').style.display = 'none';
+  }
+
+  function checkEx5() {
+    const target = document.getElementById('target5');
+    const words = Array.from(target.children).map(t => t.textContent.trim());
+    const formed = words.join(' ');
+    // Valid standard business orders:
+    const valid1 = "Daily shipments are carefully inspected";
+    const valid2 = "Shipments are carefully inspected Daily";
+    const isCorrect = (formed === valid1 || formed === valid2);
+    showFeedback('fb5', isCorrect, isCorrect ? "Well built: 'Daily shipments are carefully inspected'." : "Rearrange the sentence so the subject and passive verb follow logical order.");
+  }
+
+  // Ex 6 Validation
+  function checkEx6() {
+    const g1 = document.querySelector('#ex6_g1 .option-btn.selected');
+    const g2 = document.querySelector('#ex6_g2 .option-btn.selected');
+    if (!g1 || !g2) {
+      showFeedback('fb6', false, "Select an answer for both sentences.");
+      return;
+    }
+    const c1 = g1.textContent.trim() === 'are not admitted';
+    const c2 = g2.textContent.trim() === 'is not shared';
+    const isCorrect = c1 && c2;
+    showFeedback('fb6', isCorrect, isCorrect ? "Correct! 'Personnel' takes 'are not admitted', 'Data' takes 'is not shared'." : "Check plural/singular matching for negatives.");
+  }
+
+  // Ex 7 Validation
+  function checkEx7() {
+    const a1 = document.getElementById('ex7_1a').value;
+    const b1 = document.getElementById('ex7_1b').value;
+    const a2 = document.getElementById('ex7_2a').value;
+    const b2 = document.getElementById('ex7_2b').value;
+    const isCorrect = (a1 === 'Is' && b1 === 'renewed' && a2 === 'are' && b2 === 'ordered');
+    showFeedback('fb7', isCorrect, isCorrect ? "Excellent question structure: [Be + Subject + V3]." : "Remember question inversion: [Is/Are + Subject + Past Participle].");
+  }
+
+  // Ex 8 Validation
+  function checkEx8() {
+    const sel = document.querySelector('#ex8_g1 .option-btn.selected');
+    if (!sel) {
+      showFeedback('fb8', false, "Please choose option (A), (B), or (C).");
+      return;
+    }
+    const isCorrect = sel.textContent.includes('(A)');
+    showFeedback('fb8', isCorrect, isCorrect ? "Spot on! 'Smartphones' is plural, so it must be '(A) are packaged', not 'is'." : "Look at the subject: 'smartphones' is plural.");
+  }
+
+  // Simulation Validation
+  function checkSim() {
+    const s1 = document.getElementById('sim1').value;
+    const s2 = document.getElementById('sim2').value;
+    const s3 = document.getElementById('sim3').value;
+    const isCorrect = (s1 === 'are stored in silos' && s2 === 'are ground for espresso' && s3 === 'are delivered by couriers');
+    showFeedback('fbsim', isCorrect, isCorrect ? "SOP complete! Production flow verified." : "Check all past participles (grind -> ground) and subject agreements.");
+  }
+</script>
+
+</body>
+</html>
