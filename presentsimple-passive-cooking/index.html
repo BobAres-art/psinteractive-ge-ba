@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Kitchen Lab: Master the Recipe</title>
+  <style>
+    :root {
+      --primary: #ff6b4a;
+      --primary-hover: #e85535;
+      --secondary: #2ec4b6;
+      --accent: #ffbf69;
+      --bg: #fffbf5;
+      --card-bg: #ffffff;
+      --text: #2b2d42;
+      --text-light: #6c757d;
+      --success: #38b000;
+      --error: #d90429;
+      --border-radius: 16px;
+      --shadow: 0 10px 25px rgba(255, 107, 74, 0.08);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 16px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: var(--text-light);
+      font-size: 1.05rem;
+    }
+
+    /* Tab Navigation */
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      background: #ffe3dc;
+      padding: 8px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px 18px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: var(--card-bg);
+      color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 107, 74, 0.12);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 16px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Exposure Tab Styles */
+    .recipe-header {
+      background: linear-gradient(135deg, #ff9f1c, #ff6b4a);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .recipe-meta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .recipe-body {
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+
+    .recipe-step {
+      margin-bottom: 14px;
+      padding-left: 8px;
+    }
+
+    .passive-target {
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    /* Highlighted class toggled by button */
+    .highlighted {
+      background-color: #ffe66d;
+      color: #7b4b00;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      border-bottom: 2px solid #e09f3e;
+    }
+
+    .toggle-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fdf0ed;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Form Tab Styles */
+    .formula-box {
+      background: #e8f8f5;
+      border-left: 5px solid var(--secondary);
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1b4965;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f0e6e2;
+    }
+
+    th {
+      background-color: #fff1ed;
+      color: var(--primary);
+    }
+
+    .note-box {
+      background: #fff8e7;
+      border: 1px dashed var(--accent);
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      margin-top: 16px;
+    }
+
+    /* Practice Tab Styles */
+    .ex-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 1px solid #ffe8e2;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+
+    .ex-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 14px;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .badge {
+      background: #ffebd6;
+      color: #d97706;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .choice-btn {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--primary);
+      background: #fff5f2;
+    }
+
+    .choice-btn.correct {
+      background: #d8f3dc;
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .choice-btn.wrong {
+      background: #ffe3e3;
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    select.inline-select {
+      font-size: 0.95rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 2px solid #ffd8cc;
+      background: white;
+      color: var(--text);
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select.inline-select.correct {
+      border-color: var(--success);
+      background-color: #f0fff4;
+    }
+
+    select.inline-select.wrong {
+      border-color: var(--error);
+      background-color: #fff5f5;
+    }
+
+    /* Unscramble / Word Tiles */
+    .tiles-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 48px;
+      padding: 10px;
+      background: #fdf5f2;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border: 2px dashed #ffcfbf;
+    }
+
+    .target-slot {
+      background: #ffffff;
+      border: 2px solid #ffd8cc;
+      min-height: 52px;
+    }
+
+    .tile {
+      background: white;
+      border: 2px solid #ffaa94;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.15s;
+    }
+
+    .tile:active {
+      transform: scale(0.96);
+    }
+
+    .check-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .feedback-msg {
+      margin-top: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-height: 22px;
+    }
+
+    .feedback-msg.success { color: var(--success); }
+    .feedback-msg.error { color: var(--error); }
+
+    /* Matcher Component */
+    .matcher-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .match-item {
+      padding: 10px;
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .match-item.selected {
+      border-color: var(--primary);
+      background: #fff2ee;
+    }
+
+    .match-item.matched {
+      border-color: var(--success);
+      background: #e8f5e9;
+      color: var(--success);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Creative Tab: Chef Game */
+    .game-zone {
+      background: #fffaf0;
+      border: 2px solid #ffe8cc;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .pizza-plate {
+      width: 160px;
+      height: 160px;
+      background: #ffe8d6;
+      border: 8px dashed #ddbea9;
+      border-radius: 50%;
+      margin: 16px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      transition: all 0.4s;
+    }
+
+    .steps-log {
+      text-align: left;
+      background: white;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 14px;
+      border: 1px solid #eedfd4;
+      font-size: 0.95rem;
+    }
+
+    /* Subtle Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #a0aec0;
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.75rem; }
+      .nav-tabs { gap: 6px; }
+      .tab-btn { padding: 9px 12px; font-size: 0.85rem; }
+      .card, .ex-card { padding: 16px; }
+      .matcher-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🍳 The Kitchen Lab</h1>
+    <p>Discover cooking recipes & master real-life action descriptions!</p>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('exposure')">📖 Story & Recipe</button>
+    <button class="tab-btn" onclick="switchTab('form')">📐 Grammar Rules</button>
+    <button class="tab-btn" onclick="switchTab('practice')">🎯 Interactive Gym</button>
+    <button class="tab-btn" onclick="switchTab('creative')">👨‍🍳 Kitchen Challenge</button>
+  </div>
+
+  <!-- TAB 1: EXPOSURE -->
+  <div id="exposure" class="tab-content active">
+    <div class="card">
+      <div class="recipe-header">
+        <h2>Traditional Italian Bruschetta</h2>
+        <div class="recipe-meta">
+          <span>⏱️ Prep Time: 15 mins</span>
+          <span>🥖 Servings: 4 persons</span>
+        </div>
+      </div>
+
+      <div class="recipe-body">
+        <p class="recipe-step">Bruschetta is a famous appetizer from Italy. Fresh ingredients are needed for this classic dish.</p>
+        <p class="recipe-step">First, ripe red tomatoes <span class="passive-target" data-info="plural: are + chopped">are chopped</span> into small cubes, and fresh garlic <span class="passive-target" data-info="singular: is crushed">is crushed</span> carefully.</p>
+        <p class="recipe-step">Next, the tomatoes, garlic, olive oil, and basil leaves <span class="passive-target" data-info="plural: are mixed">are mixed</span> in a large bowl. A little salt and pepper <span class="passive-target" data-info="uncountable: is added">is added</span> for delicious taste.</p>
+        <p class="recipe-step">Then, slices of crusty bread <span class="passive-target" data-info="plural: are toasted">are toasted</span> in the oven until they become golden and crispy.</p>
+        <p class="recipe-step">Finally, the tomato mixture <span class="passive-target" data-info="singular: is spread">is spread</span> over the warm bread, and the fresh bruschetta <span class="passive-target" data-info="singular: is served">is served</span> immediately to guests.</p>
+      </div>
+
+      <div class="toggle-bar">
+        <span>Curious about how actions are described without naming the chef?</span>
+        <button class="action-btn" id="highlightBtn" onclick="toggleHighlights()">🔍 Spot Passive Actions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: FORM -->
+  <div id="form" class="tab-content">
+    <div class="card">
+      <h2>Understanding Present Simple Passive</h2>
+      <p>In cooking recipes, we care about the <strong>food and the process</strong>, not who is holding the knife. That's why we use the <strong>Present Simple Passive</strong>.</p>
+      
+      <div class="formula-box">
+        Subject + am / is / are + Past Participle (V3)
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Food item (Subject)</th>
+              <th>Be verb</th>
+              <th>Past Participle (V3)</th>
+              <th>Example sentence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>The cheese</strong> (Singular)</td>
+              <td>is</td>
+              <td>melted</td>
+              <td>The cheese <strong>is melted</strong> under the grill.</td>
+            </tr>
+            <tr>
+              <td><strong>The potatoes</strong> (Plural)</td>
+              <td>are</td>
+              <td>boiled</td>
+              <td>The potatoes <strong>are boiled</strong> in salted water.</td>
+            </tr>
+            <tr>
+              <td><strong>Fresh milk</strong> (Uncountable)</td>
+              <td>is</td>
+              <td>poured</td>
+              <td>Milk <strong>is poured</strong> into the sauce.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note-box">
+        💡 <strong>Quick Chef Tip:</strong>
+        <ul style="margin-left: 20px; margin-top: 6px;">
+          <li>Regular verbs add <strong>-ed</strong> (<em>mix &rarr; mixed, bake &rarr; baked, chop &rarr; chopped</em>).</li>
+          <li>Irregular verbs change form (<em>cut &rarr; cut, spread &rarr; spread, shake &rarr; shaken</em>).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: PRACTICE (8 Escalating Interactive Exercises) -->
+  <div id="practice" class="tab-content">
+
+    <!-- Exercise 1: Quick Auxiliary Choice -->
+    <div class="ex-card">
+      <h3>1. Select the Correct Auxiliary <span class="badge">Level: Warm-Up</span></h3>
+      <p>The fresh eggs <span id="q1-target">______</span> collected every morning.</p>
+      <div class="options-grid">
+        <button class="choice-btn" onclick="checkEx1(this, false)">is</button>
+        <button class="choice-btn" onclick="checkEx1(this, true)">are</button>
+        <button class="choice-btn" onclick="checkEx1(this, false)">be</button>
+      </div>
+      <div id="f1" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 2: Past Participle Selector -->
+    <div class="ex-card">
+      <h3>2. Complete the Past Participle <span class="badge">Level: Warm-Up</span></h3>
+      <p>The dough is <span id="q2-target">______</span> in a hot oven for 25 minutes.</p>
+      <div class="options-grid">
+        <button class="choice-btn" onclick="checkEx2(this, false)">bake</button>
+        <button class="choice-btn" onclick="checkEx2(this, false)">baking</button>
+        <button class="choice-btn" onclick="checkEx2(this, true)">baked</button>
+      </div>
+      <div id="f2" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 3: Verb Form Matcher -->
+    <div class="ex-card">
+      <h3>3. Kitchen Verb to Past Participle Matcher <span class="badge">Level: Foundation</span></h3>
+      <p style="margin-bottom: 10px; font-size: 0.9rem; color: #666;">Click one verb from the left column, then match it with its correct 3rd form on the right.</p>
+      <div class="matcher-grid">
+        <div class="match-col" id="col-base">
+          <div class="match-item" data-pair="1" onclick="selectMatch(this)">freeze</div>
+          <div class="match-item" data-pair="2" onclick="selectMatch(this)">slice</div>
+          <div class="match-item" data-pair="3" onclick="selectMatch(this)">grate</div>
+        </div>
+        <div class="match-col" id="col-part">
+          <div class="match-item" data-pair="2" onclick="selectMatch(this)">sliced</div>
+          <div class="match-item" data-pair="1" onclick="selectMatch(this)">frozen</div>
+          <div class="match-item" data-pair="3" onclick="selectMatch(this)">grated</div>
+        </div>
+      </div>
+      <div id="f3" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 4: Inline Recipe Dropdown -->
+    <div class="ex-card">
+      <h3>4. Breakfast Pancake Process <span class="badge">Level: Intermediate</span></h3>
+      <p style="line-height: 2.2;">
+        First, the flour and milk 
+        <select class="inline-select ex4-dd" data-ans="are mixed">
+          <option value="">--choose--</option>
+          <option value="is mixed">is mixed</option>
+          <option value="are mixed">are mixed</option>
+          <option value="mixes">mixes</option>
+        </select>
+        together. Next, butter 
+        <select class="inline-select ex4-dd" data-ans="is heated">
+          <option value="">--choose--</option>
+          <option value="is heated">is heated</option>
+          <option value="are heated">are heated</option>
+          <option value="heats">heats</option>
+        </select>
+        in the pan. Finally, the hot pancakes 
+        <select class="inline-select ex4-dd" data-ans="are served">
+          <option value="">--choose--</option>
+          <option value="is served">is served</option>
+          <option value="served">served</option>
+          <option value="are served">are served</option>
+        </select>
+        with sweet syrup.
+      </p>
+      <button class="check-btn" onclick="checkEx4()">Verify Selections</button>
+      <div id="f4" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 5: Unscramble Scrambled Sentence (Order Guaranteed Scrambled) -->
+    <div class="ex-card">
+      <h3>5. Sentence Unscramble: Lemonade <span class="badge">Level: Intermediate</span></h3>
+      <p style="font-size: 0.9rem; color: #666; margin-bottom: 8px;">Tap the words in the right order to form a passive sentence.</p>
+      
+      <!-- Source (Scrambled pool) -->
+      <div class="tiles-container" id="scramble-source-1">
+        <span class="tile" onclick="moveTile(this, 'scramble-target-1', 'scramble-source-1')">added</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-1', 'scramble-source-1')">is</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-1', 'scramble-source-1')">Sugar</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-1', 'scramble-source-1')">the lemon juice</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-1', 'scramble-source-1')">to</span>
+      </div>
+
+      <!-- Target construct box -->
+      <div class="tiles-container target-slot" id="scramble-target-1"></div>
+
+      <button class="check-btn" onclick="checkScramble1()">Check Sentence</button>
+      <button class="choice-btn" style="padding: 6px 12px; margin-top: 6px;" onclick="resetScramble1()">Reset</button>
+      <div id="f5" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 6: Active vs Passive Spotter -->
+    <div class="ex-card">
+      <h3>6. Active or Passive? <span class="badge">Level: Advanced</span></h3>
+      <p>Identify whether this sentence is Active or Passive:</p>
+      <p style="font-style: italic; margin: 8px 0; font-weight: 600;">"Chefs wash the vegetables thoroughly."</p>
+      <div class="options-grid">
+        <button class="choice-btn" onclick="checkEx6(this, true)">Active (Focus on the chefs)</button>
+        <button class="choice-btn" onclick="checkEx6(this, false)">Passive (Focus on the vegetables)</button>
+      </div>
+      <div id="f6" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 7: Plural vs Singular Passive Sorter -->
+    <div class="ex-card">
+      <h3>7. Rapid Grammar Classifier <span class="badge">Level: Advanced</span></h3>
+      <p>Which sentence correctly uses <strong>'is'</strong> or <strong>'are'</strong>?</p>
+      <div class="options-grid" style="flex-direction: column;">
+        <button class="choice-btn" onclick="checkEx7(this, false)" style="text-align: left;">❌ Onions is sliced thinly.</button>
+        <button class="choice-btn" onclick="checkEx7(this, true)" style="text-align: left;">✔️ Olive oil is kept in a dark bottle.</button>
+        <button class="choice-btn" onclick="checkEx7(this, false)" style="text-align: left;">❌ Fresh herbs is dried in the sun.</button>
+      </div>
+      <div id="f7" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 8: Build the Full Sentence -->
+    <div class="ex-card">
+      <h3>8. Multi-Tile Sentence Construction <span class="badge">Level: Master</span></h3>
+      <p style="font-size: 0.9rem; color: #666; margin-bottom: 8px;">Tap tiles to build: <em>"Delicious pizzas are baked in wood ovens."</em></p>
+
+      <div class="tiles-container" id="scramble-source-2">
+        <span class="tile" onclick="moveTile(this, 'scramble-target-2', 'scramble-source-2')">wood ovens</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-2', 'scramble-source-2')">are baked</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-2', 'scramble-source-2')">Delicious pizzas</span>
+        <span class="tile" onclick="moveTile(this, 'scramble-target-2', 'scramble-source-2')">in</span>
+      </div>
+
+      <div class="tiles-container target-slot" id="scramble-target-2"></div>
+
+      <button class="check-btn" onclick="checkScramble2()">Check Sentence</button>
+      <button class="choice-btn" style="padding: 6px 12px; margin-top: 6px;" onclick="resetScramble2()">Reset</button>
+      <div id="f8" class="feedback-msg"></div>
+    </div>
+
+  </div>
+
+  <!-- TAB 4: CREATIVE EXPANSION -->
+  <div id="creative" class="tab-content">
+    <div class="card">
+      <h2>👨‍🍳 Interactive Pizza Chef Game</h2>
+      <p>Follow the chef's orders. Click the correct passive action in chronological order to prepare the ultimate margherita pizza!</p>
+
+      <div class="game-zone">
+        <div class="pizza-plate" id="pizzaVisual">🍽️</div>
+        <h3 id="currentStageText" style="color: var(--primary); margin-bottom: 12px;">Step 1: The Base</h3>
+
+        <div id="gameButtons" class="options-grid" style="justify-content: center;">
+          <button class="choice-btn" onclick="playChef(1, this)">The dough is rolled flat</button>
+          <button class="choice-btn" onclick="playChef(99, this)">The pizza is eaten</button>
+          <button class="choice-btn" onclick="playChef(99, this)">The cheese is melted</button>
+        </div>
+
+        <div class="steps-log" id="gameLog">
+          <strong>Recipe Log:</strong>
+          <ul id="logList" style="margin-left: 20px; margin-top: 6px;">
+            <li>Waiting to start the kitchen...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Designed by Babak Alaee
+  </footer>
+</div>
+
+<script>
+  // TAB NAVIGATION
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+    
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // EXPOSURE HIGHLIGHT TOGGLE
+  let highlighted = false;
+  function toggleHighlights() {
+    const targets = document.querySelectorAll('.passive-target');
+    const btn = document.getElementById('highlightBtn');
+    highlighted = !highlighted;
+
+    targets.forEach(el => {
+      if (highlighted) {
+        el.classList.add('highlighted');
+        el.title = el.getAttribute('data-info');
+      } else {
+        el.classList.remove('highlighted');
+        el.removeAttribute('title');
+      }
+    });
+
+    btn.textContent = highlighted ? '✨ Hide Passive Forms' : '🔍 Spot Passive Actions';
+    btn.style.backgroundColor = highlighted ? '#2ec4b6' : '#ff6b4a';
+  }
+
+  // PRACTICE EXERCISE 1
+  function checkEx1(btn, isCorrect) {
+    const p = document.getElementById('f1');
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.className = 'choice-btn');
+    if (isCorrect) {
+      btn.classList.add('correct');
+      p.textContent = '🌟 Correct! "Eggs" is plural, so we use "are".';
+      p.className = 'feedback-msg success';
+    } else {
+      btn.classList.add('wrong');
+      p.textContent = '❌ Try again. Notice that "eggs" is plural!';
+      p.className = 'feedback-msg error';
+    }
+  }
+
+  // PRACTICE EXERCISE 2
+  function checkEx2(btn, isCorrect) {
+    const p = document.getElementById('f2');
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.className = 'choice-btn');
+    if (isCorrect) {
+      btn.classList.add('correct');
+      p.textContent = '🌟 Great job! "baked" is the past participle (V3).';
+      p.className = 'feedback-msg success';
+    } else {
+      btn.classList.add('wrong');
+      p.textContent = '❌ Remember: Passive needs the 3rd form (Past Participle).';
+      p.className = 'feedback-msg error';
+    }
+  }
+
+  // PRACTICE EXERCISE 3: MATCHER
+  let selectedMatch = null;
+  let matchesFound = 0;
+
+  function selectMatch(item) {
+    if (item.classList.contains('matched')) return;
+
+    if (!selectedMatch) {
+      selectedMatch = item;
+      item.classList.add('selected');
+    } else {
+      // Check if pair matches
+      if (selectedMatch !== item && 
+          selectedMatch.parentElement !== item.parentElement && 
+          selectedMatch.dataset.pair === item.dataset.pair) {
+        selectedMatch.classList.remove('selected');
+        selectedMatch.classList.add('matched');
+        item.classList.add('matched');
+        matchesFound++;
+        if (matchesFound === 3) {
+          const f = document.getElementById('f3');
+          f.textContent = '🎉 Awesome! All verbs are correctly paired!';
+          f.className = 'feedback-msg success';
+        }
+      } else {
+        selectedMatch.classList.remove('selected');
+      }
+      selectedMatch = null;
+    }
+  }
+
+  // PRACTICE EXERCISE 4: DROPDOWNS
+  function checkEx4() {
+    const selects = document.querySelectorAll('.ex4-dd');
+    let allCorrect = true;
+    selects.forEach(sel => {
+      if (sel.value === sel.dataset.ans) {
+        sel.className = 'inline-select ex4-dd correct';
+      } else {
+        sel.className = 'inline-select ex4-dd wrong';
+        allCorrect = false;
+      }
+    });
+    const f = document.getElementById('f4');
+    if (allCorrect) {
+      f.textContent = '🌟 Perfect recipe description!';
+      f.className = 'feedback-msg success';
+    } else {
+      f.textContent = '❌ Look closely at whether each ingredient is singular or plural.';
+      f.className = 'feedback-msg error';
+    }
+  }
+
+  // TILE MOVER UTILITY
+  function moveTile(el, targetId, sourceId) {
+    const target = document.getElementById(targetId);
+    const source = document.getElementById(sourceId);
+    if (el.parentElement.id === sourceId) {
+      target.appendChild(el);
+    } else {
+      source.appendChild(el);
+    }
+  }
+
+  // EXERCISE 5: SCRAMBLE 1
+  function checkScramble1() {
+    const target = document.getElementById('scramble-target-1');
+    const words = Array.from(target.children).map(t => t.textContent.trim()).join(' ');
+    const f = document.getElementById('f5');
+    if (words === "Sugar is added to the lemon juice") {
+      f.textContent = '🌟 Brilliant sentence construction!';
+      f.className = 'feedback-msg success';
+    } else {
+      f.textContent = '❌ Not quite. Order should be: Subject + is + past participle + rest.';
+      f.className = 'feedback-msg error';
+    }
+  }
+
+  function resetScramble1() {
+    const target = document.getElementById('scramble-target-1');
+    const source = document.getElementById('scramble-source-1');
+    while (target.firstChild) {
+      source.appendChild(target.firstChild);
+    }
+    document.getElementById('f5').textContent = '';
+  }
+
+  // EXERCISE 6
+  function checkEx6(btn, isCorrect) {
+    const f = document.getElementById('f6');
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.className = 'choice-btn');
+    if (isCorrect) {
+      btn.classList.add('correct');
+      f.textContent = '🌟 Correct! The subject (Chefs) does the action, so it is Active.';
+      f.className = 'feedback-msg success';
+    } else {
+      btn.classList.add('wrong');
+      f.textContent = '❌ Notice that "Chefs" do the washing! In passive, vegetables would come first.';
+      f.className = 'feedback-msg error';
+    }
+  }
+
+  // EXERCISE 7
+  function checkEx7(btn, isCorrect) {
+    const f = document.getElementById('f7');
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.className = 'choice-btn');
+    if (isCorrect) {
+      btn.classList.add('correct');
+      f.textContent = '🌟 Correct! "Olive oil" is uncountable (singular), so "is kept" is right.';
+      f.className = 'feedback-msg success';
+    } else {
+      btn.classList.add('wrong');
+      f.textContent = '❌ Check plural forms: Onions are... Fresh herbs are...';
+      f.className = 'feedback-msg error';
+    }
+  }
+
+  // EXERCISE 8: SCRAMBLE 2
+  function checkScramble2() {
+    const target = document.getElementById('scramble-target-2');
+    const words = Array.from(target.children).map(t => t.textContent.trim()).join(' ');
+    const f = document.getElementById('f8');
+    if (words === "Delicious pizzas are baked in wood ovens") {
+      f.textContent = '🏆 Excellent! You mastered the passive construction!';
+      f.className = 'feedback-msg success';
+    } else {
+      f.textContent = '❌ Check your order: Delicious pizzas + are baked + in + wood ovens.';
+      f.className = 'feedback-msg error';
+    }
+  }
+
+  function resetScramble2() {
+    const target = document.getElementById('scramble-target-2');
+    const source = document.getElementById('scramble-source-2');
+    while (target.firstChild) {
+      source.appendChild(target.firstChild);
+    }
+    document.getElementById('f8').textContent = '';
+  }
+
+  // CREATIVE TAB: PIZZA CHEF GAME
+  let currentStep = 1;
+  const gameStages = [
+    {
+      step: 1,
+      title: "Step 1: The Base",
+      visual: "🫓",
+      correctText: "The dough is rolled flat",
+      options: [
+        { text: "The dough is rolled flat", step: 1 },
+        { text: "The pizza is boxed", step: 99 },
+        { text: "The sauce is boiled", step: 99 }
+      ]
+    },
+    {
+      step: 2,
+      title: "Step 2: Sauce & Toppings",
+      visual: "🍅",
+      correctText: "Tomato sauce and cheese are spread",
+      options: [
+        { text: "The pizza is eaten", step: 99 },
+        { text: "Tomato sauce and cheese are spread", step: 2 },
+        { text: "The dough is frozen", step: 99 }
+      ]
+    },
+    {
+      step: 3,
+      title: "Step 3: Baking Process",
+      visual: "🔥",
+      correctText: "The pizza is baked in a hot oven",
+      options: [
+        { text: "The pizza is baked in a hot oven", step: 3 },
+        { text: "Ingredients are washed", step: 99 },
+        { text: "The flour is counted", step: 99 }
+      ]
+    },
+    {
+      step: 4,
+      title: "Step 4: Ready to Enjoy!",
+      visual: "🍕",
+      correctText: "The fresh pizza is sliced and served",
+      options: [
+        { text: "The water is boiled", step: 99 },
+        { text: "The fresh pizza is sliced and served", step: 4 },
+        { text: "The bread is toasted", step: 99 }
+      ]
+    }
+  ];
+
+  function playChef(chosenStep, btn) {
+    const logList = document.getElementById('logList');
+    const visual = document.getElementById('pizzaVisual');
+    const title = document.getElementById('currentStageText');
+    const btnContainer = document.getElementById('gameButtons');
+
+    if (chosenStep === currentStep) {
+      if (currentStep === 1) logList.innerHTML = '';
+      
+      const currentObj = gameStages.find(g => g.step === currentStep);
+      const li = document.createElement('li');
+      li.textContent = `✔️ ${currentObj.correctText}.`;
+      logList.appendChild(li);
+
+      visual.textContent = currentObj.visual;
+
+      currentStep++;
+      if (currentStep <= gameStages.length) {
+        const nextStage = gameStages[currentStep - 1];
+        title.textContent = nextStage.title;
+        btnContainer.innerHTML = '';
+        nextStage.options.sort(() => Math.random() - 0.5).forEach(opt => {
+          const b = document.createElement('button');
+          b.className = 'choice-btn';
+          b.textContent = opt.text;
+          b.onclick = () => playChef(opt.step, b);
+          btnContainer.appendChild(b);
+        });
+      } else {
+        title.textContent = "🎉 Master Chef! The pizza is completed!";
+        visual.textContent = "🍕✨";
+        btnContainer.innerHTML = `<button class="action-btn" onclick="restartChefGame()">Cook Another Pizza</button>`;
+      }
+    } else {
+      btn.classList.add('wrong');
+      setTimeout(() => btn.classList.remove('wrong'), 800);
+    }
+  }
+
+  function restartChefGame() {
+    currentStep = 1;
+    document.getElementById('logList').innerHTML = '<li>Waiting to start the kitchen...</li>';
+    document.getElementById('pizzaVisual').textContent = '🍽️';
+    document.getElementById('currentStageText').textContent = gameStages[0].title;
+    
+    const btnContainer = document.getElementById('gameButtons');
+    btnContainer.innerHTML = '';
+    gameStages[0].options.forEach(opt => {
+      const b = document.createElement('button');
+      b.className = 'choice-btn';
+      b.textContent = opt.text;
+      b.onclick = () => playChef(opt.step, b);
+      btnContainer.appendChild(b);
+    });
+  }
+</script>
+
+</body>
+</html>
