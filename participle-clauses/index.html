@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cohesive Mastery: Participle Clauses & Perfect Infinitives in Academic Writing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #eff6ff;
+      --primary-accent: #2563eb;
+      --surface: #ffffff;
+      --surface-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+      --highlight: #fef08a;
+      --highlight-border: #eab308;
+      --radius: 10px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-reading: 'Source Serif 4', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--surface-subtle);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1.25rem 0.75rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 1.75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, #0f172a, #1e3a8a);
+      color: #ffffff;
+    }
+    header h1 { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+    header p { color: #cbd5e1; font-size: 0.9rem; font-weight: 400; }
+
+    /* Navigation Tabs */
+    .tab-bar {
+      display: flex;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 0.9rem 1rem;
+      border: none;
+      background: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+    .tab-btn:hover { color: var(--primary-accent); background: rgba(255,255,255,0.6); }
+    .tab-btn.active {
+      color: var(--primary-accent);
+      border-bottom-color: var(--primary-accent);
+      background: var(--surface);
+    }
+
+    /* Content Area */
+    .tab-content { display: none; padding: 1.75rem 1.5rem; }
+    .tab-content.active { display: block; }
+
+    /* Typography & Utilities */
+    h2 { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: var(--primary); margin: 1.25rem 0 0.5rem 0; }
+    p { margin-bottom: 0.85rem; font-size: 0.94rem; }
+    .meta-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid var(--primary-accent);
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Exposure Tab Styles */
+    .essay-card {
+      font-family: var(--font-reading);
+      font-size: 1.03rem;
+      line-height: 1.8;
+      background: #fcfdfe;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      border-radius: 8px;
+      color: #1e293b;
+      margin-bottom: 1.25rem;
+    }
+    .essay-card p { margin-bottom: 1rem; }
+    
+    /* Before toggle: completely plain and unstyled */
+    .target-clause {
+      display: inline;
+      border-radius: 0;
+      background: transparent;
+      padding: 0;
+      border-bottom: none;
+      font-weight: normal;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+    /* When highlighted */
+    .highlighted .clause-participle {
+      background-color: #fef08a;
+      border-bottom: 2px solid #ca8a04;
+      padding: 1px 3px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .highlighted .clause-infinitive {
+      background-color: #bbf7d0;
+      border-bottom: 2px solid #16a34a;
+      padding: 1px 3px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      font-family: var(--font-body);
+    }
+    .btn-primary { background: var(--primary-accent); color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-outline { background: #fff; border-color: var(--border); color: var(--text); }
+    .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .legend { display: flex; gap: 1rem; font-size: 0.8rem; font-weight: 600; }
+    .legend-item { display: flex; align-items: center; gap: 0.35rem; }
+    .swatch { width: 12px; height: 12px; border-radius: 2px; }
+
+    /* Form Tables & Layout */
+    .rule-box {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .table-container { overflow-x: auto; margin-top: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left; }
+    th, td { padding: 0.75rem 0.85rem; border-bottom: 1px solid var(--border); }
+    th { background: #f8fafc; font-weight: 600; color: #334155; }
+    code { font-family: monospace; background: #f1f5f9; padding: 2px 4px; border-radius: 4px; font-size: 0.85em; color: #b91c1c; }
+
+    /* Practice Exercises */
+    .exercise-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .exercise-title { font-weight: 700; font-size: 0.95rem; color: #1e293b; }
+    .tag {
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      background: #e2e8f0;
+      color: #475569;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Option Items */
+    .option-grid { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.75rem 0; }
+    .option-btn {
+      text-align: left;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .option-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .option-btn.selected { border-color: var(--primary-accent); background: var(--primary-light); }
+    .option-btn.correct { background: var(--success-bg); border-color: var(--success); color: #14532d; font-weight: 600; }
+    .option-btn.incorrect { background: var(--error-bg); border-color: var(--error); color: #7f1d1d; }
+
+    /* Scramble Blocks */
+    .scramble-pool, .scramble-target {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0.75rem;
+      min-height: 52px;
+      border-radius: 6px;
+      margin: 0.5rem 0;
+    }
+    .scramble-pool { background: #f8fafc; border: 1px dashed #cbd5e1; }
+    .scramble-target { background: #fff; border: 2px dashed #94a3b8; }
+    .scramble-chip {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 0.35rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: transform 0.1s, background 0.1s;
+    }
+    .scramble-chip:active { transform: scale(0.96); }
+
+    /* Inline Select */
+    select.inline-select {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #94a3b8;
+      background: #fff;
+      margin: 0 0.2rem;
+      outline: none;
+    }
+    select.inline-select.correct { border-color: var(--success); background: var(--success-bg); }
+    select.inline-select.incorrect { border-color: var(--error); background: var(--error-bg); }
+
+    /* Feedback Box */
+    .feedback {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      display: none;
+    }
+    .feedback.visible { display: block; }
+    .feedback.success { background: var(--success-bg); color: #166534; border: 1px solid #86efac; }
+    .feedback.error { background: var(--error-bg); color: #991b1b; border: 1px solid #fca5a5; }
+
+    /* Academic Rubric / Expansion Tab */
+    .eval-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .side-by-side {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .side-by-side { grid-template-columns: 1fr 1fr; }
+    }
+    .side-box {
+      padding: 1rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+    }
+    .side-box.repetitive { background: #fff1f2; border: 1px solid #fecdd3; }
+    .side-box.polished { background: #f0fdf4; border: 1px solid #bbf7d0; }
+
+    /* Footer */
+    footer {
+      text-align: right;
+      padding: 1.25rem 0.5rem 0.25rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    footer span { opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Syntactic Cohesion in Argumentative Writing</h1>
+      <p>Precision discourse structuring via Participle Clauses and Perfect Infinitives</p>
+    </header>
+
+    <nav class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('exposure')">Exposure & Discovery</button>
+      <button class="tab-btn" onclick="switchTab('form')">Form & Syntactic Rules</button>
+      <button class="tab-btn" onclick="switchTab('practice')">Interactive Tasks (8)</button>
+      <button class="tab-btn" onclick="switchTab('expansion')">IELTS Coherence Workshop</button>
+    </nav>
+
+    <!-- 1. EXPOSURE TAB -->
+    <div id="exposure" class="tab-content active">
+      <h2>Authentic Discourse Sample: Urbanization & Environmental Impact</h2>
+      <p class="meta-note">
+        Examine how an advanced argumentative essay achieves syntactic economy and structural continuity. Read naturally first. Toggle the highlight tool to reveal how temporal, causal, and sequential cohesion are achieved without mechanical linkers like "Firstly", "Because", or "After that".
+      </p>
+
+      <div class="toolbar">
+        <button id="toggleBtn" class="btn btn-primary" onclick="toggleHighlights()">Toggle Structural Highlights</button>
+        <div class="legend" id="legend" style="display: none;">
+          <div class="legend-item"><div class="swatch" style="background: #fef08a; border: 1px solid #ca8a04;"></div> Participle Clauses</div>
+          <div class="legend-item"><div class="swatch" style="background: #bbf7d0; border: 1px solid #16a34a;"></div> Perfect Infinitives</div>
+        </div>
+      </div>
+
+      <div class="essay-card" id="essayText">
+        <p>
+          Rapid urbanization across developing economies has exerted unprecedented pressure on civic infrastructure. 
+          <span class="target-clause clause-participle">Having recognized the catastrophic trajectory of unchecked urban sprawl</span>, several metropolitan administrations have enacted decisive containment policies. 
+          <span class="target-clause clause-participle">Facing acute housing shortages</span>, municipal authorities often default to high-density residential developments, simultaneously mitigating horizontal encroachment and reducing transport-associated emissions.
+        </p>
+        <p>
+          However, these interventions do not operate in a vacuum. Private developers were widely reported 
+          <span class="target-clause clause-infinitive">to have overlooked environmental impact assessments</span> prior to initiating major commercial hubs. 
+          <span class="target-clause clause-participle">Deprived of essential permeable terrain</span>, these concrete corridors now experience chronic micro-flooding during monsoon cycles. 
+          <span class="target-clause clause-participle">Recognizing this systemic vulnerability</span>, civil engineers are currently overhauling drainage architecture.
+        </p>
+        <p>
+          Ultimately, remediation demands a proactive rather than reactive stance. City planners appear 
+          <span class="target-clause clause-infinitive">to have underestimated demographic shifts</span> over the past two decades. 
+          <span class="target-clause clause-participle">Having laid the technological groundwork for smart water grids</span>, the current council is now positioned to recalibrate municipal resiliency, 
+          <span class="target-clause clause-participle">thereby providing a replicable model for adjacent urban centers</span>.
+        </p>
+      </div>
+
+      <h3>Cohesive Diagnostics</h3>
+      <p>Notice how participle structures allow the writer to:</p>
+      <ul style="margin-left: 1.25rem; font-size: 0.9rem; margin-bottom: 1rem;">
+        <li>Front ground-information or conditions without inflating sentence count.</li>
+        <li>Eliminate repetitive overt subject pronouns (<em>"Because the government... they..."</em>).</li>
+        <li>Represent distinct stages of past events relative to present assertions through perfect structures.</li>
+      </ul>
+    </div>
+
+    <!-- 2. FORM TAB -->
+    <div id="form" class="tab-content">
+      <h2>Theoretical Architecture & Syntactic Rules</h2>
+      <p class="meta-note">
+        In rigorous academic prose, non-finite structures provide economy and sophisticated pacing. Adherence to subject identity and temporal anteriority is essential.
+      </p>
+
+      <div class="rule-box">
+        <h3>1. Participle Clauses: Form & Semantic Functions</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Syntactic Form</th>
+                <th>Discourse Role</th>
+                <th>Canonical Transformation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Present Participle</strong></td>
+                <td><code>V-ing</code></td>
+                <td>Simultaneity, Immediate Cause, or Consequence</td>
+                <td><em>Because/While they face</em> &rarr; <strong>Facing</strong> systemic resistance, researchers modified the protocol.</td>
+              </tr>
+              <tr>
+                <td><strong>Past Participle</strong></td>
+                <td><code>V-ed / V3</code> (Passive)</td>
+                <td>Passive Condition or Prior Exposure</td>
+                <td><em>Because it was depleted of funds</em> &rarr; <strong>Deprived of</strong> funding, the institute ceased trials.</td>
+              </tr>
+              <tr>
+                <td><strong>Perfect Participle</strong></td>
+                <td><code>Having + V-ed / V3</code></td>
+                <td>Prior Completed Action (Temporal Sequence)</td>
+                <td><em>After the state had ratified</em> &rarr; <strong>Having ratified</strong> the treaty, the state reduced tariffs.</td>
+              </tr>
+              <tr>
+                <td><strong>Passive Perfect Participle</strong></td>
+                <td><code>Having been + V-ed / V3</code></td>
+                <td>Prior Completed Action (Passive Voice)</td>
+                <td><em>After they had been informed</em> &rarr; <strong>Having been warned</strong> of anomalies, technicians aborted the test.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rule-box">
+        <h3>2. Perfect Infinitives for Sequential Anteriority</h3>
+        <p>The perfect infinitive (<code>to have + V3</code>) anchors an action or state as having occurred <strong>prior</strong> to the main governing verb. It frequently pairs with evaluative reporting verbs (<em>claim, seem, appear, consider, report, estimate</em>).</p>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Pattern</th>
+                <th>Underlying Time Logic</th>
+                <th>Academic Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Present Claim &rarr; Prior Event</strong></td>
+                <td>Governing predicate is Present; embedded event occurred in Past.</td>
+                <td>The committee claims <strong>to have achieved</strong> net-zero parity ahead of the deadline.</td>
+              </tr>
+              <tr>
+                <td><strong>Passive Subject &rarr; Prior Event</strong></td>
+                <td>Subject is evaluated now for earlier occurrences.</td>
+                <td>Deforestation rates are believed <strong>to have peaked</strong> in the early 2010s.</td>
+              </tr>
+              <tr>
+                <td><strong>Modal Hypothesis of Sequence</strong></td>
+                <td>Counterfactual past outcome or expectation.</td>
+                <td>The intervention was intended <strong>to have averted</strong> further capital flight.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rule-box">
+        <h3>3. The Dangling Modifier (Syntactic Fallacy)</h3>
+        <p>A participle clause must share its implied logical subject with the <strong>subject of the governing main clause</strong>.</p>
+        <p style="color: var(--error); margin: 0.35rem 0;"><strong>&#10007; Faulty:</strong> <em>Having evaluated the econometric models, significant errors were identified.</em> (Did the "errors" evaluate the models?)</p>
+        <p style="color: var(--success); margin: 0.35rem 0;"><strong>&#10003; Coherent:</strong> <em>Having evaluated the econometric models, the researchers identified significant errors.</em></p>
+      </div>
+    </div>
+
+    <!-- 3. PRACTICE TAB -->
+    <div id="practice" class="tab-content">
+      <h2>Progressive Mastery Practice</h2>
+      <p class="meta-note">
+        Work sequentially from structural diagnostics through complex sentence manipulation. Interactive scoring delivers immediate pedagogical feedback.
+      </p>
+
+      <!-- Task 1: Identification / Function -->
+      <div class="exercise-card" id="ex1">
+        <div class="exercise-header">
+          <span class="exercise-title">1. Functional Categorization</span>
+          <span class="tag">Controlled</span>
+        </div>
+        <p>Determine the primary semantic relationship established by the underlined clause:</p>
+        <p><em>"<u>Having depleted their budgetary surplus</u>, regional councils were forced to suspend civil infrastructure upgrades."</em></p>
+        <div class="option-grid">
+          <button class="option-btn" onclick="checkMCQ(1, this, false)">Simultaneous circumstance / Co-occurring state</button>
+          <button class="option-btn" onclick="checkMCQ(1, this, true)">Completed prior action functioning as causal predecessor</button>
+          <button class="option-btn" onclick="checkMCQ(1, this, false)">Hypothetical condition contrary to past fact</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+      </div>
+
+      <!-- Task 2: Dangling Modifier Detection -->
+      <div class="exercise-card" id="ex2">
+        <div class="exercise-header">
+          <span class="exercise-title">2. Syntax Fault Diagnosis (Dangling Modifier)</span>
+          <span class="tag">Analysis</span>
+        </div>
+        <p>Select the version that maintains rigorous syntactic cohesion without creating a dangling agent:</p>
+        <div class="option-grid">
+          <button class="option-btn" onclick="checkMCQ(2, this, false)">Having failed to secure private financing, the infrastructure project was abandoned by the board.</button>
+          <button class="option-btn" onclick="checkMCQ(2, this, true)">Having failed to secure private financing, the board abandoned the infrastructure project.</button>
+          <button class="option-btn" onclick="checkMCQ(2, this, false)">Having failed to secure private financing, abandonment of the infrastructure project became inevitable.</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+      </div>
+
+      <!-- Task 3: Perfect Infinitive Aspect -->
+      <div class="exercise-card" id="ex3">
+        <div class="exercise-header">
+          <span class="exercise-title">3. Temporal Sequencing with Perfect Infinitives</span>
+          <span class="tag">Infinitive Aspect</span>
+        </div>
+        <p>Choose the optimal structure to demonstrate that the data manipulation occurred <strong>before</strong> the investigation:</p>
+        <p><em>"The conglomerate appears ___________ internal revenue metrics several months before independent auditors stepped in."</em></p>
+        <div class="option-grid">
+          <button class="option-btn" onclick="checkMCQ(3, this, false)">to alter</button>
+          <button class="option-btn" onclick="checkMCQ(3, this, true)">to have altered</button>
+          <button class="option-btn" onclick="checkMCQ(3, this, false)">having altered</button>
+          <button class="option-btn" onclick="checkMCQ(3, this, false)">to be altering</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+      </div>
+
+      <!-- Task 4: Inline Selection Participle Voice -->
+      <div class="exercise-card" id="ex4">
+        <div class="exercise-header">
+          <span class="exercise-title">4. Voice & Temporal Selection</span>
+          <span class="tag">Clause Integration</span>
+        </div>
+        <p>Select the syntactically aligned clause heads to complete the paragraph:</p>
+        <p style="margin-top: 0.5rem;">
+          1. 
+          <select class="inline-select" id="sel4a" onchange="checkInline4()">
+            <option value="">-- Choose clause --</option>
+            <option value="inc1">Subjecting to rigorous tests</option>
+            <option value="cor">Subjected to relentless climatic stress</option>
+            <option value="inc2">Having subjected to climatic stress</option>
+          </select>
+          , early asphalt variants fractured at exponential rates.
+        </p>
+        <p style="margin-top: 0.5rem;">
+          2. 
+          <select class="inline-select" id="sel4b" onchange="checkInline4()">
+            <option value="">-- Choose clause --</option>
+            <option value="cor">Having synthesized modern polymer additives</option>
+            <option value="inc1">Synthesizing modern polymer additives</option>
+            <option value="inc2">To have synthesized additives</option>
+          </select>
+          , modern engineers successfully extended road durability by over three decades.
+        </p>
+        <div class="feedback" id="fb4"></div>
+      </div>
+
+      <!-- Task 5: Scrambled Sequence (Drag / Tap Interface) -->
+      <div class="exercise-card" id="ex5">
+        <div class="exercise-header">
+          <span class="exercise-title">5. Syntactic Reassembly (Causal & Temporal Flow)</span>
+          <span class="tag">Sentence Scramble</span>
+        </div>
+        <p>Construct a cohesive academic sentence beginning with the participle phrase. Tap chunks to move them between the staging pool and the sentence builder:</p>
+        
+        <div class="scramble-target" id="target5" placeholder="Construct sentence here..."></div>
+        <div class="scramble-pool" id="pool5"></div>
+        
+        <div style="margin-top: 0.5rem;">
+          <button class="btn btn-outline" onclick="resetScramble(5)">Reset Chunks</button>
+          <button class="btn btn-primary" onclick="verifyScramble(5)">Verify Order</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+      </div>
+
+      <!-- Task 6: Scrambled Perfect Infinitive -->
+      <div class="exercise-card" id="ex6">
+        <div class="exercise-header">
+          <span class="exercise-title">6. Perfect Infinitive Proposition Assembly</span>
+          <span class="tag">Sentence Scramble</span>
+        </div>
+        <p>Reconstruct the evaluative sentence reporting a completed historical breakthrough:</p>
+        
+        <div class="scramble-target" id="target6"></div>
+        <div class="scramble-pool" id="pool6"></div>
+        
+        <div style="margin-top: 0.5rem;">
+          <button class="btn btn-outline" onclick="resetScramble(6)">Reset Chunks</button>
+          <button class="btn btn-primary" onclick="verifyScramble(6)">Verify Order</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+      </div>
+
+      <!-- Task 7: Cohesion Transformation Selector -->
+      <div class="exercise-card" id="ex7">
+        <div class="exercise-header">
+          <span class="exercise-title">7. Mechanical to Advanced Transformation</span>
+          <span class="tag">Stylistic Refinement</span>
+        </div>
+        <p>Examine the mechanical sentence:</p>
+        <p style="background:#f1f5f9; padding:0.6rem; border-radius:4px; font-style: italic; margin-bottom: 0.75rem;">
+          "Because the university was deprived of state subsidies, it closed its satellite faculties, and as a result, it limited access for rural candidates."
+        </p>
+        <p>Which sentence best uses participle cohesion to compress these three clauses into an elegant academic form?</p>
+        <div class="option-grid">
+          <button class="option-btn" onclick="checkMCQ(7, this, false)">Depriving of state subsidies, the university closed its faculties, having limited rural candidates.</button>
+          <button class="option-btn" onclick="checkMCQ(7, this, true)">Deprived of state subsidies, the university suspended satellite operations, thereby constricting educational equity for rural cohorts.</button>
+          <button class="option-btn" onclick="checkMCQ(7, this, false)">Having been closed satellite operations, state subsidies were removed from the rural cohorts.</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+      </div>
+
+      <!-- Task 8: Gap-fill Logic Matrix -->
+      <div class="exercise-card" id="ex8">
+        <div class="exercise-header">
+          <span class="exercise-title">8. Multi-Clause Sequence Logic</span>
+          <span class="tag">Advanced Integration</span>
+        </div>
+        <p>Complete the analytical passage on climate economics with the grammatically and logically correct forms:</p>
+        <p style="line-height: 2;">
+          The ministry is recognized 
+          <select class="inline-select" id="sel8a">
+            <option value="">-- select --</option>
+            <option value="to have failed">to have failed</option>
+            <option value="failing">failing</option>
+            <option value="to fail">to fail</option>
+          </select> 
+          in its initial emissions quotas. 
+          <select class="inline-select" id="sel8b">
+            <option value="">-- select --</option>
+            <option value="Underestimating">Underestimating</option>
+            <option value="Having underestimated">Having underestimated</option>
+            <option value="Underestimated">Underestimated</option>
+          </select> 
+          industrial resistance in 2021, negotiators are now proceeding cautiously, 
+          <select class="inline-select" id="sel8c">
+            <option value="">-- select --</option>
+            <option value="hoping">hoping</option>
+            <option value="having hoped">having hoped</option>
+            <option value="hoped">hoped</option>
+          </select> 
+          to secure bilateral consensus before year-end.
+        </p>
+        <button class="btn btn-primary" style="margin-top: 0.75rem;" onclick="checkMatrix8()">Validate Passage</button>
+        <div class="feedback" id="fb8"></div>
+      </div>
+    </div>
+
+    <!-- 4. CREATIVE EXPANSION: COHERENCE WORKSHOP -->
+    <div id="expansion" class="tab-content">
+      <h2>IELTS Coherence & Cohesion: Comparative Diagnostics</h2>
+      <p class="meta-note">
+        Band 7 writing frequently overuses simple coordinate or adverbial linkers (<em>Moreover, Consequently, Therefore</em>). Band 8 and 9 responses embed organizational signals directly within non-finite syntax.
+      </p>
+
+      <div class="eval-card">
+        <h3>Discourse Architecture: Structural Compression</h3>
+        <p>Observe how non-finite clauses eliminate syntactic bloat while establishing nuanced temporal/causal connections.</p>
+        
+        <div class="side-by-side">
+          <div class="side-box repetitive">
+            <strong>Coordinate & Transitional Density (Repetitive)</strong>
+            <p style="margin-top: 0.5rem; font-family: var(--font-reading);">
+              Governments want to foster sustainable tech. Therefore, they subsidize clean energy start-ups. After they have disbursed these funds, they expect immediate results. As a result, this puts tremendous stress on nascent laboratories.
+            </p>
+            <ul style="margin: 0.5rem 0 0 1.25rem; font-size: 0.8rem; color: #881337;">
+              <li>Mechanical transitional signposts (<em>Therefore, After they have, As a result</em>).</li>
+              <li>Choppy simple sentences with identical subject themes.</li>
+            </ul>
+          </div>
+
+          <div class="side-box polished">
+            <strong>Integrated Participle Cohesion (Advanced Syntactic Flow)</strong>
+            <p style="margin-top: 0.5rem; font-family: var(--font-reading);">
+              Seeking to accelerate ecological innovation, governments routinely subsidize clean energy initiatives. Having allocated substantial capital reserves, administrative bodies often demand rapid returns, inadvertently subjecting fledgling laboratories to untenable operational burdens.
+            </p>
+            <ul style="margin: 0.5rem 0 0 1.25rem; font-size: 0.8rem; color: #14532d;">
+              <li><em>Seeking to accelerate</em>: Purpose & motivation.</li>
+              <li><em>Having allocated</em>: Definite sequential anteriority.</li>
+              <li><em>inadvertently subjecting</em>: Emergent consequence.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="eval-card">
+        <h3>Self-Evaluation Checklist for Participle Deployment</h3>
+        <ul style="margin-left: 1.25rem; font-size: 0.9rem; line-height: 1.8;">
+          <li><strong>Shared Agent Check:</strong> Does the subject immediately following your introductory comma perform or receive the action stated in the opening participle?</li>
+          <li><strong>Anteriority Verification:</strong> If the participle action strictly concluded <em>prior</em> to the main verb, is <code>Having + V3</code> used rather than a plain present participle?</li>
+          <li><strong>Reporting Infinitives:</strong> When reporting historical evidence under current scrutiny, did you exploit <code>to have + V3</code> with reporting verbs (<em>The policy is considered to have reversed the deficit</em>)?</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <span>Pedagogical system engineered by Babak Alaee</span>
+    </footer>
+  </div>
+
+  <script>
+    // Tab Controller
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+      
+      const content = document.getElementById(tabId);
+      if (content) content.classList.add('active');
+    }
+
+    // Exposure Toggle
+    let highlightsVisible = false;
+    function toggleHighlights() {
+      const card = document.getElementById('essayText');
+      const legend = document.getElementById('legend');
+      const btn = document.getElementById('toggleBtn');
+      
+      highlightsVisible = !highlightsVisible;
+      if (highlightsVisible) {
+        card.classList.add('highlighted');
+        legend.style.display = 'flex';
+        btn.textContent = 'Hide Structural Highlights';
+      } else {
+        card.classList.remove('highlighted');
+        legend.style.display = 'none';
+        btn.textContent = 'Toggle Structural Highlights';
+      }
+    }
+
+    // Generic MCQ Handler
+    function checkMCQ(exNum, btn, isCorrect) {
+      const parent = document.getElementById('ex' + exNum);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById('fb' + exNum);
+      
+      buttons.forEach(b => {
+        b.classList.remove('correct', 'incorrect', 'selected');
+      });
+      
+      btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+      fb.className = 'feedback visible ' + (isCorrect ? 'success' : 'error');
+      
+      if (exNum === 1) {
+        fb.textContent = isCorrect 
+          ? "Accurate. 'Having depleted' indicates the temporal exhaustion of the budget took place first, immediately providing the rationale for suspending operations."
+          : "Incorrect. Note the perfect aspect 'Having + past participle', which firmly establishes that one event preceded and triggered the other.";
+      } else if (exNum === 2) {
+        fb.textContent = isCorrect 
+          ? "Spot on. The logical agent of 'failing to secure private financing' is 'the board', which is placed immediately as the grammatical subject of the main clause."
+          : "Syntax error. In the alternative options, either 'the project' or 'abandonment' occupies the subject slot, erroneously implying that the project or concept itself failed to apply for financing.";
+      } else if (exNum === 3) {
+        fb.textContent = isCorrect
+          ? "Correct. The perfect infinitive 'to have altered' represents an action completed in the past relative to the present appearance ('appears')."
+          : "Incorrect. 'To alter' expresses simultaneous or general states; 'having altered' cannot directly complete the copular verb 'appears' here.";
+      } else if (exNum === 7) {
+        fb.textContent = isCorrect
+          ? "Exemplary. 'Deprived of state subsidies' handles the passive cause, while 'thereby constricting...' gracefully captures the resultant condition without adding coordinate clauses."
+          : "Incorrect. The selected option either forms an ungrammatical dangling passive or misallocates the subject focus.";
+      }
+    }
+
+    // Inline Select Exercise 4
+    function checkInline4() {
+      const a = document.getElementById('sel4a');
+      const b = document.getElementById('sel4b');
+      const fb = document.getElementById('fb4');
+      
+      const correctA = a.value === 'cor';
+      const correctB = b.value === 'cor';
+      
+      a.className = 'inline-select ' + (a.value ? (correctA ? 'correct' : 'incorrect') : '');
+      b.className = 'inline-select ' + (b.value ? (correctB ? 'correct' : 'incorrect') : '');
+      
+      if (a.value && b.value) {
+        fb.className = 'feedback visible ' + (correctA && correctB ? 'success' : 'error');
+        fb.textContent = (correctA && correctB)
+          ? "Both correct! First sentence: passive past participle ('Subjected'). Second sentence: perfect participle ('Having synthesized') to establish antecedent technological discovery."
+          : "Review the choices: verify passive voice for asphalt being exposed to stress, and active prior completion for engineers inventing additives.";
+      }
+    }
+
+    // Sentence Scramble Mechanism
+    const scrambleConfigs = {
+      5: {
+        correct: [
+          "Having conducted extensive environmental surveys,",
+          "the urban planning commission",
+          "vetoed the proposed industrial development,",
+          "thereby safeguarding fragile coastal wetlands."
+        ],
+        scrambled: [
+          "thereby safeguarding fragile coastal wetlands.",
+          "the urban planning commission",
+          "Having conducted extensive environmental surveys,",
+          "vetoed the proposed industrial development,"
+        ]
+      },
+      6: {
+        correct: [
+          "The pharmaceutical syndicate",
+          "is widely reported",
+          "to have concealed pertinent trial data",
+          "prior to submitting its patent application."
+        ],
+        scrambled: [
+          "to have concealed pertinent trial data",
+          "The pharmaceutical syndicate",
+          "prior to submitting its patent application.",
+          "is widely reported"
+        ]
+      }
+    };
+
+    function initScramble(id) {
+      const pool = document.getElementById('pool' + id);
+      const target = document.getElementById('target5' === 'target' + id ? 'target5' : 'target6');
+      pool.innerHTML = '';
+      target.innerHTML = '';
+      
+      scrambleConfigs[id].scrambled.forEach(text => {
+        const chip = document.createElement('div');
+        chip.className = 'scramble-chip';
+        chip.textContent = text;
+        chip.onclick = () => moveChip(chip, id);
+        pool.appendChild(chip);
+      });
+    }
+
+    function moveChip(chip, id) {
+      const pool = document.getElementById('pool' + id);
+      const target = document.getElementById('target' + id);
+      
+      if (chip.parentNode === pool) {
+        target.appendChild(chip);
+      } else {
+        pool.appendChild(chip);
+      }
+    }
+
+    function resetScramble(id) {
+      initScramble(id);
+      const fb = document.getElementById('fb' + id);
+      fb.className = 'feedback';
+      fb.textContent = '';
+    }
+
+    function verifyScramble(id) {
+      const target = document.getElementById('target' + id);
+      const chips = Array.from(target.children).map(c => c.textContent.trim());
+      const expected = scrambleConfigs[id].correct;
+      const fb = document.getElementById('fb' + id);
+      
+      if (chips.length < expected.length) {
+        fb.className = 'feedback visible error';
+        fb.textContent = "Please position all available chunks into the sentence builder before verifying.";
+        return;
+      }
+      
+      const isMatch = chips.every((val, idx) => val === expected[idx]);
+      if (isMatch) {
+        fb.className = 'feedback visible success';
+        fb.textContent = id === 5
+          ? "Masterfully structured. Fronted prior condition -> explicit institutional agent -> primary action -> consequential participle."
+          : "Flawless cohesion. Evaluative subject -> passive reporting predicate -> perfect infinitive describing antecedent action -> temporal anchor.";
+      } else {
+        fb.className = 'feedback visible error';
+        fb.textContent = "The structural sequence does not maintain natural academic syntax. Recheck clause subordination and main subject placement.";
+      }
+    }
+
+    // Task 8 Validator
+    function checkMatrix8() {
+      const a = document.getElementById('sel8a').value;
+      const b = document.getElementById('sel8b').value;
+      const c = document.getElementById('sel8c').value;
+      const fb = document.getElementById('fb8');
+      
+      const pass = (a === "to have failed" && b === "Having underestimated" && c === "hoping");
+      
+      fb.className = 'feedback visible ' + (pass ? 'success' : 'error');
+      fb.textContent = pass 
+        ? "Excellent integration! 1) 'to have failed' anchors prior shortfall; 2) 'Having underestimated' marks past miscalculation that explains today's caution; 3) 'hoping' captures ongoing concurrent aspiration."
+        : "Incomplete alignment. Ensure: 1) prior completion after 'is recognized'; 2) temporal precedence in the causal opening; 3) simultaneous ongoing state at the close.";
+    }
+
+    // Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      initScramble(5);
+      initScramble(6);
+    });
+  </script>
+</body>
+</html>
