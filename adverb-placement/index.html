@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mastering Academic Adverb Placement | Earth Sciences & Paleoclimatology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --border-strong: #94a3b8;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      
+      --accent-cyan: #0284c7;
+      --accent-cyan-light: #e0f2fe;
+      --accent-teal: #0d9488;
+      --accent-teal-light: #ccfbf1;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-violet: #6366f1;
+      --accent-violet-light: #ede9fe;
+      
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-card: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 2.25rem 1.25rem 1.5rem;
+      text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .topic-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-cyan);
+      background: var(--accent-cyan-light);
+      border: 1px solid #bae6fd;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      color: #0c4a6e;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .header-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-subtle);
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .nav-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.25rem;
+      max-width: 900px;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .nav-tab {
+      flex: 1;
+      padding: 0.9rem 1.1rem;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tab:hover {
+      color: var(--accent-cyan);
+      background: var(--bg-subtle);
+    }
+
+    .nav-tab.active {
+      color: var(--accent-cyan);
+      border-bottom-color: var(--accent-cyan);
+      background: var(--bg-canvas);
+    }
+
+    main {
+      flex: 1;
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3.5rem;
+    }
+
+    .tab-view {
+      display: none;
+    }
+
+    .tab-view.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Exposure Styles */
+    .controls-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .action-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      padding: 0.6rem 1.15rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      border-color: var(--accent-cyan);
+      background: var(--accent-cyan-light);
+      color: var(--accent-cyan);
+    }
+
+    .action-btn.active {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Default Passage Text: COMPLETELY CLEAN AND REGULAR */
+    .passage-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #334155;
+      text-align: justify;
+    }
+
+    .passage-body p {
+      margin-bottom: 1.15rem;
+    }
+
+    .adv {
+      font-weight: inherit;
+      color: inherit;
+      background: transparent;
+      border: none;
+      text-decoration: none;
+      padding: 0;
+      transition: all 0.2s;
+    }
+
+    /* Activated Highlighting */
+    .show-markers .adv-comment {
+      background: var(--accent-rose-light);
+      color: #9f1239;
+      font-weight: 600;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      border-bottom: 2px solid var(--accent-rose);
+    }
+
+    .show-markers .adv-frequency {
+      background: var(--accent-amber-light);
+      color: #92400e;
+      font-weight: 600;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      border-bottom: 2px solid var(--accent-amber);
+    }
+
+    .show-markers .adv-manner {
+      background: var(--accent-teal-light);
+      color: #115e59;
+      font-weight: 600;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      border-bottom: 2px solid var(--accent-teal);
+    }
+
+    .show-markers .adv-place {
+      background: var(--accent-cyan-light);
+      color: #0369a1;
+      font-weight: 600;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      border-bottom: 2px solid var(--accent-cyan);
+    }
+
+    .show-markers .adv-time {
+      background: var(--accent-violet-light);
+      color: #4338ca;
+      font-weight: 600;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      border-bottom: 2px solid var(--accent-violet);
+    }
+
+    /* Grammar Rules Section */
+    .grammar-block {
+      background: var(--bg-subtle);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .grammar-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    .code-structure {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      color: var(--accent-cyan);
+      display: inline-block;
+      margin: 0.3rem 0;
+      font-weight: 600;
+    }
+
+    .example-line {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    .example-line strong {
+      color: #0f172a;
+    }
+
+    .data-table-wrap {
+      overflow-x: auto;
+      margin-top: 1.25rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    th {
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Exercises */
+    .drill-panel {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .drill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .drill-num {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .drill-level {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .tag-easy { background: var(--accent-teal-light); color: #0f766e; }
+    .tag-med { background: var(--accent-amber-light); color: #b45309; }
+    .tag-hard { background: var(--accent-rose-light); color: #be123c; }
+
+    .drill-prompt {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .choice-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .choice-btn {
+      text-align: left;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      line-height: 1.45;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--accent-cyan);
+      background: var(--bg-subtle);
+    }
+
+    .choice-btn.is-correct {
+      background: #ecfdf5 !important;
+      border-color: #10b981 !important;
+      color: #065f46 !important;
+      font-weight: 600;
+    }
+
+    .choice-btn.is-incorrect {
+      background: #fff1f2 !important;
+      border-color: #f43f5e !important;
+      color: #9f1239 !important;
+    }
+
+    /* Unscramble Components */
+    .bank-tray, .drop-tray {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 52px;
+      padding: 0.6rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 0.75rem;
+    }
+
+    .drop-tray {
+      background: #ffffff;
+      border: 2px dashed var(--accent-cyan);
+    }
+
+    .word-token {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.15s;
+    }
+
+    .word-token:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .word-token.hidden-token {
+      display: none;
+    }
+
+    .select-input {
+      background: #ffffff;
+      border: 1.5px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0 0.25rem;
+    }
+
+    .status-msg {
+      margin-top: 0.85rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .status-msg.active-correct {
+      display: block;
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      color: #065f46;
+    }
+
+    .status-msg.active-incorrect {
+      display: block;
+      background: #fff1f2;
+      border: 1px solid #fda4af;
+      color: #9f1239;
+    }
+
+    .btn-submit {
+      background: var(--accent-cyan);
+      border: none;
+      color: #ffffff;
+      padding: 0.55rem 1.25rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-submit:hover {
+      background: #0369a1;
+    }
+
+    .btn-reset {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--text-secondary);
+      padding: 0.55rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+    }
+
+    .btn-reset:hover {
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+    }
+
+    /* Reading Clinic */
+    .clinic-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .clinic-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: var(--accent-violet-light);
+      color: var(--accent-violet);
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      background: #ffffff;
+    }
+
+    .subtle-credit {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="topic-pill">Reading &amp; Syntax Clinic • Earth Systems</div>
+    <h1>The Deep Ice Record</h1>
+    <p class="header-desc">Paleoclimatology and the Mechanics of Academic Adverb Placement</p>
+  </header>
+
+  <nav class="nav-bar">
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="navigate('tab-exposure', this)">1. Context Text</button>
+      <button class="nav-tab" onclick="navigate('tab-form', this)">2. Syntactic Rules</button>
+      <button class="nav-tab" onclick="navigate('tab-practice', this)">3. Interactive Practice (8)</button>
+      <button class="nav-tab" onclick="navigate('tab-clinic', this)">4. Rhetorical Clinic</button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- TAB 1: EXPOSURE -->
+    <section id="tab-exposure" class="tab-view active">
+      <div class="panel">
+        <div class="controls-strip">
+          <button id="markerToggle" class="action-btn" onclick="toggleSyntaxHighlights()">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+            <span>Highlight Adverbs &amp; Positions</span>
+          </button>
+          
+          <div class="legend-row">
+            <div class="legend-item"><span class="swatch" style="background:var(--accent-rose)"></span> Comment/Stance</div>
+            <div class="legend-item"><span class="swatch" style="background:var(--accent-amber)"></span> Frequency</div>
+            <div class="legend-item"><span class="swatch" style="background:var(--accent-teal)"></span> Manner</div>
+            <div class="legend-item"><span class="swatch" style="background:var(--accent-cyan)"></span> Place</div>
+            <div class="legend-item"><span class="swatch" style="background:var(--accent-violet)"></span> Time</div>
+          </div>
+        </div>
+
+        <article class="passage-body" id="iceText">
+          <p>
+            <span class="adv adv-comment">Remarkably</span>, the central ice sheet of Greenland preserves tiny bubbles of atmospheric gas that date back more than one hundred millennia. Glaciologists <span class="adv adv-frequency">consistently</span> examine these stratified columns to reconstruct ancient planetary conditions. During high-latitude summer expeditions, specialized drill assemblies rotate <span class="adv-manner">smoothly</span> through compacted firn layers to extract cylindrical ice cores without shattering the brittle crystal matrix.
+          </p>
+          <p>
+            <span class="adv adv-time">Initially</span>, early climatologists assumed that atmospheric transitions occurred solely at a leisurely pace. However, empirical measurements gathered <span class="adv adv-place">at polar field stations</span> have <span class="adv-manner">substantially</span> revised this hypothesis. Sudden warming events <span class="adv adv-frequency">often</span> unfolded in less than a single decade. <span class="adv adv-comment">Predictably</span>, these documented tipping points spurred intense scientific inquiry into ocean circulation patterns.
+          </p>
+          <p>
+            Specialist teams transport these specimens <span class="adv-manner">securely</span> to ultra-cold archival vaults <span class="adv-place">overseas</span>. By measuring isotope ratios within the trapped air pockets, researchers can <span class="adv-manner">accurately</span> determine planetary surface temperatures that prevailed <span class="adv-time">millennia ago</span>.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2: FORM -->
+    <section id="tab-form" class="tab-view">
+      <div class="panel">
+        <h2 style="font-size:1.25rem; color:#0f172a; margin-bottom:0.75rem;">Canonical Adverb Zones in English</h2>
+        <p style="color:var(--text-secondary); margin-bottom:1.5rem;">
+          In formal prose, where an adverb is positioned changes focus, clarity, and grammatical validity. Academic English organizes adverbs into three primary structural zones:
+        </p>
+
+        <div class="grammar-block">
+          <div class="grammar-title">Zone 1: Mid-Position (The Universal Anchor)</div>
+          <div class="code-structure">Subject + [Adverb] + Main Verb</div><br>
+          <div class="code-structure">Auxiliary / "Be" + [Adverb] + Participle / Complement</div>
+          <p class="example-line">
+            Used for <strong>Frequency</strong> (<em>always, rarely, consistently</em>), <strong>Degree</strong> (<em>substantially, completely</em>), and <strong>Focusing</strong> adverbs (<em>merely, also</em>).<br>
+            • Glaciologists <strong>frequently document</strong> shifts in ice accumulation.<br>
+            • Core readings have <strong>greatly enhanced</strong> ocean climate models.
+          </p>
+        </div>
+
+        <div class="grammar-block">
+          <div class="grammar-title">Zone 2: Front-Position (Sentence &amp; Discourse Modifiers)</div>
+          <div class="code-structure">[Adverb,] + Complete Main Clause</div>
+          <p class="example-line">
+            Used for <strong>Attitude / Comment</strong> (<em>Unexpectedly, Fortunately, Evidently</em>) and <strong>Discourse Linkers</strong> (<em>Consequently, Furthermore</em>). These set the frame for the whole proposition and require a comma.<br>
+            • <strong>Clearly,</strong> meltwater affects deep saline currents.
+          </p>
+        </div>
+
+        <div class="grammar-block">
+          <div class="grammar-title">Zone 3: End-Position (The Royal Order: Manner &rarr; Place &rarr; Time)</div>
+          <div class="code-structure">Verb + Direct Object + [MANNER] + [PLACE] + [TIME]</div>
+          <p class="example-line">
+            When multiple circumstantial modifiers conclude a clause, maintain this order.<br>
+            • The drill operated <strong>quietly</strong> (manner) <strong>in the bore shaft</strong> (place) <strong>throughout the night</strong> (time).<br>
+            <span style="color:var(--accent-rose); font-size:0.85rem; font-weight:600;">Caution: Never place an adverb between a transitive verb and its direct object (*"They examined carefully the ice"* is ungrammatical).</span>
+          </p>
+        </div>
+
+        <div class="data-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Adverb Type</th>
+                <th>Standard Zone</th>
+                <th>Academic Demonstration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Manner</strong> (cautiously, rapidly)</td>
+                <td>End or Mid</td>
+                <td>Technicians <em>cautiously analyzed</em> the crystalline segment.</td>
+              </tr>
+              <tr>
+                <td><strong>Frequency</strong> (seldom, routinely)</td>
+                <td>Mid</td>
+                <td>The sensors <em>routinely transmit</em> atmospheric data.</td>
+              </tr>
+              <tr>
+                <td><strong>Comment / Viewpoint</strong> (interestingly)</td>
+                <td>Front</td>
+                <td><em>Interestingly,</em> seasonal layers remained intact.</td>
+              </tr>
+              <tr>
+                <td><strong>Place &amp; Time</strong> (in situ, previously)</td>
+                <td>End (Front for time framing)</td>
+                <td>Samples were cataloged <em>in situ yesterday</em>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PRACTICE (8 INTERACTIVE EXERCISES) -->
+    <section id="tab-practice" class="tab-view">
+
+      <!-- EXERCISE 1: Multiple Choice - Frequency Mid-Position -->
+      <div class="drill-panel" id="ex1">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 1 • Word Order Spotting</span>
+          <span class="drill-level tag-easy">Foundational</span>
+        </div>
+        <p class="drill-prompt">Select the sentence that positions the frequency adverb <em>"rarely"</em> correctly in formal prose:</p>
+        <div class="choice-stack">
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Climatologists investigate rarely pristine ice sheets without thermal suits.', 'Ex1Feedback', 'Incorrect. An adverb should not sit directly between the transitive verb and its direct object.')">Climatologists investigate rarely pristine ice sheets without thermal suits.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, true, 'Climatologists rarely investigate pristine ice sheets without thermal suits.', 'Ex1Feedback', 'Correct! With a single lexical verb, frequency adverbs occupy the mid-position directly between the subject and verb.')">Climatologists rarely investigate pristine ice sheets without thermal suits.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Rarely climatologists investigate pristine ice sheets without thermal suits.', 'Ex1Feedback', 'Incorrect. Placing a negative adverb like \"Rarely\" sentence-initially requires subject-auxiliary inversion (Rarely do climatologists investigate...).')">Rarely climatologists investigate pristine ice sheets without thermal suits.</button>
+        </div>
+        <div id="Ex1Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 2: Direct Object Integrity -->
+      <div class="drill-panel" id="ex2">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 2 • Verb-Object Integrity</span>
+          <span class="drill-level tag-easy">Foundational</span>
+        </div>
+        <p class="drill-prompt">Where should the adverb of manner <em>"thoroughly"</em> be positioned?</p>
+        <div class="choice-stack">
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'The expedition recorded thoroughly every temperature fluctuation.', 'Ex2Feedback', 'Incorrect. The direct object (\"every temperature fluctuation\") must not be separated from its transitive verb (\"recorded\").')">The expedition recorded thoroughly every temperature fluctuation.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, true, 'The expedition recorded every temperature fluctuation thoroughly.', 'Ex2Feedback', 'Spot on! The manner adverb placed after the complete verb phrase and object preserves syntactic integrity.')">The expedition recorded every temperature fluctuation thoroughly.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Thoroughly the expedition recorded every temperature fluctuation.', 'Ex2Feedback', 'Incorrect. Manner adverbs sound unnatural when fronted without a strong stylistic comma frame.')">Thoroughly the expedition recorded every temperature fluctuation.</button>
+        </div>
+        <div id="Ex2Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 3: Auxiliary Verb Sandwich (Dropdown) -->
+      <div class="drill-panel">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 3 • Split-Auxiliary Placement</span>
+          <span class="drill-level tag-med">Intermediate</span>
+        </div>
+        <p class="drill-prompt">Choose the correct slot for the adverbs inside this passive verb construction:</p>
+        <div style="font-size:1rem; line-height: 2.2; margin-bottom:1rem;">
+          The deep stratigraphic layers have 
+          <select id="ex3SelectA" class="select-input">
+            <option value="">-- select --</option>
+            <option value="correct">recently been extracted</option>
+            <option value="wrong1">been extracted recently by drills</option>
+            <option value="wrong2">been recently extracted</option>
+          </select> 
+          from the bedrock and examined 
+          <select id="ex3SelectB" class="select-input">
+            <option value="">-- select --</option>
+            <option value="correct">meticulously</option>
+            <option value="wrong1">meticulous</option>
+            <option value="wrong2">hardly meticulous</option>
+          </select> 
+          under polar field microscopes.
+        </div>
+        <button class="btn-submit" onclick="checkEx3()">Validate Selections</button>
+        <div id="Ex3Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 4: Sequence: Manner - Place - Time -->
+      <div class="drill-panel" id="ex4">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 4 • Circumstantial Hierarchy</span>
+          <span class="drill-level tag-med">Intermediate</span>
+        </div>
+        <p class="drill-prompt">Select the sentence following the academic convention: <strong>Manner &rarr; Place &rarr; Time</strong>.</p>
+        <div class="choice-stack">
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, true, 'Sensors recorded barometric shifts continuously (Manner) in the deep trench (Place) all winter (Time).', 'Ex4Feedback', 'Correct! Manner (continuously) precedes Place (in the deep trench), which precedes Time (all winter).')">Sensors recorded barometric shifts continuously in the deep trench all winter.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Sensors recorded barometric shifts in the deep trench continuously all winter.', 'Ex4Feedback', 'Incorrect. Place was erroneously placed before Manner.')">Sensors recorded barometric shifts in the deep trench continuously all winter.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Sensors recorded barometric shifts all winter in the deep trench continuously.', 'Ex4Feedback', 'Incorrect. Time should not precede Place or Manner.')">Sensors recorded barometric shifts all winter in the deep trench continuously.</button>
+        </div>
+        <div id="Ex4Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 5: Click-to-Order Unscramble -->
+      <div class="drill-panel">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 5 • Unscramble (Comment/Stance)</span>
+          <span class="drill-level tag-med">Intermediate</span>
+        </div>
+        <p class="drill-prompt">Tap the tokens to reconstruct a well-formed sentence featuring an initial comment adverb:</p>
+        
+        <!-- Scrambled bank: order is purposefully scrambled prior to solving -->
+        <div class="bank-tray" id="tokenSource5">
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">revealed</span>
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">abrupt</span>
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">Unexpectedly,</span>
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">isotopic</span>
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">the</span>
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">shifts.</span>
+          <span class="word-token" onclick="moveToken(this, 'tokenTarget5')">specimens</span>
+        </div>
+
+        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.35rem;">Constructed sentence (Tap words in the box to return them):</p>
+        <div class="drop-tray" id="tokenTarget5"></div>
+
+        <div>
+          <button class="btn-submit" onclick="checkTokenOrder5()">Verify Sentence</button>
+          <button class="btn-reset" onclick="resetTokens5()">Reset Order</button>
+        </div>
+        <div id="Ex5Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 6: Negative Adverb Inversion -->
+      <div class="drill-panel" id="ex6">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 6 • Restrictive Inversion</span>
+          <span class="drill-level tag-hard">Advanced</span>
+        </div>
+        <p class="drill-prompt">When negative adverbs (<em>Rarely, Scarcely, Seldom</em>) open a clause for rhetorical weight, which structure is correct?</p>
+        <div class="choice-stack">
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Seldom scientists find gas samples this pure at shallow depths.', 'Ex6Feedback', 'Incorrect. When \"Seldom\" is placed at the front, subject-auxiliary inversion is mandatory.')">Seldom scientists find gas samples this pure at shallow depths.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, true, 'Seldom do scientists find gas samples this pure at shallow depths.', 'Ex6Feedback', 'Excellent! Restrictive Adverb + Auxiliary (do) + Subject (scientists) + Base Verb (find).')">Seldom do scientists find gas samples this pure at shallow depths.</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Seldom scientists do find gas samples this pure at shallow depths.', 'Ex6Feedback', 'Incorrect. The auxiliary must come before the subject, not after.')">Seldom scientists do find gas samples this pure at shallow depths.</button>
+        </div>
+        <div id="Ex6Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 7: Adverbs Modifying Adjectives (Dropdown) -->
+      <div class="drill-panel">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 7 • Pre-Adjectival Modification</span>
+          <span class="drill-level tag-hard">Advanced</span>
+        </div>
+        <p class="drill-prompt">Complete the scientific claim by choosing the grammatically sound phrase:</p>
+        <div style="font-size:1rem; line-height: 2.2; margin-bottom:1rem;">
+          Trapped greenhouse gases present a 
+          <select id="ex7Select" class="select-input">
+            <option value="">-- select modifier sequence --</option>
+            <option value="wrong1">potent potentially environmental</option>
+            <option value="correct">potentially catastrophic ecological</option>
+            <option value="wrong2">catastrophic potentially ecological</option>
+          </select> 
+          hazard if polar shelves collapse.
+        </div>
+        <button class="btn-submit" onclick="checkEx7()">Verify Structure</button>
+        <div id="Ex7Feedback" class="status-msg"></div>
+      </div>
+
+      <!-- EXERCISE 8: Discourse Adverb Insertion -->
+      <div class="drill-panel" id="ex8">
+        <div class="drill-header">
+          <span class="drill-num">Exercise 8 • Discourse Cohesion</span>
+          <span class="drill-level tag-hard">Advanced</span>
+        </div>
+        <p class="drill-prompt">Where does the conjunctive adverb <em>"Consequently"</em> belong in this reading excerpt?</p>
+        <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-cyan); padding:1rem; margin-bottom:1rem; font-size:0.95rem;">
+          Solar radiation variations initiated melting at the lower margins. <strong>[1]</strong> Fresh meltwater diluted the dense ocean brine, <strong>[2]</strong> which slowed <strong>[3]</strong> the North Atlantic conveyor currents.
+        </div>
+        <div class="choice-stack">
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, true, 'Insert at [1]', 'Ex8Feedback', 'Correct! \"Consequently\" functions as a sentence-initial connector linking an effect to its cause.')">Position [1] (Sentence-initial linking position)</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Insert at [2]', 'Ex8Feedback', 'Incorrect. Inserting it directly after the comma disrupts the non-defining relative clause.')">Position [2] (Pre-relative clause boundary)</button>
+          <button class="choice-btn" onclick="evaluateSingleChoice(this, false, 'Insert at [3]', 'Ex8Feedback', 'Incorrect. This creates an ungrammatical division between the verb \"slowed\" and its direct object.')">Position [3] (Verb-object interruption)</button>
+        </div>
+        <div id="Ex8Feedback" class="status-msg"></div>
+      </div>
+
+    </section>
+
+    <!-- TAB 4: RHETORICAL CLINIC -->
+    <section id="tab-clinic" class="tab-view">
+      <div class="panel">
+        <h2 style="font-size:1.25rem; color:#0f172a; margin-bottom:0.75rem;">Adverb Nuances in Academic Reading</h2>
+        <p style="color:var(--text-secondary); margin-bottom:1.5rem;">
+          Examine how shifts in adverb positioning alter rhetoric and meaning in academic texts.
+        </p>
+
+        <div class="clinic-card">
+          <span class="clinic-badge">Position &amp; Meaning Contrast</span>
+          <h4 style="margin-bottom:0.4rem; color:#0f172a;">Stance (Sentence-Level) vs. Manner (Verb-Level)</h4>
+          <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:0.75rem;">
+            Notice how the meaning of <em>"clearly"</em> completely shifts:
+          </p>
+          <div style="background:var(--bg-subtle); padding:0.85rem; border-radius:6px; font-size:0.9rem; margin-bottom:0.6rem;">
+            <strong>Front (Comment/Stance):</strong> <em>Clearly, the ice core had melted in transit.</em><br>
+            <span style="color:var(--text-secondary);">&rarr; Meaning: It is obvious/evident to the reader that the sample melted.</span>
+          </div>
+          <div style="background:var(--bg-subtle); padding:0.85rem; border-radius:6px; font-size:0.9rem;">
+            <strong>End (Manner):</strong> <em>The technician photographed the ice core clearly.</em><br>
+            <span style="color:var(--text-secondary);">&rarr; Meaning: The photograph itself was focused and sharp.</span>
+          </div>
+        </div>
+
+        <div class="clinic-card">
+          <span class="clinic-badge">Reading Comprehension Strategy</span>
+          <h4 style="margin-bottom:0.4rem; color:#0f172a;">Identifying Author Stance via Sentence Adverbs</h4>
+          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+            In reading passages, questions about the author's tone frequently rely on fronted comment adverbs. Words like <em>"Arguably"</em>, <em>"Paradoxically"</em>, or <em>"Regrettably"</em> provide direct clues about the author's viewpoint without needing explicit declarations like <em>"I believe"</em>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>Academic English Studies • Earth Sciences Series</div>
+    <div class="subtle-credit">Designed by Babak Alaee</div>
+  </footer>
+
+  <script>
+    // Tab Navigation Logic
+    function navigate(tabId, triggerBtn) {
+      const views = document.querySelectorAll('.tab-view');
+      views.forEach(v => v.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.nav-tab');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      triggerBtn.classList.add('active');
+    }
+
+    // Toggle Exposure Highlights
+    function toggleSyntaxHighlights() {
+      const passage = document.getElementById('iceText');
+      const btn = document.getElementById('markerToggle');
+      const isShowing = passage.classList.toggle('show-markers');
+
+      if (isShowing) {
+        btn.classList.add('active');
+        btn.querySelector('span').textContent = 'Hide Adverbs & Positions';
+      } else {
+        btn.classList.remove('active');
+        btn.querySelector('span').textContent = 'Highlight Adverbs & Positions';
+      }
+    }
+
+    // Universal Single Choice Evaluator
+    function evaluateSingleChoice(clickedBtn, isCorrect, explanation, feedbackId, detailText) {
+      const parentCard = clickedBtn.closest('.drill-panel');
+      const allButtons = parentCard.querySelectorAll('.choice-btn');
+      const fbBox = document.getElementById(feedbackId);
+
+      allButtons.forEach(btn => {
+        btn.classList.remove('is-correct', 'is-incorrect');
+      });
+
+      if (isCorrect) {
+        clickedBtn.classList.add('is-correct');
+        fbBox.className = 'status-msg active-correct';
+        fbBox.innerHTML = `<strong>Correct:</strong> ${detailText}`;
+      } else {
+        clickedBtn.classList.add('is-incorrect');
+        fbBox.className = 'status-msg active-incorrect';
+        fbBox.innerHTML = `<strong>Try Again:</strong> ${detailText}`;
+      }
+    }
+
+    // Exercise 3 Validation
+    function checkEx3() {
+      const valA = document.getElementById('ex3SelectA').value;
+      const valB = document.getElementById('ex3SelectB').value;
+      const fb = document.getElementById('Ex3Feedback');
+
+      if (valA === 'correct' && valB === 'correct') {
+        fb.className = 'status-msg active-correct';
+        fb.innerHTML = '<strong>Correct!</strong> In split passive verbs, temporal adverbs (<em>recently</em>) nest between auxiliaries, while manner adverbs (<em>meticulously</em>) follow at the end of the clause.';
+      } else {
+        fb.className = 'status-msg active-incorrect';
+        fb.innerHTML = '<strong>Review needed:</strong> Check your placement. An adverb of frequency or recent time typically sits between the first auxiliary verb and the participle, while manner appears at the end.';
+      }
+    }
+
+    // Exercise 5 (Interactive Token Reorder)
+    const originalTokens5 = [
+      "revealed", "abrupt", "Unexpectedly,", "isotopic", "the", "shifts.", "specimens"
+    ];
+    const targetSolution5 = ["Unexpectedly,", "the", "specimens", "revealed", "abrupt", "isotopic", "shifts."];
+
+    function moveToken(element, targetId) {
+      const targetTray = document.getElementById(targetId);
+      const isFromSource = element.parentElement.id === 'tokenSource5';
+
+      if (isFromSource) {
+        // Move from source to target
+        const clone = element.cloneNode(true);
+        clone.onclick = function() {
+          element.classList.remove('hidden-token');
+          clone.remove();
+        };
+        targetTray.appendChild(clone);
+        element.classList.add('hidden-token');
+      }
+    }
+
+    function checkTokenOrder5() {
+      const tray = document.getElementById('tokenTarget5');
+      const placedWords = Array.from(tray.querySelectorAll('.word-token')).map(el => el.textContent.trim());
+      const fb = document.getElementById('Ex5Feedback');
+
+      if (placedWords.length !== targetSolution5.length) {
+        fb.className = 'status-msg active-incorrect';
+        fb.textContent = 'Please place all tokens into the sentence tray before verifying.';
+        return;
+      }
+
+      const match = placedWords.every((word, idx) => word === targetSolution5[idx]);
+
+      if (match) {
+        fb.className = 'status-msg active-correct';
+        fb.innerHTML = '<strong>Correct!</strong> <em>Unexpectedly,</em> (Stance comment) is set off with a comma at the front, followed directly by Subject + Verb + Object.';
+      } else {
+        fb.className = 'status-msg active-incorrect';
+        fb.innerHTML = '<strong>Order incorrect:</strong> Front the stance adverb, followed by the subject noun phrase and predicate: <em>"Unexpectedly, the specimens revealed abrupt isotopic shifts."</em>';
+      }
+    }
+
+    function resetTokens5() {
+      document.getElementById('tokenTarget5').innerHTML = '';
+      const sourceTokens = document.querySelectorAll('#tokenSource5 .word-token');
+      sourceTokens.forEach(t => t.classList.remove('hidden-token'));
+      const fb = document.getElementById('Ex5Feedback');
+      fb.className = 'status-msg';
+      fb.textContent = '';
+    }
+
+    // Exercise 7 Validation
+    function checkEx7() {
+      const val = document.getElementById('ex7Select').value;
+      const fb = document.getElementById('Ex7Feedback');
+
+      if (val === 'correct') {
+        fb.className = 'status-msg active-correct';
+        fb.innerHTML = '<strong>Correct!</strong> The degree adverb <em>"potentially"</em> modifies the adjective <em>"catastrophic"</em>, which together modify the noun <em>"hazard"</em>.';
+      } else {
+        fb.className = 'status-msg active-incorrect';
+        fb.innerHTML = '<strong>Not quite:</strong> An adverb modifying an adjective must immediately precede that specific adjective.';
+      }
+    }
+  </script>
+</body>
+</html>
