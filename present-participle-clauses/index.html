@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Academic Writing: Present Participle Clauses for Cohesion</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #0284c7;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 90vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      scrollbar-width: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 1rem 0.75rem;
+      border: none;
+      background: none;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-bottom: 3px solid transparent;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      background: white;
+      border-bottom-color: var(--primary);
+    }
+
+    .tab-content {
+      padding: 1.75rem;
+      display: none;
+      flex: 1;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Exposure Tab */
+    .essay-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .prompt-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary-light);
+      padding: 0.85rem 1rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      color: #1e3a8a;
+    }
+
+    .target-clause {
+      transition: all 0.25s ease;
+    }
+
+    .highlight-active {
+      background-color: #fef08a;
+      border-bottom: 2px solid #ca8a04;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .ctrl-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-outline {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    /* Form Rules */
+    .rule-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .rule-card h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .comparison {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .comp-box {
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.92rem;
+    }
+
+    .comp-old {
+      background: #f1f5f9;
+      border-left: 3px solid var(--muted);
+    }
+
+    .comp-new {
+      background: #ecfdf5;
+      border-left: 3px solid var(--success);
+    }
+
+    /* Practice Exercises */
+    .exercise-block {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      background: white;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .exercise-difficulty {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .tag-easy { background: #dcfce7; color: var(--success); }
+    .tag-mid { background: #fef9c3; color: #854d0e; }
+    .tag-hard { background: #fee2e2; color: var(--error); }
+
+    .q-text {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: background 0.15s;
+    }
+
+    .opt-label:hover {
+      background: #f8fafc;
+    }
+
+    .feedback-msg {
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .feedback-msg.show {
+      display: block;
+    }
+
+    .correct-fb { color: var(--success); }
+    .incorrect-fb { color: var(--error); }
+
+    /* Unscramble UI */
+    .token-pool, .token-dropzone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      min-height: 48px;
+      padding: 0.5rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .token-pool {
+      background: #f1f5f9;
+      border: 1px dashed var(--muted);
+    }
+
+    .token-dropzone {
+      background: white;
+      border: 2px solid var(--border);
+    }
+
+    .word-chip {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      user-select: none;
+      transition: 0.15s ease;
+    }
+
+    .word-chip:hover {
+      background: #e2e8f0;
+    }
+
+    .word-chip.placed {
+      background: #eff6ff;
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* Cohesion Diagnostic Tool */
+    .diagnostic-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .diagnostic-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .diag-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      background: white;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1rem 1.5rem;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    footer span {
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Present Participle Clauses for IELTS Cohesion</h1>
+    <p>Enhancing coherence, lexical flow, and sentence variety in Task 2 Writing</p>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('exposure')">📖 Exposure</button>
+    <button class="tab-btn" onclick="switchTab('form')">⚙️ Form & Logic</button>
+    <button class="tab-btn" onclick="switchTab('practice')">✏️ Practice Lab</button>
+    <button class="tab-btn" onclick="switchTab('diagnostic')">🔍 Cohesion Analysis</button>
+  </nav>
+
+  <!-- TAB 1: EXPOSURE -->
+  <section id="exposure" class="tab-content active">
+    <div class="prompt-box">
+      <strong>IELTS Task 2 Sample Question:</strong> Many cities around the world are facing increasing traffic congestion. What are the causes of this issue, and what measures can be taken to tackle it?
+    </div>
+
+    <div class="ctrl-bar">
+      <button class="btn btn-primary" id="toggleHighlightBtn" onclick="toggleHighlights()">
+        ✨ Identify Participle Clauses
+      </button>
+      <span style="font-size:0.85rem; color: var(--muted);" id="highlightCounter">Status: Participles blended into natural essay text</span>
+    </div>
+
+    <article class="essay-card" id="essayText">
+      <p>
+        In recent decades, rapid urbanization has dramatically increased vehicular volume across major metropolitan areas. Many commuters rely exclusively on private cars, <span class="target-clause">causing</span> severe road congestion during peak transit hours. Local councils have attempted to widen motorways, <span class="target-clause">hoping</span> to alleviate gridlock without restricting private vehicle ownership.
+      </p>
+      <br>
+      <p>
+        However, empirical studies demonstrate that simply expanding road capacity induces further travel demand. Private automobiles continually enter city centers, <span class="target-clause">releasing</span> substantial quantities of greenhouse gases and harmful fine particulates. <span class="target-clause">Recognizing</span> the environmental and economic damage caused by such delays, several progressive municipalities have begun investing in electrified light rail systems.
+      </p>
+      <br>
+      <p>
+        By establishing dedicated transit corridors, cities encourage residents to abandon individual vehicles, <span class="target-clause">creating</span> cleaner and more liveable urban hubs. In conclusion, rather than merely constructing additional highways, urban planners must adopt integrated transport solutions, <span class="target-clause">ensuring</span> sustainable mobility for future generations.
+      </p>
+    </article>
+  </section>
+
+  <!-- TAB 2: FORM -->
+  <section id="form" class="tab-content">
+    <div class="rule-card">
+      <h3>1. What is a Present Participle Clause?</h3>
+      <p>A present participle clause starts with an <strong>-ing</strong> verb form. When used as an adverbial or cohesive device, it connects two ideas efficiently without relying on repetitive linkers like <em>and therefore</em>, <em>because</em>, or <em>as a result</em>.</p>
+    </div>
+
+    <div class="rule-card">
+      <h3>2. Common Rhetorical Functions in IELTS Writing</h3>
+      <div class="comparison">
+        <div class="comp-box comp-old">
+          <strong>Result / Consequence:</strong><br>
+          <em>Cities build more roads, <strong>and as a result, they encourage</strong> more drivers.</em>
+        </div>
+        <div class="comp-box comp-new">
+          <strong>Participle Clause:</strong><br>
+          <em>Cities build more roads, <strong>encouraging</strong> more drivers.</em>
+        </div>
+      </div>
+
+      <div class="comparison">
+        <div class="comp-box comp-old">
+          <strong>Reason / Background:</strong><br>
+          <em><strong>Because governments realize</strong> the crisis, they subsidize transit.</em>
+        </div>
+        <div class="comp-box comp-new">
+          <strong>Participle Clause:</strong><br>
+          <em><strong>Realizing</strong> the crisis, governments subsidize transit.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <h3>3. The Golden Rule: Shared Logical Subject</h3>
+      <p>The implicit subject of the participle clause <strong>must match</strong> the subject of the main clause. If it does not, you create a confusing "dangling participle" which drops your coherence score.</p>
+      <div class="comparison" style="margin-top: 0.5rem;">
+        <div class="comp-box comp-old" style="border-left-color: var(--error);">
+          ❌ <em>Driving to work, traffic was heavy.</em><br>
+          <small>(Did the traffic drive to work? No.)</small>
+        </div>
+        <div class="comp-box comp-new">
+          ✓ <em>Driving to work, <strong>commuters</strong> encountered heavy traffic.</em><br>
+          <small>(Commuters drove and commuters encountered.)</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: PRACTICE LAB -->
+  <section id="practice" class="tab-content">
+
+    <!-- Exercise 1 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 1: Identify the Role</span>
+        <span class="exercise-difficulty tag-easy">Introductory</span>
+      </div>
+      <p class="q-text">What is the semantic purpose of the underlined clause? <br><em>"Governments subsidized electric vehicles, <u>making</u> them more affordable for lower-income families."</em></p>
+      <div class="options-grid">
+        <label class="opt-label"><input type="radio" name="ex1" value="a" onchange="checkMCQ('ex1', 'b', 'Incorrect. It explains what happened as a direct consequence, not the initial intention.', 'Correct! It expresses an immediate natural result.')"> A condition</label>
+        <label class="opt-label"><input type="radio" name="ex1" value="b" onchange="checkMCQ('ex1', 'b', '', 'Correct! It functions as an adverbial clause of result.')"> A natural result or consequence</label>
+        <label class="opt-label"><input type="radio" name="ex1" value="c" onchange="checkMCQ('ex1', 'b', 'Incorrect. Time clauses usually employ structures like while/when.', '')"> A chronological sequence in the distant past</label>
+      </div>
+      <div id="ex1-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 2 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 2: Select the Cohesive Participle</span>
+        <span class="exercise-difficulty tag-easy">Introductory</span>
+      </div>
+      <p class="q-text">Many young graduates move to capital cities, _______ to secure higher-paying employment opportunities.</p>
+      <div class="options-grid">
+        <label class="opt-label"><input type="radio" name="ex2" value="a" onchange="checkMCQ('ex2', 'b', 'Incorrect. An infinitive of purpose is grammatically possible, but an active participle clause provides smooth ongoing manner.', '')"> to hope</label>
+        <label class="opt-label"><input type="radio" name="ex2" value="b" onchange="checkMCQ('ex2', 'b', '', 'Spot on! \"hoping\" denotes simultaneous motive smoothly.')"> hoping</label>
+        <label class="opt-label"><input type="radio" name="ex2" value="c" onchange="checkMCQ('ex2', 'b', 'Incorrect. \"hoped\" creates an uncoordinated past form.', '')"> hoped</label>
+      </div>
+      <div id="ex2-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 3 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 3: Combine Without Redundancy</span>
+        <span class="exercise-difficulty tag-easy">Introductory</span>
+      </div>
+      <p class="q-text"><em>Original:</em> "The university increased tuition fees. And as a consequence, it sparked protests among students."</p>
+      <div class="options-grid">
+        <label class="opt-label"><input type="radio" name="ex3" value="a" onchange="checkMCQ('ex3', 'a', '', 'Correct! Eliminates \"and as a consequence, it\" cleanly.')"> The university increased tuition fees, sparking protests among students.</label>
+        <label class="opt-label"><input type="radio" name="ex3" value="b" onchange="checkMCQ('ex3', 'a', 'Incorrect. Do not retain \"and therefore\" when using a non-finite participle clause.', '')"> The university increased tuition fees, and therefore sparking protests among students.</label>
+      </div>
+      <div id="ex3-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 4 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 4: Identifying Dangling Participles</span>
+        <span class="exercise-difficulty tag-mid">Intermediate</span>
+      </div>
+      <p class="q-text">Select the sentence that maintains proper grammatical subject alignment:</p>
+      <div class="options-grid">
+        <label class="opt-label"><input type="radio" name="ex4" value="a" onchange="checkMCQ('ex4', 'b', 'Incorrect. \"Air quality\" did not introduce clean buses.', '')"> Introducing clean-energy buses, air quality was immediately improved.</label>
+        <label class="opt-label"><input type="radio" name="ex4" value="b" onchange="checkMCQ('ex4', 'b', '', 'Correct! \"City officials\" is the logical subject for both introducing and seeing.')"> Introducing clean-energy buses, city officials observed an immediate improvement in air quality.</label>
+      </div>
+      <div id="ex4-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 5 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 5: Dropdown Cloze</span>
+        <span class="exercise-difficulty tag-mid">Intermediate</span>
+      </div>
+      <p class="q-text">Complete the academic paragraph with the most cohesive participle form:</p>
+      <p style="margin-bottom:0.75rem;">
+        Automation is rapidly transforming manual industries,
+        <select id="ex5-select" onchange="checkDropdown()" style="padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border);">
+          <option value="">-- Choose clause --</option>
+          <option value="inc">which is decreasing</option>
+          <option value="cor">reducing</option>
+          <option value="inf">to reduce</option>
+        </select>
+        the necessity for low-skilled factory jobs while
+        <strong>generating</strong> new positions in robotics maintenance.
+      </p>
+      <div id="ex5-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 6 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 6: Unscramble the Sentence</span>
+        <span class="exercise-difficulty tag-mid">Intermediate</span>
+      </div>
+      <p class="q-text">Tap the words in order to form an academic conclusion sentence:</p>
+      
+      <div class="token-dropzone" id="dropzone6"></div>
+      <div class="token-pool" id="pool6">
+        <!-- Scrambled chips -->
+        <span class="word-chip" onclick="moveChip(this, 'pool6', 'dropzone6', 6)">carbon emissions,</span>
+        <span class="word-chip" onclick="moveChip(this, 'pool6', 'dropzone6', 6)">air quality.</span>
+        <span class="word-chip" onclick="moveChip(this, 'pool6', 'dropzone6', 6)">significantly improving</span>
+        <span class="word-chip" onclick="moveChip(this, 'pool6', 'dropzone6', 6)">The program lowered</span>
+      </div>
+      <div style="margin-top: 0.5rem;">
+        <button class="btn btn-outline" style="font-size:0.8rem; padding: 0.3rem 0.7rem;" onclick="resetUnscramble(6)">Reset</button>
+      </div>
+      <div id="ex6-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 7 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 7: Replacing 'Because'</span>
+        <span class="exercise-difficulty tag-hard">Advanced</span>
+      </div>
+      <p class="q-text">Transform: <em>"Because they lack sufficient state funding, public schools often struggle to upgrade classroom technology."</em></p>
+      <div class="options-grid">
+        <label class="opt-label"><input type="radio" name="ex7" value="a" onchange="checkMCQ('ex7', 'a', '', 'Excellent! Placing the participle clause at the front indicates reason cleanly.')"> Lacking sufficient state funding, public schools often struggle to upgrade classroom technology.</label>
+        <label class="opt-label"><input type="radio" name="ex7" value="b" onchange="checkMCQ('ex7', 'a', 'Incorrect. \"Having lacked\" denotes a completed past state before another past event.', '')"> Having lacked sufficient funding, public schools are struggling.</label>
+      </div>
+      <div id="ex7-fb" class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 8 -->
+    <div class="exercise-block">
+      <div class="exercise-title">
+        <span>Exercise 8: Advanced Cohesive Framing</span>
+        <span class="exercise-difficulty tag-hard">Advanced</span>
+      </div>
+      <p class="q-text">Select the sentence that expresses simultaneous background circumstances without sounding clumsy:</p>
+      <div class="options-grid">
+        <label class="opt-label"><input type="radio" name="ex8" value="a" onchange="checkMCQ('ex8', 'b', 'Incorrect. \"And this means it makes\" is repetitive and informal for Academic Task 2.', '')"> Many developing countries face severe water deficits, and this means it makes agricultural independence difficult.</label>
+        <label class="opt-label"><input type="radio" name="ex8" value="b" onchange="checkMCQ('ex8', 'b', '', 'Superb! \"rendering\" acts as a high-precision participle of result.')"> Many developing countries face severe water deficits, rendering agricultural self-sufficiency extremely difficult.</label>
+      </div>
+      <div id="ex8-fb" class="feedback-msg"></div>
+    </div>
+
+  </section>
+
+  <!-- TAB 4: COHESION DIAGNOSTIC -->
+  <section id="diagnostic" class="tab-content">
+    <div class="diagnostic-grid">
+      <div class="diag-card">
+        <h3 style="color:var(--error); margin-bottom:0.5rem;">Repetitive & Mechanical Cohesion</h3>
+        <p style="font-size:0.9rem; line-height:1.7; background:#fff1f2; padding:0.8rem; border-radius:6px;">
+          Tourism grew quickly on the island. <strong>And as a result</strong>, local jobs were created. <strong>Because</strong> hotels noticed the demand, they invested heavily. <strong>Therefore</strong>, coral reefs suffered damage.
+        </p>
+        <ul style="font-size:0.85rem; margin-top:0.75rem; padding-left:1.2rem; color:var(--muted);">
+          <li>Overuses mechanical linkers (Therefore, And as a result).</li>
+          <li>Creates a robotic, repetitive sentence rhythm.</li>
+        </ul>
+      </div>
+
+      <div class="diag-card">
+        <h3 style="color:var(--success); margin-bottom:0.5rem;">Integrated Participle Cohesion</h3>
+        <p style="font-size:0.9rem; line-height:1.7; background:#ecfdf5; padding:0.8rem; border-radius:6px;">
+          Tourism grew quickly on the island, <strong>creating</strong> hundreds of employment opportunities. <strong>Noticing</strong> this sustained demand, major hotel chains expanded their facilities, ultimately <strong>straining</strong> local coral ecosystems.
+        </p>
+        <ul style="font-size:0.85rem; margin-top:0.75rem; padding-left:1.2rem; color:var(--muted);">
+          <li>Natural cause-and-effect transitions.</li>
+          <li>Elevates lexical flow and grammatical range.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>IELTS Academic Writing Support Module</span>
+    <span>Designed by Babak Alaee</span>
+  </footer>
+</div>
+
+<script>
+  // Tab Switching
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    
+    // Set active button
+    const buttons = document.querySelectorAll('.tab-btn');
+    if(tabId === 'exposure') buttons[0].classList.add('active');
+    if(tabId === 'form') buttons[1].classList.add('active');
+    if(tabId === 'practice') buttons[2].classList.add('active');
+    if(tabId === 'diagnostic') buttons[3].classList.add('active');
+  }
+
+  // Exposure Highlight Toggle
+  let highlighted = false;
+  function toggleHighlights() {
+    const targets = document.querySelectorAll('.target-clause');
+    const btn = document.getElementById('toggleHighlightBtn');
+    const counter = document.getElementById('highlightCounter');
+    
+    highlighted = !highlighted;
+    targets.forEach(t => {
+      if (highlighted) {
+        t.classList.add('highlight-active');
+      } else {
+        t.classList.remove('highlight-active');
+      }
+    });
+
+    if (highlighted) {
+      btn.textContent = '✖ Clear Highlights';
+      counter.textContent = 'Found: 6 present participle clauses in the sample essay';
+    } else {
+      btn.textContent = '✨ Identify Participle Clauses';
+      counter.textContent = 'Status: Participles blended into natural essay text';
+    }
+  }
+
+  // Multiple Choice Checker
+  function checkMCQ(exerciseId, correctVal, wrongMsg, rightMsg) {
+    const radios = document.getElementsByName(exerciseId);
+    let selected = null;
+    for (let r of radios) {
+      if (r.checked) selected = r.value;
+    }
+    const fb = document.getElementById(exerciseId + '-fb');
+    fb.classList.add('show');
+    if (selected === correctVal) {
+      fb.textContent = rightMsg || "Correct!";
+      fb.className = "feedback-msg show correct-fb";
+    } else {
+      fb.textContent = wrongMsg || "Try again.";
+      fb.className = "feedback-msg show incorrect-fb";
+    }
+  }
+
+  // Dropdown Checker
+  function checkDropdown() {
+    const val = document.getElementById('ex5-select').value;
+    const fb = document.getElementById('ex5-fb');
+    fb.classList.add('show');
+    if (val === 'cor') {
+      fb.textContent = "Correct! \"reducing\" creates parallel cohesion with \"generating\".";
+      fb.className = "feedback-msg show correct-fb";
+    } else {
+      fb.textContent = "Not quite. Choose the concise active participle form that matches 'generating'.";
+      fb.className = "feedback-msg show incorrect-fb";
+    }
+  }
+
+  // Interactive Unscramble
+  const unscrambleTargets = {
+    6: "The program lowered carbon emissions, significantly improving air quality."
+  };
+
+  function moveChip(chip, fromId, toId, exNum) {
+    const targetContainer = document.getElementById(toId);
+    const sourceContainer = document.getElementById(fromId);
+    
+    if (fromId.includes('pool')) {
+      targetContainer.appendChild(chip);
+      chip.classList.add('placed');
+      chip.onclick = function() { moveChip(chip, toId, fromId, exNum); };
+    } else {
+      targetContainer.appendChild(chip);
+      chip.classList.remove('placed');
+      chip.onclick = function() { moveChip(chip, fromId, toId, exNum); };
+    }
+
+    validateUnscramble(exNum);
+  }
+
+  function validateUnscramble(exNum) {
+    const dropzone = document.getElementById('dropzone' + exNum);
+    const chips = dropzone.querySelectorAll('.word-chip');
+    const fb = document.getElementById('ex' + exNum + '-fb');
+    
+    if (chips.length === 4) {
+      const formed = Array.from(chips).map(c => c.textContent.trim()).join(' ');
+      fb.classList.add('show');
+      if (formed === unscrambleTargets[exNum]) {
+        fb.textContent = "Spot on! The sentence is grammatically sound and cohesive.";
+        fb.className = "feedback-msg show correct-fb";
+      } else {
+        fb.textContent = "Check word order: place the main clause first, followed by the result participle.";
+        fb.className = "feedback-msg show incorrect-fb";
+      }
+    } else {
+      fb.className = "feedback-msg";
+    }
+  }
+
+  function resetUnscramble(exNum) {
+    const dropzone = document.getElementById('dropzone' + exNum);
+    const pool = document.getElementById('pool' + exNum);
+    const chips = dropzone.querySelectorAll('.word-chip');
+    chips.forEach(c => {
+      c.classList.remove('placed');
+      c.onclick = function() { moveChip(c, 'pool' + exNum, 'dropzone' + exNum, exNum); };
+      pool.appendChild(c);
+    });
+    const fb = document.getElementById('ex' + exNum + '-fb');
+    fb.className = "feedback-msg";
+  }
+</script>
+
+</body>
+</html>
