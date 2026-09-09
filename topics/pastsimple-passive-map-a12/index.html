@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exploring Riverdale: Past & Present</title>
+  <style>
+    :root {
+      --primary: #2b5c8f;
+      --primary-light: #e8f1fa;
+      --secondary: #3b8b88;
+      --accent: #d97736;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --success: #16a34a;
+      --error: #dc2626;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto 1.5rem auto;
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .tab-nav {
+      display: flex;
+      max-width: 900px;
+      margin: 0 auto 1rem auto;
+      width: 100%;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 0.75rem 1rem;
+      background: #e2e8f0;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: #cbd5e1;
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(43, 92, 143, 0.3);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    .tab-content {
+      display: none;
+      background: var(--card-bg);
+      padding: 1.75rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Map Graphic Area */
+    .map-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.75rem;
+      background: var(--primary-light);
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      border: 1px dashed var(--primary);
+    }
+
+    .map-zone {
+      background: #ffffff;
+      padding: 0.75rem 0.5rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+
+    .map-zone span {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Exposure Tab Text */
+    .exposure-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .interactive-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .interactive-toggle:hover {
+      opacity: 0.9;
+    }
+
+    .target-highlight {
+      transition: all 0.3s ease;
+    }
+
+    .highlighted {
+      background-color: #fef08a !important;
+      color: #854d0e !important;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border-bottom: 2px solid #ca8a04;
+    }
+
+    /* Form Tab Rules */
+    .rule-card {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .rule-formula {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #f1f5f9;
+      color: var(--text);
+    }
+
+    /* Practice Tab Items */
+    .exercise-block {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .exercise-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .exercise-title {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .exercise-level {
+      font-size: 0.75rem;
+      background: #e2e8f0;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .mc-btn {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mc-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .mc-btn.correct {
+      background: #dcfce7;
+      border-color: var(--success);
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .mc-btn.incorrect {
+      background: #fee2e2;
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .token-pool, .token-dropzone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 48px;
+      padding: 0.5rem;
+      border-radius: 8px;
+      align-items: center;
+    }
+
+    .token-pool {
+      background: #f1f5f9;
+      margin-bottom: 0.5rem;
+    }
+
+    .token-dropzone {
+      background: #ffffff;
+      border: 2px dashed var(--border);
+      margin-bottom: 0.5rem;
+    }
+
+    .word-token {
+      background: var(--primary);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.9rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .word-token.used {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .check-btn {
+      padding: 0.4rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .feedback {
+      font-size: 0.85rem;
+      margin-top: 0.35rem;
+      display: none;
+      font-weight: 600;
+    }
+
+    .feedback.visible {
+      display: block;
+    }
+
+    .feedback.correct {
+      color: var(--success);
+    }
+
+    .feedback.incorrect {
+      color: var(--error);
+    }
+
+    select {
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 1.5rem auto 0 auto;
+      width: 100%;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Town Map Transformation</h1>
+    <p>Discover how the town of Riverdale changed between 1980 and today.</p>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0)">Exposure</button>
+    <button class="tab-btn" onclick="switchTab(1)">Form</button>
+    <button class="tab-btn" onclick="switchTab(2)">Practice</button>
+    <button class="tab-btn" onclick="switchTab(3)">Interactive Map</button>
+  </nav>
+
+  <main>
+    <!-- EXPOSURE TAB -->
+    <section class="tab-content active" id="tab-0">
+      <div class="map-container">
+        <div class="map-zone"><span>🏭</span>North: Old Factory Area</div>
+        <div class="map-zone"><span>🌳</span>East: Green Parklands</div>
+        <div class="map-zone"><span>🏪</span>Center: Old Market Square</div>
+        <div class="map-zone"><span>🌉</span>South: River Crossing</div>
+      </div>
+
+      <div class="exposure-body" id="text-passage">
+        Riverdale looks completely different today compared to 1980. Forty years ago, it was a quiet industrial center. In 1985, a large textile <span class="target-highlight">factory was built</span> in the northern quarter. Many local families moved near the river, and small brick <span class="target-highlight">houses were constructed</span> along the southern road. As the town expanded, several ancient <span class="target-highlight">trees were cut down</span> to make room for a highway. The historic wooden <span class="target-highlight">bridge was destroyed</span> by a heavy flood in 1993, but modern concrete <span class="target-highlight">pillars were added</span> soon after to replace it. A decade later, the central open <span class="target-highlight">market was transformed</span> into an indoor shopping center, and decorative street <span class="target-highlight">lamps were installed</span> along the pedestrian paths. Over time, original cobblestone <span class="target-highlight">roads were covered</span> with smooth asphalt.
+      </div>
+
+      <button class="interactive-toggle" id="highlight-toggle" onclick="toggleHighlights()">
+        <span>Show Language Patterns</span>
+      </button>
+    </section>
+
+    <!-- FORM TAB -->
+    <section class="tab-content" id="tab-1">
+      <div class="rule-card">
+        <div class="rule-formula">Subject + was / were + Past Participle (V3)</div>
+        <p>Use the past simple passive to describe past developments, alterations, or events on a map when the <strong>action</strong> or the <strong>result</strong> is more important than who did it.</p>
+      </div>
+
+      <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Singular vs. Plural</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Entity</th>
+              <th>Auxiliary</th>
+              <th>Past Participle</th>
+              <th>Example sentence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Singular / Uncountable</td>
+              <td><strong>was</strong></td>
+              <td>built / opened / removed</td>
+              <td>A modern stadium <strong>was built</strong> in the east.</td>
+            </tr>
+            <tr>
+              <td>Plural</td>
+              <td><strong>were</strong></td>
+              <td>planted / built / created</td>
+              <td>Ten trees <strong>were planted</strong> along the river.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--primary);">Common Regular & Irregular Map Verbs</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Base Form</th>
+              <th>Past Participle (V3)</th>
+              <th>Map Context Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>build</td>
+              <td><strong>built</strong></td>
+              <td>A library was built near the station.</td>
+            </tr>
+            <tr>
+              <td>construct</td>
+              <td><strong>constructed</strong></td>
+              <td>Offices were constructed in 2005.</td>
+            </tr>
+            <tr>
+              <td>destroy / demolish</td>
+              <td><strong>demolished</strong></td>
+              <td>The old warehouse was demolished.</td>
+            </tr>
+            <tr>
+              <td>replace</td>
+              <td><strong>replaced</strong></td>
+              <td>The roundabout was replaced by traffic lights.</td>
+            </tr>
+            <tr>
+              <td>cut down</td>
+              <td><strong>cut down</strong></td>
+              <td>The woodland was cut down.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRACTICE TAB -->
+    <section class="tab-content" id="tab-2">
+      <!-- Exercise 1 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>1. Auxiliary Selection</span>
+          <span class="exercise-level">Level 1</span>
+        </div>
+        <p>A new railway station <span style="font-weight: bold;">[ was / were ]</span> constructed in 1995.</p>
+        <div class="options-grid">
+          <button class="mc-btn" onclick="checkMC(this, true, 'correct-1')">was</button>
+          <button class="mc-btn" onclick="checkMC(this, false, 'correct-1')">were</button>
+        </div>
+        <div class="feedback" id="correct-1"></div>
+      </div>
+
+      <!-- Exercise 2 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>2. Auxiliary Selection (Plural)</span>
+          <span class="exercise-level">Level 1</span>
+        </div>
+        <p>Several wooden cabins <span style="font-weight: bold;">[ was / were ]</span> removed from the lakeside.</p>
+        <div class="options-grid">
+          <button class="mc-btn" onclick="checkMC(this, false, 'correct-2')">was</button>
+          <button class="mc-btn" onclick="checkMC(this, true, 'correct-2')">were</button>
+        </div>
+        <div class="feedback" id="correct-2"></div>
+      </div>
+
+      <!-- Exercise 3 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>3. Verb Form Choice</span>
+          <span class="exercise-level">Level 2</span>
+        </div>
+        <p>The old hospital was completely __________ in 2012.</p>
+        <div class="options-grid">
+          <button class="mc-btn" onclick="checkMC(this, false, 'correct-3')">destroy</button>
+          <button class="mc-btn" onclick="checkMC(this, false, 'correct-3')">destroying</button>
+          <button class="mc-btn" onclick="checkMC(this, true, 'correct-3')">destroyed</button>
+        </div>
+        <div class="feedback" id="correct-3"></div>
+      </div>
+
+      <!-- Exercise 4 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>4. Irregular Participle</span>
+          <span class="exercise-level">Level 2</span>
+        </div>
+        <p>A pedestrian bridge was __________ over the busy main road.</p>
+        <div class="options-grid">
+          <button class="mc-btn" onclick="checkMC(this, true, 'correct-4')">built</button>
+          <button class="mc-btn" onclick="checkMC(this, false, 'correct-4')">builded</button>
+          <button class="mc-btn" onclick="checkMC(this, false, 'correct-4')">build</button>
+        </div>
+        <div class="feedback" id="correct-4"></div>
+      </div>
+
+      <!-- Exercise 5 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>5. Map Change Identification</span>
+          <span class="exercise-level">Level 3</span>
+        </div>
+        <p>Complete the sentence about the harbor area:</p>
+        <p style="margin: 0.5rem 0;">
+          The small fishing docks
+          <select id="dd-ex5-1">
+            <option value="">-- select --</option>
+            <option value="was">was</option>
+            <option value="were">were</option>
+          </select>
+          <select id="dd-ex5-2">
+            <option value="">-- select --</option>
+            <option value="expanded">expanded</option>
+            <option value="expand">expand</option>
+            <option value="expanding">expanding</option>
+          </select>
+          to support bigger cruise boats.
+        </p>
+        <button class="check-btn" onclick="checkDropdown('dd-ex5-1', 'were', 'dd-ex5-2', 'expanded', 'fb-5')">Check Answer</button>
+        <div class="feedback" id="fb-5"></div>
+      </div>
+
+      <!-- Exercise 6 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>6. Road & Transport Transformation</span>
+          <span class="exercise-level">Level 3</span>
+        </div>
+        <p>Complete the sentence about town transit:</p>
+        <p style="margin: 0.5rem 0;">
+          A two-way cycle path
+          <select id="dd-ex6-1">
+            <option value="">-- select --</option>
+            <option value="was">was</option>
+            <option value="were">were</option>
+          </select>
+          <select id="dd-ex6-2">
+            <option value="">-- select --</option>
+            <option value="created">created</option>
+            <option value="creates">creates</option>
+            <option value="create">create</option>
+          </select>
+          next to the river.
+        </p>
+        <button class="check-btn" onclick="checkDropdown('dd-ex6-1', 'was', 'dd-ex6-2', 'created', 'fb-6')">Check Answer</button>
+        <div class="feedback" id="fb-6"></div>
+      </div>
+
+      <!-- Exercise 7 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>7. Unscramble Sentence (Trees & Environment)</span>
+          <span class="exercise-level">Level 4</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.35rem;">Click the words in the correct order to reassemble the sentence:</p>
+        <div class="token-pool" id="pool-7"></div>
+        <div class="token-dropzone" id="zone-7"></div>
+        <button class="check-btn" onclick="checkScramble(7, ['Twenty', 'trees', 'were', 'planted', 'in', 'the', 'park.'])">Check Order</button>
+        <button class="check-btn" style="background: #94a3b8;" onclick="resetScramble(7)">Reset</button>
+        <div class="feedback" id="fb-scramble-7"></div>
+      </div>
+
+      <!-- Exercise 8 -->
+      <div class="exercise-block">
+        <div class="exercise-title">
+          <span>8. Unscramble Sentence (Factory & Commercial)</span>
+          <span class="exercise-level">Level 4</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.35rem;">Click the words in the correct order to reassemble the sentence:</p>
+        <div class="token-pool" id="pool-8"></div>
+        <div class="token-dropzone" id="zone-8"></div>
+        <button class="check-btn" onclick="checkScramble(8, ['The', 'old', 'cinema', 'was', 'converted', 'into', 'shops.'])">Check Order</button>
+        <button class="check-btn" style="background: #94a3b8;" onclick="resetScramble(8)">Reset</button>
+        <div class="feedback" id="fb-scramble-8"></div>
+      </div>
+    </section>
+
+    <!-- CREATIVE EXPANSION TAB -->
+    <section class="tab-content" id="tab-3">
+      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Interactive Map Inspector</h3>
+      <p style="margin-bottom: 1rem; font-size: 0.95rem;">Click any landmark zone to inspect what change occurred between 1980 and today:</p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <button class="mc-btn" onclick="showMapDetail('north')">🏢 Northern Industrial Area</button>
+        <button class="mc-btn" onclick="showMapDetail('south')">🌉 Southern Waterway</button>
+        <button class="mc-btn" onclick="showMapDetail('east')">🌳 Eastern Green Belt</button>
+        <button class="mc-btn" onclick="showMapDetail('west')">🚗 Western Access Road</button>
+      </div>
+
+      <div id="inspector-card" style="padding: 1rem; background: var(--primary-light); border-radius: 8px; border: 1px solid var(--border); min-height: 80px; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <em>Select an area above to view historical modifications.</em>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Designed by Babak Alaee
+  </footer>
+
+  <script>
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-btn');
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+
+    function toggleHighlights() {
+      const highlights = document.querySelectorAll('.target-highlight');
+      const btn = document.getElementById('highlight-toggle');
+      let isCurrentlyActive = highlights[0].classList.contains('highlighted');
+
+      highlights.forEach(el => {
+        el.classList.toggle('highlighted', !isCurrentlyActive);
+      });
+
+      btn.querySelector('span').textContent = isCurrentlyActive ? 'Show Language Patterns' : 'Hide Language Patterns';
+    }
+
+    function checkMC(button, isCorrect, feedbackId) {
+      const parent = button.parentElement;
+      const buttons = parent.querySelectorAll('.mc-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('correct', 'incorrect');
+      });
+
+      const fb = document.getElementById(feedbackId);
+      fb.classList.add('visible');
+
+      if (isCorrect) {
+        button.classList.add('correct');
+        fb.textContent = 'Correct! Well done.';
+        fb.className = 'feedback visible correct';
+      } else {
+        button.classList.add('incorrect');
+        fb.textContent = 'Not quite right. Try again!';
+        fb.className = 'feedback visible incorrect';
+      }
+    }
+
+    function checkDropdown(id1, ans1, id2, ans2, fbId) {
+      const val1 = document.getElementById(id1).value;
+      const val2 = document.getElementById(id2).value;
+      const fb = document.getElementById(fbId);
+      fb.classList.add('visible');
+
+      if (val1 === ans1 && val2 === ans2) {
+        fb.textContent = 'Correct! Exactly the right pattern.';
+        fb.className = 'feedback visible correct';
+      } else {
+        fb.textContent = 'Check your subject agreement or past participle form.';
+        fb.className = 'feedback visible incorrect';
+      }
+    }
+
+    const scrambleData = {
+      7: {
+        tokens: ['planted', 'were', 'park.', 'Twenty', 'in', 'the', 'trees'],
+        selected: []
+      },
+      8: {
+        tokens: ['converted', 'was', 'shops.', 'old', 'into', 'The', 'cinema'],
+        selected: []
+      }
+    };
+
+    function initScrambles() {
+      [7, 8].forEach(id => {
+        renderScramble(id);
+      });
+    }
+
+    function renderScramble(id) {
+      const pool = document.getElementById(`pool-${id}`);
+      const zone = document.getElementById(`zone-${id}`);
+      pool.innerHTML = '';
+      zone.innerHTML = '';
+
+      scrambleData[id].tokens.forEach((word, idx) => {
+        const isUsed = scrambleData[id].selected.includes(idx);
+        const token = document.createElement('span');
+        token.className = `word-token ${isUsed ? 'used' : ''}`;
+        token.textContent = word;
+        if (!isUsed) {
+          token.onclick = () => selectWord(id, idx);
+        }
+        pool.appendChild(token);
+      });
+
+      scrambleData[id].selected.forEach(idx => {
+        const token = document.createElement('span');
+        token.className = 'word-token';
+        token.textContent = scrambleData[id].tokens[idx];
+        token.onclick = () => deselectWord(id, idx);
+        zone.appendChild(token);
+      });
+    }
+
+    function selectWord(scrambleId, tokenIdx) {
+      scrambleData[scrambleId].selected.push(tokenIdx);
+      renderScramble(scrambleId);
+    }
+
+    function deselectWord(scrambleId, tokenIdx) {
+      scrambleData[scrambleId].selected = scrambleData[scrambleId].selected.filter(i => i !== tokenIdx);
+      renderScramble(scrambleId);
+    }
+
+    function resetScramble(id) {
+      scrambleData[id].selected = [];
+      document.getElementById(`fb-scramble-${id}`).classList.remove('visible');
+      renderScramble(id);
+    }
+
+    function checkScramble(id, correctOrder) {
+      const fb = document.getElementById(`fb-scramble-${id}`);
+      fb.classList.add('visible');
+      const currentWords = scrambleData[id].selected.map(idx => scrambleData[id].tokens[idx]);
+      const isMatch = currentWords.length === correctOrder.length && currentWords.every((w, i) => w === correctOrder[i]);
+
+      if (isMatch) {
+        fb.textContent = 'Excellent! The sentence is grammatically complete.';
+        fb.className = 'feedback visible correct';
+      } else {
+        fb.textContent = 'The order is not correct yet. Click a word in the dropzone to remove it, or press Reset.';
+        fb.className = 'feedback visible incorrect';
+      }
+    }
+
+    function showMapDetail(zone) {
+      const card = document.getElementById('inspector-card');
+      if (zone === 'north') {
+        card.innerHTML = '<strong>North Zone:</strong> In 1988, three chemical warehouses <em>were demolished</em> and a technological office park <em>was constructed</em>.';
+      } else if (zone === 'south') {
+        card.innerHTML = '<strong>South Zone:</strong> The old ferry terminal <em>was replaced</em> by an arched suspension bridge in 2001.';
+      } else if (zone === 'east') {
+        card.innerHTML = '<strong>East Zone:</strong> Farmland <em>was turned</em> into a public golf course, and 200 oak saplings <em>were planted</em>.';
+      } else if (zone === 'west') {
+        card.innerHTML = '<strong>West Zone:</strong> A dual carriageway <em>was built</em> to connect the town center directly to the regional airport.';
+      }
+    }
+
+    window.onload = function() {
+      initScrambles();
+    };
+  </script>
+</body>
+</html>
