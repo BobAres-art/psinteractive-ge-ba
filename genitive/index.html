@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Noun Connections: Heart Wellness & Everyday Life</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --primary-light: #ccfbf1;
+      --crimson: #e11d48;
+      --crimson-soft: #ffe4e6;
+      --amber: #d97706;
+      --amber-soft: #fef3c7;
+      --indigo: #4338ca;
+      --indigo-soft: #e0e7ff;
+      --slate-dark: #0f172a;
+      --slate: #334155;
+      --slate-light: #64748b;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #cbd5e1;
+      --correct: #15803d;
+      --wrong: #b91c1c;
+      --radius: 14px;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+      color: var(--slate-dark);
+      line-height: 1.6;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      max-width: 1040px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, #0f766e 0%, #042f2e 100%);
+      color: #ffffff;
+      padding: 2.2rem 1.8rem 1.8rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #ccfbf1;
+      margin-top: 0.5rem;
+      max-width: 740px;
+    }
+
+    nav.nav-tabs {
+      display: flex;
+      background: #e2e8f0;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    nav.nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 1.1rem 0.9rem;
+      border: none;
+      background: transparent;
+      color: var(--slate);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .tab-pane {
+      display: none;
+      padding: 2rem 1.8rem;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-title h2 {
+      font-size: 1.35rem;
+      color: var(--slate-dark);
+      font-weight: 700;
+    }
+
+    .panel-title p {
+      font-size: 0.9rem;
+      color: var(--slate-light);
+    }
+
+    .cta-btn {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 0.65rem 1.3rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+      transition: all 0.2s;
+    }
+
+    .cta-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .briefing-article {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #1e293b;
+    }
+
+    .briefing-article p {
+      margin-bottom: 1.2rem;
+    }
+
+    .briefing-article p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Target items are completely indistinguishable prior to reveal */
+    .pattern-tag {
+      font-weight: inherit;
+      font-style: inherit;
+      text-decoration: none;
+      background: transparent;
+      color: inherit;
+      border: none;
+      padding: 0;
+      transition: all 0.25s ease;
+    }
+
+    /* Revealed States */
+    .revealed-s {
+      background-color: var(--amber-soft) !important;
+      color: #92400e !important;
+      border-bottom: 2px solid var(--amber) !important;
+      border-radius: 4px;
+      padding: 0 4px !important;
+      font-weight: 600 !important;
+    }
+
+    .revealed-of {
+      background-color: var(--crimson-soft) !important;
+      color: #9f1239 !important;
+      border-bottom: 2px solid var(--crimson) !important;
+      border-radius: 4px;
+      padding: 0 4px !important;
+      font-weight: 600 !important;
+    }
+
+    .revealed-comp {
+      background-color: var(--indigo-soft) !important;
+      color: #3730a3 !important;
+      border-bottom: 2px solid var(--indigo) !important;
+      border-radius: 4px;
+      padding: 0 4px !important;
+      font-weight: 600 !important;
+    }
+
+    .key-bar {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: #f1f5f9;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .key-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+
+    .key-badge {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .comp-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .comp-card.top-amber { border-top: 5px solid var(--amber); }
+    .comp-card.top-crimson { border-top: 5px solid var(--crimson); }
+    .comp-card.top-indigo { border-top: 5px solid var(--indigo); }
+
+    .comp-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comp-card p.purpose {
+      font-size: 0.92rem;
+      color: var(--slate);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 0.9rem;
+      margin-top: auto;
+      font-size: 0.88rem;
+    }
+
+    .example-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .example-row:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .example-good {
+      color: var(--correct);
+      font-weight: 600;
+    }
+
+    .example-bad {
+      color: var(--wrong);
+      text-decoration: line-through;
+      opacity: 0.8;
+    }
+
+    .deep-dive {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .deep-dive h3 {
+      font-size: 1.2rem;
+      color: var(--slate-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .rule-pill-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .rule-pill {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 0.8rem 1rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+    }
+
+    .rule-pill strong {
+      display: block;
+      color: var(--primary-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .pitfall-table-wrapper {
+      overflow-x: auto;
+      margin-top: 1.2rem;
+    }
+
+    table.pitfall-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    table.pitfall-table th,
+    table.pitfall-table td {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+    }
+
+    table.pitfall-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--slate-dark);
+    }
+
+    .exercise-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.6rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .exercise-header h3 {
+      font-size: 1.08rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .difficulty-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-easy { background: #dcfce7; color: #166534; }
+    .badge-med { background: #fef9c3; color: #854d0e; }
+    .badge-adv { background: #fee2e2; color: #991b1b; }
+
+    .instructions {
+      font-size: 0.9rem;
+      color: var(--slate-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .q-block {
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .q-block:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .q-prompt {
+      font-size: 0.96rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--slate-dark);
+    }
+
+    .btn-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .choice-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: var(--slate-dark);
+    }
+
+    .choice-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+
+    .choice-btn.correct {
+      background: #dcfce7 !important;
+      border-color: var(--correct) !important;
+      color: var(--correct) !important;
+      font-weight: 700;
+    }
+
+    .choice-btn.wrong {
+      background: #fee2e2 !important;
+      border-color: var(--wrong) !important;
+      color: var(--wrong) !important;
+    }
+
+    select.cloze-select {
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #94a3b8;
+      background: #ffffff;
+      font-size: 0.9rem;
+      color: var(--slate-dark);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    select.cloze-select.is-correct {
+      background: #dcfce7;
+      border-color: var(--correct);
+      color: var(--correct);
+      font-weight: 700;
+    }
+
+    select.cloze-select.is-wrong {
+      background: #fee2e2;
+      border-color: var(--wrong);
+      color: var(--wrong);
+    }
+
+    .chip-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      min-height: 48px;
+      margin-bottom: 0.6rem;
+    }
+
+    .word-token {
+      background: #ffffff;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.88rem;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: transform 0.1s;
+    }
+
+    .word-token:active {
+      transform: scale(0.96);
+    }
+
+    .word-token.used {
+      opacity: 0.25;
+      pointer-events: none;
+      border-style: dashed;
+    }
+
+    .drop-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      min-height: 52px;
+      padding: 0.6rem;
+      background: #ffffff;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .placed-token {
+      background: var(--primary-light);
+      border: 1px solid var(--primary);
+      color: var(--primary-dark);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .small-btn {
+      background: #475569;
+      color: #ffffff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .small-btn:hover {
+      background: #334155;
+    }
+
+    .feedback-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+    }
+
+    .feedback-label.pass { color: var(--correct); }
+    .feedback-label.fail { color: var(--wrong); }
+
+    .game-console {
+      background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .game-dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .stat-tile {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+
+    .stat-tile span {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+    }
+
+    .stat-tile strong {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .heart-monitor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1.5rem 0;
+      height: 70px;
+    }
+
+    .ecg-heart {
+      width: 50px;
+      height: 50px;
+      fill: var(--crimson);
+      animation: pulse 1.2s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.22); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.18); }
+      70% { transform: scale(1); }
+    }
+
+    .challenge-card {
+      background: #ffffff;
+      color: var(--slate-dark);
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    .challenge-hint {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--slate-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .challenge-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .game-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+
+    .btn-target {
+      padding: 1rem 0.6rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      color: #ffffff;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-target span {
+      font-size: 0.72rem;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+
+    .btn-target:active {
+      transform: scale(0.96);
+    }
+
+    .target-s { background: #d97706; }
+    .target-s:hover { background: #b45309; }
+
+    .target-of { background: #e11d48; }
+    .target-of:hover { background: #be123c; }
+
+    .target-comp { background: #4338ca; }
+    .target-comp:hover { background: #3730a3; }
+
+    .game-notification {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.92rem;
+      font-weight: 700;
+      min-height: 24px;
+    }
+
+    footer {
+      padding: 1.4rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--slate-light);
+      background: #f8fafc;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 0.5rem; }
+      header.hero { padding: 1.5rem 1rem; }
+      header.hero h1 { font-size: 1.4rem; }
+      .tab-btn { min-width: 100px; padding: 0.85rem 0.5rem; font-size: 0.82rem; }
+      .tab-pane { padding: 1.2rem 0.9rem; }
+      .game-controls { grid-template-columns: 1fr; }
+      .briefing-article { padding: 1.2rem; font-size: 0.98rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <header class="hero">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        Applied Linguistics & Natural Expression
+      </div>
+      <h1>Natural Noun Connections: Heart Wellness & Everyday Communication</h1>
+      <p>Why do native speakers prefer <em>artery elasticity</em> or <em>the elasticity of the artery</em> over <em>the artery's elasticity</em>? Master the natural logic behind English noun combinations across health, travel, technology, and daily life.</p>
+    </header>
+
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="activateTab('exposure')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        1. Contextual Reading
+      </button>
+      <button class="tab-btn" onclick="activateTab('form')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        2. Framework & Pitfalls
+      </button>
+      <button class="tab-btn" onclick="activateTab('practice')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        3. Practice Arena
+      </button>
+      <button class="tab-btn" onclick="activateTab('game')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        4. Speed-Sort Arcade
+      </button>
+    </nav>
+
+    <!-- TAB 1: EXPOSURE -->
+    <section id="exposure" class="tab-pane active">
+      <div class="panel-header">
+        <div class="panel-title">
+          <h2>Grand Rounds: Nutrition and Arterial Resilience</h2>
+          <p>Read this medical brief. Observe how nouns link naturally without awkward literal translations.</p>
+        </div>
+        <button id="toggleBtn" class="cta-btn" onclick="togglePatternHighlights()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Reveal Noun Pattern Analysis
+        </button>
+      </div>
+
+      <div class="briefing-article">
+        <p>
+          In <span class="pattern-tag p-s" data-type="s">Dr. Vance's</span> recent nutritional cardiology review, she demonstrated that chronic hypertension is rarely caused by genetics alone. Modern dietary patterns consistently compromise the <span class="pattern-tag p-of" data-type="of">elasticity of arteries</span> by prompting cellular inflammation. When individuals consume high amounts of refined sodium and trans fats, the gradual <span class="pattern-tag p-of" data-type="of">buildup of arterial plaque</span> accelerates dramatically.
+        </p>
+        <p>
+          Fortunately, an <span class="pattern-tag p-s" data-type="s">individual's</span> cardiovascular trajectory can be redirected within weeks. Replacing industrial seed oils with high-phenolic <span class="pattern-tag p-comp" data-type="comp">olive oil</span> restores nitric oxide bioavailability. This stabilizes baseline <span class="pattern-tag p-comp" data-type="comp">blood pressure</span> and supports the electrical <span class="pattern-tag p-of" data-type="of">stability of the heart</span> during intense aerobic exertion.
+        </p>
+        <p>
+          Today, modern hospitals incorporate comprehensive <span class="pattern-tag p-comp" data-type="comp">lifestyle intervention</span> programs before prescribing aggressive medications. As highlighted in last <span class="pattern-tag p-s" data-type="s">month's</span> cardiology symposium, understanding the <span class="pattern-tag p-of" data-type="of">synergistic impact of fiber and potassium</span> empowers patients to take charge of their <span class="pattern-tag p-comp" data-type="comp">heart health</span>.
+        </p>
+      </div>
+
+      <div id="exposureKey" class="key-bar">
+        <div class="key-item">
+          <div class="key-badge" style="background: var(--amber);"></div>
+          <div>
+            <strong>Apostrophe-s ('s):</strong> Used for people (Dr. Vance's), living agents (individual's), and time periods (last month's).
+          </div>
+        </div>
+        <div class="key-item">
+          <div class="key-badge" style="background: var(--crimson);"></div>
+          <div>
+            <strong>'Of' Construction:</strong> Used for abstract processes (buildup of plaque), inanimate structures (elasticity of arteries), or heavy modified phrases.
+          </div>
+        </div>
+        <div class="key-item">
+          <div class="key-badge" style="background: var(--indigo);"></div>
+          <div>
+            <strong>Compound Nouns (Noun + Noun):</strong> Used for established categories, technical concepts, or source materials (olive oil, blood pressure, heart health).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: FORM & COMMON PITFALLS -->
+    <section id="form" class="tab-pane">
+      <div class="panel-header">
+        <div class="panel-title">
+          <h2>The Decision Engine: Why Choose Which?</h2>
+          <p>Native speakers select patterns based on animacy, classification, and sentence weight across all topics.</p>
+        </div>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="comp-card top-amber">
+          <h3>
+            <span style="color:var(--amber); font-weight:900;">'s</span>
+            The Apostrophe-s Pattern
+          </h3>
+          <p class="purpose">Who has agency, thoughts, or actions? Who is the living entity?</p>
+          <ul style="margin-left:1.2rem; font-size:0.88rem; color:var(--slate); margin-bottom:1rem;">
+            <li><strong>People & Pets:</strong> The architect's blueprint, the passenger's luggage.</li>
+            <li><strong>Organizations & Groups:</strong> The airline's policy, Google's announcement.</li>
+            <li><strong>Time Units & Deadlines:</strong> Today's meeting, two weeks' vacation.</li>
+          </ul>
+          <div class="example-box">
+            <div class="example-row">
+              <span class="example-good">The designer's portfolio</span>
+              <span class="example-bad">The portfolio of the designer</span>
+            </div>
+            <div class="example-row">
+              <span class="example-good">A month's delay</span>
+              <span class="example-bad">The delay of a month</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-card top-crimson">
+          <h3>
+            <span style="color:var(--crimson); font-weight:900;">of</span>
+            The "Of" Construction
+          </h3>
+          <p class="purpose">What is the abstract process, part-to-whole, or heavy description?</p>
+          <ul style="margin-left:1.2rem; font-size:0.88rem; color:var(--slate); margin-bottom:1rem;">
+            <li><strong>Abstract Concepts & Processes:</strong> The speed of innovation, the flow of traffic.</li>
+            <li><strong>Parts of Inanimate Objects:</strong> The roof of the building, the screen of the phone.</li>
+            <li><strong>Heavily Modified Phrases:</strong> The opinion <em>of the committee members who voted yesterday</em>.</li>
+          </ul>
+          <div class="example-box">
+            <div class="example-row">
+              <span class="example-good">The history of the city</span>
+              <span class="example-bad">The city's history (less formal)</span>
+            </div>
+            <div class="example-row">
+              <span class="example-good">A cup of coffee</span>
+              <span class="example-bad">A coffee's cup</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-card top-indigo">
+          <h3>
+            <span style="color:var(--indigo); font-weight:900;">N + N</span>
+            Compound Nouns
+          </h3>
+          <p class="purpose">Is it an established category, purpose, or standardized concept?</p>
+          <ul style="margin-left:1.2rem; font-size:0.88rem; color:var(--slate); margin-bottom:1rem;">
+            <li><strong>Items Classified by Purpose:</strong> Running shoes, coffee mug, credit card.</li>
+            <li><strong>Material / Source:</strong> Leather jacket, steel bridge, coconut water.</li>
+            <li><strong>Standard Industrial & Tech Terms:</strong> Flight attendant, smartphone battery.</li>
+          </ul>
+          <div class="example-box">
+            <div class="example-row">
+              <span class="example-good">Car keys</span>
+              <span class="example-bad">The keys of the car / Car's keys</span>
+            </div>
+            <div class="example-row">
+              <span class="example-good">Traffic jam</span>
+              <span class="example-bad">Jam of traffic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="deep-dive">
+        <h3>Two Golden Rules for Natural Fluency</h3>
+        <div class="rule-pill-list">
+          <div class="rule-pill">
+            <strong>1. The "Classification vs. Container" Rule</strong>
+            Notice the crucial difference:
+            <br>&bull; <em>A tea cup</em> = The specific type of dishware (empty or full).
+            <br>&bull; <em>A cup of tea</em> = The drink itself that you consume.
+            <br>&bull; <em>A water bottle</em> = The plastic object vs. <em>A bottle of water</em> = The refreshing liquid.
+          </div>
+          <div class="rule-pill">
+            <strong>2. The "End-Weight" Principle</strong>
+            English moves long, descriptive clauses to the end of the phrase:
+            <br>&bull; <em>Clumsy:</em> The architect who renovated the historic library's presentation.
+            <br>&bull; <em>Natural:</em> The presentation <strong>of the architect who renovated the historic library</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="deep-dive">
+        <h3>Common Learner Pitfalls Across Varied Topics</h3>
+        <p style="font-size:0.9rem; color:var(--slate);">Avoid these frequent non-native transfer errors:</p>
+        
+        <div class="pitfall-table-wrapper">
+          <table class="pitfall-table">
+            <thead>
+              <tr>
+                <th>Unnatural Learner Form</th>
+                <th>Natural English Choice</th>
+                <th>Why It Sounds Strange to Native Speakers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>"The car's door won't shut."</td>
+                <td><strong>The car door</strong></td>
+                <td>Cars are inanimate objects; vehicle components form established compound nouns.</td>
+              </tr>
+              <tr>
+                <td>"I bought a tea's box."</td>
+                <td><strong>A box of tea</strong> / <strong>A tea box</strong></td>
+                <td>Inanimate dry goods do not possess containers; use <em>of</em> for contents or compound for category.</td>
+              </tr>
+              <tr>
+                <td>"He suffers from a disease of heart."</td>
+                <td><strong>Heart disease</strong></td>
+                <td>Medical conditions and everyday technical items are standardized compound nouns.</td>
+              </tr>
+              <tr>
+                <td>"The news of yesterday shocked us."</td>
+                <td><strong>Yesterday's news</strong></td>
+                <td>Calendar periods and specific time points naturally take <em>'s</em>.</td>
+              </tr>
+              <tr>
+                <td>"The flight of two hours was tiring."</td>
+                <td><strong>A two-hour flight</strong></td>
+                <td>Duration acting as a description forms a compound adjective/noun phrase.</td>
+              </tr>
+              <tr>
+                <td>"The computer's keyboard is dirty."</td>
+                <td><strong>The computer keyboard</strong></td>
+                <td>Hardware peripherals are established classifications, not possessions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PRACTICE ARENA -->
+    <section id="practice" class="tab-pane">
+      <div class="panel-header">
+        <div class="panel-title">
+          <h2>Interactive Practice Arena</h2>
+          <p>Progress through 8 graded exercises ranging across everyday life, business, travel, and health.</p>
+        </div>
+      </div>
+
+      <!-- Exercise 1 -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 1: Animacy & Agency Discrimination (Everyday Life)</h3>
+          <span class="difficulty-badge badge-easy">Controlled Practice</span>
+        </div>
+        <p class="instructions">Select the natural choice based on whether the entity is a living agent or an inanimate item.</p>
+
+        <div class="q-block">
+          <div class="q-prompt">1. Everyday Travel: We placed our boarding passes in (the passenger's bag / the bag of the passenger).</div>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, true)">the passenger's bag</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">the bag of the passenger</button>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-prompt">2. Home Life: The wind slammed (the kitchen's window / the kitchen window).</div>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, false)">the kitchen's window</button>
+            <button class="choice-btn" onclick="validateChoice(this, true)">the kitchen window</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 2 -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 2: Container vs. Content (Dining & Kitchen)</h3>
+          <span class="difficulty-badge badge-easy">Discrimination</span>
+        </div>
+        <p class="instructions">Decide whether the phrase describes an object type (compound) or an amount of substance ('of').</p>
+
+        <div class="q-block">
+          <div class="q-prompt">1. "Could you bring me a fresh __________? I spilled my drink."</div>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, true)">glass of water</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">water glass</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">water's glass</button>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-prompt">2. "We need to buy new crystal __________ for the dinner table setting."</div>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, false)">glasses of wine</button>
+            <button class="choice-btn" onclick="validateChoice(this, true)">wine glasses</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">wine's glasses</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 3 -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 3: Workplace & Travel Context Cloze</h3>
+          <span class="difficulty-badge badge-med">Contextual Choice</span>
+        </div>
+        <p class="instructions">Select the most natural phrasing for each blank in this business travel summary.</p>
+
+        <p style="line-height: 2.2; font-size: 0.98rem;">
+          Before departing for the conference, I printed 
+          <select class="cloze-select" onchange="validateSelect(this, 'yesterday's')">
+            <option value="">-- select --</option>
+            <option value="the of-yesterday">the of-yesterday</option>
+            <option value="yesterday's">yesterday's</option>
+            <option value="yesterday">yesterday</option>
+          </select> 
+          itinerary. At the airport, I handed the 
+          <select class="cloze-select" onchange="validateSelect(this, 'flight attendant')">
+            <option value="">-- select --</option>
+            <option value="attendant of flight">attendant of flight</option>
+            <option value="flight's attendant">flight's attendant</option>
+            <option value="flight attendant">flight attendant</option>
+          </select> 
+          my boarding pass. The 
+          <select class="cloze-select" onchange="validateSelect(this, 'duration of the flight')">
+            <option value="">-- select --</option>
+            <option value="flight's duration">flight's duration</option>
+            <option value="duration of the flight">duration of the flight</option>
+            <option value="flight-duration">flight-duration</option>
+          </select> 
+          was barely two hours, but the hotel's 
+          <select class="cloze-select" onchange="validateSelect(this, 'reception desk')">
+            <option value="">-- select --</option>
+            <option value="reception desk">reception desk</option>
+            <option value="desk of reception">desk of reception</option>
+            <option value="reception's desk">reception's desk</option>
+          </select> 
+          was closed when I arrived.
+        </p>
+      </div>
+
+      <!-- Exercise 4 -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 4: Error Detection Across Contexts</h3>
+          <span class="difficulty-badge badge-med">Error Detection</span>
+        </div>
+        <p class="instructions">Identify which option in each sentence sounds unnatural or un-idiomatic.</p>
+
+        <div class="q-block">
+          <div class="q-prompt">1. Which phrase in this everyday scenario sounds unnatural?</div>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, false)">"the hotel manager's key"</button>
+            <button class="choice-btn" onclick="validateChoice(this, true)">"the bicycle's chain"</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">"the color of the frame"</button>
+          </div>
+          <div style="font-size:0.82rem; color:var(--slate-light); margin-top:6px;">Target explanation: Bicycle components form established compounds (bicycle chain).</div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-prompt">2. Which dietary phrase sounds awkward?</div>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, true)">"the olive's oil quality"</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">"the quality of olive oil"</button>
+            <button class="choice-btn" onclick="validateChoice(this, false)">"olive oil standards"</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 5: Unscramble (Properly scrambled initially!) -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 5: Sentence Assembly (End-Weight in Architecture)</h3>
+          <span class="difficulty-badge badge-med">Syntax Order</span>
+        </div>
+        <p class="instructions">Click the fragments in the correct order. Heavy descriptive clauses belong at the end.</p>
+
+        <div id="scrambleArea1">
+          <!-- Deliberately scrambled initially -->
+          <div class="chip-bank" id="bank1">
+            <span class="word-token" onclick="pickToken(this, 'tray1', 1)">the historic facade</span>
+            <span class="word-token" onclick="pickToken(this, 'tray1', 1)">of the century-old municipal building</span>
+            <span class="word-token" onclick="pickToken(this, 'tray1', 1)">The city council restored</span>
+            <span class="word-token" onclick="pickToken(this, 'tray1', 1)">damaged by winter storms</span>
+          </div>
+          <div class="drop-zone" id="tray1"></div>
+          <div class="action-row">
+            <button class="small-btn" onclick="clearTokens(1)">Reset</button>
+            <button class="small-btn" style="background:var(--primary);" onclick="evaluateAssembly(1, ['The city council restored', 'the historic facade', 'of the century-old municipal building', 'damaged by winter storms'])">Verify Order</button>
+            <span class="feedback-label" id="scrambleFeedback1"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 6: Unscramble (Temporal & Compound) -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 6: Sentence Assembly (Time Expression + Compound)</h3>
+          <span class="difficulty-badge badge-adv">Syntax Order</span>
+        </div>
+        <p class="instructions">Click the fragments in natural order. Pay attention to how time units and compounds fit together.</p>
+
+        <div id="scrambleArea2">
+          <!-- Deliberately scrambled initially -->
+          <div class="chip-bank" id="bank2">
+            <span class="word-token" onclick="pickToken(this, 'tray2', 2)">can drastically lower</span>
+            <span class="word-token" onclick="pickToken(this, 'tray2', 2)">Just one month's subscription</span>
+            <span class="word-token" onclick="pickToken(this, 'tray2', 2)">your household energy bills</span>
+            <span class="word-token" onclick="pickToken(this, 'tray2', 2)">to solar power</span>
+          </div>
+          <div class="drop-zone" id="tray2"></div>
+          <div class="action-row">
+            <button class="small-btn" onclick="clearTokens(2)">Reset</button>
+            <button class="small-btn" style="background:var(--primary);" onclick="evaluateAssembly(2, ['Just one month's subscription', 'to solar power', 'can drastically lower', 'your household energy bills'])">Verify Order</button>
+            <span class="feedback-label" id="scrambleFeedback2"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 7 -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 7: Real-Life Semantic Shift (Art & Agency)</h3>
+          <span class="difficulty-badge badge-adv">Subtle Nuance</span>
+        </div>
+        <p class="instructions">Look at the two sentences below. Choose the correct interpretation.</p>
+
+        <div class="q-block">
+          <div class="q-prompt">Sentence A: "The painter's portrait hung in the royal museum." <br>Sentence B: "The portrait of the painter hung in the royal museum."</div>
+          <p style="font-size:0.88rem; color:var(--slate); margin-bottom:0.5rem;">Which sentence means the painter is the <em>subject pictured</em> in the painting, not the person who made it?</p>
+          <div class="btn-choices">
+            <button class="choice-btn" onclick="validateChoice(this, false)">Sentence A</button>
+            <button class="choice-btn" onclick="validateChoice(this, true)">Sentence B</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 8: Micro-Transformation -->
+      <div class="exercise-card">
+        <div class="exercise-header">
+          <h3>Exercise 8: Streamline the Phrasing (Everyday Technology)</h3>
+          <span class="difficulty-badge badge-adv">Micro-Writing</span>
+        </div>
+        <p class="instructions">Convert the clunky phrase in quotes into an established, natural <strong>compound noun</strong> (two words max).</p>
+
+        <div class="q-block">
+          <div class="q-prompt">"I forgot to bring the 'cable for charging my phone' on my trip."</div>
+          <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+            <span>I forgot to bring my</span>
+            <input type="text" id="typeInput1" placeholder="e.g. phone charger" style="padding:0.45rem 0.75rem; border:1px solid #94a3b8; border-radius:6px; font-size:0.92rem; width:180px;">
+            <span>on my trip.</span>
+            <button class="small-btn" style="background:var(--primary);" onclick="checkStreamline()">Check</button>
+            <span class="feedback-label" id="typeFeedback"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: GAME TAB -->
+    <section id="game" class="tab-pane">
+      <div class="panel-header">
+        <div class="panel-title">
+          <h2>Speed-Sort Arcade: Health, Tech & Daily Life</h2>
+          <p>Sort incoming noun pairings into the fastest, most natural native pattern!</p>
+        </div>
+      </div>
+
+      <div class="game-console">
+        <div class="game-dashboard">
+          <div class="stat-tile">
+            <span>Score</span>
+            <strong id="gameScore">0</strong>
+          </div>
+          <div class="stat-tile">
+            <span>Streak</span>
+            <strong id="gameStreak">0</strong>
+          </div>
+          <div class="stat-tile">
+            <span>Rank</span>
+            <strong id="gameRank" style="font-size:1.05rem;">Language Explorer</strong>
+          </div>
+        </div>
+
+        <div class="heart-monitor">
+          <svg class="ecg-heart" id="gameHeart" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-hint">What is the most natural way to combine:</div>
+          <div class="challenge-text" id="promptNouns">Press Start to Begin</div>
+        </div>
+
+        <div class="game-controls">
+          <button class="btn-target target-s" onclick="handleGameChoice('s')">
+            Apostrophe-s ('s)
+            <span>People / Living Agents / Time</span>
+          </button>
+          <button class="btn-target target-of" onclick="handleGameChoice('of')">
+            'Of' Construction
+            <span>Abstract Process / Complex Part</span>
+          </button>
+          <button class="btn-target target-comp" onclick="handleGameChoice('comp')">
+            Compound Noun
+            <span>Established Category / Type</span>
+          </button>
+        </div>
+
+        <div class="game-notification" id="gameNotice"></div>
+      </div>
+    </section>
+
+    <footer>
+      Pedagogical material carefully designed by Babak Alaee &bull; Language in Context
+    </footer>
+  </div>
+
+  <script>
+    function activateTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn'))
+        .find(b => b.getAttribute('onclick').includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    let analysisRevealed = false;
+    function togglePatternHighlights() {
+      analysisRevealed = !analysisRevealed;
+      const tags = document.querySelectorAll('.pattern-tag');
+      const key = document.getElementById('exposureKey');
+      const btn = document.getElementById('toggleBtn');
+
+      tags.forEach(t => {
+        const type = t.getAttribute('data-type');
+        if (analysisRevealed) {
+          if (type === 's') t.classList.add('revealed-s');
+          if (type === 'of') t.classList.add('revealed-of');
+          if (type === 'comp') t.classList.add('revealed-comp');
+        } else {
+          t.classList.remove('revealed-s', 'revealed-of', 'revealed-comp');
+        }
+      });
+
+      key.style.display = analysisRevealed ? 'grid' : 'none';
+      btn.innerHTML = analysisRevealed 
+        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Hide Pattern Analysis`
+        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Reveal Noun Pattern Analysis`;
+    }
+
+    function validateChoice(btn, isCorrect) {
+      const container = btn.parentElement;
+      container.querySelectorAll('.choice-btn').forEach(b => {
+        b.classList.remove('correct', 'wrong');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+      } else {
+        btn.classList.add('wrong');
+      }
+    }
+
+    function validateSelect(selectEl, correctValue) {
+      selectEl.classList.remove('is-correct', 'is-wrong');
+      if (!selectEl.value) return;
+      if (selectEl.value === correctValue) {
+        selectEl.classList.add('is-correct');
+      } else {
+        selectEl.classList.add('is-wrong');
+      }
+    }
+
+    const userPlacedTokens = { 1: [], 2: [] };
+
+    function pickToken(token, trayId, exerciseId) {
+      if (token.classList.contains('used')) return;
+      token.classList.add('used');
+
+      const tray = document.getElementById(trayId);
+      const placed = document.createElement('span');
+      placed.className = 'placed-token';
+      placed.textContent = token.textContent;
+
+      placed.onclick = function() {
+        token.classList.remove('used');
+        placed.remove();
+        const index = userPlacedTokens[exerciseId].indexOf(token.textContent);
+        if (index > -1) userPlacedTokens[exerciseId].splice(index, 1);
+      };
+
+      tray.appendChild(placed);
+      userPlacedTokens[exerciseId].push(token.textContent);
+    }
+
+    function clearTokens(exerciseId) {
+      userPlacedTokens[exerciseId] = [];
+      const tray = document.getElementById('tray' + exerciseId);
+      tray.innerHTML = '';
+      const bank = document.getElementById('bank' + exerciseId);
+      bank.querySelectorAll('.word-token').forEach(t => t.classList.remove('used'));
+      const fb = document.getElementById('scrambleFeedback' + exerciseId);
+      fb.textContent = '';
+      fb.className = 'feedback-label';
+    }
+
+    function evaluateAssembly(exerciseId, expectedArray) {
+      const fb = document.getElementById('scrambleFeedback' + exerciseId);
+      const current = userPlacedTokens[exerciseId];
+
+      if (current.length !== expectedArray.length) {
+        fb.textContent = 'Please place all sentence blocks first.';
+        fb.className = 'feedback-label fail';
+        return;
+      }
+
+      const match = current.every((val, i) => val === expectedArray[i]);
+      if (match) {
+        fb.textContent = 'Flawless syntax & information weight!';
+        fb.className = 'feedback-label pass';
+      } else {
+        fb.textContent = 'Not quite idiomatic. Think about the heavy end-weight.';
+        fb.className = 'feedback-label fail';
+      }
+    }
+
+    function checkStreamline() {
+      const val = document.getElementById('typeInput1').value.trim().toLowerCase();
+      const fb = document.getElementById('typeFeedback');
+      if (val === 'phone charger' || val === 'phone cable' || val === 'charger cable' || val === 'charging cable') {
+        fb.textContent = 'Correct compound formulation!';
+        fb.className = 'feedback-label pass';
+      } else {
+        fb.textContent = 'Try "phone charger" or "charging cable".';
+        fb.className = 'feedback-label fail';
+      }
+    }
+
+    // Varied topics across medicine, travel, technology, and everyday life
+    const gameDeck = [
+      { prompt: "The architect + Detailed blueprint", type: "s", natural: "The architect's blueprint" },
+      { prompt: "Heart + Attack (Medical condition)", type: "comp", natural: "Heart attack" },
+      { prompt: "The accumulation + Saturated fatty acids", type: "of", natural: "The accumulation of saturated fatty acids" },
+      { prompt: "Smartphone + Battery (Everyday hardware)", type: "comp", natural: "Smartphone battery" },
+      { prompt: "One week + Unpaid work leave", type: "s", natural: "One week's unpaid leave" },
+      { prompt: "The elasticity + Inanimate arterial walls", type: "of", natural: "The elasticity of arterial walls" },
+      { prompt: "Coffee + Mug (Kitchen dishware)", type: "comp", natural: "Coffee mug" },
+      { prompt: "The pilot + Flight logbook", type: "s", natural: "The pilot's logbook" },
+      { prompt: "The history + The ancient castle", type: "of", natural: "The history of the castle" },
+      { prompt: "Credit + Card (Financial tool)", type: "comp", natural: "Credit card" },
+      { prompt: "Two days + Intense business conference", type: "s", natural: "Two days' conference" }
+    ];
+
+    let gameIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let gameActive = false;
+
+    function startOrNextQuestion() {
+      const promptEl = document.getElementById('promptNouns');
+      const item = gameDeck[gameIndex % gameDeck.length];
+      promptEl.textContent = item.prompt;
+      document.getElementById('gameNotice').textContent = '';
+      gameActive = true;
+    }
+
+    function handleGameChoice(selectedType) {
+      if (!gameActive) {
+        startOrNextQuestion();
+        return;
+      }
+
+      const item = gameDeck[gameIndex % gameDeck.length];
+      const notice = document.getElementById('gameNotice');
+      const heart = document.getElementById('gameHeart');
+
+      if (selectedType === item.type) {
+        score += 10 + (streak * 2);
+        streak++;
+        notice.style.color = '#34d399';
+        notice.textContent = `Correct! -> "${item.natural}"`;
+        heart.style.animationDuration = '0.6s';
+      } else {
+        streak = 0;
+        notice.style.color = '#f87171';
+        notice.textContent = `Unnatural choice! Native standard: "${item.natural}"`;
+        heart.style.animationDuration = '1.8s';
+      }
+
+      document.getElementById('gameScore').textContent = score;
+      document.getElementById('gameStreak').textContent = streak;
+
+      const rankEl = document.getElementById('gameRank');
+      if (score > 120) rankEl.textContent = 'Master Communicator';
+      else if (score > 70) rankEl.textContent = 'Advanced Stylist';
+      else if (score > 30) rankEl.textContent = 'Fluent Builder';
+      else rankEl.textContent = 'Language Explorer';
+
+      gameIndex++;
+      setTimeout(() => {
+        startOrNextQuestion();
+      }, 1400);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      startOrNextQuestion();
+    });
+  </script>
+</body>
+</html>
