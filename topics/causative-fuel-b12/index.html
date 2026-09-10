@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lemon Therapy: Automotive Misadventures &amp; Expensive Regrets</title>
+  <style>
+    :root {
+      --bg: #090e17;
+      --card: #121c2d;
+      --card-alt: #1e2c42;
+      --card-border: #2a3d5a;
+      --accent: #f59e0b;
+      --accent-soft: rgba(245, 158, 11, 0.12);
+      --accent-glow: #d97706;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --correct: #22c55e;
+      --correct-bg: rgba(34, 197, 94, 0.18);
+      --wrong: #ef4444;
+      --wrong-bg: rgba(239, 68, 68, 0.18);
+      --highlight-caus: #fde047;
+      --highlight-cond: #38bdf8;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    header {
+      max-width: 980px;
+      margin: 0 auto 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 980px;
+      margin: 0 auto 20px;
+      width: 100%;
+    }
+
+    .nav-btn {
+      background: var(--card);
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .nav-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    main {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    .tab-content {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 22px 0 10px;
+      color: #e2e8f0;
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+    }
+
+    p, li {
+      line-height: 1.65;
+      font-size: 0.98rem;
+      color: #cbd5e1;
+    }
+
+    /* Tab 1: Extended Exposure */
+    .article-box {
+      background: rgba(9, 14, 23, 0.65);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .article-box p {
+      margin-bottom: 16px;
+    }
+
+    .article-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Initial state is strictly identical to surrounding text */
+    .target-caus, .target-cond {
+      display: inline;
+      font-weight: inherit;
+      text-decoration: none;
+      color: inherit;
+      background: transparent;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Highlighted state only after toggling */
+    .highlighted .target-caus {
+      background-color: var(--highlight-caus);
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .highlighted .target-cond {
+      background-color: var(--highlight-cond);
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .exposure-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .legend-box {
+      display: none;
+      gap: 14px;
+      font-size: 0.85rem;
+      margin-left: auto;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    .btn-action {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: var(--accent-glow);
+    }
+
+    /* Tab 2: Form */
+    .table-container {
+      overflow-x: auto;
+      margin: 14px 0 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border: 1px solid var(--card-border);
+      font-size: 0.92rem;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.4);
+      color: var(--accent);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      background: var(--card-alt);
+      color: var(--text);
+    }
+
+    .pro-tip {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 14px;
+      margin: 16px 0;
+      font-size: 0.92rem;
+    }
+
+    /* Tab 3: Practice Exercises */
+    .exercise-block {
+      background: rgba(9, 14, 23, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+      transition: border 0.2s;
+    }
+
+    .exercise-block:hover {
+      border-color: #3b5375;
+    }
+
+    .exercise-block h4 {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.98rem;
+    }
+
+    .q-row {
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    select {
+      background: var(--card-alt);
+      border: 1px solid #475569;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      cursor: pointer;
+    }
+
+    select:focus {
+      outline: 1px solid var(--accent);
+    }
+
+    .word-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 42px;
+      padding: 8px;
+      background: rgba(0,0,0,0.35);
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .word-pill {
+      background: var(--card-alt);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.9rem;
+      transition: all 0.15s ease;
+      border: 1px solid #475569;
+    }
+
+    .word-pill:hover {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    .drop-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 44px;
+      padding: 8px;
+      border: 2px dashed #475569;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.4);
+    }
+
+    /* Tab 4: Expansion / Case Studies */
+    .grid-deck {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .card-item {
+      background: var(--card-alt);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card-item h4 {
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .generator-box {
+      background: rgba(9, 14, 23, 0.55);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    footer {
+      max-width: 980px;
+      margin: 30px auto 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #475569;
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 10px;
+      }
+      .tab-content {
+        padding: 16px;
+      }
+      .nav-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+      .q-row {
+        gap: 6px;
+      }
+      .legend-box {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>The Lemon Syndicate</h1>
+    <p>Hubris, catastrophic depreciation, and the delicate art of outsourcing expensive repairs.</p>
+  </header>
+
+  <nav class="nav-tabs" role="tablist">
+    <button class="nav-btn active" onclick="openTab('exposure', this)">1. Exposé (Read)</button>
+    <button class="nav-btn" onclick="openTab('form', this)">2. The Blueprint (Form)</button>
+    <button class="nav-btn" onclick="openTab('practice', this)">3. The Assembly Line (Practice)</button>
+    <button class="nav-btn" onclick="openTab('expansion', this)">4. The Autopsy (Expansion)</button>
+  </nav>
+
+  <main>
+    <!-- TAB 1: EXPOSURE -->
+    <section id="exposure" class="tab-content active">
+      <h2>Confessions of an Electric Supercar Early Adopter</h2>
+      
+      <div class="article-box" id="reading-text">
+        <p>Purchasing the <em>AeroTitan 9000</em>—a six-figure electric behemoth marketed as "the pinnacle of vehicular singularity"—was unquestionably the single dumbest financial decision of my adult life. If I <span class="target-cond">had read</span> the consumer forums beforehand, I <span class="target-cond">would never have signed</span> that five-year lease. But the sleek brushed-steel gullwing doors whispered promises of visionary prestige, so I gladly surrendered my critical thinking skills at the showroom desk.</p>
+        
+        <p>Disaster struck precisely forty-eight hours post-delivery. While idling in the middle of a congested roundabout, the infotainment cluster developed severe digital psychosis, firmly deciding that the vehicle was an industrial microwave. The electronic door latches bolted shut instantly, trapping me inside for forty agonizing minutes while the climate control roasted me at 39°C. If the dealership <span class="target-cond">had calibrated</span> the biometric software properly during pre-delivery inspection, I <span class="target-cond">wouldn't have needed</span> to kick out the rear vent grille to avoid asphyxiation.</p>
+
+        <p>Once liberated, I refused to touch the high-voltage hazard myself; I have neither the engineering credentials nor the desire to get vaporized on my own driveway. Naturally, I <span class="target-caus">had the vehicle towed</span> directly back to the flagship service center. There, after three painful hours of corporate gaslighting, I <span class="target-caus">got the suspension checked</span> by an independent inspector because the front axle sounded like a cement mixer full of frozen cutlery.</p>
+
+        <p>The repairs quickly spiraled into an administrative war of attrition. The manufacturer blamed my phone's Bluetooth settings for the chassis failure, which led to another month of bureaucratic paralysis. If I <span class="target-cond">had listened</span> to my mechanic brother instead of that smooth-talking salesperson, I <span class="target-cond">would have bought</span> a dependable second-hand hatchback and saved myself hundreds of billable hours in emotional trauma.</p>
+
+        <p>Tomorrow morning, I am finally going to <span class="target-caus">have the entire battery pack replaced</span> under warranty. Right after that, I plan to <span class="target-caus">get the exterior detailed</span> to photographic perfection, post the car on every enthusiast marketplace, and pray someone with more money than sense takes this motorized paperweight off my hands.</p>
+      </div>
+
+      <div class="exposure-controls">
+        <button class="btn-action" onclick="toggleHighlights()">
+          <span id="highlight-label">Identify Grammar in Action</span>
+        </button>
+        <div class="legend-box" id="legend-box">
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--highlight-caus);"></span>
+            <span>Passive Causative (have/get + obj + V3)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--highlight-cond);"></span>
+            <span>Conditional Type 3 (Past Regrets)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: FORM -->
+    <section id="form" class="tab-content">
+      <h2>Grammar Diagnostic &amp; Mechanics</h2>
+      <p>Master the syntax used to outsource dirty work and express retrospective regret over catastrophic vehicular investments.</p>
+      
+      <h3>1. Passive Causatives (Have &amp; Get Something Done)</h3>
+      <p>Used when you arrange, commission, or pay for someone else (usually a professional) to perform a service on an object. The agent performing the action is omitted or mentioned with <em>by</em>.</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Verb</th>
+              <th>Formula</th>
+              <th>Tone / Pragmatics</th>
+              <th>Automotive Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>HAVE</strong></td>
+              <td><code>Subject + have + Object + Past Participle (V3)</code></td>
+              <td>Standard, professional, neutral arrangement of service.</td>
+              <td>I <em>had my brake pads replaced</em> before the track day.</td>
+            </tr>
+            <tr>
+              <td><strong>GET</strong></td>
+              <td><code>Subject + get + Object + Past Participle (V3)</code></td>
+              <td>Informal, sometimes implies effort, difficulty, or finally managing to do it.</td>
+              <td>I finally <em>got the dent pulled out</em> after arguing with the insurer.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2. Conditional Type 3 (Past Hypotheses &amp; Regrets)</h3>
+      <p>Used to talk about imaginary situations in the past that did not happen, often expressing regret, blame, or alternative history.</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Clause</th>
+              <th>Structure</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>If-Clause (Condition)</strong></td>
+              <td><code>If + Past Perfect (had / had not + V3)</code></td>
+              <td><em>If they had replaced the timing belt on time...</em></td>
+            </tr>
+            <tr>
+              <td><strong>Main Clause (Result)</strong></td>
+              <td><code>would / wouldn't + have + Past Participle (V3)</code></td>
+              <td><em>...the engine wouldn't have exploded on the highway.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pro-tip">
+        <strong>💡 Common Traps to Avoid:</strong><br>
+        • <strong>Passive Causative:</strong> The verb following the object is ALWAYS the past participle (V3): <em>"I had my car <ins>washed</ins>"</em> (never <em>wash</em> or <em>to wash</em>).<br>
+        • <strong>Conditional 3:</strong> Never put <em>would have</em> inside the <em>If</em> clause: <em>"If I <ins>had known</ins>..."</em> (NOT <em>"If I would have known..."</em>).
+      </div>
+    </section>
+
+    <!-- TAB 3: PRACTICE -->
+    <section id="practice" class="tab-content">
+      <h2>The Assembly Line: 8 Diagnostic Checks</h2>
+      <p style="margin-bottom: 20px;">Complete these interactive inspections arranged from controlled checks to full sentence builds.</p>
+
+      <!-- 1. Controlled Dropdown: Passive Causative HAVE -->
+      <div class="exercise-block" id="ex-1">
+        <h4>1. Routine Maintenance (Passive Causative)</h4>
+        <div class="q-row">
+          <span>Because the twin-turbo engine was misfiring, Arthur had the spark plugs</span>
+          <select data-ans="replaced">
+            <option value="">-- select --</option>
+            <option value="replace">replace</option>
+            <option value="to replace">to replace</option>
+            <option value="replaced">replaced</option>
+          </select>
+          <span>at the certified dealership.</span>
+        </div>
+      </div>
+
+      <!-- 2. Controlled Dropdown: Passive Causative GET -->
+      <div class="exercise-block" id="ex-2">
+        <h4>2. The Hailstorm Aftermath (Passive Causative)</h4>
+        <div class="q-row">
+          <span>After that brutal storm, she managed to get her cracked windshield</span>
+          <select data-ans="repaired">
+            <option value="">-- select --</option>
+            <option value="repaired">repaired</option>
+            <option value="repair">repair</option>
+            <option value="to repair">to repair</option>
+          </select>
+          <span>without paying the full insurance deductible.</span>
+        </div>
+      </div>
+
+      <!-- 3. Controlled Dropdown: Conditional 3 (If Clause) -->
+      <div class="exercise-block" id="ex-3">
+        <h4>3. The Overlooked Recall (Condition)</h4>
+        <div class="q-row">
+          <span>If the previous owner</span>
+          <select data-ans="had inspected">
+            <option value="">-- select --</option>
+            <option value="inspected">inspected</option>
+            <option value="had inspected">had inspected</option>
+            <option value="would have inspected">would have inspected</option>
+          </select>
+          <span>the cooling lines properly, the radiator wouldn't have burst in rush hour.</span>
+        </div>
+      </div>
+
+      <!-- 4. Controlled Dropdown: Conditional 3 (Result Clause) -->
+      <div class="exercise-block" id="ex-4">
+        <h4>4. The Salty Winter Roads (Result)</h4>
+        <div class="q-row">
+          <span>If we had applied anti-rust coating before winter, the chassis</span>
+          <select data-ans="would not have corroded">
+            <option value="">-- select --</option>
+            <option value="did not corrode">did not corrode</option>
+            <option value="would not corrode">would not corrode</option>
+            <option value="would not have corroded">would not have corroded</option>
+          </select>
+          <span>so catastrophically.</span>
+        </div>
+      </div>
+
+      <!-- 5. Dual Dropdown: Passive Causative Tense Shifts -->
+      <div class="exercise-block" id="ex-5">
+        <h4>5. The Fleet Upgrade (Passive Causative)</h4>
+        <div class="q-row">
+          <span>Last month, the logistics director</span>
+          <select data-ans="had">
+            <option value="">-- select --</option>
+            <option value="had">had</option>
+            <option value="has">has</option>
+            <option value="having">having</option>
+          </select>
+          <span>all twenty delivery vans</span>
+          <select data-ans="retrofitted">
+            <option value="">-- select --</option>
+            <option value="retrofit">retrofit</option>
+            <option value="retrofitted">retrofitted</option>
+            <option value="to retrofit">to retrofit</option>
+          </select>
+          <span>with GPS tracking modules.</span>
+        </div>
+      </div>
+
+      <!-- 6. Scramble: Passive Causative Rearrangement -->
+      <div class="exercise-block" id="scramble-block-1">
+        <h4>6. Assembly: Passive Causative Reordering</h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">Click items to order the sentence correctly:</p>
+        <div class="word-pool" id="pool-1"></div>
+        <div class="drop-zone" id="zone-1"></div>
+        <button class="btn-action" style="padding:4px 10px; font-size:0.8rem;" onclick="resetScramble(1)">Reset Order</button>
+      </div>
+
+      <!-- 7. Scramble: Conditional Type 3 Rearrangement -->
+      <div class="exercise-block" id="scramble-block-2">
+        <h4>7. Assembly: Conditional Type 3 Reordering</h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">Click items to order the sentence correctly:</p>
+        <div class="word-pool" id="pool-2"></div>
+        <div class="drop-zone" id="zone-2"></div>
+        <button class="btn-action" style="padding:4px 10px; font-size:0.8rem;" onclick="resetScramble(2)">Reset Order</button>
+      </div>
+
+      <!-- 8. Error Detection Dropdown -->
+      <div class="exercise-block" id="ex-8">
+        <h4>8. Quality Control: Error Detection</h4>
+        <div class="q-row">
+          <span>Analyze this faulty statement from a service invoice:</span>
+        </div>
+        <div class="q-row" style="color: #fda4af; font-style: italic;">
+          "If the driver had stopped when the oil light flashed, he wouldn't had his engine destroyed."
+        </div>
+        <div class="q-row">
+          <span>Select the required grammatical correction:</span>
+          <select data-ans="wouldn't have had">
+            <option value="">-- select fix --</option>
+            <option value="had stopped -> stopped">had stopped &rarr; stopped</option>
+            <option value="wouldn't had his engine destroyed -> wouldn't have had his engine destroyed">wouldn't had &rarr; wouldn't have had</option>
+            <option value="destroyed -> destroy">destroyed &rarr; destroy</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:16px; margin-top:20px;">
+        <button class="btn-action" onclick="evaluateAll()">Run Full Diagnostic</button>
+        <span id="score-text" style="font-weight:bold; font-size:1.05rem;"></span>
+      </div>
+    </section>
+
+    <!-- TAB 4: EXPANSION -->
+    <section id="expansion" class="tab-content">
+      <h2>The Autopsy: Forensic Case Studies</h2>
+      <p>Analyze these classic blunders in modern motoring history and review how causative structures and past regrets intersect.</p>
+
+      <div class="grid-deck">
+        <div class="card-item">
+          <h4>Case A: The "DIY" ECU Remap</h4>
+          <p><strong>Fact Pattern:</strong> Julian downloaded an unverified software patch from a shady forum to boost his turbo boost pressure. The cylinders melted on the motorway. He had to pay a specialized tuning shop to rebuild the engine.</p>
+          <hr style="border:none; border-top:1px solid #2a3d5a; margin:12px 0;">
+          <p style="font-size:0.88rem; color:var(--accent);">
+            <strong>Regret:</strong> "If Julian hadn't flashed unofficial software, his cylinders wouldn't have melted."<br>
+            <strong>Causative:</strong> "He had the engine rebuilt by a performance shop."
+          </p>
+        </div>
+
+        <div class="card-item">
+          <h4>Case B: The Floodwater Daredevil</h4>
+          <p><strong>Fact Pattern:</strong> Elena believed her 4x4 crossover was an amphibious vessel. She drove through half a meter of standing water. The transmission seized, forcing her to get the entire drivetrain replaced.</p>
+          <hr style="border:none; border-top:1px solid #2a3d5a; margin:12px 0;">
+          <p style="font-size:0.88rem; color:var(--accent);">
+            <strong>Regret:</strong> "If she hadn't driven through deep floodwater, the transmission wouldn't have seized."<br>
+            <strong>Causative:</strong> "She got the drivetrain replaced after filing a claim."
+          </p>
+        </div>
+
+        <div class="card-item">
+          <h4>Case C: The Barn Find Mirage</h4>
+          <p><strong>Fact Pattern:</strong> Sam bought a 1982 Italian sports car without a pre-purchase inspection. The body was held together by filler and optimism. He ended up getting the entire chassis welded from scratch.</p>
+          <hr style="border:none; border-top:1px solid #2a3d5a; margin:12px 0;">
+          <p style="font-size:0.88rem; color:var(--accent);">
+            <strong>Regret:</strong> "If Sam had hired a professional appraiser, he wouldn't have bought that rust bucket."<br>
+            <strong>Causative:</strong> "He had the frame welded by an antique specialist."
+          </p>
+        </div>
+      </div>
+
+      <div class="generator-box">
+        <h3>Speaking &amp; Discussion Workshop</h3>
+        <p>In pairs or as a personal reflection prompt, construct arguments for the following scenarios:</p>
+        <ul style="margin: 12px 0 0 20px;">
+          <li>Describe the most expensive repair you (or someone you know) ever had done. Why did you <strong>have/get it done</strong> instead of doing it yourself?</li>
+          <li>Reflect on a notoriously unreliable car model. Formulate two <strong>Conditional Type 3</strong> sentences explaining what its designers should have done differently.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Designed by Babak Alaee &bull; Automotive Grammar Labs</p>
+  </footer>
+
+  <script>
+    // Tab Navigation
+    function openTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // Toggle Exposure Highlighting
+    let isHighlighted = false;
+    function toggleHighlights() {
+      const textContainer = document.getElementById('reading-text');
+      const label = document.getElementById('highlight-label');
+      const legend = document.getElementById('legend-box');
+      isHighlighted = !isHighlighted;
+      
+      if (isHighlighted) {
+        textContainer.classList.add('highlighted');
+        label.innerText = "Hide Target Structures";
+        legend.style.display = "flex";
+      } else {
+        textContainer.classList.remove('highlighted');
+        label.innerText = "Identify Grammar in Action";
+        legend.style.display = "none";
+      }
+    }
+
+    // Scramble Exercises Data
+    const scrambles = {
+      1: {
+        correct: ["We", "had", "our", "transmission", "serviced", "before", "the", "road", "trip"],
+        pool: ["serviced", "road", "We", "the", "transmission", "before", "had", "trip", "our"]
+      },
+      2: {
+        correct: ["If", "the", "brakes", "had", "failed", "we", "would", "have", "crashed"],
+        pool: ["crashed", "brakes", "If", "failed", "have", "would", "had", "the", "we"]
+      }
+    };
+
+    function resetScramble(id) {
+      const pool = document.getElementById(`pool-${id}`);
+      const zone = document.getElementById(`zone-${id}`);
+      pool.innerHTML = '';
+      zone.innerHTML = '';
+      zone.style.borderColor = "#475569";
+
+      scrambles[id].pool.forEach(token => {
+        const span = document.createElement('span');
+        span.className = 'word-pill';
+        span.innerText = token;
+        span.onclick = () => {
+          if (span.parentElement === pool) {
+            zone.appendChild(span);
+          } else {
+            pool.appendChild(span);
+          }
+        };
+        pool.appendChild(span);
+      });
+    }
+
+    function initAllScrambles() {
+      resetScramble(1);
+      resetScramble(2);
+    }
+
+    // Comprehensive Check & Evaluation
+    function evaluateAll() {
+      let score = 0;
+      const total = 8;
+
+      // 1. Check dropdowns
+      const selects = document.querySelectorAll('#practice select[data-ans]');
+      selects.forEach(sel => {
+        const expected = sel.getAttribute('data-ans');
+        if (sel.value === expected) {
+          sel.style.borderColor = "var(--correct)";
+          sel.style.backgroundColor = "var(--correct-bg)";
+        } else {
+          sel.style.borderColor = "var(--wrong)";
+          sel.style.backgroundColor = "var(--wrong-bg)";
+        }
+      });
+
+      const ex1 = document.querySelector('#ex-1 select').value === 'replaced';
+      const ex2 = document.querySelector('#ex-2 select').value === 'repaired';
+      const ex3 = document.querySelector('#ex-3 select').value === 'had inspected';
+      const ex4 = document.querySelector('#ex-4 select').value === 'would not have corroded';
+      
+      const ex5a = document.querySelectorAll('#ex-5 select')[0].value === 'had';
+      const ex5b = document.querySelectorAll('#ex-5 select')[1].value === 'retrofitted';
+      const ex5 = ex5a && ex5b;
+
+      // Scramble 1 Check
+      const z1Words = Array.from(document.querySelectorAll('#zone-1 .word-pill')).map(p => p.innerText);
+      const ex6 = JSON.stringify(z1Words) === JSON.stringify(scrambles[1].correct);
+      document.getElementById('zone-1').style.borderColor = ex6 ? "var(--correct)" : "var(--wrong)";
+
+      // Scramble 2 Check
+      const z2Words = Array.from(document.querySelectorAll('#zone-2 .word-pill')).map(p => p.innerText);
+      const ex7 = JSON.stringify(z2Words) === JSON.stringify(scrambles[2].correct);
+      document.getElementById('zone-2').style.borderColor = ex7 ? "var(--correct)" : "var(--wrong)";
+
+      const ex8 = document.querySelector('#ex-8 select').value === "wouldn't had his engine destroyed -> wouldn't have had his engine destroyed";
+
+      const scores = [ex1, ex2, ex3, ex4, ex5, ex6, ex7, ex8];
+      score = scores.filter(Boolean).length;
+
+      const scoreText = document.getElementById('score-text');
+      scoreText.innerText = `Diagnostic Rating: ${score} / ${total} Correct`;
+      scoreText.style.color = score === total ? 'var(--correct)' : 'var(--accent)';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initAllScrambles();
+    });
+  </script>
+</body>
+</html>

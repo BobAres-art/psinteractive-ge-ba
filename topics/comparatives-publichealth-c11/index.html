@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Health & Media: Advanced Comparison</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #0d9488;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --highlight: #fef08a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    nav.tab-bar {
+      display: flex;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px 12px;
+      border: none;
+      background: none;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      background: var(--card);
+    }
+
+    .tab-content {
+      padding: 24px 20px;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Typography & Utilities */
+    h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 16px 0 8px 0;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    .card-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .instruction {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    button.btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    button.btn:hover {
+      background: var(--primary-light);
+    }
+
+    /* Exposure Styles */
+    .exposure-text {
+      line-height: 1.85;
+      font-size: 1rem;
+      color: #334155;
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-light);
+      margin-bottom: 16px;
+    }
+
+    .target-highlight {
+      transition: all 0.3s ease;
+    }
+
+    .target-highlight.active {
+      background-color: var(--highlight);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+      border-bottom: 2px solid #ca8a04;
+    }
+
+    /* Form Styles */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px 0;
+      font-size: 0.9rem;
+    }
+
+    .rule-table th, .rule-table td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .rule-table th {
+      background-color: #f1f5f9;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .formula-tag {
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+
+    /* Practice Exercises */
+    .ex-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .ex-header {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 12px;
+      color: var(--text);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #bbf7d0;
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background: var(--error-bg);
+      color: var(--error);
+      border: 1px solid #fecaca;
+    }
+
+    /* Drag & Drop / Reordering */
+    .chip-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+      min-height: 44px;
+      padding: 8px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      background: #f8fafc;
+    }
+
+    .chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.9rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--primary-light);
+      background: #f0f9ff;
+    }
+
+    .chip.selected {
+      background: var(--primary-light);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Dropdowns inside sentences */
+    .inline-select {
+      display: inline-block;
+      padding: 4px 8px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background-color: white;
+      margin: 0 4px;
+      color: var(--text);
+    }
+
+    /* Analysis Tab */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .analysis-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .metric-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .metric-card h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      border-top: 1px solid var(--border);
+      background: #fafafa;
+    }
+
+    footer a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Public Health & Mass Media</h1>
+      <p>Precision, Emphasis, and Nuance in Comparative Structures</p>
+    </header>
+
+    <nav class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('exposure')">1. Exposure</button>
+      <button class="tab-btn" onclick="switchTab('form')">2. Grammar Form</button>
+      <button class="tab-btn" onclick="switchTab('practice')">3. Interactive Practice</button>
+      <button class="tab-btn" onclick="switchTab('critique')">4. Media Critique</button>
+    </nav>
+
+    <!-- EXPOSURE TAB -->
+    <div id="exposure" class="tab-content active">
+      <h2>Media Framing in Public Health</h2>
+      <p class="instruction">Read the editorial below analyzing how modern media channels communicate epidemic data and wellness guidance.</p>
+      
+      <div class="exposure-text" id="reading-text">
+        In modern health journalism, the manner in which risks are presented is <span class="target-highlight">nowhere near as balanced as</span> professional epidemiologists would prefer. During recent outbreaks, commercial outlets generated coverage that was <span class="target-highlight">considerably more sensationalized than</span> the actual clinical data warranted. <span class="target-highlight">The more aggressively</span> a headline stoked anxiety, <span class="target-highlight">the more rapidly</span> the article circulated across algorithmic networks.<br><br>
+        
+        Public health communication via print journalism is <span class="target-highlight">marginally more conservative in tone compared to</span> digital-native platforms, which depend on engagement metrics. Consequently, online misinformation travels <span class="target-highlight">substantially faster than</span> peer-reviewed corrections can be disseminated. Broadcast networks are <span class="target-highlight">every bit as culpable as</span> social media influencers in amplifying unverified cures, prioritizing viewership over scientific precision. Ultimately, institutional clarity is <span class="target-highlight">by far the single most vital asset</span> a government possesses during an emergent epidemic.
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <button class="btn" onclick="toggleHighlights()">Toggle Structure Highlighting</button>
+        <span id="highlight-status" style="font-size: 0.85rem; color: var(--text-muted);">Structures are hidden</span>
+      </div>
+    </div>
+
+    <!-- FORM TAB -->
+    <div id="form" class="tab-content">
+      <h2>Advanced Comparative Frameworks</h2>
+      <p class="instruction">Sophisticated discourse requires precise grading of differences, parallel proportions, and emphatic balance.</p>
+
+      <h3>1. Proportional & Progressive Change</h3>
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Structure</th>
+            <th>Function</th>
+            <th>Example in Health/Media Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="formula-tag">The + comparative, the + comparative</span></td>
+            <td>Shows direct cause-and-effect relationship between two changing variables.</td>
+            <td><strong>The more transparent</strong> the CDC remains, <strong>the higher</strong> public compliance will be.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Degree Modifiers (Fine-Tuning Magnitude)</h3>
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Magnitude</th>
+            <th>Modifiers</th>
+            <th>Structure & Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Large Difference</strong></td>
+            <td>substantially, considerably, vastly, nowhere near as... as</td>
+            <td>Sensationalized blogs are <strong>vastly less reliable than</strong> peer-reviewed journals.</td>
+          </tr>
+          <tr>
+            <td><strong>Small Difference</strong></td>
+            <td>marginally, fractionally, slightly, nearly as... as</td>
+            <td>The updated vaccine formulation is <strong>marginally more effective than</strong> the prototype.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Exact Equivalence & Extreme Emphasis</h3>
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Structure</th>
+            <th>Nuance</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="formula-tag">every bit as + adj + as</span></td>
+            <td>Emphasizes complete parity between two unexpected items.</td>
+            <td>Digital wellness myths are <strong>every bit as harmful as</strong> traditional quackery.</td>
+          </tr>
+          <tr>
+            <td><span class="formula-tag">by far + the + superlative (+ noun)</span></td>
+            <td>Establishes an uncontested superlative with maximum emphasis.</td>
+            <td>Misleading headlines are <strong>by far the greatest barrier</strong> to public trust.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PRACTICE TAB -->
+    <div id="practice" class="tab-content">
+      <h2>Interactive Practice Suite</h2>
+      <p class="instruction">Work through the 8 exercises arranged from controlled selection to contextual re-structuring.</p>
+
+      <!-- EX 1 -->
+      <div class="ex-card" id="ex1">
+        <div class="ex-header">
+          <span>Exercise 1: Modifying Differences (Multiple Choice)</span>
+          <span class="badge">Controlled</span>
+        </div>
+        <p>Peer-reviewed medical trials are ________ more rigorous than anecdotal influencer claims on TikTok.</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+          <button class="btn" style="background:#f1f5f9; color:var(--text);" onclick="checkMC(1, 'a', this)">A) slightly</button>
+          <button class="btn" style="background:#f1f5f9; color:var(--text);" onclick="checkMC(1, 'b', this)">B) substantially</button>
+          <button class="btn" style="background:#f1f5f9; color:var(--text);" onclick="checkMC(1, 'c', this)">C) nowhere near</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+      </div>
+
+      <!-- EX 2 -->
+      <div class="ex-card" id="ex2">
+        <div class="ex-header">
+          <span>Exercise 2: Complete Parity (Drop-Down)</span>
+          <span class="badge">Controlled</span>
+        </div>
+        <p>
+          Corporate sponsored studies are 
+          <select class="inline-select" id="sel2" onchange="checkSelect(2, 'every bit as')">
+            <option value="">-- select --</option>
+            <option value="as much">as much</option>
+            <option value="every bit as">every bit as</option>
+            <option value="far more">far more</option>
+          </select>
+          susceptible to bias as unverified blog posts.
+        </p>
+        <div class="feedback" id="fb2"></div>
+      </div>
+
+      <!-- EX 3 -->
+      <div class="ex-card" id="ex3">
+        <div class="ex-header">
+          <span>Exercise 3: Proportional Correlation (Unscramble)</span>
+          <span class="badge">Ordering</span>
+        </div>
+        <p>Arrange the tokens to construct a valid double-comparative statement:</p>
+        <div class="chip-container" id="chips3">
+          <div class="chip" onclick="selectChip(this, 'res3')">the higher</div>
+          <div class="chip" onclick="selectChip(this, 'res3')">The more sensational</div>
+          <div class="chip" onclick="selectChip(this, 'res3')">the headline,</div>
+          <div class="chip" onclick="selectChip(this, 'res3')">the public skepticism.</div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">Constructed Sentence:</div>
+        <div class="chip-container" id="res3" style="border-style: solid; border-color: var(--primary-light);"></div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn" onclick="checkOrder(3, 'The more sensational the headline, the higher the public skepticism.')">Verify Order</button>
+          <button class="btn" style="background:#94a3b8;" onclick="resetOrder(3, ['the higher', 'The more sensational', 'the headline,', 'the public skepticism.'])">Reset</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+      </div>
+
+      <!-- EX 4 -->
+      <div class="ex-card" id="ex4">
+        <div class="ex-header">
+          <span>Exercise 4: Negative Equivalence (Drop-Down)</span>
+          <span class="badge">Structure</span>
+        </div>
+        <p>
+          Local news outlets are 
+          <select class="inline-select" id="sel4" onchange="checkSelect(4, 'nowhere near as equipped')">
+            <option value="">-- select --</option>
+            <option value="nowhere near as equipped">nowhere near as equipped</option>
+            <option value="not vastly equipped">not vastly equipped</option>
+            <option value="barely equipped than">barely equipped than</option>
+          </select>
+          as international agencies to verify epidemiological data.
+        </p>
+        <div class="feedback" id="fb4"></div>
+      </div>
+
+      <!-- EX 5 -->
+      <div class="ex-card" id="ex5">
+        <div class="ex-header">
+          <span>Exercise 5: Emphatic Superlative (Unscramble)</span>
+          <span class="badge">Ordering</span>
+        </div>
+        <p>Reconstruct the emphatic comparative sentence:</p>
+        <div class="chip-container" id="chips5">
+          <div class="chip" onclick="selectChip(this, 'res5')">the single most</div>
+          <div class="chip" onclick="selectChip(this, 'res5')">Clear data visualization</div>
+          <div class="chip" onclick="selectChip(this, 'res5')">is by far</div>
+          <div class="chip" onclick="selectChip(this, 'res5')">effective weapon.</div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">Constructed Sentence:</div>
+        <div class="chip-container" id="res5" style="border-style: solid; border-color: var(--primary-light);"></div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn" onclick="checkOrder(5, 'Clear data visualization is by far the single most effective weapon.')">Verify Order</button>
+          <button class="btn" style="background:#94a3b8;" onclick="resetOrder(5, ['the single most', 'Clear data visualization', 'is by far', 'effective weapon.'])">Reset</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+      </div>
+
+      <!-- EX 6 -->
+      <div class="ex-card" id="ex6">
+        <div class="ex-header">
+          <span>Exercise 6: Small-Margin Differentiation (Multiple Choice)</span>
+          <span class="badge">Precision</span>
+        </div>
+        <p>The updated health advisory was only ________ clearer than the vague statement released yesterday (difference &lt; 5%).</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+          <button class="btn" style="background:#f1f5f9; color:var(--text);" onclick="checkMC(6, 'a', this)">A) vastly</button>
+          <button class="btn" style="background:#f1f5f9; color:var(--text);" onclick="checkMC(6, 'b', this)">B) marginally</button>
+          <button class="btn" style="background:#f1f5f9; color:var(--text);" onclick="checkMC(6, 'c', this)">C) considerably</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+      </div>
+
+      <!-- EX 7 -->
+      <div class="ex-card" id="ex7">
+        <div class="ex-header">
+          <span>Exercise 7: Inverse Proportions (Dual Drop-Down)</span>
+          <span class="badge">Intermediate</span>
+        </div>
+        <p>
+          <select class="inline-select" id="sel7a">
+            <option value="">-- select --</option>
+            <option value="The fewer">The fewer</option>
+            <option value="The less">The less</option>
+            <option value="The smaller">The smaller</option>
+          </select>
+          verified facts an article contains, 
+          <select class="inline-select" id="sel7b">
+            <option value="">-- select --</option>
+            <option value="the greater">the greater</option>
+            <option value="the most">the most</option>
+            <option value="the considerably">the considerably</option>
+          </select>
+          the public confusion becomes.
+        </p>
+        <button class="btn" style="margin-top: 8px;" onclick="checkDualSelect(7, 'The fewer', 'the greater')">Validate Choice</button>
+        <div class="feedback" id="fb7"></div>
+      </div>
+
+      <!-- EX 8 -->
+      <div class="ex-card" id="ex8">
+        <div class="ex-header">
+          <span>Exercise 8: Error Identification (One-Click Correction)</span>
+          <span class="badge">Advanced</span>
+        </div>
+        <p class="instruction">Click on the segment containing the structural grammatical error:</p>
+        <div style="line-height: 2;">
+          "During epidemics, <span class="chip" onclick="checkErrorToken(this, false)">misinformation on chat apps</span> travels <span class="chip" onclick="checkErrorToken(this, true)">far more fast than</span> official press releases, making containment <span class="chip" onclick="checkErrorToken(this, false)">considerably more difficult</span>."
+        </div>
+        <div class="feedback" id="fb8"></div>
+      </div>
+    </div>
+
+    <!-- CREATIVE EXPANSION TAB: MEDIA CRITIQUE -->
+    <div id="critique" class="tab-content">
+      <h2>Media Analysis Lab: Comparative Synthesis</h2>
+      <p class="instruction">Compare how two distinct media formats frame identical public health announcements.</p>
+
+      <div class="analysis-grid">
+        <div class="metric-card">
+          <h4>Channel A: Institutional Briefing (Gov)</h4>
+          <p style="font-size: 0.85rem; color: #475569;">"Annual influenza transmissions have risen 8% among vulnerable cohorts; voluntary mask usage recommended in high-density transport."</p>
+          <ul style="font-size: 0.85rem; margin-left: 18px; color: #475569;">
+            <li>Tone: Objective / Risk-neutral</li>
+            <li>Engagement Priority: Low</li>
+            <li>Data Accuracy: High</li>
+          </ul>
+        </div>
+        <div class="metric-card">
+          <h4>Channel B: Tabloid / Social Aggregator</h4>
+          <p style="font-size: 0.85rem; color: #475569;">"SURGE ALERT: Hospital networks brace for catastrophic winter strain as mystery respiratory cases escalate overnight!"</p>
+          <ul style="font-size: 0.85rem; margin-left: 18px; color: #475569;">
+            <li>Tone: Alarming / Urgent</li>
+            <li>Engagement Priority: Maximum</li>
+            <li>Data Accuracy: Low (Decontextualized)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-box" style="margin-top: 16px;">
+        <h3>Synthesize with Advanced Modifiers</h3>
+        <p style="font-size: 0.9rem;">Complete the comparative evaluation below using the correct academic modifiers:</p>
+        <p style="font-size: 0.95rem; line-height: 1.8;">
+          Channel B is 
+          <select class="inline-select" id="crit1">
+            <option value="">-- select --</option>
+            <option value="vastly more sensationalized than">vastly more sensationalized than</option>
+            <option value="marginally sensationalized as">marginally sensationalized as</option>
+          </select>
+          Channel A. Furthermore, Channel A's guidance is 
+          <select class="inline-select" id="crit2">
+            <option value="">-- select --</option>
+            <option value="nowhere near as alarming as">nowhere near as alarming as</option>
+            <option value="every bit alarming than">every bit alarming than</option>
+          </select>
+          the tabloid report, proving that 
+          <select class="inline-select" id="crit3">
+            <option value="">-- select --</option>
+            <option value="the more urgent the headline, the less nuanced">the more urgent the headline, the less nuanced</option>
+            <option value="the most urgent headline, the least nuanced">the most urgent headline, the least nuanced</option>
+          </select>
+          the reporting tends to be.
+        </p>
+        <button class="btn" onclick="checkCritique()">Check Synthesis</button>
+        <div class="feedback" id="fb-crit"></div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Interactive English Materials &bull; Designed by Babak Alaee</span>
+    </footer>
+  </div>
+
+  <script>
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Exposure Highlight Toggle
+    let highlightsVisible = false;
+    function toggleHighlights() {
+      highlightsVisible = !highlightsVisible;
+      const targets = document.querySelectorAll('.target-highlight');
+      targets.forEach(t => t.classList.toggle('active', highlightsVisible));
+      const status = document.getElementById('highlight-status');
+      status.textContent = highlightsVisible ? 'Structures highlighted in yellow' : 'Structures are hidden';
+    }
+
+    // MC Checking
+    function checkMC(exNum, choice, btn) {
+      const fb = document.getElementById(`fb${exNum}`);
+      const correctAnswers = { 1: 'b', 6: 'b' };
+      const explanations = {
+        1: "Correct! 'Substantially' expresses the large empirical gap between scientific trials and social media claims.",
+        6: "Correct! 'Marginally' accurately indicates an insignificant, slight variance (&lt; 5%)."
+      };
+
+      if (choice === correctAnswers[exNum]) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `&#10004; ${explanations[exNum]}`;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `&#10008; Incorrect choice. Consider the magnitude implied by the context.`;
+      }
+    }
+
+    // Dropdown Check
+    function checkSelect(exNum, correctVal) {
+      const val = document.getElementById(`sel${exNum}`).value;
+      const fb = document.getElementById(`fb${exNum}`);
+      if (val === correctVal) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `&#10004; Accurate! Fits the syntactic pattern seamlessly.`;
+      } else if (val === '') {
+        fb.className = 'feedback';
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `&#10008; Not quite. Review the required preposition or modifier pairing.`;
+      }
+    }
+
+    // Dual Dropdown Check
+    function checkDualSelect(exNum, ans1, ans2) {
+      const v1 = document.getElementById(`sel${exNum}a`).value;
+      const v2 = document.getElementById(`sel${exNum}b`).value;
+      const fb = document.getElementById(`fb${exNum}`);
+
+      if (v1 === ans1 && v2 === ans2) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `&#10004; Excellent! 'The fewer [countable noun]..., the greater [uncountable/degree]...'`;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `&#10008; Note the countability of 'facts' and parallel comparative form.`;
+      }
+    }
+
+    // Interactive Unscramble
+    function selectChip(el, targetContainerId) {
+      const target = document.getElementById(targetContainerId);
+      const parent = el.parentElement;
+      if (parent.id.startsWith('chips')) {
+        target.appendChild(el);
+      } else {
+        const originalContainerId = 'chips' + targetContainerId.replace('res', '');
+        document.getElementById(originalContainerId).appendChild(el);
+      }
+    }
+
+    function checkOrder(exNum, correctSentence) {
+      const container = document.getElementById(`res${exNum}`);
+      const constructed = Array.from(container.children).map(c => c.textContent.trim()).join(' ');
+      const fb = document.getElementById(`fb${exNum}`);
+
+      if (constructed === correctSentence) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `&#10004; Precisely reconstructed: "${correctSentence}"`;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `&#10008; Current order does not match natural comparative syntax.`;
+      }
+    }
+
+    function resetOrder(exNum, originalArray) {
+      const src = document.getElementById(`chips${exNum}`);
+      const res = document.getElementById(`res${exNum}`);
+      src.innerHTML = '';
+      res.innerHTML = '';
+      originalArray.forEach(text => {
+        const d = document.createElement('div');
+        d.className = 'chip';
+        d.textContent = text;
+        d.onclick = function() { selectChip(d, `res${exNum}`); };
+        src.appendChild(d);
+      });
+      document.getElementById(`fb${exNum}`).className = 'feedback';
+    }
+
+    // Error Token Check
+    function checkErrorToken(el, isError) {
+      const fb = document.getElementById('fb8');
+      if (isError) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `&#10004; Well spotted! "Far more fast" is ungrammatical; it should be <strong>far faster</strong> or <strong>considerably faster</strong>.`;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `&#10008; This element is grammatically sound. Look for incorrect modifier + irregular comparative pairings.`;
+      }
+    }
+
+    // Synthesis Tab Check
+    function checkCritique() {
+      const c1 = document.getElementById('crit1').value;
+      const c2 = document.getElementById('crit2').value;
+      const c3 = document.getElementById('crit3').value;
+      const fb = document.getElementById('fb-crit');
+
+      if (
+        c1 === 'vastly more sensationalized than' &&
+        c2 === 'nowhere near as alarming as' &&
+        c3 === 'the more urgent the headline, the less nuanced'
+      ) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `&#10004; Outstanding analytical evaluation! All advanced comparative modifiers used accurately.`;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `&#10008; Check your selections. Ensure comparative prepositions and double comparative clauses match accurately.`;
+      }
+    }
+  </script>
+</body>
+</html>
