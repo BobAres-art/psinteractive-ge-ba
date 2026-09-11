@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festivals & Celebrations — Past Habits with Used to & Would</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --error: #ef4444;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: #fff;
+      padding: 2.5rem 1.25rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .designer-credit {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: -20px auto 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .tabs {
+      display: flex;
+      background: #fff;
+      padding: 6px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 0.75rem 1rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      color: #1e3a8a;
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    /* Exposure Tab Styles */
+    .reading-box {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      background: #fdfdfd;
+      padding: 1.5rem;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1rem 0;
+    }
+
+    /* Target words before highlight: completely plain */
+    .hl-target {
+      font-weight: inherit;
+      text-decoration: inherit;
+      color: inherit;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    /* Revealed state */
+    body.show-highlights .hl-target.used-to {
+      background-color: #fef08a;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+      border-bottom: 2px solid #ca8a04;
+    }
+
+    body.show-highlights .hl-target.would {
+      background-color: #bfdbfe;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+      border-bottom: 2px solid #2563eb;
+    }
+
+    .highlight-toggle-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .toggle-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .toggle-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .legend {
+      display: none;
+      gap: 16px;
+      font-size: 0.88rem;
+    }
+    body.show-highlights .legend {
+      display: flex;
+    }
+    .legend-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-box {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+    }
+
+    /* Form Tables & Grids */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: var(--primary-light);
+      color: #1e3a8a;
+    }
+    .verb-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0.5rem 0;
+    }
+    .verb-pill {
+      background: #e2e8f0;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .verb-pill.action {
+      background: #dcfce7;
+      color: #15803d;
+    }
+    .verb-pill.state {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .rule-callout {
+      background: #fffbeb;
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    /* Exercises Common Styles */
+    .exercise-box {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .exercise-box:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .badge-diff {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .diff-1 { background: #dcfce7; color: #166534; }
+    .diff-2 { background: #fef3c7; color: #92400e; }
+    .diff-3 { background: #fee2e2; color: #991b1b; }
+
+    .q-item {
+      margin: 1rem 0;
+      padding: 0.85rem 1rem;
+      background: #fcfdfe;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .opt-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.15s ease;
+    }
+    .chip-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .chip-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .q-select {
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      background: #fff;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .feedback-inline {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+    .feedback-inline.correct {
+      color: var(--success);
+      display: block;
+    }
+    .feedback-inline.incorrect {
+      color: var(--error);
+      display: block;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .check-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .check-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .reset-btn {
+      background: #e2e8f0;
+      color: var(--text);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* Unscramble Tiles */
+    .tiles-bank, .drop-target {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 48px;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+    .tiles-bank {
+      background: #f1f5f9;
+      border: 1px dashed #cbd5e1;
+    }
+    .drop-target {
+      background: #fff;
+      border: 2px dashed #94a3b8;
+    }
+
+    .tile {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: transform 0.1s ease;
+    }
+    .tile:active {
+      transform: scale(0.96);
+    }
+
+    /* Category Sorting / Drag-Drop Alternative */
+    .sort-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .sort-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .sort-bucket {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 120px;
+    }
+    .sort-bucket h4 {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      text-align: center;
+      color: #1e3a8a;
+    }
+    .bucket-items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sort-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sort-item:hover {
+      border-color: var(--primary);
+    }
+
+    /* Score Bar */
+    .score-banner {
+      background: #1e293b;
+      color: #fff;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .score-banner strong {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    /* Discussion Prompts Card */
+    .prompt-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 10px;
+    }
+    .prompt-card p {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="designer-credit">Designed by Babak Alaee</div>
+    <h1>Memories of Celebrations</h1>
+    <p>Exploring past habits, family traditions, and festive seasons with <em>used to</em> and <em>would</em></p>
+  </header>
+
+  <div class="nav-container">
+    <nav class="tabs">
+      <button class="tab-btn active" onclick="switchTab('exposure')">1. Exposure</button>
+      <button class="tab-btn" onclick="switchTab('form')">2. Rules & Form</button>
+      <button class="tab-btn" onclick="switchTab('practice')">3. Interactive Practice</button>
+      <button class="tab-btn" onclick="switchTab('speaking')">4. Cultural Exchange</button>
+    </nav>
+  </div>
+
+  <main>
+    <!-- TAB 1: EXPOSURE -->
+    <section id="exposure" class="tab-panel active">
+      <div class="card">
+        <h2>Festive Days from My Childhood</h2>
+        <p>Read the personal essay below about traditional New Year and Midwinter village festivals. Notice how the writer describes memories that repeated year after year.</p>
+
+        <div class="reading-box" id="readingArticle">
+          When I was ten years old, winter was the most magical season of the year. Our whole village <span class="hl-target used-to" data-type="used-to">used to look</span> forward to the annual Midwinter Festival for months. My grandfather <span class="hl-target used-to" data-type="used-to">used to own</span> a small bakery near the central square, and during the holidays, everyone in the neighborhood gathered there.<br><br>
+
+          Every morning in December, we <span class="hl-target would" data-type="would">would wake</span> up before sunrise to help him bake honey bread. The kitchen <span class="hl-target used-to" data-type="used-to">used to smell</span> of cinnamon, cloves, and burnt orange peel. My cousins and I <span class="hl-target would" data-type="would">would roll</span> the dough into stars, and grandfather <span class="hl-target would" data-type="would">would sing</span> old folk melodies while tending the wood oven.<br><br>
+
+          People in our village <span class="hl-target used-to" data-type="used-to">used to believe</span> that sharing bread brought good luck for the harvest. In the evenings, musicians <span class="hl-target would" data-type="would">would gather</span> in the square, and families <span class="hl-target would" data-type="would">would dance</span> around the bonfire until midnight. Life <span class="hl-target used-to" data-type="used-to">used to feel</span> much simpler back then, but those festive traditions stayed in our hearts forever.
+        </div>
+
+        <div class="highlight-toggle-bar">
+          <button class="toggle-btn" onclick="toggleHighlights()">Toggle Grammar Highlights</button>
+          <div class="legend">
+            <span class="legend-badge"><span class="legend-box" style="background:#fef08a; border: 1px solid #ca8a04;"></span> Yellow = <em>used to</em> (States & Actions)</span>
+            <span class="legend-badge"><span class="legend-box" style="background:#bfdbfe; border: 1px solid #2563eb;"></span> Blue = <em>would</em> (Repeated Actions only)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Quick Reflection</h2>
+        <p>Look at the highlighted verbs in the text:</p>
+        <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
+          <li>Which form appears with verbs like <em>own</em>, <em>smell</em>, <em>believe</em>, and <em>feel</em>?</li>
+          <li>Which verbs appear with <em>would</em> (e.g., <em>wake</em>, <em>roll</em>, <em>sing</em>, <em>dance</em>)? Are these physical actions or states of being?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TAB 2: FORM & RULES -->
+    <section id="form" class="tab-panel">
+      <div class="card">
+        <h2>Action Verbs vs. State (Stative) Verbs</h2>
+        <p>To choose accurately between <strong>used to</strong> and <strong>would</strong>, we must identify the type of verb we are using:</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 1rem 0;">
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 8px;">
+            <strong style="color: #166534;">Action Verbs (Dynamic)</strong>
+            <p style="font-size: 0.9rem; margin-top: 4px;">Describe physical actions and activities that have a beginning and an end.</p>
+            <div class="verb-pill-group">
+              <span class="verb-pill action">dance</span>
+              <span class="verb-pill action">cook</span>
+              <span class="verb-pill action">visit</span>
+              <span class="verb-pill action">sing</span>
+              <span class="verb-pill action">bake</span>
+              <span class="verb-pill action">travel</span>
+            </div>
+          </div>
+          <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 1rem; border-radius: 8px;">
+            <strong style="color: #991b1b;">State Verbs (Stative)</strong>
+            <p style="font-size: 0.9rem; margin-top: 4px;">Describe situations, feelings, ownership, beliefs, and conditions that continue over time.</p>
+            <div class="verb-pill-group">
+              <span class="verb-pill state">be</span>
+              <span class="verb-pill state">have (own)</span>
+              <span class="verb-pill state">love</span>
+              <span class="verb-pill state">believe</span>
+              <span class="verb-pill state">seem</span>
+              <span class="verb-pill state">understand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Comparing "Used to" vs. "Would"</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>used to + base verb</th>
+              <th>would + base verb</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Repeated Past Actions</strong></td>
+              <td>✔ Yes<br><em>"We <strong>used to visit</strong> our cousins every festival."</em></td>
+              <td>✔ Yes<br><em>"We <strong>would visit</strong> our cousins every festival."</em></td>
+            </tr>
+            <tr>
+              <td><strong>Past States / Situations</strong></td>
+              <td>✔ Yes<br><em>"I <strong>used to love</strong> street carnivals."</em><br><em>"There <strong>used to be</strong> a fair here."</em></td>
+              <td>❌ <strong>NEVER</strong> with states<br><em style="color:#b91c1c;">"I would love street carnivals." (Incorrect)</em></td>
+            </tr>
+            <tr>
+              <td><strong>Questions & Negatives</strong></td>
+              <td>Common & natural:<br><em>"We <strong>didn't use to</strong> buy costumes."</em><br><em>"<strong>Did you use to</strong> celebrate?"</em></td>
+              <td>Rare/uncommon for past habit.<br>Usually restricted to affirmative sentences in storytelling.</td>
+            </tr>
+            <tr>
+              <td><strong>Time Anchor Requirement</strong></td>
+              <td>Can establish the past time independently without prior mention.</td>
+              <td>Usually requires a clear past time frame already established in the story.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="rule-callout">
+          <strong>Key Rule of Thumb:</strong> When in doubt with past habits, <strong>used to</strong> is almost always grammatically safe. <strong>Would</strong> is only possible when describing repeated <em>actions</em>, never <em>states</em>!
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PRACTICE (8 PROGRESSIVE EXERCISES) -->
+    <section id="practice" class="tab-panel">
+      <div class="score-banner">
+        <span>Completed Practice Points:</span>
+        <span id="totalScore">0 / 8 Exercises Checked</span>
+      </div>
+
+      <!-- Ex 1 -->
+      <div class="card exercise-box" id="ex1">
+        <span class="badge-diff diff-1">Exercise 1 • Action vs. State Classification</span>
+        <h3>Sort the Festival Verbs</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Tap each verb to switch its category between Action and State.</p>
+        <div class="sort-grid">
+          <div class="sort-bucket">
+            <h4>Action Verbs (Can use both 'used to' & 'would')</h4>
+            <div class="bucket-items" id="actionBucket"></div>
+          </div>
+          <div class="sort-bucket">
+            <h4>State Verbs (ONLY 'used to')</h4>
+            <div class="bucket-items" id="stateBucket"></div>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx1()">Check Sorting</button>
+          <button class="reset-btn" onclick="initEx1()">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb1"></div>
+      </div>
+
+      <!-- Ex 2 -->
+      <div class="card exercise-box" id="ex2">
+        <span class="badge-diff diff-1">Exercise 2 • Identifying Compatibility</span>
+        <h3>Can we use "Would"?</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Decide whether the sentence can naturally take <strong>would</strong> instead of <strong>used to</strong> without becoming ungrammatical.</p>
+
+        <div class="q-item" data-can-would="no">
+          <p>1. Our family <strong>used to have</strong> a huge banquet table for New Year's Eve.</p>
+          <div class="opt-group">
+            <button class="chip-btn" onclick="pickChip(this)">Can use 'would'</button>
+            <button class="chip-btn" onclick="pickChip(this)">Cannot use 'would' (State Verb)</button>
+          </div>
+        </div>
+
+        <div class="q-item" data-can-would="yes">
+          <p>2. We <strong>used to prepare</strong> sweet rice cakes two days before the holiday.</p>
+          <div class="opt-group">
+            <button class="chip-btn" onclick="pickChip(this)">Can use 'would'</button>
+            <button class="chip-btn" onclick="pickChip(this)">Cannot use 'would' (State Verb)</button>
+          </div>
+        </div>
+
+        <div class="q-item" data-can-would="no">
+          <p>3. She <strong>used to believe</strong> in holiday folklore when she was little.</p>
+          <div class="opt-group">
+            <button class="chip-btn" onclick="pickChip(this)">Can use 'would'</button>
+            <button class="chip-btn" onclick="pickChip(this)">Cannot use 'would' (State Verb)</button>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx2()">Check Answers</button>
+          <button class="reset-btn" onclick="resetChips('ex2')">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb2"></div>
+      </div>
+
+      <!-- Ex 3 -->
+      <div class="card exercise-box" id="ex3">
+        <span class="badge-diff diff-1">Exercise 3 • Multiple Choice</span>
+        <h3>Single Best Form</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Select the most accurate option for each festival context.</p>
+
+        <div class="q-item" data-answer="b">
+          <p>1. My grandfather _______ very superstitious about festival dates.</p>
+          <div class="opt-group">
+            <button class="chip-btn" data-val="a" onclick="pickChip(this)">would be</button>
+            <button class="chip-btn" data-val="b" onclick="pickChip(this)">used to be</button>
+            <button class="chip-btn" data-val="c" onclick="pickChip(this)">was used to</button>
+          </div>
+        </div>
+
+        <div class="q-item" data-answer="c">
+          <p>2. Every spring festival, Aunt Clara _______ traditional silk scarves for all the children.</p>
+          <div class="opt-group">
+            <button class="chip-btn" data-val="a" onclick="pickChip(this)">used to sew only</button>
+            <button class="chip-btn" data-val="b" onclick="would only">would sew only</button>
+            <button class="chip-btn" data-val="c" onclick="pickChip(this)">both 'used to sew' and 'would sew' are correct</button>
+          </div>
+        </div>
+
+        <div class="q-item" data-answer="a">
+          <p>3. _______ set off fireworks in your street when you were a teenager?</p>
+          <div class="opt-group">
+            <button class="chip-btn" data-val="a" onclick="pickChip(this)">Did you use to</button>
+            <button class="chip-btn" data-val="b" onclick="pickChip(this)">Would you use to</button>
+            <button class="chip-btn" data-val="c" onclick="pickChip(this)">Did you used to</button>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx3()">Check Answers</button>
+          <button class="reset-btn" onclick="resetChips('ex3')">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb3"></div>
+      </div>
+
+      <!-- Ex 4 -->
+      <div class="card exercise-box" id="ex4">
+        <span class="badge-diff diff-2">Exercise 4 • Contextual Dropdowns</span>
+        <h3>Festival Memories: Fill the Gaps</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Select the option that fits the verb type and meaning.</p>
+
+        <div class="q-item">
+          <p>During the harvest moon, our town 
+            <select class="q-select" id="drop1">
+              <option value="">-- Choose --</option>
+              <option value="used to have">used to have (State)</option>
+              <option value="would have">would have</option>
+            </select>
+            a bright paper lantern display. Children 
+            <select class="q-select" id="drop2">
+              <option value="">-- Choose --</option>
+              <option value="both">would carry / used to carry (Action)</option>
+              <option value="only-would">would carry only</option>
+              <option value="only-used">used to carry only</option>
+            </select>
+            their glowing lanterns from house to house. People 
+            <select class="q-select" id="drop3">
+              <option value="">-- Choose --</option>
+              <option value="used to believe">used to believe (State)</option>
+              <option value="would believe">would believe</option>
+            </select>
+            the light protected the homes from winter storms.
+          </p>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx4()">Check Selections</button>
+          <button class="reset-btn" onclick="resetSelects('ex4')">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb4"></div>
+      </div>
+
+      <!-- Ex 5 -->
+      <div class="card exercise-box" id="ex5">
+        <span class="badge-diff diff-2">Exercise 5 • Error Correction</span>
+        <h3>Spot the Stative Verb Mistake</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Which of these sentences contains a grammatical mistake with <em>would</em>?</p>
+
+        <div class="q-item" data-correct="sentence2">
+          <div class="opt-group" style="flex-direction: column; align-items: flex-start;">
+            <button class="chip-btn" data-id="sentence1" onclick="pickExclusive(this, 'ex5')">A. In December, my cousins would often travel across the mountains by train.</button>
+            <button class="chip-btn" data-id="sentence2" onclick="pickExclusive(this, 'ex5')">B. My family would own a holiday cabin in the hills where we celebrated.</button>
+            <button class="chip-btn" data-id="sentence3" onclick="pickExclusive(this, 'ex5')">C. We would build giant snowmen whenever the frost was thick enough.</button>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx5()">Check Identification</button>
+          <button class="reset-btn" onclick="resetExclusive('ex5')">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb5"></div>
+      </div>
+
+      <!-- Ex 6 -->
+      <div class="card exercise-box" id="ex6">
+        <span class="badge-diff diff-2">Exercise 6 • Sentence Unscramble</span>
+        <h3>Build the Traditional Habit Sentence</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Tap words in order to construct a correct past habit sentence.</p>
+
+        <div id="unscramble1">
+          <div class="tiles-bank" id="bank1"></div>
+          <div class="drop-target" id="target1"></div>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx6()">Verify Sentence</button>
+          <button class="reset-btn" onclick="initEx6()">Reset Tiles</button>
+        </div>
+        <div class="feedback-inline" id="fb6"></div>
+      </div>
+
+      <!-- Ex 7 -->
+      <div class="card exercise-box" id="ex7">
+        <span class="badge-diff diff-3">Exercise 7 • Sentence Transformation</span>
+        <h3>Transform with "Would"</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Decide if transformation into <em>would</em> is possible. If so, select the proper transformed sentence.</p>
+
+        <div class="q-item" data-ans="possible">
+          <p><strong>Original:</strong> "On festival mornings, the village bakers used to donate extra pastry to neighbors."</p>
+          <div class="opt-group">
+            <button class="chip-btn" onclick="pickChip(this)" data-val="possible">Possible: "On festival mornings, the bakers would donate extra pastry..."</button>
+            <button class="chip-btn" onclick="pickChip(this)" data-val="impossible">Impossible (Verb cannot take 'would')</button>
+          </div>
+        </div>
+
+        <div class="q-item" data-ans="impossible">
+          <p><strong>Original:</strong> "People used to understand the meaning behind each traditional song."</p>
+          <div class="opt-group">
+            <button class="chip-btn" onclick="pickChip(this)" data-val="possible">Possible: "People would understand the meaning behind each..."</button>
+            <button class="chip-btn" onclick="pickChip(this)" data-val="impossible">Impossible ('Understand' is a state verb)</button>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx7()">Check Transformation</button>
+          <button class="reset-btn" onclick="resetChips('ex7')">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb7"></div>
+      </div>
+
+      <!-- Ex 8 -->
+      <div class="card exercise-box" id="ex8">
+        <span class="badge-diff diff-3">Exercise 8 • Cloze Paragraph</span>
+        <h3>The Midsummer Bonfire</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Choose the correct grammatical combination to finish the paragraph.</p>
+
+        <div class="q-item">
+          <p>Every Midsummer, the local beach 
+            <select class="q-select" id="c8_1">
+              <option value="">-- select --</option>
+              <option value="used to be">used to be</option>
+              <option value="would be">would be</option>
+            </select>
+            crowded with locals. At sunset, everyone 
+            <select class="q-select" id="c8_2">
+              <option value="">-- select --</option>
+              <option value="would throw">would throw</option>
+              <option value="used to being throwing">used to being throwing</option>
+            </select>
+            herbs into the fire. Although we 
+            <select class="q-select" id="c8_3">
+              <option value="">-- select --</option>
+              <option value="didn't use to have">didn't use to have</option>
+              <option value="would not have">would not have</option>
+            </select>
+            much money, the town always celebrated together.
+          </p>
+        </div>
+
+        <div class="action-row">
+          <button class="check-btn" onclick="checkEx8()">Check Paragraph</button>
+          <button class="reset-btn" onclick="resetSelects('ex8')">Reset</button>
+        </div>
+        <div class="feedback-inline" id="fb8"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CULTURAL EXCHANGE & PRODUCTION -->
+    <section id="speaking" class="tab-panel">
+      <div class="card">
+        <h2>Discussing Past Celebrations</h2>
+        <p>Use these prompts to talk about celebrations in your culture, town, or family. Focus on using <strong>used to</strong> for past realities or beliefs, and <strong>would</strong> when narrating repeated festive actions.</p>
+
+        <div class="prompt-card">
+          <p>🗣️ <strong>Childhood Festivities:</strong> What is one festival you celebrated every year as a child? What food would your family prepare? Who used to attend?</p>
+        </div>
+
+        <div class="prompt-card">
+          <p>🗣️ <strong>Lost Customs:</strong> Think of a tradition that has disappeared. (e.g., <em>"People used to send physical cards, but now everyone sends a text message."</em>)</p>
+        </div>
+
+        <div class="prompt-card">
+          <p>🗣️ <strong>Action Narration:</strong> Describe a typical festival morning when you were younger. Use <em>would</em> at least three times to describe the routine: (e.g., <em>"We would wake up early, my father would brew cardamom tea, and we would visit our grandparents."</em>)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Toggle Exposure Highlights
+    function toggleHighlights() {
+      document.body.classList.toggle('show-highlights');
+    }
+
+    // Shared Tracker
+    let completedEx = new Set();
+    function updateScore(exNum) {
+      completedEx.add(exNum);
+      document.getElementById('totalScore').innerText = completedEx.size + " / 8 Exercises Checked";
+    }
+
+    // EXERCISE 1: Sorting Verbs
+    const initialVerbs = [
+      { text: "sing traditional carols", type: "action" },
+      { text: "own a banquet hall", type: "state" },
+      { text: "bake holiday sweets", type: "action" },
+      { text: "believe in festive myths", type: "state" },
+      { text: "wear folk costumes", type: "action" },
+      { text: "be very fond of fireworks", type: "state" }
+    ];
+
+    function initEx1() {
+      const aBucket = document.getElementById('actionBucket');
+      const sBucket = document.getElementById('stateBucket');
+      aBucket.innerHTML = '';
+      sBucket.innerHTML = '';
+      
+      // Shuffle placement initially
+      initialVerbs.forEach((item, index) => {
+        const el = document.createElement('div');
+        el.className = 'sort-item';
+        el.dataset.type = item.type;
+        el.dataset.id = index;
+        el.innerHTML = `<span>${item.text}</span> <small style="color:var(--text-muted); font-size:0.75rem;">⇄ move</small>`;
+        el.onclick = () => moveSortItem(el);
+        if (index % 2 === 0) {
+          aBucket.appendChild(el);
+        } else {
+          sBucket.appendChild(el);
+        }
+      });
+      document.getElementById('fb1').className = 'feedback-inline';
+    }
+
+    function moveSortItem(el) {
+      const aBucket = document.getElementById('actionBucket');
+      const sBucket = document.getElementById('stateBucket');
+      if (el.parentElement === aBucket) {
+        sBucket.appendChild(el);
+      } else {
+        aBucket.appendChild(el);
+      }
+    }
+
+    function checkEx1() {
+      const aBucket = document.getElementById('actionBucket');
+      const sBucket = document.getElementById('stateBucket');
+      let correct = true;
+
+      aBucket.querySelectorAll('.sort-item').forEach(el => {
+        if (el.dataset.type !== 'action') correct = false;
+      });
+      sBucket.querySelectorAll('.sort-item').forEach(el => {
+        if (el.dataset.type !== 'state') correct = false;
+      });
+
+      const fb = document.getElementById('fb1');
+      if (correct && aBucket.children.length === 3 && sBucket.children.length === 3) {
+        fb.innerText = "Excellent! Action verbs describe repeatable activities; State verbs express status, possession, or mindset.";
+        fb.className = "feedback-inline correct";
+        updateScore(1);
+      } else {
+        fb.innerText = "Some verbs are in the wrong column. Remember: 'own', 'believe', and 'be' are states of being, not dynamic physical actions.";
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // EXERCISE 2: Can we use would?
+    function pickChip(btn) {
+      const parent = btn.closest('.opt-group');
+      parent.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function resetChips(containerId) {
+      document.querySelectorAll(`#${containerId} .chip-btn`).forEach(b => b.classList.remove('selected'));
+      const fb = document.querySelector(`#${containerId} .feedback-inline`);
+      if (fb) fb.className = 'feedback-inline';
+    }
+
+    function checkEx2() {
+      const items = document.querySelectorAll('#ex2 .q-item');
+      let score = 0;
+      items.forEach(item => {
+        const expected = item.dataset.canWould;
+        const selected = item.querySelector('.chip-btn.selected');
+        if (selected) {
+          const isYes = selected.innerText.includes("Can use 'would'") && !selected.innerText.includes("Cannot");
+          if ((expected === 'yes' && isYes) || (expected === 'no' && !isYes)) {
+            score++;
+          }
+        }
+      });
+      const fb = document.getElementById('fb2');
+      if (score === items.length) {
+        fb.innerText = "All correct! 'Have' (possession) and 'believe' (mental state) cannot take 'would' for past habits.";
+        fb.className = "feedback-inline correct";
+        updateScore(2);
+      } else {
+        fb.innerText = `You got ${score} of ${items.length} correct. Review which verbs describe states (possession, belief).`;
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // EXERCISE 3: Multiple Choice
+    function checkEx3() {
+      const items = document.querySelectorAll('#ex3 .q-item');
+      let allCorrect = true;
+      items.forEach(item => {
+        const correct = item.dataset.answer;
+        const sel = item.querySelector('.chip-btn.selected');
+        if (!sel || sel.dataset.val !== correct) {
+          allCorrect = false;
+        }
+      });
+      const fb = document.getElementById('fb3');
+      if (allCorrect) {
+        fb.innerText = "Perfect! 1: 'be' is a state, 2: sewing is an action so both work, 3: questions take 'Did you use to'.";
+        fb.className = "feedback-inline correct";
+        updateScore(3);
+      } else {
+        fb.innerText = "Check your choices. Be mindful of stative verbs and question forms with 'did'.";
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // EXERCISE 4: Contextual Dropdowns
+    function checkEx4() {
+      const d1 = document.getElementById('drop1').value;
+      const d2 = document.getElementById('drop2').value;
+      const d3 = document.getElementById('drop3').value;
+      const fb = document.getElementById('fb4');
+
+      if (d1 === 'used to have' && d2 === 'both' && d3 === 'used to believe') {
+        fb.innerText = "Great job! 'Have' and 'believe' are state verbs, while 'carry' is a physical action suitable for both structures.";
+        fb.className = "feedback-inline correct";
+        updateScore(4);
+      } else {
+        fb.innerText = "Review the selections. Note whether each festival verb represents a state or a repeated action.";
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    function resetSelects(containerId) {
+      document.querySelectorAll(`#${containerId} select`).forEach(s => s.value = '');
+      const fb = document.querySelector(`#${containerId} .feedback-inline`);
+      if (fb) fb.className = 'feedback-inline';
+    }
+
+    // EXERCISE 5: Error Correction
+    function pickExclusive(btn, containerId) {
+      document.querySelectorAll(`#${containerId} .chip-btn`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+    function resetExclusive(containerId) {
+      document.querySelectorAll(`#${containerId} .chip-btn`).forEach(b => b.classList.remove('selected'));
+      const fb = document.querySelector(`#${containerId} .feedback-inline`);
+      if (fb) fb.className = 'feedback-inline';
+    }
+    function checkEx5() {
+      const sel = document.querySelector('#ex5 .chip-btn.selected');
+      const fb = document.getElementById('fb5');
+      if (sel && sel.dataset.id === 'sentence2') {
+        fb.innerText = "Correct! 'Would own' is incorrect because 'own' is a state verb of possession. It must be 'used to own'.";
+        fb.className = "feedback-inline correct";
+        updateScore(5);
+      } else {
+        fb.innerText = "Look for the sentence using 'would' alongside a stative verb of ownership.";
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // EXERCISE 6: Sentence Unscramble
+    // Desired: "Every spring our grandparents would visit the carnival"
+    const scrambledWords = ["grandparents", "would", "the", "carnival", "Every", "our", "visit", "spring"];
+    const targetOrder = ["Every", "spring", "our", "grandparents", "would", "visit", "the", "carnival"];
+
+    function initEx6() {
+      const bank = document.getElementById('bank1');
+      const target = document.getElementById('target1');
+      bank.innerHTML = '';
+      target.innerHTML = '';
+      
+      // Load scrambled words
+      scrambledWords.forEach(word => {
+        const tile = document.createElement('span');
+        tile.className = 'tile';
+        tile.innerText = word;
+        tile.onclick = () => {
+          if (tile.parentElement === bank) {
+            target.appendChild(tile);
+          } else {
+            bank.appendChild(tile);
+          }
+        };
+        bank.appendChild(tile);
+      });
+      document.getElementById('fb6').className = 'feedback-inline';
+    }
+
+    function checkEx6() {
+      const userTiles = Array.from(document.querySelectorAll('#target1 .tile')).map(t => t.innerText.trim());
+      const fb = document.getElementById('fb6');
+      if (userTiles.join(' ') === targetOrder.join(' ')) {
+        fb.innerText = "Well constructed! 'Every spring' establishes the habitual context for 'would visit'.";
+        fb.className = "feedback-inline correct";
+        updateScore(6);
+      } else {
+        fb.innerText = "Not quite. Try: 'Every spring our grandparents would visit the carnival'";
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // EXERCISE 7: Transformation
+    function checkEx7() {
+      const items = document.querySelectorAll('#ex7 .q-item');
+      let score = 0;
+      items.forEach(item => {
+        const expected = item.dataset.ans;
+        const sel = item.querySelector('.chip-btn.selected');
+        if (sel && sel.dataset.val === expected) {
+          score++;
+        }
+      });
+      const fb = document.getElementById('fb7');
+      if (score === items.length) {
+        fb.innerText = "Terrific! Donating is an action (permits 'would'), whereas understanding is a state of cognition (rejects 'would').";
+        fb.className = "feedback-inline correct";
+        updateScore(7);
+      } else {
+        fb.innerText = `You scored ${score} of ${items.length}. Check if the verb is an action or a mental state.`;
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // EXERCISE 8: Cloze Paragraph
+    function checkEx8() {
+      const v1 = document.getElementById('c8_1').value;
+      const v2 = document.getElementById('c8_2').value;
+      const v3 = document.getElementById('c8_3').value;
+      const fb = document.getElementById('fb8');
+
+      if (v1 === 'used to be' && v2 === 'would throw' && v3 === "didn't use to have") {
+        fb.innerText = "Complete mastery! You accurately distinguished state verbs from habitual actions and used the negative form correctly.";
+        fb.className = "feedback-inline correct";
+        updateScore(8);
+      } else {
+        fb.innerText = "Review your choices. Remember that state verbs require 'used to', and the standard negative is 'didn't use to'.";
+        fb.className = "feedback-inline incorrect";
+      }
+    }
+
+    // Run inits on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      initEx1();
+      initEx6();
+    });
+  </script>
+</body>
+</html>

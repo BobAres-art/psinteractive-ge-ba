@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Agreeing in English: So, Too, Neither, Either (B1+ ESL)</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --pos-color: #059669;
+      --pos-bg: #ecfdf5;
+      --pos-border: #a7f3d0;
+      --neg-color: #dc2626;
+      --neg-bg: #fef2f2;
+      --neg-border: #fecaca;
+      --neutral-dark: #1e293b;
+      --neutral-mid: #64748b;
+      --neutral-light: #f8fafc;
+      --card-bg: #ffffff;
+      --accent: #8b5cf6;
+      --border-color: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--neutral-dark);
+      line-height: 1.5;
+      padding: 16px 12px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #3730a3, #4f46e5, #6366f1);
+      color: white;
+      padding: 24px 16px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .badge-level {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: fit-content;
+      white-space: nowrap;
+      border: none;
+      background: transparent;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--neutral-mid);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Tab Content Panels */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card styling */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      color: var(--neutral-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin: 16px 0 8px 0;
+    }
+
+    /* Tab 1: Natural Examples */
+    .dialogue-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .dialogue-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .dialogue-card .context-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--neutral-mid);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .chat-bubble {
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--neutral-mid);
+      margin-bottom: 2px;
+    }
+
+    .bubble {
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      display: inline-block;
+      max-width: 95%;
+      word-break: break-word;
+    }
+
+    .bubble.statement-pos {
+      background: var(--pos-bg);
+      border: 1px solid var(--pos-border);
+      color: #065f46;
+      border-bottom-left-radius: 2px;
+      align-self: flex-start;
+    }
+
+    .bubble.statement-neg {
+      background: var(--neg-bg);
+      border: 1px solid var(--neg-border);
+      color: #991b1b;
+      border-bottom-left-radius: 2px;
+      align-self: flex-start;
+    }
+
+    .bubble.response {
+      background: var(--primary-light);
+      border: 1px solid #c7d2fe;
+      color: #312e81;
+      border-bottom-right-radius: 2px;
+      align-self: flex-end;
+    }
+
+    .highlight-so { font-weight: 700; color: #1e40af; text-decoration: underline; }
+    .highlight-too { font-weight: 700; color: #047857; text-decoration: underline; }
+    .highlight-neither { font-weight: 700; color: #b91c1c; text-decoration: underline; }
+    .highlight-either { font-weight: 700; color: #c2410c; text-decoration: underline; }
+
+    .note-box {
+      font-size: 0.8rem;
+      background: #f8fafc;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+      margin-top: 8px;
+      color: var(--neutral-mid);
+    }
+
+    /* Tab 2: Rules & Formulas */
+    .rule-table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 14px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .rule-table {
+      width: 100%;
+      min-width: 540px;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .rule-table th, .rule-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .rule-table th {
+      background: #f8fafc;
+      color: var(--neutral-dark);
+      font-weight: 700;
+    }
+
+    .formula-badge {
+      display: inline-block;
+      font-family: monospace;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      word-break: break-word;
+    }
+
+    .formula-pos { background: var(--pos-bg); color: var(--pos-color); border: 1px solid var(--pos-border); }
+    .formula-neg { background: var(--neg-bg); color: var(--neg-color); border: 1px solid var(--neg-border); }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+
+    .comparison-card {
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .pos-card {
+      background: var(--pos-bg);
+      border: 1px solid var(--pos-border);
+    }
+
+    .neg-card {
+      background: var(--neg-bg);
+      border: 1px solid var(--neg-border);
+    }
+
+    .comparison-card h3 {
+      margin-top: 0;
+      font-size: 0.95rem;
+    }
+
+    .pos-card h3 { color: var(--pos-color); }
+    .neg-card h3 { color: var(--neg-color); }
+
+    .warning-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin: 14px 0;
+      color: #92400e;
+      font-size: 0.88rem;
+    }
+
+    /* Tab 3: Interactive Practices */
+    .practice-section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--neutral-dark);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Drag & Drop Scrambled Sentences */
+    .scramble-item {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .scramble-item.correct {
+      border-color: var(--pos-color);
+      background: #f0fdf4;
+    }
+
+    .scramble-item.incorrect {
+      border-color: var(--neg-color);
+      background: #fef2f2;
+    }
+
+    .prompt-text {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--neutral-dark);
+      margin-bottom: 10px;
+    }
+
+    .target-box {
+      min-height: 48px;
+      background: white;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 6px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 10px;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .target-box:empty::before {
+      content: 'Tap or drop words here...';
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-style: italic;
+      padding-left: 4px;
+    }
+
+    .target-box.drag-over {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .word-pool {
+      min-height: 44px;
+      background: #edf2f7;
+      border-radius: 8px;
+      padding: 6px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .word-chip {
+      background: white;
+      color: var(--neutral-dark);
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+      touch-action: manipulation;
+    }
+
+    .word-chip:hover {
+      background: #f8fafc;
+    }
+
+    .word-chip:active {
+      transform: scale(0.96);
+    }
+
+    .word-chip.dragging {
+      opacity: 0.4;
+    }
+
+    .item-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      touch-action: manipulation;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: var(--neutral-dark);
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    .feedback-msg {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 8px;
+      display: none;
+      word-break: break-word;
+    }
+
+    .feedback-msg.correct {
+      color: var(--pos-color);
+      display: block;
+    }
+
+    .feedback-msg.incorrect {
+      color: var(--neg-color);
+      display: block;
+    }
+
+    /* Quiz Item: Multiple Choice / Fill Blank */
+    .quiz-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: white;
+      border: 1.5px solid var(--border-color);
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--neutral-dark);
+      transition: all 0.15s;
+      touch-action: manipulation;
+    }
+
+    .option-btn:hover:not(.disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .option-btn.selected-correct {
+      background: #dcfce7 !important;
+      border-color: #22c55e !important;
+      color: #15803d !important;
+      font-weight: 700;
+    }
+
+    .option-btn.selected-wrong {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #b91c1c !important;
+    }
+
+    /* Fill in the blanks */
+    .gap-input {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 4px 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      width: 125px;
+      max-width: 100%;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .gap-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    .gap-input.correct {
+      border-color: var(--pos-color);
+      background-color: #f0fdf4;
+    }
+
+    .gap-input.incorrect {
+      border-color: var(--neg-color);
+      background-color: #fef2f2;
+    }
+
+    /* Score Header Bar */
+    .score-banner {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      gap: 8px;
+    }
+
+    .score-display {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Instructions & Helpers */
+    .tip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      color: var(--neutral-mid);
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    /* RESPONSIVE BREAKPOINTS (Laptop / Tablet Enhancements) */
+    @media (min-width: 640px) {
+      body {
+        padding: 24px 16px;
+      }
+      header {
+        padding: 32px 24px;
+        margin-bottom: 24px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1.05rem;
+      }
+      .badge-level {
+        padding: 4px 12px;
+        font-size: 0.8rem;
+      }
+      .nav-tabs {
+        padding: 6px;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+      .tab-btn {
+        padding: 12px 16px;
+        font-size: 1rem;
+      }
+      .card {
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+      .card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+      }
+      .dialogue-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .comparison-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .quiz-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .section-title {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.25rem;
+      }
+      .score-banner {
+        padding: 14px 20px;
+        margin-bottom: 20px;
+      }
+      .score-display {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge-level">B1+ Intermediate Level</span>
+      <h1>Agreeing with Statements</h1>
+      <p>Master the natural ways to say <em>"me too"</em> and <em>"me neither"</em> using <strong>So, Too, Neither,</strong> and <strong>Either</strong>.</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab(event, 'tab-examples')">
+        <span>💬</span> 1. Exposure
+      </button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-rules')">
+        <span>📖</span> 2. Rules
+      </button>
+      <button class="tab-btn" onclick="switchTab(event, 'tab-practice')">
+        <span>✍️</span> 3. Practice
+      </button>
+    </nav>
+
+    <!-- TAB 1: NATURAL EXAMPLES -->
+    <section id="tab-examples" class="tab-panel active">
+      <div class="card">
+        <h2><span>🗣️</span> Real-Life Conversations</h2>
+        <p>Notice how native speakers show empathy, similarity, and agreement in everyday situations without repeating full sentences.</p>
+        
+        <div class="dialogue-grid">
+          <!-- Dialogue 1 -->
+          <div class="dialogue-card">
+            <span class="context-tag">☕ Coffee Shop (Positive: Present Simple)</span>
+            <div class="chat-bubble">
+              <span class="speaker">Alex:</span>
+              <div class="bubble statement-pos">"I really love iced coffee on hot summer days."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Maria:</span>
+              <div class="bubble response">"<span class="highlight-so">So do I!</span> I drink two cups every morning."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Liam:</span>
+              <div class="bubble response">"Yeah, <span class="highlight-too">I do too</span>. It's the best."</div>
+            </div>
+            <div class="note-box">
+              <strong>Both options mean:</strong> "I also love iced coffee."
+            </div>
+          </div>
+
+          <!-- Dialogue 2 -->
+          <div class="dialogue-card">
+            <span class="context-tag">🎬 After a Movie (Negative: Past Simple)</span>
+            <div class="chat-bubble">
+              <span class="speaker">Chloe:</span>
+              <div class="bubble statement-neg">"I didn't understand the movie's ending at all."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Ben:</span>
+              <div class="bubble response">"<span class="highlight-neither">Neither did I</span>. It was way too confusing."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Sam:</span>
+              <div class="bubble response">"<span class="highlight-either">I didn't either</span>. Let's watch an explanation."</div>
+            </div>
+            <div class="note-box">
+              <strong>Both options mean:</strong> "I also didn't understand it."
+            </div>
+          </div>
+
+          <!-- Dialogue 3 -->
+          <div class="dialogue-card">
+            <span class="context-tag">✈️ Travel Plans (Positive: Present Perfect)</span>
+            <div class="chat-bubble">
+              <span class="speaker">Elena:</span>
+              <div class="bubble statement-pos">"I've visited Japan twice, and I want to go again."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Lucas:</span>
+              <div class="bubble response">"<span class="highlight-so">So have I!</span> Kyoto is magical in autumn."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Nina:</span>
+              <div class="bubble response">"<span class="highlight-too">I have too</span>! Let's plan a group trip."</div>
+            </div>
+            <div class="note-box">
+              <strong>Both options mean:</strong> "I have also visited Japan twice."
+            </div>
+          </div>
+
+          <!-- Dialogue 4 -->
+          <div class="dialogue-card">
+            <span class="context-tag">🏃 Weekend (Negative: Modal 'Can' & 'Be')</span>
+            <div class="chat-bubble">
+              <span class="speaker">Marcus:</span>
+              <div class="bubble statement-neg">"I can't wake up early on Sundays."</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Sophie:</span>
+              <div class="bubble response">"<span class="highlight-neither">Neither can I</span>. And I'm not a morning person either!"</div>
+            </div>
+            <div class="chat-bubble">
+              <span class="speaker">Marcus:</span>
+              <div class="bubble response">"<span class="highlight-neither">Neither am I</span>!"</div>
+            </div>
+            <div class="note-box">
+              <strong>Watch out:</strong> The auxiliary changes to match the verb (<em>can't &rarr; can</em>, <em>'m not &rarr; am</em>).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: RULES -->
+    <section id="tab-rules" class="tab-panel">
+      <div class="card">
+        <h2><span>📚</span> How the Patterns Work</h2>
+        <p>In English, we agree with someone by matching the <strong>polarity</strong> (positive/negative) and the <strong>auxiliary verb</strong> (tense/modal).</p>
+
+        <div class="comparison-grid">
+          <!-- Positive Agreement -->
+          <div class="comparison-card pos-card">
+            <h3><span>✅ Agreeing with POSITIVE</span></h3>
+            <p>When someone makes an affirmative statement:</p>
+            <ul style="margin: 10px 0 10px 18px; font-size: 0.9rem;">
+              <li style="margin-bottom: 8px;">
+                <span class="formula-badge formula-pos">So + Aux + Subject</span><br>
+                <em>"I love sushi." &rarr; <strong>So do I.</strong></em>
+              </li>
+              <li>
+                <span class="formula-badge formula-pos">Subject + Aux + too</span><br>
+                <em>"I love sushi." &rarr; <strong>I do too.</strong></em>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Negative Agreement -->
+          <div class="comparison-card neg-card">
+            <h3><span>❌ Agreeing with NEGATIVE</span></h3>
+            <p>When someone makes a negative statement (<em>not, never, can't</em>):</p>
+            <ul style="margin: 10px 0 10px 18px; font-size: 0.9rem;">
+              <li style="margin-bottom: 8px;">
+                <span class="formula-badge formula-neg">Neither + Pos Aux + Subject</span><br>
+                <em>"I don't eat meat." &rarr; <strong>Neither do I.</strong></em>
+              </li>
+              <li>
+                <span class="formula-badge formula-neg">Subject + Neg Aux + either</span><br>
+                <em>"I don't eat meat." &rarr; <strong>I don't either.</strong></em>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <strong>⚠️ Common Mistakes:</strong>
+          <br>&bull; Never say: <span style="text-decoration: line-through; color: #b91c1c;">"Neither don't I"</span> (Double negative). Use <strong>"Neither do I"</strong>.
+          <br>&bull; Never say: <span style="text-decoration: line-through; color: #b91c1c;">"I do either"</span> for positive agreement. Use <strong>"I do too"</strong>.
+        </div>
+
+        <h3>Auxiliary Matching Table</h3>
+        <div class="rule-table-container">
+          <table class="rule-table">
+            <thead>
+              <tr>
+                <th>Verb Type</th>
+                <th>Statement</th>
+                <th>Positive (So / Too)</th>
+                <th>Negative (Neither / Either)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Be (am/is/are/was)</strong></td>
+                <td>"I am tired." / "I'm not..."</td>
+                <td><strong>So am I.</strong> / <strong>I am too.</strong></td>
+                <td><strong>Neither am I.</strong> / <strong>I'm not either.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Present Simple</strong></td>
+                <td>"She lives here." / "I don't..."</td>
+                <td><strong>So do I.</strong> / <strong>I do too.</strong></td>
+                <td><strong>Neither do I.</strong> / <strong>I don't either.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Past Simple</strong></td>
+                <td>"We saw it." / "I didn't..."</td>
+                <td><strong>So did I.</strong> / <strong>I did too.</strong></td>
+                <td><strong>Neither did I.</strong> / <strong>I didn't either.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Present Perfect</strong></td>
+                <td>"I have finished." / "I haven't..."</td>
+                <td><strong>So have I.</strong> / <strong>I have too.</strong></td>
+                <td><strong>Neither have I.</strong> / <strong>I haven't either.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Modal (can/will)</strong></td>
+                <td>"I can swim." / "I can't..."</td>
+                <td><strong>So can I.</strong> / <strong>I can too.</strong></td>
+                <td><strong>Neither can I.</strong> / <strong>I can't either.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PRACTICES -->
+    <section id="tab-practice" class="tab-panel">
+      
+      <!-- Score banner -->
+      <div class="score-banner">
+        <div>
+          <strong style="font-size: 0.95rem;">Practice Progress</strong>
+          <p style="font-size: 0.8rem; color: var(--neutral-mid); margin: 0;">Complete items to test mastery</p>
+        </div>
+        <div class="score-display" id="total-score">Score: 0 / 12</div>
+      </div>
+
+      <!-- EXERCISE 1: DRAG AND DROP / TAP TO MOVE SCRAMBLED SENTENCES -->
+      <div class="card practice-section">
+        <div class="section-title">
+          <span>🧩 Part 1: Scrambled Sentences</span>
+          <span style="font-size: 0.8rem; font-weight: normal; color: var(--neutral-mid);">Tap or drag words to arrange</span>
+        </div>
+        <div class="tip-pill">💡 Tip: On mobile, simply <strong>tap words</strong> to place or return them!</div>
+
+        <!-- Scramble Item 1 -->
+        <div class="scramble-item" id="scramble-1" data-correct="So do I .">
+          <div class="prompt-text">1. Agree with: <em>"I work out every morning."</em> (Using: <strong>So</strong>)</div>
+          <div class="target-box" id="target-1" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'target-1')"></div>
+          <div class="word-pool" id="pool-1" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'pool-1')">
+            <span class="word-chip" draggable="true" id="chip-1-1" ondragstart="dragStart(event)">I</span>
+            <span class="word-chip" draggable="true" id="chip-1-2" ondragstart="dragStart(event)">So</span>
+            <span class="word-chip" draggable="true" id="chip-1-3" ondragstart="dragStart(event)">.</span>
+            <span class="word-chip" draggable="true" id="chip-1-4" ondragstart="dragStart(event)">do</span>
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-secondary" onclick="resetScramble(1)">Reset</button>
+            <button class="btn btn-primary" onclick="checkScramble(1)">Check</button>
+          </div>
+          <div class="feedback-msg" id="feedback-scramble-1"></div>
+        </div>
+
+        <!-- Scramble Item 2 -->
+        <div class="scramble-item" id="scramble-2" data-correct="Neither did my brother .">
+          <div class="prompt-text">2. Agree with: <em>"I didn't watch the match."</em> (Using: <strong>Neither / my brother</strong>)</div>
+          <div class="target-box" id="target-2" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'target-2')"></div>
+          <div class="word-pool" id="pool-2" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'pool-2')">
+            <span class="word-chip" draggable="true" id="chip-2-1" ondragstart="dragStart(event)">brother</span>
+            <span class="word-chip" draggable="true" id="chip-2-2" ondragstart="dragStart(event)">Neither</span>
+            <span class="word-chip" draggable="true" id="chip-2-3" ondragstart="dragStart(event)">my</span>
+            <span class="word-chip" draggable="true" id="chip-2-4" ondragstart="dragStart(event)">did</span>
+            <span class="word-chip" draggable="true" id="chip-2-5" ondragstart="dragStart(event)">.</span>
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-secondary" onclick="resetScramble(2)">Reset</button>
+            <button class="btn btn-primary" onclick="checkScramble(2)">Check</button>
+          </div>
+          <div class="feedback-msg" id="feedback-scramble-2"></div>
+        </div>
+
+        <!-- Scramble Item 3 -->
+        <div class="scramble-item" id="scramble-3" data-correct="She can not either .|She cannot either .|She can't either .">
+          <div class="prompt-text">3. Agree with: <em>"David can't speak Italian."</em> (Using: <strong>She / either</strong>)</div>
+          <div class="target-box" id="target-3" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'target-3')"></div>
+          <div class="word-pool" id="pool-3" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'pool-3')">
+            <span class="word-chip" draggable="true" id="chip-3-1" ondragstart="dragStart(event)">can't</span>
+            <span class="word-chip" draggable="true" id="chip-3-2" ondragstart="dragStart(event)">either</span>
+            <span class="word-chip" draggable="true" id="chip-3-3" ondragstart="dragStart(event)">She</span>
+            <span class="word-chip" draggable="true" id="chip-3-4" ondragstart="dragStart(event)">.</span>
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-secondary" onclick="resetScramble(3)">Reset</button>
+            <button class="btn btn-primary" onclick="checkScramble(3)">Check</button>
+          </div>
+          <div class="feedback-msg" id="feedback-scramble-3"></div>
+        </div>
+
+        <!-- Scramble Item 4 -->
+        <div class="scramble-item" id="scramble-4" data-correct="We have too .">
+          <div class="prompt-text">4. Agree with: <em>"They have already booked."</em> (Using: <strong>We / too</strong>)</div>
+          <div class="target-box" id="target-4" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'target-4')"></div>
+          <div class="word-pool" id="pool-4" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'pool-4')">
+            <span class="word-chip" draggable="true" id="chip-4-1" ondragstart="dragStart(event)">too</span>
+            <span class="word-chip" draggable="true" id="chip-4-2" ondragstart="dragStart(event)">have</span>
+            <span class="word-chip" draggable="true" id="chip-4-3" ondragstart="dragStart(event)">We</span>
+            <span class="word-chip" draggable="true" id="chip-4-4" ondragstart="dragStart(event)">.</span>
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-secondary" onclick="resetScramble(4)">Reset</button>
+            <button class="btn btn-primary" onclick="checkScramble(4)">Check</button>
+          </div>
+          <div class="feedback-msg" id="feedback-scramble-4"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 2: MULTIPLE CHOICE -->
+      <div class="card practice-section">
+        <div class="section-title">
+          <span>🎯 Part 2: Choose the Correct Agreement</span>
+        </div>
+
+        <!-- MCQ 1 -->
+        <div class="quiz-card" id="mcq-card-1">
+          <div class="quiz-question">5. "I'm really excited about the upcoming concert!" &mdash; Agree:</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="selectMCQ(this, 1, false)">A) Neither am I.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 1, true)">B) So am I.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 1, false)">C) So do I.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 1, false)">D) I am either.</button>
+          </div>
+          <div class="feedback-msg" id="mcq-fb-1"></div>
+        </div>
+
+        <!-- MCQ 2 -->
+        <div class="quiz-card" id="mcq-card-2">
+          <div class="quiz-question">6. "Tom hasn't finished his project yet." &mdash; Agree for Emma:</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="selectMCQ(this, 2, false)">A) So hasn't Emma.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 2, false)">B) Emma has too.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 2, true)">C) Emma hasn't either.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 2, false)">D) Neither hasn't Emma.</button>
+          </div>
+          <div class="feedback-msg" id="mcq-fb-2"></div>
+        </div>
+
+        <!-- MCQ 3 -->
+        <div class="quiz-card" id="mcq-card-3">
+          <div class="quiz-question">7. "We went to Spain last summer." &mdash; Agree:</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="selectMCQ(this, 3, false)">A) So went we.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 3, true)">B) We did too.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 3, false)">C) We were too.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 3, false)">D) Neither did we.</button>
+          </div>
+          <div class="feedback-msg" id="mcq-fb-3"></div>
+        </div>
+
+        <!-- MCQ 4 -->
+        <div class="quiz-card" id="mcq-card-4">
+          <div class="quiz-question">8. "I won't be able to attend tomorrow." &mdash; Agree:</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="selectMCQ(this, 4, true)">A) Neither will I.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 4, false)">B) Neither won't I.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 4, false)">C) I will too.</button>
+            <button class="option-btn" onclick="selectMCQ(this, 4, false)">D) So won't I.</button>
+          </div>
+          <div class="feedback-msg" id="mcq-fb-4"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 3: COMPLETE THE GAP -->
+      <div class="card practice-section">
+        <div class="section-title">
+          <span>✍️ Part 3: Fill in the Missing Words</span>
+        </div>
+        <p style="margin-bottom: 12px; color: var(--neutral-mid); font-size: 0.85rem;">Type the exact missing words into the box.</p>
+
+        <!-- Gap 1 -->
+        <div class="quiz-card">
+          <div class="quiz-question">
+            9. A: "I don't like spicy food."<br>
+            B: "<input type="text" class="gap-input" id="gap-1" placeholder="..."> I." (Using: <em>Neither</em>)
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-primary" onclick="checkGap(1, ['neither do', 'neither does'])">Check</button>
+          </div>
+          <div class="feedback-msg" id="gap-fb-1"></div>
+        </div>
+
+        <!-- Gap 2 -->
+        <div class="quiz-card">
+          <div class="quiz-question">
+            10. A: "Sarah is studying medicine."<br>
+            B: "So <input type="text" class="gap-input" id="gap-2" placeholder="..."> Jack." (Auxiliary of 'be')
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-primary" onclick="checkGap(2, ['is'])">Check</button>
+          </div>
+          <div class="feedback-msg" id="gap-fb-2"></div>
+        </div>
+
+        <!-- Gap 3 -->
+        <div class="quiz-card">
+          <div class="quiz-question">
+            11. A: "I can't swim very well."<br>
+            B: "I <input type="text" class="gap-input" id="gap-3" placeholder="..."> either." (Modal auxiliary)
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-primary" onclick="checkGap(3, ["can't", 'cannot', 'can not'])">Check</button>
+          </div>
+          <div class="feedback-msg" id="gap-fb-3"></div>
+        </div>
+
+        <!-- Gap 4 -->
+        <div class="quiz-card">
+          <div class="quiz-question">
+            12. A: "We loved the new Italian restaurant."<br>
+            B: "We <input type="text" class="gap-input" id="gap-4" placeholder="..."> too." (Past auxiliary)
+          </div>
+          <div class="item-controls">
+            <button class="btn btn-primary" onclick="checkGap(4, ['did'])">Check</button>
+          </div>
+          <div class="feedback-msg" id="gap-fb-4"></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    // State Tracker
+    const solvedItems = {
+      scramble1: false, scramble2: false, scramble3: false, scramble4: false,
+      mcq1: false, mcq2: false, mcq3: false, mcq4: false,
+      gap1: false, gap2: false, gap3: false, gap4: false
+    };
+
+    function updateScore() {
+      let count = 0;
+      for (const key in solvedItems) {
+        if (solvedItems[key]) count++;
+      }
+      const scoreBanner = document.getElementById('total-score');
+      if (count === 12) {
+        scoreBanner.innerHTML = `🎉 12 / 12! Perfect!`;
+      } else {
+        scoreBanner.innerText = `Score: ${count} / 12`;
+      }
+    }
+
+    // Tab Navigation
+    function switchTab(evt, tabId) {
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
+      }
+    }
+
+    // Drag & Drop / Tap Logic
+    let draggedElement = null;
+
+    function dragStart(e) {
+      draggedElement = e.target;
+      e.dataTransfer.setData('text/plain', e.target.id);
+      setTimeout(() => e.target.classList.add('dragging'), 0);
+    }
+
+    document.addEventListener('dragend', (e) => {
+      if (e.target && e.target.classList && e.target.classList.contains('word-chip')) {
+        e.target.classList.remove('dragging');
+      }
+    });
+
+    function allowDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    document.addEventListener('dragleave', (e) => {
+      if (e.target && e.target.classList && e.target.classList.contains('target-box')) {
+        e.target.classList.remove('drag-over');
+      }
+    });
+
+    function handleDrop(e, containerId) {
+      e.preventDefault();
+      const container = document.getElementById(containerId);
+      container.classList.remove('drag-over');
+      if (draggedElement) {
+        container.appendChild(draggedElement);
+      }
+    }
+
+    // Tap word chip to toggle between pool and target (ideal for mobile touch)
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList && e.target.classList.contains('word-chip')) {
+        const chip = e.target;
+        const parent = chip.parentElement;
+        if (!parent) return;
+        const parentId = parent.id;
+        if (parentId.startsWith('pool-')) {
+          const num = parentId.split('-')[1];
+          document.getElementById('target-' + num).appendChild(chip);
+        } else if (parentId.startsWith('target-')) {
+          const num = parentId.split('-')[1];
+          document.getElementById('pool-' + num).appendChild(chip);
+        }
+      }
+    });
+
+    function resetScramble(id) {
+      const target = document.getElementById('target-' + id);
+      const pool = document.getElementById('pool-' + id);
+      const chips = target.querySelectorAll('.word-chip');
+      chips.forEach(chip => pool.appendChild(chip));
+      
+      const item = document.getElementById('scramble-' + id);
+      item.classList.remove('correct', 'incorrect');
+      const fb = document.getElementById('feedback-scramble-' + id);
+      fb.className = 'feedback-msg';
+      fb.innerText = '';
+      solvedItems['scramble' + id] = false;
+      updateScore();
+    }
+
+    function checkScramble(id) {
+      const target = document.getElementById('target-' + id);
+      const chips = Array.from(target.children);
+      const sentence = chips.map(c => c.innerText.trim()).join(' ');
+      
+      const scrambleItem = document.getElementById('scramble-' + id);
+      const correctPatterns = scrambleItem.getAttribute('data-correct').split('|').map(s => s.trim().toLowerCase());
+      const feedback = document.getElementById('feedback-scramble-' + id);
+
+      if (chips.length === 0) {
+        feedback.className = 'feedback-msg incorrect';
+        feedback.innerText = '⚠️ Please tap or drag words into the box.';
+        return;
+      }
+
+      const userClean = sentence.toLowerCase().replace(/\s+/g, ' ');
+      const isCorrect = correctPatterns.some(pat => pat === userClean);
+
+      if (isCorrect) {
+        scrambleItem.classList.add('correct');
+        scrambleItem.classList.remove('incorrect');
+        feedback.className = 'feedback-msg correct';
+        feedback.innerText = '✅ Correct! Well done!';
+        solvedItems['scramble' + id] = true;
+      } else {
+        scrambleItem.classList.add('incorrect');
+        scrambleItem.classList.remove('correct');
+        feedback.className = 'feedback-msg incorrect';
+        feedback.innerText = '❌ Incorrect order. Try tapping the words to rearrange.';
+        solvedItems['scramble' + id] = false;
+      }
+      updateScore();
+    }
+
+    // MCQ Handling
+    function selectMCQ(btn, qNum, isCorrect) {
+      const card = document.getElementById('mcq-card-' + qNum);
+      const buttons = card.querySelectorAll('.option-btn');
+      const fb = document.getElementById('mcq-fb-' + qNum);
+
+      buttons.forEach(b => {
+        b.classList.remove('selected-correct', 'selected-wrong');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('selected-correct');
+        fb.className = 'feedback-msg correct';
+        fb.innerText = '✅ Correct!';
+        solvedItems['mcq' + qNum] = true;
+      } else {
+        btn.classList.add('selected-wrong');
+        fb.className = 'feedback-msg incorrect';
+        fb.innerText = '❌ Incorrect. Check polarity and auxiliary verb.';
+        solvedItems['mcq' + qNum] = false;
+      }
+      updateScore();
+    }
+
+    // Gap Fill Handling
+    function checkGap(qNum, validAnswers) {
+      const input = document.getElementById('gap-' + qNum);
+      const val = input.value.trim().toLowerCase().replace(/[.,!]/g, '');
+      const fb = document.getElementById('gap-fb-' + qNum);
+
+      if (validAnswers.includes(val)) {
+        input.className = 'gap-input correct';
+        fb.className = 'feedback-msg correct';
+        fb.innerText = '✅ Correct!';
+        solvedItems['gap' + qNum] = true;
+      } else {
+        input.className = 'gap-input incorrect';
+        fb.className = 'feedback-msg incorrect';
+        fb.innerText = '❌ Incorrect. Check spelling/auxiliary.';
+        solvedItems['gap' + qNum] = false;
+      }
+      updateScore();
+    }
+  </script>
+</body>
+</html>
