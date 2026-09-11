@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Task 1: Essential 3-Option Register Practice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+    }
+
+    .drop-zone {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .drop-zone.dragover {
+      transform: scale(1.01);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    .phrase-card {
+      user-select: none;
+      -webkit-user-drag: element;
+      cursor: grab;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .phrase-card:active {
+      cursor: grabbing;
+    }
+
+    .phrase-card.dragging {
+      opacity: 0.45;
+      transform: scale(0.97);
+    }
+
+    .pulse-correct {
+      animation: correctPulse 0.4s ease-out;
+    }
+
+    .shake-error {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes correctPulse {
+      0% { transform: scale(0.98); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col">
+
+  <!-- Top Navigation / Tracker Bar -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-blue-200">
+          GT
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-slate-900 leading-tight">IELTS Task 1 Essential Phrase Sorter</h1>
+          <p class="text-xs text-slate-500 font-medium">3 Core Alternatives per Register Function (9 Phrases / Module)</p>
+        </div>
+      </div>
+
+      <!-- Functional Module Selector Dropdown -->
+      <div class="flex items-center gap-3">
+        <label for="module-select" class="text-xs uppercase font-bold text-slate-400 tracking-wider hidden sm:inline">Function:</label>
+        <select id="module-select" onchange="loadModule(this.value)" class="bg-slate-50 border border-slate-300 text-slate-800 text-xs font-semibold rounded-lg px-3 py-2 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition">
+        </select>
+      </div>
+
+      <!-- Global Score HUD -->
+      <div class="flex items-center space-x-4 bg-slate-50 px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs">
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block">Score</span>
+          <p class="text-sm font-black text-blue-600" id="stat-score">0 pts</p>
+        </div>
+        <div class="h-6 w-px bg-slate-200"></div>
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block">Module Progress</span>
+          <p class="text-sm font-black text-emerald-600" id="stat-sorted">0 / 9</p>
+        </div>
+        <div class="h-6 w-px bg-slate-200"></div>
+        <button onclick="resetCurrentModule()" class="text-slate-500 hover:text-rose-600 font-semibold text-xs flex items-center gap-1 transition" title="Reset this function module">
+          <i class="fa-solid fa-arrow-rotate-right"></i> Reset
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Canvas -->
+  <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-1 flex flex-col gap-6">
+
+    <!-- Active Task Banner -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-wrap justify-between items-center gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-md" id="active-func-pill">
+            Function 1 of 12
+          </span>
+          <span class="text-xs text-slate-400 font-medium" id="remaining-count-badge">9 items unassigned</span>
+        </div>
+        <h2 class="text-xl font-bold text-slate-900 mt-1" id="active-func-title">Function Title</h2>
+        <p class="text-xs text-slate-500 mt-0.5">
+          Drag each of the 9 essential phrases below into its exact register column: <strong class="text-blue-700 font-semibold">Formal</strong> (3), <strong class="text-amber-700 font-semibold">Semi-Formal</strong> (3), or <strong class="text-emerald-700 font-semibold">Informal</strong> (3).
+        </p>
+      </div>
+
+      <!-- Quick Module Switch Buttons -->
+      <div class="flex items-center gap-2">
+        <button onclick="switchModuleRelative(-1)" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition">
+          &larr; Prev
+        </button>
+        <button onclick="switchModuleRelative(1)" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition">
+          Next &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Unsorted Phrases Source Pool -->
+    <div class="bg-slate-100/80 border-2 border-dashed border-slate-300 rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-slate-400 text-sm"></i>
+          <span class="text-xs font-extrabold text-slate-600 uppercase tracking-wider">Unassigned Phrases Pool</span>
+        </div>
+        <span class="text-[11px] text-slate-400 italic">Drag cards into their matching register below</span>
+      </div>
+
+      <div id="unassigned-pool" class="flex flex-wrap gap-2.5 min-h-[76px] items-center p-2 rounded-xl bg-white/60 border border-slate-200/60" ondragover="handleDragOver(event)" ondrop="handleDrop(event, 'pool')">
+      </div>
+    </div>
+
+    <!-- The 3 Target Register Drop Zones (3 Cards Each) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 flex-1 items-start">
+
+      <!-- Formal Drop Zone -->
+      <div id="drop-formal" 
+           class="drop-zone bg-white border-2 border-blue-200 rounded-2xl flex flex-col overflow-hidden shadow-xs"
+           ondragover="handleDragOver(event)" 
+           ondragleave="handleDragLeave(event)" 
+           ondrop="handleDrop(event, 'formal')">
+        <div class="bg-blue-50/80 px-4 py-3 border-b border-blue-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+            <h3 class="font-bold text-sm text-blue-950">Formal Register</h3>
+          </div>
+          <span class="text-[11px] font-bold text-blue-700 bg-blue-100/80 px-2 py-0.5 rounded-full" id="count-formal">0 / 3</span>
+        </div>
+        <div class="p-2 text-[11px] text-blue-800/80 bg-blue-50/30 border-b border-blue-50 px-4 italic">
+          Institutions, unknown hiring managers, customer support.
+        </div>
+        <div id="list-formal" class="p-3 space-y-2.5 min-h-[170px] flex-1">
+        </div>
+      </div>
+
+      <!-- Semi-Formal Drop Zone -->
+      <div id="drop-semi_formal" 
+           class="drop-zone bg-white border-2 border-amber-200 rounded-2xl flex flex-col overflow-hidden shadow-xs"
+           ondragover="handleDragOver(event)" 
+           ondragleave="handleDragLeave(event)" 
+           ondrop="handleDrop(event, 'semi_formal')">
+        <div class="bg-amber-50/80 px-4 py-3 border-b border-amber-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+            <h3 class="font-bold text-sm text-amber-950">Semi-Formal Register</h3>
+          </div>
+          <span class="text-[11px] font-bold text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-full" id="count-semi_formal">0 / 3</span>
+        </div>
+        <div class="p-2 text-[11px] text-amber-800/80 bg-amber-50/30 border-b border-amber-50 px-4 italic">
+          Landlords, colleagues, neighbours, professors known by name.
+        </div>
+        <div id="list-semi_formal" class="p-3 space-y-2.5 min-h-[170px] flex-1">
+        </div>
+      </div>
+
+      <!-- Informal Drop Zone -->
+      <div id="drop-informal" 
+           class="drop-zone bg-white border-2 border-emerald-200 rounded-2xl flex flex-col overflow-hidden shadow-xs"
+           ondragover="handleDragOver(event)" 
+           ondragleave="handleDragLeave(event)" 
+           ondrop="handleDrop(event, 'informal')">
+        <div class="bg-emerald-50/80 px-4 py-3 border-b border-emerald-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+            <h3 class="font-bold text-sm text-emerald-950">Informal Register</h3>
+          </div>
+          <span class="text-[11px] font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded-full" id="count-informal">0 / 3</span>
+        </div>
+        <div class="p-2 text-[11px] text-emerald-800/80 bg-emerald-50/30 border-b border-emerald-50 px-4 italic">
+          Close friends, family members, or personal peers.
+        </div>
+        <div id="list-informal" class="p-3 space-y-2.5 min-h-[170px] flex-1">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Toast -->
+    <div id="status-toast" class="fixed bottom-6 right-6 max-w-sm w-full bg-slate-900 text-white rounded-2xl p-4 shadow-2xl border border-slate-700 hidden transition-all z-50">
+      <div class="flex items-start gap-3">
+        <div id="toast-icon" class="text-lg mt-0.5"></div>
+        <div class="flex-1">
+          <h4 id="toast-title" class="font-bold text-sm"></h4>
+          <p id="toast-msg" class="text-xs text-slate-300 mt-0.5"></p>
+        </div>
+        <button onclick="document.getElementById('status-toast').classList.add('hidden')" class="text-slate-400 hover:text-white text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // EXACT 3 alternatives per communicative function as curated in the prompt table
+    const corePracticeData = [
+      {
+        id: "salutation",
+        label: "Salutations",
+        formal: [
+          "Dear Sir or Madam,",
+          "Dear Sir/Madam,",
+          "Dear Hiring Manager,"
+        ],
+        semi_formal: [
+          "Dear Mr. [Surname],",
+          "Dear Ms. [Surname],",
+          "Dear Dr. [Surname],"
+        ],
+        informal: [
+          "Dear [First Name],",
+          "Hi [First Name],",
+          "Hello [First Name],"
+        ]
+      },
+      {
+        id: "purpose",
+        label: "Stating Purpose",
+        formal: [
+          "I am writing to enquire about...",
+          "I am writing with regard to...",
+          "I am writing to express my dissatisfaction with..."
+        ],
+        semi_formal: [
+          "I am writing to let you know about a problem with...",
+          "I am writing regarding the issue we discussed...",
+          "I am writing to notify you of..."
+        ],
+        informal: [
+          "I’m just writing to let you know that...",
+          "I wanted to drop you a quick note to tell you about...",
+          "The main reason I’m getting in touch is to..."
+        ]
+      },
+      {
+        id: "requests",
+        label: "Making Requests",
+        formal: [
+          "I would be grateful if you could...",
+          "I would appreciate it if you could...",
+          "Could you please clarify whether..."
+        ],
+        semi_formal: [
+          "Would it be possible for you to...",
+          "I would really appreciate your help with...",
+          "Could you please let me know if..."
+        ],
+        informal: [
+          "Could you do me a huge favour and...",
+          "I was wondering if you could lend me a hand with...",
+          "Do you think you could..."
+        ]
+      },
+      {
+        id: "complaining",
+        label: "Complaining",
+        formal: [
+          "I am writing to express my strong dissatisfaction with...",
+          "I wish to lodge a formal complaint regarding...",
+          "The standard of service fell far short of expectations."
+        ],
+        semi_formal: [
+          "I am writing to raise a concern about...",
+          "I would like to bring an ongoing issue to your attention.",
+          "I am rather concerned about..."
+        ],
+        informal: [
+          "I was really annoyed about...",
+          "I'm not very happy with...",
+          "It's a real shame that..."
+        ]
+      },
+      {
+        id: "apologising",
+        label: "Apologising",
+        formal: [
+          "Please accept my sincere apologies for...",
+          "I would like to convey my apologies for any inconvenience caused.",
+          "I deeply regret that I am unable to..."
+        ],
+        semi_formal: [
+          "I would like to apologise for the delay in...",
+          "I am very sorry for any trouble this may have caused.",
+          "Please accept my apologies for missing our meeting."
+        ],
+        informal: [
+          "I’m so sorry about missing your get-together.",
+          "Please forgive me for not getting back to you sooner.",
+          "I feel terrible about what happened, and I’d like to make it up to you."
+        ]
+      },
+      {
+        id: "good_news",
+        label: "Giving Good News",
+        formal: [
+          "I am pleased to inform you that...",
+          "I am delighted to advise you that...",
+          "It is my pleasure to notify you that..."
+        ],
+        semi_formal: [
+          "I am happy to let you know that...",
+          "I am pleased to inform you that everything went well with...",
+          "I am glad to tell you that..."
+        ],
+        informal: [
+          "You’ll never guess what happened!",
+          "I’m so excited to tell you that...",
+          "I have some wonderful news to share with you."
+        ]
+      },
+      {
+        id: "bad_news",
+        label: "Giving Bad News",
+        formal: [
+          "I regret to inform you that...",
+          "I regret to advise you that...",
+          "Due to unforeseen circumstances, it will not be possible to..."
+        ],
+        semi_formal: [
+          "I am sorry to inform you that...",
+          "Unfortunately, I will not be able to attend...",
+          "I am afraid that I must postpone our meeting."
+        ],
+        informal: [
+          "I’m afraid I’ve got some bad news.",
+          "Unfortunately, something has come up and I won’t be able to...",
+          "I hate to say this, but I have to cancel our plans."
+        ]
+      },
+      {
+        id: "explanations",
+        label: "Giving Explanations",
+        formal: [
+          "This is due to...",
+          "This occurred as a result of...",
+          "The primary reason for this is..."
+        ],
+        semi_formal: [
+          "This is because...",
+          "The reason for this is that...",
+          "Because of a previous commitment, I am unable to..."
+        ],
+        informal: [
+          "Because...",
+          "The thing is...",
+          "Since..."
+        ]
+      },
+      {
+        id: "suggestions",
+        label: "Suggestions / Advice",
+        formal: [
+          "I would recommend that you consider...",
+          "It would be advisable to...",
+          "I suggest that steps be taken to..."
+        ],
+        semi_formal: [
+          "Perhaps we could arrange an alternative time.",
+          "Would it suit you if we...",
+          "I would suggest that we discuss this in person."
+        ],
+        informal: [
+          "If I were you, I’d definitely check out...",
+          "Why don’t you try...",
+          "I reckon your best bet is to..."
+        ]
+      },
+      {
+        id: "thanking",
+        label: "Thanking",
+        formal: [
+          "Thank you for your prompt attention to this matter.",
+          "I thank you in advance for your assistance.",
+          "I am extremely grateful for your guidance."
+        ],
+        semi_formal: [
+          "Thank you for your ongoing support.",
+          "Thank you for your patience and understanding.",
+          "I very much appreciate your help with this."
+        ],
+        informal: [
+          "Thanks a million for all your help!",
+          "I can’t thank you enough for having me over.",
+          "Thanks so much for taking the time to help me out."
+        ]
+      },
+      {
+        id: "closing_phrases",
+        label: "Closing Phrases",
+        formal: [
+          "I look forward to hearing from you at your earliest convenience.",
+          "I look forward to your prompt reply.",
+          "Should you require any further information, please do not hesitate to contact me."
+        ],
+        semi_formal: [
+          "I look forward to discussing this with you.",
+          "I hope to hear from you soon.",
+          "Please let me know if this works for you."
+        ],
+        informal: [
+          "Can’t wait to see you soon!",
+          "Write back as soon as you can.",
+          "Keep in touch!"
+        ]
+      },
+      {
+        id: "sign_offs",
+        label: "Sign-Offs",
+        formal: [
+          "Yours faithfully, [Full Name]",
+          "Yours sincerely, [Full Name]",
+          "Respectfully yours, [Full Name]"
+        ],
+        semi_formal: [
+          "Yours sincerely, [Name]",
+          "Warm regards, [Name]",
+          "Kind regards, [Name]"
+        ],
+        informal: [
+          "All the best, [First Name]",
+          "Best wishes, [First Name]",
+          "Cheers, [First Name]"
+        ]
+      }
+    ];
+
+    let currentModuleIndex = 0;
+    let currentPhrases = [];
+    let score = 0;
+    let draggedItem = null;
+
+    function initDropdown() {
+      const select = document.getElementById('module-select');
+      select.innerHTML = "";
+      corePracticeData.forEach((item, index) => {
+        const opt = document.createElement('option');
+        opt.value = index;
+        opt.textContent = `${index + 1}. ${item.label}`;
+        select.appendChild(opt);
+      });
+    }
+
+    function loadModule(index) {
+      currentModuleIndex = parseInt(index, 10);
+      document.getElementById('module-select').value = currentModuleIndex;
+
+      const group = corePracticeData[currentModuleIndex];
+      document.getElementById('active-func-pill').textContent = `Function ${currentModuleIndex + 1} of ${corePracticeData.length}`;
+      document.getElementById('active-func-title').textContent = group.label;
+
+      currentPhrases = [];
+      let cardId = 0;
+
+      // Exactly 3 formal, 3 semi-formal, 3 informal
+      group.formal.forEach(phrase => {
+        currentPhrases.push({ id: `c-${currentModuleIndex}-${cardId++}`, text: phrase, targetRegister: 'formal', currentLocation: 'pool' });
+      });
+      group.semi_formal.forEach(phrase => {
+        currentPhrases.push({ id: `c-${currentModuleIndex}-${cardId++}`, text: phrase, targetRegister: 'semi_formal', currentLocation: 'pool' });
+      });
+      group.informal.forEach(phrase => {
+        currentPhrases.push({ id: `c-${currentModuleIndex}-${cardId++}`, text: phrase, targetRegister: 'informal', currentLocation: 'pool' });
+      });
+
+      // Randomize initial pool order
+      currentPhrases.sort(() => Math.random() - 0.5);
+      renderBoard();
+    }
+
+    function renderBoard() {
+      const pool = document.getElementById('unassigned-pool');
+      const listFormal = document.getElementById('list-formal');
+      const listSemi = document.getElementById('list-semi_formal');
+      const listInformal = document.getElementById('list-informal');
+
+      pool.innerHTML = "";
+      listFormal.innerHTML = "";
+      listSemi.innerHTML = "";
+      listInformal.innerHTML = "";
+
+      let unsortedCount = 0;
+      let formalCount = 0;
+      let semiCount = 0;
+      let informalCount = 0;
+
+      currentPhrases.forEach(item => {
+        const card = createPhraseCard(item);
+
+        if (item.currentLocation === 'pool') {
+          pool.appendChild(card);
+          unsortedCount++;
+        } else if (item.currentLocation === 'formal') {
+          listFormal.appendChild(card);
+          formalCount++;
+        } else if (item.currentLocation === 'semi_formal') {
+          listSemi.appendChild(card);
+          semiCount++;
+        } else if (item.currentLocation === 'informal') {
+          listInformal.appendChild(card);
+          informalCount++;
+        }
+      });
+
+      document.getElementById('count-formal').textContent = `${formalCount} / 3`;
+      document.getElementById('count-semi_formal').textContent = `${semiCount} / 3`;
+      document.getElementById('count-informal').textContent = `${informalCount} / 3`;
+
+      const totalItems = currentPhrases.length;
+      const sortedItems = totalItems - unsortedCount;
+      document.getElementById('remaining-count-badge').textContent = `${unsortedCount} of ${totalItems} unassigned`;
+      document.getElementById('stat-sorted').textContent = `${sortedItems} / ${totalItems}`;
+
+      if (unsortedCount === 0 && totalItems === 9) {
+        showToast(
+          "fa-circle-check text-emerald-400",
+          "All 9 Sorted Correctly!",
+          `You've mastered the 3 options for each register in '${corePracticeData[currentModuleIndex].label}'.`
+        );
+      }
+    }
+
+    function createPhraseCard(item) {
+      const card = document.createElement('div');
+      card.id = item.id;
+      card.draggable = true;
+      card.className = "phrase-card bg-white px-3.5 py-2.5 rounded-xl border border-slate-200 shadow-xs text-xs font-semibold text-slate-800 flex items-center justify-between gap-2.5 max-w-full";
+      
+      if (item.currentLocation === 'formal') {
+        card.classList.add('border-blue-300', 'bg-blue-50/50', 'text-blue-950');
+      } else if (item.currentLocation === 'semi_formal') {
+        card.classList.add('border-amber-300', 'bg-amber-50/50', 'text-amber-950');
+      } else if (item.currentLocation === 'informal') {
+        card.classList.add('border-emerald-300', 'bg-emerald-50/50', 'text-emerald-950');
+      }
+
+      card.innerHTML = `
+        <span class="phrase-text tracking-tight font-serif italic text-[12.5px]">“${item.text}”</span>
+        <i class="fa-solid fa-grip-vertical text-slate-300 shrink-0 text-xs"></i>
+      `;
+
+      card.addEventListener('dragstart', (e) => {
+        draggedItem = item;
+        card.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', item.id);
+        e.dataTransfer.effectAllowed = 'move';
+      });
+
+      card.addEventListener('dragend', () => {
+        card.classList.remove('dragging');
+        draggedItem = null;
+        document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('dragover'));
+      });
+
+      return card;
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const zone = e.currentTarget;
+      if (zone.classList.contains('drop-zone')) {
+        zone.classList.add('dragover');
+      }
+    }
+
+    function handleDragLeave(e) {
+      const zone = e.currentTarget;
+      if (zone.classList.contains('drop-zone')) {
+        zone.classList.remove('dragover');
+      }
+    }
+
+    function handleDrop(e, targetZoneId) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('dragover'));
+
+      if (!draggedItem) return;
+
+      const item = draggedItem;
+
+      // Dropping back to pool
+      if (targetZoneId === 'pool') {
+        if (item.currentLocation !== 'pool') {
+          item.currentLocation = 'pool';
+          renderBoard();
+        }
+        return;
+      }
+
+      // Check correctness
+      if (targetZoneId === item.targetRegister) {
+        if (item.currentLocation !== targetZoneId) {
+          score += 10;
+          document.getElementById('stat-score').textContent = `${score} pts`;
+          item.currentLocation = targetZoneId;
+          renderBoard();
+
+          showToast(
+            "fa-circle-check text-emerald-400",
+            "Correct Register!",
+            `“${item.text.substring(0, 30)}...” is placed in ${targetZoneId.replace('_', ' ').toUpperCase()}.`
+          );
+
+          setTimeout(() => {
+            const cardEl = document.getElementById(item.id);
+            if (cardEl) cardEl.classList.add('pulse-correct');
+          }, 50);
+        }
+      } else {
+        score = Math.max(0, score - 5);
+        document.getElementById('stat-score').textContent = `${score} pts`;
+
+        const dropContainer = document.getElementById(`drop-${targetZoneId}`);
+        if (dropContainer) {
+          dropContainer.classList.add('shake-error');
+          setTimeout(() => dropContainer.classList.remove('shake-error'), 450);
+        }
+
+        let hint = "";
+        if (item.targetRegister === 'formal') {
+          hint = "Notice formal lexical choices without contractions or casual speech.";
+        } else if (item.targetRegister === 'semi_formal') {
+          hint = "Notice polite, respectful language suited for a named professional or landlord.";
+        } else if (item.targetRegister === 'informal') {
+          hint = "Notice contractions, idioms, or conversational warmth for a friend.";
+        }
+
+        showToast(
+          "fa-circle-xmark text-rose-400",
+          "Try Again (-5 pts)",
+          `That phrase doesn't belong in ${targetZoneId.replace('_', ' ').toUpperCase()}. ${hint}`
+        );
+      }
+    }
+
+    function resetCurrentModule() {
+      currentPhrases.forEach(p => p.currentLocation = 'pool');
+      renderBoard();
+      showToast("fa-arrow-rotate-right text-blue-400", "Module Reset", "All 9 phrases returned to the pool.");
+    }
+
+    function switchModuleRelative(offset) {
+      let newIdx = currentModuleIndex + offset;
+      if (newIdx < 0) newIdx = corePracticeData.length - 1;
+      if (newIdx >= corePracticeData.length) newIdx = 0;
+      loadModule(newIdx);
+    }
+
+    let toastTimer = null;
+    function showToast(iconHtml, title, msg) {
+      const toast = document.getElementById('status-toast');
+      const icon = document.getElementById('toast-icon');
+      const titleEl = document.getElementById('toast-title');
+      const msgEl = document.getElementById('toast-msg');
+
+      icon.innerHTML = `<i class="fa-solid ${iconHtml}"></i>`;
+      titleEl.textContent = title;
+      msgEl.textContent = msg;
+
+      toast.classList.remove('hidden');
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3200);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initDropdown();
+      loadModule(0);
+    });
+  </script>
+</body>
+</html>
