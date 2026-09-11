@@ -25,14 +25,14 @@ jobs:
       - name: Run Index Builder
         run: python .github/scripts/build_index.py
 
-      - name: Save changes to repo
+      - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git add -A
           if git diff --staged --quiet; then
-            echo "No changes in index.html"
+            echo "No changes to commit."
           else
-            git commit -m "Auto-update root index.html [skip ci]"
+            git commit -m "Auto-update indices and student portals [skip ci]"
             git push
           fi
