@@ -33,7 +33,7 @@ def scan_topics():
         print(f"Warning: '{TOPICS_DIR}' directory does not exist.")
     return topics
 
-def render_page(badge_label, heading, description, cards_data):
+def render_page(heading, description, cards_data, badge_label=None):
     cards_html = ""
     for idx, (slug, title) in enumerate(cards_data, start=1):
         num_str = f"{idx:02d}"
@@ -52,6 +52,8 @@ def render_page(badge_label, heading, description, cards_data):
 
     if not cards_data:
         cards_html = '<div class="empty-state">No practice sheets currently assigned to this track.</div>'
+
+    badge_html = f'<span class="badge">{badge_label}</span>' if badge_label else ""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -158,7 +160,7 @@ def render_page(badge_label, heading, description, cards_data):
 <body>
   <div class="container">
     <header>
-      <span class="badge">{badge_label}</span>
+      {badge_html}
       <h1>{heading}</h1>
       <p>{description}</p>
     </header>
@@ -177,13 +179,18 @@ def main():
     print(f"Current working directory: {os.getcwd()}")
     all_topics = scan_topics()
 
-    # 1. Master Index
+    # 1. Generate Master Index
     master_cards = [(slug, all_topics[slug]) for slug in sorted(all_topics.keys())]
     with open(MASTER_FILE, "w", encoding="utf-8") as f:
-        f.write(render_page("Curriculum Catalog", "Master Grammar Index", "Interactive analysis modules, applied diagnostics, and communicative drills.", master_cards))
+        f.write(render_page(
+            "Master Grammar Index",
+            "Interactive analysis modules, applied diagnostics, and communicative drills.",
+            master_cards,
+            badge_label="Curriculum Catalog"
+        ))
     print(f"-> Generated {MASTER_FILE} with {len(master_cards)} topics.")
 
-    # 2. Student Indices
+    # 2. Generate Student-Specific Indices
     if not os.path.exists(STUDENTS_FILE):
         print(f"ERROR: Could not find '{STUDENTS_FILE}' at {os.path.abspath(STUDENTS_FILE)}")
         return
@@ -204,10 +211,10 @@ def main():
         output_filename = f"{student_id}.html"
         with open(output_filename, "w", encoding="utf-8") as f:
             f.write(render_page(
-                f"Assigned Focus: {display_name}",
                 f"{display_name}'s Portal",
-                "Selected grammar structures and interactive case studies for your syllabus.",
-                student_cards
+                "Below are the practice sheets from class. Select any title to open the file.",
+                student_cards,
+                badge_label=None
             ))
         print(f"-> Successfully created {output_filename} ({len(student_cards)} items)")
 
