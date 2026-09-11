@@ -1,11 +1,13 @@
 name: Auto Update Master Index
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'topics/**'
+      - 'students.json'
     branches:
-      - main  # Change to 'master' if your repo default branch is master
+      - main  # Change to master if that is your main branch
 
 permissions:
   contents: write
@@ -31,7 +33,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if git diff --staged --quiet; then
-            echo "No changes to commit."
+            echo "No changes detected across repository."
           else
             git commit -m "Auto-update indices and student portals [skip ci]"
             git push
