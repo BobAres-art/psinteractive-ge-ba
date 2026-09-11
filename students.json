@@ -14,14 +14,14 @@
   "sara": {
     "name": "Sara",
     "topics": [
-      "causative",
-      "inversion"
+      "causative-fuel-b12",
+      "comparatives-publichealth-c11"
     ]
   },
   "class-b2": {
     "name": "Class B2 Cohort",
     "topics": [
-      "conditionals"
+      "connectors"
     ]
   }
 }
