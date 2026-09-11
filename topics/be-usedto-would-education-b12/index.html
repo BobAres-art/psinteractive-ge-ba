@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Transitions: Habit, Routine & Change</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 50%, #f0fdfa 100%);
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --accent-coral: #ea580c;
+      --accent-amber: #d97706;
+      --accent-teal: #0d9488;
+      --accent-teal-soft: #ccfbf1;
+      --accent-violet: #7c3aed;
+      --accent-violet-soft: #f3e8ff;
+      --success: #059669;
+      --success-soft: #ecfdf5;
+      --error: #e11d48;
+      --error-soft: #fff1f2;
+      --border: #e2e8f0;
+      --border-focus: #818cf8;
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 22px;
+      --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 25px -5px rgba(79, 70, 229, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      --shadow-glow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 24px 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 18px 0 28px;
+    }
+
+    .badge-topic {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #eef2ff 0%, #f3e8ff 100%);
+      color: var(--primary);
+      border: 1px solid #c7d2fe;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #0d9488 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 450;
+    }
+
+    /* MODERN PILL TABS */
+    nav {
+      display: flex;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+      scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-btn:hover {
+      color: var(--primary);
+      background-color: rgba(238, 242, 255, 0.6);
+    }
+
+    .nav-btn.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+    }
+
+    /* CARD PANELS */
+    .tab-content {
+      display: none;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(241, 245, 249, 0.9);
+      position: relative;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: tabEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes tabEnter {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--primary), var(--accent-teal));
+      border-radius: 4px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 24px 0 10px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #334155;
+    }
+
+    /* EXPOSURE TAB */
+    .reading-card {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 28px;
+      line-height: 2.0;
+      font-size: 1.05rem;
+      color: #1e293b;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.015);
+      margin-bottom: 24px;
+    }
+
+    /* Pre-toggle: absolutely identical to surrounding text */
+    .target-highlight {
+      font-weight: inherit;
+      color: inherit;
+      background: transparent;
+      border: none;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Post-toggle: highlighted */
+    .target-highlight.revealed {
+      background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #78350f;
+      box-shadow: 0 1px 3px rgba(202, 138, 4, 0.2);
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+      color: #ffffff;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.92rem;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      color: var(--primary);
+    }
+
+    .counter-badge {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    /* FORM TAB / TABLES */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+      background: #ffffff;
+    }
+
+    th {
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      font-weight: 700;
+      color: #1e293b;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background-color: #fafafa;
+    }
+
+    .struct-name {
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+
+    .rule-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid var(--accent-coral);
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .rule-card.rule-teal {
+      border-left-color: var(--accent-teal);
+    }
+
+    .rule-card.rule-violet {
+      border-left-color: var(--accent-violet);
+    }
+
+    .rule-card strong {
+      color: #0f172a;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    /* EXERCISES */
+    .exercise-box {
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s;
+    }
+
+    .exercise-box:hover {
+      border-color: #cbd5e1;
+    }
+
+    .exercise-box h4 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 100%);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #c7d2fe;
+    }
+
+    .q-row {
+      margin: 16px 0;
+      padding: 14px 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .q-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    select {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 0.95rem;
+      background: #ffffff;
+      color: #1e293b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      font-weight: 500;
+    }
+
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .mc-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mc-btn {
+      text-align: left;
+      padding: 12px 16px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.18s ease;
+    }
+
+    .mc-btn:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      transform: translateY(-1px);
+    }
+
+    .mc-btn.selected-correct {
+      background: var(--success-soft) !important;
+      border-color: var(--success) !important;
+      color: #065f46 !important;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.15);
+    }
+
+    .mc-btn.selected-wrong {
+      background: var(--error-soft) !important;
+      border-color: var(--error) !important;
+      color: #9f1239 !important;
+      font-weight: 600;
+    }
+
+    /* WORD ORDER / UNSCRAMBLE */
+    .word-pool, .drop-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px;
+      min-height: 54px;
+      border-radius: 10px;
+      margin: 10px 0;
+      align-items: center;
+    }
+
+    .drop-zone {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      transition: background 0.2s;
+    }
+
+    .drop-zone:empty::before {
+      content: "Tap chips below to assemble the sentence here";
+      color: #94a3b8;
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+
+    .word-pool {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+
+    .word-chip {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #1e293b;
+      user-select: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: all 0.15s ease;
+    }
+
+    .word-chip:hover {
+      background: #eef2ff;
+      border-color: #818cf8;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px rgba(79, 70, 229, 0.12);
+    }
+
+    .feedback-msg {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feedback-msg.correct {
+      color: var(--success);
+    }
+
+    .feedback-msg.wrong {
+      color: var(--error);
+    }
+
+    /* EXPANSION TAB */
+    .persona-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #eff6ff 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .persona-prompt {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 130px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 0.95rem;
+      resize: vertical;
+      margin-bottom: 14px;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #ffffff;
+    }
+
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 28px 0 10px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 12px 8px; }
+      .tab-content { padding: 20px 16px; border-radius: var(--radius); }
+      header h1 { font-size: 1.6rem; }
+      nav { border-radius: 14px; padding: 6px; }
+      .nav-btn { padding: 8px 14px; font-size: 0.88rem; }
+      .mc-options { grid-template-columns: 1fr; }
+      .reading-card { padding: 18px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-topic">Academic Discourse & Adaptation</div>
+      <h1>Higher Education & Adaptations</h1>
+      <p>Mastering habitual aspect and transition in academic life</p>
+    </header>
+
+    <nav>
+      <button class="nav-btn active" onclick="switchTab('exposure', this)">1. Exposure</button>
+      <button class="nav-btn" onclick="switchTab('form', this)">2. Rules & Form</button>
+      <button class="nav-btn" onclick="switchTab('practice', this)">3. Guided Practice</button>
+      <button class="nav-btn" onclick="switchTab('expansion', this)">4. Reflection & Production</button>
+    </nav>
+
+    <!-- EXPOSURE TAB -->
+    <section id="exposure" class="tab-content active">
+      <h2>The Undergraduate Shift</h2>
+      <p style="color: var(--text-muted);">
+        Read through this account of an engineering student reflecting on her first term at university. Observe how routines, past realities, and gradual adjustments are expressed.
+      </p>
+
+      <div class="controls-row">
+        <button class="btn" id="toggleHighlightsBtn" onclick="toggleHighlights()">Highlight Grammatical Structures</button>
+        <span class="counter-badge" id="structureCounter">8 Target Structures Hidden</span>
+      </div>
+
+      <div class="reading-card" id="readingText">
+        Back in secondary school, life followed a predictable rhythm. My teachers <span class="target-highlight">would remind</span> us about upcoming deadlines every single afternoon, so I never needed a planner. I <span class="target-highlight">used to believe</span> that higher education would just be an extended version of those school years. However, when I enrolled in chemical engineering last autumn, that comfortable illusion disappeared overnight.
+        <br><br>
+        During my first month, I found the autonomy overwhelming. I was definitely not <span class="target-highlight">used to managing</span> four-hour lab sessions alongside self-directed literature reviews. At first, I couldn't <span class="target-highlight">get used to the noisy atmosphere</span> of the library's collaborative floor, so I retreated to the silent basement archives. Whenever exam week approached in high school, our family <span class="target-highlight">would gather</span> for quiet dinners, but in halls of residence, flatmates were constantly cooking at midnight. 
+        <br><br>
+        Now that my second term is underway, things feel natural. I have finally <span class="target-highlight">got used to organizing</span> my weekly timetable independently, and I am completely <span class="target-highlight">used to the intense pace</span> of seminar debates. I still smile when I recall how I <span class="target-highlight">used to panic</span> over a single ten-page reading assignment!
+      </div>
+    </section>
+
+    <!-- FORM TAB -->
+    <section id="form" class="tab-content">
+      <h2>Syntactic & Semantic Contrasts</h2>
+      <p>These four constructions express distinct concepts regarding past time, past states, adaptation, and familiar routines.</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Structure</th>
+              <th>Meaning / Function</th>
+              <th>Syntactic Rule</th>
+              <th>Academic Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="struct-name">used to + infinitive</span></td>
+              <td>Past habits OR past states that are no longer true today.</td>
+              <td>Subject + <em>used to</em> + Base Verb<br><small style="color:var(--text-muted);">(Negative: <em>didn't use to</em>)</small></td>
+              <td>"The faculty <strong>used to have</strong> its own dedicated archive before digitalization."</td>
+            </tr>
+            <tr>
+              <td><span class="struct-name">would + infinitive</span></td>
+              <td>Repeated, characteristic past actions (habits/routines). <br><em style="color:var(--error);">Cannot be used with state verbs.</em></td>
+              <td>Subject + <em>would</em> + Base Verb</td>
+              <td>"Every Friday afternoon, our tutor <strong>would review</strong> our research drafts."</td>
+            </tr>
+            <tr>
+              <td><span class="struct-name">be used to + -ing / noun</span></td>
+              <td>Being accustomed to something; feeling that a condition is normal and familiar.</td>
+              <td>Subject + <em>be</em> + <em>used to</em> + [Noun / Gerund]</td>
+              <td>"Postgraduate scholars <strong>are used to working</strong> late into the evening."</td>
+            </tr>
+            <tr>
+              <td><span class="struct-name">get used to + -ing / noun</span></td>
+              <td>The transition or process of becoming accustomed to something new.</td>
+              <td>Subject + [tenses of <em>get</em>] + <em>used to</em> + [Noun / Gerund]</td>
+              <td>"International candidates usually <strong>get used to the climate</strong> within a month."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Key Usage Nuances to Master</h3>
+      <div class="rule-card">
+        <strong>1. Stative vs. Dynamic Verbs with 'Would':</strong><br>
+        We say: <em>"We used to live on campus"</em> (State = live), <strong>NEVER</strong> <em>"We would live on campus."</em> Reserve <em>would</em> strictly for recurring actions (e.g., <em>"We would walk to campus together every morning."</em>).
+      </div>
+      <div class="rule-card rule-teal">
+        <strong>2. The Dual Nature of "to":</strong><br>
+        In <em>used to + infinitive</em>, "to" is part of the infinitive marker (followed by base verb). In <em>be/get used to</em>, "to" is a <strong>preposition</strong>, which is why it requires a noun phrase or a gerund (<em>-ing</em> form).
+      </div>
+      <div class="rule-card rule-violet">
+        <strong>3. Time Horizon:</strong><br>
+        <em>Used to</em> and <em>would</em> are strictly anchored in the past. <em>Be used to</em> and <em>get used to</em> can be conjugated across all tenses (Past, Present, Present Perfect, Future).
+      </div>
+    </section>
+
+    <!-- PRACTICE TAB -->
+    <section id="practice" class="tab-content">
+      <h2>Interactive Mastery Series</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">
+        Work through these progressive exercises moving from structural recognition to accurate contextual application.
+      </p>
+
+      <!-- Exercise 1: Multiple Choice -->
+      <div class="exercise-box">
+        <h4>1. Structural Categorization <span class="meta-pill">Identification</span></h4>
+        <div class="q-row">
+          <p>Professors in the 19th century ________ formal gowns during all collegiate lectures.</p>
+          <div class="mc-options" data-correct="would wear">
+            <button class="mc-btn" onclick="checkMC(this, 'would wear')">would wear</button>
+            <button class="mc-btn" onclick="checkMC(this, 'were used to wear')">were used to wear</button>
+            <button class="mc-btn" onclick="checkMC(this, 'got used to wear')">got used to wear</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+        <div class="q-row">
+          <p>That historic building ________ the main humanities library before the renovation.</p>
+          <div class="mc-options" data-correct="used to be">
+            <button class="mc-btn" onclick="checkMC(this, 'would be')">would be</button>
+            <button class="mc-btn" onclick="checkMC(this, 'used to be')">used to be</button>
+            <button class="mc-btn" onclick="checkMC(this, 'was used to be')">was used to be</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 2: Dropdown Selector -->
+      <div class="exercise-box">
+        <h4>2. Verb Complementation (Infinitive vs Gerund) <span class="meta-pill">Grammar Syntax</span></h4>
+        <div class="q-row">
+          <p>
+            It took several weeks, but Marcus finally got used to 
+            <select onchange="checkDropdown(this, 'synthesizing')">
+              <option value="">-- Choose form --</option>
+              <option value="synthesize">synthesize</option>
+              <option value="synthesizing">synthesizing</option>
+              <option value="synthesized">synthesized</option>
+            </select>
+            complex peer-reviewed articles.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+        <div class="q-row">
+          <p>
+            First-year students didn't use to 
+            <select onchange="checkDropdown(this, 'receive')">
+              <option value="">-- Choose form --</option>
+              <option value="receiving">receiving</option>
+              <option value="receive">receive</option>
+              <option value="received">received</option>
+            </select>
+            automated alerts about their seminar room allocations.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 3: State vs Action Validation -->
+      <div class="exercise-box">
+        <h4>3. The "Would" Stative Constraint <span class="meta-pill">Constraint Checking</span></h4>
+        <div class="q-row">
+          <p>Identify whether <strong>"would"</strong> is grammatically acceptable in the underlined position:</p>
+          <p><em>"Dr. Ellis <u>would have</u> an office on the fourth floor of the department."</em></p>
+          <div class="mc-options" data-correct="Incorrect (Stative verb requires 'used to')">
+            <button class="mc-btn" onclick="checkMC(this, 'Correct (Natural past habit)')">Correct (Natural past habit)</button>
+            <button class="mc-btn" onclick="checkMC(this, 'Incorrect (Stative verb requires \'used to\')')">Incorrect (Stative verb requires 'used to')</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+        <div class="q-row">
+          <p><em>"Whenever funding permitted, the dean <u>would invite</u> visiting fellows to lecture."</em></p>
+          <div class="mc-options" data-correct="Correct (Repeated action in the past)">
+            <button class="mc-btn" onclick="checkMC(this, 'Correct (Repeated action in the past)')">Correct (Repeated action in the past)</button>
+            <button class="mc-btn" onclick="checkMC(this, 'Incorrect (Must use \'get used to\')')">Incorrect (Must use 'get used to')</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 4: Contextual Cloze -->
+      <div class="exercise-box">
+        <h4>4. Meaning in Context <span class="meta-pill">Context Selection</span></h4>
+        <div class="q-row">
+          <p>
+            Elena has lived in student accommodation for three years now, so she 
+            <select onchange="checkDropdown(this, 'is used to')">
+              <option value="">-- Select verb --</option>
+              <option value="used to">used to</option>
+              <option value="is used to">is used to</option>
+              <option value="gets used to">gets used to</option>
+              <option value="would">would</option>
+            </select>
+            the constant corridor noise; it doesn't disturb her revision anymore.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+        <div class="q-row">
+          <p>
+            Don't worry if formatting academic citations feels tedious; you will gradually 
+            <select onchange="checkDropdown(this, 'get used to')">
+              <option value="">-- Select verb --</option>
+              <option value="used to">used to</option>
+              <option value="would">would</option>
+              <option value="get used to">get used to</option>
+              <option value="are used to">are used to</option>
+            </select>
+            referencing software.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 5: Unscramble / Word Order A -->
+      <div class="exercise-box">
+        <h4>5. Syntax Reconstruction A <span class="meta-pill">Sentence Formation</span></h4>
+        <p>Reconstruct this sentence describing an ongoing adaptation. Click the chips to order them:</p>
+        <div class="drop-zone" id="unscrambleZone1"></div>
+        <div class="word-pool" id="wordPool1"></div>
+        <div style="display:flex; gap:10px; margin-top:12px;">
+          <button class="btn btn-secondary" onclick="resetUnscramble(1)">Reset</button>
+          <button class="btn" onclick="evaluateUnscramble(1, 'She is slowly getting used to presenting her research')">Check Order</button>
+        </div>
+        <div class="feedback-msg" id="unscrambleFeedback1"></div>
+      </div>
+
+      <!-- Exercise 6: Unscramble / Word Order B -->
+      <div class="exercise-box">
+        <h4>6. Syntax Reconstruction B <span class="meta-pill">Negative Habitual Form</span></h4>
+        <p>Reconstruct this sentence expressing a past absence of habit:</p>
+        <div class="drop-zone" id="unscrambleZone2"></div>
+        <div class="word-pool" id="wordPool2"></div>
+        <div style="display:flex; gap:10px; margin-top:12px;">
+          <button class="btn btn-secondary" onclick="resetUnscramble(2)">Reset</button>
+          <button class="btn" onclick="evaluateUnscramble(2, 'We did not use to submit assignments through digital portals')">Check Order</button>
+        </div>
+        <div class="feedback-msg" id="unscrambleFeedback2"></div>
+      </div>
+
+      <!-- Exercise 7: Binary Error Correction -->
+      <div class="exercise-box">
+        <h4>7. Academic Proofreading <span class="meta-pill">Error Spotting</span></h4>
+        <div class="q-row">
+          <p>Select the version that contains <strong>NO</strong> grammatical errors:</p>
+          <div class="mc-options" data-correct="B">
+            <button class="mc-btn" onclick="checkMC(this, 'A')"><strong>A:</strong> Having studied in Paris, Claire was used to discuss theory every morning.</button>
+            <button class="mc-btn" onclick="checkMC(this, 'B')"><strong>B:</strong> Having studied in Paris, Claire was used to discussing theory every morning.</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+        <div class="q-row">
+          <p>Select the version that contains <strong>NO</strong> grammatical errors:</p>
+          <div class="mc-options" data-correct="B">
+            <button class="mc-btn" onclick="checkMC(this, 'A')"><strong>A:</strong> When I was an undergraduate, the chancellor would own a large estate nearby.</button>
+            <button class="mc-btn" onclick="checkMC(this, 'B')"><strong>B:</strong> When I was an undergraduate, the chancellor used to own a large estate nearby.</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 8: Contextual Transformation -->
+      <div class="exercise-box">
+        <h4>8. Functional Sentence Completion <span class="meta-pill">Transformation</span></h4>
+        <div class="q-row">
+          <p>
+            <em>"Waking up for 8:00 AM lectures is no longer strange or uncomfortable for Julian."</em><br>
+            Julian is now 
+            <select onchange="checkDropdown(this, 'used to waking up')">
+              <option value="">-- Choose correct phrase --</option>
+              <option value="used to wake up">used to wake up</option>
+              <option value="used to waking up">used to waking up</option>
+              <option value="got used to wake up">got used to wake up</option>
+              <option value="would wake up">would wake up</option>
+            </select>
+            for early morning lectures.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPANSION TAB -->
+    <section id="expansion" class="tab-content">
+      <h2>The University Transition Case Study</h2>
+      <p style="color: var(--text-muted);">
+        Select a student persona below to inspect their profile, academic shifts, and ongoing adjustments.
+      </p>
+
+      <div class="controls-row">
+        <button class="btn btn-secondary" onclick="loadPersona('kenji')">Persona A: Kenji (Tokyo → Edinburgh)</button>
+        <button class="btn btn-secondary" onclick="loadPersona('amira')">Persona B: Amira (Gap Year → Medicine)</button>
+      </div>
+
+      <div class="persona-card" id="personaDisplay">
+        <h3 id="personaName" style="margin-top:0; color:#0369a1;">Select a student profile above</h3>
+        <p id="personaDetails" style="color: var(--text-muted); margin-bottom: 8px;">Click one of the buttons above to load their academic scenario.</p>
+        <div id="personaKeyData" style="margin-top: 10px;"></div>
+      </div>
+
+      <div class="persona-prompt">
+        Active Reflection Prompt:
+      </div>
+      <p id="writingTaskDesc">
+        Write 3 to 4 sentences about this student's life. You must include:
+        <br>• At least one past state/habit with <strong>used to</strong>
+        <br>• At least one repeated past routine with <strong>would</strong>
+        <br>• At least one current routine/adaptation with <strong>be used to</strong> or <strong>get used to</strong>
+      </p>
+
+      <textarea id="freeProductionInput" placeholder="Draft your analysis here... e.g., Before moving abroad, Kenji used to live with his parents..."></textarea>
+      
+      <button class="btn" onclick="analyzeText()">Analyze My Response</button>
+
+      <div id="productionFeedback" style="margin-top: 16px; font-size: 0.95rem;"></div>
+    </section>
+  </div>
+
+  <footer>
+    Designed by Babak Alaee
+  </footer>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId, btnElement) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btnElement.classList.add('active');
+    }
+
+    // Exposure highlight toggle
+    let highlightsVisible = false;
+    function toggleHighlights() {
+      highlightsVisible = !highlightsVisible;
+      const elements = document.querySelectorAll('.target-highlight');
+      elements.forEach(el => {
+        if (highlightsVisible) {
+          el.classList.add('revealed');
+        } else {
+          el.classList.remove('revealed');
+        }
+      });
+      const btn = document.getElementById('toggleHighlightsBtn');
+      const counter = document.getElementById('structureCounter');
+      btn.textContent = highlightsVisible ? "Hide Grammatical Structures" : "Highlight Grammatical Structures";
+      counter.textContent = highlightsVisible ? "8 Target Structures Identified" : "8 Target Structures Hidden";
+      counter.style.background = highlightsVisible ? "#fef3c7" : "#f1f5f9";
+      counter.style.borderColor = highlightsVisible ? "#fcd34d" : "#e2e8f0";
+      counter.style.color = highlightsVisible ? "#92400e" : "var(--text-muted)";
+    }
+
+    // Multiple Choice Checker
+    function checkMC(btn, val) {
+      const container = btn.closest('.mc-options');
+      const correct = container.getAttribute('data-correct');
+      const feedback = container.parentElement.querySelector('.feedback-msg');
+      const allBtns = container.querySelectorAll('.mc-btn');
+      
+      allBtns.forEach(b => {
+        b.classList.remove('selected-correct', 'selected-wrong');
+      });
+
+      if (val === correct) {
+        btn.classList.add('selected-correct');
+        feedback.textContent = "✓ Accurate structure and contextual meaning.";
+        feedback.className = "feedback-msg correct";
+      } else {
+        btn.classList.add('selected-wrong');
+        feedback.textContent = "✕ Reconsider the rule: check whether this is a state, action, or adaptation.";
+        feedback.className = "feedback-msg wrong";
+      }
+    }
+
+    // Dropdown Checker
+    function checkDropdown(select, correctValue) {
+      const feedback = select.closest('.q-row').querySelector('.feedback-msg');
+      if (select.value === correctValue) {
+        select.style.borderColor = "var(--success)";
+        select.style.backgroundColor = "var(--success-soft)";
+        select.style.color = "#065f46";
+        feedback.textContent = "✓ Well done! Correct structural form.";
+        feedback.className = "feedback-msg correct";
+      } else if (select.value === "") {
+        select.style.borderColor = "#cbd5e1";
+        select.style.backgroundColor = "#ffffff";
+        select.style.color = "#1e293b";
+        feedback.textContent = "";
+      } else {
+        select.style.borderColor = "var(--error)";
+        select.style.backgroundColor = "var(--error-soft)";
+        select.style.color = "#9f1239";
+        feedback.textContent = "✕ Incorrect form. Pay attention to the verb pattern required.";
+        feedback.className = "feedback-msg wrong";
+      }
+    }
+
+    // Unscramble data & logic (Guaranteed scrambled order)
+    const unscrambleData = {
+      1: {
+        words: ["slowly", "presenting", "She", "is", "research", "to", "getting", "used", "her"],
+        target: "She is slowly getting used to presenting her research"
+      },
+      2: {
+        words: ["portals", "not", "submit", "use", "digital", "through", "assignments", "We", "did", "to"],
+        target: "We did not use to submit assignments through digital portals"
+      }
+    };
+
+    function initUnscramble(id) {
+      const pool = document.getElementById('wordPool' + id);
+      const zone = document.getElementById('unscrambleZone' + id);
+      pool.innerHTML = '';
+      zone.innerHTML = '';
+      document.getElementById('unscrambleFeedback' + id).textContent = '';
+
+      unscrambleData[id].words.forEach((word) => {
+        const chip = document.createElement('span');
+        chip.className = 'word-chip';
+        chip.textContent = word;
+        chip.onclick = () => moveWord(chip, pool, zone);
+        pool.appendChild(chip);
+      });
+    }
+
+    function moveWord(chip, pool, zone) {
+      if (chip.parentElement === pool) {
+        zone.appendChild(chip);
+      } else {
+        pool.appendChild(chip);
+      }
+    }
+
+    function resetUnscramble(id) {
+      initUnscramble(id);
+    }
+
+    function evaluateUnscramble(id, correctSentence) {
+      const zone = document.getElementById('unscrambleZone' + id);
+      const feedback = document.getElementById('unscrambleFeedback' + id);
+      const currentWords = Array.from(zone.children).map(c => c.textContent);
+      const currentSentence = currentWords.join(' ');
+
+      if (currentSentence === correctSentence) {
+        feedback.textContent = "✓ Spot on! Perfectly sequenced syntax.";
+        feedback.className = "feedback-msg correct";
+      } else {
+        feedback.textContent = "✕ Not quite right. Ensure your auxiliary, particle, and main verb follow standard syntax.";
+        feedback.className = "feedback-msg wrong";
+      }
+    }
+
+    // Personas Data for Expansion
+    const personas = {
+      kenji: {
+        name: "Kenji Takahashi – 1st Year Architecture",
+        details: "Moved from a small family home in suburban Tokyo to university halls in Scotland.",
+        past: "Lived with parents; family cooked all meals; studied at a desk overlooking a quiet garden.",
+        routines: "Every evening at 7:00 PM, his mother called everyone for dinner; walked to his local train station daily.",
+        current: "Prepares his own meals in a shared kitchen; sleeps through early bagpipe rehearsals; designs complex digital blueprints."
+      },
+      amira: {
+        name: "Amira Mansoor – Graduate-Entry Medicine",
+        details: "Spent two years working as a commercial graphic designer before entering medical school.",
+        past: "Had a flexible 9-to-5 schedule; owned a dedicated home office; felt free on weekends.",
+        routines: "Drafted corporate brand identities; attended leisurely team lunches on Fridays.",
+        current: "Endures 14-hour hospital ward rounds; memorizes human anatomical terms late at night; conducts physical examinations."
+      }
+    };
+
+    function loadPersona(key) {
+      const p = personas[key];
+      document.getElementById('personaName').textContent = p.name;
+      document.getElementById('personaDetails').textContent = p.details;
+      document.getElementById('personaKeyData').innerHTML = `
+        <div style="font-size: 0.92rem; line-height: 1.7; color: #1e293b;">
+          <p style="margin-bottom:6px;"><strong>Past conditions (State/Old habit):</strong> ${p.past}</p>
+          <p style="margin-bottom:6px;"><strong>Past recurring actions:</strong> ${p.routines}</p>
+          <p style="margin-bottom:0;"><strong>Current reality & shifts:</strong> ${p.current}</p>
+        </div>
+      `;
+    }
+
+    // Heuristic parser for student production
+    function analyzeText() {
+      const text = document.getElementById('freeProductionInput').value.trim();
+      const fb = document.getElementById('productionFeedback');
+
+      if (text.length < 30) {
+        fb.innerHTML = `<span style="color: var(--error);">Please provide a more comprehensive response (at least 3 complete sentences) to analyze.</span>`;
+        return;
+      }
+
+      const hasUsedTo = /\bused to\b/i.test(text) || /\bdidn't use to\b/i.test(text);
+      const hasWould = /\bwould\b/i.test(text);
+      const hasBeUsedTo = /\b(am|is|are|was|were|been)\s+used\s+to\b/i.test(text);
+      const hasGetUsedTo = /\b(get|gets|got|getting)\s+used\s+to\b/i.test(text);
+
+      let report = "<ul style='margin-left: 20px; margin-top: 8px; line-height: 1.8;'>";
+      report += hasUsedTo ? "<li style='color: var(--success);'>✓ 'used to' identified.</li>" : "<li style='color: var(--error);'>✕ Missing 'used to' for past states/habits.</li>";
+      report += hasWould ? "<li style='color: var(--success);'>✓ 'would' identified.</li>" : "<li style='color: var(--error);'>✕ Missing 'would' for repeated past actions.</li>";
+      report += (hasBeUsedTo || hasGetUsedTo) ? "<li style='color: var(--success);'>✓ 'be used to' or 'get used to' identified.</li>" : "<li style='color: var(--error);'>✕ Missing 'be used to' or 'get used to' for adaptation/familiarity.</li>";
+      report += "</ul>";
+
+      fb.innerHTML = `<div style="background:#ffffff; border:1px solid #cbd5e1; padding:14px 18px; border-radius:10px;"><strong>Grammar Diagnostics:</strong>${report}<p style="margin-top: 10px; color: var(--text-muted); font-size: 0.88rem; margin-bottom:0;">Tip: Double check that verbs immediately following <em>be/get used to</em> take an <strong>-ing</strong> gerund or noun!</p></div>`;
+    }
+
+    // Initialize unscramblers on load
+    window.onload = () => {
+      initUnscramble(1);
+      initUnscramble(2);
+    };
+  </script>
+</body>
+</html>
