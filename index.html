@@ -3,112 +3,403 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Master Index — Grammar Lab</title>
+  <title>Master Grammar Index &bull; Language Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090e17;
-      --card: #121c2d;
-      --border: #2a3d5a;
-      --accent: #f59e0b;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      
+      --brand-indigo: #4338ca;
+      --brand-indigo-light: #eef2ff;
+      --brand-amber: #d97706;
+      --brand-amber-light: #fef3c7;
+      --brand-teal: #0f766e;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      --radius-lg: 16px;
+      --radius-sm: 8px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, sans-serif;
-      padding: 32px 16px;
-      max-width: 680px;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 20px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 740px;
+      width: 100%;
       margin: 0 auto;
+      flex: 1;
     }
-    h1 { color: var(--accent); margin-bottom: 6px; font-size: 1.8rem; }
-    p { color: var(--muted); margin-bottom: 24px; }
-    .list { display: grid; gap: 12px; }
-    .card {
-      display: block;
-      background: var(--card);
+
+    header {
+      margin-bottom: 36px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--brand-indigo-light);
+      color: var(--brand-indigo);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exercise-card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 16px 20px;
-      border-radius: 8px;
-      color: var(--text);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
       text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .card:hover {
-      border-color: var(--accent);
+
+    .exercise-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-focus);
+      background: #ffffff;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 48px;
+    }
+
+    .card-num {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--brand-indigo);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .card-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-top: 4px;
+    }
+
+    .card-body {
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      margin-bottom: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .exercise-card:hover .card-title {
+      color: var(--brand-indigo);
+    }
+
+    .card-slug {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .card-arrow {
+      color: var(--text-subtle);
+      font-size: 1.25rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      padding-left: 6px;
+    }
+
+    .exercise-card:hover .card-arrow {
+      color: var(--brand-amber);
       transform: translateX(4px);
     }
-    .card strong { display: block; font-size: 1.05rem; }
-    .card span {
-      display: block;
-      font-weight: normal;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 4px;
+
+    .empty-state {
+      padding: 40px;
+      text-align: center;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 56px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .credit {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 32px 16px 20px;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      .exercise-card {
+        padding: 16px 18px;
+        gap: 14px;
+      }
+      .card-num {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Master Practice Index</h1>
-  <p>All available interactive grammar modules.</p>
-  <div class="list">
-    <a class="card" href="topics/adverb-placement/">
-      <strong>Mastering Academic Adverb Placement | Earth Sciences & Paleoclimatology</strong>
-      <span>Path: topics/adverb-placement/</span>
-    </a>
-    <a class="card" href="topics/causative-fuel-b12/">
-      <strong>Lemon Therapy: Automotive Misadventures &amp; Expensive Regrets</strong>
-      <span>Path: topics/causative-fuel-b12/</span>
-    </a>
-    <a class="card" href="topics/comparatives-publichealth-c11/">
-      <strong>Public Health & Media: Advanced Comparison</strong>
-      <span>Path: topics/comparatives-publichealth-c11/</span>
-    </a>
-    <a class="card" href="topics/connectors/">
-      <strong>Debating Education: Mastering Contrast & Concession</strong>
-      <span>Path: topics/connectors/</span>
-    </a>
-    <a class="card" href="topics/genitive/">
-      <strong>Natural Noun Connections: Heart Wellness & Everyday Life</strong>
-      <span>Path: topics/genitive/</span>
-    </a>
-    <a class="card" href="topics/linking-expressions-education-b12/">
-      <strong>Debating Education: Mastering Contrast & Concession</strong>
-      <span>Path: topics/linking-expressions-education-b12/</span>
-    </a>
-    <a class="card" href="topics/neither-so-b12/">
-      <strong>Agreeing in English: So, Too, Neither, Either (B1+ ESL)</strong>
-      <span>Path: topics/neither-so-b12/</span>
-    </a>
-    <a class="card" href="topics/participle-clauses/">
-      <strong>Cohesive Mastery: Participle Clauses & Perfect Infinitives in Academic Writing</strong>
-      <span>Path: topics/participle-clauses/</span>
-    </a>
-    <a class="card" href="topics/pastsimple-passive-map-a12/">
-      <strong>Exploring Riverdale: Past & Present</strong>
-      <span>Path: topics/pastsimple-passive-map-a12/</span>
-    </a>
-    <a class="card" href="topics/present-participle-clauses/">
-      <strong>IELTS Academic Writing: Present Participle Clauses for Cohesion</strong>
-      <span>Path: topics/present-participle-clauses/</span>
-    </a>
-    <a class="card" href="topics/present-simple/">
-      <strong>Daily Routines & Habits</strong>
-      <span>Path: topics/present-simple/</span>
-    </a>
-    <a class="card" href="topics/presentsimple-passive/">
-      <strong>Business English: Operations & The Present Simple Passive</strong>
-      <span>Path: topics/presentsimple-passive/</span>
-    </a>
-    <a class="card" href="topics/presentsimple-passive-cooking/">
-      <strong>The Kitchen Lab: Master the Recipe</strong>
-      <span>Path: topics/presentsimple-passive-cooking/</span>
-    </a>
-    <a class="card" href="topics/would-usedto-celebrations-b11/">
-      <strong>Festivals & Celebrations — Past Habits with Used to & Would</strong>
-      <span>Path: topics/would-usedto-celebrations-b11/</span>
-    </a>
+  <div class="container">
+    <header>
+      <span class="badge">Curriculum Catalog</span>
+      <h1>Master Grammar Index</h1>
+      <p>Interactive analysis modules, applied diagnostics, and communicative drills.</p>
+    </header>
+
+    <main class="card-grid">
+
+      <a class="exercise-card" href="topics/adverb-placement/">
+        <div class="card-meta">
+          <span class="card-num">01</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Mastering Academic Adverb Placement | Earth Sciences & Paleoclimatology</h3>
+          <span class="card-slug">/adverb-placement/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/causative-fuel-b12/">
+        <div class="card-meta">
+          <span class="card-num">02</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Lemon Therapy: Automotive Misadventures & Expensive Regrets</h3>
+          <span class="card-slug">/causative-fuel-b12/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/comparatives-publichealth-c11/">
+        <div class="card-meta">
+          <span class="card-num">03</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Public Health & Media: Advanced Comparison</h3>
+          <span class="card-slug">/comparatives-publichealth-c11/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/connectors/">
+        <div class="card-meta">
+          <span class="card-num">04</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Debating Education: Mastering Contrast & Concession</h3>
+          <span class="card-slug">/connectors/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/genitive/">
+        <div class="card-meta">
+          <span class="card-num">05</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Natural Noun Connections: Heart Wellness & Everyday Life</h3>
+          <span class="card-slug">/genitive/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/linking-expressions-education-b12/">
+        <div class="card-meta">
+          <span class="card-num">06</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Debating Education: Mastering Contrast & Concession</h3>
+          <span class="card-slug">/linking-expressions-education-b12/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/must-haveto-school-a12/">
+        <div class="card-meta">
+          <span class="card-num">07</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Essential Rules for School & Work: Must vs. Have to</h3>
+          <span class="card-slug">/must-haveto-school-a12/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/neither-so-b12/">
+        <div class="card-meta">
+          <span class="card-num">08</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Agreeing in English: So, Too, Neither, Either (B1+ ESL)</h3>
+          <span class="card-slug">/neither-so-b12/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/participle-clauses/">
+        <div class="card-meta">
+          <span class="card-num">09</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Cohesive Mastery: Participle Clauses & Perfect Infinitives in Academic Writing</h3>
+          <span class="card-slug">/participle-clauses/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/pastsimple-passive-map-a12/">
+        <div class="card-meta">
+          <span class="card-num">10</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Exploring Riverdale: Past & Present</h3>
+          <span class="card-slug">/pastsimple-passive-map-a12/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/present-participle-clauses/">
+        <div class="card-meta">
+          <span class="card-num">11</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">IELTS Academic Writing: Present Participle Clauses for Cohesion</h3>
+          <span class="card-slug">/present-participle-clauses/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/present-simple/">
+        <div class="card-meta">
+          <span class="card-num">12</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Daily Routines & Habits</h3>
+          <span class="card-slug">/present-simple/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/presentsimple-passive/">
+        <div class="card-meta">
+          <span class="card-num">13</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Business English: Operations & The Present Simple Passive</h3>
+          <span class="card-slug">/presentsimple-passive/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/presentsimple-passive-cooking/">
+        <div class="card-meta">
+          <span class="card-num">14</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">The Kitchen Lab: Master the Recipe</h3>
+          <span class="card-slug">/presentsimple-passive-cooking/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+      <a class="exercise-card" href="topics/would-usedto-celebrations-b11/">
+        <div class="card-meta">
+          <span class="card-num">15</span>
+          <span class="card-tag">Practice Lab</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Festivals & Celebrations — Past Habits with Used to & Would</h3>
+          <span class="card-slug">/would-usedto-celebrations-b11/</span>
+        </div>
+        <div class="card-arrow" aria-hidden="true">&rarr;</div>
+      </a>
+    </main>
+
+    <footer>
+      <p class="credit">Designed by Babak Alaee</p>
+    </footer>
   </div>
 </body>
 </html>
