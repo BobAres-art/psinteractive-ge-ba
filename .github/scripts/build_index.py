@@ -212,7 +212,7 @@ def main():
         with open(output_filename, "w", encoding="utf-8") as f:
             f.write(render_page(
                 f"{display_name}'s Portal",
-                "Below are the practice sheets from class. Select any title to open the file.",
+                "Below are the practice sheets from our class. Select any title to open the file.",
                 student_cards,
                 badge_label=None
             ))
