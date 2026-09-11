@@ -21,7 +21,8 @@
   "class-b2": {
     "name": "Class B2 Cohort",
     "topics": [
-      "connectors"
+      "connectors",
+      "adverb-placement"
     ]
   }
 }
