@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proofreading Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Professional, Modern Web App Palette */
+        :root {
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary-btn: #f1f5f9;
+            --secondary-btn-hover: #e2e8f0;
+            --highlight: #fef08a;
+            --correct: #10b981;
+            --incorrect: #ef4444;
+            --staged: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        /* Header & Instructions */
+        .page-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .instructions-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .instructions-card p {
+            margin: 0 0 12px 0;
+            font-size: 1.05rem;
+        }
+
+        .mode-description {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .mode-box {
+            background: var(--bg-body);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .mode-box strong { color: var(--primary); display: block; margin-bottom: 5px;}
+
+        /* Toolbar UI */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            gap: 15px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            align-items: center;
+        }
+
+        select {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            background: var(--bg-body);
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        select:focus, select:hover {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .timer-container {
+            font-size: 1.25rem;
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .timer-container.low-time {
+            background: var(--incorrect);
+            color: #fff;
+            border-color: var(--incorrect);
+            animation: pulse 1s infinite;
+        }
+
+        /* Editor UI */
+        .editor-wrapper {
+            position: relative;
+        }
+
+        .editor {
+            background: var(--card-bg);
+            padding: 45px 55px;
+            border-radius: 12px;
+            min-height: 350px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            transition: filter 0.3s;
+        }
+
+        .editor.blurred {
+            filter: blur(8px);
+            user-select: none;
+        }
+
+        .start-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-radius: 12px;
+        }
+
+        /* Tooltip Input */
+        #correction-tooltip {
+            position: absolute;
+            display: none;
+            background: var(--text-main);
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateX(-50%);
+            margin-top: 10px;
+            white-space: nowrap;
+        }
+
+        #correction-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 8px 8px 8px;
+            border-style: solid;
+            border-color: transparent transparent var(--text-main) transparent;
+        }
+
+        #correction-tooltip input {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            width: 180px;
+            background: #fff;
+        }
+
+        #correction-tooltip button {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 9px 16px;
+            margin-left: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        #correction-tooltip button:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Text States */
+        .corrected {
+            background-color: var(--correct);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .staged {
+            background-color: var(--staged);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        
+        .staged:hover {
+            transform: scale(1.05);
+        }
+
+        .missed {
+            background-color: var(--incorrect);
+            color: #fff;
+            text-decoration: line-through;
+            padding: 2px 6px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .correction-label {
+            background-color: var(--highlight);
+            color: var(--text-main);
+            padding: 2px 6px;
+            border-radius: 0 4px 4px 0;
+            font-weight: 700;
+        }
+
+        /* Buttons & Toast */
+        .btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn.primary { background: var(--primary); color: #fff; }
+        .btn.primary:hover { background: var(--primary-hover); }
+        .btn.secondary { background: var(--secondary-btn); color: var(--text-main); }
+        .btn.secondary:hover { background: var(--secondary-btn-hover); }
+        .btn.action { background: var(--text-main); color: #fff; }
+        .btn.action:hover { background: #000; }
+
+        .toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-main);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2000;
+        }
+
+        .toast.show {
+            bottom: 40px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 420px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .modal h2 { margin-top: 0; color: var(--text-main); font-size: 1.75rem; }
+        .modal p { color: var(--text-muted); margin-bottom: 30px; }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        .shake { animation: shake 0.4s; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(-50%); }
+            20%, 60% { transform: translateX(calc(-50% - 5px)); }
+            40%, 80% { transform: translateX(calc(-50% + 5px)); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .mode-description { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .timer-container { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="page-header">
+        <h1>Proofreading Practice</h1>
+        <div class="instructions-card">
+            <p><strong>Instructions:</strong> Select a writing task from the dropdown menu to begin. Use your cursor to highlight any text you believe contains an error, and type your correction into the popup box.</p>
+            <div class="mode-description">
+                <div class="mode-box">
+                    <strong>Instant Feedback Mode</strong>
+                    Provides immediate validation. Correct answers turn green instantly. You will be notified if you highlight a word that doesn't need fixing.
+                </div>
+                <div class="mode-box">
+                    <strong>Delayed Feedback Mode</strong>
+                    Simulates a real test environment. Your corrections are staged (turned orange), and all results are revealed only when the time is up or you click "Finish".
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="controls">
+            <select id="task-selector">
+                <option value="" disabled selected>Select a text to practice...</option>
+            </select>
+            <select id="feedback-mode">
+                <option value="instant">Instant Feedback</option>
+                <option value="delayed">Delayed Feedback</option>
+            </select>
+            <button id="btn-restart" class="btn secondary">Restart Task</button>
+        </div>
+        <button id="show-answers-btn" class="btn action" style="display:none;">Finish & Reveal</button>
+        <div class="timer-container" id="timer">00:00</div>
+    </div>
+
+    <div class="editor-wrapper">
+        <div class="editor" id="editor">
+            <p style="text-align: center; color: #94a3b8; font-style: italic; margin: 0;">Select a task from the menu above to begin.</p>
+        </div>
+        <div class="start-overlay" id="start-overlay" style="display: none;">
+            <button class="btn primary" id="btn-start" style="font-size: 1.15rem; padding: 14px 28px;">Start Practice</button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    Designed by Babak Alaee
+</footer>
+
+<!-- Dynamic UI Elements -->
+<div id="correction-tooltip">
+    <input type="text" id="correction-input" placeholder="Type correction..." autocomplete="off">
+    <button id="correction-submit">Check</button>
+</div>
+
+<div class="toast" id="toast">Message goes here</div>
+
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+        <h2 id="modal-title">Time's Up!</h2>
+        <p id="modal-message">Would you like more time to proofread, or are you ready to see the results?</p>
+        <div class="modal-buttons">
+            <button class="btn secondary" id="btn-extend">+1 Minute</button>
+            <button class="btn primary" id="btn-results">Show Answers</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Embedded Fallback JSON Data
+    const fallbackData = {
+        "task1": [
+            {
+                "id": "t1_01",
+                "title": "Task 1: Energy Consumption",
+                "timeLimitSeconds": 180,
+                "text": "The bar chart illustrate the amount of energy consumed by various sector in 2010. Overall, it is clear that industrial sector consumed the most energy.",
+                "errors": [
+                    { "mistake": "illustrate", "correction": "illustrates" },
+                    { "mistake": "sector", "correction": "sectors" },
+                    { "mistake": "industrial sector", "correction": "the industrial sector" }
+                ]
+            }
+        ],
+        "task2": [
+            {
+                "id": "t2_01",
+                "title": "Task 2: Remote Work",
+                "timeLimitSeconds": 300,
+                "text": "Nowadays, more peoples are choosing to work from home. This trend have several benefits, but it also bring some negative consequences for mental healths.",
+                "errors": [
+                    { "mistake": "peoples", "correction": "people" },
+                    { "mistake": "have", "correction": "has" },
+                    { "mistake": "bring", "correction": "brings" },
+                    { "mistake": "healths", "correction": "health" }
+                ]
+            }
+        ]
+    };
+
+    let appData = {};
+    let currentTask = null;
+    let currentErrors = [];
+    let timeRemaining = 0;
+    let timerInterval = null;
+    let isFinished = false;
+    let hasStarted = false;
+
+    // DOM Elements
+    const selector = document.getElementById('task-selector');
+    const modeSelector = document.getElementById('feedback-mode');
+    const editor = document.getElementById('editor');
+    const startOverlay = document.getElementById('start-overlay');
+    const btnStart = document.getElementById('btn-start');
+    const btnRestart = document.getElementById('btn-restart');
+    const timerDisplay = document.getElementById('timer');
+    const tooltip = document.getElementById('correction-tooltip');
+    const tooltipInput = document.getElementById('correction-input');
+    const tooltipSubmit = document.getElementById('correction-submit');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const btnExtend = document.getElementById('btn-extend');
+    const btnResults = document.getElementById('btn-results');
+    const showAnswersBtn = document.getElementById('show-answers-btn');
+    const toast = document.getElementById('toast');
+
+    let currentSelectionRange = null;
+    let currentSelectedText = "";
+
+    // Initialization
+    async function init() {
+        try {
+            const response = await fetch('data.json');
+            if (response.ok) {
+                appData = await response.json();
+            } else {
+                throw new Error("Local data.json not found");
+            }
+        } catch (error) {
+            console.log("Using fallback test data.");
+            appData = fallbackData;
+        }
+        populateSelector();
+    }
+
+    function populateSelector() {
+        selector.innerHTML = '<option value="" disabled selected>Select a text to practice...</option>';
+        if(appData.task1) {
+            const optgroup1 = document.createElement('optgroup');
+            optgroup1.label = "Writing Task 1";
+            appData.task1.forEach(task => optgroup1.innerHTML += `<option value="task1|${task.id}">${task.title}</option>`);
+            selector.appendChild(optgroup1);
+        }
+        if(appData.task2) {
+            const optgroup2 = document.createElement('optgroup');
+            optgroup2.label = "Writing Task 2";
+            appData.task2.forEach(task => optgroup2.innerHTML += `<option value="task2|${task.id}">${task.title}</option>`);
+            selector.appendChild(optgroup2);
+        }
+    }
+
+    // Task Selection & Logic
+    function loadTask(value) {
+        if (!value) return;
+        const [category, id] = value.split('|');
+        currentTask = appData[category].find(t => t.id === id);
+        
+        currentErrors = JSON.parse(JSON.stringify(currentTask.errors)).map(err => ({...err, fixed: false, staged: false}));
+        
+        editor.innerHTML = currentTask.text;
+        editor.classList.add('blurred');
+        startOverlay.style.display = 'flex';
+        showAnswersBtn.style.display = 'none';
+        
+        timeRemaining = currentTask.timeLimitSeconds;
+        updateTimerUI();
+        
+        isFinished = false;
+        hasStarted = false;
+        hideTooltip();
+        clearInterval(timerInterval);
+    }
+
+    selector.addEventListener('change', (e) => loadTask(e.target.value));
+
+    btnRestart.addEventListener('click', () => {
+        if(selector.value) loadTask(selector.value);
+    });
+
+    btnStart.addEventListener('click', () => {
+        editor.classList.remove('blurred');
+        startOverlay.style.display = 'none';
+        showAnswersBtn.style.display = 'block';
+        hasStarted = true;
+        startTimer();
+    });
+
+    // Timer Logic
+    function startTimer() {
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                showModal();
+            } else {
+                timeRemaining--;
+                updateTimerUI();
+            }
+        }, 1000);
+    }
+
+    function updateTimerUI() {
+        const mins = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
+        const secs = (timeRemaining % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${mins}:${secs}`;
+        
+        if (timeRemaining <= 30 && timeRemaining > 0 && hasStarted) {
+            timerDisplay.classList.add('low-time');
+        } else {
+            timerDisplay.classList.remove('low-time');
+        }
+    }
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Selection & Highlight Mechanism
+    document.addEventListener('mouseup', (e) => {
+        if (!hasStarted || isFinished || e.target.closest('#correction-tooltip') || e.target.closest('.modal')) return;
+
+        const selection = window.getSelection();
+        const text = selection.toString().trim();
+
+        if (text.length > 0 && selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            if (editor.contains(range.commonAncestorContainer)) {
+                currentSelectionRange = range;
+                currentSelectedText = text;
+
+                const rect = range.getBoundingClientRect();
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${rect.left + window.scrollX + (rect.width / 2)}px`;
+                tooltip.style.top = `${rect.bottom + window.scrollY}px`;
+                
+                tooltipInput.value = '';
+                tooltipInput.focus();
+            } else {
+                hideTooltip();
+            }
+        } else {
+            hideTooltip();
+        }
+    });
+
+    function hideTooltip() {
+        tooltip.style.display = 'none';
+        currentSelectionRange = null;
+        currentSelectedText = "";
+    }
+
+    editor.addEventListener('click', (e) => {
+        if (e.target.classList.contains('staged') && !isFinished) {
+            const mistakeStr = e.target.dataset.original;
+            const textNode = document.createTextNode(mistakeStr);
+            e.target.parentNode.replaceChild(textNode, e.target);
+            
+            const err = currentErrors.find(err => err.mistake === mistakeStr);
+            if (err) err.staged = false;
+        }
+    });
+
+    // Check Correction Logic
+    function submitCorrection() {
+        const typed = tooltipInput.value.trim();
+        if (!typed) return;
+
+        const mode = modeSelector.value;
+        const matchedError = currentErrors.find(e => 
+            !e.fixed && e.mistake.toLowerCase() === currentSelectedText.toLowerCase()
+        );
+
+        if (!matchedError) {
+            if (mode === 'instant') {
+                showToast("This part is correct! Move on to other words.");
+                hideTooltip();
+                return;
+            } else if (mode === 'delayed') {
+                // False positive staging (user guesses an error on a correct word)
+                const span = document.createElement('span');
+                span.className = 'staged';
+                span.title = "Click to remove guess";
+                span.dataset.original = currentSelectedText;
+                span.dataset.guess = typed;
+                span.dataset.isFalseError = "true";
+                span.textContent = typed;
+                currentSelectionRange.deleteContents();
+                currentSelectionRange.insertNode(span);
+                hideTooltip();
+                return;
+            }
+        }
+
+        if (mode === 'instant') {
+            if (typed.toLowerCase() === matchedError.correction.toLowerCase()) {
+                matchedError.fixed = true;
+                const span = document.createElement('span');
+                span.className = 'corrected';
+                span.textContent = matchedError.correction;
+                currentSelectionRange.deleteContents();
+                currentSelectionRange.insertNode(span);
+                hideTooltip();
+                checkAllDone();
+            } else {
+                tooltip.classList.add('shake');
+                setTimeout(() => tooltip.classList.remove('shake'), 400);
+            }
+        } else if (mode === 'delayed') {
+            matchedError.staged = true;
+            const span = document.createElement('span');
+            span.className = 'staged';
+            span.title = "Click to remove guess";
+            span.dataset.original = matchedError.mistake;
+            span.dataset.guess = typed;
+            span.dataset.isFalseError = "false";
+            span.textContent = typed;
+            currentSelectionRange.deleteContents();
+            currentSelectionRange.insertNode(span);
+            hideTooltip();
+            checkAllDone();
+        }
+    }
+
+    tooltipSubmit.addEventListener('click', submitCorrection);
+    tooltipInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') submitCorrection();
+    });
+
+    function checkAllDone() {
+        const allHandled = currentErrors.every(e => e.fixed || e.staged);
+        if (allHandled && modeSelector.value === 'instant') {
+            clearInterval(timerInterval);
+            showToast("Excellent! You found and corrected all the mistakes.");
+            isFinished = true;
+            showAnswersBtn.style.display = 'none';
+        }
+    }
+
+    // Modal & End Game Controls
+    function showModal() {
+        modalOverlay.style.display = 'flex';
+    }
+
+    btnExtend.addEventListener('click', () => {
+        timeRemaining += 60; // Add 1 minute
+        modalOverlay.style.display = 'none';
+        startTimer();
+    });
+
+    function revealAnswers() {
+        clearInterval(timerInterval);
+        isFinished = true;
+        modalOverlay.style.display = 'none';
+        showAnswersBtn.style.display = 'none';
+        hideTooltip();
+
+        // 1. Evaluate Delayed Feedback (Staged elements)
+        document.querySelectorAll('.staged').forEach(node => {
+            const isFalseError = node.dataset.isFalseError === "true";
+            
+            if (isFalseError) {
+                // The user changed a correct word. Show their guess as missed, original as correct.
+                const originalText = node.dataset.original;
+                node.className = 'missed';
+                node.title = '';
+                node.textContent = node.dataset.guess;
+                
+                const corrSpan = document.createElement('span');
+                corrSpan.className = 'correction-label';
+                corrSpan.textContent = originalText;
+                node.parentNode.insertBefore(corrSpan, node.nextSibling);
+            } else {
+                // The user correctly targeted an error, let's see if their guess was right
+                const mistakeText = node.dataset.original;
+                const guess = node.dataset.guess;
+                const errorObj = currentErrors.find(e => e.mistake === mistakeText);
+                
+                if (errorObj) {
+                    if (guess.toLowerCase() === errorObj.correction.toLowerCase()) {
+                        node.className = 'corrected';
+                        node.title = '';
+                        errorObj.fixed = true;
+                    } else {
+                        node.className = 'missed';
+                        node.title = '';
+                        node.textContent = mistakeText;
+                        
+                        const corrSpan = document.createElement('span');
+                        corrSpan.className = 'correction-label';
+                        corrSpan.textContent = errorObj.correction;
+                        node.parentNode.insertBefore(corrSpan, node.nextSibling);
+                        errorObj.fixed = true;
+                    }
+                }
+            }
+        });
+
+        // 2. Highlight Remaining Unfound/Unfixed Errors
+        const unfixedErrors = currentErrors.filter(e => !e.fixed && !e.staged);
+        
+        unfixedErrors.forEach(err => {
+            const walker = document.createTreeWalker(editor, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToReplace = [];
+            
+            while(node = walker.nextNode()) {
+                if (node.parentNode.tagName === 'SPAN') continue; 
+                if (node.nodeValue.includes(err.mistake)) {
+                    nodesToReplace.push(node);
+                }
+            }
+
+            let replaced = false;
+            for (let n of nodesToReplace) {
+                if(replaced) break; 
+                const idx = n.nodeValue.indexOf(err.mistake);
+                if (idx !== -1) {
+                    const before = n.nodeValue.substring(0, idx);
+                    const after = n.nodeValue.substring(idx + err.mistake.length);
+                    
+                    const spanMissed = document.createElement('span');
+                    spanMissed.className = 'missed';
+                    spanMissed.textContent = err.mistake;
+                    
+                    const spanCorr = document.createElement('span');
+                    spanCorr.className = 'correction-label';
+                    spanCorr.textContent = err.correction;
+                    
+                    const parent = n.parentNode;
+                    parent.insertBefore(document.createTextNode(before), n);
+                    parent.insertBefore(spanMissed, n);
+                    parent.insertBefore(spanCorr, n);
+                    parent.insertBefore(document.createTextNode(after), n);
+                    parent.removeChild(n);
+                    replaced = true;
+                }
+            }
+        });
+
+        showToast("Review your results! Correct answers are highlighted.");
+    }
+
+    btnResults.addEventListener('click', revealAnswers);
+    showAnswersBtn.addEventListener('click', revealAnswers);
+
+    init();
+</script>
+</body>
+</html>
