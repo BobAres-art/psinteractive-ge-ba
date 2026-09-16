@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Life - Tense Studio</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #0d9488;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      color: var(--primary);
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav.tab-buttons {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(30, 58, 138, 0.25);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .tab-panel {
+      display: none;
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    h3 {
+      color: var(--text);
+      margin: 1.25rem 0 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Exposure Tab Styles */
+    .article-card {
+      background: #f1f5f9;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .highlight-btn {
+      background: var(--primary-light);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transition: background 0.2s;
+    }
+
+    .highlight-btn:hover {
+      background: var(--primary);
+    }
+
+    /* Grammatical spans remain plain until toggled */
+    .t-pres-simple, .t-past-simple, .t-pres-perf {
+      font-weight: normal;
+      text-decoration: none;
+      background: transparent;
+      transition: all 0.3s;
+    }
+
+    body.highlight-active .t-pres-simple {
+      background: #fed7aa;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+
+    body.highlight-active .t-past-simple {
+      background: #bbf7d0;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+
+    body.highlight-active .t-pres-perf {
+      background: #bfdbfe;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+
+    .legend-box {
+      display: none;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    body.highlight-active .legend-box {
+      display: flex;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* Form Tab Styles */
+    .rule-table-container {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table.rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    table.rule-table th, table.rule-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    table.rule-table th {
+      background: #f8fafc;
+      color: var(--primary);
+    }
+
+    .cue-tags {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin: 2px;
+      font-size: 0.8rem;
+    }
+
+    /* Practice Tab Styles */
+    .exercise-block {
+      border: 1px solid var(--border);
+      background: #fafafa;
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.25rem;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-check {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.75rem;
+    }
+
+    .btn-check:hover {
+      opacity: 0.9;
+    }
+
+    .feedback {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .feedback.good { color: var(--correct); }
+    .feedback.bad { color: var(--wrong); }
+
+    /* Drag & Drop Scramble Styles */
+    .token-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      min-height: 42px;
+      background: #f1f5f9;
+      padding: 0.5rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      border: 1px dashed var(--border);
+    }
+
+    .token-target {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      min-height: 42px;
+      background: #fff;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 2px dashed var(--primary-light);
+      align-items: center;
+    }
+
+    .token {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      user-select: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .token:active {
+      transform: scale(0.96);
+    }
+
+    /* Option pill styles for click-choice */
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .pill-opt {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 20px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill-opt.selected {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    select.gap-select {
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    /* Creative Tab Styles */
+    .roleplay-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .dice-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    textarea.response-area {
+      width: 100%;
+      min-height: 110px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      resize: vertical;
+    }
+
+    footer {
+      margin-top: auto;
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0.5rem; }
+      .tab-panel { padding: 1rem; }
+      header { padding: 1rem; }
+      header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>The Urban Pulse</h1>
+    <p>Navigating past routines, ongoing experiences, and daily realities in the city</p>
+  </header>
+
+  <nav class="tab-buttons">
+    <button class="tab-btn active" onclick="switchTab('exposure')">Exposure</button>
+    <button class="tab-btn" onclick="switchTab('form')">Form & Rules</button>
+    <button class="tab-btn" onclick="switchTab('practice')">Practice Lab</button>
+    <button class="tab-btn" onclick="switchTab('creative')">City Voice</button>
+  </nav>
+
+  <main>
+    <!-- TAB 1: EXPOSURE -->
+    <section id="exposure" class="tab-panel active">
+      <h2>Life in Metro City: A Resident's Journal</h2>
+      <p style="margin-bottom: 1rem; color: var(--muted); font-size: 0.9rem;">
+        Read the reflections of Marco, a graphic designer who relocated to Metro City. Look closely at how he discusses general facts, past milestones, and ongoing life experiences.
+      </p>
+
+      <button id="toggleHighlightBtn" class="highlight-btn" onclick="toggleHighlights()">Discover Grammar Patterns</button>
+
+      <div class="article-card">
+        <p>
+          I <span class="t-pres-simple">live</span> in the centre of Metro City. Every morning, the metro trains <span class="t-pres-simple">run</span> every three minutes, and people <span class="t-pres-simple">rush</span> through the stations with their coffee cups. It is noisy, but it <span class="t-pres-simple">offers</span> an undeniable energy.
+        </p>
+        <br>
+        <p>
+          I <span class="t-past-simple">moved</span> here in 2021 from a quiet coastal town. In my first month, I <span class="t-past-simple">got</span> lost on the underground three times, and I <span class="t-past-simple">spent</span> two hours trying to find my apartment building. It was stressful, but I quickly <span class="t-past-simple">learned</span> the layout of the streets.
+        </p>
+        <br>
+        <p>
+          I <span class="t-pres-perf">have lived</span> here for over five years now, and I <span class="t-pres-perf">have tried</span> more than fifty neighbourhood cafes. The city has transformed rapidly during this time; planners <span class="t-pres-perf">have built</span> several new bike lanes since last spring, making my commute much greener.
+        </p>
+      </div>
+
+      <div class="legend-box" id="legendBox">
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#fed7aa;"></span>
+          <span>Present Simple (Habits, facts, timetables)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#bbf7d0;"></span>
+          <span>Past Simple (Finished past events at specific times)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#bfdbfe;"></span>
+          <span>Present Perfect (Life experience, duration until now)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: FORM -->
+    <section id="form" class="tab-panel">
+      <h2>Tense Architecture: Present Simple vs. Past Simple vs. Present Perfect</h2>
+      <p style="color: var(--muted); font-size: 0.9rem;">
+        Understanding urban stories requires picking the correct anchor in time. Compare these three core tenses:
+      </p>
+
+      <div class="rule-table-container">
+        <table class="rule-table">
+          <thead>
+            <tr>
+              <th>Tense</th>
+              <th>Primary Meaning</th>
+              <th>Common Time Cues</th>
+              <th>Formula</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Present Simple</strong></td>
+              <td>Daily routines, permanent situations, timetables, and general truths.</td>
+              <td>
+                <span class="cue-tags">always</span>
+                <span class="cue-tags">usually</span>
+                <span class="cue-tags">every day</span>
+                <span class="cue-tags">on weekends</span>
+              </td>
+              <td><code>Subject + Verb(s/es)</code><br><em>The tram departs at 08:00.</em></td>
+            </tr>
+            <tr>
+              <td><strong>Past Simple</strong></td>
+              <td>Completed actions at a clear, finished time in the past.</td>
+              <td>
+                <span class="cue-tags">yesterday</span>
+                <span class="cue-tags">in 2021</span>
+                <span class="cue-tags">two days ago</span>
+                <span class="cue-tags">last year</span>
+              </td>
+              <td><code>Subject + Verb-ed / Irregular</code><br><em>I bought my bike yesterday.</em></td>
+            </tr>
+            <tr>
+              <td><strong>Present Perfect</strong></td>
+              <td>Unspecified time experience, past actions with present relevance, or duration starting in the past continuing until now.</td>
+              <td>
+                <span class="cue-tags">for</span>
+                <span class="cue-tags">since</span>
+                <span class="cue-tags">already</span>
+                <span class="cue-tags">yet</span>
+                <span class="cue-tags">ever / never</span>
+              </td>
+              <td><code>Subject + have/has + Past Participle</code><br><em>I have ridden this tram many times.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Quick Decision Rule</h3>
+      <ul style="padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.7;">
+        <li>Is the time finished (e.g., <em>yesterday</em>, <em>last week</em>, <em>when I was young</em>)? <strong>Use Past Simple.</strong></li>
+        <li>Is it a permanent habit or routine (e.g., <em>every day</em>, <em>regularly</em>)? <strong>Use Present Simple.</strong></li>
+        <li>Is it an ongoing period (<em>since 2022</em>, <em>for 3 years</em>) or life experience with no fixed date? <strong>Use Present Perfect.</strong></li>
+      </ul>
+    </section>
+
+    <!-- TAB 3: PRACTICE -->
+    <section id="practice" class="tab-panel">
+      <h2>Interactive Practice Lab</h2>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+        Work through these eight challenges, ranging from quick identification to sentence building.
+      </p>
+
+      <!-- Exercise 1: Identification -->
+      <div class="exercise-block" id="ex1">
+        <div class="exercise-title">
+          <span>Exercise 1: Purpose Identification</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Multiple Choice</span>
+        </div>
+        <p>Why do we use the <strong>Past Simple</strong> in: <em>"The mayor opened the new city park in 2023."</em>?</p>
+        <div class="pill-group">
+          <button class="pill-opt" onclick="selectPill(this, 'ex1', 'A')">A) Ongoing routine</button>
+          <button class="pill-opt" onclick="selectPill(this, 'ex1', 'B')">B) Completed event with a specific past time</button>
+          <button class="pill-opt" onclick="selectPill(this, 'ex1', 'C')">C) An experience with indefinite timing</button>
+        </div>
+        <button class="btn-check" onclick="checkEx1()">Check</button>
+        <div class="feedback" id="ex1-fb"></div>
+      </div>
+
+      <!-- Exercise 2: Time Marker Matching -->
+      <div class="exercise-block" id="ex2">
+        <div class="exercise-title">
+          <span>Exercise 2: Time Cue Dropdown</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Dropdown</span>
+        </div>
+        <p>
+          "I have lived in this skyscraper
+          <select id="ex2-select" class="gap-select">
+            <option value="">-- Choose cue --</option>
+            <option value="ago">three years ago</option>
+            <option value="for">for three years</option>
+            <option value="yesterday">yesterday</option>
+          </select>
+          and I really appreciate the view."
+        </p>
+        <button class="btn-check" onclick="checkEx2()">Check</button>
+        <div class="feedback" id="ex2-fb"></div>
+      </div>
+
+      <!-- Exercise 3: Distinction Selection -->
+      <div class="exercise-block" id="ex3">
+        <div class="exercise-title">
+          <span>Exercise 3: Routine vs. Single Finished Action</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Multiple Choice</span>
+        </div>
+        <p><em>"The city library usually ________ at 9:00 AM, but yesterday it ________ at 10:00 AM."</em></p>
+        <div class="pill-group">
+          <button class="pill-opt" onclick="selectPill(this, 'ex3', 'A')">A) opens / opened</button>
+          <button class="pill-opt" onclick="selectPill(this, 'ex3', 'B')">B) has opened / opens</button>
+          <button class="pill-opt" onclick="selectPill(this, 'ex3', 'C')">C) opened / has opened</button>
+        </div>
+        <button class="btn-check" onclick="checkEx3()">Check</button>
+        <div class="feedback" id="ex3-fb"></div>
+      </div>
+
+      <!-- Exercise 4: Life Experience Selection -->
+      <div class="exercise-block" id="ex4">
+        <div class="exercise-title">
+          <span>Exercise 4: Life Experience vs Specific Past</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Dropdown</span>
+        </div>
+        <p>
+          A: "
+          <select id="ex4-q1" class="gap-select">
+            <option value="">-- Select --</option>
+            <option value="Did you ever visit">Did you ever visit</option>
+            <option value="Have you ever visited">Have you ever visited</option>
+            <option value="Do you ever visit">Do you ever visit</option>
+          </select>
+          the central art gallery?"<br>
+          B: "Yes, I
+          <select id="ex4-q2" class="gap-select">
+            <option value="">-- Select --</option>
+            <option value="went">went</option>
+            <option value="have gone">have gone</option>
+            <option value="go">go</option>
+          </select>
+          there last weekend with my sister."
+        </p>
+        <button class="btn-check" onclick="checkEx4()">Check</button>
+        <div class="feedback" id="ex4-fb"></div>
+      </div>
+
+      <!-- Exercise 5: Error Spotting -->
+      <div class="exercise-block" id="ex5">
+        <div class="exercise-title">
+          <span>Exercise 5: Identify the Inaccurate Sentence</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Multiple Choice</span>
+        </div>
+        <p>Which sentence contains a grammatical mistake?</p>
+        <div class="pill-group">
+          <button class="pill-opt" onclick="selectPill(this, 'ex5', 'A')">A) She has moved to this district three weeks ago.</button>
+          <button class="pill-opt" onclick="selectPill(this, 'ex5', 'B')">B) She moved to this district three weeks ago.</button>
+          <button class="pill-opt" onclick="selectPill(this, 'ex5', 'C')">C) She has lived in this district for three weeks.</button>
+        </div>
+        <button class="btn-check" onclick="checkEx5()">Check</button>
+        <div class="feedback" id="ex5-fb"></div>
+      </div>
+
+      <!-- Exercise 6: Sentence Unscramble (Interactive Tiles) -->
+      <div class="exercise-block" id="ex6">
+        <div class="exercise-title">
+          <span>Exercise 6: Sentence Unscramble (Present Perfect)</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Interactive Click-Reorder</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.4rem;">Tap words to move them into the target line to form a natural sentence:</p>
+        
+        <!-- Scrambled order prior to solution -->
+        <div class="token-pool" id="pool-ex6">
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">built</div>
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">They</div>
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">a</div>
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">have</div>
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">bridge</div>
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">modern</div>
+          <div class="token" onclick="moveToken(this, 'target-ex6', 'pool-ex6')">recently.</div>
+        </div>
+
+        <div class="token-target" id="target-ex6"></div>
+        <button class="btn-check" onclick="checkEx6()">Check Order</button>
+        <div class="feedback" id="ex6-fb"></div>
+      </div>
+
+      <!-- Exercise 7: Sentence Unscramble (Past Simple with Specific Date) -->
+      <div class="exercise-block" id="ex7">
+        <div class="exercise-title">
+          <span>Exercise 7: Sentence Unscramble (Past Simple)</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Interactive Click-Reorder</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.4rem;">Tap words to move them into the target line:</p>
+
+        <!-- Scrambled order prior to solution -->
+        <div class="token-pool" id="pool-ex7">
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">in</div>
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">arrived</div>
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">train</div>
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">The</div>
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">2020.</div>
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">first</div>
+          <div class="token" onclick="moveToken(this, 'target-ex7', 'pool-ex7')">electric</div>
+        </div>
+
+        <div class="token-target" id="target-ex7"></div>
+        <button class="btn-check" onclick="checkEx7()">Check Order</button>
+        <div class="feedback" id="ex7-fb"></div>
+      </div>
+
+      <!-- Exercise 8: Contextual Multi-Tense Gap Fill -->
+      <div class="exercise-block" id="ex8">
+        <div class="exercise-title">
+          <span>Exercise 8: Comprehensive Urban Context</span>
+          <span style="font-size:0.8rem; color:var(--muted)">Dropdown Selection</span>
+        </div>
+        <p style="line-height: 1.8;">
+          Sofia 
+          <select id="ex8-t1" class="gap-select">
+            <option value="">-- Choose --</option>
+            <option value="works">works</option>
+            <option value="worked">worked</option>
+            <option value="has worked">has worked</option>
+          </select>
+          in the historical quarter every day. She 
+          <select id="ex8-t2" class="gap-select">
+            <option value="">-- Choose --</option>
+            <option value="arrives">arrives</option>
+            <option value="arrived">arrived</option>
+            <option value="has arrived">has arrived</option>
+          </select>
+          at her design studio two hours ago, and since then, she 
+          <select id="ex8-t3" class="gap-select">
+            <option value="">-- Choose --</option>
+            <option value="drinks">drinks</option>
+            <option value="drank">drank</option>
+            <option value="has drunk">has drunk</option>
+          </select>
+          three cups of local coffee.
+        </p>
+        <button class="btn-check" onclick="checkEx8()">Check</button>
+        <div class="feedback" id="ex8-fb"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CREATIVE EXPANSION -->
+    <section id="creative" class="tab-panel">
+      <h2>City Voice: The Urban Perspective Generator</h2>
+      <p style="color: var(--muted); font-size: 0.9rem;">
+        Click the button to roll a random city resident profile. Read their background, and then answer the prompt using all three tenses.
+      </p>
+
+      <button class="dice-btn" onclick="generatePrompt()">
+        <span>🎲</span> Generate Urban Profile
+      </button>
+
+      <div class="roleplay-box" id="profileDisplay">
+        <strong id="roleTitle">Profile: Tap the button above to begin.</strong>
+        <p id="roleDescription" style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text);">
+          Your generated persona and writing task will appear here.
+        </p>
+      </div>
+
+      <div id="writingTaskArea" style="display: none;">
+        <h3>Your Personal Statement</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">
+          Write 3 to 4 sentences about your life in the city based on this profile.<br>
+          Ensure you include: <strong>one routine</strong> (Present Simple), <strong>one past event</strong> (Past Simple), and <strong>one ongoing experience</strong> (Present Perfect).
+        </p>
+        <textarea class="response-area" placeholder="e.g., I commute to work by bus every morning. In 2019, I started working as a taxi driver. I have seen many changes in this neighbourhood..."></textarea>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Designed by Babak Alaee
+  </footer>
+
+  <script>
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Toggle Highlighting in Exposure
+    function toggleHighlights() {
+      const body = document.body;
+      const btn = document.getElementById('toggleHighlightBtn');
+      body.classList.toggle('highlight-active');
+
+      if (body.classList.contains('highlight-active')) {
+        btn.textContent = 'Hide Grammar Patterns';
+      } else {
+        btn.textContent = 'Discover Grammar Patterns';
+      }
+    }
+
+    // Option Pill Selection Helper
+    const selections = {};
+    function selectPill(button, groupKey, value) {
+      const parent = button.parentElement;
+      parent.querySelectorAll('.pill-opt').forEach(b => b.classList.remove('selected'));
+      button.classList.add('selected');
+      selections[groupKey] = value;
+    }
+
+    // Token Move Helper for Unscramble Exercises
+    function moveToken(element, targetId, poolId) {
+      const target = document.getElementById(targetId);
+      const pool = document.getElementById(poolId);
+
+      if (element.parentElement.id === poolId) {
+        target.appendChild(element);
+      } else {
+        pool.appendChild(element);
+      }
+    }
+
+    // Exercise 1 Check
+    function checkEx1() {
+      const fb = document.getElementById('ex1-fb');
+      if (selections['ex1'] === 'B') {
+        fb.textContent = 'Correct! "In 2023" marks a specific, completed time period in the past.';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Notice the exact year mentioned ("in 2023"). Which tense focuses on finished historical moments?';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 2 Check
+    function checkEx2() {
+      const val = document.getElementById('ex2-select').value;
+      const fb = document.getElementById('ex2-fb');
+      if (val === 'for') {
+        fb.textContent = 'Well done! "For" specifies a period of duration (for three years) with the Present Perfect.';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Incorrect. "Ago" requires Past Simple, and "yesterday" cannot connect with "three years".';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 3 Check
+    function checkEx3() {
+      const fb = document.getElementById('ex3-fb');
+      if (selections['ex3'] === 'A') {
+        fb.textContent = 'Spot on! "Usually" requires Present Simple (opens), while "yesterday" indicates a finished past action (opened).';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Try again. Look at the cues: "usually" (regular habit) vs. "yesterday" (specific finished past).';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 4 Check
+    function checkEx4() {
+      const q1 = document.getElementById('ex4-q1').value;
+      const q2 = document.getElementById('ex4-q2').value;
+      const fb = document.getElementById('ex4-fb');
+
+      if (q1 === 'Have you ever visited' && q2 === 'went') {
+        fb.textContent = 'Excellent! Question about general life experience (Present Perfect) followed by a specific visit last weekend (Past Simple).';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Review your selection: Ask about general life experience first, then state what happened at a specific past time.';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 5 Check
+    function checkEx5() {
+      const fb = document.getElementById('ex5-fb');
+      if (selections['ex5'] === 'A') {
+        fb.textContent = 'Correct! Sentence A is incorrect because "three weeks ago" demands the Past Simple ("She moved"), not the Present Perfect.';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Look closely at sentence A. Can we combine a specific time cue like "three weeks ago" with the Present Perfect?';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 6 Check (Scramble)
+    function checkEx6() {
+      const target = document.getElementById('target-ex6');
+      const words = Array.from(target.children).map(child => child.textContent.trim());
+      const sentence = words.join(' ');
+      const fb = document.getElementById('ex6-fb');
+
+      if (sentence === 'They have built a modern bridge recently.') {
+        fb.textContent = 'Splendid! Correct Present Perfect word order.';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Not quite right yet. Start with the subject: "They..." and place the auxiliary verb next.';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 7 Check (Scramble)
+    function checkEx7() {
+      const target = document.getElementById('target-ex7');
+      const words = Array.from(target.children).map(child => child.textContent.trim());
+      const sentence = words.join(' ');
+      const fb = document.getElementById('ex7-fb');
+
+      if (sentence === 'The first electric train arrived in 2020.') {
+        fb.textContent = 'Spot on! Correct Past Simple structure with subject-verb-time phrase order.';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Keep trying. Think about the subject: "The first electric train..." followed by the verb.';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Exercise 8 Check
+    function checkEx8() {
+      const t1 = document.getElementById('ex8-t1').value;
+      const t2 = document.getElementById('ex8-t2').value;
+      const t3 = document.getElementById('ex8-t3').value;
+      const fb = document.getElementById('ex8-fb');
+
+      if (t1 === 'works' && t2 === 'arrived' && t3 === 'has drunk') {
+        fb.textContent = 'Perfection! Routine (works), past moment (arrived two hours ago), and count up to now (has drunk).';
+        fb.className = 'feedback good';
+      } else {
+        fb.textContent = 'Look at the time cues: "every day" (routine), "two hours ago" (finished point), and "since then" (duration leading up to present).';
+        fb.className = 'feedback bad';
+      }
+    }
+
+    // Creative Tab Generator
+    const profiles = [
+      {
+        role: "Eco-Friendly Courier",
+        desc: "You deliver packages across the city on an electric cargo bike. You know every shortcut, alleyway, and steep hill."
+      },
+      {
+        role: "Urban Coffee Roaster",
+        desc: "You operate a small roastery in the old industrial district. You have seen the area transform from empty warehouses to art galleries."
+      },
+      {
+        role: "Architecture Student",
+        desc: "You moved into a small flat near the river two years ago. You sketch historic buildings every morning before your seminars."
+      }
+    ];
+
+    function generatePrompt() {
+      const randomIndex = Math.floor(Math.random() * profiles.length);
+      const selected = profiles[randomIndex];
+
+      document.getElementById('roleTitle').textContent = "Persona: " + selected.role;
+      document.getElementById('roleDescription').textContent = selected.desc;
+      document.getElementById('writingTaskArea').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
