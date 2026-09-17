@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common English Mistakes — Interactive Practice</title>
+  <style>
+    :root {
+      --primary: #f97316;          /* Warm Coral / Amber */
+      --primary-hover: #ea580c;
+      --primary-light: #fff7ed;
+      --accent: #0284c7;           /* Vibrant Teal/Sky Blue */
+      --accent-light: #f0f9ff;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --bg: #fffbf5;               /* Warm cream background */
+      --card-bg: #ffffff;
+      --border: #fed7aa;           /* Warm subtle amber border */
+      --radius: 14px;
+      --shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(180deg, #fff7ed 0%, #fffbf5 350px);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2.5rem 1rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      color: #9a3412;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+
+    header p {
+      color: #c2410c;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    /* Tab Bar */
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background-color: #ffedd5;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      border: 1px solid #fdba74;
+    }
+
+    .tab-btn {
+      flex: 1 1 calc(20% - 0.5rem);
+      min-width: 140px;
+      padding: 0.75rem 0.6rem;
+      border: none;
+      background: transparent;
+      color: #9a3412;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+
+    .tab-btn:hover {
+      color: #7c2d12;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .tab-btn.active {
+      background-color: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.15);
+    }
+
+    /* Tab Content Card */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .unit-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #7c2d12;
+      margin-bottom: 0.35rem;
+    }
+
+    .unit-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1.5px dashed var(--border);
+    }
+
+    /* Exercise Styles */
+    .exercise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .exercise-item {
+      background: #fffdfa;
+      border: 1.5px solid #ffedd5;
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .exercise-item:hover {
+      border-color: #fdba74;
+      background: #ffffff;
+    }
+
+    .item-prompt {
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: #292524;
+      display: flex;
+      gap: 0.6rem;
+      font-size: 1.02rem;
+    }
+
+    .item-num {
+      font-weight: 800;
+      color: var(--primary);
+      min-width: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .text-input {
+      flex: 1 1 280px;
+      padding: 0.65rem 1rem;
+      font-size: 0.96rem;
+      border: 1.5px solid #fed7aa;
+      border-radius: 8px;
+      background: #ffffff;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .text-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+    }
+
+    .select-input {
+      padding: 0.65rem 1rem;
+      font-size: 0.96rem;
+      border: 1.5px solid #fed7aa;
+      border-radius: 8px;
+      background: #ffffff;
+      cursor: pointer;
+      outline: none;
+      min-width: 220px;
+      color: #292524;
+      font-weight: 500;
+    }
+
+    .select-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+    }
+
+    .btn-check {
+      padding: 0.65rem 1.3rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #ea580c 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25);
+      transition: all 0.2s;
+    }
+
+    .btn-check:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(234, 88, 12, 0.3);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      display: block;
+      background-color: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #86efac;
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background-color: var(--error-bg);
+      color: var(--error);
+      border: 1px solid #fca5a5;
+    }
+
+    /* Option Pill Selection (Unit 5) */
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .option-btn {
+      background: #ffedd5;
+      border: 1.5px solid #fed7aa;
+      border-radius: 30px;
+      padding: 0.45rem 1.2rem;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #9a3412;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      background: #fdba74;
+      color: #7c2d12;
+    }
+
+    .option-btn.selected {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary-hover);
+      box-shadow: 0 2px 4px rgba(234, 88, 12, 0.25);
+    }
+
+    /* Lesson Reveal Drawer */
+    .lesson-toggle-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      color: #9a3412;
+      border: 1.5px dashed #f97316;
+      border-radius: 10px;
+      padding: 0.95rem 1rem;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.25s;
+    }
+
+    .lesson-toggle-btn:hover {
+      background: #fed7aa;
+      color: #7c2d12;
+    }
+
+    .lesson-panel {
+      display: none;
+      margin-top: 1.25rem;
+      padding: 1.6rem;
+      background-color: #fffaf0;
+      border: 1.5px solid #fed7aa;
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
+    }
+
+    .lesson-panel.open {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .lesson-panel h4 {
+      color: #7c2d12;
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .lesson-panel p {
+      font-size: 0.95rem;
+      color: #374151;
+      margin-bottom: 0.75rem;
+    }
+
+    .lesson-panel ul {
+      margin-left: 1.35rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .lesson-panel li {
+      margin-bottom: 0.45rem;
+    }
+
+    .lesson-panel .example-box {
+      background: #ffffff;
+      border-left: 3px solid #fb923c;
+      padding: 0.55rem 0.9rem;
+      font-style: italic;
+      margin: 0.5rem 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.93rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    /* Subtly designed credit footer */
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: #b45309;
+      opacity: 0.65;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Common English Mistakes</h1>
+      <p>Interactive Practice Sheets & Grammar Key</p>
+    </header>
+
+    <!-- Nav Tabs -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(0)">1. Articles</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. Spelling</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. Prepositions</button>
+      <button class="tab-btn" onclick="switchTab(3)">4. Contrast</button>
+      <button class="tab-btn" onclick="switchTab(4)">5. Confused Nouns</button>
+    </nav>
+
+    <!-- Card Container -->
+    <main class="card">
+
+      <!-- ==================== TAB 1: ARTICLES ==================== -->
+      <section class="tab-pane active" id="tab-0">
+        <h2 class="unit-title">Articles: 'the' before general concepts</h2>
+        <p class="unit-subtitle">Exercise 3: Are these sentences right or wrong? Correct those containing mistakes.</p>
+
+        <div class="exercise-list">
+          <div class="exercise-item" data-answer="A diet high in cholesterol is bad for the heart.">
+            <div class="item-prompt"><span class="item-num">1.</span> A diet high in cholesterol is bad for heart.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['a diet high in cholesterol is bad for the heart.', 'bad for the heart', 'bad for the heart.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="Right (Correct)">
+            <div class="item-prompt"><span class="item-num">2.</span> The introduction of computerised systems led to an increase in unemployment.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['right', 'correct', 'the introduction of computerised systems led to an increase in unemployment.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="We all benefit from the development of new technologies.">
+            <div class="item-prompt"><span class="item-num">3.</span> We all benefit from development of new technologies.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['we all benefit from the development of new technologies.', 'the development of new technologies', 'from the development of new technologies'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="We were unhappy about the quality of the food available.">
+            <div class="item-prompt"><span class="item-num">4.</span> We were unhappy about quality of the food available.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['we were unhappy about the quality of the food available.', 'the quality of the food available', 'about the quality of the food available'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="Right (Correct — describes specific changes: 'improvements in')">
+            <div class="item-prompt"><span class="item-num">5.</span> Last year the airline saw a 20% improvement in delays.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['right', 'correct', 'last year the airline saw a 20% improvement in delays.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="Right (Correct — describes general types: 'the teacher', 'the student')">
+            <div class="item-prompt"><span class="item-num">6.</span> There have been changes in the relationship between the teacher and the student.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['right', 'correct', 'there have been changes in the relationship between the teacher and the student.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="Rates vary depending on the standard of accommodation you choose.">
+            <div class="item-prompt"><span class="item-num">7.</span> Rates vary depending on standard of accommodation you choose.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['rates vary depending on the standard of accommodation you choose.', 'the standard of accommodation you choose', 'on the standard of accommodation'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="She focused on the role of the family in a child's education.">
+            <div class="item-prompt"><span class="item-num">8.</span> She focused on the role of a family in a child's education.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['she focused on the role of the family in a child\'s education.', 'the role of the family', 'role of the family'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <button class="lesson-toggle-btn" onclick="toggleLesson(this)">
+          <span>📖 View Page Lessons & Rules</span>
+        </button>
+        <div class="lesson-panel">
+          <h4>Grammar Lesson: Using 'the' before general concepts</h4>
+          <p>We use <strong>the</strong> before nouns which describe a general type of thing rather than a specific example of that thing:</p>
+          <div class="example-box">These are problems for students living away from <strong>the family</strong>.</div>
+          <div class="example-box">We don't know the effects of such chemicals on <strong>the body</strong>.</div>
+          <div class="example-box">The role of <strong>the student</strong> at university level varies greatly from country to country.</div>
+          <div class="example-box">Most of our business is carried out over <strong>the telephone</strong>.</div>
+
+          <p style="margin-top: 1rem;"><strong>The</strong> is also used before abstract nouns which describe a situation, a quality, a process or a change. These words are often followed by <em>of something</em>:</p>
+          <div class="example-box">There is a problem with <strong>the availability of</strong> clean water in some villages.</div>
+          <div class="example-box"><strong>The distribution of</strong> income is uneven in most countries.</div>
+          <div class="example-box">On the whole, <strong>the standard of</strong> living is better in urban areas.</div>
+          <div class="example-box">Many residents complained about <strong>the frequency of</strong> bus services.</div>
+          <div class="example-box">This advance was brought about by <strong>the development of</strong> antibiotics.</div>
+          <div class="example-box">He made a number of recommendations for <strong>the improvement of</strong> staff training.</div>
+
+          <p style="margin-top: 1rem;"><strong>Notice the distinction:</strong></p>
+          <ul>
+            <li>We use <em>the development / improvement of something</em> to describe a general process of change.</li>
+            <li>We use <em>developments / improvements in something</em> to describe specific changes (e.g. <em>"We try to keep up-to-date with new developments in information technology."</em>).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 2: SPELLING ==================== -->
+      <section class="tab-pane" id="tab-1">
+        <h2 class="unit-title">Spelling: one word or two?</h2>
+        <p class="unit-subtitle">Exercise 3: Correct any errors in the compounds and phrases in the sentences below.</p>
+
+        <div class="exercise-list">
+          <div class="exercise-item" data-answer="where as → whereas">
+            <div class="item-prompt"><span class="item-num">1.</span> 80% of women said they were satisfied, where as only 60% of men were happy.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['whereas'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="every thing → everything">
+            <div class="item-prompt"><span class="item-num">2.</span> The room was clean and every thing was neatly arranged.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['everything'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="Correct (lifestyle is one word)">
+            <div class="item-prompt"><span class="item-num">3.</span> Many of the problems are due to changes in lifestyle.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['right', 'correct', 'lifestyle'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="well being → well-being">
+            <div class="item-prompt"><span class="item-num">4.</span> Our main concern is for the health and well being of all our residents.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['well-being'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="Correct (outbreak is one word)">
+            <div class="item-prompt"><span class="item-num">5.</span> They fled the country just before the outbreak of the civil war.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['right', 'correct', 'outbreak'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="life-span → lifespan | country side → countryside">
+            <div class="item-prompt"><span class="item-num">6.</span> He carried out research into the life-span of people living in the country side.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['lifespan, countryside', 'lifespan and countryside', 'lifespan countryside'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="May be → Maybe (adverb)">
+            <div class="item-prompt"><span class="item-num">7.</span> May be learning a foreign language in school should be compulsory.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['maybe'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="twenty six → twenty-six | through out → throughout">
+            <div class="item-prompt"><span class="item-num">8.</span> The charity runs twenty six hostels spread through out the country.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['twenty-six, throughout', 'twenty-six and throughout', 'twenty-six throughout'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <button class="lesson-toggle-btn" onclick="toggleLesson(this)">
+          <span>📖 View Page Lessons & Rules</span>
+        </button>
+        <div class="lesson-panel">
+          <h4>Spelling: One Word, Two Words, or Hyphenated?</h4>
+          <p><strong>Compounds written as one word:</strong></p>
+          <ul>
+            <li><em>countryside, hairstyle, lifespan, lifestyle, website, wildlife, workforce, workplace</em></li>
+            <li><em>misuse, outbreak, outcome, outside, overall, overcome</em></li>
+            <li><em>anybody, everyone, everything, someone, sometimes</em></li>
+            <li><em>furthermore, moreover, nowadays, throughout, whereas</em></li>
+          </ul>
+
+          <p><strong>Compounds written with a hyphen:</strong></p>
+          <ul>
+            <li><em>make-up, well-being</em></li>
+            <li>Numbers: <em>twenty-four, thirty-five</em>, etc.</li>
+          </ul>
+
+          <p><strong>Phrases written as separate words:</strong></p>
+          <ul>
+            <li>Young people often spend <strong>a lot of</strong> money on clothes.</li>
+            <li><strong>In fact</strong>, levels of pollution have decreased in the past five years.</li>
+            <li>She still smokes, <strong>even though</strong> she knows it's bad for her health.</li>
+          </ul>
+
+          <p><strong>Special distinction (Maybe vs May be):</strong></p>
+          <div class="example-box"><strong>Maybe</strong> his plane has been delayed. (<em>= an adverb meaning 'perhaps'</em>)</div>
+          <div class="example-box">I suspect the main reason for the change <strong>may be</strong> financial. (<em>= a modal verb phrase</em>)</div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 3: PREPOSITIONS ==================== -->
+      <section class="tab-pane" id="tab-2">
+        <h2 class="unit-title">Using prepositions: after verbs</h2>
+        <p class="unit-subtitle">Exercise 3: There is one incorrect or missing preposition in each sentence below. Make any changes or additions necessary.</p>
+
+        <div class="exercise-list">
+          <div class="exercise-item" data-answer="spend ... on (not 'in')">
+            <div class="item-prompt"><span class="item-num">1.</span> Some companies spend huge sums in advertising.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['on', 'spend huge sums on advertising', 'on advertising', 'some companies spend huge sums on advertising.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="provide customers with better information (add 'with')">
+            <div class="item-prompt"><span class="item-num">2.</span> The new labels provide customers better information about ingredients.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['with', 'provide customers with', 'the new labels provide customers with better information about ingredients.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="help me with (add 'with')">
+            <div class="item-prompt"><span class="item-num">3.</span> I have a problem I think you can help me.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['with', 'help me with', 'i have a problem i think you can help me with.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="investment in education (not 'for')">
+            <div class="item-prompt"><span class="item-num">4.</span> The party promised to increase investment for education.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['in', 'investment in education', 'in education', 'the party promised to increase investment in education.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="provision of more special lanes (add 'of')">
+            <div class="item-prompt"><span class="item-num">5.</span> We are pressing for the provision more special lanes for cyclists.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['of', 'provision of', 'we are pressing for the provision of more special lanes for cyclists.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="provided for passengers (not 'to')">
+            <div class="item-prompt"><span class="item-num">6.</span> There are no facilities provided to passengers with young children.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['for', 'provided for', 'for passengers', 'there are no facilities provided for passengers with young children.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="spending on photographic film (not 'for')">
+            <div class="item-prompt"><span class="item-num">7.</span> Spending for photographic film has dropped dramatically.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['on', 'spending on', 'on photographic film', 'spending on photographic film has dropped dramatically.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="help guests with their bags (add 'with')">
+            <div class="item-prompt"><span class="item-num">8.</span> There's a porter in reception to help guests their bags.</div>
+            <div class="input-row">
+              <input type="text" class="text-input" placeholder="Enter your answer" />
+              <button class="btn-check" onclick="checkCorrection(this, ['with', 'help guests with', 'there\'s a porter in reception to help guests with their bags.'])">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <button class="lesson-toggle-btn" onclick="toggleLesson(this)">
+          <span>📖 View Page Lessons & Rules</span>
+        </button>
+        <div class="lesson-panel">
+          <h4>Preposition Patterns after Verbs and Related Nouns</h4>
+          <p>Common <strong>verb + object + preposition</strong> combinations:</p>
+          <ul>
+            <li><strong>spend + time/money + on something</strong>
+              <div class="example-box">The average person spends £100 a month <strong>on</strong> transport.</div>
+              <div class="example-box"><em>Also:</em> Expenditure <strong>on</strong> / Spending <strong>on</strong> education has risen.</div>
+            </li>
+            <li><strong>invest + money + in something</strong>
+              <div class="example-box">It's up to local government to invest money <strong>in</strong> improved leisure facilities.</div>
+              <div class="example-box"><em>Also:</em> The protesters want more state investment <strong>in</strong> agriculture.</div>
+            </li>
+            <li><strong>provide + something + for someone</strong>
+              <div class="example-box">The project will provide employment <strong>for</strong> young artists and performers.</div>
+              <div class="example-box"><em>Also:</em> There has been progress in the provision <strong>of</strong> facilities <strong>for</strong> the disabled.</div>
+            </li>
+            <li><strong>provide + someone + with something</strong>
+              <div class="example-box">We aim to provide the children <strong>with</strong> an opportunity to experience a different culture.</div>
+            </li>
+            <li><strong>help + someone + (out) + with something</strong>
+              <div class="example-box">She visits twice a week to help her grandmother out <strong>with</strong> the housework.</div>
+              <div class="example-box"><em>Also:</em> Some students need extra help <strong>with</strong> reading and writing.</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 4: CONTRAST ==================== -->
+      <section class="tab-pane" id="tab-3">
+        <h2 class="unit-title">Expressing contrast</h2>
+        <p class="unit-subtitle">Exercise 3: Complete the sentences with one of the phrases from the options.</p>
+
+        <div class="exercise-list">
+          <div class="exercise-item" data-answer="in contrast">
+            <div class="item-prompt"><span class="item-num">1.</span> Abacus made profits of $343 million. Zenon, __________, made only $17.9 million.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'in contrast')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="on the contrary">
+            <div class="item-prompt"><span class="item-num">2.</span> Water doesn't shrink when it turns into ice, but, __________, it expands.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'on the contrary')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="in contrast to">
+            <div class="item-prompt"><span class="item-num">3.</span> The town remains relatively undeveloped __________ others along the coast.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'in contrast to')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="contrast between">
+            <div class="item-prompt"><span class="item-num">4.</span> The __________ the two politicians could not be greater.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'contrast between')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="in contrast">
+            <div class="item-prompt"><span class="item-num">5.</span> A dog's nose is vastly more sensitive than our own. Birds, __________, have a comparatively poor sense of smell.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'in contrast')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="in contrast to">
+            <div class="item-prompt"><span class="item-num">6.</span> The centre of the island is wild and rocky __________ the soft sandy beaches.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'in contrast to')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="in contrast">
+            <div class="item-prompt"><span class="item-num">7.</span> Overweight people usually clear their plate. Slim people, __________, stop eating when they feel satisfied.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'in contrast')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="on the other hand">
+            <div class="item-prompt"><span class="item-num">8.</span> Some jobs might be lost, but __________ others would be created.</div>
+            <div class="input-row">
+              <select class="select-input">
+                <option value="">-- Choose phrase --</option>
+                <option value="in contrast">in contrast</option>
+                <option value="on the contrary">on the contrary</option>
+                <option value="on the other hand">on the other hand</option>
+                <option value="in contrast to">in contrast to</option>
+                <option value="contrast between">contrast between</option>
+              </select>
+              <button class="btn-check" onclick="checkSelect(this, 'on the other hand')">Check</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <button class="lesson-toggle-btn" onclick="toggleLesson(this)">
+          <span>📖 View Page Lessons & Rules</span>
+        </button>
+        <div class="lesson-panel">
+          <h4>Ways of Expressing Contrast</h4>
+          <p><strong>1. In contrast / In contrast to:</strong></p>
+          <p>We use <strong>in contrast</strong> to introduce a fact or idea which is very different from what has already been mentioned:</p>
+          <div class="example-box">Questionnaires produce only limited responses. Interviews, <strong>in contrast</strong>, are time-consuming, but allow for fuller replies.</div>
+          <div class="example-box">In Britain only 9% of over sixties live with their families, <strong>in contrast to</strong> 29% in Japan.</div>
+          <p>We can also say that there is a <strong>contrast between</strong> two things which are very different:</p>
+          <div class="example-box">There is a stark <strong>contrast between</strong> the affluent suburbs and the nearby slum areas.</div>
+
+          <p style="margin-top:1rem;"><strong>2. On the contrary:</strong></p>
+          <p>We use <strong>on the contrary</strong>, especially in speech, to introduce the opposite of what has just been said or to express an opposite opinion:</p>
+          <div class="example-box">'Have visitor numbers dropped since the attack?' '<strong>On the contrary</strong>, they've risen slightly.'</div>
+
+          <p style="margin-top:1rem;"><strong>3. On the other hand:</strong></p>
+          <p>We use the phrase <strong>on the other hand</strong> to introduce an opposite viewpoint:</p>
+          <div class="example-box">Parents need to warn their child about things to avoid, but, <strong>on the other hand</strong>, they must not make the child over-anxious.</div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 5: CONFUSED NOUNS ==================== -->
+      <section class="tab-pane" id="tab-4">
+        <h2 class="unit-title">Commonly confused nouns: habits, customs and practices</h2>
+        <p class="unit-subtitle">Exercise 3: Underline/select the best noun to complete each of the sentences below.</p>
+
+        <div class="exercise-list">
+          <div class="exercise-item" data-answer="customs">
+            <div class="item-prompt"><span class="item-num">1.</span> The people of the island are proud of their history and [customs / behaviours].</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'customs', 'customs')">customs</button>
+              <button class="option-btn" onclick="selectOption(this, 'behaviours', 'customs')">behaviours</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="practice">
+            <div class="item-prompt"><span class="item-num">2.</span> It is now a common [practice / custom] to allow calculators in maths lessons.</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'practice', 'practice')">practice</button>
+              <button class="option-btn" onclick="selectOption(this, 'custom', 'practice')">custom</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="habits">
+            <div class="item-prompt"><span class="item-num">3.</span> Parents need more control over their children's viewing [habits / practice].</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'habits', 'habits')">habits</button>
+              <button class="option-btn" onclick="selectOption(this, 'practice', 'habits')">practice</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="custom">
+            <div class="item-prompt"><span class="item-num">4.</span> In accordance with Muslim [custom / habit], he was buried within hours of his death.</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'custom', 'custom')">custom</button>
+              <button class="option-btn" onclick="selectOption(this, 'habit', 'custom')">habit</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="habits">
+            <div class="item-prompt"><span class="item-num">5.</span> He's picked up some bad [behaviours / habits] from his new friends.</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'behaviours', 'habits')">behaviours</button>
+              <button class="option-btn" onclick="selectOption(this, 'habits', 'habits')">habits</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="practice">
+            <div class="item-prompt"><span class="item-num">6.</span> We hope to end the [habit / practice] of employing children to work in the mines.</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'habit', 'practice')">habit</button>
+              <button class="option-btn" onclick="selectOption(this, 'practice', 'practice')">practice</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="customs">
+            <div class="item-prompt"><span class="item-num">7.</span> It is sometimes difficult to keep local [habits / customs] alive in a global age.</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'habits', 'customs')">habits</button>
+              <button class="option-btn" onclick="selectOption(this, 'customs', 'customs')">customs</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise-item" data-answer="behaviour">
+            <div class="item-prompt"><span class="item-num">8.</span> Should you reward children for good [behaviour / habit]?</div>
+            <div class="options-group">
+              <button class="option-btn" onclick="selectOption(this, 'behaviour', 'behaviour')">behaviour</button>
+              <button class="option-btn" onclick="selectOption(this, 'habit', 'behaviour')">habit</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <button class="lesson-toggle-btn" onclick="toggleLesson(this)">
+          <span>📖 View Page Lessons & Rules</span>
+        </button>
+        <div class="lesson-panel">
+          <h4>Differences: Habit, Custom, Practice & Behaviour</h4>
+          <ul>
+            <li><strong>Habit:</strong> Something a person does regularly in a particular way as part of their everyday life, often without thinking about it.
+              <div class="example-box">After a while, separating rubbish for recycling just becomes a <strong>habit</strong>.</div>
+              <div class="example-box">People's eating <strong>habits</strong> have changed. Families no longer eat meals together.</div>
+            </li>
+            <li><strong>Custom:</strong> Something people in a particular country or of a particular religious or ethnic group do because it has been part of their culture or way of life for many years.
+              <div class="example-box">He studied Maori culture and <strong>customs</strong>.</div>
+              <div class="example-box">The <strong>custom</strong> of decorating eggs goes back hundreds of years.</div>
+            </li>
+            <li><strong>Practice:</strong> A method of doing something which is usually used, especially in a particular country, industry, etc. In this sense, <em>practice</em> is a countable noun.
+              <div class="example-box">The report condemned the <strong>practice</strong> of keeping prisoners in chains.</div>
+              <div class="example-box">Modern agricultural <strong>practices</strong> are to blame for the decline in wild flowers.</div>
+            </li>
+            <li><strong>Behaviour:</strong> The way someone behaves generally or on a particular occasion. <em>Behaviour</em> is usually an uncountable noun and has no plural form:
+              <div class="example-box">The appalling <strong>behaviour</strong> of a minority of fans ruined the event for everyone.</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Subtle Footer Credit -->
+    <footer>
+      Designed by Babak Alaee
+    </footer>
+  </div>
+
+  <script>
+    // Tab switching
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-pane');
+      const buttons = document.querySelectorAll('.tab-btn');
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+
+    // Toggle Lesson Drawer
+    function toggleLesson(btn) {
+      const panel = btn.nextElementSibling;
+      panel.classList.toggle('open');
+      const isOpen = panel.classList.contains('open');
+      btn.querySelector('span').textContent = isOpen 
+        ? '▲ Hide Page Lessons & Rules' 
+        : '📖 View Page Lessons & Rules';
+    }
+
+    // Free text check
+    function checkCorrection(btn, validAnswers) {
+      const parent = btn.closest('.exercise-item');
+      const input = parent.querySelector('.text-input');
+      const feedback = parent.querySelector('.feedback');
+      const userVal = input.value.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+      
+      const isCorrect = validAnswers.some(ans => {
+        const cleanAns = ans.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        return userVal === cleanAns;
+      });
+
+      if (isCorrect) {
+        feedback.className = 'feedback correct';
+        feedback.innerHTML = '✓ Correct! Answer: <em>' + parent.dataset.answer + '</em>';
+      } else {
+        feedback.className = 'feedback incorrect';
+        feedback.innerHTML = '✗ Not quite. Key answer: <em>' + parent.dataset.answer + '</em>';
+      }
+    }
+
+    // Select dropdown check
+    function checkSelect(btn, correctVal) {
+      const parent = btn.closest('.exercise-item');
+      const select = parent.querySelector('.select-input');
+      const feedback = parent.querySelector('.feedback');
+      
+      if (!select.value) {
+        alert('Please select an option first.');
+        return;
+      }
+
+      if (select.value === correctVal) {
+        feedback.className = 'feedback correct';
+        feedback.innerHTML = '✓ Correct!';
+      } else {
+        feedback.className = 'feedback incorrect';
+        feedback.innerHTML = '✗ Incorrect. Correct choice: <strong>' + correctVal + '</strong>';
+      }
+    }
+
+    // Option pills check (Unit 5)
+    function selectOption(btn, chosen, correctVal) {
+      const parent = btn.closest('.exercise-item');
+      const buttons = parent.querySelectorAll('.option-btn');
+      const feedback = parent.querySelector('.feedback');
+
+      buttons.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      if (chosen === correctVal) {
+        feedback.className = 'feedback correct';
+        feedback.innerHTML = '✓ Correct!';
+      } else {
+        feedback.className = 'feedback incorrect';
+        feedback.innerHTML = '✗ Incorrect. Correct choice: <strong>' + correctVal + '</strong>';
+      }
+    }
+  </script>
+</body>
+</html>
