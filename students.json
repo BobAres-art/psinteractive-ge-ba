@@ -18,13 +18,24 @@
       "causative-fuel-b12",
       "comparatives-publichealth-c11",
       "causative-fuel-b12",
-      "neither-so-b12"
+      "neither-so-b12",
+      "pastsimple-perfect-presentperfect-linegraph-b12"
+    ]
+  },
+  "lavin": {
+    "name": "Lavin",
+    "topics": [
+      "common-mistakes-c11",
+      "participle-clauses",
+      "present-participle-clauses",
+      "proofreading"
     ]
   },
   "ramin": {
     "name": "Ramin",
     "topics": [
-      "be-usedto-would-education-b12"
+      "be-usedto-would-education-b12",
+      "pastsimple-perfect-presentperfect-linegraph-b12"
     ]
   }
 }
