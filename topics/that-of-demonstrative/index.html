@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstrative Pronoun Substitution in Academic Writing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['Newsreader', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+              950: '#041e31',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .tab-btn.active {
+      color: #0369a1;
+      border-color: #0284c7;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+    .token-active {
+      outline: 2px solid #0284c7;
+      background-color: #dbeafe !important;
+      color: #0c4a6e !important;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col custom-scrollbar selection:bg-brand-100 selection:text-brand-900">
+
+  <!-- Top Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between py-3 md:py-0 md:h-20 gap-3 md:gap-4">
+        
+        <!-- Brand & Title Section -->
+        <div class="flex items-center space-x-3.5 min-w-0">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-brand-600 via-brand-700 to-slate-900 flex items-center justify-center text-white shadow-md shadow-brand-600/20 shrink-0">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+            </svg>
+          </div>
+          <div class="truncate">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-semibold tracking-wider text-brand-700 uppercase bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200 inline-block">Academic Syntactic Architecture</span>
+              <span class="text-[11px] text-slate-400 font-mono hidden sm:inline-block">Parallel Comparative Synthesis</span>
+            </div>
+            <h1 class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-slate-900 font-serif truncate">Demonstrative Pronoun Substitution</h1>
+          </div>
+        </div>
+
+        <!-- Desktop & Tablet Tabs -->
+        <div class="flex overflow-x-auto custom-scrollbar items-center gap-1.5 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/80 shrink-0">
+          <button onclick="switchTab('tab-mechanics')" id="btn-tab-mechanics" class="tab-btn active px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-150 flex items-center gap-2 text-slate-600 hover:text-brand-700 whitespace-nowrap">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            Core Mechanics
+          </button>
+          <button onclick="switchTab('tab-rules')" id="btn-tab-rules" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-150 flex items-center gap-2 text-slate-600 hover:text-brand-700 whitespace-nowrap">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            Syntactic Rules
+          </button>
+          <button onclick="switchTab('tab-report')" id="btn-tab-report" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-150 flex items-center gap-2 text-slate-600 hover:text-brand-700 whitespace-nowrap">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            Academic Model Report
+          </button>
+          <button onclick="switchTab('tab-alternatives')" id="btn-tab-alternatives" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-150 flex items-center gap-2 text-slate-600 hover:text-brand-700 whitespace-nowrap">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+            Strategic Alternatives
+          </button>
+          <button onclick="switchTab('tab-lab')" id="btn-tab-lab" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-150 flex items-center gap-2 text-slate-600 hover:text-brand-700 whitespace-nowrap">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+            Practice Lab (10)
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- TAB 1: CORE MECHANICS -->
+    <section id="tab-mechanics" class="tab-pane block space-y-8 animate-fadeIn">
+      
+      <!-- Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-brand-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden border border-slate-800">
+        <div class="relative z-10 max-w-3xl">
+          <span class="text-xs uppercase font-mono tracking-widest text-brand-300 font-semibold px-2.5 py-1 bg-brand-900/60 rounded-full inline-block mb-3 border border-brand-500/30">Linguistic Framework</span>
+          <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-3">Demonstrative Pronoun Substitution</h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+            In academic synthesis and data reporting, rigorous structural parallelism demands comparing like with like. Substituting repeated head nouns with the pro-forms <span class="font-mono text-brand-300 font-semibold">that of</span> and <span class="font-mono text-brand-300 font-semibold">those of</span> avoids lexical monotony while preventing illogical category errors.
+          </p>
+        </div>
+      </div>
+
+      <!-- Symmetrical Preposition Example -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">Parallel Concord: The Symmetrical Baseline</h3>
+            <p class="text-xs sm:text-sm text-slate-500">Notice how prepositional harmony (<code class="font-mono text-brand-700 bg-brand-50 px-1 py-0.5 rounded">of ... that of</code>) creates effortless cognitive parsing.</p>
+          </div>
+          <span class="text-xs bg-brand-50 text-brand-700 font-semibold px-3 py-1 rounded-full border border-brand-200">Balanced Syntax</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Illogical Card -->
+          <div class="rounded-2xl p-5 bg-rose-50/60 border border-rose-200 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-bold">✕</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-rose-800">Faulty / Illogical Comparison</span>
+            </div>
+            <p class="font-serif text-base sm:text-lg text-slate-900 italic bg-white/90 p-4 rounded-xl border border-rose-100">
+              "The <span class="underline decoration-rose-500 font-semibold text-rose-900">energy output of Country A</span> was higher than <span class="bg-rose-200 text-rose-950 px-1.5 py-0.5 rounded font-bold">Country B</span>."
+            </p>
+            <div class="text-xs text-rose-800 leading-relaxed bg-white/60 p-3 rounded-xl">
+              <strong>Category Mismatch:</strong> Compares a quantitative metric (<code class="font-mono">energy output</code>) directly to a geopolitical landmass (<code class="font-mono">Country B</code>).
+            </div>
+          </div>
+
+          <!-- Symmetrical Correct Card -->
+          <div class="rounded-2xl p-5 bg-sky-50/60 border border-brand-200 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-800">Symmetrical Parallel Substitution</span>
+            </div>
+            <p class="font-serif text-base sm:text-lg text-slate-900 italic bg-white/90 p-4 rounded-xl border border-brand-200">
+              "The <span class="underline decoration-brand-500 font-semibold text-brand-900">energy output of Country A</span> was higher than <span class="bg-brand-100 text-brand-950 px-1.5 py-0.5 rounded font-bold border border-brand-300">that of Country B</span>."
+            </p>
+            <div class="text-xs text-brand-900 leading-relaxed bg-white/60 p-3 rounded-xl">
+              <strong>Syntactic Concord:</strong> The pro-form <code class="font-mono font-bold">that</code> stands precisely for <code class="font-mono">the energy output</code>, matching <code class="font-mono">of Country A</code> with <code class="font-mono">that of Country B</code>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Symmetrical Example -->
+        <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs sm:text-sm font-mono">
+          <div class="flex items-center gap-2 text-slate-700">
+            <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+            <span>Secondary Model:</span>
+            <span class="font-serif italic text-slate-900 text-sm">"The GDP <strong>of</strong> France was considerably larger than <strong>that of</strong> Spain."</span>
+          </div>
+          <span class="text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 text-xs font-sans font-semibold">Strict Concord Maintained</span>
+        </div>
+      </div>
+
+      <!-- Singular vs Plural Paradigm Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold block mb-1">Singular Head Noun</span>
+          <h4 class="font-bold text-slate-900 text-base mb-2">that of + Noun Phrase</h4>
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">Applies to singular countable metrics (e.g. rate, proportion, figure, total).</p>
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs font-mono text-slate-800">
+            "The proportion of graduates in 2010 exceeded <strong>that of</strong> 2000."
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold block mb-1">Uncountable Head Noun</span>
+          <h4 class="font-bold text-slate-900 text-base mb-2">that of + Noun Phrase</h4>
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">Mass and non-count nouns (consumption, expenditure, electricity, waste) also take singular <code class="font-mono">that</code>.</p>
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs font-mono text-slate-800">
+            "Domestic electricity usage surpassed <strong>that of</strong> commercial zones."
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold block mb-1">Plural Countable Noun</span>
+          <h4 class="font-bold text-slate-900 text-base mb-2">those of + Noun Phrase</h4>
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">Plural counts (figures, numbers, statistics, levels, emissions) strictly require <code class="font-mono">those</code>.</p>
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs font-mono text-slate-800">
+            "Vehicle emission levels were double <strong>those of</strong> surrounding districts."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SYNTACTIC RULES & NUANCES -->
+    <section id="tab-rules" class="tab-pane hidden space-y-8 animate-fadeIn">
+      
+      <div class="border-b border-slate-200 pb-5">
+        <span class="text-xs font-mono uppercase tracking-wider text-brand-600 font-bold">Prescriptive Syntactic Constraints</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-1">Rules of Demonstrative Concord & Spatial Selection</h2>
+        <p class="text-sm text-slate-500 max-w-2xl mt-1">Master the governance rules that differentiate competent formal drafting from advanced academic prose.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Rule 1 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-800 font-mono font-bold text-xs flex items-center justify-center">R1</span>
+            <span class="text-xs font-mono text-slate-400">Agreement Principle</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Head Noun Agreement Over Prepositional Complements</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            The demonstrative pronoun must concord with the <em>head noun of the grammatical subject</em>, never with an intervening plural complement within an adjunct prepositional phrase.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-900">
+              <span class="font-bold text-rose-700 block mb-1 font-sans">✕ Intervening Plural Attraction Error:</span>
+              "The <u>number</u> [singular] of international tourists visited in Italy was lower than <strong>those of</strong> Spain."
+            </div>
+            <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+              <span class="font-bold text-emerald-700 block mb-1 font-sans">✓ True Head Concord:</span>
+              "The <u>number</u> [singular] of international tourists visited in Italy was lower than <strong>that of</strong> Spain."
+            </div>
+          </div>
+        </div>
+
+        <!-- Rule 2 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-800 font-mono font-bold text-xs flex items-center justify-center">R2</span>
+            <span class="text-xs font-mono text-slate-400">Prepositional Logic</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Spatial & Temporal Settings: "that of" vs. "that in"</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            While <code class="font-mono text-brand-700">that of</code> denotes possessive attribution or entity-level production, geographic or temporal environments naturally demand <code class="font-mono text-brand-700">that in</code>.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+              <span class="font-bold text-slate-700 block mb-1 font-sans">Spatial Locative Concord ('that in'):</span>
+              "Average life expectancy <u>in</u> Japan was significantly higher than <strong>that in</strong> Eastern European countries."
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+              <span class="font-bold text-slate-700 block mb-1 font-sans">Temporal Concord ('that in'):</span>
+              "The volume of agricultural exports <u>in</u> 2015 was greater than <strong>that in</strong> 2005."
+            </div>
+          </div>
+        </div>
+
+        <!-- Rule 3: UPDATED AS REQUESTED WITH CLEAR ANTECEDENT AMBIGUITY EXAMPLE -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4 md:col-span-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-800 font-mono font-bold text-xs flex items-center justify-center">R3</span>
+            <span class="text-xs font-mono text-slate-400">Disambiguation Principle</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Antecedent Clarity & Competing Subject Nouns</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            In complex academic syntax, sentences frequently feature competing nominal phrases (e.g. a metric noun + an operational entity + an organizational agent). Without demonstrative substitution, comparisons either collapse into category errors or create ambiguity regarding what is being contrasted.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Ambiguous Sentence -->
+            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase">
+                <svg class="w-4 h-4 text-amber-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                Ambiguous / Defective Comparison
+              </div>
+              <p class="font-serif italic text-sm text-slate-900 bg-white/80 p-3 rounded-xl border border-amber-100">
+                "The carbon footprint of industrial facilities managed by private corporations was heavier than <span class="bg-amber-200 text-amber-900 px-1 py-0.5 rounded font-mono font-semibold">municipal authorities</span>."
+              </p>
+              <p class="text-xs text-amber-900 leading-relaxed">
+                <strong>Why it fails:</strong> The syntax falsely compares a physical environmental metric (<code class="font-mono font-medium">carbon footprint</code>) to human administrative governing bodies (<code class="font-mono font-medium">municipal authorities</code>).
+              </p>
+            </div>
+
+            <!-- Disambiguated Sentence -->
+            <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-800 uppercase">
+                <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                Disambiguated with Demonstrative Substitution
+              </div>
+              <p class="font-serif italic text-sm text-slate-900 bg-white/80 p-3 rounded-xl border border-emerald-100">
+                "The carbon footprint of industrial facilities managed by private corporations was heavier than <span class="bg-emerald-200 text-emerald-950 px-1 py-0.5 rounded font-mono font-bold">that of</span> municipal authorities."
+              </p>
+              <p class="text-xs text-emerald-900 leading-relaxed">
+                <strong>Resolution:</strong> The pro-form <code class="font-mono font-bold">that</code> immediately isolates the primary singular head noun (<code class="font-mono font-medium">the carbon footprint</code>), establishing clean, unequivocal parallelism.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rule 4 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4 md:col-span-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-800 font-mono font-bold text-xs flex items-center justify-center">R4</span>
+            <span class="text-xs font-mono text-slate-400">Correlative & Equative Parallelism</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Equative Structures: "as [adjective] as that/those of"</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Parallel demonstrative substitution is not limited to comparative <code class="font-mono">than</code> constructions; it is equally vital in equative constructions with <code class="font-mono">as ... as</code>, <code class="font-mono">identical to</code>, and <code class="font-mono">comparable to</code>.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-brand-700 font-bold block mb-1 font-sans">Equative ("as high as"):</span>
+              "The percentage in 2020 was nearly <strong>as high as that of</strong> 2010."
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-brand-700 font-bold block mb-1 font-sans">Comparative Predicates:</span>
+              "The density of Sector A was <strong>comparable to that of</strong> Sector B."
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="text-brand-700 font-bold block mb-1 font-sans">Surpassing Predicates:</span>
+              "Production levels were <strong>superior to those of</strong> previous years."
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 3: ACADEMIC MODEL REPORT (SIDE-BY-SIDE ON DESKTOP) -->
+    <section id="tab-report" class="tab-pane hidden space-y-8 animate-fadeIn">
+      
+      <div class="border-b border-slate-200 pb-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-brand-600 font-bold">Academic Synthesis Context</span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-1">Multi-Jurisdictional Clean Energy Report</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Interactive live linguistic inspector: select highlighted tokens to inspect grammatical concord in real time.</p>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+            <span class="font-mono text-slate-500">Side-by-Side Analysis Mode Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-column responsive side-by-side grid (60% / 40% on lg) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+        
+        <!-- Left Column: Data Graph & Annotated Report (7 Cols = ~58%) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Interactive SVG Metric Visualizer -->
+          <div class="bg-slate-900 text-white p-5 sm:p-6 rounded-3xl border border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-brand-400">Task 1 Stimulus Graphic</span>
+                <h4 class="text-sm font-bold text-slate-100">Clean Energy Output (% of Total National Generation)</h4>
+              </div>
+              <span class="text-xs text-slate-400 font-mono">2010 vs 2025</span>
+            </div>
+
+            <!-- SVG Data Visualizer -->
+            <div class="w-full">
+              <svg viewBox="0 0 600 240" class="w-full h-auto text-xs font-mono">
+                <!-- Grid Lines -->
+                <line x1="120" y1="30" x2="560" y2="30" stroke="#334155" stroke-dasharray="2" />
+                <line x1="120" y1="80" x2="560" y2="80" stroke="#334155" stroke-dasharray="2" />
+                <line x1="120" y1="130" x2="560" y2="130" stroke="#334155" stroke-dasharray="2" />
+                <line x1="120" y1="180" x2="560" y2="180" stroke="#334155" stroke-dasharray="2" />
+
+                <!-- Value Labels on Y -->
+                <text x="110" y="34" fill="#94a3b8" text-anchor="end">60%</text>
+                <text x="110" y="84" fill="#94a3b8" text-anchor="end">40%</text>
+                <text x="110" y="134" fill="#94a3b8" text-anchor="end">20%</text>
+                <text x="110" y="184" fill="#94a3b8" text-anchor="end">0%</text>
+
+                <!-- Germany -->
+                <text x="110" y="215" fill="#cbd5e1" font-weight="bold" text-anchor="end">Germany</text>
+                <rect x="140" y="85" width="30" height="95" rx="4" fill="#0284c7" />
+                <text x="155" y="78" fill="#38bdf8" text-anchor="middle">38%</text>
+                <rect x="175" y="35" width="30" height="145" rx="4" fill="#38bdf8" />
+                <text x="190" y="28" fill="#7dd3fc" text-anchor="middle">58%</text>
+
+                <!-- United Kingdom -->
+                <text x="250" y="215" fill="#cbd5e1" font-weight="bold" text-anchor="middle">UK</text>
+                <rect x="230" y="130" width="30" height="50" rx="4" fill="#0284c7" />
+                <text x="245" y="123" fill="#38bdf8" text-anchor="middle">20%</text>
+                <rect x="265" y="55" width="30" height="125" rx="4" fill="#38bdf8" />
+                <text x="280" y="48" fill="#7dd3fc" text-anchor="middle">50%</text>
+
+                <!-- France -->
+                <text x="350" y="215" fill="#cbd5e1" font-weight="bold" text-anchor="middle">France</text>
+                <rect x="330" y="105" width="30" height="75" rx="4" fill="#0284c7" />
+                <text x="345" y="98" fill="#38bdf8" text-anchor="middle">30%</text>
+                <rect x="365" y="68" width="30" height="112" rx="4" fill="#38bdf8" />
+                <text x="380" y="61" fill="#7dd3fc" text-anchor="middle">45%</text>
+
+                <!-- Spain -->
+                <text x="460" y="215" fill="#cbd5e1" font-weight="bold" text-anchor="middle">Spain</text>
+                <rect x="440" y="120" width="30" height="60" rx="4" fill="#0284c7" />
+                <text x="455" y="113" fill="#38bdf8" text-anchor="middle">24%</text>
+                <rect x="475" y="75" width="30" height="105" rx="4" fill="#38bdf8" />
+                <text x="490" y="68" fill="#7dd3fc" text-anchor="middle">42%</text>
+
+                <!-- Legend -->
+                <rect x="440" y="10" width="12" height="12" rx="2" fill="#0284c7" />
+                <text x="460" y="20" fill="#94a3b8">2010</text>
+                <rect x="500" y="10" width="12" height="12" rx="2" fill="#38bdf8" />
+                <text x="520" y="20" fill="#94a3b8">2025</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Academic Model Text -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold">Model Academic Script</span>
+              <span class="text-xs text-brand-600 font-sans font-semibold">Click any highlighted token</span>
+            </div>
+
+            <div class="font-serif text-base sm:text-lg text-slate-800 leading-relaxed space-y-4">
+              <p>
+                The graph illustrates the proportion of national electricity generated via renewable installations across Germany, the United Kingdom, France, and Spain in 2010 alongside projected figures for 2025.
+              </p>
+
+              <p>
+                Overall, every monitored country is set to expand its renewable capacity, with Germany sustaining a higher share throughout the fifteen-year period than 
+                <button onclick="selectToken(1)" id="token-1" class="report-token token-active bg-brand-100 text-brand-900 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-brand-300 hover:bg-brand-200 transition">that of</button> 
+                any other jurisdiction.
+              </p>
+
+              <p>
+                In 2010, clean electricity accounted for 38% of Germany's gross output, an allocation nearly double 
+                <button onclick="selectToken(2)" id="token-2" class="report-token bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-slate-300 hover:bg-brand-100 transition">that of</button> 
+                the United Kingdom, which stood at just 20%. During the identical baseline year, the renewable figures recorded in France (30%) remained noticeably greater than 
+                <button onclick="selectToken(3)" id="token-3" class="report-token bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-slate-300 hover:bg-brand-100 transition">those in</button> 
+                Spain, which registered roughly a quarter (24%).
+              </p>
+
+              <p>
+                By 2025, British renewable output is projected to undergo rapid expansion, surging to 50% and consequently outstripping 
+                <button onclick="selectToken(4)" id="token-4" class="report-token bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-slate-300 hover:bg-brand-100 transition">that of</button> 
+                France (45%) as well as 
+                <button onclick="selectToken(5)" id="token-5" class="report-token bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-slate-300 hover:bg-brand-100 transition">that of</button> 
+                Spain (42%). Nonetheless, German clean generation is forecasted to peak at 58%, solidifying an output comfortably above 
+                <button onclick="selectToken(6)" id="token-6" class="report-token bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-slate-300 hover:bg-brand-100 transition">those of</button> 
+                its fellow Western European neighbours.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Sticky Analysis Panel (5 Cols = ~42%) -->
+        <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-brand-200/90 shadow-md">
+            
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-600"></span>
+                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">Live Linguistic Inspector</h3>
+              </div>
+              <span id="inspector-token-id" class="text-xs font-mono font-semibold bg-brand-50 text-brand-700 px-2 py-0.5 rounded border border-brand-200">Token 1</span>
+            </div>
+
+            <!-- Content Container Dynamically Updated by JS -->
+            <div id="inspector-content" class="space-y-4">
+              <!-- Default Token 1 Data -->
+              <div>
+                <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block">Isolated Token</span>
+                <div class="text-lg font-mono font-bold text-brand-700 bg-brand-50/70 p-2.5 rounded-xl border border-brand-200 mt-1">
+                  "that of any other jurisdiction"
+                </div>
+              </div>
+
+              <div>
+                <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block">Syntactic Antecedent (Head Noun)</span>
+                <div class="text-sm font-medium text-slate-800 bg-slate-50 p-2.5 rounded-xl border border-slate-200 mt-1">
+                  <span class="font-bold text-brand-600">Head:</span> "a higher share" (Singular Countable)
+                </div>
+              </div>
+
+              <div>
+                <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block">Concord Justification</span>
+                <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200 mt-1">
+                  Singular pronoun <code class="font-mono font-bold text-brand-700">that</code> concords flawlessly with the singular head noun <em>"share"</em>. Using <code class="font-mono text-slate-500">those of</code> would produce a number discord violation.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-900 leading-relaxed">
+                <span class="font-bold block mb-1 font-sans">✕ Unrepaired Faulty Alternative:</span>
+                "...sustaining a higher share than any other jurisdiction." (Illogically states that a mathematical share is larger than a geographical nation).
+              </div>
+            </div>
+
+            <!-- Quick Navigation between tokens -->
+            <div class="mt-6 pt-4 border-t border-slate-100">
+              <span class="text-[11px] font-mono text-slate-400 block mb-2">Jump to Token:</span>
+              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <button onclick="selectToken(1)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-brand-50 hover:text-brand-700 border border-slate-200">#1 (that of)</button>
+                <button onclick="selectToken(2)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-brand-50 hover:text-brand-700 border border-slate-200">#2 (that of)</button>
+                <button onclick="selectToken(3)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-brand-50 hover:text-brand-700 border border-slate-200">#3 (those in)</button>
+                <button onclick="selectToken(4)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-brand-50 hover:text-brand-700 border border-slate-200">#4 (that of)</button>
+                <button onclick="selectToken(5)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-brand-50 hover:text-brand-700 border border-slate-200">#5 (that of)</button>
+                <button onclick="selectToken(6)" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-brand-50 hover:text-brand-700 border border-slate-200">#6 (those of)</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 4: STRATEGIC ALTERNATIVES STUDIO -->
+    <section id="tab-alternatives" class="tab-pane hidden space-y-8 animate-fadeIn">
+      
+      <div class="border-b border-slate-200 pb-5">
+        <span class="text-xs font-mono uppercase tracking-wider text-brand-600 font-bold">Stylistic Agility</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-1">Diversifying Comparative Syntax</h2>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-2xl">
+          Relying mechanically on <code class="font-mono text-brand-700">that of</code> in every paragraph causes syntactic fatigue. Employ these four formal structures to maintain precise parallelism across varied clause structures.
+        </p>
+      </div>
+
+      <!-- 4 Formal Methods Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Method 1 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold bg-slate-100 text-slate-800 px-2.5 py-1 rounded-md">Technique 01</span>
+            <span class="text-xs text-brand-600 font-semibold">Prepositional Ellipsis</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Direct Prepositional Retention</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            When spatial or temporal prepositions are present, the pronoun may be omitted entirely, allowing the parallel preposition to bind the second element cleanly.
+          </p>
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs space-y-1.5">
+            <div class="text-slate-400 line-through">"The birth rate in France was higher than that of in Italy."</div>
+            <div class="text-emerald-700 font-bold">"The birth rate in France was higher than in Italy."</div>
+          </div>
+        </div>
+
+        <!-- Method 2 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold bg-slate-100 text-slate-800 px-2.5 py-1 rounded-md">Technique 02</span>
+            <span class="text-xs text-brand-600 font-semibold">Possessive Ellipsis</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900">The Saxon Genitive ('s)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Entities that naturally accept genitive apostrophe markers (countries, agencies, organizations) can stand alone elliptically.
+          </p>
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs space-y-1.5">
+            <div class="text-slate-400 line-through">"The annual revenue of Boeing surpassed that of Airbus."</div>
+            <div class="text-emerald-700 font-bold">"Boeing's annual revenue surpassed Airbus's."</div>
+          </div>
+        </div>
+
+        <!-- Method 3 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold bg-slate-100 text-slate-800 px-2.5 py-1 rounded-md">Technique 03</span>
+            <span class="text-xs text-brand-600 font-semibold">Participial Framing</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Appositive & Participial Modulation</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Sidestep comparative 'than' by incorporating participial framing devices such as <code class="font-mono">compared with</code>, <code class="font-mono">as against</code>, or <code class="font-mono">witnessed in</code>.
+          </p>
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs space-y-1.5">
+            <div class="text-emerald-700 font-bold">"Canada registered 78%, compared with only 42% in Mexico."</div>
+            <div class="text-emerald-700 font-bold">"Solar output climbed to 50 GW, as against the 20 GW witnessed in 2015."</div>
+          </div>
+        </div>
+
+        <!-- Method 4 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold bg-slate-100 text-slate-800 px-2.5 py-1 rounded-md">Technique 04</span>
+            <span class="text-xs text-brand-600 font-semibold">Agentive Remodeling</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Active Verb Restructuring</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Convert nominal data points into active sentences where the entities themselves function as subjects, comparing their actions directly.
+          </p>
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs space-y-1.5">
+            <div class="text-slate-400 line-through">"The harvest volume of wheat in Ukraine was lower than Russia."</div>
+            <div class="text-emerald-700 font-bold">"Ukraine harvested considerably less wheat than Russia did."</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Paraphrasing Studio -->
+      <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800">
+        <div class="border-b border-slate-800 pb-4 mb-6">
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-400">Syntactic Studio</span>
+          <h3 class="text-lg font-bold text-white mt-1">Morphological Comparison Studio</h3>
+          <p class="text-xs text-slate-400">Observe how a single data relationship shifts across four formal academic structures.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+          <button onclick="setTransformation(0)" id="t-btn-0" class="t-btn active text-left p-3 rounded-xl bg-brand-900/80 border border-brand-500 text-xs">
+            <span class="text-[10px] font-mono text-brand-300 block uppercase">Base</span>
+            Demonstrative Pronoun
+          </button>
+          <button onclick="setTransformation(1)" id="t-btn-1" class="t-btn text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:bg-slate-750">
+            <span class="text-[10px] font-mono text-slate-400 block uppercase">Variation A</span>
+            Prepositional Ellipsis
+          </button>
+          <button onclick="setTransformation(2)" id="t-btn-2" class="t-btn text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:bg-slate-750">
+            <span class="text-[10px] font-mono text-slate-400 block uppercase">Variation B</span>
+            Possessive Ellipsis
+          </button>
+          <button onclick="setTransformation(3)" id="t-btn-3" class="t-btn text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:bg-slate-750">
+            <span class="text-[10px] font-mono text-slate-400 block uppercase">Variation C</span>
+            Participial Framing
+          </button>
+        </div>
+
+        <div id="transformation-output" class="bg-slate-950 p-5 sm:p-6 rounded-2xl border border-slate-800 font-serif text-lg leading-relaxed text-slate-200 min-h-[100px] flex items-center">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 5: PRACTICE LAB (10 EXERCISES) -->
+    <section id="tab-lab" class="tab-pane hidden space-y-8 animate-fadeIn">
+      
+      <!-- Lab Header Banner -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <span class="text-xs uppercase font-mono tracking-widest text-emerald-700 font-bold px-2.5 py-0.5 bg-emerald-50 rounded-full border border-emerald-200">Interactive Precision Testing</span>
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-2">10-Question Masterclass Lab</h2>
+          <p class="text-xs sm:text-sm text-slate-600 max-w-xl mt-1">
+            Resolve faulty comparisons, test antecedent concord, apply locative shifts, and input accurate pro-forms without inline hints.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 text-white px-6 py-4 rounded-2xl flex items-center gap-5 border border-slate-800 justify-between shrink-0 shadow-sm">
+          <div>
+            <div class="text-[10px] uppercase font-mono tracking-wider text-slate-400">Lab Score</div>
+            <div class="text-2xl font-bold font-mono text-emerald-400" id="lab-score-display">0 / 10</div>
+          </div>
+          <button onclick="resetLab()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl transition border border-slate-700 font-mono">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Exercise Cards Container -->
+      <div id="exercise-list" class="space-y-6">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto bg-white border-t border-slate-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center space-x-2">
+        <span class="font-bold text-slate-700">Demonstrative Pronoun Substitution</span>
+        <span>•</span>
+        <span>Advanced Academic Syntax Masterclass</span>
+      </div>
+      <div class="flex items-center space-x-2 font-medium">
+        <span>Designed by</span>
+        <span class="font-semibold text-slate-800 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">Babak Alaee</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-white', 'text-brand-700', 'shadow-xs');
+        btn.classList.add('text-slate-600');
+      });
+
+      const activeBtn = document.getElementById(`btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+    }
+
+    // Tab 3 Interactive Token Selection
+    const tokenData = {
+      1: {
+        token: "that of any other jurisdiction",
+        head: "a higher share (Singular Countable)",
+        justification: "Singular pro-form 'that' correctly concords with the singular head noun 'share'. 'Those of' would create a number discord violation.",
+        unrepaired: "...sustaining a higher share than any other jurisdiction."
+      },
+      2: {
+        token: "that of the United Kingdom",
+        head: "an allocation (Singular Countable / Quantitative)",
+        justification: "Equates 'an allocation' (38%) to the corresponding British metric, maintaining parallel genitive attribution with 'of'.",
+        unrepaired: "...an allocation nearly double the United Kingdom."
+      },
+      3: {
+        token: "those in Spain",
+        head: "the renewable figures (Plural Countable)",
+        justification: "Plural pro-form 'those' is strictly required by the plural antecedent 'figures'. Preposition 'in' is preserved because it represents spatial data within a territory.",
+        unrepaired: "...greater than Spain, which registered roughly a quarter."
+      },
+      4: {
+        token: "that of France",
+        head: "British renewable output (Singular Uncountable)",
+        justification: "Output is an uncountable noun phrase; therefore, singular 'that' is syntactically obligatory.",
+        unrepaired: "...rapid expansion, surging to 50% and outstripping France."
+      },
+      5: {
+        token: "that of Spain",
+        head: "British renewable output (Singular Uncountable)",
+        justification: "Coordinates symmetrically with the preceding clause ('outstripping that of France as well as that of Spain').",
+        unrepaired: "...outstripping that of France as well as Spain."
+      },
+      6: {
+        token: "those of its fellow Western European neighbours",
+        head: "generation totals / levels implied by peak capacity (Plural Reference)",
+        justification: "'Those' refers to the corresponding output statistics across neighboring nations, balancing plural collective metrics.",
+        unrepaired: "...solidifying an output comfortably above its fellow neighbours."
+      }
+    };
+
+    function selectToken(id) {
+      document.querySelectorAll('.report-token').forEach(btn => {
+        btn.className = "report-token bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-slate-300 hover:bg-brand-100 transition";
+      });
+
+      const activeBtn = document.getElementById(`token-${id}`);
+      if (activeBtn) {
+        activeBtn.className = "report-token token-active bg-brand-100 text-brand-900 px-2 py-0.5 rounded-md font-sans text-sm font-semibold border border-brand-300";
+      }
+
+      const data = tokenData[id];
+      const panel = document.getElementById('inspector-content');
+      document.getElementById('inspector-token-id').innerText = `Token #${id}`;
+
+      panel.innerHTML = `
+        <div>
+          <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block">Isolated Token</span>
+          <div class="text-lg font-mono font-bold text-brand-700 bg-brand-50/70 p-2.5 rounded-xl border border-brand-200 mt-1">
+            "${data.token}"
+          </div>
+        </div>
+        <div>
+          <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block">Syntactic Antecedent (Head Noun)</span>
+          <div class="text-sm font-medium text-slate-800 bg-slate-50 p-2.5 rounded-xl border border-slate-200 mt-1">
+            <span class="font-bold text-brand-600">Head:</span> ${data.head}
+          </div>
+        </div>
+        <div>
+          <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block">Concord Justification</span>
+          <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200 mt-1">
+            ${data.justification}
+          </p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-900 leading-relaxed">
+          <span class="font-bold block mb-1 font-sans">✕ Unrepaired Faulty Comparison:</span>
+          "${data.unrepaired}"
+        </div>
+      `;
+    }
+
+    // Tab 4 Studio Transformations
+    const studioPresets = [
+      {
+        title: "Standard Demonstrative Pronoun Substitution",
+        content: "The per capita carbon footprint of the United States was nearly four times <span class='text-brand-300 font-mono font-bold underline decoration-brand-400'>that of</span> India across the documented timeframe."
+      },
+      {
+        title: "Prepositional Ellipsis (High Economy)",
+        content: "The per capita carbon footprint in the United States was four times higher <span class='text-emerald-400 font-mono font-bold underline decoration-emerald-400'>than in</span> India across the documented timeframe."
+      },
+      {
+        title: "Possessive Genitive Ellipsis",
+        content: "The United States’ per capita carbon footprint was four times <span class='text-amber-300 font-mono font-bold underline decoration-amber-400'>India’s</span> throughout the observed period."
+      },
+      {
+        title: "Participial Framing (Complex Academic Syntax)",
+        content: "The United States generated approximately 14.6 tons of carbon per person, <span class='text-sky-300 font-mono font-bold underline decoration-sky-400'>as against just 1.9 tons recorded in</span> India."
+      }
+    ];
+
+    function setTransformation(idx) {
+      document.querySelectorAll('.t-btn').forEach((b, i) => {
+        if (i === idx) {
+          b.className = "t-btn active text-left p-3 rounded-xl bg-brand-900/80 border border-brand-500 text-xs text-white";
+        } else {
+          b.className = "t-btn text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:bg-slate-750";
+        }
+      });
+
+      const p = studioPresets[idx];
+      document.getElementById('transformation-output').innerHTML = `
+        <div>
+          <span class="text-[10px] font-mono text-slate-400 uppercase block mb-1">${p.title}</span>
+          <p>${p.content}</p>
+        </div>
+      `;
+    }
+
+    // Tab 5: 10 Exercises (No hints in blank inputs)
+    const exerciseList = [
+      {
+        id: 1,
+        type: 'choice',
+        title: 'Exercise 1: Number Concord with Countable Plurals',
+        instruction: 'Select the pro-form that preserves correct agreement with the head noun:',
+        prompt: 'The unemployment rates recorded in southern member states were approximately three times higher than _______ in northern territories.',
+        options: [
+          { text: 'that of', correct: false, reason: '"Rates" is plural countable; using singular "that" violates grammatical agreement.' },
+          { text: 'those', correct: true, reason: 'Correct. "Those" refers to plural "rates", and pairs directly with the spatial preposition "in northern territories".' },
+          { text: 'that', correct: false, reason: 'Singular "that" cannot stand for plural "unemployment rates".' },
+          { text: 'these', correct: false, reason: '"These" is generally used for proximate demonstrative reference, not remote anaphora in formal comparative clauses.' }
+        ]
+      },
+      {
+        id: 2,
+        type: 'identify',
+        title: 'Exercise 2: Category Mismatch Identification',
+        instruction: 'Click on the specific segment that causes an illogical comparison fallacy:',
+        segments: [
+          { text: 'The average annual salary', isError: false },
+          { text: 'of a software engineer in Switzerland', isError: false },
+          { text: 'was substantially larger than', isError: false },
+          { text: 'the United Kingdom', isError: true, note: 'This compares an annual salary (a monetary metric) directly to the United Kingdom (a sovereign country). It should be "that of the United Kingdom" or "that in the United Kingdom".' },
+          { text: 'across the entire survey.', isError: false }
+        ]
+      },
+      {
+        id: 3,
+        type: 'input',
+        title: 'Exercise 3: Mass/Uncountable Pro-form Insertion',
+        instruction: 'Type the exact two-word demonstrative pro-form phrase to complete the comparison correctly:',
+        prefix: 'The volume of crude petroleum consumed by Nation A exceeded',
+        suffix: 'Nation B in the final quarter.',
+        valid: ['that of'],
+        rationale: '"Volume" is a singular non-count head noun. The comparison requires the singular pro-form "that of".'
+      },
+      {
+        id: 4,
+        type: 'choice',
+        title: 'Exercise 4: Intervening Plural Attraction Error',
+        instruction: 'Identify which option maintains grammatical agreement with the true subject head noun:',
+        prompt: 'The number of research papers published by private institutions was equal to _______ government bodies.',
+        options: [
+          { text: 'those of', correct: false, reason: 'The grammatical subject head is "The number" (singular), not the intervening plural complement "papers".' },
+          { text: 'that of', correct: true, reason: 'Correct! The singular head noun "number" requires singular demonstrative pro-form "that of".' },
+          { text: 'those in', correct: false, reason: 'Incorrect number concord and inconsistent preposition.' },
+          { text: 'which of', correct: false, reason: 'Ungrammatical construction.' }
+        ]
+      },
+      {
+        id: 5,
+        type: 'input',
+        title: 'Exercise 5: Plural Countable Pro-form Completion',
+        instruction: 'Type the exact two-word demonstrative phrase to complete the parallel comparison:',
+        prefix: 'While primary school graduation levels climbed in District A,',
+        suffix: 'District B declined noticeably.',
+        valid: ['those of', 'those in'],
+        rationale: 'The antecedent head noun is "levels" (plural countable), which demands "those of" or "those in".'
+      },
+      {
+        id: 6,
+        type: 'identify',
+        title: 'Exercise 6: Number Incongruity in Demographic Data',
+        instruction: 'Click on the underlined segment that violates syntactic concord:',
+        segments: [
+          { text: 'The literacy figures for adolescent girls', isError: false },
+          { text: 'in developing zones', isError: false },
+          { text: 'improved at a rate parallel to', isError: false },
+          { text: 'that of male cohorts', isError: true, note: 'The head noun is plural ("figures"). Using singular "that" generates an agreement fault; it must be corrected to "those of male cohorts".' },
+          { text: 'over the documented period.', isError: false }
+        ]
+      },
+      {
+        id: 7,
+        type: 'choice',
+        title: 'Exercise 7: Spatial Preposition Precision',
+        instruction: 'Select the option that maintains correct locative prepositional harmony:',
+        prompt: 'Average life expectancy in Japan was five years higher than _______ European nations.',
+        options: [
+          { text: 'that of', correct: false, reason: 'While understandable, the subject noun established a locative preposition ("in Japan"), making "that in" stylistically more parallel and idiomatic.' },
+          { text: 'that in', correct: true, reason: 'Accurate! Matches the locative structure ("in Japan ... that in European nations") with singular agreement for "life expectancy".' },
+          { text: 'those in', correct: false, reason: '"Life expectancy" is singular/uncountable; "those" creates an agreement violation.' },
+          { text: 'than', correct: false, reason: 'Produces a double comparative particle and ungrammatical syntax.' }
+        ]
+      },
+      {
+        id: 8,
+        type: 'input',
+        title: 'Exercise 8: Syntactic Disambiguation Entry',
+        instruction: 'Supply the two-word pro-form phrase to resolve the comparison:',
+        prefix: 'The total expenditure on transportation was almost double',
+        suffix: 'healthcare programs.',
+        valid: ['that of', 'that on'],
+        rationale: '"Expenditure" is singular; the comparative construction requires "that of" or "that on".'
+      },
+      {
+        id: 9,
+        type: 'choice',
+        title: 'Exercise 9: Personal vs. Demonstrative Pro-form Function',
+        instruction: 'Why is the personal pronoun "it" unacceptable in comparative substitution like "The GDP of China surpassed [it / that of] Japan"?',
+        prompt: 'Select the precise linguistic reason:',
+        options: [
+          { text: '"It" refers strictly to the exact same referent entity, whereas "that of" creates an anaphoric equivalent for a new possessor.', correct: true, reason: 'Correct. "It" would assert that China\'s own specific GDP belonged to Japan, which is logically nonsensical. "That of" invokes the equivalent metric for a new entity.' },
+          { text: '"It" cannot be followed by prepositions.', correct: false, reason: 'Incorrect; "it" can be followed by prepositional phrases in other syntactic contexts.' },
+          { text: 'Formal style guides prohibit single-syllable pronouns in academic prose.', correct: false, reason: 'Fictitious rule.' },
+          { text: '"It" is strictly reserved for human beings.', correct: false, reason: 'False; "it" is third-person neuter.' }
+        ]
+      },
+      {
+        id: 10,
+        type: 'choice',
+        title: 'Exercise 10: Recognizing Redundant Double Genitives',
+        instruction: 'Which sentence presents the most refined, idiomatic academic comparison without redundant genitive stacking?',
+        prompt: 'Choose the optimal sentence:',
+        options: [
+          { text: "Germany's manufacturing index was higher than that of France's index.", correct: false, reason: 'Contains triple redundancy: demonstrative pronoun + genitive apostrophe + repeated noun.' },
+          { text: "Germany's manufacturing index was higher than France's.", correct: true, reason: 'Exemplary possessive ellipsis! Fully grammatical, parallel, and concise without lexical clutter.' },
+          { text: "The manufacturing index of Germany was higher than France.", correct: false, reason: 'Classic faulty comparison: compares an index to a country.' },
+          { text: "Germany's manufacturing index was higher than those of France.", correct: false, reason: 'Discord error: "index" is singular; "those" is plural.' }
+        ]
+      }
+    ];
+
+    let labScore = 0;
+    const completedExercises = new Set();
+
+    function renderLab() {
+      const container = document.getElementById('exercise-list');
+      container.innerHTML = '';
+
+      exerciseList.forEach(ex => {
+        const card = document.createElement('div');
+        card.id = `lab-card-${ex.id}`;
+        card.className = "bg-white rounded-3xl p-6 border border-slate-200 shadow-sm transition hover:border-slate-300 space-y-4";
+
+        let bodyHTML = '';
+
+        if (ex.type === 'choice') {
+          bodyHTML = `
+            <p class="font-serif text-base sm:text-lg text-slate-900 bg-slate-50 p-4 rounded-2xl border border-slate-100">${ex.prompt}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              ${ex.options.map((opt, oIdx) => `
+                <button onclick="checkChoice(${ex.id}, ${oIdx})" id="btn-opt-${ex.id}-${oIdx}" class="text-left px-4 py-3 rounded-2xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/60 text-xs sm:text-sm font-medium transition text-slate-700">
+                  <span class="font-mono text-slate-400 mr-2">[${String.fromCharCode(65 + oIdx)}]</span> ${opt.text}
+                </button>
+              `).join('')}
+            </div>
+          `;
+        } else if (ex.type === 'identify') {
+          bodyHTML = `
+            <p class="text-xs text-slate-500 font-mono mb-2">Click on the underlined constituent containing the structural error:</p>
+            <div class="font-serif text-base sm:text-lg text-slate-900 p-4 bg-slate-50 rounded-2xl border border-slate-100 leading-loose flex flex-wrap gap-2">
+              ${ex.segments.map((seg, sIdx) => `
+                <span onclick="checkSegment(${ex.id}, ${sIdx})" id="seg-${ex.id}-${sIdx}" class="cursor-pointer border-b-2 border-dashed border-slate-400 hover:border-brand-600 hover:bg-brand-100/60 px-1.5 py-0.5 rounded transition">
+                  ${seg.text}
+                </span>
+              `).join('')}
+            </div>
+          `;
+        } else if (ex.type === 'input') {
+          bodyHTML = `
+            <div class="font-serif text-base sm:text-lg text-slate-900 p-4 bg-slate-50 rounded-2xl border border-slate-100 leading-relaxed flex flex-wrap items-center gap-2">
+              <span>${ex.prefix}</span>
+              <input type="text" id="input-${ex.id}" placeholder="Type answer here..." class="font-mono text-xs sm:text-sm px-3 py-1.5 rounded-xl border-2 border-slate-300 focus:outline-none focus:border-brand-600 bg-white w-44 text-center font-bold text-slate-800 placeholder:text-slate-400" onkeydown="if(event.key==='Enter') checkInput(${ex.id})"/>
+              <span>${ex.suffix}</span>
+            </div>
+            <button onclick="checkInput(${ex.id})" id="btn-submit-${ex.id}" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition">
+              Verify Construction
+            </button>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center font-mono">${ex.id}</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">${ex.title}</h3>
+            </div>
+            <span id="badge-${ex.id}" class="text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-slate-100 text-slate-500">Unanswered</span>
+          </div>
+          <p class="text-xs text-slate-500">${ex.instruction}</p>
+          ${bodyHTML}
+          <div id="feedback-${ex.id}" class="hidden p-4 rounded-2xl text-xs sm:text-sm leading-relaxed"></div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function checkChoice(exId, oIdx) {
+      const ex = exerciseList.find(e => e.id === exId);
+      const opt = ex.options[oIdx];
+      const feedback = document.getElementById(`feedback-${exId}`);
+      const badge = document.getElementById(`badge-${exId}`);
+
+      ex.options.forEach((_, i) => {
+        const btn = document.getElementById(`btn-opt-${exId}-${i}`);
+        btn.disabled = true;
+        if (ex.options[i].correct) {
+          btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-950');
+        } else if (i === oIdx) {
+          btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-950');
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (opt.correct) {
+        feedback.className = "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-900";
+        feedback.innerHTML = `<strong>Accurate:</strong> ${opt.reason}`;
+        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-emerald-100 text-emerald-800";
+        badge.innerText = "Correct";
+        if (!completedExercises.has(exId)) {
+          labScore++;
+          completedExercises.add(exId);
+        }
+      } else {
+        feedback.className = "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed bg-rose-50 border border-rose-200 text-rose-900";
+        feedback.innerHTML = `<strong>Syntactic Defect:</strong> ${opt.reason}`;
+        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-rose-100 text-rose-800";
+        badge.innerText = "Incorrect";
+        completedExercises.add(exId);
+      }
+      updateScore();
+    }
+
+    function checkSegment(exId, sIdx) {
+      const ex = exerciseList.find(e => e.id === exId);
+      const seg = ex.segments[sIdx];
+      const feedback = document.getElementById(`feedback-${exId}`);
+      const badge = document.getElementById(`badge-${exId}`);
+
+      ex.segments.forEach((s, idx) => {
+        const span = document.getElementById(`seg-${exId}-${idx}`);
+        span.onclick = null;
+        span.classList.remove('cursor-pointer', 'hover:bg-brand-100/60');
+        if (s.isError) {
+          span.className = "bg-rose-100 text-rose-900 font-bold border-b-2 border-rose-600 px-1 py-0.5 rounded";
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (seg.isError) {
+        feedback.className = "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-900";
+        feedback.innerHTML = `<strong>Accurate Identification:</strong> ${seg.note}`;
+        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-emerald-100 text-emerald-800";
+        badge.innerText = "Error Located";
+        if (!completedExercises.has(exId)) {
+          labScore++;
+          completedExercises.add(exId);
+        }
+      } else {
+        feedback.className = "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed bg-rose-50 border border-rose-200 text-rose-900";
+        const errorSeg = ex.segments.find(s => s.isError);
+        feedback.innerHTML = `<strong>Misidentified:</strong> The selected segment maintains parallelism. The fault lies in: "<em>${errorSeg.text}</em>". ${errorSeg.note}`;
+        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-rose-100 text-rose-800";
+        badge.innerText = "Missed";
+        completedExercises.add(exId);
+      }
+      updateScore();
+    }
+
+    function checkInput(exId) {
+      const ex = exerciseList.find(e => e.id === exId);
+      const input = document.getElementById(`input-${exId}`);
+      const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+      const feedback = document.getElementById(`feedback-${exId}`);
+      const badge = document.getElementById(`badge-${exId}`);
+      const btn = document.getElementById(`btn-submit-${exId}`);
+
+      input.disabled = true;
+      if (btn) btn.disabled = true;
+
+      const isMatch = ex.valid.some(ans => ans.toLowerCase() === val);
+      feedback.classList.remove('hidden');
+
+      if (isMatch) {
+        feedback.className = "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-900";
+        feedback.innerHTML = `<strong>Syntactically Sound:</strong> Correctly entered pro-form: "<em>${val}</em>". ${ex.rationale}`;
+        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-emerald-100 text-emerald-800";
+        badge.innerText = "Correct";
+        if (!completedExercises.has(exId)) {
+          labScore++;
+          completedExercises.add(exId);
+        }
+      } else {
+        feedback.className = "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed bg-rose-50 border border-rose-200 text-rose-900";
+        feedback.innerHTML = `<strong>Faulty Entry:</strong> You entered: "<em>${val || '[empty]'}</em>". Expected pro-form: <strong>${ex.valid.join('</strong> or <strong>')}</strong>. ${ex.rationale}`;
+        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full font-mono font-semibold bg-rose-100 text-rose-800";
+        badge.innerText = "Incorrect";
+        completedExercises.add(exId);
+      }
+      updateScore();
+    }
+
+    function updateScore() {
+      document.getElementById('lab-score-display').innerText = `${labScore} / 10`;
+    }
+
+    function resetLab() {
+      labScore = 0;
+      completedExercises.clear();
+      updateScore();
+      renderLab();
+    }
+
+    // Initialize defaults on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTransformation(0);
+      selectToken(1);
+      renderLab();
+    });
+  </script>
+</body>
+</html>
