@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verb Patterns — Verb + to + Verb &amp; Verb + -ing</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            accent: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03)',
+            'elevated': '0 20px 30px -10px rgba(15, 23, 42, 0.08), 0 10px 15px -5px rgba(15, 23, 42, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .badge-cross {
+      text-decoration: line-through;
+      text-decoration-color: #ef4444;
+      text-decoration-thickness: 3px;
+    }
+    .drag-item {
+      cursor: grab;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .drag-item:active {
+      cursor: grabbing;
+      transform: scale(0.97);
+    }
+    .drop-zone.dragover {
+      border-color: #2563eb !important;
+      background-color: #eff6ff !important;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-blue-500 selection:text-white">
+
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-lg shadow-sm">
+          <i class="fa-solid fa-arrows-split-up-and-left"></i>
+        </span>
+        <div>
+          <h1 class="font-extrabold text-slate-900 text-base sm:text-lg tracking-tight leading-tight">English Grammar Lab</h1>
+          <p class="text-xs text-blue-600 font-semibold tracking-wide">Designed by Babak Alaee</p>
+        </div>
+      </div>
+
+      <nav class="flex items-center space-x-1 sm:space-x-3">
+        <a href="#discovery-section" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 px-2 sm:px-3 py-1.5 rounded-lg hover:bg-blue-50 transition hidden md:inline-block">Discovery</a>
+        <a href="#learn-section" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 px-2 sm:px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">Lessons</a>
+        <a href="#rules-summary" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 px-2 sm:px-3 py-1.5 rounded-lg hover:bg-blue-50 transition hidden sm:inline-block">Matrix</a>
+        <a href="#exercises-section" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 px-2 sm:px-3 py-1.5 rounded-lg hover:bg-blue-50 transition">Exercises</a>
+        <a href="#game-section" class="text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-xl shadow-sm transition flex items-center gap-1.5">
+          <i class="fa-solid fa-bolt text-xs"></i>
+          <span>Pattern Sprint</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <section class="relative overflow-hidden bg-gradient-to-b from-blue-50/60 via-white to-slate-50 pt-10 pb-14 border-b border-slate-200/80">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 uppercase tracking-wider mb-4">
+          <i class="fa-solid fa-sparkles text-blue-600"></i> Visual English Grammar
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-serif mb-4">
+          Everyday Verb Patterns
+        </h2>
+        <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+          Master how verbs pair together naturally — comparing <span class="font-semibold text-blue-600">Verb + to + Verb</span> (<em>plans &amp; decisions</em>) with <span class="font-semibold text-amber-600">Verb + -ing</span> (<em>feelings &amp; routines</em>).
+        </p>
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-2xl border border-slate-200 text-xs text-slate-600 shadow-sm">
+          <i class="fa-solid fa-volume-high text-blue-500"></i>
+          <span>Tip: Click on any word with a speaker icon to hear authentic pronunciation!</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="discovery-section" class="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-6">
+      <div class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 border border-blue-200/80 rounded-3xl p-6 sm:p-8 shadow-soft">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-blue-200/60">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-200/70 text-blue-900 uppercase tracking-wider mb-2">
+              <i class="fa-solid fa-magnifying-glass"></i> Step 1: Language Detective
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-serif">Explore &amp; Discover First</h3>
+            <p class="text-sm text-slate-600 mt-1">Read this weekend conversation. Observe how the bold verbs connect to the second verb before checking the formal rules!</p>
+          </div>
+          <button onclick="speakDialogue()" class="self-start sm:self-auto px-4 py-2 bg-white border border-blue-200 hover:border-blue-300 rounded-xl text-xs font-bold text-blue-700 shadow-xs flex items-center gap-2 hover:bg-blue-50 transition">
+            <i class="fa-solid fa-play text-blue-500"></i> Listen to Dialogue
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Dialogue Box -->
+          <div class="lg:col-span-6 bg-white rounded-2xl p-5 border border-blue-100 shadow-xs space-y-3.5 text-sm">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 pb-2 border-b border-slate-100">
+              <i class="fa-solid fa-utensils text-blue-500"></i> Saturday Night Street Food Market
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0">L</span>
+              <div class="bg-slate-50 rounded-2xl rounded-tl-none p-3.5 text-slate-700 text-xs sm:text-sm">
+                <span class="font-bold text-slate-900 block mb-1">Liam:</span>
+                "Where should we get dinner? <span class="bg-blue-100 text-blue-900 px-1.5 py-0.5 rounded font-bold">I prefer to eat</span> at food trucks because <span class="bg-indigo-100 text-indigo-900 px-1.5 py-0.5 rounded font-bold">I love to try</span> new food."
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center shrink-0">S</span>
+              <div class="bg-amber-50/50 border border-amber-100 rounded-2xl rounded-tl-none p-3.5 text-slate-700 text-xs sm:text-sm">
+                <span class="font-bold text-slate-900 block mb-1">Sara:</span>
+                "Food trucks sound great, but that popular taco truck is packed! <span class="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-bold">I usually can't stand waiting</span> in long lines."
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0">L</span>
+              <div class="bg-slate-50 rounded-2xl rounded-tl-none p-3.5 text-slate-700 text-xs sm:text-sm">
+                <span class="font-bold text-slate-900 block mb-1">Liam:</span>
+                "The spicy noodle stand has seats right now. <span class="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-bold">I don't mind waiting</span> here at this table if you want to order."
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center shrink-0">S</span>
+              <div class="bg-amber-50/50 border border-amber-100 rounded-2xl rounded-tl-none p-3.5 text-slate-700 text-xs sm:text-sm">
+                <span class="font-bold text-slate-900 block mb-1">Sara:</span>
+                "Perfect. Later, <span class="bg-blue-100 text-blue-900 px-1.5 py-0.5 rounded font-bold">do you want to watch</span> a movie at my place?"
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0">L</span>
+              <div class="bg-slate-50 rounded-2xl rounded-tl-none p-3.5 text-slate-700 text-xs sm:text-sm">
+                <span class="font-bold text-slate-900 block mb-1">Liam:</span>
+                "I'd love that! <span class="bg-blue-100 text-blue-900 px-1.5 py-0.5 rounded font-bold">I decided to leave</span> my car at home, so we can walk over together."
+              </div>
+            </div>
+          </div>
+
+          <!-- Inductive Challenge Cards -->
+          <div class="lg:col-span-6 space-y-4">
+            <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-xs">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-2">
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] flex items-center justify-center font-bold">1</span>
+                Deduction: Expressing Intention &amp; Decisions
+              </h4>
+              <p class="text-xs text-slate-600 mb-3">Notice <strong>"decided"</strong> and <strong>"want"</strong> in the chat. What form followed them?</p>
+              <div class="flex items-center gap-2">
+                <button onclick="revealDiscovery(1, true, this)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 transition">to + base verb (to leave, to watch)</button>
+                <button onclick="revealDiscovery(1, false, this)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 transition">-ing form (leaving, watching)</button>
+              </div>
+              <div id="disc-ans-1" class="hidden mt-2.5 text-xs p-2.5 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200 font-medium"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-xs">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-2">
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] flex items-center justify-center font-bold">2</span>
+                Deduction: Expressing Patience &amp; Tolerating
+              </h4>
+              <p class="text-xs text-slate-600 mb-3">Look at <strong>"can't stand"</strong> and <strong>"don't mind"</strong>. What shape did the next verb take?</p>
+              <div class="flex items-center gap-2">
+                <button onclick="revealDiscovery(2, false, this)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 transition">to + verb (to wait)</button>
+                <button onclick="revealDiscovery(2, true, this)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 transition">verb + -ing (waiting)</button>
+              </div>
+              <div id="disc-ans-2" class="hidden mt-2.5 text-xs p-2.5 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200 font-medium"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5 border border-blue-100 shadow-xs">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-2">
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] flex items-center justify-center font-bold">3</span>
+                Deduction: Flexible Emotional Verbs
+              </h4>
+              <p class="text-xs text-slate-600 mb-3">Liam said: <em>"I love to try new food."</em> Could he also say <em>"I love trying new food"</em> with the same meaning?</p>
+              <div class="flex items-center gap-2">
+                <button onclick="revealDiscovery(3, true, this)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 transition">Yes, both mean the exact same!</button>
+                <button onclick="revealDiscovery(3, false, this)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold hover:bg-slate-50 transition">No, only 'to try' is allowed</button>
+              </div>
+              <div id="disc-ans-3" class="hidden mt-2.5 text-xs p-2.5 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200 font-medium"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Discovery Summary Bar -->
+        <div class="mt-6 p-4 rounded-2xl bg-white/80 border border-blue-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-lightbulb"></i>
+            </span>
+            <p class="text-xs sm:text-sm text-slate-700">
+              <strong>Discovery Rule:</strong> The <em>first verb</em> decides what follows it: some verbs demand <strong>to + verb</strong>, others require <strong>verb + -ing</strong>, and some allow both!
+            </p>
+          </div>
+          <a href="#learn-section" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition whitespace-nowrap">
+            Explore Details Below &darr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn-section" class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <div class="text-center mb-10">
+        <h3 class="text-2xl font-bold text-slate-900 font-serif">Core Foundations</h3>
+        <p class="text-slate-500 text-sm mt-1">Study the three primary verb behaviors in everyday English</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- CARD 1: VERB + TO + VERB -->
+        <div class="bg-white rounded-3xl border border-blue-200 shadow-soft overflow-hidden hover:shadow-elevated transition duration-300 flex flex-col">
+          <div class="relative h-48 overflow-hidden bg-slate-100 group">
+            <img 
+              src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?auto=format&fit=crop&w=900&q=80" 
+              alt="Outdoor Food Truck" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/900x500/dbeafe/1d4ed8?text=Food+Truck';"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+              <span class="font-bold text-base tracking-wide flex items-center gap-2">
+                <i class="fa-solid fa-compass text-blue-300"></i> Verb + to + Verb
+              </span>
+              <span class="bg-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Infinitive</span>
+            </div>
+          </div>
+
+          <div class="p-5 space-y-3 flex-grow text-xs sm:text-sm">
+            <p class="text-slate-600 leading-relaxed">
+              Used when expressing <strong>future goals, plans, choices, and decisions</strong>.
+            </p>
+
+            <div class="bg-blue-50/80 rounded-xl p-3 border border-blue-100 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-blue-800 uppercase tracking-wider">Target Examples</span>
+                <button onclick="speakText('I prefer to eat at food trucks. We decided to leave.')" class="text-blue-600 hover:text-blue-700 text-xs flex items-center gap-1 font-semibold">
+                  <i class="fa-solid fa-volume-high"></i> Listen
+                </button>
+              </div>
+              <p class="text-slate-800 font-medium">"I prefer <strong class="text-blue-700">to eat</strong> at food trucks."</p>
+              <p class="text-slate-800 font-medium">"We decided <strong class="text-blue-700">to leave</strong> early."</p>
+            </div>
+
+            <div class="pt-1">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Common Verbs:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">want</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">decide</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">plan</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">need</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">hope</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: VERB + VERB + -ING -->
+        <div class="bg-white rounded-3xl border border-amber-200 shadow-soft overflow-hidden hover:shadow-elevated transition duration-300 flex flex-col">
+          <div class="relative h-48 overflow-hidden bg-slate-100 group">
+            <img 
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80" 
+              alt="People waiting and chatting in an evening cafe" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/900x500/fef3c7/b45309?text=Cafe+Waiting';"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+              <span class="font-bold text-base tracking-wide flex items-center gap-2">
+                <i class="fa-solid fa-hourglass-half text-amber-300"></i> Verb + -ing
+              </span>
+              <span class="bg-amber-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Gerund</span>
+            </div>
+          </div>
+
+          <div class="p-5 space-y-3 flex-grow text-xs sm:text-sm">
+            <p class="text-slate-600 leading-relaxed">
+              Used when talking about <strong>habits, ongoing experiences, tolerance, and attitudes</strong>.
+            </p>
+
+            <div class="bg-amber-50/80 rounded-xl p-3 border border-amber-100 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-amber-800 uppercase tracking-wider">Target Examples</span>
+                <button onclick="speakText('I usually cannot stand waiting in line. I do not mind waiting here.')" class="text-amber-700 hover:text-amber-800 text-xs flex items-center gap-1 font-semibold">
+                  <i class="fa-solid fa-volume-high"></i> Listen
+                </button>
+              </div>
+              <p class="text-slate-800 font-medium">"I can't stand <strong class="text-amber-700">waiting</strong> in line."</p>
+              <p class="text-slate-800 font-medium">"I don't mind <strong class="text-amber-700">waiting</strong> here."</p>
+            </div>
+
+            <div class="pt-1">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Common Verbs:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">can't stand</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">don't mind</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">enjoy</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">avoid</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">finish</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: VERBS TAKING BOTH -->
+        <div class="bg-white rounded-3xl border border-indigo-200 shadow-soft overflow-hidden hover:shadow-elevated transition duration-300 flex flex-col">
+          <div class="relative h-48 overflow-hidden bg-slate-100 group">
+            <img 
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80" 
+              alt="Delicious street food dishes" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/900x500/e0e7ff/3730a3?text=Tasting+Food';"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+              <span class="font-bold text-base tracking-wide flex items-center gap-2">
+                <i class="fa-solid fa-shuffle text-indigo-300"></i> Both Patterns
+              </span>
+              <span class="bg-indigo-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Dual Form</span>
+            </div>
+          </div>
+
+          <div class="p-5 space-y-3 flex-grow text-xs sm:text-sm">
+            <p class="text-slate-600 leading-relaxed">
+              These verbs can take <strong>either pattern</strong> with virtually <strong>no difference in meaning</strong>.
+            </p>
+
+            <div class="bg-indigo-50/80 rounded-xl p-3 border border-indigo-100 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-indigo-800 uppercase tracking-wider">Interchangeable</span>
+                <button onclick="speakText('I love to try new food. I love trying new food.')" class="text-indigo-700 hover:text-indigo-800 text-xs flex items-center gap-1 font-semibold">
+                  <i class="fa-solid fa-volume-high"></i> Listen
+                </button>
+              </div>
+              <p class="text-slate-800 font-medium">"I love <strong class="text-indigo-700">to try</strong> new food."</p>
+              <p class="text-slate-800 font-medium text-slate-500">= "I love <strong class="text-indigo-700">trying</strong> new food."</p>
+            </div>
+
+            <div class="pt-1">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Common Dual Verbs:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">love</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">like</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">hate</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">prefer</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">start</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="rules-summary" class="bg-white py-12 border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8">
+          <span class="text-xs font-bold text-blue-600 tracking-wider uppercase">Quick Reference Matrix</span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-1 font-serif">Everyday Sentence Structures</h3>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+          <table class="w-full text-left text-xs sm:text-sm text-slate-700 border-collapse">
+            <thead class="bg-slate-100 text-slate-800 uppercase text-[11px] font-bold tracking-wider">
+              <tr>
+                <th class="p-3.5 sm:p-4 border-b">Category</th>
+                <th class="p-3.5 sm:p-4 border-b">Target Verbs</th>
+                <th class="p-3.5 sm:p-4 border-b">Affirmative Example (+)</th>
+                <th class="p-3.5 sm:p-4 border-b">Negative / Question (?/-)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3.5 sm:p-4 font-bold text-blue-700 flex items-center gap-1.5">
+                  <i class="fa-solid fa-arrow-right"></i> Verb + to + Verb
+                </td>
+                <td class="p-3.5 sm:p-4 font-semibold text-slate-900">want, decide, hope, need, plan</td>
+                <td class="p-3.5 sm:p-4">I <strong>decided to leave</strong> early.</td>
+                <td class="p-3.5 sm:p-4">Do you <strong>want to watch</strong> a film?</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3.5 sm:p-4 font-bold text-amber-700 flex items-center gap-1.5">
+                  <i class="fa-solid fa-hourglass-half"></i> Verb + -ing
+                </td>
+                <td class="p-3.5 sm:p-4 font-semibold text-slate-900">can't stand, don't mind, enjoy, avoid</td>
+                <td class="p-3.5 sm:p-4">I usually <strong>enjoy cooking</strong> at home.</td>
+                <td class="p-3.5 sm:p-4">I <strong>can't stand waiting</strong> in line.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3.5 sm:p-4 font-bold text-indigo-700 flex items-center gap-1.5">
+                  <i class="fa-solid fa-shuffle"></i> Both (Either)
+                </td>
+                <td class="p-3.5 sm:p-4 font-semibold text-slate-900">love, like, hate, prefer, start</td>
+                <td class="p-3.5 sm:p-4">I <strong>prefer to eat</strong> at food trucks.</td>
+                <td class="p-3.5 sm:p-4">I also <strong>prefer eating</strong> tacos.</td>
+              </tr>
+              <tr class="bg-amber-50/50">
+                <td class="p-3.5 sm:p-4 font-bold text-amber-800">Warning Alert</td>
+                <td class="p-3.5 sm:p-4" colspan="3">
+                  Never use two bare base verbs: say <span class="text-emerald-700 font-bold">"I decided to leave"</span>, never <span class="badge-cross text-rose-500 font-semibold">"I decided leave"</span>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercises-section" class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 mb-8">
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Interactive Practice</span>
+          <h3 class="text-3xl font-extrabold text-slate-900 font-serif">10 Practice Exercises</h3>
+          <p class="text-sm text-slate-500">Test and consolidate your natural verb instincts.</p>
+        </div>
+
+        <div class="flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-soft">
+          <div class="text-right">
+            <p class="text-xs text-slate-400 font-medium">Your Total Score</p>
+            <p class="text-2xl font-black text-slate-900 leading-none">
+              <span id="total-score" class="text-blue-600">0</span> / 10
+            </p>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXERCISES CONTAINER -->
+      <div class="space-y-6">
+
+        <!-- EXERCISE 1: MULTIPLE CHOICE -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">1</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Multiple Choice: Decision Verb</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-4">Complete the sentence: <em>"It was raining heavily, so we decided ________ at home."</em></p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="ex1-options">
+            <button onclick="checkEx1(this, true)" class="p-3 rounded-xl border border-slate-200 text-sm font-medium hover:bg-slate-50 transition text-left">A) to stay</button>
+            <button onclick="checkEx1(this, false)" class="p-3 rounded-xl border border-slate-200 text-sm font-medium hover:bg-slate-50 transition text-left">B) staying</button>
+            <button onclick="checkEx1(this, false)" class="p-3 rounded-xl border border-slate-200 text-sm font-medium hover:bg-slate-50 transition text-left">C) stay</button>
+          </div>
+          <div id="ex1-feedback" class="mt-3 text-xs hidden"></div>
+        </div>
+
+        <!-- EXERCISE 2: DRAG AND DROP / CATEGORIZATION -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">2</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Sort: Verb Patterns</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-4">Drag each verb to its required pattern box (or click to place).</p>
+          
+          <div class="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-xl mb-4 min-h-[48px]" id="drag-source">
+            <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleWordClick(this)" data-type="to" class="drag-item px-3 py-1.5 bg-white border border-slate-300 text-xs font-bold rounded-lg shadow-sm">want</span>
+            <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleWordClick(this)" data-type="ing" class="drag-item px-3 py-1.5 bg-white border border-slate-300 text-xs font-bold rounded-lg shadow-sm">enjoy</span>
+            <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleWordClick(this)" data-type="to" class="drag-item px-3 py-1.5 bg-white border border-slate-300 text-xs font-bold rounded-lg shadow-sm">decide</span>
+            <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleWordClick(this)" data-type="ing" class="drag-item px-3 py-1.5 bg-white border border-slate-300 text-xs font-bold rounded-lg shadow-sm">can't stand</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="drop-zone border-2 border-dashed border-blue-300 rounded-xl p-4 min-h-[100px] bg-blue-50/30 flex flex-col justify-start"
+                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'to')">
+              <h5 class="text-xs font-bold uppercase tracking-wider text-blue-800 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-right"></i> Verb + to + Verb
+              </h5>
+              <div class="zone-items flex flex-wrap gap-2"></div>
+            </div>
+            <div class="drop-zone border-2 border-dashed border-amber-300 rounded-xl p-4 min-h-[100px] bg-amber-50/30 flex flex-col justify-start"
+                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'ing')">
+              <h5 class="text-xs font-bold uppercase tracking-wider text-amber-800 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-hourglass-half"></i> Verb + -ing
+              </h5>
+              <div class="zone-items flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center justify-between">
+            <button onclick="checkEx2()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Sorting</button>
+            <div id="ex2-feedback" class="text-xs font-medium"></div>
+          </div>
+        </div>
+
+        <!-- EXERCISE 3: FILL IN THE BLANK -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">3</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Fill in the Blank: Expressing Dislike</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Write the correct form of the verb <strong>(wait)</strong>:</p>
+          <div class="bg-slate-50 p-4 rounded-xl flex flex-wrap items-center gap-2 text-sm sm:text-base text-slate-800">
+            <span>"I usually can't stand</span>
+            <input type="text" id="ex3-input" placeholder="type verb form..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 w-36 bg-white text-center">
+            <span>in line when it's cold outside."</span>
+          </div>
+          <div class="mt-3 flex items-center gap-3">
+            <button onclick="checkEx3()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Answer</button>
+            <span id="ex3-feedback" class="text-xs font-medium"></span>
+          </div>
+        </div>
+
+        <!-- EXERCISE 4: DROPDOWN SELECTOR -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">4</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Dropdown: 'Don't Mind'</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Choose the natural verb form to finish the polite statement:</p>
+          <div class="bg-slate-50 p-4 rounded-xl flex flex-wrap items-center gap-2 text-sm sm:text-base text-slate-800">
+            <span>"I don't mind</span>
+            <select id="ex4-select" class="px-3 py-1.5 border border-slate-300 rounded-lg text-sm font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">-- select --</option>
+              <option value="to wait">to wait</option>
+              <option value="waiting">waiting</option>
+              <option value="waited">waited</option>
+            </select>
+            <span>here for a few minutes while you order."</span>
+          </div>
+          <div class="mt-3 flex items-center gap-3">
+            <button onclick="checkEx4()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Selection</button>
+            <span id="ex4-feedback" class="text-xs font-medium"></span>
+          </div>
+        </div>
+
+        <!-- EXERCISE 5: SPOT THE ERROR -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">5</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Spot the Error: Click the mistake</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">One word or phrase in this sentence is grammatically incorrect. Click on the mistake:</p>
+          <div class="p-4 bg-slate-50 rounded-xl flex flex-wrap gap-2 text-base font-medium" id="ex5-tokens">
+            <button onclick="checkEx5(this, false)" class="px-2.5 py-1 rounded-lg border border-transparent hover:border-slate-300 hover:bg-white transition">Elena</button>
+            <button onclick="checkEx5(this, false)" class="px-2.5 py-1 rounded-lg border border-transparent hover:border-slate-300 hover:bg-white transition">really</button>
+            <button onclick="checkEx5(this, false)" class="px-2.5 py-1 rounded-lg border border-transparent hover:border-slate-300 hover:bg-white transition">enjoys</button>
+            <button onclick="checkEx5(this, true)" class="px-2.5 py-1 rounded-lg border border-transparent hover:border-slate-300 hover:bg-white transition">to cook</button>
+            <button onclick="checkEx5(this, false)" class="px-2.5 py-1 rounded-lg border border-transparent hover:border-slate-300 hover:bg-white transition">dinner</button>
+            <button onclick="checkEx5(this, false)" class="px-2.5 py-1 rounded-lg border border-transparent hover:border-slate-300 hover:bg-white transition">for her family.</button>
+          </div>
+          <div id="ex5-feedback" class="mt-3 text-xs font-medium hidden"></div>
+        </div>
+
+        <!-- EXERCISE 6: TRUE OR FALSE -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">6</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">True or False: Verb Flexibility</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-4">
+            Statement: <em>"Verbs like 'love', 'like', and 'prefer' can be followed by either 'to + verb' or 'verb + -ing' with almost the same meaning."</em>
+          </p>
+          <div class="flex gap-3">
+            <button onclick="checkEx6(true, this)" class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold hover:bg-slate-50 transition flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500"></i> True
+            </button>
+            <button onclick="checkEx6(false, this)" class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold hover:bg-slate-50 transition flex items-center gap-2">
+              <i class="fa-solid fa-xmark text-rose-500"></i> False
+            </button>
+          </div>
+          <div id="ex6-feedback" class="mt-3 text-xs font-medium hidden"></div>
+        </div>
+
+        <!-- EXERCISE 7: SENTENCE SCRAMBLE (No Answer Hint) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">7</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Sentence Builder: Reorder the words</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Reorder the tiles to form a complete, grammatically correct statement:</p>
+          
+          <div class="p-3 bg-slate-50 rounded-xl min-h-[46px] flex flex-wrap gap-2 mb-3" id="ex7-built">
+            <span class="text-xs text-slate-400 italic" id="ex7-placeholder">Click words below to assemble your sentence...</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2" id="ex7-pool">
+            <button onclick="addWordToEx7(this, 'trucks.')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold hover:bg-blue-50">trucks.</button>
+            <button onclick="addWordToEx7(this, 'prefer')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold hover:bg-blue-50">prefer</button>
+            <button onclick="addWordToEx7(this, 'at')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold hover:bg-blue-50">at</button>
+            <button onclick="addWordToEx7(this, 'I')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold hover:bg-blue-50">I</button>
+            <button onclick="addWordToEx7(this, 'food')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold hover:bg-blue-50">food</button>
+            <button onclick="addWordToEx7(this, 'to eat')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold hover:bg-blue-50">to eat</button>
+          </div>
+
+          <div class="mt-3 flex items-center gap-3">
+            <button onclick="checkEx7()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Order</button>
+            <button onclick="resetEx7()" class="px-3 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-semibold hover:bg-slate-200 transition">Reset</button>
+            <span id="ex7-feedback" class="text-xs font-medium"></span>
+          </div>
+        </div>
+
+        <!-- EXERCISE 8: QUESTION FORMATION (Neutral Placeholder) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">8</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Writing: Question with 'want'</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Fill in the two missing words to form a polite question with <strong>(watch)</strong>:</p>
+          <div class="bg-slate-50 p-4 rounded-xl flex flex-wrap items-center gap-2 text-sm sm:text-base text-slate-800">
+            <span>"Do you want</span>
+            <input type="text" id="ex8-input" placeholder="write answer..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 w-36 bg-white text-center">
+            <span>a movie with us tonight?"</span>
+          </div>
+          <div class="mt-3 flex items-center gap-3">
+            <button onclick="checkEx8()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Answer</button>
+            <span id="ex8-feedback" class="text-xs font-medium"></span>
+          </div>
+        </div>
+
+        <!-- EXERCISE 9: SENTENCE CORRECTION -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">9</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Sentence Correction: Fix the verb pattern</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Fix the grammar mistake in this sentence with <em>'avoid'</em>:</p>
+          <div class="p-3 bg-red-50 text-red-900 rounded-xl text-sm font-semibold mb-3 border border-red-200">
+            "We usually avoid to drive during the evening rush hour."
+          </div>
+          <p class="text-xs text-slate-500 mb-2">Type the fully corrected sentence (remember 'avoid' takes -ing):</p>
+          <input type="text" id="ex9-input" placeholder="Type corrected sentence..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <div class="mt-3 flex items-center gap-3">
+            <button onclick="checkEx9()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Rewrite</button>
+            <span id="ex9-feedback" class="text-xs font-medium"></span>
+          </div>
+        </div>
+
+        <!-- EXERCISE 10: AUDIO & MEANING EVALUATION -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">10</span>
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base">Audio &amp; Meaning Match</h4>
+            </div>
+            <span class="text-xs font-medium text-slate-400">1 pt</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Click the sound button to listen, then decide whether the spoken sentence is grammatically natural or unnatural:</p>
+          
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl mb-4">
+            <button onclick="speakText('I love to try new street food in the city')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center gap-2 transition">
+              <i class="fa-solid fa-volume-high"></i> Play Audio
+            </button>
+            <span class="text-xs sm:text-sm font-semibold text-slate-700 italic">"I love to try new street food in the city."</span>
+          </div>
+
+          <div class="flex gap-3">
+            <button onclick="checkEx10(true, this)" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-bold hover:bg-slate-50 transition">
+              <i class="fa-solid fa-check text-emerald-500"></i> Natural &amp; Correct
+            </button>
+            <button onclick="checkEx10(false, this)" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-bold hover:bg-slate-50 transition">
+              <i class="fa-solid fa-xmark text-rose-500"></i> Unnatural / Incorrect
+            </button>
+          </div>
+          <div id="ex10-feedback" class="mt-3 text-xs font-medium hidden"></div>
+        </div>
+
+      </div>
+
+      <!-- Completion Banner -->
+      <div id="completion-banner" class="mt-10 p-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl text-white text-center hidden shadow-elevated">
+        <h4 class="text-2xl font-black font-serif mb-1">Phenomenal Job!</h4>
+        <p class="text-sm opacity-90 mb-4" id="completion-text">You have completed all 10 exercises.</p>
+        <button onclick="resetAllExercises()" class="px-6 py-2.5 bg-white text-slate-900 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-100 transition shadow-sm">
+          Restart All Exercises
+        </button>
+      </div>
+    </section>
+
+    <section id="game-section" class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl border border-slate-700 shadow-elevated p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-700/80">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-blue-500/20 text-blue-400 uppercase tracking-wider mb-2 border border-blue-500/30">
+              <i class="fa-solid fa-bolt"></i> Reflex Challenge
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-serif tracking-tight">Pattern Sprint: Quick Sorter</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1">Look at the verb card. Tap the correct lane as fast and accurately as you can!</p>
+          </div>
+
+          <div class="flex items-center gap-3 bg-slate-800/90 px-4 py-2.5 rounded-2xl border border-slate-700 self-start sm:self-auto">
+            <div class="text-center px-2">
+              <div class="text-[10px] uppercase font-bold text-slate-400">Timer</div>
+              <div class="text-lg font-black text-rose-400 font-mono" id="sprint-timer">15s</div>
+            </div>
+            <div class="h-8 w-px bg-slate-700"></div>
+            <div class="text-center px-2">
+              <div class="text-[10px] uppercase font-bold text-slate-400">Card</div>
+              <div class="text-lg font-black text-blue-400" id="sprint-progress">1 / 10</div>
+            </div>
+            <div class="h-8 w-px bg-slate-700"></div>
+            <div class="text-center px-2">
+              <div class="text-[10px] uppercase font-bold text-slate-400">Score</div>
+              <div class="text-lg font-black text-amber-400" id="sprint-score">0</div>
+            </div>
+            <div class="h-8 w-px bg-slate-700"></div>
+            <div class="text-center px-2">
+              <div class="text-[10px] uppercase font-bold text-slate-400">Streak</div>
+              <div class="text-lg font-black text-emerald-400" id="sprint-streak">0 🔥</div>
+            </div>
+            <button onclick="initSprintGame()" class="ml-2 w-9 h-9 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition" title="Restart Game">
+              <i class="fa-solid fa-rotate-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-8 max-w-xl mx-auto text-center" id="sprint-arena">
+          <!-- Timer Bar -->
+          <div class="w-full bg-slate-800 rounded-full h-2 mb-4 overflow-hidden border border-slate-700">
+            <div id="sprint-timer-bar" class="bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500 h-full w-full transition-all duration-1000 ease-linear"></div>
+          </div>
+
+          <div id="sprint-card" class="bg-gradient-to-b from-slate-800 to-slate-850 border-2 border-slate-600 rounded-3xl p-8 sm:p-10 shadow-2xl relative transition duration-200">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-slate-700/60 text-slate-300 uppercase tracking-wider mb-3">
+              <i id="sprint-icon" class="fa-solid fa-utensils text-blue-400"></i>
+              <span id="sprint-context">Food &amp; Dining</span>
+            </div>
+            <h4 id="sprint-verb" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2 font-serif">prefer</h4>
+            <p id="sprint-example" class="text-slate-400 text-xs sm:text-sm font-medium">"I prefer _______ at food trucks."</p>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-4">
+            <button onclick="handleSprintChoice('to')" id="btn-choice-to" class="group p-4 sm:p-5 rounded-2xl bg-blue-600/90 hover:bg-blue-600 border-2 border-blue-400/40 hover:border-blue-300 text-left transition transform active:scale-95 shadow-lg">
+              <div class="flex items-center justify-between mb-1">
+                <span class="w-7 h-7 rounded-lg bg-blue-500/80 text-white text-xs flex items-center justify-center font-bold">1</span>
+                <i class="fa-solid fa-arrow-right text-blue-200 text-xs group-hover:translate-x-1 transition"></i>
+              </div>
+              <div class="font-extrabold text-base sm:text-lg text-white">to + verb</div>
+              <div class="text-[11px] text-blue-200 font-medium">Infinitive plan</div>
+            </button>
+
+            <button onclick="handleSprintChoice('ing')" id="btn-choice-ing" class="group p-4 sm:p-5 rounded-2xl bg-amber-600/90 hover:bg-amber-600 border-2 border-amber-400/40 hover:border-amber-300 text-left transition transform active:scale-95 shadow-lg">
+              <div class="flex items-center justify-between mb-1">
+                <span class="w-7 h-7 rounded-lg bg-amber-500/80 text-white text-xs flex items-center justify-center font-bold">2</span>
+                <i class="fa-solid fa-arrow-right text-amber-200 text-xs group-hover:translate-x-1 transition"></i>
+              </div>
+              <div class="font-extrabold text-base sm:text-lg text-white">verb + -ing</div>
+              <div class="text-[11px] text-amber-200 font-medium">Gerund habit/feeling</div>
+            </button>
+          </div>
+
+          <div id="sprint-feedback" class="mt-4 min-h-[24px] text-xs font-semibold text-slate-400">
+            Tip: You can also tap '1' or '2' on your keyboard!
+          </div>
+        </div>
+
+        <div id="sprint-win-box" class="hidden mt-8 p-6 bg-gradient-to-r from-emerald-600/90 to-blue-600/90 rounded-2xl border border-emerald-400/40 text-center max-w-lg mx-auto shadow-elevated">
+          <div class="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center text-xl mx-auto mb-3">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h4 class="text-xl font-bold font-serif mb-1">Sprint Finished!</h4>
+          <p class="text-xs sm:text-sm text-emerald-100 mb-4" id="sprint-win-details">Final Score: 10/10 with a maximum streak of 10!</p>
+          <button onclick="initSprintGame()" class="px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-900 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-sm">
+            Play Sprint Again
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+      <div class="flex items-center space-x-2">
+        <span>&copy; English Grammar Lab. Designed for clarity and active learning.</span>
+      </div>
+      <div class="text-[11px] text-slate-400 font-normal hover:text-slate-600 transition">
+        Designed by Babak Alaee
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Speech Synthesis Pronunciation Helper */
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function speakDialogue() {
+      const dialogueLines = "Liam: Where should we get dinner? I prefer to eat at food trucks because I love to try new food. Sara: Food trucks sound great, but that popular taco truck is packed! I usually can't stand waiting in long lines. Liam: The spicy noodle stand has seats right now. I don't mind waiting here at this table if you want to order. Sara: Perfect. Later, do you want to watch a movie at my place? Liam: I'd love that! I decided to leave my car at home, so we can walk over together.";
+      speakText(dialogueLines);
+    }
+
+    /* Inductive Discovery Logic */
+    function revealDiscovery(step, isCorrect, btn) {
+      const targetDiv = document.getElementById(`disc-ans-${step}`);
+      const parent = btn.parentElement;
+      parent.querySelectorAll('button').forEach(b => {
+        b.classList.remove('bg-emerald-100', 'border-emerald-400', 'text-emerald-900', 'bg-rose-100', 'border-rose-400', 'text-rose-900');
+      });
+
+      targetDiv.classList.remove('hidden');
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+        targetDiv.className = 'mt-2.5 text-xs p-2.5 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200 font-medium block';
+        if (step === 1) {
+          targetDiv.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> <strong>Spot on!</strong> Verbs expressing decisions and future wishes (<em>decide, want, hope</em>) take <strong>to + base verb</strong>.';
+        } else if (step === 2) {
+          targetDiv.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> <strong>Brilliant deduction!</strong> Phrases expressing attitude or tolerance (<em>can\'t stand, don\'t mind, enjoy</em>) require <strong>verb + -ing</strong>.';
+        } else if (step === 3) {
+          targetDiv.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> <strong>Exactly right!</strong> Verbs like <em>love, like, prefer, and hate</em> can freely use either <strong>to + verb</strong> or <strong>-ing</strong> with no change in meaning.';
+        }
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        btn.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        targetDiv.className = 'mt-2.5 text-xs p-2.5 rounded-lg bg-rose-50 text-rose-900 border border-rose-200 font-medium block';
+        targetDiv.innerHTML = '<i class="fa-solid fa-xmark text-rose-600"></i> Re-read the conversation lines above carefully and try again!';
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+    }
+
+    /* Web Audio Sound Generator */
+    function playWebAudioSound(freq, type, duration) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freq || 440, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    /* Global Exercise Scoring */
+    const scoreState = {
+      ex1: 0, ex2: 0, ex3: 0, ex4: 0, ex5: 0,
+      ex6: 0, ex7: 0, ex8: 0, ex9: 0, ex10: 0
+    };
+
+    function updateScoreDisplay() {
+      const total = Object.values(scoreState).reduce((a, b) => a + b, 0);
+      const scoreEl = document.getElementById('total-score');
+      scoreEl.innerText = total;
+      if (total === 10) {
+        document.getElementById('completion-banner').classList.remove('hidden');
+        playWebAudioSound(784, 'triangle', 0.4);
+      }
+    }
+
+    /* EXERCISE 1 */
+    function checkEx1(btn, isCorrect) {
+      const fb = document.getElementById('ex1-feedback');
+      const btns = document.querySelectorAll('#ex1-options button');
+      btns.forEach(b => b.classList.remove('bg-emerald-100', 'border-emerald-400', 'bg-rose-100', 'border-rose-400'));
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+        fb.className = 'mt-3 text-xs text-emerald-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-check"></i> Correct! The verb <strong>decide</strong> always requires <strong>to + verb</strong> (to stay).';
+        scoreState.ex1 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        btn.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        fb.className = 'mt-3 text-xs text-rose-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Not quite. Remember: "decide" represents a plan and requires "to + verb".';
+        scoreState.ex1 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 2 */
+    let draggedItem = null;
+    function handleDragStart(e) {
+      draggedItem = e.target;
+      e.dataTransfer.setData('text/plain', e.target.innerText);
+    }
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('dragover');
+    }
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove('dragover');
+    }
+    function handleDrop(e, targetZoneType) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('dragover');
+      if (draggedItem) {
+        e.currentTarget.querySelector('.zone-items').appendChild(draggedItem);
+        draggedItem = null;
+      }
+    }
+    function handleWordClick(item) {
+      const source = document.getElementById('drag-source');
+      const zoneTo = document.querySelectorAll('.drop-zone')[0].querySelector('.zone-items');
+      const zoneIng = document.querySelectorAll('.drop-zone')[1].querySelector('.zone-items');
+      if (item.parentElement === source) {
+        if (item.dataset.type === 'to') zoneTo.appendChild(item);
+        else zoneIng.appendChild(item);
+      } else {
+        source.appendChild(item);
+      }
+    }
+    function checkEx2() {
+      const toItems = document.querySelectorAll('.drop-zone')[0].querySelectorAll('.drag-item');
+      const ingItems = document.querySelectorAll('.drop-zone')[1].querySelectorAll('.drag-item');
+      const fb = document.getElementById('ex2-feedback');
+
+      let allCorrect = (toItems.length === 2 && ingItems.length === 2);
+      toItems.forEach(el => { if (el.dataset.type !== 'to') allCorrect = false; });
+      ingItems.forEach(el => { if (el.dataset.type !== 'ing') allCorrect = false; });
+
+      if (allCorrect) {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Perfect sorting! (want, decide &rarr; to; enjoy, can\'t stand &rarr; -ing)</span>';
+        scoreState.ex2 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.innerHTML = '<span class="text-rose-600 font-bold"><i class="fa-solid fa-xmark"></i> Some items are misplaced or not sorted yet. Try again!</span>';
+        scoreState.ex2 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 3 */
+    function checkEx3() {
+      const input = document.getElementById('ex3-input').value.trim().toLowerCase();
+      const fb = document.getElementById('ex3-feedback');
+      if (input === 'waiting') {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Correct! (can\'t stand waiting)</span>';
+        scoreState.ex3 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.innerHTML = '<span class="text-rose-600 font-bold"><i class="fa-solid fa-xmark"></i> Remember: \'can\'t stand\' must be followed by -ing.</span>';
+        scoreState.ex3 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 4 */
+    function checkEx4() {
+      const val = document.getElementById('ex4-select').value;
+      const fb = document.getElementById('ex4-feedback');
+      if (val === 'waiting') {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Excellent! "don\'t mind waiting" is natural English.</span>';
+        scoreState.ex4 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.innerHTML = '<span class="text-rose-600 font-bold"><i class="fa-solid fa-xmark"></i> The verb expression \'don\'t mind\' takes the -ing form.</span>';
+        scoreState.ex4 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 5 */
+    function checkEx5(btn, isCorrect) {
+      const fb = document.getElementById('ex5-feedback');
+      fb.classList.remove('hidden');
+      if (isCorrect) {
+        fb.className = 'mt-3 text-xs text-emerald-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-check"></i> You found it! We say "enjoys cooking", NOT "enjoys to cook".';
+        btn.classList.add('bg-emerald-100', 'text-emerald-900', 'line-through');
+        scoreState.ex5 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.className = 'mt-3 text-xs text-rose-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-xmark"></i> That word is correct. Look closely at the verb form after "enjoys".';
+        scoreState.ex5 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 6 */
+    function checkEx6(userChoice, btn) {
+      const fb = document.getElementById('ex6-feedback');
+      fb.classList.remove('hidden');
+      if (userChoice === true) {
+        fb.className = 'mt-3 text-xs text-emerald-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-check"></i> True! "I love to try" and "I love trying" are both 100% correct.';
+        scoreState.ex6 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.className = 'mt-3 text-xs text-rose-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Actually, this is True! Both patterns are widely accepted with these verbs.';
+        scoreState.ex6 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 7 */
+    let builtSentenceEx7 = [];
+    function addWordToEx7(btn, word) {
+      document.getElementById('ex7-placeholder')?.remove();
+      builtSentenceEx7.push({ word: word, originalBtn: btn });
+      btn.classList.add('hidden');
+
+      const builtDiv = document.getElementById('ex7-built');
+      const chip = document.createElement('span');
+      chip.className = 'px-3 py-1 bg-blue-100 text-blue-900 border border-blue-200 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer';
+      chip.innerText = word;
+      chip.onclick = () => {
+        builtSentenceEx7 = builtSentenceEx7.filter(item => item.word !== word || item.originalBtn !== btn);
+        chip.remove();
+        btn.classList.remove('hidden');
+      };
+      builtDiv.appendChild(chip);
+    }
+    function resetEx7() {
+      builtSentenceEx7 = [];
+      document.getElementById('ex7-built').innerHTML = '<span class="text-xs text-slate-400 italic" id="ex7-placeholder">Click words below to assemble your sentence...</span>';
+      document.querySelectorAll('#ex7-pool button').forEach(b => b.classList.remove('hidden'));
+      document.getElementById('ex7-feedback').innerHTML = '';
+      scoreState.ex7 = 0;
+      updateScoreDisplay();
+    }
+    function checkEx7() {
+      const result = builtSentenceEx7.map(item => item.word).join(' ');
+      const fb = document.getElementById('ex7-feedback');
+      if (result === 'I prefer to eat at food trucks.') {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Excellent sentence formation!</span>';
+        scoreState.ex7 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.innerHTML = '<span class="text-rose-600 font-bold"><i class="fa-solid fa-xmark"></i> Check the word order and try again!</span>';
+        scoreState.ex7 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 8 */
+    function checkEx8() {
+      const input = document.getElementById('ex8-input').value.trim().toLowerCase().replace(/\s+/g, ' ');
+      const fb = document.getElementById('ex8-feedback');
+      if (input === 'to watch') {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Spot on! ("Do you want to watch...")</span>';
+        scoreState.ex8 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.innerHTML = '<span class="text-rose-600 font-bold"><i class="fa-solid fa-xmark"></i> The verb \'want\' takes \'to + verb\'. Type: to watch</span>';
+        scoreState.ex8 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 9 */
+    function checkEx9() {
+      let input = document.getElementById('ex9-input').value.trim().toLowerCase().replace(/[.,!]/g, '').replace(/\s+/g, ' ');
+      const target = "we usually avoid driving during the evening rush hour";
+      const fb = document.getElementById('ex9-feedback');
+
+      if (input === target) {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Flawless rewrite! ("avoid driving")</span>';
+        scoreState.ex9 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else if (input.includes('avoid driving')) {
+        fb.innerHTML = '<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Great job with "avoid driving"!</span>';
+        scoreState.ex9 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.innerHTML = '<span class="text-rose-600 font-bold"><i class="fa-solid fa-xmark"></i> Remember to change "to drive" to "driving".</span>';
+        scoreState.ex9 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    /* EXERCISE 10 */
+    function checkEx10(choice, btn) {
+      const fb = document.getElementById('ex10-feedback');
+      fb.classList.remove('hidden');
+      if (choice === true) {
+        fb.className = 'mt-3 text-xs text-emerald-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-check"></i> Absolutely correct! "I love to try..." is 100% natural and grammatical.';
+        scoreState.ex10 = 1;
+        playWebAudioSound(600, 'sine', 0.15);
+      } else {
+        fb.className = 'mt-3 text-xs text-rose-700 font-semibold block';
+        fb.innerHTML = '<i class="fa-solid fa-xmark"></i> That sentence is actually completely correct! "love" takes "to + verb".';
+        scoreState.ex10 = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+      }
+      updateScoreDisplay();
+    }
+
+    function resetAllExercises() {
+      for (let k in scoreState) scoreState[k] = 0;
+      updateScoreDisplay();
+      document.querySelectorAll('input[type="text"]').forEach(i => i.value = '');
+      document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+      document.querySelectorAll('[id$="-feedback"]').forEach(f => { f.classList.add('hidden'); f.innerHTML = ''; });
+      document.getElementById('completion-banner').classList.add('hidden');
+      resetEx7();
+
+      const source = document.getElementById('drag-source');
+      document.querySelectorAll('.drag-item').forEach(el => source.appendChild(el));
+    }
+
+    /* PATTERN SPRINT GAME */
+    const sprintDeck = [
+      {
+        verb: "prefer",
+        example: '"I prefer _______ at food trucks."',
+        context: "Dining preference",
+        icon: "fa-utensils",
+        correct: "to",
+        bothAllowed: true,
+        note: "Takes 'to eat' (and also accepts 'eating')!"
+      },
+      {
+        verb: "can't stand",
+        example: '"I usually can\'t stand _______ in long lines."',
+        context: "Patience & attitude",
+        icon: "fa-clock",
+        correct: "ing",
+        bothAllowed: false,
+        note: "Requires 'waiting' (-ing)!"
+      },
+      {
+        verb: "don't mind",
+        example: '"I don\'t mind _______ here at our table."',
+        context: "Polite tolerance",
+        icon: "fa-chair",
+        correct: "ing",
+        bothAllowed: false,
+        note: "Requires 'waiting' (-ing)!"
+      },
+      {
+        verb: "want",
+        example: '"I want _______ that outdoor concert tonight."',
+        context: "Intentions & plans",
+        icon: "fa-ticket",
+        correct: "to",
+        bothAllowed: false,
+        note: "Requires 'to watch' (to + verb)!"
+      },
+      {
+        verb: "enjoy",
+        example: '"I enjoy _______ to live guitar music."',
+        context: "Positive activity",
+        icon: "fa-headphones",
+        correct: "ing",
+        bothAllowed: false,
+        note: "Requires 'listening' (-ing)!"
+      },
+      {
+        verb: "decided",
+        example: '"We decided _______ our car at home."',
+        context: "Past decision",
+        icon: "fa-car",
+        correct: "to",
+        bothAllowed: false,
+        note: "Requires 'to leave' (to + verb)!"
+      },
+      {
+        verb: "love",
+        example: '"I love _______ new street food recipes."',
+        context: "Deep enthusiasm",
+        icon: "fa-heart",
+        correct: "to",
+        bothAllowed: true,
+        note: "Accepts both 'to try' and 'trying'!"
+      },
+      {
+        verb: "avoid",
+        example: '"I usually avoid _______ during peak rush hour."',
+        context: "Negative habit",
+        icon: "fa-ban",
+        correct: "ing",
+        bothAllowed: false,
+        note: "Requires 'driving' (-ing)!"
+      },
+      {
+        verb: "hope",
+        example: '"They hope _______ Paris again next summer."',
+        context: "Future wish",
+        icon: "fa-plane",
+        correct: "to",
+        bothAllowed: false,
+        note: "Requires 'to visit' (to + verb)!"
+      },
+      {
+        verb: "finish",
+        example: '"Please finish _______ your homework first."',
+        context: "Completion of action",
+        icon: "fa-check-double",
+        correct: "ing",
+        bothAllowed: false,
+        note: "Requires 'doing' (-ing)!"
+      }
+    ];
+
+    let sprintIndex = 0;
+    let sprintScoreVal = 0;
+    let sprintStreakVal = 0;
+    let maxStreak = 0;
+    let sprintIsLocked = false;
+    let sprintTimerSeconds = 15;
+    let sprintTimerInterval = null;
+
+    function initSprintGame() {
+      if (sprintTimerInterval) {
+        clearInterval(sprintTimerInterval);
+      }
+
+      sprintIndex = 0;
+      sprintScoreVal = 0;
+      sprintStreakVal = 0;
+      maxStreak = 0;
+      sprintIsLocked = false;
+      sprintTimerSeconds = 15;
+
+      document.getElementById('sprint-win-box').classList.add('hidden');
+      document.getElementById('sprint-arena').classList.remove('hidden');
+      document.getElementById('sprint-score').innerText = '0';
+      document.getElementById('sprint-streak').innerText = '0 🔥';
+      document.getElementById('sprint-timer').innerText = '15s';
+      document.getElementById('sprint-timer').classList.remove('animate-pulse', 'text-rose-500');
+      document.getElementById('sprint-timer-bar').style.width = '100%';
+      document.getElementById('sprint-feedback').innerHTML = "Tip: You can also tap '1' or '2' on your keyboard!";
+
+      sprintDeck.sort(() => Math.random() - 0.5);
+      renderSprintCard();
+      startSprintTimer();
+    }
+
+    function startSprintTimer() {
+      const timerDisplay = document.getElementById('sprint-timer');
+      const timerBar = document.getElementById('sprint-timer-bar');
+
+      sprintTimerInterval = setInterval(() => {
+        sprintTimerSeconds--;
+
+        if (sprintTimerSeconds <= 5) {
+          timerDisplay.classList.add('animate-pulse', 'text-rose-500');
+          playWebAudioSound(280, 'triangle', 0.08);
+        }
+
+        if (sprintTimerSeconds >= 0) {
+          timerDisplay.innerText = `${sprintTimerSeconds}s`;
+          timerBar.style.width = `${(sprintTimerSeconds / 15) * 100}%`;
+        }
+
+        if (sprintTimerSeconds <= 0) {
+          clearInterval(sprintTimerInterval);
+          finishSprintGame(true);
+        }
+      }, 1000);
+    }
+
+    function renderSprintCard() {
+      const current = sprintDeck[sprintIndex];
+      document.getElementById('sprint-progress').innerText = `${sprintIndex + 1} / ${sprintDeck.length}`;
+      document.getElementById('sprint-verb').innerText = current.verb;
+      document.getElementById('sprint-example').innerText = current.example;
+      document.getElementById('sprint-context').innerText = current.context;
+      
+      const iconEl = document.getElementById('sprint-icon');
+      iconEl.className = `fa-solid ${current.icon} text-blue-400`;
+
+      const card = document.getElementById('sprint-card');
+      card.classList.remove('ring-4', 'ring-emerald-400', 'ring-rose-400', 'scale-[0.98]');
+    }
+
+    function handleSprintChoice(choice) {
+      if (sprintIsLocked || sprintTimerSeconds <= 0) return;
+      sprintIsLocked = true;
+
+      const current = sprintDeck[sprintIndex];
+      const isCorrect = (choice === current.correct) || (current.bothAllowed);
+      const card = document.getElementById('sprint-card');
+      const fb = document.getElementById('sprint-feedback');
+
+      if (isCorrect) {
+        sprintScoreVal++;
+        sprintStreakVal++;
+        if (sprintStreakVal > maxStreak) maxStreak = sprintStreakVal;
+
+        playWebAudioSound(587.33, 'sine', 0.15);
+        card.classList.add('ring-4', 'ring-emerald-400', 'scale-[0.99]');
+        fb.innerHTML = `<span class="text-emerald-400"><i class="fa-solid fa-check"></i> Correct! ${current.note}</span>`;
+      } else {
+        sprintStreakVal = 0;
+        playWebAudioSound(220, 'triangle', 0.2);
+        card.classList.add('ring-4', 'ring-rose-400');
+        fb.innerHTML = `<span class="text-rose-400"><i class="fa-solid fa-xmark"></i> Oops! ${current.note}</span>`;
+      }
+
+      document.getElementById('sprint-score').innerText = sprintScoreVal;
+      document.getElementById('sprint-streak').innerText = `${sprintStreakVal} 🔥`;
+
+      setTimeout(() => {
+        sprintIndex++;
+        if (sprintIndex < sprintDeck.length && sprintTimerSeconds > 0) {
+          renderSprintCard();
+          sprintIsLocked = false;
+        } else if (sprintTimerSeconds > 0) {
+          clearInterval(sprintTimerInterval);
+          finishSprintGame(false);
+        }
+      }, 750);
+    }
+
+    function finishSprintGame(isTimeUp) {
+      sprintIsLocked = true;
+      document.getElementById('sprint-arena').classList.add('hidden');
+      const winBox = document.getElementById('sprint-win-box');
+      
+      if (isTimeUp) {
+        playWebAudioSound(260, 'sawtooth', 0.3);
+        winBox.querySelector('h4').innerText = "Time's Up!";
+        document.getElementById('sprint-win-details').innerText = `15 seconds passed! You scored ${sprintScoreVal} / ${sprintDeck.length} with a peak streak of ${maxStreak}!`;
+      } else {
+        playWebAudioSound(784, 'triangle', 0.35);
+        winBox.querySelector('h4').innerText = "Sprint Completed in Time!";
+        document.getElementById('sprint-win-details').innerText = `Speed runner! Finished with ${sprintTimerSeconds}s to spare — scored ${sprintScoreVal} / ${sprintDeck.length} (Peak streak: ${maxStreak})!`;
+      }
+      
+      winBox.classList.remove('hidden');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const gameSec = document.getElementById('game-section');
+      if (gameSec) {
+        const rect = gameSec.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          if (e.key === '1') handleSprintChoice('to');
+          if (e.key === '2') handleSprintChoice('ing');
+        }
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initSprintGame();
+    });
+  </script>
+</body>
+</html>
