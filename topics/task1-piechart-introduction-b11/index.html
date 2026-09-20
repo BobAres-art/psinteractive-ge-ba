@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Academic Task 1: Master Pie Charts Guide</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN for interactive charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- ChartDataLabels plugin for static labels on slices -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            tealAccent: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            },
+            navySlate: {
+              800: '#1e293b',
+              900: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+    }
+    .active-nav-link {
+      color: #0d9488;
+      border-bottom: 2px solid #0d9488;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-xl shadow-sm">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="text-lg font-bold font-heading text-navySlate-900 leading-tight block">Task 1 Guide</span>
+            <span class="text-xs text-teal-600 font-semibold tracking-wide">Designed by Babak Alaee</span>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+          <a href="#structure" class="hover:text-teal-600 transition">Essay Structure</a>
+          <a href="#main-features" class="hover:text-teal-600 transition">Find Main Features</a>
+          <a href="#sample-task" class="hover:text-teal-600 transition">Sample Task</a>
+          <a href="#percent-vs-percentage" class="hover:text-teal-600 transition">Grammar: Percent vs %</a>
+        </div>
+        <div>
+          <a href="#sample-task" class="inline-flex items-center px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 rounded-lg shadow transition">
+            Read Sample Model
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-b from-teal-50/70 to-white py-12 lg:py-16 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <span class="badge bg-teal-100 text-teal-800 mb-4">Clear &amp; Practical Step-by-Step Guide</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-navySlate-900 tracking-tight leading-tight">
+        How to Write a Report for <span class="text-teal-600">Pie Charts</span>
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+        Learn how to describe pie charts clearly, logically, and accurately. Master the 4-paragraph method, key comparison phrases, and simple sentence structures.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+          <p class="text-xs text-slate-400 font-medium uppercase">Time Goal</p>
+          <p class="text-sm sm:text-base font-bold text-slate-800 mt-0.5">20 Minutes</p>
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+          <p class="text-xs text-slate-400 font-medium uppercase">Word Count</p>
+          <p class="text-sm sm:text-base font-bold text-slate-800 mt-0.5">At least 150 words</p>
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+          <p class="text-xs text-slate-400 font-medium uppercase">Paragraphs</p>
+          <p class="text-sm sm:text-base font-bold text-slate-800 mt-0.5">4 Paragraphs</p>
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+          <p class="text-xs text-slate-400 font-medium uppercase">Golden Rule</p>
+          <p class="text-sm sm:text-base font-bold text-teal-600 mt-0.5">No Personal Opinions</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-16">
+
+    <section id="structure" class="scroll-mt-20">
+      <div class="mb-6">
+        <span class="text-teal-600 font-bold uppercase text-xs tracking-wider">Formula for Success</span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-heading text-navySlate-900 mt-1">
+          The 4-Paragraph Structure
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Organize your report logically every single time using this reliable sequence:
+        </p>
+      </div>
+
+      <!-- Flowchart representation -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <!-- Step 1 -->
+        <div class="bg-white p-5 rounded-2xl border-2 border-teal-200 relative custom-shadow flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-teal-600 text-white font-bold flex items-center justify-center text-sm mb-3">1</div>
+            <h3 class="font-bold font-heading text-slate-900 text-base">Introduction</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+              Paraphrase the prompt in <strong>1 sentence</strong>. Tell the reader what the charts illustrate, the location, and the time period.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-teal-700 bg-teal-50/70 p-2 rounded-lg font-medium">
+            💡 <em>"The pie charts illustrate the proportion of..."</em>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white p-5 rounded-2xl border-2 border-emerald-300 relative custom-shadow flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white font-bold flex items-center justify-center text-sm mb-3">2</div>
+            <h3 class="font-bold font-heading text-slate-900 text-base">Overview</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+              Provide <strong>2 to 3 main general points</strong>: Which category is the biggest? Smallest? Which grew or dropped the most? (Do not list numbers here!)
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-emerald-800 bg-emerald-50 p-2 rounded-lg font-medium">
+            💡 <em>"Overall, heating accounted for the largest share..."</em>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white p-5 rounded-2xl border-2 border-sky-200 relative custom-shadow flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-sky-600 text-white font-bold flex items-center justify-center text-sm mb-3">3</div>
+            <h3 class="font-bold font-heading text-slate-900 text-base">Detail Paragraph 1</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+              Present specific data, figures, and percentages for the <strong>major categories</strong> or primary sectors. Make clean comparisons.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-sky-800 bg-sky-50 p-2 rounded-lg font-medium">
+            💡 <em>"Looking at heating first, it comprised 42%..."</em>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white p-5 rounded-2xl border-2 border-indigo-200 relative custom-shadow flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold flex items-center justify-center text-sm mb-3">4</div>
+            <h3 class="font-bold font-heading text-slate-900 text-base">Detail Paragraph 2</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+              Present figures for the <strong>remaining categories</strong> (e.g., smaller sectors, stable categories). Compare numbers accurately.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-indigo-800 bg-indigo-50 p-2 rounded-lg font-medium">
+            💡 <em>"In contrast, lighting was the smallest sector at only..."</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CHARTS & FIND MAIN FEATURES (PLACED BEFORE SAMPLE TASK) -->
+    <section id="main-features" class="scroll-mt-20">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 custom-shadow">
+        
+        <!-- Prompt Box -->
+        <div class="bg-slate-50 border-l-4 border-teal-500 p-4 sm:p-5 rounded-r-xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded">Task Prompt</span>
+          <h3 class="font-heading font-bold text-slate-900 text-lg mt-2">
+            You should spend about 20 minutes on this task.
+          </h3>
+          <p class="text-slate-700 text-sm sm:text-base mt-1 italic">
+            The pie charts below show the average household energy consumption by purpose in an average European country in 2010 and 2020.
+          </p>
+          <p class="text-slate-600 text-xs sm:text-sm mt-2 font-medium">
+            Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.
+          </p>
+        </div>
+
+        <!-- Interactive Charts Area with Guaranteed Room for all 5 Legends -->
+        <div class="bg-slate-50/60 p-4 sm:p-6 rounded-2xl border border-slate-100 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <!-- Chart 2010 -->
+            <div class="flex flex-col items-center">
+              <h4 class="text-center font-bold text-slate-800 text-base mb-1 font-heading">Energy Use in 2010</h4>
+              <span class="text-xs text-slate-500 mb-2">Total: 100%</span>
+              <div class="w-full max-w-[320px] h-[340px] relative flex items-center justify-center">
+                <canvas id="chart2010"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 2020 -->
+            <div class="flex flex-col items-center">
+              <h4 class="text-center font-bold text-slate-800 text-base mb-1 font-heading">Energy Use in 2020</h4>
+              <span class="text-xs text-slate-500 mb-2">Total: 100%</span>
+              <div class="w-full max-w-[320px] h-[340px] relative flex items-center justify-center">
+                <canvas id="chart2020"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color Category Summary Bar (Ensures All 5 Labels are 100% Explicit) -->
+          <div class="mt-4 pt-4 border-t border-slate-200 flex flex-wrap justify-center items-center gap-3 sm:gap-4 text-xs font-semibold text-slate-700">
+            <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#0d9488]"></span> Space Heating</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#0284c7]"></span> Water Heating</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#f59e0b]"></span> Appliances</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#8b5cf6]"></span> Lighting</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#ec4899]"></span> Cooling</span>
+          </div>
+        </div>
+
+        <!-- Main Feature Discovery Exercise -->
+        <div class="mt-8 border-t border-slate-200 pt-6">
+          <div class="max-w-2xl mb-4">
+            <span class="text-teal-600 font-bold uppercase text-xs tracking-wider">Step 1: Chart Analysis Exercise</span>
+            <h3 class="text-2xl font-bold font-heading text-navySlate-900 mt-1">
+              Find the Main Features First
+            </h3>
+            <p class="text-slate-600 text-sm mt-1">
+              Before reading or writing the model report, test your ability to spot key points from the charts above:
+            </p>
+          </div>
+
+          <div class="space-y-4" id="features-container">
+            <!-- Question 1 -->
+            <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 transition feature-card" id="feat-q1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded">Question 1</span>
+                <span class="text-xs text-slate-400">Largest Category</span>
+              </div>
+              <h4 class="font-semibold text-slate-800 text-sm sm:text-base mt-2">
+                Which category took up the greatest share of energy in both 2010 and 2020?
+              </h4>
+              <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm">
+                <button onclick="checkFeature(1, 'Water Heating', false)" class="q1-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Water Heating
+                </button>
+                <button onclick="checkFeature(1, 'Space Heating', true)" class="q1-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Space Heating
+                </button>
+                <button onclick="checkFeature(1, 'Appliances', false)" class="q1-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Appliances
+                </button>
+              </div>
+              <div id="feat-ans-1" class="hidden mt-3 text-xs sm:text-sm p-3 rounded-lg font-medium"></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 transition feature-card" id="feat-q2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded">Question 2</span>
+                <span class="text-xs text-slate-400">Significant Growth</span>
+              </div>
+              <h4 class="font-semibold text-slate-800 text-sm sm:text-base mt-2">
+                Which energy use doubled its percentage between 2010 and 2020?
+              </h4>
+              <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm">
+                <button onclick="checkFeature(2, 'Cooling (from 4% to 8%)', true)" class="q2-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Cooling (from 4% to 8%)
+                </button>
+                <button onclick="checkFeature(2, 'Lighting (from 8% to 10%)', false)" class="q2-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Lighting (from 8% to 10%)
+                </button>
+                <button onclick="checkFeature(2, 'Water Heating (from 20% to 25%)', false)" class="q2-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Water Heating (from 20% to 25%)
+                </button>
+              </div>
+              <div id="feat-ans-2" class="hidden mt-3 text-xs sm:text-sm p-3 rounded-lg font-medium"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 transition feature-card" id="feat-q3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded">Question 3</span>
+                <span class="text-xs text-slate-400">Overview Writing Rule</span>
+              </div>
+              <h4 class="font-semibold text-slate-800 text-sm sm:text-base mt-2">
+                Should you include specific numbers (e.g. "45%" or "52%") in your Overview paragraph?
+              </h4>
+              <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <button onclick="checkFeature(3, 'Yes', false)" class="q3-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  Yes, you need all numbers everywhere
+                </button>
+                <button onclick="checkFeature(3, 'No', true)" class="q3-opt text-left p-2.5 rounded-lg border border-slate-300 hover:bg-white transition bg-white/70">
+                  No, leave precise numbers for the Detail Paragraphs
+                </button>
+              </div>
+              <div id="feat-ans-3" class="hidden mt-3 text-xs sm:text-sm p-3 rounded-lg font-medium"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: SAMPLE TASK & MODEL REPORT (FOLLOWS THE FEATURE EXERCISE) -->
+    <section id="sample-task" class="scroll-mt-20">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 custom-shadow">
+        
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-4 mb-6">
+          <div>
+            <span class="text-teal-600 font-bold uppercase text-xs tracking-wider">Step 2: Complete Model Report</span>
+            <h3 class="text-2xl font-bold font-heading text-navySlate-900 mt-0.5">
+              Sample Task Model Answer
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500">Notice how each paragraph connects back to the features you identified above.</p>
+          </div>
+          <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-teal-600 text-teal-700 hover:bg-teal-50 transition flex items-center gap-1.5">
+            <span>Toggle Teacher Notes</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </button>
+        </div>
+
+        <div class="space-y-4 text-slate-700 leading-relaxed text-sm sm:text-base">
+
+          <!-- Paragraph 1: Introduction -->
+          <div class="p-4 rounded-xl bg-teal-50/40 border border-teal-100 transition">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="badge bg-teal-600 text-white">Paragraph 1: Introduction</span>
+              <span class="text-xs text-slate-400 font-medium">1 Sentence</span>
+            </div>
+            <p class="text-slate-800">
+              The two pie charts compare the proportion of energy used for different purposes in an average European household in 2010 and 2020.
+            </p>
+            <div class="annotation mt-2 pt-2 border-t border-teal-100 text-xs text-teal-800 hidden">
+              <strong>Why this works:</strong> "The two pie charts compare the proportion of..." rephrases the prompt cleanly. It states what, where, and when accurately.
+            </div>
+          </div>
+
+          <!-- Paragraph 2: Overview -->
+          <div class="p-4 rounded-xl bg-emerald-50/40 border border-emerald-100 transition">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="badge bg-emerald-600 text-white">Paragraph 2: Overview</span>
+              <span class="text-xs text-slate-400 font-medium">2 Sentences</span>
+            </div>
+            <p class="text-slate-800">
+              Overall, heating rooms remained the largest category of energy use in both years, whereas lighting consistently accounted for the smallest share. In addition, while energy used for water heating and cooling increased, the proportions for room heating and appliances declined.
+            </p>
+            <div class="annotation mt-2 pt-2 border-t border-emerald-100 text-xs text-emerald-800 hidden">
+              <strong>Why this works:</strong> Highlights the dominant category (room heating), the minor category (lighting), and broad changes (water heating and cooling up, others down) without listing any figures.
+            </div>
+          </div>
+
+          <!-- Paragraph 3: Detail Paragraph 1 -->
+          <div class="p-4 rounded-xl bg-sky-50/40 border border-sky-100 transition">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="badge bg-sky-600 text-white">Paragraph 3: Major Sectors</span>
+              <span class="text-xs text-slate-400 font-medium">Room &amp; Water Heating</span>
+            </div>
+            <p class="text-slate-800">
+              In 2010, space heating was by far the largest energy expense, making up 52% of the total. By 2020, this figure dropped slightly to 45%, but it still remained the highest. In contrast, the percentage of energy spent on water heating rose moderately from 20% in 2010 to 25% in 2020, solidifying its position as the second largest consumer of energy.
+            </p>
+            <div class="annotation mt-2 pt-2 border-t border-sky-100 text-xs text-sky-800 hidden">
+              <strong>Why this works:</strong> Compares the two leading categories with exact percentages ("52%", "45%", "20%", "25%") and clear transitional words ("In contrast").
+            </div>
+          </div>
+
+          <!-- Paragraph 4: Detail Paragraph 2 -->
+          <div class="p-4 rounded-xl bg-indigo-50/40 border border-indigo-100 transition">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="badge bg-indigo-600 text-white">Paragraph 4: Remaining Sectors</span>
+              <span class="text-xs text-slate-400 font-medium">Appliances, Lighting &amp; Cooling</span>
+            </div>
+            <p class="text-slate-800">
+              Regarding other household needs, household appliances represented 16% of energy use in 2010, which decreased to 12% ten years later. Meanwhile, cooling started at only 4% in 2010 and doubled to 8% in 2020. Finally, the percentage for lighting showed very little change, remaining nearly unchanged at roughly 8% to 10% in both decades.
+            </p>
+            <div class="annotation mt-2 pt-2 border-t border-indigo-100 text-xs text-indigo-800 hidden">
+              <strong>Why this works:</strong> Clearly describes the three smaller categories using cohesive links ("Regarding...", "Meanwhile...", "Finally...").
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 border-t border-slate-200 pt-3 mt-6">
+          <span>Word Count: <strong>172 words</strong> (Exceeds the 150-word requirement)</span>
+          <span class="text-teal-700 font-semibold">Tense: Simple Past (2010 &amp; 2020)</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: GRAMMAR (PERCENT VS PERCENTAGE) -->
+    <section id="percent-vs-percentage" class="scroll-mt-20">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 custom-shadow">
+        
+        <div>
+          <span class="text-teal-600 font-bold uppercase text-xs tracking-wider">Crucial Grammar Rule</span>
+          <h2 class="text-2xl sm:text-3xl font-bold font-heading text-navySlate-900 mt-1">
+            "Percent" vs. "Percentage"
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-2">
+            Many learners confuse these two words. Here is the simple golden rule to keep your writing accurate.
+          </p>
+        </div>
+
+        <!-- Visual Comparison Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          
+          <!-- Percent Card -->
+          <div class="p-6 rounded-2xl bg-teal-50/50 border-2 border-teal-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xl font-bold font-heading text-teal-800">Percent (%)</h3>
+                <span class="badge bg-teal-600 text-white">Always with a Number</span>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                Use <strong>percent</strong> immediately following a specific number or quantity. Do not add an "s" to percent.
+              </p>
+              
+              <div class="mt-4 space-y-2">
+                <div class="p-2.5 bg-white rounded-lg border border-teal-200 text-xs sm:text-sm text-slate-800">
+                  ✅ <em>"Heating accounted for <strong>45 percent</strong> of all energy."</em>
+                </div>
+                <div class="p-2.5 bg-white rounded-lg border border-teal-200 text-xs sm:text-sm text-slate-800">
+                  ✅ <em>"Only <strong>8 percent</strong> was used for cooling."</em>
+                </div>
+                <div class="p-2.5 bg-red-50 rounded-lg border border-red-200 text-xs sm:text-sm text-red-700">
+                  ❌ <em>"A high percent of people..." (Incorrect!)</em>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 text-xs text-teal-800 font-semibold">
+              Formula: [Number] + percent
+            </div>
+          </div>
+
+          <!-- Percentage Card -->
+          <div class="p-6 rounded-2xl bg-sky-50/50 border-2 border-sky-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xl font-bold font-heading text-sky-900">Percentage</h3>
+                <span class="badge bg-sky-600 text-white">General Noun</span>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                Use <strong>percentage</strong> as a normal noun when there is NO specific number right before it. Often used with <em>the, a large, a small</em>.
+              </p>
+              
+              <div class="mt-4 space-y-2">
+                <div class="p-2.5 bg-white rounded-lg border border-sky-200 text-xs sm:text-sm text-slate-800">
+                  ✅ <em>"<strong>The percentage of</strong> energy for cooling increased."</em>
+                </div>
+                <div class="p-2.5 bg-white rounded-lg border border-sky-200 text-xs sm:text-sm text-slate-800">
+                  ✅ <em>"A large <strong>percentage</strong> of the budget went to heating."</em>
+                </div>
+                <div class="p-2.5 bg-red-50 rounded-lg border border-red-200 text-xs sm:text-sm text-red-700">
+                  ❌ <em>"It stood at 45 percentage." (Incorrect!)</em>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 text-xs text-sky-800 font-semibold">
+              Formula: [The / A large / A small] + percentage of...
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-slate-200">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-lg font-bold font-heading text-navySlate-900">
+                Interactive Practice: Test Yourself
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500">Choose the correct word to complete each sentence.</p>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-slate-500">Score:</span>
+              <span id="quiz-score" class="text-base font-bold text-teal-600">0 / 4</span>
+            </div>
+          </div>
+
+          <div class="space-y-4" id="quiz-list">
+
+            <!-- Quiz Item 1 -->
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm" id="q-block-1">
+              <p class="font-medium text-slate-800 mb-2">
+                1. In 2010, space heating was responsible for roughly 52 <span class="underline font-bold text-teal-700">[ ? ]</span> of the energy used.
+              </p>
+              <div class="flex gap-3">
+                <button onclick="answerQuiz(1, 'percent', true)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percent</button>
+                <button onclick="answerQuiz(1, 'percentage', false)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percentage</button>
+              </div>
+              <div id="q-feedback-1" class="hidden mt-2 text-xs font-semibold"></div>
+            </div>
+
+            <!-- Quiz Item 2 -->
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm" id="q-block-2">
+              <p class="font-medium text-slate-800 mb-2">
+                2. A significant <span class="underline font-bold text-teal-700">[ ? ]</span> of total power was consumed by domestic appliances.
+              </p>
+              <div class="flex gap-3">
+                <button onclick="answerQuiz(2, 'percent', false)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percent</button>
+                <button onclick="answerQuiz(2, 'percentage', true)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percentage</button>
+              </div>
+              <div id="q-feedback-2" class="hidden mt-2 text-xs font-semibold"></div>
+            </div>
+
+            <!-- Quiz Item 3 -->
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm" id="q-block-3">
+              <p class="font-medium text-slate-800 mb-2">
+                3. The <span class="underline font-bold text-teal-700">[ ? ]</span> of energy spent on lighting remained quite small.
+              </p>
+              <div class="flex gap-3">
+                <button onclick="answerQuiz(3, 'percentage', true)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percentage</button>
+                <button onclick="answerQuiz(3, 'percent', false)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percent</button>
+              </div>
+              <div id="q-feedback-3" class="hidden mt-2 text-xs font-semibold"></div>
+            </div>
+
+            <!-- Quiz Item 4 -->
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm" id="q-block-4">
+              <p class="font-medium text-slate-800 mb-2">
+                4. Water heating reached 25 <span class="underline font-bold text-teal-700">[ ? ]</span> by the year 2020.
+              </p>
+              <div class="flex gap-3">
+                <button onclick="answerQuiz(4, 'percent', true)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percent</button>
+                <button onclick="answerQuiz(4, 'percentage', false)" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 hover:border-teal-400 transition font-medium">percentage</button>
+              </div>
+              <div id="q-feedback-4" class="hidden mt-2 text-xs font-semibold"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-teal-900 to-navySlate-900 text-white rounded-3xl p-6 sm:p-10 shadow-lg">
+      <h2 class="text-2xl sm:text-3xl font-bold font-heading">
+        Sentence Starters Cheat Sheet
+      </h2>
+      <p class="text-teal-200 text-sm mt-1 max-w-xl">
+        Keep these natural, error-free phrases in mind when writing your own reports:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        
+        <div class="bg-white/10 backdrop-blur p-4 rounded-xl border border-white/10">
+          <h3 class="font-bold text-teal-300 text-sm uppercase tracking-wide">For Introductions</h3>
+          <ul class="mt-3 space-y-2 text-xs sm:text-sm text-slate-200">
+            <li>• <em>The pie chart provides information about...</em></li>
+            <li>• <em>The charts compare the proportion of...</em></li>
+            <li>• <em>The diagrams illustrate how... was distributed in...</em></li>
+          </ul>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur p-4 rounded-xl border border-white/10">
+          <h3 class="font-bold text-teal-300 text-sm uppercase tracking-wide">For Overviews</h3>
+          <ul class="mt-3 space-y-2 text-xs sm:text-sm text-slate-200">
+            <li>• <em>Overall, it is clear that... represented the largest share.</em></li>
+            <li>• <em>In general,... accounted for the smallest proportion.</em></li>
+            <li>• <em>While... experienced an upward trend,... declined.</em></li>
+          </ul>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur p-4 rounded-xl border border-white/10">
+          <h3 class="font-bold text-teal-300 text-sm uppercase tracking-wide">For Describing Data</h3>
+          <ul class="mt-3 space-y-2 text-xs sm:text-sm text-slate-200">
+            <li>• <em>...made up roughly [X] percent of the total.</em></li>
+            <li>• <em>...constituted the second largest category at [X]%.</em></li>
+            <li>• <em>In contrast,... rose moderately from [X]% to [Y]%.</em></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4">
+      <p class="font-semibold text-slate-700">IELTS Academic Task 1: Comprehensive Educational Guide</p>
+      <p class="mt-1">Follow the 4-paragraph structure: Introduction &rarr; Overview &rarr; Detail 1 &rarr; Detail 2 for maximum clarity.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Register ChartDataLabels plugin so values show statically on the slices
+    Chart.register(ChartDataLabels);
+
+    // Initialize Chart.js Pie Charts
+    window.addEventListener('DOMContentLoaded', () => {
+      const chartLabels = ['Space Heating', 'Water Heating', 'Appliances', 'Lighting', 'Cooling'];
+      const chartColors = [
+        '#0d9488', // Teal 600
+        '#0284c7', // Sky 600
+        '#f59e0b', // Amber 500
+        '#8b5cf6', // Violet 500
+        '#ec4899'  // Pink 500
+      ];
+
+      // Common datalabels configuration for static display
+      const datalabelsConfig = {
+        color: '#ffffff',
+        font: {
+          family: 'Plus Jakarta Sans',
+          weight: 'bold',
+          size: 13
+        },
+        formatter: (value) => value + '%',
+        textShadowBlur: 4,
+        textShadowColor: 'rgba(0, 0, 0, 0.45)'
+      };
+
+      // Common Legend Configuration ensuring all 5 items (including Cooling) fit cleanly
+      const commonLegendConfig = {
+        position: 'bottom',
+        align: 'center',
+        labels: {
+          boxWidth: 10,
+          boxHeight: 10,
+          usePointStyle: true,
+          pointStyle: 'circle',
+          font: { 
+            family: 'Plus Jakarta Sans', 
+            size: 11,
+            weight: '600'
+          },
+          padding: 10
+        }
+      };
+
+      // Chart 2010
+      const ctx2010 = document.getElementById('chart2010').getContext('2d');
+      new Chart(ctx2010, {
+        type: 'pie',
+        data: {
+          labels: chartLabels,
+          datasets: [{
+            data: [52, 20, 16, 8, 4],
+            backgroundColor: chartColors,
+            borderColor: '#ffffff',
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            datalabels: datalabelsConfig,
+            legend: commonLegendConfig,
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ` ${context.label}: ${context.raw}%`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Chart 2020
+      const ctx2020 = document.getElementById('chart2020').getContext('2d');
+      new Chart(ctx2020, {
+        type: 'pie',
+        data: {
+          labels: chartLabels,
+          datasets: [{
+            data: [45, 25, 12, 10, 8],
+            backgroundColor: chartColors,
+            borderColor: '#ffffff',
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            datalabels: datalabelsConfig,
+            legend: commonLegendConfig,
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ` ${context.label}: ${context.raw}%`;
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+
+    // Toggle Teacher Annotations in the model answer
+    let annotationsVisible = false;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      const notes = document.querySelectorAll('.annotation');
+      const btn = document.getElementById('toggle-annotations-btn');
+      
+      notes.forEach(note => {
+        if (annotationsVisible) {
+          note.classList.remove('hidden');
+        } else {
+          note.classList.add('hidden');
+        }
+      });
+
+      btn.innerHTML = annotationsVisible 
+        ? `<span>Hide Teacher Notes</span> <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>`
+        : `<span>Toggle Teacher Notes</span> <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+    }
+
+    // Feature Finding Interactive Checks
+    function checkFeature(qNum, selectedValue, isCorrect) {
+      const feedback = document.getElementById(`feat-ans-${qNum}`);
+      feedback.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-rose-100', 'text-rose-800');
+      
+      const buttons = document.querySelectorAll(`.q${qNum}-opt`);
+      buttons.forEach(btn => btn.classList.remove('ring-2', 'ring-teal-500', 'bg-teal-50'));
+
+      if (isCorrect) {
+        feedback.classList.add('bg-green-100', 'text-green-800');
+        if (qNum === 1) {
+          feedback.innerHTML = "✅ <strong>Correct!</strong> Space heating was 52% in 2010 and 45% in 2020. This should be highlighted first in your overview.";
+        } else if (qNum === 2) {
+          feedback.innerHTML = "✅ <strong>Spot on!</strong> Cooling increased from 4% to 8%, which is an exact doubling. Noting this shows great analytical skill.";
+        } else if (qNum === 3) {
+          feedback.innerHTML = "✅ <strong>Exactly right!</strong> The overview is meant for broad trends and key highlights only. Always save specific data points for the detail body paragraphs.";
+        }
+      } else {
+        feedback.classList.add('bg-rose-100', 'text-rose-800');
+        feedback.innerHTML = "❌ <strong>Not quite.</strong> Look closely at both charts again or re-read the question carefully.";
+      }
+    }
+
+    // Grammar Quiz State & Logic
+    const answeredQuestions = {};
+    let totalScore = 0;
+
+    function answerQuiz(qId, choice, isCorrect) {
+      const feedbackEl = document.getElementById(`q-feedback-${qId}`);
+      feedbackEl.classList.remove('hidden', 'text-green-600', 'text-rose-600');
+      
+      if (!answeredQuestions[qId]) {
+        if (isCorrect) {
+          totalScore += 1;
+        }
+        answeredQuestions[qId] = true;
+        document.getElementById('quiz-score').textContent = `${totalScore} / 4`;
+      }
+
+      if (isCorrect) {
+        feedbackEl.classList.add('text-green-600');
+        if (choice === 'percent') {
+          feedbackEl.innerHTML = "✅ Correct! We use 'percent' directly after a specific number (e.g. 52 percent, 25 percent).";
+        } else {
+          feedbackEl.innerHTML = "✅ Correct! We use 'percentage' as a general noun preceded by 'a', 'the', or adjectives like 'significant'.";
+        }
+      } else {
+        feedbackEl.classList.add('text-rose-600');
+        if (choice === 'percentage') {
+          feedbackEl.innerHTML = "❌ Incorrect. Remember: Never place 'percentage' directly after a specific number. Use 'percent' instead.";
+        } else {
+          feedbackEl.innerHTML = "❌ Incorrect. Remember: Use 'percentage' when preceded by words like 'the' or 'a significant'.";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
