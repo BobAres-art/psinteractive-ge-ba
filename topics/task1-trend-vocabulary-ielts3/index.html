@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Task 1 Trends & Vocabulary</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .graph-line {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawLine 1.2s ease-out forwards;
+    }
+    @keyframes drawLine {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 via-sky-50/30 to-indigo-50/20 text-slate-800 min-h-screen font-sans selection:bg-indigo-500 selection:text-white pb-24">
+
+  <!-- ================= HEADER ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand & Designer Credit -->
+        <div class="flex items-center space-x-3.5">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-200 text-white font-bold text-xl">
+            📈
+          </div>
+          <div>
+            <h1 class="font-display font-extrabold text-xl text-slate-900 tracking-tight flex items-center gap-2">
+              IELTS Task 1 Trends
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">Designed by Babak Alaee</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto py-2">
+          <button onclick="switchTab('tab-verbs')" id="btn-tab-verbs" class="nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-white bg-indigo-600 shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+            <span>1. Trend Verbs</span>
+          </button>
+          <button onclick="switchTab('tab-grammar')" id="btn-tab-grammar" class="nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-slate-600 hover:text-indigo-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap">
+            <span>2. Verb vs Noun</span>
+          </button>
+          <button onclick="switchTab('tab-modifiers')" id="btn-tab-modifiers" class="nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-slate-600 hover:text-indigo-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap">
+            <span>3. How Fast & How Big</span>
+          </button>
+          <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-slate-600 hover:text-indigo-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap">
+            <span>4. Graph Quiz</span>
+          </button>
+          <button onclick="switchTab('tab-lab')" id="btn-tab-lab" class="nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-slate-600 hover:text-indigo-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap">
+            <span>5. Sentence Builder</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Friendly Learning Banner -->
+  <div class="bg-indigo-600 text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
+    <span>💡 Quick Guide: Click on any card or button to test your understanding step by step!</span>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+    <!-- ========================================================================= -->
+    <!-- 1. TREND VERBS (Grouped by movement type with clear lines)                -->
+    <!-- ========================================================================= -->
+    <section id="tab-verbs" class="tab-content space-y-8">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 custom-shadow">
+        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">Verbs to Describe Trends</h2>
+        <p class="text-slate-600 text-sm mt-1 max-w-3xl">
+          In IELTS Task 1, you describe lines that move up, move down, or stay the same. Many verbs have very similar meanings. Here are the 4 main groups:
+        </p>
+
+        <!-- 4 Major Clear Trend Groups -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          
+          <!-- Group 1: General Rise (Increase, Rise, Climb, Go up) -->
+          <div class="bg-emerald-50/60 border-2 border-emerald-200 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-full bg-emerald-500 text-white font-bold text-xs">Group A: Moving Up</span>
+                <span class="text-xs text-emerald-800 font-semibold">Normal Rise</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Increase • Rise • Climb • Go up</h3>
+              <p class="text-xs text-slate-600 mt-1 mb-4">
+                <strong>Note:</strong> These 4 verbs have <span class="text-emerald-700 font-bold">almost the same meaning</span>. You can use any of them to describe an upward line!
+              </p>
+
+              <!-- Line visual -->
+              <div class="bg-white rounded-xl p-3 border border-emerald-200 shadow-sm relative">
+                <div class="text-[11px] text-slate-500 font-medium mb-1">Graph: Normal Upward Movement</div>
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <line x1="15" y1="75" x2="185" y2="75" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="45" x2="185" y2="45" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="15" x2="185" y2="15" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <path class="graph-line" d="M 20 70 L 70 55 L 120 40 L 180 20" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="20" r="5" fill="#10b981" />
+                </svg>
+              </div>
+
+              <!-- Past simple review -->
+              <div class="grid grid-cols-2 gap-2 mt-4 text-xs">
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100"><span class="text-slate-500">increase →</span> <strong class="text-emerald-700">increased</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100"><span class="text-slate-500">rise →</span> <strong class="text-emerald-700">rose</strong> (irregular)</div>
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100"><span class="text-slate-500">climb →</span> <strong class="text-emerald-700">climbed</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100"><span class="text-slate-500">go up →</span> <strong class="text-emerald-700">went up</strong></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-emerald-200/80 text-xs text-emerald-900">
+              💬 <em>Example:</em> "The number of students <strong>increased</strong> from 2010 to 2015."
+            </div>
+          </div>
+
+          <!-- Group 2: Sudden Huge Rise (Rocket, Soar) -->
+          <div class="bg-sky-50/70 border-2 border-sky-200 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-full bg-sky-500 text-white font-bold text-xs">Group B: Very Fast Rise</span>
+                <span class="text-xs text-sky-800 font-semibold">Steep & Sudden</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Rocket • Soar</h3>
+              <p class="text-xs text-slate-600 mt-1 mb-4">
+                <strong>Note:</strong> Both mean <span class="text-sky-700 font-bold">to go up very high and very fast</span>, like a rocket flying into the sky.
+              </p>
+
+              <!-- Line visual -->
+              <div class="bg-white rounded-xl p-3 border border-sky-200 shadow-sm relative">
+                <div class="text-[11px] text-slate-500 font-medium mb-1">Graph: Very Fast, Steep Jump</div>
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <line x1="15" y1="75" x2="185" y2="75" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="45" x2="185" y2="45" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="15" x2="185" y2="15" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <path class="graph-line" d="M 20 75 L 80 72 L 120 40 L 180 10" fill="none" stroke="#0284c7" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="10" r="5" fill="#0284c7" />
+                </svg>
+              </div>
+
+              <!-- Past simple review -->
+              <div class="grid grid-cols-2 gap-2 mt-4 text-xs">
+                <div class="bg-white p-2.5 rounded-lg border border-sky-100"><span class="text-slate-500">rocket →</span> <strong class="text-sky-700">rocketed</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-sky-100"><span class="text-slate-500">soar →</span> <strong class="text-sky-700">soared</strong></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-sky-200/80 text-xs text-sky-900">
+              💬 <em>Example:</em> "Sales <strong>rocketed</strong> in July."
+            </div>
+          </div>
+
+          <!-- Group 3: General Fall (Decrease, Decline, Go down, Drop) -->
+          <div class="bg-rose-50/60 border-2 border-rose-200 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-full bg-rose-500 text-white font-bold text-xs">Group C: Moving Down</span>
+                <span class="text-xs text-rose-800 font-semibold">Normal Fall</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Decrease • Decline • Go down • Drop</h3>
+              <p class="text-xs text-slate-600 mt-1 mb-4">
+                <strong>Note:</strong> These 4 verbs all describe <span class="text-rose-700 font-bold">a normal downward movement</span>.
+              </p>
+
+              <!-- Line visual -->
+              <div class="bg-white rounded-xl p-3 border border-rose-200 shadow-sm relative">
+                <div class="text-[11px] text-slate-500 font-medium mb-1">Graph: Normal Downward Movement</div>
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <line x1="15" y1="75" x2="185" y2="75" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="45" x2="185" y2="45" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="15" x2="185" y2="15" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <path class="graph-line" d="M 20 20 L 70 38 L 120 55 L 180 75" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="75" r="5" fill="#f43f5e" />
+                </svg>
+              </div>
+
+              <!-- Past simple review -->
+              <div class="grid grid-cols-2 gap-2 mt-4 text-xs">
+                <div class="bg-white p-2.5 rounded-lg border border-rose-100"><span class="text-slate-500">decrease →</span> <strong class="text-rose-700">decreased</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-rose-100"><span class="text-slate-500">decline →</span> <strong class="text-rose-700">declined</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-rose-100"><span class="text-slate-500">go down →</span> <strong class="text-rose-700">went down</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-rose-100"><span class="text-slate-500">drop →</span> <strong class="text-rose-700">dropped</strong></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-200/80 text-xs text-rose-900">
+              💬 <em>Example:</em> "The temperature <strong>decreased</strong> in the evening."
+            </div>
+          </div>
+
+          <!-- Group 4: Sudden Huge Fall (Plummet, Plunge) -->
+          <div class="bg-amber-50/70 border-2 border-amber-200 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-full bg-amber-500 text-white font-bold text-xs">Group D: Very Fast Fall</span>
+                <span class="text-xs text-amber-900 font-semibold">Big Drop</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Plummet • Plunge</h3>
+              <p class="text-xs text-slate-600 mt-1 mb-4">
+                <strong>Note:</strong> Both mean <span class="text-amber-800 font-bold">to fall down very fast and by a large amount</span>.
+              </p>
+
+              <!-- Line visual -->
+              <div class="bg-white rounded-xl p-3 border border-amber-200 shadow-sm relative">
+                <div class="text-[11px] text-slate-500 font-medium mb-1">Graph: Sudden Deep Drop</div>
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <line x1="15" y1="75" x2="185" y2="75" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="45" x2="185" y2="45" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <line x1="15" y1="15" x2="185" y2="15" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3" />
+                  <path class="graph-line" d="M 20 18 L 80 20 L 115 70 L 180 82" fill="none" stroke="#d97706" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="82" r="5" fill="#d97706" />
+                </svg>
+              </div>
+
+              <!-- Past simple review -->
+              <div class="grid grid-cols-2 gap-2 mt-4 text-xs">
+                <div class="bg-white p-2.5 rounded-lg border border-amber-100"><span class="text-slate-500">plummet →</span> <strong class="text-amber-800">plummeted</strong></div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-100"><span class="text-slate-500">plunge →</span> <strong class="text-amber-800">plunged</strong></div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-amber-200/80 text-xs text-amber-950">
+              💬 <em>Example:</em> "The price of oil <strong>plunged</strong> in March."
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick Interactive Matching Practice -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 custom-shadow">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="text-xl font-bold font-display text-slate-900">Matching Practice</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Which verb fits the line or explanation? Click the correct option.</p>
+          </div>
+          <button onclick="resetMatchExercise()" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Reset</button>
+        </div>
+
+        <div id="match-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 2. VERB VS NOUN TAB (SIMPLIFIED: NO ADJECTIVES / ADVERBS IN SAMPLE SENTENCES)-->
+    <!-- ========================================================================= -->
+    <section id="tab-grammar" class="tab-content hidden space-y-8">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 custom-shadow">
+        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">How to Use as a Verb or as a Noun</h2>
+        <p class="text-slate-600 text-sm mt-1 max-w-2xl">
+          In English, you can describe the same change in <strong>two simple ways</strong>: using a verb (action) or using a noun (thing).
+        </p>
+
+        <!-- The Two Simple Structures -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          
+          <!-- Way 1: Verb -->
+          <div class="bg-emerald-50/70 border-2 border-emerald-300 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-600 text-white">Way 1: Using a Verb</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Subject + Verb</h3>
+            <div class="p-3 bg-white rounded-xl border border-emerald-200 text-sm font-semibold text-slate-800 mb-3">
+              [The figure for X] + <span class="text-emerald-600 underline">decreased</span>.
+            </div>
+            <p class="text-xs text-slate-600 mb-3">Here, <strong>decreased</strong> is the action verb.</p>
+            
+            <div class="bg-white p-3 rounded-xl border border-emerald-100 text-xs space-y-1.5">
+              <div>• "The figure for car sales <strong>decreased</strong>."</div>
+              <div>• "The number of visitors <strong>rose</strong>."</div>
+              <div>• "The price of food <strong>dropped</strong>."</div>
+            </div>
+          </div>
+
+          <!-- Way 2: Noun -->
+          <div class="bg-indigo-50/70 border-2 border-indigo-300 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-600 text-white">Way 2: Using a Noun</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">There was a + Noun + in + [Subject]</h3>
+            <div class="p-3 bg-white rounded-xl border border-indigo-200 text-sm font-semibold text-slate-800 mb-3">
+              There was <span class="text-indigo-600 underline">a decrease</span> in [the figure for X].
+            </div>
+            <p class="text-xs text-slate-600 mb-3">Here, <strong>a decrease</strong> is a noun. Always use <strong>in</strong> after the noun!</p>
+
+            <div class="bg-white p-3 rounded-xl border border-indigo-100 text-xs space-y-1.5">
+              <div>• "There was <strong>a decrease</strong> in the figure for car sales."</div>
+              <div>• "There was <strong>a rise</strong> in the number of visitors."</div>
+              <div>• "There was <strong>a drop</strong> in the price of food."</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Clean Interactive Simulator (No scrambling, neat and clean) -->
+        <div class="mt-10 pt-8 border-t border-slate-200">
+          <div class="max-w-2xl">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Try it yourself</span>
+            <h3 class="text-xl font-bold font-display text-slate-900 mt-1">Interactive Sentence Maker</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Choose a subject and a trend. The two simple sentences will update clearly below:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Choose the Topic (Subject):</label>
+              <select id="sim-topic" onchange="runSimpleSimulator()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-800 font-medium focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="the figure for car sales">The figure for car sales</option>
+                <option value="the number of tourists">The number of tourists</option>
+                <option value="the price of oil">The price of oil</option>
+                <option value="water consumption">Water consumption</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Choose the Trend:</label>
+              <select id="sim-trend-simple" onchange="runSimpleSimulator()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-800 font-medium focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="decrease">Decrease (decreased / a decrease)</option>
+                <option value="increase">Increase (increased / an increase)</option>
+                <option value="rise">Rise (rose / a rise)</option>
+                <option value="drop">Drop (dropped / a drop)</option>
+                <option value="climb">Climb (climbed / a climb)</option>
+                <option value="fall">Fall (fell / a fall)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Clean Output Boxes -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+            <div class="bg-emerald-50/50 border border-emerald-300 rounded-2xl p-4">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-700">Sentence with Verb:</span>
+              <p id="clean-verb-output" class="text-base sm:text-lg font-bold text-slate-900 mt-2">
+                <!-- Injected via JS -->
+              </p>
+            </div>
+
+            <div class="bg-indigo-50/50 border border-indigo-300 rounded-2xl p-4">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-700">Sentence with Noun:</span>
+              <p id="clean-noun-output" class="text-base sm:text-lg font-bold text-slate-900 mt-2">
+                <!-- Injected via JS -->
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Comparison Table -->
+          <div class="mt-8 overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b-2 border-slate-200 text-slate-600 font-bold">
+                  <th class="py-2.5 px-3">Verb Form</th>
+                  <th class="py-2.5 px-3">Past Simple</th>
+                  <th class="py-2.5 px-3">Noun Form</th>
+                  <th class="py-2.5 px-3">Preposition Rule</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="py-2.5 px-3 font-semibold text-emerald-700">to increase</td>
+                  <td class="py-2.5 px-3">increased</td>
+                  <td class="py-2.5 px-3 font-semibold text-indigo-700">an increase</td>
+                  <td class="py-2.5 px-3 text-slate-500">an increase <strong>in</strong> something</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 font-semibold text-emerald-700">to rise</td>
+                  <td class="py-2.5 px-3 font-bold text-amber-700">rose</td>
+                  <td class="py-2.5 px-3 font-semibold text-indigo-700">a rise</td>
+                  <td class="py-2.5 px-3 text-slate-500">a rise <strong>in</strong> something</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 font-semibold text-rose-700">to decrease</td>
+                  <td class="py-2.5 px-3">decreased</td>
+                  <td class="py-2.5 px-3 font-semibold text-indigo-700">a decrease</td>
+                  <td class="py-2.5 px-3 text-slate-500">a decrease <strong>in</strong> something</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 font-semibold text-rose-700">to drop</td>
+                  <td class="py-2.5 px-3">dropped</td>
+                  <td class="py-2.5 px-3 font-semibold text-indigo-700">a drop</td>
+                  <td class="py-2.5 px-3 text-slate-500">a drop <strong>in</strong> something</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3. HOW FAST & HOW BIG (ADJECTIVES & ADVERBS)                              -->
+    <!-- ========================================================================= -->
+    <section id="tab-modifiers" class="tab-content hidden space-y-8">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 custom-shadow">
+        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">How Fast & How Big: Adjectives and Adverbs</h2>
+        <p class="text-slate-600 text-sm mt-1 max-w-3xl">
+          When you want to give more detail, you add <strong>Adjectives</strong> (with nouns) or <strong>Adverbs</strong> (with verbs).
+        </p>
+
+        <!-- Grammar Placement Rule -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div class="p-4 rounded-2xl bg-sky-50 border border-sky-200">
+            <span class="text-xs font-bold text-sky-800 uppercase">Adjective Rule: Before the Noun</span>
+            <p class="text-sm font-semibold text-slate-800 mt-1">There was a <span class="text-sky-600 underline font-bold">significant</span> rise.</p>
+            <p class="text-xs text-slate-500 mt-1">"significant" describes the noun "rise".</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200">
+            <span class="text-xs font-bold text-indigo-800 uppercase">Adverb Rule: After the Verb</span>
+            <p class="text-sm font-semibold text-slate-800 mt-1">The figure rose <span class="text-indigo-600 underline font-bold">significantly</span>.</p>
+            <p class="text-xs text-slate-500 mt-1">"significantly" describes the action verb "rose".</p>
+          </div>
+        </div>
+
+        <!-- Clear Visual Comparison of the Modifiers -->
+        <h3 class="text-lg font-bold text-slate-900 mt-8 mb-4">See the Differences on Simple Graphs</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Card 1: Big Change -->
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-indigo-600 uppercase">1. Big Change</span>
+                <span class="text-xs bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">Large Size</span>
+              </div>
+              <h4 class="font-bold text-slate-900">dramatic / significant / substantial / considerable</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-3">All these words mean: <strong>a very big change</strong>.</p>
+              
+              <div class="bg-white rounded-xl p-3 border border-slate-200">
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <path d="M 20 80 L 80 75 L 180 15" fill="none" stroke="#6366f1" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="15" r="5" fill="#6366f1" />
+                </svg>
+              </div>
+
+              <div class="mt-3 text-xs space-y-1 text-slate-700">
+                <div>• Adjective: <em>"a <strong>dramatic / significant</strong> rise"</em></div>
+                <div>• Adverb: <em>"rose <strong>dramatically / significantly / substantially</strong>"</em></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Small Change -->
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-600 uppercase">2. Small Change</span>
+                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full">Little Size</span>
+              </div>
+              <h4 class="font-bold text-slate-900">slight / modest</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-3">These words mean: <strong>a small, small change</strong>.</p>
+              
+              <div class="bg-white rounded-xl p-3 border border-slate-200">
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <path d="M 20 60 L 90 55 L 180 48" fill="none" stroke="#0284c7" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="48" r="5" fill="#0284c7" />
+                </svg>
+              </div>
+
+              <div class="mt-3 text-xs space-y-1 text-slate-700">
+                <div>• Adjective: <em>"a <strong>slight / modest</strong> increase"</em></div>
+                <div>• Adverb: <em>"increased <strong>slightly / moderately</strong>"</em></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Speed (Fast vs Slow) -->
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-emerald-600 uppercase">3. Speed</span>
+                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Speed</span>
+              </div>
+              <h4 class="font-bold text-slate-900">rapidly / sharply (Fast) vs. gradually / slowly (Slow)</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-3">Describes <strong>how fast</strong> the line moves.</p>
+              
+              <div class="bg-white rounded-xl p-3 border border-slate-200">
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <!-- Slow line (dashed gray) -->
+                  <path d="M 20 75 L 180 35" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="4" />
+                  <!-- Fast line (emerald) -->
+                  <path d="M 20 75 L 90 70 L 140 20 L 180 18" fill="none" stroke="#10b981" stroke-width="3.5" />
+                  <circle cx="180" cy="18" r="4" fill="#10b981" />
+                </svg>
+              </div>
+
+              <div class="mt-3 text-xs space-y-1 text-slate-700">
+                <div>• Fast: <em>"grew <strong>rapidly / sharply</strong>"</em></div>
+                <div>• Slow: <em>"grew <strong>gradually / slowly</strong>"</em></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Steady / Consistent -->
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-teal-600 uppercase">4. Regular Pace</span>
+                <span class="text-xs bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">Continuous</span>
+              </div>
+              <h4 class="font-bold text-slate-900">steady* / consistently</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-3">A continuous change with no sudden jumps.</p>
+              
+              <div class="bg-white rounded-xl p-3 border border-slate-200">
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <path d="M 20 75 L 60 62 L 100 50 L 140 37 L 180 25" fill="none" stroke="#0d9488" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="180" cy="25" r="5" fill="#0d9488" />
+                </svg>
+              </div>
+
+              <div class="mt-3 text-xs text-slate-700">
+                <p>• Adverb: <em>"climbed <strong>steadily / consistently</strong>"</em></p>
+                <p class="text-[11px] text-amber-700 mt-1"><em>*Note: "steady" usually goes with continuous progress.</em></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: To dip / A dip -->
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-amber-600 uppercase">5. Quick Down and Up</span>
+                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">Special</span>
+              </div>
+              <h4 class="font-bold text-slate-900">to dip / a dip</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-3">Goes down for a short time, then goes back up.</p>
+              
+              <div class="bg-white rounded-xl p-3 border border-slate-200">
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <path d="M 20 30 L 70 30 Q 100 80 130 30 L 180 30" fill="none" stroke="#d97706" stroke-width="4" stroke-linecap="round" />
+                  <circle cx="100" cy="70" r="4" fill="#d97706" />
+                </svg>
+              </div>
+
+              <div class="mt-3 text-xs space-y-1 text-slate-700">
+                <div>• Verb: <em>"The numbers <strong>dipped</strong> in May."</em></div>
+                <div>• Noun: <em>"There was <strong>a slight dip</strong> in May."</em></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Stable / Unchanged -->
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-purple-600 uppercase">6. No Change (Flat)</span>
+                <span class="text-xs bg-purple-100 text-purple-800 font-bold px-2 py-0.5 rounded-full">Flat Line</span>
+              </div>
+              <h4 class="font-bold text-slate-900">stable / unchanged</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-3">The line stays flat with zero increase or decrease.</p>
+              
+              <div class="bg-white rounded-xl p-3 border border-slate-200">
+                <svg class="w-full h-24" viewBox="0 0 200 90">
+                  <path d="M 20 50 L 180 50" fill="none" stroke="#7c3aed" stroke-width="4" stroke-linecap="round" stroke-dasharray="6" />
+                  <circle cx="180" cy="50" r="5" fill="#7c3aed" />
+                </svg>
+              </div>
+
+              <div class="mt-3 text-xs space-y-1 text-slate-700">
+                <div>• <em>"The figure remained <strong>stable</strong>."</em></div>
+                <div>• <em>"Prices remained <strong>unchanged</strong>."</em></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Adjective to Adverb Table -->
+        <div class="mt-8 bg-slate-50 rounded-2xl p-5 border border-slate-200">
+          <h4 class="font-bold text-slate-800 text-sm mb-3">Vocabulary List: Adjective ➔ Adverb</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 text-xs">
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">slight ➔ <strong class="text-indigo-600">slightly</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">dramatic ➔ <strong class="text-indigo-600">dramatically</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">significant ➔ <strong class="text-indigo-600">significantly</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">substantial ➔ <strong class="text-indigo-600">substantially</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">sharp ➔ <strong class="text-indigo-600">sharply</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">slow ➔ <strong class="text-indigo-600">slowly</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">gradual ➔ <strong class="text-indigo-600">gradually</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">rapid ➔ <strong class="text-indigo-600">rapidly</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">modest ➔ <strong class="text-indigo-600">moderately</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">consistent ➔ <strong class="text-indigo-600">consistently</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">steady ➔ <strong class="text-indigo-600">steadily</strong></div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200">considerable ➔ <strong class="text-indigo-600">considerably</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 4. NEW TAB: GRAPH QUIZ (CHOOSE THE PHRASE)                                -->
+    <!-- ========================================================================= -->
+    <section id="tab-quiz" class="tab-content hidden space-y-8">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 custom-shadow">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">Graph Trend Quiz</h2>
+            <p class="text-slate-600 text-sm mt-1">Look at each graph and choose the sentence or phrase that matches it correctly.</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400 block font-semibold">Your Score</span>
+            <span id="trend-quiz-score" class="text-xl font-bold text-indigo-600">0 / 6</span>
+          </div>
+        </div>
+
+        <div id="trend-quiz-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 5. SENTENCE LAB (PROMPT ELEMENTS ONLY + SCRAMBLED WORDS)                 -->
+    <!-- ========================================================================= -->
+    <section id="tab-lab" class="tab-content hidden space-y-8">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 custom-shadow">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">Sentence Builder</h2>
+            <p class="text-slate-600 text-sm mt-1">
+              Read the elements given below, then click the scrambled words in the right order to build the sentence.
+            </p>
+          </div>
+          <span id="lab-counter" class="text-xs font-bold bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">
+            Sentence 1 of 3
+          </span>
+        </div>
+
+        <!-- Prompt elements box (Clear & Simple) -->
+        <div class="mt-6 p-4 rounded-2xl bg-indigo-50/70 border border-indigo-200">
+          <div class="text-xs font-bold text-indigo-700 uppercase tracking-wider mb-2">Prompt Elements:</div>
+          <div id="lab-prompt-elements" class="flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Selected Word Output (Dropzone) -->
+        <div class="mt-6">
+          <label class="block text-xs font-bold text-slate-700 mb-2">Your Sentence (click words below to add):</label>
+          <div id="lab-dropzone" class="min-h-[64px] p-3 rounded-2xl bg-slate-50 border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center">
+            <span class="text-xs text-slate-400 italic">Click words from the bank below...</span>
+          </div>
+        </div>
+
+        <!-- Available Word Bank -->
+        <div class="mt-4">
+          <label class="block text-xs font-bold text-slate-700 mb-2">Word Bank (Scrambled):</label>
+          <div id="lab-tokens" class="flex flex-wrap gap-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Controls & Feedback -->
+        <div class="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div id="lab-feedback" class="text-sm font-semibold"></div>
+          <div class="flex items-center gap-3">
+            <button onclick="resetLabCurrent()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-600 transition">Reset Words</button>
+            <button onclick="checkLabSentence()" id="btn-check-lab" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-xs font-bold text-white shadow-sm transition">Check Answer</button>
+            <button onclick="nextLabSentence()" id="btn-next-lab" class="hidden px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-xs font-bold text-white shadow-sm transition">Next Sentence →</button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // ========================================================
+    // 1. MATCHING PRACTICE DATA (Section 1)
+    // ========================================================
+    const MATCH_ITEMS = [
+      {
+        id: "m1",
+        question: "Which verb describes going up very high and very fast like a rocket?",
+        options: ["Rocket", "Drop", "Decline", "Remain stable"],
+        correct: "Rocket",
+        hint: "Correct! 'Rocket' and 'Soar' mean a very steep and sudden rise."
+      },
+      {
+        id: "m2",
+        question: "Which verb means a sudden, very steep fall?",
+        options: ["Climb", "Plummet", "Rise", "Go up"],
+        correct: "Plummet",
+        hint: "Correct! 'Plummet' and 'Plunge' mean falling down very fast."
+      },
+      {
+        id: "m3",
+        question: "Complete the sentence with the past simple of 'rise': The numbers ___ in 2018.",
+        options: ["Rised", "Rose", "Rising", "Rise"],
+        correct: "Rose",
+        hint: "Correct! 'Rise' is irregular: rise ➔ rose."
+      },
+      {
+        id: "m4",
+        question: "The line falls a little bit for one month, then goes back up. What is this?",
+        options: ["A dip", "A plunge", "A rocket", "A plateau"],
+        correct: "A dip",
+        hint: "Correct! 'A dip' is a quick drop followed by a recovery."
+      }
+    ];
+
+    let matchAnswered = new Set();
+
+    function renderMatchExercise() {
+      const grid = document.getElementById("match-cards-grid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      MATCH_ITEMS.forEach((item, idx) => {
+        const card = document.createElement("div");
+        card.className = "bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between";
+        card.id = `match-card-${item.id}`;
+
+        const optsHtml = item.options.map(opt => `
+          <button onclick="checkMatch('${item.id}', '${opt}', '${item.correct}')" class="match-btn w-full text-left px-3.5 py-2.5 rounded-xl bg-white hover:bg-indigo-50 text-xs font-semibold text-slate-800 border border-slate-200 hover:border-indigo-300 transition flex items-center justify-between">
+            <span>${opt}</span>
+            <span class="text-slate-400 text-[10px]">Select</span>
+          </button>
+        `).join("");
+
+        card.innerHTML = `
+          <div>
+            <div class="text-xs font-bold text-indigo-600 mb-1">Question ${idx + 1}</div>
+            <p class="text-sm font-semibold text-slate-800 mb-3">${item.question}</p>
+            <div class="space-y-2" id="match-opts-${item.id}">
+              ${optsHtml}
+            </div>
+          </div>
+          <div id="match-hint-${item.id}" class="hidden mt-3 text-xs font-semibold text-emerald-700"></div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function checkMatch(id, chosen, correct) {
+      if (matchAnswered.has(id)) return;
+
+      const card = document.getElementById(`match-card-${id}`);
+      const hint = document.getElementById(`match-hint-${id}`);
+      const container = document.getElementById(`match-opts-${id}`);
+      const buttons = container.querySelectorAll(".match-btn");
+
+      if (chosen === correct) {
+        matchAnswered.add(id);
+        hint.innerText = "✓ Correct!";
+        hint.classList.remove("hidden");
+        card.classList.add("border-emerald-400", "bg-emerald-50/30");
+
+        buttons.forEach(b => {
+          if (b.innerText.includes(correct)) {
+            b.className = "w-full text-left px-3.5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold border border-emerald-600 flex items-center justify-between";
+          } else {
+            b.disabled = true;
+            b.classList.add("opacity-40");
+          }
+        });
+      } else {
+        buttons.forEach(b => {
+          if (b.innerText.includes(chosen)) {
+            b.classList.add("bg-rose-50", "border-rose-400", "text-rose-700");
+          }
+        });
+      }
+    }
+
+    function resetMatchExercise() {
+      matchAnswered.clear();
+      renderMatchExercise();
+    }
+
+    // ========================================================
+    // 2. SIMPLE VERB VS NOUN SIMULATOR (Section 2)
+    // ========================================================
+    function runSimpleSimulator() {
+      const topicEl = document.getElementById("sim-topic");
+      const trendEl = document.getElementById("sim-trend-simple");
+      if (!topicEl || !trendEl) return;
+
+      const topic = topicEl.value; // e.g. "the figure for car sales"
+      const trend = trendEl.value;
+
+      const map = {
+        decrease: { past: "decreased", noun: "a decrease" },
+        increase: { past: "increased", noun: "an increase" },
+        rise: { past: "rose", noun: "a rise" },
+        drop: { past: "dropped", noun: "a drop" },
+        climb: { past: "climbed", noun: "a climb" },
+        fall: { past: "fell", noun: "a fall" }
+      };
+
+      const info = map[trend] || map.increase;
+
+      // Capitalize first letter of topic
+      const topicCapitalized = topic.charAt(0).toUpperCase() + topic.slice(1);
+
+      // Sentence 1 (Verb): The figure for car sales decreased.
+      const verbSentence = `${topicCapitalized} <span class="text-emerald-700 underline">${info.past}</span>.`;
+
+      // Sentence 2 (Noun): There was a decrease in the figure for car sales.
+      const nounSentence = `There was <span class="text-indigo-700 underline">${info.noun}</span> <strong class="text-indigo-900">in</strong> ${topic.toLowerCase()}.`;
+
+      document.getElementById("clean-verb-output").innerHTML = verbSentence;
+      document.getElementById("clean-noun-output").innerHTML = nounSentence;
+    }
+
+    // ========================================================
+    // 3. GRAPH TREND QUIZ (Section 4)
+    // ========================================================
+    const TREND_QUIZ_QUESTIONS = [
+      {
+        id: "tq1",
+        title: "Graph 1",
+        path: "M 20 75 L 80 70 L 120 30 L 180 15",
+        color: "#0284c7",
+        question: "Look at the steep upward line. Which sentence is correct?",
+        options: [
+          "The figure rocketed.",
+          "The figure dropped slightly.",
+          "The figure remained stable."
+        ],
+        correct: "The figure rocketed."
+      },
+      {
+        id: "tq2",
+        title: "Graph 2",
+        path: "M 20 20 L 70 20 Q 100 80 130 20 L 180 20",
+        color: "#d97706",
+        question: "Look at the dip and quick recovery. Which phrase describes it?",
+        options: [
+          "There was a gradual rise.",
+          "There was a dip in the numbers.",
+          "The numbers plunged to zero."
+        ],
+        correct: "There was a dip in the numbers."
+      },
+      {
+        id: "tq3",
+        title: "Graph 3",
+        path: "M 20 50 L 180 50",
+        color: "#7c3aed",
+        question: "Look at the completely flat line. Which sentence is correct?",
+        options: [
+          "The figure fell sharply.",
+          "The figure increased steadily.",
+          "The figure remained unchanged."
+        ],
+        correct: "The figure remained unchanged."
+      },
+      {
+        id: "tq4",
+        title: "Graph 4",
+        path: "M 20 20 L 80 22 L 120 75 L 180 82",
+        color: "#dc2626",
+        question: "Look at the sudden big drop. Which sentence describes this?",
+        options: [
+          "There was a significant fall.",
+          "There was a modest increase.",
+          "The numbers climbed steadily."
+        ],
+        correct: "There was a significant fall."
+      },
+      {
+        id: "tq5",
+        title: "Graph 5",
+        path: "M 20 75 L 60 62 L 100 50 L 140 37 L 180 25",
+        color: "#0d9488",
+        question: "Look at the smooth, regular upward line. Which sentence is correct?",
+        options: [
+          "The numbers climbed steadily.",
+          "The numbers plummeted.",
+          "There was a dramatic drop."
+        ],
+        correct: "The numbers climbed steadily."
+      },
+      {
+        id: "tq6",
+        title: "Graph 6",
+        path: "M 20 40 L 90 45 L 180 50",
+        color: "#64748b",
+        question: "Look at this very tiny downward change. Which phrase fits best?",
+        options: [
+          "The figure rocketed.",
+          "There was a slight decrease.",
+          "The figure plunged sharply."
+        ],
+        correct: "There was a slight decrease."
+      }
+    ];
+
+    let trendQuizScore = 0;
+    const trendQuizAnswered = new Set();
+
+    function renderTrendQuiz() {
+      const container = document.getElementById("trend-quiz-container");
+      if (!container) return;
+      container.innerHTML = "";
+
+      TREND_QUIZ_QUESTIONS.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between";
+        card.id = `tq-card-${item.id}`;
+
+        const opts = item.options.map(opt => `
+          <button onclick="checkTrendQuiz('${item.id}', '${opt}', '${item.correct}')" class="tq-btn w-full text-left px-3.5 py-2.5 rounded-xl bg-white hover:bg-indigo-50 text-xs font-semibold text-slate-800 border border-slate-200 hover:border-indigo-300 transition flex items-center justify-between">
+            <span>${opt}</span>
+            <span class="text-slate-400 text-[10px]">Select</span>
+          </button>
+        `).join("");
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-500 uppercase">${item.title}</span>
+              <span id="tq-badge-${item.id}" class="text-xs font-bold text-slate-400">Not answered</span>
+            </div>
+
+            <!-- Graph Box -->
+            <div class="bg-white rounded-xl p-3 border border-slate-200 mb-4">
+              <svg class="w-full h-24" viewBox="0 0 200 90">
+                <line x1="10" y1="75" x2="190" y2="75" stroke="#f1f5f9" stroke-width="2" />
+                <line x1="10" y1="45" x2="190" y2="45" stroke="#f1f5f9" stroke-width="2" />
+                <line x1="10" y1="15" x2="190" y2="15" stroke="#f1f5f9" stroke-width="2" />
+                <path d="${item.path}" fill="none" stroke="${item.color}" stroke-width="4" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <p class="text-xs sm:text-sm font-semibold text-slate-800 mb-3">${item.question}</p>
+            <div class="space-y-2" id="tq-opts-${item.id}">
+              ${opts}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkTrendQuiz(id, chosen, correct) {
+      if (trendQuizAnswered.has(id)) return;
+
+      const badge = document.getElementById(`tq-badge-${id}`);
+      const card = document.getElementById(`tq-card-${id}`);
+      const container = document.getElementById(`tq-opts-${id}`);
+      const buttons = container.querySelectorAll(".tq-btn");
+
+      if (chosen === correct) {
+        trendQuizAnswered.add(id);
+        trendQuizScore++;
+        badge.innerText = "✓ Correct";
+        badge.className = "text-xs font-bold text-emerald-600";
+        card.classList.add("border-emerald-300", "bg-emerald-50/20");
+
+        buttons.forEach(btn => {
+          if (btn.innerText.includes(correct)) {
+            btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold border border-emerald-600 flex items-center justify-between";
+          } else {
+            btn.disabled = true;
+            btn.classList.add("opacity-40");
+          }
+        });
+        document.getElementById("trend-quiz-score").innerText = `${trendQuizScore} / ${TREND_QUIZ_QUESTIONS.length}`;
+      } else {
+        badge.innerText = "Try again";
+        badge.className = "text-xs font-bold text-rose-500";
+        buttons.forEach(btn => {
+          if (btn.innerText.includes(chosen)) {
+            btn.classList.add("bg-rose-50", "border-rose-400", "text-rose-700");
+          }
+        });
+      }
+    }
+
+    // ========================================================
+    // 4. SENTENCE BUILDER LAB (Section 5)
+    // ========================================================
+    const LAB_QUESTIONS = [
+      {
+        elements: [
+          { label: "Structure", val: "There was a..." },
+          { label: "Size", val: "significant (big)" },
+          { label: "Trend", val: "rise (noun)" },
+          { label: "Topic", val: "car sales" }
+        ],
+        scrambled: ["There", "was", "a", "significant", "rise", "in", "car", "sales."],
+        correct: ["There", "was", "a", "significant", "rise", "in", "car", "sales."]
+      },
+      {
+        elements: [
+          { label: "Topic", val: "The figure" },
+          { label: "Verb (Past)", val: "rose" },
+          { label: "Adverb", val: "significantly" }
+        ],
+        scrambled: ["The", "figure", "rose", "significantly."],
+        correct: ["The", "figure", "rose", "significantly."]
+      },
+      {
+        elements: [
+          { label: "Topic", val: "Oil prices" },
+          { label: "State", val: "remained" },
+          { label: "Flat", val: "stable" }
+        ],
+        scrambled: ["Oil", "prices", "remained", "stable."],
+        correct: ["Oil", "prices", "remained", "stable."]
+      },
+      {
+        elements: [
+          { label: "Structure", val: "There was a..." },
+          { label: "Size", val: "slight (small)" },
+          { label: "Trend", val: "drop (noun)" },
+          { label: "Topic", val: "water consumption" }
+        ],
+        scrambled: ["There", "was", "a", "slight", "drop", "in", "water", "consumption."],
+        correct: ["There", "was", "a", "slight", "drop", "in", "water", "consumption."]
+      },
+      {
+        elements: [
+          { label: "Topic", val: "The number of tourists" },
+          { label: "Verb (Past)", val: "decreased" },
+          { label: "Speed", val: "rapidly (fast)" }
+        ],
+        scrambled: ["The", "number", "of", "tourists", "decreased", "rapidly."],
+        correct: ["The", "number", "of", "tourists", "decreased", "rapidly."]
+      }
+    ];
+
+    let currentLabIdx = 0;
+    let selectedLabTokens = [];
+
+    function loadLabQuestion(idx) {
+      currentLabIdx = idx;
+      selectedLabTokens = [];
+      const data = LAB_QUESTIONS[idx];
+
+      document.getElementById("lab-counter").innerText = `Sentence ${idx + 1} of ${LAB_QUESTIONS.length}`;
+      
+      // Render prompt elements only
+      const elContainer = document.getElementById("lab-prompt-elements");
+      elContainer.innerHTML = data.elements.map(e => `
+        <span class="px-2.5 py-1 rounded-lg bg-white border border-indigo-200 text-slate-800">
+          <span class="text-slate-400 font-normal">${e.label}:</span> <strong>${e.val}</strong>
+        </span>
+      `).join("");
+
+      document.getElementById("lab-feedback").innerHTML = "";
+      document.getElementById("btn-check-lab").classList.remove("hidden");
+      document.getElementById("btn-next-lab").classList.add("hidden");
+
+      renderLabTokens(data.scrambled);
+      renderLabDropzone();
+    }
+
+    function renderLabTokens(tokens) {
+      const bank = document.getElementById("lab-tokens");
+      bank.innerHTML = "";
+
+      // Scramble tokens
+      const shuffled = [...tokens].sort(() => Math.random() - 0.5);
+
+      shuffled.forEach((tok, i) => {
+        const btn = document.createElement("button");
+        btn.className = "px-3 py-1.5 rounded-xl bg-white hover:bg-indigo-50 text-slate-800 text-xs font-bold border border-slate-300 shadow-xs transition";
+        btn.innerText = tok;
+        btn.id = `lab-token-${i}`;
+        btn.onclick = () => {
+          selectedLabTokens.push(tok);
+          btn.disabled = true;
+          btn.classList.add("opacity-30", "cursor-not-allowed");
+          renderLabDropzone();
+        };
+        bank.appendChild(btn);
+      });
+    }
+
+    function renderLabDropzone() {
+      const dropzone = document.getElementById("lab-dropzone");
+      dropzone.innerHTML = "";
+
+      if (selectedLabTokens.length === 0) {
+        dropzone.innerHTML = `<span class="text-xs text-slate-400 italic">Click words from the bank below...</span>`;
+        return;
+      }
+
+      selectedLabTokens.forEach((tok, idx) => {
+        const chip = document.createElement("span");
+        chip.className = "px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-rose-500 transition";
+        chip.innerHTML = `<span>${tok}</span><span class="text-[10px] text-indigo-200">✕</span>`;
+        chip.onclick = () => removeLabToken(idx);
+        dropzone.appendChild(chip);
+      });
+    }
+
+    function removeLabToken(index) {
+      const removed = selectedLabTokens.splice(index, 1)[0];
+      // Re-enable in bank
+      const buttons = document.getElementById("lab-tokens").querySelectorAll("button");
+      for (const btn of buttons) {
+        if (btn.innerText === removed && btn.disabled) {
+          btn.disabled = false;
+          btn.classList.remove("opacity-30", "cursor-not-allowed");
+          break;
+        }
+      }
+      renderLabDropzone();
+    }
+
+    function resetLabCurrent() {
+      loadLabQuestion(currentLabIdx);
+    }
+
+    function checkLabSentence() {
+      const feedback = document.getElementById("lab-feedback");
+      const data = LAB_QUESTIONS[currentLabIdx];
+
+      const userSentence = selectedLabTokens.join(" ");
+      const correctSentence = data.correct.join(" ");
+
+      if (userSentence === correctSentence) {
+        feedback.innerHTML = `<span class="text-emerald-600 font-bold">✓ Great job! That's correct.</span>`;
+        document.getElementById("btn-check-lab").classList.add("hidden");
+        if (currentLabIdx < LAB_QUESTIONS.length - 1) {
+          document.getElementById("btn-next-lab").classList.remove("hidden");
+        } else {
+          feedback.innerHTML += ` <span class="text-indigo-600 font-bold ml-1">You finished all sentences!</span>`;
+        }
+      } else {
+        feedback.innerHTML = `<span class="text-rose-500 font-bold">Not quite right yet.</span> <span class="text-xs text-slate-500">Check the word order and try again.</span>`;
+      }
+    }
+
+    function nextLabSentence() {
+      if (currentLabIdx < LAB_QUESTIONS.length - 1) {
+        loadLabQuestion(currentLabIdx + 1);
+      }
+    }
+
+    // ========================================================
+    // 5. TAB SWITCHING
+    // ========================================================
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove("hidden");
+
+      const navButtons = [
+        { id: "btn-tab-verbs", tab: "tab-verbs" },
+        { id: "btn-tab-grammar", tab: "tab-grammar" },
+        { id: "btn-tab-modifiers", tab: "tab-modifiers" },
+        { id: "btn-tab-quiz", tab: "tab-quiz" },
+        { id: "btn-tab-lab", tab: "tab-lab" }
+      ];
+
+      navButtons.forEach(b => {
+        const btn = document.getElementById(b.id);
+        if (!btn) return;
+        if (b.tab === tabId) {
+          btn.className = "nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-white bg-indigo-600 shadow-sm flex items-center gap-1.5 whitespace-nowrap";
+        } else {
+          btn.className = "nav-tab px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-slate-600 hover:text-indigo-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap";
+        }
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Initialize everything on load
+    window.addEventListener("DOMContentLoaded", () => {
+      renderMatchExercise();
+      runSimpleSimulator();
+      renderTrendQuiz();
+      loadLabQuestion(0);
+    });
+  </script>
+</body>
+</html>
