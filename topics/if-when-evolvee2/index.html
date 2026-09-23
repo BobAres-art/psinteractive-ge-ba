@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering IF and WHEN - Interactive Discovery & Practice Guide</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .clause-box {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tile-tap {
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .pulse-action {
+      animation: gentlePulse 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- Top Banner with Title and Credit Beneath -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 shrink-0">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Mastering IF &amp; WHEN</h1>
+          <p class="text-xs text-blue-700 font-medium">Designed by <span class="font-bold text-slate-900">Babak Alaee</span></p>
+        </div>
+      </div>
+      <div class="hidden sm:flex items-center space-x-2 text-xs text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
+        <i data-lucide="compass" class="w-3.5 h-3.5 text-blue-600"></i>
+        <span>Condition &amp; Word Order</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 space-y-12">
+
+    <!-- SECTION 1: SITUATIONS & NATURAL PATTERNS -->
+    <section id="explore-section" class="space-y-6">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+          Step 1: Real Situations
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Every sentence has a Situation and an Action
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Read these everyday examples. Notice how <strong class="text-blue-600">if</strong> and <strong class="text-indigo-600">when</strong> connect what happens with <em>when</em> or <em>under what condition</em> it happens.
+        </p>
+      </div>
+
+      <!-- Real Life Context Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Card 1: Hotel Near Airport -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:border-blue-300 transition-all">
+          <div class="relative h-44 bg-slate-100 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" 
+              alt="Hotel room near airport"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://placehold.co/800x400/2563eb/ffffff?text=Hotel+Near+Airport'"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-4">
+              <span class="inline-flex items-center text-xs font-semibold text-white bg-slate-900/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/20">
+                <i data-lucide="briefcase" class="w-3.5 h-3.5 mr-1.5 text-blue-400"></i> Work &amp; Travel
+              </span>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="text-xs uppercase font-bold tracking-wider text-slate-500">Sentence Parts</div>
+              <div id="card1-text" class="text-slate-900 font-medium text-base sm:text-lg min-h-[58px] flex items-center">
+                <span><span class="text-slate-700 bg-amber-50 px-1 rounded font-semibold">I always stay in a hotel near the airport</span> <strong class="text-blue-600">when</strong> <span class="text-blue-800 bg-blue-50 px-1 rounded font-semibold">I travel for work</span>.</span>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="flipCardExample(1)" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors">
+                <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 mr-1.5"></i> Swap Order
+              </button>
+              <span id="card1-badge" class="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-1 rounded">Action first → Situation second</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: City Guidebook -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:border-blue-300 transition-all">
+          <div class="relative h-44 bg-slate-100 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80" 
+              alt="Exploring the city"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://placehold.co/800x400/2563eb/ffffff?text=Exploring+the+City'"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-4">
+              <span class="inline-flex items-center text-xs font-semibold text-white bg-slate-900/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/20">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1.5 text-emerald-400"></i> Free Time
+              </span>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="text-xs uppercase font-bold tracking-wider text-slate-500">Sentence Parts</div>
+              <div id="card2-text" class="text-slate-900 font-medium text-base sm:text-lg min-h-[58px] flex items-center">
+                <span><strong class="text-blue-600">If</strong> <span class="text-blue-800 bg-blue-50 px-1 rounded font-semibold">I want to explore the city</span>, <span class="text-slate-700 bg-amber-50 px-1 rounded font-semibold">I use a good online guidebook</span>.</span>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="flipCardExample(2)" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors">
+                <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 mr-1.5"></i> Swap Order
+              </button>
+              <span id="card2-badge" class="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-1 rounded">Situation first → Action second</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Late for Work (Taxi) -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:border-blue-300 transition-all">
+          <div class="relative h-44 bg-slate-100 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" 
+              alt="Taking a taxi"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://placehold.co/800x400/2563eb/ffffff?text=Late+For+Work+Taxi'"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-4">
+              <span class="inline-flex items-center text-xs font-semibold text-white bg-slate-900/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/20">
+                <i data-lucide="clock" class="w-3.5 h-3.5 mr-1.5 text-yellow-400"></i> Routine &amp; Habit
+              </span>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="text-xs uppercase font-bold tracking-wider text-slate-500">Interchangeable Meaning</div>
+              <div id="card3-text" class="text-slate-900 font-medium text-base sm:text-lg min-h-[58px] flex items-center">
+                <span><strong class="text-blue-600">If</strong> I'm late for work, I take a taxi.</span>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="toggleIfWhenCard3()" class="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors">
+                <i data-lucide="shuffle" class="w-3.5 h-3.5 mr-1.5"></i> Swap If ⇄ When
+              </button>
+              <span id="card3-badge" class="text-xs text-slate-600 font-medium bg-slate-100 px-2 py-1 rounded">Means the same!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Asking Questions -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:border-blue-300 transition-all">
+          <div class="relative h-44 bg-slate-100 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" 
+              alt="Airplane window view"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://placehold.co/800x400/2563eb/ffffff?text=Travel+By+Plane'"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-4">
+              <span class="inline-flex items-center text-xs font-semibold text-white bg-slate-900/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/20">
+                <i data-lucide="help-circle" class="w-3.5 h-3.5 mr-1.5 text-purple-400"></i> Conversation Question
+              </span>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="text-xs uppercase font-bold tracking-wider text-slate-500">Question Order</div>
+              <div id="card4-text" class="text-slate-900 font-medium text-base sm:text-lg min-h-[58px] flex items-center">
+                <span><strong class="text-blue-600">When</strong> you travel, do you usually go by plane or by train?</span>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="flipCardExample(4)" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors">
+                <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 mr-1.5"></i> Flip Question
+              </button>
+              <span id="card4-badge" class="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-1 rounded">Situation first</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Discovery Takeaway Box -->
+      <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-slate-100 border border-blue-200 rounded-2xl p-6 sm:p-7">
+        <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-5">
+          <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shrink-0 shadow-md shadow-blue-500/30">
+            <i data-lucide="lightbulb" class="w-6 h-6"></i>
+          </div>
+          <div class="space-y-1 text-center sm:text-left flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">The Golden Rule: "If" and "When" stick to the situation</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Whether you put the situation first or at the end, <strong>the word "if" or "when" stays with the situation</strong>. The total meaning does not change!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE CLEAR RULES & VISUAL GUIDE -->
+    <section id="rules-section" class="space-y-8 bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          Step 2: Understand The Structure
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Two Ways to Build the Sentence
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          You can say the <strong>situation first</strong> or the <strong>action first</strong>.
+        </p>
+      </div>
+
+      <!-- Two Word Order Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Order A -->
+        <div class="rounded-2xl border-2 border-blue-200 p-6 flex flex-col justify-between space-y-4 bg-blue-50/40">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 text-blue-700 font-bold text-base">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">1</span>
+              <span>Situation First</span>
+            </div>
+            <p class="text-sm text-slate-600">Start with the situation. Put a small comma ( , ) before you say what happens:</p>
+            
+            <div class="bg-white p-4 rounded-xl border border-blue-200 space-y-2 shadow-xs">
+              <div class="font-mono text-xs sm:text-sm text-slate-800 flex flex-wrap items-center gap-1.5">
+                <span class="bg-blue-100 text-blue-900 px-2 py-1 rounded font-bold">[ If / When + Situation ]</span>
+                <span class="text-red-500 font-black text-base">,</span>
+                <span class="bg-amber-100 text-amber-900 px-2 py-1 rounded font-bold">[ Action ]</span>
+              </div>
+              <p class="text-xs text-slate-700 italic pt-1">
+                "<strong>If I'm late for work,</strong> I take a taxi."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order B -->
+        <div class="rounded-2xl border-2 border-amber-200 p-6 flex flex-col justify-between space-y-4 bg-amber-50/30">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 text-amber-800 font-bold text-base">
+              <span class="w-6 h-6 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs">2</span>
+              <span>Action First</span>
+            </div>
+            <p class="text-sm text-slate-600">Say what happens first, then connect the situation with <strong>if</strong> or <strong>when</strong> (no comma needed):</p>
+            
+            <div class="bg-white p-4 rounded-xl border border-amber-200 space-y-2 shadow-xs">
+              <div class="font-mono text-xs sm:text-sm text-slate-800 flex flex-wrap items-center gap-1.5">
+                <span class="bg-amber-100 text-amber-900 px-2 py-1 rounded font-bold">[ Action ]</span>
+                <span class="bg-blue-100 text-blue-900 px-2 py-1 rounded font-bold">[ if / when + Situation ]</span>
+              </div>
+              <p class="text-xs text-slate-700 italic pt-1">
+                "I take a taxi <strong>if I'm late for work.</strong>"
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Sentence Order Flipper Playground -->
+      <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 shadow-xl">
+        <div class="max-w-3xl mx-auto space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-blue-400">Interactive Demo</span>
+              <h3 class="text-xl font-bold text-white">Live Word Order Flipper</h3>
+              <p class="text-xs sm:text-sm text-slate-300">Tap below to switch the order of the sentence:</p>
+            </div>
+            <button 
+              id="flipInteractiveBtn"
+              onclick="toggleLiveFlipper()"
+              class="px-5 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold text-sm shadow-md shadow-blue-500/30 flex items-center justify-center space-x-2 transition-all active:scale-95 shrink-0"
+            >
+              <i data-lucide="repeat" class="w-4 h-4"></i>
+              <span>Swap Order</span>
+            </button>
+          </div>
+
+          <!-- Display Box -->
+          <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-6 text-center space-y-3">
+            <div id="flipperContainer" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg font-medium">
+              <!-- Rendered via JS -->
+            </div>
+            <div id="flipperExplainer" class="text-xs sm:text-sm text-slate-300 font-medium pt-1">
+              <!-- Explainer dynamic text -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: 10 INTERACTIVE EXERCISES -->
+    <section id="exercises-section" class="space-y-8">
+      
+      <!-- Section Header with Progress Tracker -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-1 text-center md:text-left">
+          <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+            Step 3: Practice &amp; Check
+          </span>
+          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">10 Quick Practice Activities</h2>
+          <p class="text-sm text-slate-500">Tap the answers to test your understanding. You will see instant feedback!</p>
+        </div>
+        
+        <!-- Score & Completion Tracker -->
+        <div class="flex items-center space-x-6 w-full md:w-auto justify-center bg-slate-50 border border-slate-200 px-5 py-3 rounded-xl">
+          <div class="text-center">
+            <div class="text-xs text-slate-500 font-semibold uppercase">Done</div>
+            <div class="text-lg font-extrabold text-slate-900"><span id="solvedCount">0</span> / 10</div>
+          </div>
+          <div class="h-8 w-px bg-slate-300"></div>
+          <div class="text-center">
+            <div class="text-xs text-slate-500 font-semibold uppercase">Score</div>
+            <div class="text-lg font-extrabold text-blue-600"><span id="scoreCount">0</span> pts</div>
+          </div>
+          <button 
+            onclick="resetAllExercises()" 
+            title="Reset All"
+            class="text-xs text-slate-600 hover:text-slate-900 bg-white border border-slate-300 px-2.5 py-1.5 rounded-lg flex items-center space-x-1 transition-colors"
+          >
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>Restart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PROGRESS BAR -->
+      <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+        <div id="overallProgressBar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- EXERCISE 1: RECOGNIZE SITUATION VS ACTION -->
+        <div id="ex1-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 1 • Identifying Parts</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Which part is the SITUATION (the condition)?</h3>
+              <p class="text-xs text-slate-500 italic mt-0.5">"I always stay in a hotel near the airport when I travel for work."</p>
+            </div>
+            <span id="ex1-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <button onclick="checkEx1(0, this)" class="ex1-btn text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-slate-800 font-medium transition-all">
+              A) "when I travel for work"
+            </button>
+            <button onclick="checkEx1(1, this)" class="ex1-btn text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-slate-800 font-medium transition-all">
+              B) "I always stay in a hotel near the airport"
+            </button>
+          </div>
+          <div id="ex1-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 2: MATCH SITUATION TO RESULT -->
+        <div id="ex2-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 2 • Matching Pairs</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Match each Situation on the left with what happens on the right</h3>
+              <p class="text-xs text-slate-500">Tap a situation first, then tap its matching result.</p>
+            </div>
+            <span id="ex2-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">0 / 3 Pairs</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            <!-- Left Column -->
+            <div class="space-y-2.5">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500">1. Tap a Situation:</div>
+              <div id="match-cond-1" onclick="selectMatchLeft(1)" class="match-left cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all flex items-center justify-between">
+                <span>If I want to explore the city...</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+              </div>
+              <div id="match-cond-2" onclick="selectMatchLeft(2)" class="match-left cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all flex items-center justify-between">
+                <span>When I'm late for work...</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+              </div>
+              <div id="match-cond-3" onclick="selectMatchLeft(3)" class="match-left cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all flex items-center justify-between">
+                <span>When the weather is nice...</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-2.5">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500">2. Tap the Result:</div>
+              <div id="match-res-2" onclick="selectMatchRight(2)" class="match-right cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all">
+                <span>... I take a yellow taxi.</span>
+              </div>
+              <div id="match-res-3" onclick="selectMatchRight(3)" class="match-right cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all">
+                <span>... we often go to the park.</span>
+              </div>
+              <div id="match-res-1" onclick="selectMatchRight(1)" class="match-right cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all">
+                <span>... I use a good online guidebook.</span>
+              </div>
+            </div>
+          </div>
+          <div id="ex2-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 3: CONDITION & LOGIC CHALLENGE -->
+        <div id="ex3-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 3 • Condition &amp; Logic Challenge</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Which sentence connects the condition and result correctly?</h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Situation: <span class="font-semibold text-slate-700">The train is delayed</span> &bull; Action: <span class="font-semibold text-slate-700">We call our manager</span>
+              </p>
+            </div>
+            <span id="ex3-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5 pt-1">
+            <button onclick="checkEx3(1, this)" class="ex3-btn text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-slate-800 font-medium transition-all">
+              A) We call our manager <strong>if the train is delayed</strong>.
+            </button>
+            <button onclick="checkEx3(2, this)" class="ex3-btn text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-slate-800 font-medium transition-all">
+              B) <strong>If we call our manager</strong>, the train is delayed.
+            </button>
+            <button onclick="checkEx3(3, this)" class="ex3-btn text-left p-4 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 text-slate-800 font-medium transition-all">
+              C) The train is delayed <strong>when we call our manager</strong>.
+            </button>
+          </div>
+          <div id="ex3-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 4: SENTENCE REWRITER (Textbook Exercise 8.1 item 2) -->
+        <div id="ex4-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 4 • Sentence Builder</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Put the words in order: Add "if" before the condition</h3>
+              <p class="text-xs text-slate-500 italic mt-0.5">We want to connect: "We often go to the park" + "the weather is nice"</p>
+            </div>
+            <span id="ex4-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="space-y-3">
+            <div id="ex4-dropzone" class="min-h-[52px] bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl p-3 flex flex-wrap gap-2 items-center">
+              <span id="ex4-placeholder" class="text-slate-400 text-sm italic">Tap the words below to build your sentence...</span>
+            </div>
+
+            <div id="ex4-tiles" class="flex flex-wrap gap-2 pt-1">
+              <!-- Dynamically populated tiles -->
+            </div>
+
+            <div class="flex items-center space-x-3 pt-2">
+              <button onclick="validateEx4()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs">
+                Check Sentence
+              </button>
+              <button onclick="resetEx4()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold">
+                Clear
+              </button>
+            </div>
+          </div>
+          <div id="ex4-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 5: CHOOSING THE CORRECT ORDER -->
+        <div id="ex5-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 5 • Natural Word Order</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Which sentence has the natural word order?</h3>
+            </div>
+            <span id="ex5-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5 pt-1">
+            <button onclick="checkEx5(1, this)" class="ex5-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              A) I take a taxi if I'm late for work.
+            </button>
+            <button onclick="checkEx5(2, this)" class="ex5-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              B) I take if a taxi I'm late for work.
+            </button>
+            <button onclick="checkEx5(3, this)" class="ex5-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              C) Late for work I take a taxi if.
+            </button>
+          </div>
+          <div id="ex5-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 6: ASSEMBLE A QUESTION -->
+        <div id="ex6-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 6 • Question Order</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Build a question starting with "When you travel,"</h3>
+              <p class="text-xs text-slate-500">Tap the 3 blocks in the correct order.</p>
+            </div>
+            <span id="ex6-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="space-y-3">
+            <div id="ex6-dropzone" class="min-h-[50px] bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl p-3 flex flex-wrap gap-2 items-center">
+              <span id="ex6-placeholder" class="text-slate-400 text-sm italic">Tap the blocks below in order...</span>
+            </div>
+
+            <div id="ex6-bank" class="flex flex-wrap gap-2">
+              <button onclick="addEx6Tile(this, 'When you travel,')" class="ex6-chip bg-white border border-slate-300 hover:border-blue-500 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-800 transition-colors">
+                When you travel,
+              </button>
+              <button onclick="addEx6Tile(this, 'by plane or by train?')" class="ex6-chip bg-white border border-slate-300 hover:border-blue-500 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-800 transition-colors">
+                by plane or by train?
+              </button>
+              <button onclick="addEx6Tile(this, 'do you usually go')" class="ex6-chip bg-white border border-slate-300 hover:border-blue-500 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-800 transition-colors">
+                do you usually go
+              </button>
+            </div>
+
+            <div class="flex items-center space-x-3 pt-2">
+              <button onclick="checkEx6()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs">
+                Check Question
+              </button>
+              <button onclick="resetEx6()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold">
+                Reset
+              </button>
+            </div>
+          </div>
+          <div id="ex6-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 7: INSERTING "WHEN" (Textbook item 3) -->
+        <div id="ex7-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 7 • Placing "When"</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Where does <span class="text-blue-600 font-bold">"when"</span> fit naturally?</h3>
+              <p class="text-xs text-slate-500 italic mt-0.5">Base sentence: "I'm always nervous I travel by plane."</p>
+            </div>
+            <span id="ex7-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5 pt-1">
+            <button onclick="checkEx7(1, this)" class="ex7-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              A) I'm always nervous <strong>when</strong> I travel by plane.
+            </button>
+            <button onclick="checkEx7(2, this)" class="ex7-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              B) I'm <strong>when</strong> always nervous I travel by plane.
+            </button>
+            <button onclick="checkEx7(3, this)" class="ex7-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              C) I'm always nervous I travel <strong>when</strong> by plane.
+            </button>
+          </div>
+          <div id="ex7-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 8: INSERTING "IF" AT THE START (Textbook item 4) -->
+        <div id="ex8-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 8 • Starting with "If"</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Which option correctly adds "if" to the start?</h3>
+              <p class="text-xs text-slate-500 italic mt-0.5">Base sentence: "I can, I always prefer to stay in a modern hotel."</p>
+            </div>
+            <span id="ex8-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5 pt-1">
+            <button onclick="checkEx8(1, this)" class="ex8-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              A) <strong>If I can,</strong> I always prefer to stay in a modern hotel.
+            </button>
+            <button onclick="checkEx8(2, this)" class="ex8-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              B) I can <strong>if</strong>, I always prefer to stay in a modern hotel.
+            </button>
+            <button onclick="checkEx8(3, this)" class="ex8-btn p-3.5 rounded-xl border border-slate-200 hover:border-blue-400 text-left text-sm font-medium text-slate-800 transition-colors">
+              C) I always prefer to stay <strong>if</strong>, in a modern hotel I can.
+            </button>
+          </div>
+          <div id="ex8-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 9: MEANING COMPARISON (IF vs WHEN) -->
+        <div id="ex9-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 9 • Meaning Check</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Do these two sentences have the same meaning?</h3>
+            </div>
+            <span id="ex9-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2">
+            <div class="text-sm font-medium text-slate-800">Sentence 1: <span class="font-normal text-slate-700">"<strong>If</strong> I want to explore the city, I use a good guidebook."</span></div>
+            <div class="text-sm font-medium text-slate-800">Sentence 2: <span class="font-normal text-slate-700">"<strong>When</strong> I want to explore the city, I use a good guidebook."</span></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <button onclick="checkEx9(true, this)" class="ex9-btn p-3.5 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 text-slate-800 font-bold text-center text-sm transition-all">
+              ✓ Yes, Same Meaning
+            </button>
+            <button onclick="checkEx9(false, this)" class="ex9-btn p-3.5 rounded-xl border border-slate-200 hover:border-red-400 hover:bg-red-50/50 text-slate-800 font-bold text-center text-sm transition-all">
+              ✕ No, Different Meaning
+            </button>
+          </div>
+          <div id="ex9-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 10: SWAP THE ORDER -->
+        <div id="ex10-container" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase">Exercise 10 • Swapping Order</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-0.5">Move the situation to the end</h3>
+              <p class="text-xs text-slate-500 italic mt-0.5">Start with what you love doing: "When I'm on vacation, I love to go to the beach."</p>
+            </div>
+            <span id="ex10-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Unanswered</span>
+          </div>
+
+          <div class="space-y-3 pt-1">
+            <div class="relative">
+              <input 
+                id="ex10-input" 
+                type="text" 
+                placeholder="I love to go to the beach when..." 
+                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-slate-800"
+              />
+            </div>
+            <div class="flex items-center space-x-3">
+              <button onclick="checkEx10()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs">
+                Check My Answer
+              </button>
+              <button onclick="fillEx10Hint()" class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold">
+                Show Starter
+              </button>
+            </div>
+          </div>
+          <div id="ex10-feedback" class="hidden text-sm p-3 rounded-xl"></div>
+        </div>
+
+      </div>
+
+      <!-- Completion Banner -->
+      <div id="completionBanner" class="hidden bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-3xl p-8 text-center space-y-4 shadow-xl">
+        <div class="w-16 h-16 bg-white/20 rounded-2xl mx-auto flex items-center justify-center">
+          <i data-lucide="trophy" class="w-8 h-8 text-yellow-300"></i>
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-2xl sm:text-3xl font-black">Well Done!</h3>
+          <p class="text-emerald-100 text-sm sm:text-base max-w-lg mx-auto">
+            You completed all 10 exercises! You know how to connect situations with actions using <strong class="text-white">if</strong> and <strong class="text-white">when</strong>.
+          </p>
+        </div>
+        <button onclick="triggerConfetti()" class="px-6 py-3 bg-white text-emerald-700 font-bold rounded-xl text-sm shadow hover:bg-emerald-50 transition-colors">
+          Celebrate Again 🎉
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-16 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+        <span>Interactive English Practice</span>
+      </div>
+      <div>
+        Designed by <span class="font-semibold text-slate-700">Babak Alaee</span>
+      </div>
+      <div class="text-slate-400">
+        Easy Conditions &amp; Word Order
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // State management
+    const state = {
+      score: 0,
+      solvedExercises: new Set(),
+      // Discovery card flips
+      card1Flipped: false,
+      card2Flipped: false,
+      card3IsWhen: false,
+      card4Flipped: false,
+      // Flipper Playground
+      flipperState: 0,
+      // Match pairs
+      selectedLeft: null,
+      matchedPairs: 0,
+      // Builders
+      ex4Words: [],
+      ex6Words: [],
+    };
+
+    // On Load
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      initFlipper();
+      initEx4Tiles();
+    });
+
+    // --- SECTION 1: DISCOVERY CARD FLIPPERS ---
+    function flipCardExample(cardNum) {
+      if (cardNum === 1) {
+        state.card1Flipped = !state.card1Flipped;
+        const textEl = document.getElementById('card1-text');
+        const badgeEl = document.getElementById('card1-badge');
+        if (state.card1Flipped) {
+          textEl.innerHTML = `<span><strong class="text-blue-600">When</strong> <span class="text-blue-800 bg-blue-50 px-1 rounded font-semibold">I travel for work</span>, <span class="text-slate-700 bg-amber-50 px-1 rounded font-semibold">I always stay in a hotel near the airport</span>.</span>`;
+          badgeEl.textContent = 'Situation first → Action second';
+        } else {
+          textEl.innerHTML = `<span><span class="text-slate-700 bg-amber-50 px-1 rounded font-semibold">I always stay in a hotel near the airport</span> <strong class="text-blue-600">when</strong> <span class="text-blue-800 bg-blue-50 px-1 rounded font-semibold">I travel for work</span>.</span>`;
+          badgeEl.textContent = 'Action first → Situation second';
+        }
+      } else if (cardNum === 2) {
+        state.card2Flipped = !state.card2Flipped;
+        const textEl = document.getElementById('card2-text');
+        const badgeEl = document.getElementById('card2-badge');
+        if (state.card2Flipped) {
+          textEl.innerHTML = `<span><span class="text-slate-700 bg-amber-50 px-1 rounded font-semibold">I use a good online guidebook</span> <strong class="text-blue-600">if</strong> <span class="text-blue-800 bg-blue-50 px-1 rounded font-semibold">I want to explore the city</span>.</span>`;
+          badgeEl.textContent = 'Action first → Situation second';
+        } else {
+          textEl.innerHTML = `<span><strong class="text-blue-600">If</strong> <span class="text-blue-800 bg-blue-50 px-1 rounded font-semibold">I want to explore the city</span>, <span class="text-slate-700 bg-amber-50 px-1 rounded font-semibold">I use a good online guidebook</span>.</span>`;
+          badgeEl.textContent = 'Situation first → Action second';
+        }
+      } else if (cardNum === 4) {
+        state.card4Flipped = !state.card4Flipped;
+        const textEl = document.getElementById('card4-text');
+        const badgeEl = document.getElementById('card4-badge');
+        if (state.card4Flipped) {
+          textEl.innerHTML = `<span>Do you usually go by plane or by train <strong class="text-blue-600">when</strong> you travel?</span>`;
+          badgeEl.textContent = 'Question first → Situation second';
+        } else {
+          textEl.innerHTML = `<span><strong class="text-blue-600">When</strong> you travel, do you usually go by plane or by train?</span>`;
+          badgeEl.textContent = 'Situation first → Question second';
+        }
+      }
+    }
+
+    function toggleIfWhenCard3() {
+      state.card3IsWhen = !state.card3IsWhen;
+      const textEl = document.getElementById('card3-text');
+      const badgeEl = document.getElementById('card3-badge');
+      if (state.card3IsWhen) {
+        textEl.innerHTML = `<span><strong class="text-indigo-600">When</strong> I'm late for work, I take a taxi.</span>`;
+        badgeEl.textContent = 'Swapped to "When" (same meaning)';
+      } else {
+        textEl.innerHTML = `<span><strong class="text-blue-600">If</strong> I'm late for work, I take a taxi.</span>`;
+        badgeEl.textContent = 'Swapped to "If" (same meaning)';
+      }
+    }
+
+    // --- SECTION 2: LIVE FLIPPER ---
+    function initFlipper() {
+      renderFlipper();
+    }
+
+    function toggleLiveFlipper() {
+      state.flipperState = state.flipperState === 0 ? 1 : 0;
+      renderFlipper();
+    }
+
+    function renderFlipper() {
+      const container = document.getElementById('flipperContainer');
+      const explainer = document.getElementById('flipperExplainer');
+
+      if (state.flipperState === 0) {
+        container.innerHTML = `
+          <div class="flex items-center gap-2 bg-blue-600/90 text-white px-3.5 py-2 rounded-xl shadow-sm border border-blue-400">
+            <span class="text-xs uppercase tracking-wider text-blue-200 font-bold">[1. Situation]</span>
+            <span class="font-bold">If I'm late for work</span>
+          </div>
+          
+          <div class="bg-amber-400 text-slate-950 px-3 py-1.5 rounded-xl shadow-lg ring-4 ring-amber-300/40 font-black text-xl flex items-center gap-2 animate-bounce">
+            <span>,</span>
+            <span class="text-xs uppercase font-extrabold tracking-wider bg-slate-950 text-amber-300 px-2 py-0.5 rounded">Comma Needed!</span>
+          </div>
+
+          <div class="flex items-center gap-2 bg-emerald-600/90 text-white px-3.5 py-2 rounded-xl shadow-sm border border-emerald-400">
+            <span class="text-xs uppercase tracking-wider text-emerald-200 font-bold">[2. Action]</span>
+            <span class="font-bold">I take a taxi.</span>
+          </div>
+        `;
+        explainer.innerHTML = `
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-semibold mb-1">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Condition at the START ➔ COMMA REQUIRED
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+            Because the sentence starts with the condition (<strong class="text-blue-300">"If I'm late for work"</strong>), you must put a comma ( <strong class="text-amber-300">,</strong> ) before introducing the action.
+          </p>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="flex items-center gap-2 bg-emerald-600/90 text-white px-3.5 py-2 rounded-xl shadow-sm border border-emerald-400">
+            <span class="text-xs uppercase tracking-wider text-emerald-200 font-bold">[1. Action]</span>
+            <span class="font-bold">I take a taxi</span>
+          </div>
+
+          <div class="bg-slate-700/90 text-rose-300 px-3 py-1.5 rounded-xl border border-dashed border-rose-400/60 font-semibold text-xs flex items-center gap-1.5 shadow-inner">
+            <i data-lucide="ban" class="w-4 h-4 text-rose-400"></i>
+            <span class="uppercase tracking-wider">No Comma Needed</span>
+          </div>
+
+          <div class="flex items-center gap-2 bg-blue-600/90 text-white px-3.5 py-2 rounded-xl shadow-sm border border-blue-400">
+            <span class="text-xs uppercase tracking-wider text-blue-200 font-bold">[2. Situation]</span>
+            <span class="font-bold">if I'm late for work.</span>
+          </div>
+        `;
+        explainer.innerHTML = `
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-rose-400/10 border border-rose-400/30 text-rose-300 text-xs sm:text-sm font-semibold mb-1">
+            <i data-lucide="ban" class="w-4 h-4 text-rose-400"></i> Condition in the MIDDLE ➔ NO COMMA
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+            Because the sentence starts with the action and <strong class="text-blue-300">"if"</strong> acts as the bridge in the middle, you do <strong>not</strong> need a comma!
+          </p>
+        `;
+      }
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    // --- SCORING & COMPLETION ---
+    function markExerciseSolved(exNum, points) {
+      if (!state.solvedExercises.has(exNum)) {
+        state.solvedExercises.add(exNum);
+        state.score += points;
+        updateScoreBoard();
+      }
+    }
+
+    function updateScoreBoard() {
+      const solved = state.solvedExercises.size;
+      document.getElementById('solvedCount').textContent = solved;
+      document.getElementById('scoreCount').textContent = state.score;
+      const progressPercent = Math.round((solved / 10) * 100);
+      document.getElementById('overallProgressBar').style.width = `${progressPercent}%`;
+
+      if (solved === 10) {
+        document.getElementById('completionBanner').classList.remove('hidden');
+        triggerConfetti();
+      }
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    // --- EXERCISE 1 ---
+    function checkEx1(index, buttonEl) {
+      const feedback = document.getElementById('ex1-feedback');
+      const badge = document.getElementById('ex1-badge');
+      document.querySelectorAll('.ex1-btn').forEach(b => {
+        b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50');
+      });
+
+      if (index === 0) {
+        buttonEl.classList.add('border-emerald-500', 'bg-emerald-50');
+        feedback.innerHTML = `<strong>Correct!</strong> "when I travel for work" tells us the situation. "when" always attaches to the situation!`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(1, 10);
+      } else {
+        buttonEl.classList.add('border-red-400', 'bg-red-50');
+        feedback.innerHTML = `<strong>Not this one:</strong> Staying in a hotel is what you DO (the action). Traveling for work is the situation!`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx1() {
+      document.querySelectorAll('.ex1-btn').forEach(b => {
+        b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50');
+      });
+      document.getElementById('ex1-feedback').className = 'hidden';
+      document.getElementById('ex1-badge').textContent = 'Unanswered';
+      document.getElementById('ex1-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 2: MATCHING ---
+    function selectMatchLeft(id) {
+      document.querySelectorAll('.match-left').forEach(el => el.classList.remove('border-blue-600', 'bg-blue-50'));
+      state.selectedLeft = id;
+      const current = document.getElementById(`match-cond-${id}`);
+      if (current && !current.classList.contains('bg-emerald-100')) {
+        current.classList.add('border-blue-600', 'bg-blue-50');
+      }
+    }
+
+    function selectMatchRight(id) {
+      if (!state.selectedLeft) {
+        const feedback = document.getElementById('ex2-feedback');
+        feedback.innerHTML = `Tap a situation on the left first!`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 block';
+        return;
+      }
+      
+      const leftEl = document.getElementById(`match-cond-${state.selectedLeft}`);
+      const rightEl = document.getElementById(`match-res-${id}`);
+
+      if (state.selectedLeft === id) {
+        leftEl.classList.remove('border-blue-600', 'bg-blue-50');
+        leftEl.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'pointer-events-none');
+        rightEl.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'pointer-events-none');
+        state.matchedPairs += 1;
+        state.selectedLeft = null;
+
+        document.getElementById('ex2-badge').textContent = `${state.matchedPairs} / 3 Pairs`;
+
+        if (state.matchedPairs === 3) {
+          const feedback = document.getElementById('ex2-feedback');
+          feedback.innerHTML = `<strong>Well done!</strong> You matched all situations with their natural results.`;
+          feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+          document.getElementById('ex2-badge').textContent = 'Completed +10';
+          document.getElementById('ex2-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+          markExerciseSolved(2, 10);
+        }
+      } else {
+        const feedback = document.getElementById('ex2-feedback');
+        feedback.innerHTML = `That result doesn't fit this situation. Try matching with another one!`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx2() {
+      state.matchedPairs = 0;
+      state.selectedLeft = null;
+      document.querySelectorAll('.match-left, .match-right').forEach(el => {
+        el.className = el.classList.contains('match-left') 
+          ? 'match-left cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all flex items-center justify-between'
+          : 'match-right cursor-pointer p-3.5 rounded-xl border-2 border-slate-200 hover:border-blue-300 font-medium text-sm text-slate-800 transition-all';
+      });
+      document.getElementById('ex2-badge').textContent = '0 / 3 Pairs';
+      document.getElementById('ex2-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+      document.getElementById('ex2-feedback').className = 'hidden';
+    }
+
+    // --- EXERCISE 3: CONDITION & LOGIC CHALLENGE ---
+    function checkEx3(choice, el) {
+      const feedback = document.getElementById('ex3-feedback');
+      const badge = document.getElementById('ex3-badge');
+      document.querySelectorAll('.ex3-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+
+      if (choice === 1) {
+        el.classList.add('border-emerald-500', 'bg-emerald-50');
+        feedback.innerHTML = `<strong>Spot on!</strong> The delay is the situation/condition, so <em>"if"</em> attaches to <em>"the train is delayed"</em>. Calling your manager is the action you take as a result!`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(3, 10);
+      } else {
+        el.classList.add('border-red-400', 'bg-red-50');
+        feedback.innerHTML = `<strong>Watch the logic:</strong> Calling your manager doesn't cause the train delay! <em>"If"</em> must stay with the condition (the delay), not the action.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx3() {
+      document.querySelectorAll('.ex3-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+      document.getElementById('ex3-feedback').className = 'hidden';
+      document.getElementById('ex3-badge').textContent = 'Unanswered';
+      document.getElementById('ex3-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 4: SENTENCE REWRITER ---
+    const ex4WordsOriginal = ["We", "often", "go", "to", "the", "park", "if", "the", "weather", "is", "nice."];
+    
+    function initEx4Tiles() {
+      const bank = document.getElementById('ex4-tiles');
+      if (!bank) return;
+      bank.innerHTML = '';
+      const shuffled = [...ex4WordsOriginal].sort(() => Math.random() - 0.5);
+      shuffled.forEach(word => {
+        const btn = document.createElement('button');
+        btn.textContent = word;
+        btn.className = 'tile-item px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:border-blue-400 text-xs sm:text-sm font-medium text-slate-800 shadow-xs transition-colors';
+        btn.onclick = () => addEx4Word(word, btn);
+        bank.appendChild(btn);
+      });
+    }
+
+    function addEx4Word(word, btn) {
+      state.ex4Words.push(word);
+      btn.classList.add('opacity-40', 'pointer-events-none');
+      renderEx4Dropzone();
+    }
+
+    function renderEx4Dropzone() {
+      const dropzone = document.getElementById('ex4-dropzone');
+      if (state.ex4Words.length === 0) {
+        dropzone.innerHTML = `<span id="ex4-placeholder" class="text-slate-400 text-sm italic">Tap the words below to build your sentence...</span>`;
+      } else {
+        dropzone.innerHTML = '';
+        state.ex4Words.forEach((w) => {
+          const span = document.createElement('span');
+          span.textContent = w;
+          span.className = 'inline-block bg-white border border-blue-200 text-blue-900 px-2.5 py-1 rounded-md text-xs sm:text-sm font-medium shadow-xs';
+          dropzone.appendChild(span);
+        });
+      }
+    }
+
+    function validateEx4() {
+      const sentence = state.ex4Words.join(" ").trim();
+      const feedback = document.getElementById('ex4-feedback');
+      const badge = document.getElementById('ex4-badge');
+
+      const expected = "We often go to the park if the weather is nice.";
+
+      if (sentence === expected || sentence.toLowerCase() === expected.toLowerCase()) {
+        feedback.innerHTML = `<strong>Great sentence!</strong> "We often go to the park if the weather is nice." The action is first, connected to the situation with "if".`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(4, 10);
+      } else {
+        feedback.innerHTML = `<strong>Try this order:</strong> Put what you do first: <em>"We often go to the park..."</em> then add <em>"if the weather is nice."</em>`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 block';
+      }
+    }
+
+    function resetEx4() {
+      state.ex4Words = [];
+      renderEx4Dropzone();
+      initEx4Tiles();
+      document.getElementById('ex4-feedback').className = 'hidden';
+      document.getElementById('ex4-badge').textContent = 'Unanswered';
+      document.getElementById('ex4-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 5: NATURAL ORDER ---
+    function checkEx5(choice, el) {
+      const feedback = document.getElementById('ex5-feedback');
+      const badge = document.getElementById('ex5-badge');
+      document.querySelectorAll('.ex5-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+
+      if (choice === 1) {
+        el.classList.add('border-emerald-500', 'bg-emerald-50');
+        feedback.innerHTML = `<strong>Correct!</strong> <em>"I take a taxi if I'm late for work."</em> "if" cleanly connects the situation at the end.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(5, 10);
+      } else {
+        el.classList.add('border-red-400', 'bg-red-50');
+        feedback.innerHTML = `<strong>Not quite:</strong> "if" belongs right in front of "I'm late for work".`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx5() {
+      document.querySelectorAll('.ex5-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+      document.getElementById('ex5-feedback').className = 'hidden';
+      document.getElementById('ex5-badge').textContent = 'Unanswered';
+      document.getElementById('ex5-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 6: ASSEMBLE QUESTION ---
+    function addEx6Tile(btn, text) {
+      if (btn.classList.contains('opacity-40')) return;
+      state.ex6Words.push(text);
+      btn.classList.add('opacity-40');
+      renderEx6Zone();
+    }
+
+    function renderEx6Zone() {
+      const zone = document.getElementById('ex6-dropzone');
+      if (state.ex6Words.length === 0) {
+        zone.innerHTML = `<span id="ex6-placeholder" class="text-slate-400 text-sm italic">Tap the blocks below in order...</span>`;
+      } else {
+        zone.innerHTML = '';
+        state.ex6Words.forEach(chunk => {
+          const span = document.createElement('span');
+          span.textContent = chunk;
+          span.className = 'inline-block bg-white border border-blue-300 text-blue-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-xs';
+          zone.appendChild(span);
+        });
+      }
+    }
+
+    function checkEx6() {
+      const feedback = document.getElementById('ex6-feedback');
+      const badge = document.getElementById('ex6-badge');
+      const full = state.ex6Words.join(' ');
+
+      if (full === "When you travel, do you usually go by plane or by train?") {
+        feedback.innerHTML = `<strong>Excellent question!</strong> <em>"When you travel, do you usually go by plane or by train?"</em> Setting the situation first makes the question very natural.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(6, 10);
+      } else {
+        feedback.innerHTML = `<strong>Check sequence:</strong> 1) "When you travel," 2) "do you usually go" 3) "by plane or by train?".`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 block';
+      }
+    }
+
+    function resetEx6() {
+      state.ex6Words = [];
+      renderEx6Zone();
+      document.querySelectorAll('.ex6-chip').forEach(b => b.classList.remove('opacity-40'));
+      document.getElementById('ex6-feedback').className = 'hidden';
+      document.getElementById('ex6-badge').textContent = 'Unanswered';
+      document.getElementById('ex6-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 7: INSERTING "WHEN" ---
+    function checkEx7(option, el) {
+      const feedback = document.getElementById('ex7-feedback');
+      const badge = document.getElementById('ex7-badge');
+      document.querySelectorAll('.ex7-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+
+      if (option === 1) {
+        el.classList.add('border-emerald-500', 'bg-emerald-50');
+        feedback.innerHTML = `<strong>Correct!</strong> <em>"I'm always nervous when I travel by plane."</em> "When" attaches to "I travel by plane" because plane travel is the situation.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(7, 10);
+      } else {
+        el.classList.add('border-red-400', 'bg-red-50');
+        feedback.innerHTML = `<strong>Not quite:</strong> "when" needs to go directly before "I travel by plane".`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx7() {
+      document.querySelectorAll('.ex7-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+      document.getElementById('ex7-feedback').className = 'hidden';
+      document.getElementById('ex7-badge').textContent = 'Unanswered';
+      document.getElementById('ex7-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 8: STARTING WITH "IF" ---
+    function checkEx8(option, el) {
+      const feedback = document.getElementById('ex8-feedback');
+      const badge = document.getElementById('ex8-badge');
+      document.querySelectorAll('.ex8-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+
+      if (option === 1) {
+        el.classList.add('border-emerald-500', 'bg-emerald-50');
+        feedback.innerHTML = `<strong>Spot on!</strong> <em>"If I can, I always prefer to stay in a modern hotel."</em> "If I can" is the condition, placed right at the beginning.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(8, 10);
+      } else {
+        el.classList.add('border-red-400', 'bg-red-50');
+        feedback.innerHTML = `<strong>Try again:</strong> Put "If" right at the beginning of the condition ("If I can,").`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx8() {
+      document.querySelectorAll('.ex8-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50'));
+      document.getElementById('ex8-feedback').className = 'hidden';
+      document.getElementById('ex8-badge').textContent = 'Unanswered';
+      document.getElementById('ex8-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 9: TRUE OR FALSE (MEANING) ---
+    function checkEx9(userChoice, el) {
+      const feedback = document.getElementById('ex9-feedback');
+      const badge = document.getElementById('ex9-badge');
+      document.querySelectorAll('.ex9-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-100', 'border-red-400', 'bg-red-50'));
+
+      if (userChoice === true) {
+        el.classList.add('border-emerald-500', 'bg-emerald-100');
+        feedback.innerHTML = `<strong>100% Correct!</strong> For habits and regular routines, you can use "when" for "if" and the meaning is the same.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(9, 10);
+      } else {
+        el.classList.add('border-red-400', 'bg-red-50');
+        feedback.innerHTML = `<strong>Actually, they mean the same!</strong> You can freely swap "if" and "when" for regular daily situations and routines.`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-red-100 text-red-900 border border-red-300 block';
+      }
+    }
+
+    function resetEx9() {
+      document.querySelectorAll('.ex9-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-100', 'border-red-400', 'bg-red-50'));
+      document.getElementById('ex9-feedback').className = 'hidden';
+      document.getElementById('ex9-badge').textContent = 'Unanswered';
+      document.getElementById('ex9-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    // --- EXERCISE 10: SWAP SITUATION TO END ---
+    function checkEx10() {
+      const input = document.getElementById('ex10-input').value.trim();
+      const feedback = document.getElementById('ex10-feedback');
+      const badge = document.getElementById('ex10-badge');
+
+      const cleaned = input.toLowerCase().replace(/[.,!]/g, "").replace(/\s+/g, " ");
+      const expected = "i love to go to the beach when im on vacation";
+      const expectedApos = "i love to go to the beach when i'm on vacation";
+
+      if (cleaned === expected || cleaned === expectedApos) {
+        feedback.innerHTML = `<strong>Perfect!</strong> <em>"I love to go to the beach when I'm on vacation."</em> You placed the action first and the situation at the end!`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        badge.textContent = 'Completed +10';
+        badge.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700';
+        markExerciseSolved(10, 10);
+      } else {
+        feedback.innerHTML = `<strong>Try writing:</strong> <em>"I love to go to the beach when I'm on vacation."</em>`;
+        feedback.className = 'text-sm p-3 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 block';
+      }
+    }
+
+    function fillEx10Hint() {
+      document.getElementById('ex10-input').value = "I love to go to the beach when ";
+      document.getElementById('ex10-input').focus();
+    }
+
+    function resetEx10() {
+      document.getElementById('ex10-input').value = '';
+      document.getElementById('ex10-feedback').className = 'hidden';
+      document.getElementById('ex10-badge').textContent = 'Unanswered';
+      document.getElementById('ex10-badge').className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600';
+    }
+
+    function resetAllExercises() {
+      state.score = 0;
+      state.solvedExercises.clear();
+      updateScoreBoard();
+      document.getElementById('completionBanner').classList.add('hidden');
+
+      resetEx1();
+      resetEx2();
+      resetEx3();
+      resetEx4();
+      resetEx5();
+      resetEx6();
+      resetEx7();
+      resetEx8();
+      resetEx9();
+      resetEx10();
+    }
+  </script>
+</body>
+</html>
