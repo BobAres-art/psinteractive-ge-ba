@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Comparative Adjectives, Adverbs & Modifiers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            },
+            sport: {
+              sky: '#0284c7',
+              amber: '#d97706',
+              emerald: '#059669',
+              purple: '#7c3aed',
+              rose: '#e11d48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+    }
+    .badge-adj {
+      background-color: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+    .badge-adv {
+      background-color: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+    .badge-mod {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .badge-irreg {
+      background-color: #ede9fe;
+      color: #5b21b6;
+      border: 1px solid #ddd6fe;
+    }
+    .focus-ring:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.35);
+    }
+    .pulse-highlight {
+      animation: subtleGlow 2.5s infinite ease-in-out;
+    }
+    @keyframes subtleGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.25); }
+      50% { box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <div class="flex flex-wrap items-center justify-between gap-3 min-h-[3.75rem]">
+        
+        <!-- Brand Identity & Attribution -->
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md font-bold text-base sm:text-lg font-mono shrink-0">
+            Δ+
+          </div>
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+              <span class="font-bold text-slate-900 tracking-tight text-base sm:text-lg leading-tight">Comparative Syntax Lab</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 shrink-0">Sports & Analytical Data</span>
+            </div>
+            <p class="text-xs text-slate-500 font-normal truncate mt-0.5">
+              Adjectives, Adverbs & Modifiers <span class="mx-1">•</span> <span class="text-slate-400 font-medium">Designed by Babak Alaee</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Section Navigation -->
+        <nav class="hidden md:flex items-center flex-wrap gap-1 text-xs sm:text-sm font-medium text-slate-600">
+          <a href="#exposure" class="px-2.5 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Sample Data</a>
+          <a href="#rules" class="px-2.5 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Grammar Rules</a>
+          <a href="#two-syllables-rule" class="px-2.5 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition font-semibold text-indigo-700">2-Syllable Adjectives</a>
+          <a href="#modifiers-section" class="px-2.5 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition font-semibold text-emerald-700">Modifiers</a>
+          <a href="#lab" class="px-2.5 py-1.5 rounded-lg hover:text-sky-600 hover:bg-slate-100 transition">Practice Lab</a>
+        </nav>
+
+        <!-- Dynamic Score Display & Sound Control -->
+        <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+          <div class="hidden sm:flex items-center bg-slate-100 rounded-lg px-2.5 py-1 border border-slate-200 gap-2">
+            <div class="w-16 bg-slate-200 rounded-full h-2 overflow-hidden">
+              <div id="progressBar" class="bg-sky-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="progressPercent" class="font-mono font-bold text-sky-700 text-xs">0%</span>
+          </div>
+          <div class="flex items-center bg-slate-100 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 border border-slate-200">
+            <span class="text-[10px] sm:text-xs uppercase font-semibold text-slate-500 mr-1.5 tracking-wider">Score</span>
+            <span id="scoreDisplay" class="font-mono font-bold text-sky-700 text-xs sm:text-sm">0 / 10</span>
+          </div>
+          <button id="soundToggle" onclick="toggleMute()" title="Toggle Audio Feedback" class="p-1.5 sm:p-2 text-slate-500 hover:text-sky-600 bg-slate-100 hover:bg-slate-200 rounded-lg border border-slate-200 transition">
+            <svg id="soundIconOn" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+            <svg id="soundIconOff" class="w-4 h-4 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="exposure" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Phase 1: Exposure & Discovery</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Discover Comparatives in Data Reports</h2>
+        <p class="text-slate-600 text-sm mt-1 max-w-3xl leading-relaxed">
+          The two sample reports below describe the charts, but their comparative forms are <strong>not highlighted</strong>. Read the text carefully and <strong>click on the comparative phrases</strong> you find to reveal their grammatical role and modifier strength.
+        </p>
+      </div>
+      <div class="flex items-center gap-2 text-xs bg-sky-50 border border-sky-200 px-3 py-2 rounded-xl text-sky-900 font-medium shrink-0">
+        <span>Found so far:</span>
+        <span id="discoveryCount" class="font-mono font-bold text-sky-700">0 / 8 discovered</span>
+      </div>
+    </div>
+
+    <!-- Dual Analytics Panels with Non-Highlighted Interactive Texts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <!-- Panel 1: Triathlon Split Analysis -->
+      <div class="glass-panel rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg flex items-center gap-2">
+              <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              Exhibit A: Average Speed in Three Sports (km/h)
+            </h3>
+            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Speed Data</span>
+          </div>
+
+          <!-- SVG Visual Chart: Pace Comparison -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-inner mb-5">
+            <svg viewBox="0 0 480 200" class="w-full h-44 overflow-visible">
+              <line x1="60" y1="20" x2="450" y2="20" stroke="#f1f5f9" stroke-width="1"/>
+              <line x1="60" y1="70" x2="450" y2="70" stroke="#f1f5f9" stroke-width="1"/>
+              <line x1="60" y1="120" x2="450" y2="120" stroke="#f1f5f9" stroke-width="1"/>
+              <line x1="60" y1="170" x2="450" y2="170" stroke="#cbd5e1" stroke-width="1.5"/>
+
+              <text x="50" y="24" font-size="10" fill="#94a3b8" text-anchor="end">45 km/h</text>
+              <text x="50" y="74" font-size="10" fill="#94a3b8" text-anchor="end">30 km/h</text>
+              <text x="50" y="124" font-size="10" fill="#94a3b8" text-anchor="end">15 km/h</text>
+              <text x="50" y="174" font-size="10" fill="#94a3b8" text-anchor="end">0 km/h</text>
+
+              <rect x="90" y="158" width="70" height="12" rx="3" fill="#0284c7"/>
+              <text x="125" y="152" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">3.5 km/h</text>
+              <text x="125" y="190" font-size="11" fill="#475569" text-anchor="middle" font-weight="600">Swimming</text>
+
+              <rect x="210" y="116" width="70" height="54" rx="3" fill="#6366f1"/>
+              <text x="245" y="110" font-size="11" font-weight="bold" fill="#4338ca" text-anchor="middle">16.2 km/h</text>
+              <text x="245" y="190" font-size="11" fill="#475569" text-anchor="middle" font-weight="600">Running</text>
+
+              <rect x="330" y="30" width="70" height="140" rx="3" fill="#0d9488"/>
+              <text x="365" y="24" font-size="11" font-weight="bold" fill="#0f766e" text-anchor="middle">42.0 km/h</text>
+              <text x="365" y="190" font-size="11" fill="#475569" text-anchor="middle" font-weight="600">Cycling</text>
+            </svg>
+          </div>
+
+          <!-- Non-highlighted discoverable text -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 text-slate-700 leading-relaxed text-sm">
+            <p>
+              In the triathlon, the athlete swam 
+              <button onclick="discoverPhrase('swam_slower', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                much slower
+              </button> 
+              than she cycled. Because she practised 
+              <button onclick="discoverPhrase('practised_often', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                significantly more often
+              </button> 
+              on the bike, her speed on the road was 
+              <button onclick="discoverPhrase('far_better', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                far better
+              </button>, 
+              allowing her to travel 
+              <button onclick="discoverPhrase('cycled_farther', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                substantially farther
+              </button> 
+              ahead of the others.
+            </p>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2 italic text-right">Click the phrases in the paragraph to discover them.</p>
+      </div>
+
+      <!-- Panel 2: Winter Games & Demographics Analytics -->
+      <div class="glass-panel rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg flex items-center gap-2">
+              <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+              Exhibit B: Weather and Age Differences
+            </h3>
+            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Team Statistics</span>
+          </div>
+
+          <!-- SVG Visual Chart: Simple Bar Chart -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-inner mb-5">
+            <svg viewBox="0 0 480 200" class="w-full h-44 overflow-visible">
+              <line x1="50" y1="170" x2="450" y2="170" stroke="#cbd5e1" stroke-width="1.5"/>
+              <line x1="50" y1="30" x2="450" y2="30" stroke="#f1f5f9" stroke-width="1"/>
+              <line x1="50" y1="100" x2="450" y2="100" stroke="#f1f5f9" stroke-width="1"/>
+
+              <text x="40" y="34" font-size="10" fill="#94a3b8" text-anchor="end">40 Medals</text>
+              <text x="40" y="104" font-size="10" fill="#94a3b8" text-anchor="end">20 Medals</text>
+              <text x="40" y="174" font-size="10" fill="#94a3b8" text-anchor="end">0</text>
+
+              <rect x="80" y="45" width="65" height="125" rx="3" fill="#0284c7"/>
+              <text x="112" y="38" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">37 Medals</text>
+              <text x="112" y="188" font-size="10" fill="#475569" text-anchor="middle">Cold Countries</text>
+
+              <rect x="200" y="115" width="65" height="55" rx="3" fill="#64748b"/>
+              <text x="232" y="108" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">16 Medals</text>
+              <text x="232" y="188" font-size="10" fill="#475569" text-anchor="middle">Warm Countries</text>
+
+              <line x1="330" y1="50" x2="330" y2="150" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="330" cy="50" r="5" fill="#f59e0b"/>
+              <circle cx="330" cy="150" r="5" fill="#f59e0b"/>
+              <text x="342" y="55" font-size="10" font-weight="bold" fill="#92400e">Oldest: 72 yrs</text>
+              <text x="342" y="155" font-size="10" font-weight="bold" fill="#92400e">Youngest: 13 yrs</text>
+              <text x="330" y="188" font-size="10" fill="#475569" text-anchor="middle">Age Gap (59 yrs)</text>
+            </svg>
+          </div>
+
+          <!-- Non-highlighted discoverable text -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 text-slate-700 leading-relaxed text-sm">
+            <p>
+              In winter sports, countries with a 
+              <button onclick="discoverPhrase('colder_climate', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                colder climate
+              </button> 
+              were generally 
+              <button onclick="discoverPhrase('more_successful', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                more successful
+              </button>. 
+              Spectators also found this ice-hockey game 
+              <button onclick="discoverPhrase('more_interesting', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                much more interesting
+              </button> 
+              than the last one. Finally, the oldest medallist was 59 years 
+              <button onclick="discoverPhrase('older_than', this)" class="discovery-target hover:underline hover:text-sky-700 transition cursor-pointer font-normal rounded px-1">
+                older than
+              </button> 
+              the youngest winner.
+            </p>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2 italic text-right">Click the phrases in the paragraph to discover them.</p>
+      </div>
+
+    </div>
+
+    <!-- Discovery Details Banner -->
+    <div id="inspectorCard" class="mt-6 p-5 rounded-2xl bg-white border border-sky-200 shadow-sm transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-start gap-4">
+        <div class="p-3 bg-sky-50 text-sky-700 rounded-xl text-xl font-bold font-mono">
+          &lt;/&gt;
+        </div>
+        <div>
+          <h4 id="inspectPhraseName" class="font-bold text-slate-800 text-base">Click any comparative phrase in the texts above to inspect it</h4>
+          <p id="inspectPhraseAnalysis" class="text-sm text-slate-600 mt-0.5">Find all 8 comparative examples to discover how adjectives and adverbs compare actions and things.</p>
+          <div id="inspectBadgesContainer" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+      </div>
+      <div id="inspectSyntaxFormula" class="hidden md:block bg-slate-100 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-mono text-slate-700">
+        Pattern: [Modifier] + [Comparative Word] + [than...]
+      </div>
+    </div>
+  </section>
+
+  <section id="rules" class="py-12 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Phase 2: Systematic Grammar Rules</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">The Core Rules of Comparison</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Compare things or qualities with <span class="font-semibold text-blue-700">adjectives</span>, and actions with <span class="font-semibold text-amber-700">adverbs</span>.
+        </p>
+      </div>
+
+      <!-- Core Grammatical Bifurcation -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        
+        <!-- Column 1: Comparative Adjectives -->
+        <div class="rounded-2xl border-2 border-blue-200 bg-blue-50/30 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">A</span>
+              <h3 class="text-xl font-bold text-slate-900">Comparative Adjectives</h3>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+              We use comparative adjectives to compare two things, people, or places. They can come before nouns or after linking verbs (such as <em>is, seem, become, prove</em>) and verbs of perception (<em>find</em>).
+            </p>
+
+            <div class="space-y-3 mb-4 text-xs text-slate-700">
+              <div class="bg-white p-3 rounded-xl border border-blue-100">
+                <span class="font-bold text-blue-900 block mb-1">1. One-Syllable Adjectives: add <code class="text-blue-700 font-bold">-er</code></span>
+                <div class="grid grid-cols-2 gap-2 text-slate-600 font-mono mt-1">
+                  <span>cold &rarr; <strong>colder</strong></span>
+                  <span>old &rarr; <strong>older</strong></span>
+                  <span>slow &rarr; <strong>slower</strong></span>
+                  <span>fast &rarr; <strong>faster</strong></span>
+                </div>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-blue-100">
+                <span class="font-bold text-blue-900 block mb-1">2. Long Adjectives (3+ syllables): use <code class="text-blue-700 font-bold">more / less</code></span>
+                <div class="grid grid-cols-2 gap-2 text-slate-600 font-mono mt-1">
+                  <span>interesting &rarr; <strong>more interesting</strong></span>
+                  <span>successful &rarr; <strong>more successful</strong></span>
+                </div>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-blue-100">
+                <span class="font-bold text-blue-900 block mb-1">3. Adjectives after "find" or "make"</span>
+                <p class="text-slate-600 font-sans leading-normal">
+                  "Fans found the game <strong>more interesting</strong> than the last one."<br>
+                  "The winner was 14 years <strong>older than</strong> the runner-up."
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="text-[11px] text-blue-800 bg-blue-100/70 p-2 rounded-lg font-medium">
+            Remember: Do not combine both (*more colder is incorrect; write <strong>colder</strong>).
+          </div>
+        </div>
+
+        <!-- Column 2: Comparative Adverbs -->
+        <div class="rounded-2xl border-2 border-amber-200 bg-amber-50/30 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-sm">B</span>
+              <h3 class="text-xl font-bold text-slate-900">Comparative Adverbs</h3>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+              We use comparative adverbs to describe how an <strong>action is done</strong> (modifying action verbs like <em>swim, cycle, run, jump, train</em>).
+            </p>
+
+            <div class="space-y-3 mb-4 text-xs text-slate-700">
+              <div class="bg-white p-3 rounded-xl border border-amber-100">
+                <span class="font-bold text-amber-900 block mb-1">1. Adverbs ending in <code class="text-amber-800 font-bold">-ly</code>: use <code class="text-amber-800 font-bold">more / less</code></span>
+                <div class="grid grid-cols-2 gap-2 text-slate-600 font-mono mt-1">
+                  <span>gracefully &rarr; <strong>more gracefully</strong></span>
+                  <span>quickly &rarr; <strong>more quickly</strong></span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-1 font-sans">"He accepted defeat <strong>more gracefully</strong> than his team."</p>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-amber-100">
+                <span class="font-bold text-amber-900 block mb-1">2. Frequency Adverb: <code class="text-amber-800 font-bold">often</code></span>
+                <p class="text-slate-600 font-sans mt-0.5">
+                  The comparative form of <em>often</em> is <strong>more often</strong> (not *oftener):<br>
+                  "She practised <strong>more often</strong> than her teammates."
+                </p>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-amber-100">
+                <span class="font-bold text-amber-900 block mb-1">3. Short Adverbs (same as adjectives)</span>
+                <p class="text-slate-600 font-sans leading-normal">
+                  Some words keep the short <code class="font-bold">-er</code> form as adverbs:<br>
+                  <span class="font-mono">slow &rarr; <strong>slower</strong></span> ("He swam much <strong>slower</strong> than he cycled.")<br>
+                  <span class="font-mono">fast &rarr; <strong>faster</strong></span>, <span class="font-mono">hard &rarr; <strong>harder</strong></span>.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="text-[11px] text-amber-800 bg-amber-100/70 p-2 rounded-lg font-medium">
+            Action check: To describe how someone swims, jumps, or runs, use an adverb form.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- NEW SECTION: Two-Syllable Adjectives Breakdown -->
+      <div id="two-syllables-rule" class="scroll-mt-24 rounded-2xl border-2 border-indigo-200 bg-indigo-50/40 p-6 sm:p-7 mb-10">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="px-2.5 py-1 rounded bg-indigo-600 text-white font-mono text-xs font-bold">IMPORTANT FOCUS</span>
+          <h3 class="text-xl font-bold text-slate-900">Two-Syllable Adjectives: Ending in <code class="text-indigo-800 bg-indigo-100 px-1 rounded">-y</code> vs Other Two-Syllable Adjectives</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-5 leading-relaxed">
+          Students often wonder whether a two-syllable adjective takes <strong>-er</strong> or <strong>more</strong>. Here is the simple distinction:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Two-syllable ending in -y -->
+          <div class="bg-white p-4 sm:p-5 rounded-xl border border-indigo-200 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-900 bg-indigo-100 px-2.5 py-1 rounded-md">
+                1. Two Syllables Ending in -y &rarr; -ier
+              </span>
+            </div>
+            <p class="text-xs text-slate-600 mb-3">
+              When a two-syllable adjective ends in the letter <strong>-y</strong>, change the <strong>-y to -i</strong> and add <strong>-er</strong>:
+            </p>
+            <div class="space-y-1.5 font-mono text-xs text-slate-700 bg-indigo-50/50 p-3 rounded-lg border border-indigo-100">
+              <div>steady &rarr; <strong class="text-indigo-800">steadier</strong> (<em>"a steadier pace"</em>)</div>
+              <div>heavy &rarr; <strong class="text-indigo-800">heavier</strong> (<em>"heavier rainfall"</em>)</div>
+              <div>early &rarr; <strong class="text-indigo-800">earlier</strong> (<em>"an earlier start time"</em>)</div>
+              <div>easy &rarr; <strong class="text-indigo-800">easier</strong> (<em>"an easier test"</em>)</div>
+            </div>
+          </div>
+
+          <!-- Other Two-syllable adjectives (like modern) -->
+          <div class="bg-white p-4 sm:p-5 rounded-xl border border-indigo-200 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-800 bg-slate-100 px-2.5 py-1 rounded-md">
+                2. Most Other Two-Syllable Words &rarr; more + adjective
+              </span>
+            </div>
+            <p class="text-xs text-slate-600 mb-3">
+              Two-syllable adjectives that do <strong>not</strong> end in <em>-y</em> usually take <strong>more</strong>:
+            </p>
+            <div class="space-y-1.5 font-mono text-xs text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div>modern &rarr; <strong class="text-indigo-800">more modern</strong> (<em>"a more modern facility"</em>)</div>
+              <div>recent &rarr; <strong class="text-indigo-800">more recent</strong> (<em>"more recent figures"</em>)</div>
+              <div>crowded &rarr; <strong class="text-indigo-800">more crowded</strong> (<em>"a more crowded stadium"</em>)</div>
+              <div>useful &rarr; <strong class="text-indigo-800">more useful</strong> (<em>"more useful data"</em>)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Irregulars Card -->
+      <div class="bg-gradient-to-r from-purple-50 via-slate-50 to-indigo-50 border border-purple-200 rounded-2xl p-6 mb-10">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="px-2.5 py-1 rounded bg-purple-600 text-white font-mono text-xs font-bold">KEY IRREGULARS</span>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900">Irregular Comparative Forms You Must Know</h4>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="bg-white p-3.5 rounded-xl border border-purple-100 shadow-xs">
+            <div class="font-mono font-bold text-purple-700 text-base">well &rarr; better</div>
+            <p class="text-slate-600 mt-1">Adverb of action quality: <br><em>"He ran well: much <strong>better</strong> than last year."</em></p>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-purple-100 shadow-xs">
+            <div class="font-mono font-bold text-purple-700 text-base">far &rarr; farther / further</div>
+            <p class="text-slate-600 mt-1">Distance or degree: <br><em>"The skiers had to jump much <strong>farther</strong> than before."</em></p>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-purple-100 shadow-xs">
+            <div class="font-mono font-bold text-purple-700 text-base">bad / badly &rarr; worse</div>
+            <p class="text-slate-600 mt-1">Negative result or performance: <br><em>"The team performed <strong>worse</strong> in wet weather."</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="modifiers-section" class="scroll-mt-24 rounded-2xl border-2 border-emerald-300 bg-emerald-50/40 p-6 sm:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-emerald-200">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-200 text-emerald-900 text-xs font-bold uppercase tracking-wider mb-2">
+              Essential Concept
+            </div>
+            <h3 class="text-2xl font-extrabold text-slate-900">What are 'Modifiers'?</h3>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">Explaining how big or small the difference between two things is.</p>
+          </div>
+          <div class="p-3 bg-white border border-emerald-200 rounded-xl shadow-xs text-xs font-mono text-emerald-900">
+            [Modifier] + [Comparative Word]
+          </div>
+        </div>
+
+        <!-- Exact Concept Quotation Box -->
+        <div class="mt-6 bg-white p-5 sm:p-6 rounded-xl border-l-4 border-emerald-600 shadow-sm">
+          <p class="text-sm sm:text-base text-slate-800 leading-relaxed italic">
+            "In this sentence from the sample answer the word <span class="font-bold text-emerald-700 not-italic bg-emerald-100 px-1.5 py-0.5 rounded">significantly</span> is used to modify the comparative. In other words, to say <span class="font-semibold text-slate-900 not-italic">how big or small</span> the comparison is. Here, the word <span class="font-bold text-emerald-700 not-italic bg-emerald-100 px-1.5 py-0.5 rounded">significantly</span> is called a <span class="underline decoration-emerald-500 font-bold not-italic">modifier</span>."
+          </p>
+        </div>
+
+        <!-- The Modifier Spectrum -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Large Differences -->
+          <div class="bg-white p-5 rounded-xl border border-emerald-200 shadow-xs">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md">
+                1. Big Differences
+              </span>
+              <span class="text-xs font-mono text-slate-400">Large Gap</span>
+            </div>
+            <p class="text-xs text-slate-600 mb-3">When one number or result is much higher or lower than another, use:</p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs mb-3">
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded">much</span>
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded">significantly</span>
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded">substantially</span>
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded">far</span>
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded">considerably</span>
+            </div>
+            <div class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100 space-y-1">
+              <div>&bull; <em>"He swam <strong>much slower</strong> than he cycled."</em></div>
+              <div>&bull; <em>"Cold countries were <strong>significantly more successful</strong>."</em></div>
+              <div>&bull; <em>"The champion leapt <strong>far farther</strong> than her rivals."</em></div>
+            </div>
+          </div>
+
+          <!-- Small / Subtle Differences -->
+          <div class="bg-white p-5 rounded-xl border border-emerald-200 shadow-xs">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
+                2. Small / Close Differences
+              </span>
+              <span class="text-xs font-mono text-slate-400">Narrow Gap</span>
+            </div>
+            <p class="text-xs text-slate-600 mb-3">When two results are very close to each other, use:</p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs mb-3">
+              <span class="bg-sky-50 text-sky-800 border border-sky-200 px-2 py-0.5 rounded">slightly</span>
+              <span class="bg-sky-50 text-sky-800 border border-sky-200 px-2 py-0.5 rounded">a little</span>
+              <span class="bg-sky-50 text-sky-800 border border-sky-200 px-2 py-0.5 rounded">a bit</span>
+              <span class="bg-sky-50 text-sky-800 border border-sky-200 px-2 py-0.5 rounded">marginally</span>
+            </div>
+            <div class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100 space-y-1">
+              <div>&bull; <em>"She finished <strong>slightly faster</strong> than the second runner."</em></div>
+              <div>&bull; <em>"His race time was <strong>a little better</strong> than yesterday."</em></div>
+              <div>&bull; <em>"The score was only <strong>marginally higher</strong>."</em></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="lab" class="py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Phase 3: Interactive Practice</span>
+      <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Interactive Practice Laboratory</h2>
+      <p class="text-slate-600 text-sm mt-1">Complete the ten tasks below to practice comparative adjectives, adverbs, modifiers, and two-syllable word rules.</p>
+    </div>
+
+    <div class="space-y-8" id="exercisesContainer">
+
+      <!-- TASK 1: Drag-and-Drop Sentence Builder -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task1">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">01</span>
+            <h3 class="font-bold text-slate-900">Drag & Drop: Action Verb + Speed Comparison</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Sentence Order</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          In a race, an athlete ran at 16 km/h but cycled at 42 km/h. Put the word cards in the right order to describe this:
+        </p>
+
+        <!-- Drop Slots Zone -->
+        <div class="p-4 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 min-h-[64px] flex flex-wrap items-center gap-2 mb-4" id="dropZoneT1" ondragover="allowDrop(event)" ondrop="handleDropT1(event)">
+          <span class="text-xs text-slate-400 font-mono italic" id="dropPlaceholderT1">Drag cards here in order...</span>
+        </div>
+
+        <!-- Token Pool -->
+        <div class="flex flex-wrap gap-2 mb-5" id="tokenPoolT1">
+          <span draggable="true" ondragstart="handleDragStart(event)" id="t1_tok1" class="cursor-grab active:cursor-grabbing px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium text-slate-800 shadow-xs hover:border-sky-400">In the race</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" id="t1_tok2" class="cursor-grab active:cursor-grabbing px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium text-slate-800 shadow-xs hover:border-sky-400">she ran</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" id="t1_tok3" class="cursor-grab active:cursor-grabbing px-3 py-1.5 bg-emerald-50 border border-emerald-300 rounded-lg text-xs font-medium text-emerald-900 shadow-xs hover:border-emerald-400">much</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" id="t1_tok4" class="cursor-grab active:cursor-grabbing px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-lg text-xs font-medium text-amber-900 shadow-xs hover:border-amber-400">slower</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" id="t1_tok5" class="cursor-grab active:cursor-grabbing px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium text-slate-800 shadow-xs hover:border-sky-400">than she cycled</span>
+          <!-- Distractor -->
+          <span draggable="true" ondragstart="handleDragStart(event)" id="t1_tok_err" class="cursor-grab active:cursor-grabbing px-3 py-1.5 bg-rose-50 border border-rose-300 rounded-lg text-xs font-medium text-rose-700 shadow-xs hover:border-rose-400">more slowly slower</span>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+          <button onclick="resetTask1()" class="text-xs text-slate-500 hover:text-slate-800 underline">Reset Order</button>
+          <div class="flex items-center gap-3">
+            <span id="feedbackT1" class="text-xs font-semibold"></span>
+            <button onclick="checkTask1()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Check Sentence</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 2: Precision Typing with Target Vocabulary -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task2">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">02</span>
+            <h3 class="font-bold text-slate-900">Type the Missing Irregular Word</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Irregular Forms</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          Type the correct comparative form of the word in brackets to complete each sentence.
+        </p>
+
+        <div class="space-y-4 bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm leading-loose">
+          <div>
+            1. In the ski-jumping event, athletes had to go much 
+            <input type="text" id="t2_input1" placeholder="(base word: far)" class="px-2.5 py-1 rounded-md border border-slate-300 bg-white font-mono text-xs focus-ring w-44 text-center">
+            than in the practice round.
+          </div>
+          <div>
+            2. He ran well today: much 
+            <input type="text" id="t2_input2" placeholder="(base word: well)" class="px-2.5 py-1 rounded-md border border-slate-300 bg-white font-mono text-xs focus-ring w-44 text-center">
+            than last year.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 mt-4 border-t border-slate-100">
+          <span class="text-[11px] text-slate-400 italic">Hint: Both words have irregular comparative forms.</span>
+          <div class="flex items-center gap-3">
+            <span id="feedbackT2" class="text-xs font-semibold"></span>
+            <button onclick="checkTask2()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Check Answers</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 3: Linking Verb vs Action Verb Classifier -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task3">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">03</span>
+            <h3 class="font-bold text-slate-900">Choose the Correct Form after Verbs</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Adjective Choice</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          Select the correct option to complete each sentence.
+        </p>
+
+        <div class="space-y-4">
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+            <span>"Spectators found this ice-hockey game <strong>[ ? ]</strong> than the last one."</span>
+            <div class="flex gap-2">
+              <button onclick="selectT3(1, 'A', this)" class="t3-btn-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium hover:bg-sky-50 transition">more interesting</button>
+              <button onclick="selectT3(1, 'B', this)" class="t3-btn-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium hover:bg-sky-50 transition">more interestingly</button>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+            <span>"Generally, countries with a <strong>[ ? ]</strong> climate are <strong>[ ? ]</strong> in the Winter Games."</span>
+            <div class="flex gap-2">
+              <button onclick="selectT3(2, 'A', this)" class="t3-btn-2 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium hover:bg-sky-50 transition">colder / more successful</button>
+              <button onclick="selectT3(2, 'B', this)" class="t3-btn-2 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium hover:bg-sky-50 transition">more cold / successfully</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end pt-3 mt-4 border-t border-slate-100 gap-3">
+          <span id="feedbackT3" class="text-xs font-semibold"></span>
+          <button onclick="checkTask3()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Verify Answers</button>
+        </div>
+      </div>
+
+      <!-- TASK 4: Modifiers Magnitude Sorter -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">04</span>
+            <h3 class="font-bold text-slate-900">Sort the Modifiers: Big vs Small Differences</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-medium">Modifier Scale</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          Click each modifier word to place it in the <strong>Big Difference</strong> or <strong>Small Difference</strong> box.
+        </p>
+
+        <!-- Unsorted Words Pool -->
+        <div class="flex flex-wrap gap-2 mb-4 p-3 bg-slate-100 rounded-xl" id="t4WordPool">
+          <button onclick="sortT4Modifier(this, 'much', 'large')" class="px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs font-medium shadow-xs">much</button>
+          <button onclick="sortT4Modifier(this, 'slightly', 'small')" class="px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs font-medium shadow-xs">slightly</button>
+          <button onclick="sortT4Modifier(this, 'significantly', 'large')" class="px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs font-medium shadow-xs">significantly</button>
+          <button onclick="sortT4Modifier(this, 'a little', 'small')" class="px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs font-medium shadow-xs">a little</button>
+          <button onclick="sortT4Modifier(this, 'considerably', 'large')" class="px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs font-medium shadow-xs">considerably</button>
+          <button onclick="sortT4Modifier(this, 'marginally', 'small')" class="px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs font-medium shadow-xs">marginally</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-3 bg-emerald-50/70 border border-emerald-200 rounded-xl min-h-[90px]">
+            <span class="text-[11px] font-bold text-emerald-900 uppercase">Big Difference Words</span>
+            <div id="t4LargeBucket" class="flex flex-wrap gap-1.5 mt-2"></div>
+          </div>
+          <div class="p-3 bg-sky-50/70 border border-sky-200 rounded-xl min-h-[90px]">
+            <span class="text-[11px] font-bold text-sky-900 uppercase">Small / Close Difference Words</span>
+            <div id="t4SmallBucket" class="flex flex-wrap gap-1.5 mt-2"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 mt-4 border-t border-slate-100">
+          <button onclick="resetTask4()" class="text-xs text-slate-500 hover:text-slate-800 underline">Reset Words</button>
+          <div class="flex items-center gap-3">
+            <span id="feedbackT4" class="text-xs font-semibold"></span>
+            <button onclick="checkTask4()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Check Buckets</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 5: Manner & Frequency Adverbs Sentence Builder -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task5">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">05</span>
+            <h3 class="font-bold text-slate-900">Word Order: Describing an Action with "Gracefully"</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Adverb of Manner</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3">
+          Click the words in the right order to describe how the runner accepted defeat:
+        </p>
+
+        <!-- Construction Tray -->
+        <div class="p-3 bg-slate-100 rounded-xl border border-slate-300 min-h-[50px] flex flex-wrap gap-2 mb-3" id="t5SentenceTray"></div>
+
+        <!-- Word Pool -->
+        <div class="flex flex-wrap gap-2" id="t5ChipsPool">
+          <button onclick="addChipT5(this, 'He')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">He</button>
+          <button onclick="addChipT5(this, 'accepted')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">accepted</button>
+          <button onclick="addChipT5(this, 'defeat')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">defeat</button>
+          <button onclick="addChipT5(this, 'far')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">far</button>
+          <button onclick="addChipT5(this, 'more gracefully')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">more gracefully</button>
+          <button onclick="addChipT5(this, 'than')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">than</button>
+          <button onclick="addChipT5(this, 'his team')" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium hover:bg-slate-50">his team</button>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 mt-4 border-t border-slate-100">
+          <button onclick="resetTask5()" class="text-xs text-slate-500 hover:text-slate-800 underline">Clear Sentence</button>
+          <div class="flex items-center gap-3">
+            <span id="feedbackT5" class="text-xs font-semibold"></span>
+            <button onclick="checkTask5()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Verify Sentence</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 6: Spot and Fix the Grammatical Error -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task6">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">06</span>
+            <h3 class="font-bold text-slate-900">Find and Fix the Mistake</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Error Correction</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3">
+          Click the incorrect word in the sentence below, then type the correct comparative form.
+        </p>
+
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm leading-relaxed">
+          "Before the championship, the winner 
+          <button onclick="selectErrorT6(this, 'practised')" class="t6-candidate px-1 py-0.5 rounded font-mono hover:bg-slate-200 transition">practised</button> 
+          <button onclick="selectErrorT6(this, 'much')" class="t6-candidate px-1 py-0.5 rounded font-mono hover:bg-slate-200 transition">much</button> 
+          <button onclick="selectErrorT6(this, 'more oftener')" class="t6-candidate px-1 py-0.5 rounded font-mono hover:bg-slate-200 transition">more oftener</button> 
+          than her teammates."
+        </div>
+
+        <div id="t6CorrectionBox" class="hidden mt-4 p-3 bg-sky-50 border border-sky-200 rounded-xl flex flex-wrap items-center gap-3">
+          <span class="text-xs text-sky-900 font-medium">Type the correct form:</span>
+          <input type="text" id="t6Input" placeholder="write correct form here..." class="px-3 py-1 text-xs rounded border border-sky-300 font-mono focus-ring w-48">
+          <button onclick="checkTask6Correction()" class="px-3 py-1 bg-sky-600 text-white rounded text-xs font-medium hover:bg-sky-700">Submit Fix</button>
+        </div>
+
+        <div class="flex items-center justify-end pt-3 mt-3 border-t border-slate-100">
+          <span id="feedbackT6" class="text-xs font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- TASK 7: Age & Numerical Differential Expressions -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task7">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">07</span>
+            <h3 class="font-bold text-slate-900">Comparing Age: Stating Numbers Directly</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Age Gap</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          The oldest male medallist was 72 years old, while the youngest was 10. Which sentence reports this difference correctly?
+        </p>
+
+        <div class="space-y-2 text-xs sm:text-sm" id="t7Options">
+          <label class="flex items-center gap-3 p-3 bg-slate-50 hover:bg-sky-50/60 rounded-xl border border-slate-200 cursor-pointer transition">
+            <input type="radio" name="t7_radio" value="wrong1" class="text-sky-600 focus-ring">
+            <span>He was 62 years <strong>more old than</strong> the youngest medallist.</span>
+          </label>
+          <label class="flex items-center gap-3 p-3 bg-slate-50 hover:bg-sky-50/60 rounded-xl border border-slate-200 cursor-pointer transition">
+            <input type="radio" name="t7_radio" value="correct" class="text-sky-600 focus-ring">
+            <span>He was 62 years <strong>older than</strong> the youngest medallist.</span>
+          </label>
+          <label class="flex items-center gap-3 p-3 bg-slate-50 hover:bg-sky-50/60 rounded-xl border border-slate-200 cursor-pointer transition">
+            <input type="radio" name="t7_radio" value="wrong2" class="text-sky-600 focus-ring">
+            <span>He was 62 years <strong>older as</strong> the youngest medallist.</span>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-end pt-3 mt-4 border-t border-slate-100 gap-3">
+          <span id="feedbackT7" class="text-xs font-semibold"></span>
+          <button onclick="checkTask7()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Check Answer</button>
+        </div>
+      </div>
+
+      <!-- TASK 8: Two-Syllable Adjectives: Steady vs Modern -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task8">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs">08</span>
+            <h3 class="font-bold text-slate-900">Two-Syllable Adjective Test: "Steady" vs "Modern"</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 font-medium">-y vs other endings</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-3">
+          Complete the two sentences by choosing the correct comparative form for the two-syllable adjectives <strong>steady</strong> and <strong>modern</strong>.
+        </p>
+
+        <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span>1. The athlete kept a <strong>[ steady ]</strong> pace in the second lap:</span>
+            <select id="t8_sel1" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-xs">
+              <option value="">-- choose form --</option>
+              <option value="correct">steadier</option>
+              <option value="wrong1">more steady</option>
+              <option value="wrong2">more steadier</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span>2. The new stadium has a <strong>[ modern ]</strong> training gym than the old one:</span>
+            <select id="t8_sel2" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-xs">
+              <option value="">-- choose form --</option>
+              <option value="wrong1">moderner</option>
+              <option value="correct">more modern</option>
+              <option value="wrong2">more moderner</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end pt-3 mt-4 border-t border-slate-100 gap-3">
+          <span id="feedbackT8" class="text-xs font-semibold"></span>
+          <button onclick="checkTask8()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Verify Forms</button>
+        </div>
+      </div>
+
+      <!-- TASK 9: Degree Modifier Pair Matching -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task9">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">09</span>
+            <h3 class="font-bold text-slate-900">Choose the Right Modifier for the Gap</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Matching Numbers</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          Look at the difference in numbers and pick the modifier that matches the size of the gap.
+        </p>
+
+        <div class="space-y-3 text-xs sm:text-sm">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <span class="text-slate-700">1. Skier A finished in 1m 40.2s; Skier B in 1m 40.5s (only 0.3s difference):</span>
+            <select id="t9_select1" class="bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs">
+              <option value="">-- Choose modifier --</option>
+              <option value="correct">skied slightly faster than Skier B</option>
+              <option value="wrong1">skied substantially slower than Skier B</option>
+              <option value="wrong2">skied far more faster than Skier B</option>
+            </select>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <span class="text-slate-700">2. Team North won 42 medals; Team South won only 5 medals (37 medal difference):</span>
+            <select id="t9_select2" class="bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs">
+              <option value="">-- Choose modifier --</option>
+              <option value="wrong1">was marginally more successful</option>
+              <option value="correct">was significantly more successful</option>
+              <option value="wrong2">performed a little better</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end pt-3 mt-4 border-t border-slate-100 gap-3">
+          <span id="feedbackT9" class="text-xs font-semibold"></span>
+          <button onclick="checkTask9()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs rounded-xl shadow-xs transition">Verify Matches</button>
+        </div>
+      </div>
+
+      <!-- TASK 10: Capstone Paragraph Synthesis -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200" id="task10">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">10</span>
+            <h3 class="font-bold text-slate-900">Final Summary: Complete the Report</h3>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-medium">Complete Review</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 mb-4">
+          Choose the best phrase for each gap to complete the final report.
+        </p>
+
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-sm leading-loose text-slate-800 space-y-3">
+          <p>
+            "Overall, the chart shows that athletes from cold countries practised 
+            <select id="t10_sel1" class="font-mono text-xs px-2 py-1 bg-white border border-slate-300 rounded">
+              <option value="">[choose phrase]</option>
+              <option value="c1">far more often</option>
+              <option value="w1">far more oftener</option>
+              <option value="w2">much often</option>
+            </select>
+            in winter conditions. As a result, they performed 
+            <select id="t10_sel2" class="font-mono text-xs px-2 py-1 bg-white border border-slate-300 rounded">
+              <option value="">[choose phrase]</option>
+              <option value="c2">significantly better</option>
+              <option value="w3">significantly more well</option>
+              <option value="w4">much gooder</option>
+            </select>
+            and were 
+            <select id="t10_sel3" class="font-mono text-xs px-2 py-1 bg-white border border-slate-300 rounded">
+              <option value="">[choose phrase]</option>
+              <option value="c3">substantially more successful</option>
+              <option value="w5">substantially successfuler</option>
+              <option value="w6">more much successful</option>
+            </select>
+            than their competitors."
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 mt-4 border-t border-slate-100">
+          <button onclick="resetAllExercises()" class="text-xs text-slate-500 hover:text-slate-800 underline">Reset All 10 Tasks</button>
+          <div class="flex items-center gap-3">
+            <span id="feedbackT10" class="text-xs font-semibold"></span>
+            <button onclick="checkTask10()" class="px-5 py-2.5 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-md transition">Submit Final Task</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // State Tracking
+    const userProgress = {
+      t1: false,
+      t2: false,
+      t3: false,
+      t4: false,
+      t5: false,
+      t6: false,
+      t7: false,
+      t8: false,
+      t9: false,
+      t10: false,
+    };
+
+    const discoveredItems = new Set();
+    let audioMuted = false;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playAudio(isSuccess) {
+      if (audioMuted) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        const now = ctx.currentTime;
+        if (isSuccess) {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.12);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(175, now);
+          osc.frequency.linearRampToValueAtTime(125, now + 0.2);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (e) {}
+    }
+
+    function toggleMute() {
+      audioMuted = !audioMuted;
+      document.getElementById('soundIconOn').classList.toggle('hidden', audioMuted);
+      document.getElementById('soundIconOff').classList.toggle('hidden', !audioMuted);
+    }
+
+    function updateScoreboard() {
+      const completedCount = Object.values(userProgress).filter(Boolean).length;
+      const scoreEl = document.getElementById('scoreDisplay');
+      if (scoreEl) {
+        scoreEl.innerText = `${completedCount} / 10`;
+      }
+      
+      const pct = Math.round((completedCount / 10) * 100);
+      const pctEl = document.getElementById('progressPercent');
+      if (pctEl) {
+        pctEl.innerText = `${pct}%`;
+      }
+
+      const barEl = document.getElementById('progressBar');
+      if (barEl) {
+        barEl.style.width = `${pct}%`;
+      }
+    }
+
+    // Discovery mechanism: student clicks words to find them
+    const discoveryDetails = {
+      'swam_slower': {
+        title: 'much slower',
+        type: 'Comparative Adverb + Modifier',
+        desc: 'Describes the action "swam". The modifier "much" tells us the speed difference between swimming and cycling was very large.'
+      },
+      'practised_often': {
+        title: 'significantly more often',
+        type: 'Comparative Adverb + Modifier',
+        desc: '"Often" becomes "more often". "Significantly" shows a large difference in training frequency.'
+      },
+      'far_better': {
+        title: 'far better',
+        type: 'Irregular Comparative + Modifier',
+        desc: '"Well" becomes "better". "Far" modifies the comparative to say her speed was very high.'
+      },
+      'cycled_farther': {
+        title: 'substantially farther',
+        type: 'Irregular Distance Adverb + Modifier',
+        desc: '"Far" becomes "farther" (or "further"). "Substantially" indicates a big distance ahead.'
+      },
+      'colder_climate': {
+        title: 'colder climate',
+        type: 'Comparative Adjective',
+        desc: 'One-syllable word: cold &rarr; colder. It directly describes the noun "climate".'
+      },
+      'more_successful': {
+        title: 'more successful',
+        type: 'Comparative Adjective',
+        desc: 'Long adjective (3 syllables) takes "more". It follows the linking verb "were" to describe the countries.'
+      },
+      'more_interesting': {
+        title: 'much more interesting',
+        type: 'Comparative Adjective + Modifier',
+        desc: 'After the perception verb "found": spectators found the game "more interesting". "Much" indicates a large increase in enjoyment.'
+      },
+      'older_than': {
+        title: '59 years older than',
+        type: 'Comparative Adjective + Number',
+        desc: 'Short adjective: old &rarr; older. The exact number (59 years) modifies the comparison to show the exact age gap.'
+      }
+    };
+
+    function discoverPhrase(key, btn) {
+      const data = discoveryDetails[key];
+      if (!data) return;
+
+      discoveredItems.add(key);
+      document.getElementById('discoveryCount').innerText = `${discoveredItems.size} / 8 discovered`;
+
+      btn.classList.remove('font-normal', 'hover:underline');
+      btn.classList.add('bg-amber-100', 'text-amber-900', 'font-semibold', 'border', 'border-amber-300', 'px-1.5', 'py-0.5');
+
+      document.getElementById('inspectPhraseName').innerText = `Discovered: "${data.title}"`;
+      document.getElementById('inspectPhraseAnalysis').innerText = data.desc;
+
+      const container = document.getElementById('inspectBadgesContainer');
+      container.innerHTML = `
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 font-semibold">${data.type}</span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-medium">Found: ${discoveredItems.size} of 8</span>
+      `;
+
+      const card = document.getElementById('inspectorCard');
+      card.classList.add('ring-2', 'ring-sky-400');
+      setTimeout(() => card.classList.remove('ring-2', 'ring-sky-400'), 500);
+      playAudio(true);
+    }
+
+    // Task 1: Drag & Drop
+    let draggedId = null;
+    function handleDragStart(e) {
+      draggedId = e.target.id;
+      e.dataTransfer.setData('text/plain', e.target.id);
+    }
+    function allowDrop(e) { e.preventDefault(); }
+    function handleDropT1(e) {
+      e.preventDefault();
+      const id = e.dataTransfer.getData('text/plain');
+      const item = document.getElementById(id);
+      if (item) {
+        document.getElementById('dropZoneT1').appendChild(item);
+        const placeholder = document.getElementById('dropPlaceholderT1');
+        if (placeholder) placeholder.style.display = 'none';
+      }
+    }
+    function resetTask1() {
+      const pool = document.getElementById('tokenPoolT1');
+      const ids = ['t1_tok1', 't1_tok2', 't1_tok3', 't1_tok4', 't1_tok5', 't1_tok_err'];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) pool.appendChild(el);
+      });
+      const placeholder = document.getElementById('dropPlaceholderT1');
+      if (placeholder) placeholder.style.display = 'inline';
+      document.getElementById('feedbackT1').innerText = '';
+    }
+    function checkTask1() {
+      const zone = document.getElementById('dropZoneT1');
+      const children = Array.from(zone.children).filter(c => c.id !== 'dropPlaceholderT1');
+      const seq = children.map(c => c.id).join('-');
+
+      const feedback = document.getElementById('feedbackT1');
+      if (seq === 't1_tok1-t1_tok2-t1_tok3-t1_tok4-t1_tok5') {
+        feedback.innerText = 'Correct sentence order!';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t1 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Not quite. Check the order and make sure not to include the extra card.';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t1 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 2: Typing Irregulars
+    function checkTask2() {
+      const a1 = document.getElementById('t2_input1').value.trim().toLowerCase();
+      const a2 = document.getElementById('t2_input2').value.trim().toLowerCase();
+
+      const validA1 = ['farther', 'further'];
+      const validA2 = ['better'];
+
+      const a1Ok = validA1.includes(a1);
+      const a2Ok = validA2.includes(a2);
+
+      const feedback = document.getElementById('feedbackT2');
+      if (a1Ok && a2Ok) {
+        feedback.innerText = 'Correct! far &rarr; farther/further and well &rarr; better.';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t2 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Check the forms: far becomes farther/further, and well becomes better.';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t2 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 3: Selection
+    const t3Answers = { 1: null, 2: null };
+    function selectT3(qNum, choice, btn) {
+      t3Answers[qNum] = choice;
+      document.querySelectorAll(`.t3-btn-${qNum}`).forEach(b => {
+        b.classList.remove('bg-sky-600', 'text-white', 'border-sky-600');
+        b.classList.add('bg-white', 'text-slate-800');
+      });
+      btn.classList.remove('bg-white', 'text-slate-800');
+      btn.classList.add('bg-sky-600', 'text-white', 'border-sky-600');
+    }
+    function checkTask3() {
+      const feedback = document.getElementById('feedbackT3');
+      if (t3Answers[1] === 'A' && t3Answers[2] === 'A') {
+        feedback.innerText = 'Well done! After "found" and with nouns, use comparative adjectives.';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t3 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Look closely: we say "found the game more interesting" and "colder climate / more successful".';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t3 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 4: Sorter
+    const t4State = {};
+    function sortT4Modifier(btn, word, expected) {
+      const largeBucket = document.getElementById('t4LargeBucket');
+      const smallBucket = document.getElementById('t4SmallBucket');
+
+      if (!t4State[word]) {
+        if (expected === 'large') {
+          largeBucket.appendChild(btn);
+          t4State[word] = 'large';
+        } else {
+          smallBucket.appendChild(btn);
+          t4State[word] = 'small';
+        }
+      } else if (t4State[word] === 'large') {
+        smallBucket.appendChild(btn);
+        t4State[word] = 'small';
+      } else {
+        largeBucket.appendChild(btn);
+        t4State[word] = 'large';
+      }
+    }
+    function resetTask4() {
+      const pool = document.getElementById('t4WordPool');
+      const l = document.getElementById('t4LargeBucket');
+      const s = document.getElementById('t4SmallBucket');
+      Array.from(l.children).forEach(c => pool.appendChild(c));
+      Array.from(s.children).forEach(c => pool.appendChild(c));
+      for (let k in t4State) delete t4State[k];
+      document.getElementById('feedbackT4').innerText = '';
+    }
+    function checkTask4() {
+      const largeExpected = ['much', 'significantly', 'considerably'];
+      const smallExpected = ['slightly', 'a little', 'marginally'];
+
+      let ok = true;
+      largeExpected.forEach(w => { if (t4State[w] !== 'large') ok = false; });
+      smallExpected.forEach(w => { if (t4State[w] !== 'small') ok = false; });
+
+      const feedback = document.getElementById('feedbackT4');
+      if (ok) {
+        feedback.innerText = 'Great job! You know which words describe big vs small differences.';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t4 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Some words are in the wrong box. Click on them to move them.';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t4 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 5: Tray builder
+    const t5Sequence = [];
+    function addChipT5(btn, text) {
+      if (btn.classList.contains('opacity-30')) return;
+      btn.classList.add('opacity-30', 'pointer-events-none');
+      t5Sequence.push({ text, btn });
+      renderT5Tray();
+    }
+    function removeChipT5(idx) {
+      const removed = t5Sequence.splice(idx, 1)[0];
+      removed.btn.classList.remove('opacity-30', 'pointer-events-none');
+      renderT5Tray();
+    }
+    function renderT5Tray() {
+      const tray = document.getElementById('t5SentenceTray');
+      tray.innerHTML = '';
+      t5Sequence.forEach((item, index) => {
+        const chip = document.createElement('span');
+        chip.className = 'px-3 py-1 bg-white border border-sky-300 text-sky-900 rounded-lg text-xs font-medium flex items-center gap-1 shadow-xs cursor-pointer';
+        chip.innerHTML = `${item.text} <span class="text-rose-500 font-bold">&times;</span>`;
+        chip.onclick = () => removeChipT5(index);
+        tray.appendChild(chip);
+      });
+    }
+    function resetTask5() {
+      t5Sequence.forEach(i => i.btn.classList.remove('opacity-30', 'pointer-events-none'));
+      t5Sequence.length = 0;
+      renderT5Tray();
+      document.getElementById('feedbackT5').innerText = '';
+    }
+    function checkTask5() {
+      const target = "He accepted defeat far more gracefully than his team";
+      const current = t5Sequence.map(i => i.text).join(' ');
+      const feedback = document.getElementById('feedbackT5');
+
+      if (current === target) {
+        feedback.innerText = 'Correct sentence! "far more gracefully than his team"';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t5 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Check the order: He + accepted defeat + far + more gracefully + than + his team.';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t5 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 6: Error Spot & Fix
+    function selectErrorT6(btn, word) {
+      document.querySelectorAll('.t6-candidate').forEach(b => b.classList.remove('bg-rose-200', 'font-bold'));
+      btn.classList.add('bg-rose-200', 'font-bold');
+
+      const box = document.getElementById('t6CorrectionBox');
+      const feedback = document.getElementById('feedbackT6');
+
+      if (word === 'more oftener') {
+        box.classList.remove('hidden');
+        feedback.innerText = 'You found the mistake! Now type the correct comparative form.';
+        feedback.className = 'text-xs text-sky-700 font-medium';
+      } else {
+        box.classList.add('hidden');
+        feedback.innerText = `"${word}" is correct here. Look for another word!`;
+        feedback.className = 'text-xs text-amber-700 font-medium';
+      }
+    }
+    function checkTask6Correction() {
+      const val = document.getElementById('t6Input').value.trim().toLowerCase();
+      const feedback = document.getElementById('feedbackT6');
+
+      if (val === 'more often') {
+        feedback.innerText = 'Correct! We say "more often", never "oftener" or "more oftener".';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t6 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Not quite. The correct comparative for "often" is "more often".';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t6 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 7: Age gap
+    function checkTask7() {
+      const sel = document.querySelector('input[name="t7_radio"]:checked');
+      const feedback = document.getElementById('feedbackT7');
+
+      if (sel && sel.value === 'correct') {
+        feedback.innerText = 'Correct! We say "62 years older than".';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t7 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Incorrect. "Old" is one syllable (older than), not "more old than".';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t7 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 8: Steady vs Modern
+    function checkTask8() {
+      const s1 = document.getElementById('t8_sel1').value;
+      const s2 = document.getElementById('t8_sel2').value;
+      const feedback = document.getElementById('feedbackT8');
+
+      if (s1 === 'correct' && s2 === 'correct') {
+        feedback.innerText = 'Perfect! "steady" ends in -y &rarr; "steadier", while "modern" takes "more modern".';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t8 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Remember: two syllables ending in -y change to -ier (steadier). Other 2-syllables use more (more modern).';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t8 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 9: Modifier matching
+    function checkTask9() {
+      const sel1 = document.getElementById('t9_select1').value;
+      const sel2 = document.getElementById('t9_select2').value;
+      const feedback = document.getElementById('feedbackT9');
+
+      if (sel1 === 'correct' && sel2 === 'correct') {
+        feedback.innerText = 'Both choices match the data gaps perfectly!';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t9 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Check the gap sizes: 0.3s is a small difference ("slightly"), while 37 medals is a big difference ("significantly").';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t9 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    // Task 10: Capstone
+    function checkTask10() {
+      const s1 = document.getElementById('t10_sel1').value;
+      const s2 = document.getElementById('t10_sel2').value;
+      const s3 = document.getElementById('t10_sel3').value;
+      const feedback = document.getElementById('feedbackT10');
+
+      if (s1 === 'c1' && s2 === 'c2' && s3 === 'c3') {
+        feedback.innerText = 'Congratulations! All 10 challenges successfully completed.';
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        userProgress.t10 = true;
+        playAudio(true);
+      } else {
+        feedback.innerText = 'Check each dropdown: 1. far more often, 2. significantly better, 3. substantially more successful.';
+        feedback.className = 'text-xs font-semibold text-rose-600';
+        userProgress.t10 = false;
+        playAudio(false);
+      }
+      updateScoreboard();
+    }
+
+    function resetAllExercises() {
+      resetTask1();
+      document.getElementById('t2_input1').value = '';
+      document.getElementById('t2_input2').value = '';
+      document.getElementById('feedbackT2').innerText = '';
+
+      document.querySelectorAll('.t3-btn-1, .t3-btn-2').forEach(b => {
+        b.className = b.className.replace(/bg-sky-600|text-white|border-sky-600/g, '');
+        b.classList.add('bg-white', 'text-slate-800');
+      });
+      t3Answers[1] = null; t3Answers[2] = null;
+      document.getElementById('feedbackT3').innerText = '';
+
+      resetTask4();
+      resetTask5();
+
+      document.getElementById('t6Input').value = '';
+      document.getElementById('t6CorrectionBox').classList.add('hidden');
+      document.getElementById('feedbackT6').innerText = '';
+
+      const r = document.querySelector('input[name="t7_radio"]:checked');
+      if (r) r.checked = false;
+      document.getElementById('feedbackT7').innerText = '';
+
+      document.getElementById('t8_sel1').value = '';
+      document.getElementById('t8_sel2').value = '';
+      document.getElementById('feedbackT8').innerText = '';
+
+      document.getElementById('t9_select1').value = '';
+      document.getElementById('t9_select2').value = '';
+      document.getElementById('feedbackT9').innerText = '';
+
+      document.getElementById('t10_sel1').value = '';
+      document.getElementById('t10_sel2').value = '';
+      document.getElementById('t10_sel3').value = '';
+      document.getElementById('feedbackT10').innerText = '';
+
+      Object.keys(userProgress).forEach(k => userProgress[k] = false);
+      updateScoreboard();
+    }
+  </script>
+</body>
+</html>
