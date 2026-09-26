@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prepositions in Academic Task 1</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gap-input {
+      border-bottom: 2px solid #94a3b8;
+      background: transparent;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      color: #0f172a;
+      text-align: center;
+      padding: 2px 4px;
+    }
+    .gap-input:focus {
+      outline: none;
+      border-bottom-color: #2563eb;
+      background: rgba(37, 99, 235, 0.05);
+    }
+    .gap-input.correct {
+      border-bottom-color: #16a34a !important;
+      color: #15803d !important;
+      background-color: #f0fdf4 !important;
+    }
+    .gap-input.incorrect {
+      border-bottom-color: #dc2626 !important;
+      color: #b91c1c !important;
+      background-color: #fef2f2 !important;
+    }
+
+    /* Interactive error-correction word tokens */
+    .word-token {
+      display: inline-block;
+      padding: 1px 3px;
+      margin: 1px 0;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .word-token:hover {
+      background-color: #e2e8f0;
+      color: #0f172a;
+    }
+    .word-token.selected-word {
+      background-color: #fef3c7 !important;
+      color: #92400e !important;
+      box-shadow: 0 0 0 1.5px #f59e0b;
+      font-weight: 600;
+    }
+    .word-token.correct-identified {
+      background-color: #fee2e2 !important;
+      color: #dc2626 !important;
+      text-decoration: line-through;
+      box-shadow: 0 0 0 1.5px #ef4444;
+      font-weight: 600;
+    }
+    .word-token.wrong-identified {
+      background-color: #f1f5f9 !important;
+      color: #64748b !important;
+      box-shadow: 0 0 0 1.5px #cbd5e1;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-sm">
+          P
+        </span>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-tight">
+            Academic Writing Task 1
+          </h1>
+          <p class="text-xs text-slate-500 font-medium">Prepositions Guide & Practice</p>
+        </div>
+      </div>
+
+      <!-- Tab Buttons -->
+      <nav class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+        <button id="tab-rules-btn" onclick="switchTab('rules')" 
+                class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-slate-900 shadow-xs">
+          Rules & Tables
+        </button>
+        <button id="tab-worksheet-btn" onclick="switchTab('worksheet')" 
+                class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900">
+          Worksheet (30 Exercises)
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8">
+
+    <!-- TAB 1: RULES & TABLES (Direct, Concise, No Metaphors) -->
+    <section id="tab-rules" class="space-y-8">
+      
+      <!-- Key Formulas Banner -->
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3">Quick Reference Formulas</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs sm:text-sm">
+          <div class="p-3 bg-blue-50 border border-blue-100 rounded-lg">
+            <span class="font-bold text-blue-900 block mb-1">VERB + by + Amount</span>
+            <code class="text-blue-800">Sales fell by 25%.</code>
+          </div>
+          <div class="p-3 bg-emerald-50 border border-emerald-100 rounded-lg">
+            <span class="font-bold text-emerald-900 block mb-1">NOUN + of + Amount</span>
+            <code class="text-emerald-800">A decrease of 25%.</code>
+          </div>
+          <div class="p-3 bg-purple-50 border border-purple-100 rounded-lg">
+            <span class="font-bold text-purple-900 block mb-1">VERB + to + End Point</span>
+            <code class="text-purple-800">Fell to 1,500 units.</code>
+          </div>
+          <div class="p-3 bg-amber-50 border border-amber-100 rounded-lg">
+            <span class="font-bold text-amber-900 block mb-1">peaked / stood + at</span>
+            <code class="text-amber-800">Peaked at 4,000 in Dec.</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table 1: Numbers, Targets, and Margins -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
+        <div class="px-5 py-4 bg-slate-50 border-b border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+            1. Prepositions of Value, Target, and Difference
+          </h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-slate-100/60 text-slate-700 font-semibold border-b border-slate-200">
+              <tr>
+                <th class="py-2.5 px-4 w-28">Preposition</th>
+                <th class="py-2.5 px-4 w-44">Rule & Structure</th>
+                <th class="py-2.5 px-4">Correct Example</th>
+                <th class="py-2.5 px-4">Common Error to Avoid</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">at</td>
+                <td class="py-3 px-4">
+                  Specific level, peak, or stable point.<br>
+                  <span class="font-mono text-xs text-slate-500">peaked / stood / remained + at</span>
+                </td>
+                <td class="py-3 px-4">
+                  "Sales <strong>peaked at</strong> 4,000 units."<br>
+                  "The rate <strong>stood at</strong> 20% in May."
+                </td>
+                <td class="py-3 px-4 text-red-600">
+                  <span class="line-through">peaked to 4,000</span><br>
+                  <span class="line-through">stood in 20%</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">to</td>
+                <td class="py-3 px-4">
+                  Final destination / end number.<br>
+                  <span class="font-mono text-xs text-slate-500">rose / fell / dropped + to</span>
+                </td>
+                <td class="py-3 px-4">
+                  "Sales fell <strong>to</strong> 1,500 units."<br>
+                  "The figure increased <strong>to</strong> 80%."
+                </td>
+                <td class="py-3 px-4 text-red-600">
+                  <span class="line-through">fell at 1,500</span> (when 1,500 is the final number)
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">by</td>
+                <td class="py-3 px-4">
+                  Size of difference <strong>after a verb</strong>.<br>
+                  <span class="font-mono text-xs text-slate-500">[Verb] + by + [amount]</span>
+                </td>
+                <td class="py-3 px-4">
+                  "Sales fell <strong>by</strong> 25%."<br>
+                  "Profits grew <strong>by</strong> $2 million."
+                </td>
+                <td class="py-3 px-4 text-red-600">
+                  <span class="line-through">fell of 25%</span><br>
+                  <span class="line-through">dropped down 25%</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">of</td>
+                <td class="py-3 px-4">
+                  Size of difference <strong>after a noun</strong>.<br>
+                  <span class="font-mono text-xs text-slate-500">[Noun] + of + [amount]</span>
+                </td>
+                <td class="py-3 px-4">
+                  "There was a rise <strong>of</strong> 60%."<br>
+                  "The company saw a decline <strong>of</strong> 10%."
+                </td>
+                <td class="py-3 px-4 text-red-600">
+                  <span class="line-through">an increase by 60%</span><br>
+                  <span class="line-through">a decline in 10%</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">from ... to</td>
+                <td class="py-3 px-4">
+                  Starting point to finishing point.<br>
+                  <span class="font-mono text-xs text-slate-500">from [X] to [Y]</span>
+                </td>
+                <td class="py-3 px-4">
+                  "Sales rose <strong>from</strong> 2,500 <strong>to</strong> 4,000."
+                </td>
+                <td class="py-3 px-4 text-red-600">
+                  <span class="line-through">rose from 2,500 until 4,000</span><br>
+                  <span class="line-through">from 2,500 and 4,000</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Table 2: Time and Topic / Field -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
+        <div class="px-5 py-4 bg-slate-50 border-b border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+            2. Prepositions of Time, Duration, and Subject Matter
+          </h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-slate-100/60 text-slate-700 font-semibold border-b border-slate-200">
+              <tr>
+                <th class="py-2.5 px-4 w-28">Preposition</th>
+                <th class="py-2.5 px-4 w-44">Rule & Function</th>
+                <th class="py-2.5 px-4">Correct Example</th>
+                <th class="py-2.5 px-4">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">in</td>
+                <td class="py-3 px-4">
+                  1. Month, year, or season.<br>
+                  2. Area or topic of change.
+                </td>
+                <td class="py-3 px-4">
+                  "A small rise <strong>in</strong> April."<br>
+                  "An increase <strong>in</strong> phone sales."
+                </td>
+                <td class="py-3 px-4 text-slate-500 text-xs">
+                  Compare: <em>increase of 60%</em> (number) vs <em>increase in sales</em> (topic).
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-blue-700">between ... and</td>
+                <td class="py-3 px-4">
+                  Two fixed time points.<br>
+                  <span class="font-mono text-xs text-slate-500">between [A] and [B]</span>
+                </td>
+                <td class="py-3 px-4">
+                  "The lowest sales were <strong>between</strong> March <strong>and</strong> June."
+                </td>
+                <td class="py-3 px-4 text-red-600 text-xs">
+                  Never write: <span class="line-through">between March to June</span>.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-purple-700">over</td>
+                <td class="py-3 px-4">
+                  A period of time during which a trend happens.
+                </td>
+                <td class="py-3 px-4">
+                  "<strong>Over</strong> a six-month period, sales increased."<br>
+                  "Numbers rose <strong>over</strong> the next five years."
+                </td>
+                <td class="py-3 px-4 text-slate-500 text-xs">
+                  Focuses on the change occurring across that span.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-purple-700">throughout</td>
+                <td class="py-3 px-4">
+                  Continuous from the start to the end of a period.
+                </td>
+                <td class="py-3 px-4">
+                  "Prices fluctuated <strong>throughout</strong> the year."<br>
+                  "The rate stayed stable <strong>throughout</strong> 2010."
+                </td>
+                <td class="py-3 px-4 text-slate-500 text-xs">
+                  Shows something happened all through the entire duration.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Direct Side-by-Side Comparisons -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200">
+          <h4 class="font-bold text-slate-900 text-sm mb-2">Contrast: TO vs BY</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-slate-700">
+            <li class="p-2 bg-slate-50 rounded border border-slate-100">
+              <strong>to</strong> = Resulting level: <em>"Sales fell from 2,000 <strong>to</strong> 1,500."</em> (1,500 is the final number).
+            </li>
+            <li class="p-2 bg-slate-50 rounded border border-slate-100">
+              <strong>by</strong> = Difference: <em>"Sales fell <strong>by</strong> 500."</em> (2,000 minus 1,500 = 500 difference).
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-xl border border-slate-200">
+          <h4 class="font-bold text-slate-900 text-sm mb-2">Contrast: OVER vs THROUGHOUT</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-slate-700">
+            <li class="p-2 bg-slate-50 rounded border border-slate-100">
+              <strong>over</strong> = Across a timeframe: <em>"Sales rose <strong>over</strong> a six-month period."</em>
+            </li>
+            <li class="p-2 bg-slate-50 rounded border border-slate-100">
+              <strong>throughout</strong> = Non-stop or in all parts: <em>"Figures remained flat <strong>throughout</strong> the year."</em>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: WORKSHEET (30 EXERCISES) -->
+    <section id="tab-worksheet" class="space-y-10 hidden">
+      
+      <!-- Top Action & Score Panel -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Task 1 Preposition Practice</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              15 gap-fill typing exercises followed by 15 error-correction exercises.
+            </p>
+          </div>
+          <div class="flex items-center space-x-4 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 shrink-0">
+            <div>
+              <span class="text-[10px] text-slate-500 uppercase font-bold block">Score</span>
+              <span id="score-display" class="text-xl font-bold text-slate-900">0 / 30</span>
+            </div>
+            <div class="h-8 w-px bg-slate-200"></div>
+            <div>
+              <span class="text-[10px] text-slate-500 uppercase font-bold block">Completed</span>
+              <span id="completion-percentage" class="text-sm font-semibold text-blue-600">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center space-x-2">
+            <button onclick="checkAllAnswers()" class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+              Check All
+            </button>
+            <button onclick="resetWorksheet()" class="px-3.5 py-2 bg-white border border-slate-200 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+              Reset
+            </button>
+          </div>
+          <button onclick="revealAllSolutions()" class="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors">
+            Reveal All Answers
+          </button>
+        </div>
+      </div>
+
+      <!-- PART 1: 15 GAP FILL (TYPING) -->
+      <div class="space-y-4">
+        <div class="border-b border-slate-200 pb-2 flex items-center justify-between">
+          <h3 class="text-base font-bold text-slate-900">
+            Part 1: Complete the Gaps (Exercises 1–15)
+          </h3>
+          <span class="text-xs text-slate-500 font-mono">Type 1 word per gap</span>
+        </div>
+        <div id="gap-container" class="space-y-3">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- PART 2: 15 ERROR CORRECTION -->
+      <div class="space-y-4 pt-4">
+        <div class="border-b border-slate-200 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">
+              Part 2: Error Correction (Exercises 16–30)
+            </h3>
+            <p class="text-xs text-slate-500">
+              <strong>Step 1:</strong> Click the incorrect word in the sentence. &nbsp;|&nbsp; <strong>Step 2:</strong> Type the correct preposition replacement.
+            </p>
+          </div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">Click word + Type correction</span>
+        </div>
+        <div id="error-container" class="space-y-3">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Clean Footer with subtle attribution -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-1">
+      <div>Task 1 Academic Prepositions</div>
+      <div class="tracking-wide text-slate-400 font-serif text-[11px]">Designed by Babak Alaee</div>
+    </div>
+  </footer>
+
+  <!-- Logic & Exercises Data -->
+  <script>
+    // Tab switching
+    function switchTab(tabId) {
+      const rulesTab = document.getElementById('tab-rules');
+      const worksheetTab = document.getElementById('tab-worksheet');
+      const rulesBtn = document.getElementById('tab-rules-btn');
+      const worksheetBtn = document.getElementById('tab-worksheet-btn');
+
+      if (tabId === 'rules') {
+        rulesTab.classList.remove('hidden');
+        worksheetTab.classList.add('hidden');
+        rulesBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-slate-900 shadow-xs";
+        worksheetBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+      } else {
+        worksheetTab.classList.remove('hidden');
+        rulesTab.classList.add('hidden');
+        worksheetBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-slate-900 shadow-xs";
+        rulesBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+      }
+    }
+
+    // 15 GAP FILL EXERCISES
+    // All sentences are complete, grammatically sound, and have complete complements.
+    const gapData = [
+      {
+        id: 1,
+        part1: "Sales of mobile phones showed a small rise",
+        part2: "April.",
+        targets: ["in"],
+        explanation: "Use 'in' with calendar months (in April)."
+      },
+      {
+        id: 2,
+        part1: "The lowest sales were recorded in the period",
+        mid: "March",
+        part2: "June.",
+        targets: ["between", "and"],
+        explanation: "'between ... and ...' is the correct pair for two dates."
+      },
+      {
+        id: 3,
+        part1: "",
+        mid: "March, sales of mobile phones fell",
+        part2: "1,500 units.",
+        targets: ["in", "to"],
+        explanation: "'in' for the month, and 'to' for the final number reached."
+      },
+      {
+        id: 4,
+        part1: "This meant that sales fell",
+        part2: "25% compared with the previous month.",
+        targets: ["by"],
+        explanation: "Use 'by' after a verb (fell by) to indicate the margin of change."
+      },
+      {
+        id: 5,
+        part1: "",
+        mid: "a six-month period, there was a rise",
+        part2: "the number of new products launched.",
+        targets: ["over", "in"],
+        explanation: "'over a six-month period' indicates time duration; 'rise in' indicates the topic."
+      },
+      {
+        id: 6,
+        part1: "Sales of mobile phones rose",
+        mid: "2,500",
+        part2: "4,000 units during the final quarter.",
+        targets: ["from", "to"],
+        explanation: "'from ... to ...' shows the start and end values."
+      },
+      {
+        id: 7,
+        part1: "Monthly sales peaked",
+        mid: "4,000 units",
+        part2: "December.",
+        targets: ["at", "in"],
+        explanation: "peaked 'at' a number, 'in' a month."
+      },
+      {
+        id: 8,
+        part1: "There was an increase",
+        mid: "60%",
+        part2: "sales of mobile phones.",
+        targets: ["of", "in"],
+        explanation: "Noun + 'of' + amount (increase of 60%), and 'in' for the category (in sales)."
+      },
+      {
+        id: 9,
+        part1: "Production numbers fluctuated significantly",
+        part2: "the entire year.",
+        targets: ["throughout"],
+        explanation: "'throughout' expresses continuous fluctuation all through the year."
+      },
+      {
+        id: 10,
+        part1: "At the start of the period, handset shipments stood",
+        part2: "2,500 units.",
+        targets: ["at"],
+        explanation: "The collocation is 'stood at' for a specific point on the scale."
+      },
+      {
+        id: 11,
+        part1: "Revenue expanded steadily",
+        part2: "a ten-year period.",
+        targets: ["over"],
+        explanation: "'over' is used for a development that happens across a time span."
+      },
+      {
+        id: 12,
+        part1: "The figure remained steady",
+        mid: "1,600 units",
+        part2: "April and May.",
+        targets: ["at", "in"],
+        explanation: "'remained steady at' a number, 'in' those months."
+      },
+      {
+        id: 13,
+        part1: "The manufacturer noted a decline",
+        part2: "15% in overall production.",
+        targets: ["of"],
+        explanation: "After a noun of change ('a decline'), use 'of' for the percentage."
+      },
+      {
+        id: 14,
+        part1: "Unemployment stayed constant",
+        part2: "the entire period under review.",
+        targets: ["throughout"],
+        explanation: "'throughout' highlights that it stayed constant through the whole period."
+      },
+      {
+        id: 15,
+        part1: "The volume of exports dropped",
+        part2: "its lowest point of 1,200 units in August.",
+        targets: ["to"],
+        explanation: "Use 'to' to indicate the destination figure or lowest point reached."
+      }
+    ];
+
+    // Render the 15 gap fill exercises dynamically into the DOM
+    function renderGapItems() {
+      const container = document.getElementById('gap-container');
+      if (!container) return;
+
+      container.innerHTML = gapData.map((item) => {
+        let sentenceHtml = '';
+
+        if (item.targets.length === 2) {
+          const firstPart = item.part1 ? `${item.part1} ` : '';
+          sentenceHtml = `
+            ${firstPart}<input type="text" id="gap-${item.id}-0" class="gap-input w-20" placeholder="prep" autocomplete="off" oninput="clearFeedback('gap', ${item.id})" onkeydown="if(event.key==='Enter') checkGap(${item.id})">
+            ${item.mid}
+            <input type="text" id="gap-${item.id}-1" class="gap-input w-20" placeholder="prep" autocomplete="off" oninput="clearFeedback('gap', ${item.id})" onkeydown="if(event.key==='Enter') checkGap(${item.id})">
+            ${item.part2 ? ' ' + item.part2 : ''}
+          `;
+        } else {
+          sentenceHtml = `
+            ${item.part1 ? item.part1 + ' ' : ''}<input type="text" id="gap-${item.id}-0" class="gap-input w-20" placeholder="prep" autocomplete="off" oninput="clearFeedback('gap', ${item.id})" onkeydown="if(event.key==='Enter') checkGap(${item.id})">
+            ${item.part2 ? ' ' + item.part2 : ''}
+          `;
+        }
+
+        return `
+          <div class="bg-white p-4 rounded-lg border border-slate-200">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-baseline gap-2 flex-1">
+                <span class="text-xs font-bold font-mono text-slate-400 w-5 shrink-0">${item.id}.</span>
+                <p class="text-sm sm:text-base text-slate-800 font-serif leading-relaxed">
+                  ${sentenceHtml}
+                </p>
+              </div>
+              <div class="shrink-0 self-start sm:self-auto pl-7 sm:pl-0">
+                <button onclick="checkGap(${item.id})" class="text-xs font-semibold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors">
+                  Check
+                </button>
+              </div>
+            </div>
+            <div id="feedback-gap-${item.id}" class="hidden mt-2 pt-2 border-t border-slate-100 text-xs text-slate-600"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 15 ERROR CORRECTION EXERCISES
+    // Note: Sentences are shown without ANY hints, underline, or spoilers.
+    // Exercise 18 has been completely replaced with a fresh, accurate Task 1 item.
+    const errorData = [
+      {
+        id: 16,
+        sentence: "Sales of mobile equipment peaked to 4,000 units in December.",
+        wrong: "to",
+        correct: "at",
+        explanation: "Say 'peaked at 4,000 units', not 'peaked to'."
+      },
+      {
+        id: 17,
+        sentence: "The enterprise suffered a notable contraction by 30% in export volume.",
+        wrong: "by",
+        correct: "of",
+        explanation: "After a noun ('a contraction'), use 'of 30%'. Use 'by' only after verbs."
+      },
+      {
+        id: 18, // Completely revised
+        sentence: "The number of train passengers increased of 15% between May and August.",
+        wrong: "of",
+        correct: "by",
+        explanation: "'increased' is a verb here, so it takes 'by 15%' (Verb + by + difference)."
+      },
+      {
+        id: 19,
+        sentence: "The report shows a dramatic rise of petrol consumption across the country.",
+        wrong: "of",
+        correct: "in",
+        explanation: "When naming the topic/area of change, use 'rise in petrol consumption'."
+      },
+      {
+        id: 20,
+        sentence: "Sales of phones plummeted at 1,500 units in the third quarter.",
+        wrong: "at",
+        correct: "to",
+        explanation: "'plummeted' shows movement down to a final number, so use 'to 1,500 units'."
+      },
+      {
+        id: 21,
+        sentence: "In January, the index stood in 2,500 units before declining.",
+        wrong: "in",
+        correct: "at",
+        explanation: "The fixed collocation is 'stood at 2,500 units'."
+      },
+      {
+        id: 22,
+        sentence: "The lowest sales were documented between March to June.",
+        wrong: "to",
+        correct: "and",
+        explanation: "The pair is always 'between ... and ...', never 'between ... to ...'."
+      },
+      {
+        id: 23,
+        sentence: "The figures escalated from 2,500 until 4,000 units by December.",
+        wrong: "until",
+        correct: "to",
+        explanation: "The pair is 'from ... to ...' (from 2,500 to 4,000 units)."
+      },
+      {
+        id: 24,
+        sentence: "Throughout a six-month period, the company launched four new models.",
+        wrong: "throughout",
+        correct: "over",
+        explanation: "Use 'over a six-month period' when referring to a general time span."
+      },
+      {
+        id: 25,
+        sentence: "Oil prices fluctuated over the entire year without any stable pattern.",
+        wrong: "over",
+        correct: "throughout",
+        explanation: "Use 'throughout the entire year' to show continuous fluctuation all through the year."
+      },
+      {
+        id: 26,
+        sentence: "Mobile shipments showed a modest recovery at April.",
+        wrong: "at",
+        correct: "in",
+        explanation: "Months take 'in' (in April), not 'at'."
+      },
+      {
+        id: 27,
+        sentence: "Production plateaued to 1,600 units for two straight months.",
+        wrong: "to",
+        correct: "at",
+        explanation: "'plateaued' indicates staying at a level, so it takes 'at 1,600 units'."
+      },
+      {
+        id: 28,
+        sentence: "The division registered an overall increase by 60% in annual revenue.",
+        wrong: "by",
+        correct: "of",
+        explanation: "After a noun ('an increase'), use 'of 60%'."
+      },
+      {
+        id: 29,
+        sentence: "Turnover dropped down 25% compared with the previous month.",
+        wrong: "down",
+        correct: "by",
+        explanation: "In academic writing, use 'dropped by 25%' rather than 'dropped down 25%'."
+      },
+      {
+        id: 30,
+        sentence: "Production remained steady on 3,000 units for the rest of the quarter.",
+        wrong: "on",
+        correct: "at",
+        explanation: "The phrase is 'remained steady at 3,000 units'."
+      }
+    ];
+
+    // Tracks selected words for error items: { [id]: { tokenIndex, cleanWord } }
+    const selectedErrorWords = {};
+
+    // Helper to render interactive sentence tokens
+    function buildSelectableSentence(sentence, itemId) {
+      const tokens = sentence.split(/(\s+)/);
+      return tokens.map((token, idx) => {
+        if (/^\s+$/.test(token)) {
+          return token;
+        }
+        const clean = token.replace(/^[^\w]+|[^\w]+$/g, '');
+        return `<span class="word-token" id="token-${itemId}-${idx}" onclick="selectErrorWord(${itemId}, ${idx}, '${clean.replace(/'/g, "\\'")}')">${token}</span>`;
+      }).join('');
+    }
+
+    // Handle clicking a word in the sentence
+    function selectErrorWord(itemId, tokenIdx, cleanWord) {
+      const container = document.getElementById(`sentence-container-${itemId}`);
+      if (!container) return;
+
+      // Deselect all tokens for this sentence first
+      container.querySelectorAll('.word-token').forEach(el => {
+        el.classList.remove('selected-word');
+      });
+
+      // Toggle off if already selected
+      if (selectedErrorWords[itemId] && selectedErrorWords[itemId].tokenIdx === tokenIdx) {
+        delete selectedErrorWords[itemId];
+        document.getElementById(`selected-word-badge-${itemId}`).innerHTML = `<span class="text-slate-400 italic">None selected</span>`;
+        clearFeedback('err', itemId);
+        return;
+      }
+
+      // Mark newly selected word
+      selectedErrorWords[itemId] = { tokenIdx: tokenIdx, cleanWord: cleanWord.toLowerCase() };
+      const el = document.getElementById(`token-${itemId}-${tokenIdx}`);
+      if (el) {
+        el.classList.add('selected-word');
+      }
+
+      const badge = document.getElementById(`selected-word-badge-${itemId}`);
+      if (badge) {
+        badge.innerHTML = `<span class="bg-amber-100 text-amber-900 border border-amber-300 font-mono text-[11px] px-1.5 py-0.5 rounded font-semibold">${cleanWord}</span>`;
+      }
+      clearFeedback('err', itemId);
+    }
+
+    // Render Error Correction items with clickable tokens
+    function renderErrorItems() {
+      const container = document.getElementById('error-container');
+      container.innerHTML = errorData.map((item) => {
+        const sentenceTokens = buildSelectableSentence(item.sentence, item.id);
+        return `
+          <div class="bg-white p-4 rounded-lg border border-slate-200">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              <div class="flex items-baseline gap-2 flex-1">
+                <span class="text-xs font-bold font-mono text-slate-400 w-5 shrink-0">${item.id}.</span>
+                <p id="sentence-container-${item.id}" class="text-sm sm:text-base text-slate-800 font-serif leading-relaxed">
+                  ${sentenceTokens}
+                </p>
+              </div>
+
+              <!-- Controls: Display selected word, input replacement, check button -->
+              <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 self-start lg:self-auto shrink-0 pl-7 lg:pl-0">
+                <div class="flex items-center space-x-1.5 text-xs text-slate-500 mr-1">
+                  <span>Selected:</span>
+                  <div id="selected-word-badge-${item.id}" class="inline-block">
+                    <span class="text-slate-400 italic">None</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs text-slate-500 font-medium">Replace with:</span>
+                  <input type="text" id="err-input-${item.id}" 
+                         class="w-24 text-center text-xs sm:text-sm font-semibold border border-slate-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500" 
+                         placeholder="prep" autocomplete="off" oninput="clearFeedback('err', ${item.id})">
+                  <button onclick="checkError(${item.id})" class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded transition-colors">
+                    Check
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="feedback-err-${item.id}" class="hidden mt-2 pt-2 border-t border-slate-100 text-xs text-slate-600"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const state = {};
+
+    function clearFeedback(type, id) {
+      const fb = document.getElementById(`feedback-${type}-${id}`);
+      if (fb) fb.classList.add('hidden');
+    }
+
+    function checkGap(id) {
+      const item = gapData.find(g => g.id === id);
+      if (!item) return;
+
+      let allCorrect = true;
+      item.targets.forEach((target, index) => {
+        const input = document.getElementById(`gap-${id}-${index}`);
+        const val = input.value.trim().toLowerCase();
+        if (val === target.toLowerCase()) {
+          input.classList.remove('incorrect');
+          input.classList.add('correct');
+        } else {
+          input.classList.remove('correct');
+          input.classList.add('incorrect');
+          allCorrect = false;
+        }
+      });
+
+      const fb = document.getElementById(`feedback-gap-${id}`);
+      fb.classList.remove('hidden');
+
+      if (allCorrect) {
+        fb.innerHTML = `<span class="text-emerald-700 font-semibold">Correct!</span> ${item.explanation}`;
+        state[id] = true;
+      } else {
+        const sol = item.targets.map(t => `'${t}'`).join(' and ');
+        fb.innerHTML = `<span class="text-red-600 font-semibold">Incorrect.</span> Correct answer: <strong>${sol}</strong>. ${item.explanation}`;
+        state[id] = false;
+      }
+
+      updateScore();
+    }
+
+    function checkError(id) {
+      const item = errorData.find(e => e.id === id);
+      if (!item) return;
+
+      const sel = selectedErrorWords[id];
+      const input = document.getElementById(`err-input-${id}`);
+      const val = input.value.trim().toLowerCase();
+      const fb = document.getElementById(`feedback-err-${id}`);
+      fb.classList.remove('hidden');
+
+      // Check if user clicked a word
+      if (!sel) {
+        fb.innerHTML = `<span class="text-amber-700 font-semibold">Step required:</span> Click the word in the sentence above that you consider incorrect before checking.`;
+        return;
+      }
+
+      const isWordCorrect = (sel.cleanWord === item.wrong.toLowerCase());
+      const isReplacementCorrect = (val === item.correct.toLowerCase());
+      const selectedTokenEl = document.getElementById(`token-${id}-${sel.tokenIdx}`);
+
+      if (isWordCorrect && isReplacementCorrect) {
+        input.classList.remove('border-red-400', 'bg-red-50', 'text-red-700');
+        input.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-700');
+        if (selectedTokenEl) {
+          selectedTokenEl.className = 'word-token correct-identified';
+        }
+        fb.innerHTML = `<span class="text-emerald-700 font-semibold">Correct!</span> You accurately selected <code class="bg-slate-100 px-1 py-0.5 rounded text-red-600 line-through">${item.wrong}</code> and replaced it with <strong>${item.correct}</strong>. ${item.explanation}`;
+        state[id] = true;
+      } else if (!isWordCorrect) {
+        if (selectedTokenEl) {
+          selectedTokenEl.className = 'word-token wrong-identified';
+        }
+        input.classList.remove('border-emerald-500', 'bg-emerald-50', 'text-emerald-700');
+        input.classList.add('border-red-400', 'bg-red-50', 'text-red-700');
+        fb.innerHTML = `<span class="text-red-600 font-semibold">Incorrect word selected:</span> "${sel.cleanWord}" is grammatically acceptable here. Look for the problematic preposition in the sentence and click it.`;
+        state[id] = false;
+      } else {
+        // Word was correct, but replacement was wrong
+        if (selectedTokenEl) {
+          selectedTokenEl.className = 'word-token correct-identified';
+        }
+        input.classList.remove('border-emerald-500', 'bg-emerald-50', 'text-emerald-700');
+        input.classList.add('border-red-400', 'bg-red-50', 'text-red-700');
+        fb.innerHTML = `<span class="text-amber-800 font-semibold">Good identification!</span> You correctly spotted <code class="bg-slate-100 px-1 py-0.5 rounded text-red-600 line-through">${item.wrong}</code>, but the preposition replacement is incorrect. It should be <strong>${item.correct}</strong>. ${item.explanation}`;
+        state[id] = false;
+      }
+
+      updateScore();
+    }
+
+    function checkAllAnswers() {
+      gapData.forEach(item => checkGap(item.id));
+      errorData.forEach(item => checkError(item.id));
+    }
+
+    function resetWorksheet() {
+      gapData.forEach(item => {
+        item.targets.forEach((_, idx) => {
+          const input = document.getElementById(`gap-${item.id}-${idx}`);
+          if (input) {
+            input.value = '';
+            input.className = 'gap-input w-20';
+          }
+        });
+        clearFeedback('gap', item.id);
+      });
+
+      errorData.forEach(item => {
+        const input = document.getElementById(`err-input-${item.id}`);
+        if (input) {
+          input.value = '';
+          input.className = 'w-24 text-center text-xs sm:text-sm font-semibold border border-slate-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500';
+        }
+        const badge = document.getElementById(`selected-word-badge-${item.id}`);
+        if (badge) {
+          badge.innerHTML = `<span class="text-slate-400 italic">None</span>`;
+        }
+        const container = document.getElementById(`sentence-container-${item.id}`);
+        if (container) {
+          container.querySelectorAll('.word-token').forEach(el => {
+            el.className = 'word-token';
+          });
+        }
+        clearFeedback('err', item.id);
+      });
+
+      for (let k in selectedErrorWords) delete selectedErrorWords[k];
+      for (let k in state) delete state[k];
+      updateScore();
+    }
+
+    function revealAllSolutions() {
+      gapData.forEach(item => {
+        item.targets.forEach((target, idx) => {
+          const input = document.getElementById(`gap-${item.id}-${idx}`);
+          if (input) {
+            input.value = target;
+            input.className = 'gap-input w-20 correct';
+          }
+        });
+        const fb = document.getElementById(`feedback-gap-${item.id}`);
+        fb.classList.remove('hidden');
+        fb.innerHTML = `<span class="text-blue-700 font-semibold">Solution:</span> <strong>${item.targets.join(', ')}</strong>. ${item.explanation}`;
+        state[item.id] = true;
+      });
+
+      errorData.forEach(item => {
+        const input = document.getElementById(`err-input-${item.id}`);
+        if (input) {
+          input.value = item.correct;
+          input.className = 'w-24 text-center text-xs sm:text-sm font-semibold border border-emerald-500 bg-emerald-50 text-emerald-700 rounded px-2 py-1';
+        }
+
+        // Highlight the wrong word token directly
+        const container = document.getElementById(`sentence-container-${item.id}`);
+        if (container) {
+          container.querySelectorAll('.word-token').forEach(el => {
+            const clean = el.textContent.replace(/^[^\w]+|[^\w]+$/g, '').toLowerCase();
+            if (clean === item.wrong.toLowerCase()) {
+              el.className = 'word-token correct-identified';
+            } else {
+              el.className = 'word-token';
+            }
+          });
+        }
+
+        const badge = document.getElementById(`selected-word-badge-${item.id}`);
+        if (badge) {
+          badge.innerHTML = `<span class="bg-red-100 text-red-800 border border-red-300 font-mono text-[11px] px-1.5 py-0.5 rounded font-semibold line-through">${item.wrong}</span>`;
+        }
+
+        const fb = document.getElementById(`feedback-err-${item.id}`);
+        fb.classList.remove('hidden');
+        fb.innerHTML = `<span class="text-blue-700 font-semibold">Solution:</span> Erroneous word is <code class="bg-slate-100 px-1 py-0.5 rounded text-red-600 line-through">${item.wrong}</code>. Correct preposition is <strong>${item.correct}</strong>. ${item.explanation}`;
+        state[item.id] = true;
+      });
+
+      updateScore();
+    }
+
+    function updateScore() {
+      let count = 0;
+      let totalAttempted = 0;
+      for (let i = 1; i <= 30; i++) {
+        if (state[i] !== undefined) {
+          totalAttempted++;
+          if (state[i] === true) count++;
+        }
+      }
+      document.getElementById('score-display').textContent = `${count} / 30`;
+      const pct = Math.round((totalAttempted / 30) * 100);
+      document.getElementById('completion-percentage').textContent = `${pct}%`;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderGapItems();
+      renderErrorItems();
+      updateScore();
+    });
+  </script>
+</body>
+</html>
