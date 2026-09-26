@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Pluralization & Spelling Mastery</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Newsreader -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .input-field {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 0.5rem;
+      transition: all 0.15s ease-in-out;
+      font-weight: 600;
+      color: #0f172a;
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      background-color: #ffffff;
+    }
+    .input-field.correct {
+      border-color: #16a34a !important;
+      color: #15803d !important;
+      background-color: #f0fdf4 !important;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
+    }
+    .input-field.incorrect {
+      border-color: #dc2626 !important;
+      color: #b91c1c !important;
+      background-color: #fef2f2 !important;
+      box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-sm tracking-wider">
+          S
+        </span>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-tight">
+            Academic Pluralization & Spelling
+          </h1>
+          <p class="text-xs text-slate-500 font-medium">Standard Forms, -y Shifts & Classical Roots</p>
+        </div>
+      </div>
+
+      <!-- Tab Buttons -->
+      <nav class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+        <button id="tab-practice-btn" onclick="switchTab('practice')" 
+                class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-slate-900 shadow-xs">
+          Interactive Practice
+        </button>
+        <button id="tab-rules-btn" onclick="switchTab('rules')" 
+                class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900">
+          Rules & Tables
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main class="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8">
+
+    <!-- TAB 1: INTERACTIVE PRACTICE (Singular -> Type Plural -> Instant Check) -->
+    <section id="tab-practice" class="space-y-6">
+      
+      <!-- Top Action & Score Panel -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Plural Spelling Challenge</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Type the exact plural spelling for each singular noun, then press Enter or click Check.
+            </p>
+          </div>
+          <div class="flex items-center space-x-4 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 shrink-0">
+            <div>
+              <span class="text-[10px] text-slate-500 uppercase font-bold block">Score</span>
+              <span id="score-display" class="text-xl font-bold text-slate-900">0 / 32</span>
+            </div>
+            <div class="h-8 w-px bg-slate-200"></div>
+            <div>
+              <span class="text-[10px] text-slate-500 uppercase font-bold block">Completion</span>
+              <span id="completion-percentage" class="text-sm font-semibold text-blue-600">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls & Filters -->
+        <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="checkAllAnswers()" class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+              Check All
+            </button>
+            <button onclick="resetWorksheet()" class="px-3.5 py-2 bg-white border border-slate-200 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+              Reset
+            </button>
+            <button onclick="revealAllSolutions()" class="px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-blue-600 transition-colors">
+              Reveal Solutions
+            </button>
+          </div>
+
+          <!-- Category filter buttons -->
+          <div class="flex items-center space-x-1 text-xs">
+            <span class="text-slate-400 mr-1 hidden sm:inline">Filter:</span>
+            <button onclick="filterItems('all')" id="filter-all" class="px-2.5 py-1 rounded bg-slate-200 text-slate-800 font-semibold filter-btn">
+              All (32)
+            </button>
+            <button onclick="filterItems('y-endings')" id="filter-y-endings" class="px-2.5 py-1 rounded hover:bg-slate-100 text-slate-600 font-semibold filter-btn">
+              -y Endings (14)
+            </button>
+            <button onclick="filterItems('classical')" id="filter-classical" class="px-2.5 py-1 rounded hover:bg-slate-100 text-slate-600 font-semibold filter-btn">
+              Classical & Invariables (18)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practice Items List -->
+      <div id="practice-container" class="space-y-3">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </section>
+
+    <!-- TAB 2: RULES & TABLES (Direct, Concise, Structured) -->
+    <section id="tab-rules" class="space-y-8 hidden">
+      
+      <!-- Key Rule 1: The -y Endings Matrix -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
+        <div class="px-5 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+            1. The -y Pluralization Principle
+          </h3>
+          <span class="text-xs font-mono font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+            Consonant + y vs. Vowel + y
+          </span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-slate-100/60 text-slate-700 font-semibold border-b border-slate-200">
+              <tr>
+                <th class="py-2.5 px-4 w-44">Environment</th>
+                <th class="py-2.5 px-4 w-40">Rule Applied</th>
+                <th class="py-2.5 px-4">Correct Plural Forms</th>
+                <th class="py-2.5 px-4">Frequent Misspellings</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-semibold text-slate-900">
+                  Consonant + <span class="font-mono text-blue-700 font-bold">-y</span>
+                </td>
+                <td class="py-3 px-4">
+                  Drop <em>-y</em> &rarr; add <span class="font-mono text-emerald-700 font-bold">-ies</span>
+                </td>
+                <td class="py-3 px-4 font-mono font-medium text-slate-900">
+                  categor<strong class="text-emerald-700">ies</strong>, 
+                  polic<strong class="text-emerald-700">ies</strong>, 
+                  disparit<strong class="text-emerald-700">ies</strong>, 
+                  subsid<strong class="text-emerald-700">ies</strong>, 
+                  strateg<strong class="text-emerald-700">ies</strong>
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">categorys</span>, 
+                  <span class="line-through">policys</span>, 
+                  <span class="line-through">disparitys</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-semibold text-slate-900">
+                  Vowel (a, e, o, u) + <span class="font-mono text-blue-700 font-bold">-y</span>
+                </td>
+                <td class="py-3 px-4">
+                  Keep <em>-y</em> &rarr; add <span class="font-mono text-emerald-700 font-bold">-s</span>
+                </td>
+                <td class="py-3 px-4 font-mono font-medium text-slate-900">
+                  attorney<strong class="text-emerald-700">s</strong>, 
+                  survey<strong class="text-emerald-700">s</strong>, 
+                  delay<strong class="text-emerald-700">s</strong>, 
+                  essay<strong class="text-emerald-700">s</strong>, 
+                  alley<strong class="text-emerald-700">s</strong>
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">attornies</span>, 
+                  <span class="line-through">survies</span>, 
+                  <span class="line-through">delaies</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-semibold text-slate-900">
+                  <span class="font-mono text-purple-700 font-bold">-quy</span> combinations
+                </td>
+                <td class="py-3 px-4">
+                  <em>qu</em> functions as consonant &rarr; add <span class="font-mono text-emerald-700 font-bold">-ies</span>
+                </td>
+                <td class="py-3 px-4 font-mono font-medium text-slate-900">
+                  colloqu<strong class="text-emerald-700">ies</strong>, 
+                  soliloqu<strong class="text-emerald-700">ies</strong>
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">colloquys</span>, 
+                  <span class="line-through">soliloquys</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Key Rule 2: Greek & Latin Academic Base Words -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
+        <div class="px-5 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+            2. Greek & Latin Academic Plural Transformations
+          </h3>
+          <span class="text-xs font-mono font-medium text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+            Classical Stems
+          </span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-slate-100/60 text-slate-700 font-semibold border-b border-slate-200">
+              <tr>
+                <th class="py-2.5 px-4 w-36">Singular Ending</th>
+                <th class="py-2.5 px-4 w-36">Plural Ending</th>
+                <th class="py-2.5 px-4">Standard Academic Pairs</th>
+                <th class="py-2.5 px-4">Unacceptable Forms</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-slate-900">-is</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">-es</td>
+                <td class="py-3 px-4 font-mono text-xs sm:text-sm">
+                  analysis &rarr; <strong class="text-slate-900">analyses</strong><br>
+                  crisis &rarr; <strong class="text-slate-900">crises</strong><br>
+                  hypothesis &rarr; <strong class="text-slate-900">hypotheses</strong><br>
+                  thesis &rarr; <strong class="text-slate-900">theses</strong>
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">analysises</span><br>
+                  <span class="line-through">crisises</span><br>
+                  <span class="line-through">hypothesises</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-slate-900">-on / -um</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">-a</td>
+                <td class="py-3 px-4 font-mono text-xs sm:text-sm">
+                  criterion &rarr; <strong class="text-slate-900">criteria</strong><br>
+                  phenomenon &rarr; <strong class="text-slate-900">phenomena</strong><br>
+                  stratum &rarr; <strong class="text-slate-900">strata</strong><br>
+                  curriculum &rarr; <strong class="text-slate-900">curricula</strong>
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">criterias</span><br>
+                  <span class="line-through">phenomenons</span><br>
+                  <span class="line-through">curriculums</span> (rare in formal contexts)
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-slate-900">-ex / -ix</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">-ices</td>
+                <td class="py-3 px-4 font-mono text-xs sm:text-sm">
+                  index &rarr; <strong class="text-slate-900">indices</strong> (or indexes)<br>
+                  appendix &rarr; <strong class="text-slate-900">appendices</strong><br>
+                  matrix &rarr; <strong class="text-slate-900">matrices</strong>
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">appendixes</span> (less formal)<br>
+                  <span class="line-through">matrixes</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-slate-900">-us</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">-i</td>
+                <td class="py-3 px-4 font-mono text-xs sm:text-sm">
+                  stimulus &rarr; <strong class="text-slate-900">stimuli</strong><br>
+                  radius &rarr; <strong class="text-slate-900">radii</strong><br>
+                  syllabus &rarr; <strong class="text-slate-900">syllabi</strong> (or syllabuses)
+                </td>
+                <td class="py-3 px-4 text-red-600 font-mono text-xs">
+                  <span class="line-through">stimuluses</span><br>
+                  <span class="line-through">radiuses</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Key Rule 3: -f/-fe, -o and Invariant Forms -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
+          <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200">
+            <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+              3. -f/-fe and -o Variations
+            </h4>
+          </div>
+          <div class="p-4 space-y-3 text-xs sm:text-sm">
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+              <span class="font-bold text-slate-900 block mb-0.5">-f &rarr; -ves vs. fixed -s</span>
+              <p class="text-slate-600">
+                leaf &rarr; <strong>leaves</strong>, half &rarr; <strong>halves</strong>, thief &rarr; <strong>thieves</strong>.<br>
+                <span class="text-blue-700 font-semibold">Contrast:</span> belief &rarr; <strong>beliefs</strong>, chief &rarr; <strong>chiefs</strong>, brief &rarr; <strong>briefs</strong>.
+              </p>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+              <span class="font-bold text-slate-900 block mb-0.5">-o &rarr; -os vs. -oes</span>
+              <p class="text-slate-600">
+                scenario &rarr; <strong>scenarios</strong>, ratio &rarr; <strong>ratios</strong>, portfolio &rarr; <strong>portfolios</strong>.<br>
+                <span class="text-blue-700 font-semibold">Contrast:</span> veto &rarr; <strong>vetoes</strong>, embargo &rarr; <strong>embargoes</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
+          <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200">
+            <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+              4. Invariable Academic Plurals
+            </h4>
+          </div>
+          <div class="p-4 space-y-3 text-xs sm:text-sm">
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+              <span class="font-bold text-slate-900 block mb-0.5">Identical Singular & Plural Forms</span>
+              <p class="text-slate-600">
+                These preserve an identical spelling in singular and plural:
+              </p>
+              <ul class="list-disc list-inside mt-1 font-mono text-slate-800 space-y-0.5">
+                <li>one <strong>species</strong> &rarr; several <strong>species</strong></li>
+                <li>one <strong>series</strong> &rarr; numerous <strong>series</strong></li>
+                <li>one <strong>means</strong> &rarr; various <strong>means</strong></li>
+              </ul>
+              <p class="text-red-600 mt-1 text-[11px] font-mono">
+                Avoid: <span class="line-through">specie</span> (currency), <span class="line-through">serie</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer with subtle author attribution -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-1">
+      <div>Academic Pluralization & Spelling Practice</div>
+      <div class="tracking-wide text-slate-400 font-serif text-[11px]">Designed by Babak Alaee</div>
+    </div>
+  </footer>
+
+  <!-- Script: Data & Interactive Logic -->
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      const practiceTab = document.getElementById('tab-practice');
+      const rulesTab = document.getElementById('tab-rules');
+      const practiceBtn = document.getElementById('tab-practice-btn');
+      const rulesBtn = document.getElementById('tab-rules-btn');
+
+      if (tabId === 'practice') {
+        practiceTab.classList.remove('hidden');
+        rulesTab.classList.add('hidden');
+        practiceBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-slate-900 shadow-xs";
+        rulesBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+      } else {
+        rulesTab.classList.remove('hidden');
+        practiceTab.classList.add('hidden');
+        rulesBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-slate-900 shadow-xs";
+        practiceBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+      }
+    }
+
+    // Comprehensive 32-Item Dataset with a strong emphasis on -y variations and classical academic stems
+    const pluralData = [
+      // Consonant + -y -> -ies
+      {
+        id: 1,
+        category: 'y-endings',
+        singular: 'category',
+        context: 'The survey divided participants into three distinct...',
+        plural: ['categories'],
+        rule: "Consonant ('r') + 'y': change 'y' to 'ies'."
+      },
+      {
+        id: 2,
+        category: 'y-endings',
+        singular: 'policy',
+        context: 'The government revised its monetary and fiscal...',
+        plural: ['policies'],
+        rule: "Consonant ('c') + 'y': change 'y' to 'ies'."
+      },
+      {
+        id: 3,
+        category: 'y-endings',
+        singular: 'strategy',
+        context: 'Both corporations adopted contrasting marketing...',
+        plural: ['strategies'],
+        rule: "Consonant ('g') + 'y': change 'y' to 'ies'."
+      },
+      {
+        id: 4,
+        category: 'y-endings',
+        singular: 'disparity',
+        context: 'Substantial regional income... persisted over the decade.',
+        plural: ['disparities'],
+        rule: "Consonant ('t') + 'y': change 'y' to 'ies'."
+      },
+      {
+        id: 5,
+        category: 'y-endings',
+        singular: 'subsidy',
+        context: 'Agricultural... were reduced following the trade agreement.',
+        plural: ['subsidies'],
+        rule: "Consonant ('d') + 'y': change 'y' to 'ies'."
+      },
+      {
+        id: 6,
+        category: 'y-endings',
+        singular: 'inquiry',
+        context: 'Official parliamentary... were launched into the banking sector.',
+        plural: ['inquiries'],
+        rule: "Consonant ('r') + 'y': change 'y' to 'ies'."
+      },
+      {
+        id: 7,
+        category: 'y-endings',
+        singular: 'anomaly',
+        context: 'Statistical... in the dataset were thoroughly investigated.',
+        plural: ['anomalies'],
+        rule: "Consonant ('l') + 'y': change 'y' to 'ies'."
+      },
+
+      // Vowel + -y -> -s
+      {
+        id: 8,
+        category: 'y-endings',
+        singular: 'attorney',
+        context: 'The defense team comprised several prominent...',
+        plural: ['attorneys'],
+        rule: "Vowel ('e') + 'y': simply add 's' (attorneys, never attornies)."
+      },
+      {
+        id: 9,
+        category: 'y-endings',
+        singular: 'survey',
+        context: 'Nationwide consumer... indicated a sharp drop in confidence.',
+        plural: ['surveys'],
+        rule: "Vowel ('e') + 'y': simply add 's' (surveys, never survies)."
+      },
+      {
+        id: 10,
+        category: 'y-endings',
+        singular: 'delay',
+        context: 'Persistent infrastructural... hindered cargo transit.',
+        plural: ['delays'],
+        rule: "Vowel ('a') + 'y': simply add 's'."
+      },
+      {
+        id: 11,
+        category: 'y-endings',
+        singular: 'essay',
+        context: 'Undergraduates submitted their comparative literature...',
+        plural: ['essays'],
+        rule: "Vowel ('a') + 'y': simply add 's'."
+      },
+      {
+        id: 12,
+        category: 'y-endings',
+        singular: 'journey',
+        context: 'Commuters completed long daily... via suburban railways.',
+        plural: ['journeys'],
+        rule: "Vowel ('e') + 'y': simply add 's'."
+      },
+      {
+        id: 13,
+        category: 'y-endings',
+        singular: 'valley',
+        context: 'Industrial settlements grew along fertile river...',
+        plural: ['valleys'],
+        rule: "Vowel ('e') + 'y': simply add 's'."
+      },
+      {
+        id: 14,
+        category: 'y-endings',
+        singular: 'colloquy',
+        context: 'Diplomatic... between the nations yielded minor concessions.',
+        plural: ['colloquies'],
+        rule: "'qu' is treated as a consonant sequence, so '-quy' becomes '-quies'."
+      },
+
+      // Greek/Latin -is -> -es
+      {
+        id: 15,
+        category: 'classical',
+        singular: 'analysis',
+        context: 'Comparative econometric... yielded conflicting forecasts.',
+        plural: ['analyses'],
+        rule: "Greek origin: '-is' changes to '-es' (analyses)."
+      },
+      {
+        id: 16,
+        category: 'classical',
+        singular: 'hypothesis',
+        context: 'The researchers tested multiple competing scientific...',
+        plural: ['hypotheses'],
+        rule: "Greek origin: '-is' changes to '-es' (hypotheses)."
+      },
+      {
+        id: 17,
+        category: 'classical',
+        singular: 'crisis',
+        context: 'Recurrent financial... challenged developing markets.',
+        plural: ['crises'],
+        rule: "Greek origin: '-is' changes to '-es' (crises)."
+      },
+      {
+        id: 18,
+        category: 'classical',
+        singular: 'thesis',
+        context: 'Doctoral candidates defended their research...',
+        plural: ['theses'],
+        rule: "Greek origin: '-is' changes to '-es' (theses)."
+      },
+      {
+        id: 19,
+        category: 'classical',
+        singular: 'parenthesis',
+        context: 'Supplementary citations were enclosed in rounded...',
+        plural: ['parentheses'],
+        rule: "Greek origin: '-is' changes to '-es' (parentheses)."
+      },
+
+      // Greek/Latin -on/-um -> -a
+      {
+        id: 20,
+        category: 'classical',
+        singular: 'criterion',
+        context: 'Candidates were evaluated against rigorous academic...',
+        plural: ['criteria'],
+        rule: "Greek root: '-on' shifts to '-a' (criteria, never criterias)."
+      },
+      {
+        id: 21,
+        category: 'classical',
+        singular: 'phenomenon',
+        context: 'Meteorologists documented rare atmospheric...',
+        plural: ['phenomena'],
+        rule: "Greek root: '-on' shifts to '-a' (phenomena, never phenomenons)."
+      },
+      {
+        id: 22,
+        category: 'classical',
+        singular: 'datum',
+        context: 'Primary raw... were extracted from international registries.',
+        plural: ['data'],
+        rule: "Latin root: '-um' shifts to '-a' (data)."
+      },
+      {
+        id: 23,
+        category: 'classical',
+        singular: 'curriculum',
+        context: 'Standardized national... were introduced across state schools.',
+        plural: ['curricula', 'curriculums'],
+        rule: "Latin neuter '-um' shifts to '-a' (curricula)."
+      },
+      {
+        id: 24,
+        category: 'classical',
+        singular: 'stratum',
+        context: 'Demographic samples represented all socioeconomic...',
+        plural: ['strata'],
+        rule: "Latin neuter '-um' shifts to '-a' (strata)."
+      },
+
+      // -ex/-ix -> -ices
+      {
+        id: 25,
+        category: 'classical',
+        singular: 'index',
+        context: 'Stock price... registered sudden upward corrections.',
+        plural: ['indices', 'indexes'],
+        rule: "Latin stem: '-ex' changes to '-ices' (indices) or '-es' (indexes)."
+      },
+      {
+        id: 26,
+        category: 'classical',
+        singular: 'appendix',
+        context: 'Supplementary tables were relegated to the volume\'s...',
+        plural: ['appendices', 'appendixes'],
+        rule: "Latin stem: '-ix' changes to '-ices' (appendices)."
+      },
+
+      // -us -> -i
+      {
+        id: 27,
+        category: 'classical',
+        singular: 'stimulus',
+        context: 'Monetary... failed to curb inflation in the short term.',
+        plural: ['stimuli'],
+        rule: "Latin masculine: '-us' changes to '-i' (stimuli)."
+      },
+
+      // -f/-fe -> -s / -ves
+      {
+        id: 28,
+        category: 'classical',
+        singular: 'belief',
+        context: 'Philosophers examined core ethical...',
+        plural: ['beliefs'],
+        rule: "Noun 'belief' forms plural with '-s' (beliefs, never believes)."
+      },
+      {
+        id: 29,
+        category: 'classical',
+        singular: 'chief',
+        context: 'Several police... met to discuss regional security.',
+        plural: ['chiefs'],
+        rule: "Word ending in '-ief': regular plural '-s' (chiefs, never chieves)."
+      },
+
+      // -o -> -os vs -oes
+      {
+        id: 30,
+        category: 'classical',
+        singular: 'scenario',
+        context: 'The climate model evaluated three projected warming...',
+        plural: ['scenarios'],
+        rule: "Nouns of Italian origin or vowel + 'o': add '-s' (scenarios)."
+      },
+      {
+        id: 31,
+        category: 'classical',
+        singular: 'veto',
+        context: 'Permanent members exercised their respective presidential...',
+        plural: ['vetoes'],
+        rule: "Consonant + 'o' verb/noun of this class takes '-oes' (vetoes)."
+      },
+
+      // Invariable
+      {
+        id: 32,
+        category: 'classical',
+        singular: 'species',
+        context: 'Biologists identified five previously uncatalogued plant...',
+        plural: ['species'],
+        rule: "Invariable: 'species' retains identical spelling in singular and plural."
+      }
+    ];
+
+    // State tracking: { [id]: boolean }
+    const state = {};
+    let activeFilter = 'all';
+
+    function renderPracticeItems() {
+      const container = document.getElementById('practice-container');
+      if (!container) return;
+
+      const filtered = pluralData.filter(item => {
+        if (activeFilter === 'all') return true;
+        return item.category === activeFilter;
+      });
+
+      container.innerHTML = filtered.map(item => {
+        const isAnswered = state[item.id] !== undefined;
+        return `
+          <div class="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 transition-all hover:border-slate-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              
+              <!-- Left: Word information -->
+              <div class="flex items-start gap-3 flex-1">
+                <span class="text-xs font-bold font-mono text-slate-400 mt-1 w-6 shrink-0">${item.id}.</span>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-base text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">
+                      ${item.singular}
+                    </span>
+                    <span class="text-xs text-slate-400 font-medium">singular</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-600 font-serif italic mt-1.5 leading-relaxed">
+                    "${item.context}"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right: Input and validation -->
+              <div class="flex items-center gap-2 shrink-0 pl-9 md:pl-0">
+                <input type="text" id="input-${item.id}"
+                       class="input-field w-36 sm:w-44 text-sm px-3 py-1.5 font-mono"
+                       placeholder="plural form"
+                       autocomplete="off"
+                       spellcheck="false"
+                       oninput="clearFeedback(${item.id})"
+                       onkeydown="if(event.key==='Enter') checkPlural(${item.id})">
+                <button onclick="checkPlural(${item.id})"
+                        class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                  Check
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Feedback slot -->
+            <div id="feedback-${item.id}" class="hidden mt-3 pt-2.5 border-t border-slate-100 text-xs sm:text-sm"></div>
+          </div>
+        `;
+      }).join('');
+
+      // Restore inputs and feedback for visible items
+      filtered.forEach(item => {
+        const input = document.getElementById(`input-${item.id}`);
+        if (!input) return;
+        if (state[item.id] !== undefined) {
+          checkPlural(item.id, false);
+        }
+      });
+    }
+
+    function clearFeedback(id) {
+      const fb = document.getElementById(`feedback-${id}`);
+      if (fb) fb.classList.add('hidden');
+      const input = document.getElementById(`input-${id}`);
+      if (input) {
+        input.classList.remove('correct', 'incorrect');
+      }
+    }
+
+    function checkPlural(id, countInStats = true) {
+      const item = pluralData.find(p => p.id === id);
+      if (!item) return;
+
+      const input = document.getElementById(`input-${id}`);
+      const fb = document.getElementById(`feedback-${id}`);
+      if (!input || !fb) return;
+
+      const userVal = input.value.trim().toLowerCase();
+      fb.classList.remove('hidden');
+
+      const isCorrect = item.plural.some(p => p.toLowerCase() === userVal);
+
+      if (isCorrect) {
+        input.classList.remove('incorrect');
+        input.classList.add('correct');
+        fb.innerHTML = `
+          <div class="flex items-baseline gap-2 text-emerald-800">
+            <span class="font-bold text-xs uppercase bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded">Correct</span>
+            <span><strong>${item.plural.join('</strong> or <strong>')}</strong>. ${item.rule}</span>
+          </div>
+        `;
+        if (countInStats) state[id] = true;
+      } else {
+        input.classList.remove('correct');
+        input.classList.add('incorrect');
+        fb.innerHTML = `
+          <div class="flex items-baseline gap-2 text-red-700">
+            <span class="font-bold text-xs uppercase bg-red-100 text-red-800 px-1.5 py-0.5 rounded">Incorrect</span>
+            <span>Correct plural: <strong class="font-mono font-bold">${item.plural.join(' / ')}</strong>. ${item.rule}</span>
+          </div>
+        `;
+        if (countInStats) state[id] = false;
+      }
+
+      updateScore();
+    }
+
+    function checkAllAnswers() {
+      pluralData.forEach(item => {
+        checkPlural(item.id, true);
+      });
+    }
+
+    function resetWorksheet() {
+      pluralData.forEach(item => {
+        const input = document.getElementById(`input-${item.id}`);
+        if (input) {
+          input.value = '';
+          input.className = 'input-field w-36 sm:w-44 text-sm px-3 py-1.5 font-mono';
+        }
+        clearFeedback(item.id);
+      });
+      for (let k in state) delete state[k];
+      updateScore();
+    }
+
+    function revealAllSolutions() {
+      pluralData.forEach(item => {
+        const input = document.getElementById(`input-${item.id}`);
+        if (input) {
+          input.value = item.plural[0];
+          input.className = 'input-field w-36 sm:w-44 text-sm px-3 py-1.5 font-mono correct';
+        }
+        const fb = document.getElementById(`feedback-${item.id}`);
+        if (fb) {
+          fb.classList.remove('hidden');
+          fb.innerHTML = `
+            <div class="flex items-baseline gap-2 text-blue-900">
+              <span class="font-bold text-xs uppercase bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded">Solution</span>
+              <span><strong>${item.plural.join('</strong> or <strong>')}</strong>. ${item.rule}</span>
+            </div>
+          `;
+        }
+        state[item.id] = true;
+      });
+      updateScore();
+    }
+
+    function filterItems(category) {
+      activeFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-slate-200', 'text-slate-800');
+        btn.classList.add('text-slate-600');
+      });
+      const activeBtn = document.getElementById(`filter-${category}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-slate-200', 'text-slate-800');
+        activeBtn.classList.remove('text-slate-600');
+      }
+      renderPracticeItems();
+    }
+
+    function updateScore() {
+      let correctCount = 0;
+      let totalAttempted = 0;
+      for (let i = 1; i <= pluralData.length; i++) {
+        if (state[i] !== undefined) {
+          totalAttempted++;
+          if (state[i] === true) correctCount++;
+        }
+      }
+      document.getElementById('score-display').textContent = `${correctCount} / ${pluralData.length}`;
+      const pct = Math.round((totalAttempted / pluralData.length) * 100);
+      document.getElementById('completion-percentage').textContent = `${pct}%`;
+    }
+
+    // Initialize application on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderPracticeItems();
+      updateScore();
+    });
+  </script>
+</body>
+</html>
