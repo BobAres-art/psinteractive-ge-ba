@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expressing Purpose & Verb Patterns: To vs. For</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#fdf8f6',
+              100: '#f2e8e5',
+              500: '#e06d53',
+              600: '#c8533a',
+              700: '#a33e29'
+            },
+            tealAccent: {
+              500: '#0d9488',
+              600: '#0f766e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #faf7f5;
+      color: #2e3440;
+    }
+    .smooth-scroll {
+      scroll-behavior: smooth;
+    }
+    .draggable-chip {
+      touch-action: none;
+      user-select: none;
+      cursor: grab;
+    }
+    .draggable-chip:active {
+      cursor: grabbing;
+    }
+    .drop-zone {
+      transition: all 0.2s ease;
+    }
+    .drop-zone.drag-over {
+      border-color: #0d9488;
+      background-color: #f0fdf4;
+      transform: scale(1.02);
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1ede9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-slate-800 smooth-scroll">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-white font-display font-bold text-xl shadow-md">
+          →
+        </div>
+        <div>
+          <h1 class="font-display font-bold text-lg sm:text-xl text-slate-900 leading-tight">
+            Reason, Purpose & Verbs <span class="text-orange-600 font-semibold">"To" vs "For"</span>
+          </h1>
+          <p class="text-xs text-slate-500 tracking-wide font-medium">Designed by Babak Alaee</p>
+        </div>
+      </div>
+
+      <!-- Quick Nav Jump Links -->
+      <nav class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-600">
+        <a href="#story" class="px-2.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-orange-50 transition">1. Story</a>
+        <a href="#rules" class="px-2.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-orange-50 transition">2. Rules</a>
+        <a href="#verb-patterns" class="px-2.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-orange-50 transition">3. Verb Patterns</a>
+        <a href="#exercises" class="px-2.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-orange-50 transition">4. Practice</a>
+        <div class="ml-2 pl-3 border-l border-slate-200 flex items-center gap-1.5">
+          <span class="text-xs font-semibold text-slate-400">Score:</span>
+          <span id="navScore" class="bg-orange-100 text-orange-800 font-bold px-2 py-0.5 rounded-full text-xs">0 / 10</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-12">
+    <section class="text-center max-w-3xl mx-auto pt-4">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-800 mb-3">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"/></svg>
+        Stating Purpose and Verb Patterns
+      </span>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Why did you go? What do you want to do?
+      </h2>
+      <p class="mt-3 text-slate-600 text-base sm:text-lg">
+        Read Liam's Saturday story below. Notice how he explains his actions, then answer the questions to discover the rules yourself!
+      </p>
+    </section>
+
+    <section id="story" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-orange-100/60 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-orange-600">Stage 1: Exposure & Discovery</span>
+          <h3 class="font-display text-2xl font-bold text-slate-900">Liam's Busy Saturday: The Secret Birthday Surprise</h3>
+        </div>
+        <span class="text-xs bg-slate-100 text-slate-600 font-medium px-3 py-1.5 rounded-full hidden sm:inline-block">
+          📖 Read the story and look at his reasons
+        </span>
+      </div>
+
+      <!-- Illustrated Story Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        
+        <!-- Story Card 1 -->
+        <div class="bg-amber-50/50 rounded-2xl overflow-hidden border border-amber-100 flex flex-col h-full">
+          <img 
+            src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=80" 
+            alt="Farmers market with fresh fruit" 
+            class="h-44 w-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/600x400/ea580c/ffffff?text=Farmers+Market'"
+          />
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <p class="text-slate-700 leading-relaxed text-sm">
+              Early Saturday morning, Liam woke up at 7:00 AM <span class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">to clean</span> the apartment. His sister Mia was turning twenty-five, and he planned a surprise gathering. At 8:30 AM, Liam walked down to the farmers market <span class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">to buy</span> some fresh berries and mint leaves. He also stopped at the corner bakery for bread and warm cinnamon buns.
+            </p>
+          </div>
+        </div>
+
+        <!-- Story Card 2 -->
+        <div class="bg-teal-50/40 rounded-2xl overflow-hidden border border-teal-100 flex flex-col h-full">
+          <img 
+            src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80" 
+            alt="Party decorations and gift boxes" 
+            class="h-44 w-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/600x400/0d9488/ffffff?text=Craft+Store'"
+          />
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <p class="text-slate-700 leading-relaxed text-sm">
+              Next, he took the bus into town. He visited a craft shop for decorations and yellow ribbons. While there, he bought a small glass picture frame <span class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">to hold</span> their favorite childhood photograph. On his way home, he called his cousin Carlos <span class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">to ask</span> for help with the music playlist.
+            </p>
+          </div>
+        </div>
+
+        <!-- Story Card 3 -->
+        <div class="bg-rose-50/40 rounded-2xl overflow-hidden border border-rose-100 flex flex-col h-full">
+          <img 
+            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=700&q=80" 
+            alt="Friends laughing around dinner table" 
+            class="h-44 w-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/600x400/e11d48/ffffff?text=The+Surprise'"
+          />
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <p class="text-slate-700 leading-relaxed text-sm">
+              By 1:00 PM, Liam was exhausted. He sat down on the sofa for a quick rest and drank a tall glass of iced tea <span class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">to cool down</span>. When Mia opened the door at 4:00 PM, all her friends were waiting in the living room for the surprise! Mia smiled and said it was the best day ever.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-100 bg-slate-50/70 p-5 sm:p-6 rounded-2xl">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="font-display font-bold text-slate-800 text-base sm:text-lg">
+            🔍 Discovery Questions: Test Your Instincts
+          </h4>
+          <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full" id="discScoreBadge">0 / 6 answered</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-6">Choose the correct answer according to Liam's text, and observe the grammar behind it:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Discovery Q1 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="dq-card-1">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question 1</p>
+            <p class="text-sm font-semibold text-slate-800 mb-3">Why did Liam wake up early at 7:00 AM?</p>
+            <div class="space-y-2 text-xs">
+              <button onclick="answerDiscovery(1, 'a', true, 'Clean is an action (verb), so we use TO + clean!')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                A) to clean the apartment
+              </button>
+              <button onclick="answerDiscovery(1, 'b', false, 'We cannot use FOR with a base verb like clean.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                B) for clean the apartment
+              </button>
+              <button onclick="answerDiscovery(1, 'c', false, 'We never combine for + to clean.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                C) for to clean the apartment
+              </button>
+            </div>
+            <div id="dq-fb-1" class="hidden mt-2.5 text-xs font-semibold p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Discovery Q2 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="dq-card-2">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question 2</p>
+            <p class="text-sm font-semibold text-slate-800 mb-3">Why did Liam stop at the corner bakery?</p>
+            <div class="space-y-2 text-xs">
+              <button onclick="answerDiscovery(2, 'a', false, 'Bread is a thing (noun), so to bread sounds incomplete.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                A) to bread and buns
+              </button>
+              <button onclick="answerDiscovery(2, 'b', true, 'Bread is a noun (food/item), so we use FOR + bread!')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                B) for bread and warm cinnamon buns
+              </button>
+              <button onclick="answerDiscovery(2, 'c', false, 'At is a location preposition, not for stating this purpose.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                C) at bread and warm cinnamon buns
+              </button>
+            </div>
+            <div id="dq-fb-2" class="hidden mt-2.5 text-xs font-semibold p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Discovery Q3 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="dq-card-3">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question 3</p>
+            <p class="text-sm font-semibold text-slate-800 mb-3">Why did he buy a glass picture frame?</p>
+            <div class="space-y-2 text-xs">
+              <button onclick="answerDiscovery(3, 'a', true, 'Hold is an action (verb), so we say TO + hold.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                A) to hold their favorite photograph
+              </button>
+              <button onclick="answerDiscovery(3, 'b', false, 'Never say for + base verb.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                B) for hold their favorite photograph
+              </button>
+              <button onclick="answerDiscovery(3, 'c', false, 'Incorrect form.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                C) to photograph holding
+              </button>
+            </div>
+            <div id="dq-fb-3" class="hidden mt-2.5 text-xs font-semibold p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Discovery Q4 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="dq-card-4">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question 4</p>
+            <p class="text-sm font-semibold text-slate-800 mb-3">Why did he go to the craft shop?</p>
+            <div class="space-y-2 text-xs">
+              <button onclick="answerDiscovery(4, 'a', false, 'Decorations is a noun, so to decorations is incorrect.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                A) to decorations and yellow ribbons
+              </button>
+              <button onclick="answerDiscovery(4, 'b', true, 'Decorations is a plural noun (items), so we use FOR + decorations!')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                B) for decorations and yellow ribbons
+              </button>
+              <button onclick="answerDiscovery(4, 'c', false, 'With indicates accompaniment, not Liam\\'s direct purpose here.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                C) with decorations and yellow ribbons
+              </button>
+            </div>
+            <div id="dq-fb-4" class="hidden mt-2.5 text-xs font-semibold p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Discovery Q5 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="dq-card-5">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question 5</p>
+            <p class="text-sm font-semibold text-slate-800 mb-3">Why did Liam phone Carlos?</p>
+            <div class="space-y-2 text-xs">
+              <button onclick="answerDiscovery(5, 'a', false, 'Ask is a verb, so for ask is not correct.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                A) for ask for help with the music
+              </button>
+              <button onclick="answerDiscovery(5, 'b', true, 'Ask is a verb, so Liam called TO + ask.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                B) to ask for help with the music
+              </button>
+              <button onclick="answerDiscovery(5, 'c', false, 'Incomplete pattern.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                C) help to asking the music
+              </button>
+            </div>
+            <div id="dq-fb-5" class="hidden mt-2.5 text-xs font-semibold p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Discovery Q6 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm" id="dq-card-6">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question 6</p>
+            <p class="text-sm font-semibold text-slate-800 mb-3">Why did he sit down on the sofa?</p>
+            <div class="space-y-2 text-xs">
+              <button onclick="answerDiscovery(6, 'a', true, 'A quick rest is a noun phrase, so we say FOR + a quick rest!')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                A) for a quick rest
+              </button>
+              <button onclick="answerDiscovery(6, 'b', false, 'A rest has the article a, showing it is a noun phrase.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                B) to a quick rest
+              </button>
+              <button onclick="answerDiscovery(6, 'c', false, 'Incorrect order.')" class="dq-opt w-full text-left p-2.5 rounded-lg border border-slate-200 hover:border-slate-400 transition font-medium">
+                C) for resting quickly
+              </button>
+            </div>
+            <div id="dq-fb-6" class="hidden mt-2.5 text-xs font-semibold p-2 rounded-lg"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 scroll-mt-20">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <span class="text-xs uppercase tracking-wider font-bold text-teal-600">Stage 2: The Grammar Rules</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Purpose: TO vs. FOR</h3>
+        <p class="text-slate-600 text-sm mt-1">Look closely at the word right after the preposition:</p>
+      </div>
+
+      <!-- Comparison Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- TO Card -->
+        <div class="relative bg-gradient-to-br from-orange-50/80 to-amber-50/30 rounded-2xl p-6 border-2 border-orange-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-orange-500 text-white">
+                Pattern A
+              </span>
+              <span class="text-xs font-semibold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">Action / Activity</span>
+            </div>
+            <h4 class="font-display text-2xl font-bold text-slate-900 mb-2">
+              TO + Base Verb
+            </h4>
+            <p class="text-sm text-slate-600 mb-4">
+              Use <strong class="text-orange-600">TO</strong> when your reason is an <strong>action or activity</strong>. Always follow with the basic dictionary form of the verb.
+            </p>
+            
+            <div class="space-y-2.5">
+              <div class="bg-white p-3 rounded-xl border border-orange-100 text-sm">
+                "I went to the kitchen <span class="font-bold text-orange-600">to get</span> a glass of water."
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-orange-100 text-sm">
+                "She called me <span class="font-bold text-orange-600">to invite</span> me to the party."
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-orange-100 text-sm">
+                "He wears running shoes <span class="font-bold text-orange-600">to run</span> in the park."
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 p-3 rounded-xl bg-orange-100/70 border border-orange-200 text-xs text-orange-900 font-medium">
+            ⚠️ <strong>Common Mistake:</strong> Never say <em>"for get"</em> or <em>"for to get"</em>. Use <strong>to get</strong>!
+          </div>
+        </div>
+
+        <!-- FOR Card -->
+        <div class="relative bg-gradient-to-br from-teal-50/80 to-emerald-50/30 rounded-2xl p-6 border-2 border-teal-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-teal-600 text-white">
+                Pattern B
+              </span>
+              <span class="text-xs font-semibold text-teal-700 bg-teal-100 px-2 py-0.5 rounded">Thing / Person / Event</span>
+            </div>
+            <h4 class="font-display text-2xl font-bold text-slate-900 mb-2">
+              FOR + Noun (Thing)
+            </h4>
+            <p class="text-sm text-slate-600 mb-4">
+              Use <strong class="text-teal-600">FOR</strong> when your reason is a <strong>noun</strong> (a thing, an item, an event, or a person).
+            </p>
+            
+            <div class="space-y-2.5">
+              <div class="bg-white p-3 rounded-xl border border-teal-100 text-sm">
+                "I went to the kitchen <span class="font-bold text-teal-600">for a glass</span> of water."
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-teal-100 text-sm">
+                "We met at 1:00 PM <span class="font-bold text-teal-600">for lunch</span>."
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-teal-100 text-sm">
+                "Liam bought balloons <span class="font-bold text-teal-600">for the celebration</span>."
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 p-3 rounded-xl bg-teal-100/70 border border-teal-200 text-xs text-teal-900 font-medium">
+            💡 <strong>Quick Test:</strong> Is the next word an action you do? Use <strong>TO</strong>. Is it an object or event? Use <strong>FOR</strong>!
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-8 bg-slate-900 text-white rounded-2xl p-6 sm:p-7 shadow">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div>
+            <h4 class="font-display text-lg font-bold text-amber-300">Transformation Explorer</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Notice how the same idea can be said with either TO or FOR by changing the grammar:</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="prevTransform()" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-bold transition">← Prev</button>
+            <span id="transIndex" class="text-xs text-slate-400 font-mono">1 / 4</span>
+            <button onclick="nextTransform()" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-bold transition">Next →</button>
+          </div>
+        </div>
+
+        <div id="transformBox" class="bg-slate-800/80 rounded-xl p-4 sm:p-5 border border-slate-700 transition duration-300">
+          <!-- Dynamic transformation content -->
+        </div>
+      </div>
+    </section>
+
+    <section id="verb-patterns" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-indigo-100 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-indigo-600">Stage 3: Essential Grammar Partner</span>
+          <h3 class="font-display text-2xl font-bold text-slate-900">Verb Patterns with Simple Verbs</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5">When two verbs meet in a sentence, which form comes second?</p>
+        </div>
+        <span class="text-xs bg-indigo-50 text-indigo-700 font-semibold px-3 py-1.5 rounded-full hidden sm:inline-block">
+          want • need • enjoy • decide
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Group 1: Verbs followed by TO + Verb -->
+        <div class="p-5 rounded-2xl bg-indigo-50/50 border border-indigo-200">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+            <h4 class="font-bold text-slate-900 text-base">Verbs followed by: <span class="text-indigo-600">TO + Verb</span></h4>
+          </div>
+          <p class="text-xs text-slate-600 mb-4">
+            These simple verbs express a wish, plan, or future action:
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="bg-white p-2.5 rounded-xl border border-indigo-100 flex items-center justify-between">
+              <div><strong>want</strong> + to + verb</div>
+              <span class="text-slate-600">"I <strong class="text-indigo-600">want to eat</strong> some pasta."</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-indigo-100 flex items-center justify-between">
+              <div><strong>need</strong> + to + verb</div>
+              <span class="text-slate-600">"She <strong class="text-indigo-600">needs to sleep</strong> early."</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-indigo-100 flex items-center justify-between">
+              <div><strong>decide</strong> + to + verb</div>
+              <span class="text-slate-600">"We <strong class="text-indigo-600">decided to stay</strong> home."</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-indigo-100 flex items-center justify-between">
+              <div><strong>hope</strong> + to + verb</div>
+              <span class="text-slate-600">"They <strong class="text-indigo-600">hope to visit</strong> soon."</span>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] text-indigo-900 font-medium">
+            ⚠️ Never say: <em>"I want eating"</em> or <em>"I want for eat"</em>. Always use <strong>want to + verb</strong>!
+          </div>
+        </div>
+
+        <!-- Group 2: Verbs followed by Verb + -ING -->
+        <div class="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+            <h4 class="font-bold text-slate-900 text-base">Verbs followed by: <span class="text-emerald-700">Verb + -ING</span></h4>
+          </div>
+          <p class="text-xs text-slate-600 mb-4">
+            These simple verbs describe hobbies, activities, or general experiences:
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="bg-white p-2.5 rounded-xl border border-emerald-100 flex items-center justify-between">
+              <div><strong>enjoy</strong> + -ing</div>
+              <span class="text-slate-600">"I <strong class="text-emerald-600">enjoy cooking</strong> dinner."</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-emerald-100 flex items-center justify-between">
+              <div><strong>finish</strong> + -ing</div>
+              <span class="text-slate-600">"He <strong class="text-emerald-600">finished doing</strong> his homework."</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-emerald-100 flex items-center justify-between">
+              <div><strong>mind</strong> + -ing</div>
+              <span class="text-slate-600">"I don't <strong class="text-emerald-600">mind waiting</strong>."</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-emerald-100 flex items-center justify-between">
+              <div><strong>like / love</strong> + -ing</div>
+              <span class="text-slate-600">"They <strong class="text-emerald-600">love swimming</strong> in summer."</span>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] text-emerald-900 font-medium">
+            ⚠️ Never say: <em>"I enjoy to read"</em>. Always say <strong>I enjoy reading</strong>!
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Summary Matrix -->
+      <div class="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Purpose vs. Verb Patterns at a Glance:</h5>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+            <span class="font-bold text-orange-600 block">Stating Purpose (Action):</span>
+            "I went out <strong class="text-slate-800">to buy</strong> milk."
+          </div>
+          <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+            <span class="font-bold text-indigo-600 block">Wish / Need (Verb Pattern):</span>
+            "I <strong class="text-slate-800">want to buy</strong> milk."
+          </div>
+          <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+            <span class="font-bold text-emerald-600 block">Enjoyment / Hobby:</span>
+            "I <strong class="text-slate-800">enjoy buying</strong> fresh food."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercises" class="scroll-mt-20">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-orange-600">Stage 4: 10 Practice Challenges</span>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Hands-On Practice</h3>
+          <p class="text-sm text-slate-600">Covers purpose prepositions (to/for) and verb patterns (want to, enjoy -ing)!</p>
+        </div>
+        <div class="bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+          <div>
+            <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Completed Correctly</div>
+            <div class="text-2xl font-display font-extrabold text-slate-800"><span id="mainScore">0</span> / 10</div>
+          </div>
+          <div class="w-12 h-12 rounded-full border-4 border-slate-100 border-t-orange-500 flex items-center justify-center font-bold text-xs text-orange-600" id="progressRing">
+            0%
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- EXERCISE 1: Drag & Drop Word Chips -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex1-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-orange-700 bg-orange-100 px-2.5 py-0.5 rounded-full">Exercise 1 • Drag & Drop</span>
+            <span id="ex1-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Drag the correct chip ("to" or "for") into each gap:</h4>
+          <p class="text-xs text-slate-500 mb-4">You can drag the chips or tap a gap then tap a chip.</p>
+
+          <!-- Chips pool -->
+          <div class="flex flex-wrap items-center gap-3 p-3 bg-slate-50 rounded-xl mb-4 border border-slate-200">
+            <span class="text-xs font-semibold text-slate-500">Chips:</span>
+            <div draggable="true" ondragstart="handleDragStart(event)" class="draggable-chip px-4 py-1.5 rounded-lg bg-orange-500 text-white font-bold text-sm shadow hover:bg-orange-600 transition" data-word="to">to</div>
+            <div draggable="true" ondragstart="handleDragStart(event)" class="draggable-chip px-4 py-1.5 rounded-lg bg-teal-600 text-white font-bold text-sm shadow hover:bg-teal-700 transition" data-word="for">for</div>
+            <div draggable="true" ondragstart="handleDragStart(event)" class="draggable-chip px-4 py-1.5 rounded-lg bg-orange-500 text-white font-bold text-sm shadow hover:bg-orange-600 transition" data-word="to">to</div>
+            <div draggable="true" ondragstart="handleDragStart(event)" class="draggable-chip px-4 py-1.5 rounded-lg bg-teal-600 text-white font-bold text-sm shadow hover:bg-teal-700 transition" data-word="for">for</div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-3 bg-amber-50/40 rounded-xl border border-amber-100 text-sm text-slate-800 flex items-center flex-wrap gap-2">
+              <span>1. I used Google Maps</span>
+              <span class="drop-zone inline-flex items-center justify-center min-w-[70px] h-8 px-2 rounded-lg border-2 border-dashed border-slate-300 bg-white font-bold text-slate-800 text-sm" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'ex1-g1')" id="ex1-g1" data-expected="to">___</span>
+              <span>find the train station.</span>
+            </div>
+
+            <div class="p-3 bg-teal-50/30 rounded-xl border border-teal-100 text-sm text-slate-800 flex items-center flex-wrap gap-2">
+              <span>2. She went to the cafe</span>
+              <span class="drop-zone inline-flex items-center justify-center min-w-[70px] h-8 px-2 rounded-lg border-2 border-dashed border-slate-300 bg-white font-bold text-slate-800 text-sm" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'ex1-g2')" id="ex1-g2" data-expected="for">___</span>
+              <span>a hot cup of chocolate.</span>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center gap-3">
+            <button onclick="checkExercise1()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Answers</button>
+            <button onclick="resetExercise1()" class="px-3 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-200 transition">Reset</button>
+            <div id="ex1-feedback" class="text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- EXERCISE 2: Sentence Sorter -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex2-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-full">Exercise 2 • Card Sorter</span>
+            <span id="ex2-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Classify the sentences: Which preposition fits?</h4>
+          <p class="text-xs text-slate-500 mb-4">Click either "Needs TO" or "Needs FOR" on each card.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="ex2-cards">
+            <!-- Item 1 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between" id="ex2-card-1">
+              <p class="text-sm font-medium text-slate-800 mb-3">"I took an umbrella ___ stay dry in the rain."</p>
+              <div class="flex gap-2">
+                <button onclick="selectSort(1, 'to')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-to hover:bg-orange-50 transition border-slate-300">Needs TO</button>
+                <button onclick="selectSort(1, 'for')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-for hover:bg-teal-50 transition border-slate-300">Needs FOR</button>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between" id="ex2-card-2">
+              <p class="text-sm font-medium text-slate-800 mb-3">"They stopped at a gas station ___ some snacks."</p>
+              <div class="flex gap-2">
+                <button onclick="selectSort(2, 'to')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-to hover:bg-orange-50 transition border-slate-300">Needs TO</button>
+                <button onclick="selectSort(2, 'for')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-for hover:bg-teal-50 transition border-slate-300">Needs FOR</button>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between" id="ex2-card-3">
+              <p class="text-sm font-medium text-slate-800 mb-3">"Maria saved money ___ buy a new bicycle."</p>
+              <div class="flex gap-2">
+                <button onclick="selectSort(3, 'to')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-to hover:bg-orange-50 transition border-slate-300">Needs TO</button>
+                <button onclick="selectSort(3, 'for')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-for hover:bg-teal-50 transition border-slate-300">Needs FOR</button>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between" id="ex2-card-4">
+              <p class="text-sm font-medium text-slate-800 mb-3">"David went to London ___ an important interview."</p>
+              <div class="flex gap-2">
+                <button onclick="selectSort(4, 'to')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-to hover:bg-orange-50 transition border-slate-300">Needs TO</button>
+                <button onclick="selectSort(4, 'for')" class="flex-1 py-1.5 rounded-lg border text-xs font-bold sort-btn-for hover:bg-teal-50 transition border-slate-300">Needs FOR</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center gap-3">
+            <button onclick="checkExercise2()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Sorting</button>
+            <div id="ex2-feedback" class="text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- EXERCISE 3: Verb Pattern Multiple Choice (want / enjoy) -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex3-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded-full">Exercise 3 • Verb Patterns: Want & Enjoy</span>
+            <span id="ex3-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Which sentence follows the correct English verb pattern?</h4>
+          <p class="text-xs text-slate-500 mb-4">Look closely at how verbs like 'want' and 'enjoy' connect with the second verb.</p>
+
+          <div class="space-y-2.5 max-w-xl">
+            <button onclick="checkExercise3('a')" id="ex3-btn-a" class="w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-slate-400 transition flex items-center justify-between">
+              <span class="text-sm font-medium text-slate-800">A) "On weekends, I <strong>enjoy to cook</strong> Italian food."</span>
+            </button>
+
+            <button onclick="checkExercise3('b')" id="ex3-btn-b" class="w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-slate-400 transition flex items-center justify-between">
+              <span class="text-sm font-medium text-slate-800">B) "On weekends, I <strong>enjoy cooking</strong> Italian food."</span>
+            </button>
+
+            <button onclick="checkExercise3('c')" id="ex3-btn-c" class="w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-slate-400 transition flex items-center justify-between">
+              <span class="text-sm font-medium text-slate-800">C) "On weekends, I <strong>want cooking</strong> Italian food."</span>
+            </button>
+          </div>
+
+          <div id="ex3-feedback" class="mt-3 text-xs font-semibold"></div>
+        </div>
+
+        <!-- EXERCISE 4: Fast Typing Fill -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex4-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded-full">Exercise 4 • Fast Typing Fill</span>
+            <span id="ex4-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Type "to" or "for" in the blank box:</h4>
+          <p class="text-xs text-slate-500 mb-4">Press Enter or click check when you finish.</p>
+
+          <div class="space-y-3">
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 text-sm text-slate-800">
+              <span>"Emily went to the post office</span>
+              <input type="text" id="ex4-in-1" maxlength="3" class="w-16 h-8 px-2 text-center font-bold text-slate-800 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 lowercase" placeholder="to / for" />
+              <span>pick up a package from her aunt."</span>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 text-sm text-slate-800">
+              <span>"They invited everyone over</span>
+              <input type="text" id="ex4-in-2" maxlength="3" class="w-16 h-8 px-2 text-center font-bold text-slate-800 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 lowercase" placeholder="to / for" />
+              <span>dinner at eight o'clock."</span>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center gap-3">
+            <button onclick="checkExercise4()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Answers</button>
+            <div id="ex4-feedback" class="text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- EXERCISE 5: Error Detective (FIXED - No giveaway styling!) -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex5-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-red-700 bg-red-100 px-2.5 py-0.5 rounded-full">Exercise 5 • Error Detective</span>
+            <span id="ex5-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Click on the ONE incorrect part of this sentence:</h4>
+          <p class="text-xs text-slate-500 mb-4">All three sections look normal. Find the error that breaks the purpose rule!</p>
+
+          <!-- Completely neutral buttons with identical styling -->
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm sm:text-base flex flex-wrap items-center gap-2">
+            <button onclick="clickErrorSection(1)" id="ex5-part-1" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium text-slate-800 transition">
+              1. Mark left work early
+            </button>
+            <button onclick="clickErrorSection(2)" id="ex5-part-2" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium text-slate-800 transition">
+              2. for pick up
+            </button>
+            <button onclick="clickErrorSection(3)" id="ex5-part-3" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium text-slate-800 transition">
+              3. his children from school.
+            </button>
+          </div>
+
+          <div id="ex5-explanation" class="mt-3 text-xs hidden p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 6: Match the Halves -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex6-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2.5 py-0.5 rounded-full">Exercise 6 • Match the Halves</span>
+            <span id="ex6-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Connect each beginning to its logical purpose:</h4>
+          <p class="text-xs text-slate-500 mb-4">Click a Left card, then click its matching Right card.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Left Column -->
+            <div class="space-y-2.5" id="ex6-left-col">
+              <button onclick="selectMatchLeft(1)" id="ex6-l-1" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition">
+                A. "She opened YouTube..."
+              </button>
+              <button onclick="selectMatchLeft(2)" id="ex6-l-2" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition">
+                B. "They sat by the fireplace..."
+              </button>
+              <button onclick="selectMatchLeft(3)" id="ex6-l-3" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition">
+                C. "We went to the Italian restaurant..."
+              </button>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-2.5" id="ex6-right-col">
+              <button onclick="selectMatchRight('pizza')" id="ex6-r-pizza" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition">
+                ...for a warm pizza.
+              </button>
+              <button onclick="selectMatchRight('learn')" id="ex6-r-learn" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition">
+                ...to learn how to bake bread.
+              </button>
+              <button onclick="selectMatchRight('warmth')" id="ex6-r-warmth" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition">
+                ...for some extra warmth.
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center justify-between">
+            <div id="ex6-feedback" class="text-xs font-semibold">Matches completed: <span id="ex6-match-count">0</span> / 3</div>
+            <button onclick="resetMatchExercise()" class="text-xs text-slate-500 underline hover:text-slate-800">Reset matching</button>
+          </div>
+        </div>
+
+        <!-- EXERCISE 7: Transformation Challenge -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex7-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full">Exercise 7 • Transformation Challenge</span>
+            <span id="ex7-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Convert this 'FOR' sentence into a 'TO' sentence:</h4>
+          <p class="text-xs text-slate-500 mb-3">Original: <span class="font-semibold text-slate-800">"We went to the shopping mall <span class="text-teal-600 underline font-semibold">for some new shoes</span>."</span></p>
+
+          <p class="text-sm font-medium text-slate-700 mb-2">Rewrite using an action verb:</p>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm flex flex-wrap items-center gap-2">
+            <span>"We went to the shopping mall</span>
+            <select id="ex7-select-1" class="h-8 px-2 rounded-lg border border-slate-300 font-bold bg-white text-xs">
+              <option value="">choose...</option>
+              <option value="to">to</option>
+              <option value="for">for</option>
+            </select>
+            <select id="ex7-select-2" class="h-8 px-2 rounded-lg border border-slate-300 font-bold bg-white text-xs">
+              <option value="">choose verb...</option>
+              <option value="buy">buy</option>
+              <option value="buying">buying</option>
+              <option value="bought">bought</option>
+            </select>
+            <span>some new shoes."</span>
+          </div>
+
+          <div class="mt-4 flex items-center gap-3">
+            <button onclick="checkExercise7()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Transformation</button>
+            <div id="ex7-feedback" class="text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- EXERCISE 8: Visual Clue Quiz (Purpose & Need) -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex8-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded-full">Exercise 8 • Visual Clue & Need to</span>
+            <span id="ex8-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Look at the photo and pick the natural phrase:</h4>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3">
+            <div class="sm:col-span-1 rounded-xl overflow-hidden border border-slate-200">
+              <img 
+                src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" 
+                alt="Person drinking coffee at sunrise" 
+                class="w-full h-36 object-cover"
+                loading="lazy"
+                onerror="this.src='https://placehold.co/400x300/4f46e5/ffffff?text=Coffee+Break'"
+              />
+            </div>
+            <div class="sm:col-span-2 flex flex-col justify-center space-y-2">
+              <p class="text-xs text-slate-500">Sentence prompt: <span class="font-semibold text-slate-800">"Alex felt tired and decided __________."</span></p>
+              
+              <button onclick="checkExercise8('a')" id="ex8-opt-a" class="w-full text-left p-2.5 rounded-xl border border-slate-200 hover:border-slate-400 text-xs font-medium transition">
+                A) ...to take a coffee break.
+              </button>
+              <button onclick="checkExercise8('b')" id="ex8-opt-b" class="w-full text-left p-2.5 rounded-xl border border-slate-200 hover:border-slate-400 text-xs font-medium transition">
+                B) ...for take a coffee break.
+              </button>
+              <button onclick="checkExercise8('c')" id="ex8-opt-c" class="w-full text-left p-2.5 rounded-xl border border-slate-200 hover:border-slate-400 text-xs font-medium transition">
+                C) ...decided coffee break taking.
+              </button>
+            </div>
+          </div>
+
+          <div id="ex8-feedback" class="mt-3 text-xs font-semibold"></div>
+        </div>
+
+        <!-- EXERCISE 9: Conversation Bites (Want to & Purpose) -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex9-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-pink-700 bg-pink-100 px-2.5 py-0.5 rounded-full">Exercise 9 • Conversation: Want to</span>
+            <span id="ex9-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Complete the everyday chat:</h4>
+          
+          <div class="space-y-3 max-w-lg mt-3">
+            <!-- Bubble 1 -->
+            <div class="flex items-start gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">A</div>
+              <div class="bg-slate-100 text-slate-800 p-3 rounded-2xl rounded-tl-none text-xs">
+                "Are you going to the library again today?"
+              </div>
+            </div>
+
+            <!-- Bubble 2 -->
+            <div class="flex items-start gap-2.5 justify-end">
+              <div class="bg-orange-50 text-slate-900 border border-orange-200 p-3 rounded-2xl rounded-tr-none text-xs space-y-2">
+                <p>"Yes, I <span class="font-bold underline text-indigo-700">want</span> <span class="font-bold underline text-orange-700">_______</span> study for my driver's test in a quiet room!"</p>
+                <div class="flex gap-2">
+                  <button onclick="checkExercise9('to')" id="ex9-btn-to" class="px-3 py-1 bg-white border border-orange-300 rounded-lg font-bold text-xs hover:bg-orange-100 transition">to</button>
+                  <button onclick="checkExercise9('for')" id="ex9-btn-for" class="px-3 py-1 bg-white border border-slate-300 rounded-lg font-bold text-xs hover:bg-slate-100 transition">for</button>
+                </div>
+              </div>
+              <div class="w-7 h-7 rounded-full bg-orange-200 flex items-center justify-center text-xs font-bold text-orange-800">B</div>
+            </div>
+          </div>
+
+          <div id="ex9-feedback" class="mt-3 text-xs font-semibold"></div>
+        </div>
+
+        <!-- EXERCISE 10: Sentence Builder (Verb Pattern + Purpose) -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" id="ex10-container">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Exercise 10 • Sentence Builder</span>
+            <span id="ex10-status" class="text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <h4 class="font-semibold text-slate-900 text-base mb-1">Tap the word blocks in the correct order:</h4>
+          <p class="text-xs text-slate-500 mb-3">Form a meaningful sentence stating the purpose.</p>
+
+          <!-- Constructed Sentence Area -->
+          <div class="min-h-[50px] p-3 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/40 flex flex-wrap items-center gap-2 mb-3" id="ex10-slot">
+            <span class="text-xs text-slate-400 italic" id="ex10-placeholder">Tap words below to arrange your sentence here...</span>
+          </div>
+
+          <!-- Word Blocks Pool -->
+          <div class="flex flex-wrap gap-2 mb-4" id="ex10-pool">
+            <!-- Will be dynamically populated for shuffling -->
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="checkExercise10()" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">Check Sentence</button>
+            <button onclick="resetExercise10()" class="px-3 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-200 transition">Clear</button>
+            <div id="ex10-feedback" class="text-xs font-semibold"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-tr from-slate-900 via-slate-800 to-amber-950 text-white rounded-3xl p-8 sm:p-10 shadow-lg text-center relative overflow-hidden">
+      <div class="max-w-xl mx-auto relative z-10 space-y-4">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+          Rule Mastery Summary
+        </span>
+        <h3 class="font-display text-3xl font-extrabold tracking-tight">Express your reasons with confidence!</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          • <strong class="text-orange-400">TO</strong> + base verb for actions (<em class="text-white">to study, to meet</em>)<br>
+          • <strong class="text-teal-300">FOR</strong> + noun for items or events (<em class="text-white">for lunch, for a rest</em>)<br>
+          • <strong class="text-indigo-300">want / need / decide</strong> + <strong class="text-white">TO + verb</strong><br>
+          • <strong class="text-emerald-300">enjoy / finish</strong> + <strong class="text-white">verb-ING</strong>
+        </p>
+
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="triggerConfetti()" class="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-xl text-sm shadow hover:opacity-95 transition">
+            🎉 Celebrate Progress
+          </button>
+          <a href="#rules" class="px-5 py-2.5 rounded-xl border border-slate-600 text-xs font-semibold hover:bg-slate-800 text-slate-200 transition">
+            Review Rules
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-6 mt-16 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>Mastering Purpose Prepositions & Verb Patterns</div>
+      <div class="font-medium text-slate-600">Designed by Babak Alaee</div>
+    </div>
+  </footer>
+
+  <script>
+    const exerciseScores = {
+      ex1: false,
+      ex2: false,
+      ex3: false,
+      ex4: false,
+      ex5: false,
+      ex6: false,
+      ex7: false,
+      ex8: false,
+      ex9: false,
+      ex10: false
+    };
+
+    const discoveryAnswers = {};
+
+    function updateScoreDisplay() {
+      const completedCount = Object.values(exerciseScores).filter(Boolean).length;
+      document.getElementById('mainScore').textContent = completedCount;
+      document.getElementById('navScore').textContent = `${completedCount} / 10`;
+      
+      const pct = Math.round((completedCount / 10) * 100);
+      document.getElementById('progressRing').textContent = `${pct}%`;
+      
+      if (completedCount === 10) {
+        triggerConfetti();
+      }
+    }
+
+    function triggerConfetti() {
+      try {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      } catch (e) {
+        // Fallback
+      }
+    }
+
+    function answerDiscovery(qNum, choice, isCorrect, explanation) {
+      const card = document.getElementById(`dq-card-${qNum}`);
+      const fb = document.getElementById(`dq-fb-${qNum}`);
+      
+      // Reset button styles in this card
+      card.querySelectorAll('.dq-opt').forEach(btn => {
+        btn.classList.remove('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'bg-red-50', 'border-red-400', 'text-red-900');
+      });
+
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        fb.className = 'mt-2.5 text-xs font-semibold p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200';
+        fb.innerHTML = `✓ <strong>Correct!</strong> ${explanation}`;
+        discoveryAnswers[qNum] = true;
+      } else {
+        fb.className = 'mt-2.5 text-xs font-semibold p-2 rounded-lg bg-red-50 text-red-800 border border-red-200';
+        fb.innerHTML = `✕ <strong>Not quite:</strong> ${explanation}`;
+      }
+
+      const totalAnswered = Object.keys(discoveryAnswers).length;
+      document.getElementById('discScoreBadge').textContent = `${totalAnswered} / 6 correct`;
+    }
+
+    const transformations = [
+      {
+        to: "I stopped at the bakery <span class='text-orange-400 font-bold'>to buy</span> some fresh bread.",
+        forSentence: "I stopped at the bakery <span class='text-teal-300 font-bold'>for</span> some fresh bread.",
+        note: "With 'to', we state the action (buy). With 'for', we state the item directly (bread)."
+      },
+      {
+        to: "We went to the stadium <span class='text-orange-400 font-bold'>to watch</span> the football match.",
+        forSentence: "We went to the stadium <span class='text-teal-300 font-bold'>for</span> the football match.",
+        note: "Both express the same purpose! 'Watch' is the verb; 'the football match' is the noun event."
+      },
+      {
+        to: "She sat down on the bench <span class='text-orange-400 font-bold'>to take</span> a short rest.",
+        forSentence: "She sat down on the bench <span class='text-teal-300 font-bold'>for</span> a short rest.",
+        note: "'A rest' is a noun phrase with an article; 'take' is the active verb."
+      },
+      {
+        to: "He called his teacher <span class='text-orange-400 font-bold'>to ask</span> for extra advice.",
+        forSentence: "He called his teacher <span class='text-teal-300 font-bold'>for</span> extra advice.",
+        note: "Never say 'for ask'! Always use 'to ask' or 'for advice'."
+      }
+    ];
+
+    let currentTransIndex = 0;
+
+    function renderTransform() {
+      const data = transformations[currentTransIndex];
+      const box = document.getElementById('transformBox');
+      document.getElementById('transIndex').textContent = `${currentTransIndex + 1} / ${transformations.length}`;
+
+      box.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-orange-500/30">
+            <span class="text-orange-400 font-semibold block text-[11px] mb-1">With TO + Base Verb:</span>
+            <p class="text-slate-100">${data.to}</p>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-teal-500/30">
+            <span class="text-teal-300 font-semibold block text-[11px] mb-1">With FOR + Noun:</span>
+            <p class="text-slate-100">${data.forSentence}</p>
+          </div>
+        </div>
+        <div class="mt-3 text-[11px] text-amber-200/90 font-medium italic">
+          💡 ${data.note}
+        </div>
+      `;
+    }
+
+    function nextTransform() {
+      currentTransIndex = (currentTransIndex + 1) % transformations.length;
+      renderTransform();
+    }
+
+    function prevTransform() {
+      currentTransIndex = (currentTransIndex - 1 + transformations.length) % transformations.length;
+      renderTransform();
+    }
+
+    let draggedWord = null;
+
+    function handleDragStart(e) {
+      draggedWord = e.target.getAttribute('data-word');
+      e.dataTransfer.setData('text/plain', draggedWord);
+    }
+
+    function allowDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    function handleDrop(e, targetId) {
+      e.preventDefault();
+      const dropZone = document.getElementById(targetId);
+      dropZone.classList.remove('drag-over');
+      const word = e.dataTransfer.getData('text/plain') || draggedWord;
+      if (word) {
+        dropZone.textContent = word;
+        dropZone.setAttribute('data-filled', word);
+      }
+    }
+
+    // Touch tap fallback for mobile devices
+    let activeMobileWord = null;
+    document.querySelectorAll('.draggable-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        activeMobileWord = chip.getAttribute('data-word');
+        chip.classList.add('ring-2', 'ring-slate-900');
+        setTimeout(() => chip.classList.remove('ring-2', 'ring-slate-900'), 1500);
+      });
+    });
+
+    document.querySelectorAll('.drop-zone').forEach(zone => {
+      zone.addEventListener('click', () => {
+        if (activeMobileWord) {
+          zone.textContent = activeMobileWord;
+          zone.setAttribute('data-filled', activeMobileWord);
+        }
+      });
+    });
+
+    function checkExercise1() {
+      const g1 = document.getElementById('ex1-g1');
+      const g2 = document.getElementById('ex1-g2');
+      const feedback = document.getElementById('ex1-feedback');
+      const status = document.getElementById('ex1-status');
+
+      const v1 = g1.getAttribute('data-filled');
+      const v2 = g2.getAttribute('data-filled');
+
+      if (v1 === 'to' && v2 === 'for') {
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        feedback.textContent = '✓ Perfect! "to find" (verb) and "for a hot cup" (noun).';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex1 = true;
+      } else {
+        feedback.className = 'text-xs font-semibold text-red-600';
+        feedback.textContent = 'Check again: "find" is a verb, while "a hot cup" is a noun phrase!';
+        exerciseScores.ex1 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    function resetExercise1() {
+      const g1 = document.getElementById('ex1-g1');
+      const g2 = document.getElementById('ex1-g2');
+      g1.textContent = '___';
+      g2.textContent = '___';
+      g1.removeAttribute('data-filled');
+      g2.removeAttribute('data-filled');
+      document.getElementById('ex1-feedback').textContent = '';
+      document.getElementById('ex1-status').textContent = 'Not attempted';
+      document.getElementById('ex1-status').className = 'text-xs font-semibold text-slate-400';
+      exerciseScores.ex1 = false;
+      updateScoreDisplay();
+    }
+
+    const userSortChoices = {};
+
+    function selectSort(cardId, choice) {
+      userSortChoices[cardId] = choice;
+      const card = document.getElementById(`ex2-card-${cardId}`);
+      const btnTo = card.querySelector('.sort-btn-to');
+      const btnFor = card.querySelector('.sort-btn-for');
+
+      if (choice === 'to') {
+        btnTo.classList.add('bg-orange-500', 'text-white', 'border-orange-500');
+        btnFor.classList.remove('bg-teal-600', 'text-white', 'border-teal-600');
+      } else {
+        btnFor.classList.add('bg-teal-600', 'text-white', 'border-teal-600');
+        btnTo.classList.remove('bg-orange-500', 'text-white', 'border-orange-500');
+      }
+    }
+
+    function checkExercise2() {
+      const isCorrect = (
+        userSortChoices[1] === 'to' &&
+        userSortChoices[2] === 'for' &&
+        userSortChoices[3] === 'to' &&
+        userSortChoices[4] === 'for'
+      );
+
+      const feedback = document.getElementById('ex2-feedback');
+      const status = document.getElementById('ex2-status');
+
+      if (isCorrect) {
+        feedback.className = 'text-xs font-semibold text-emerald-600';
+        feedback.textContent = '✓ Excellent classification! All 4 sentences sorted correctly.';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex2 = true;
+      } else {
+        feedback.className = 'text-xs font-semibold text-red-600';
+        feedback.textContent = 'Not quite! Look at whether each phrase has a verb (stay, buy) or a noun (snacks, interview).';
+        exerciseScores.ex2 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    function checkExercise3(choice) {
+      const fb = document.getElementById('ex3-feedback');
+      const status = document.getElementById('ex3-status');
+      
+      document.querySelectorAll('#ex3-container button').forEach(b => {
+        b.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50');
+      });
+
+      if (choice === 'b') {
+        document.getElementById('ex3-btn-b').classList.add('border-emerald-500', 'bg-emerald-50');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.textContent = '✓ Correct! "enjoy" is followed by verb + -ing ("enjoy cooking"). Note: "want" takes "want to cook".';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex3 = true;
+      } else {
+        const btn = document.getElementById(`ex3-btn-${choice}`);
+        if (btn) btn.classList.add('border-red-400', 'bg-red-50');
+        fb.className = 'text-xs font-semibold text-red-600';
+        fb.textContent = choice === 'a' 
+          ? 'Remember: We say "enjoy cooking" (-ing), never "enjoy to cook"!'
+          : 'Remember: "want" requires "to + verb" (e.g., "want to cook"), not "want cooking".';
+        exerciseScores.ex3 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    function checkExercise4() {
+      const in1 = document.getElementById('ex4-in-1').value.trim().toLowerCase();
+      const in2 = document.getElementById('ex4-in-2').value.trim().toLowerCase();
+      const fb = document.getElementById('ex4-feedback');
+      const status = document.getElementById('ex4-status');
+
+      if (in1 === 'to' && in2 === 'for') {
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.textContent = '✓ Great job! 1 = "to pick up" (verb), 2 = "for dinner" (noun).';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex4 = true;
+      } else {
+        fb.className = 'text-xs font-semibold text-red-600';
+        fb.textContent = 'Try again. Sentence 1 has "pick up" (action). Sentence 2 has "dinner" (meal/noun).';
+        exerciseScores.ex4 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    document.getElementById('ex4-in-1').addEventListener('keyup', (e) => { if (e.key === 'Enter') checkExercise4(); });
+    document.getElementById('ex4-in-2').addEventListener('keyup', (e) => { if (e.key === 'Enter') checkExercise4(); });
+
+    function clickErrorSection(part) {
+      const exp = document.getElementById('ex5-explanation');
+      const status = document.getElementById('ex5-status');
+      exp.classList.remove('hidden');
+
+      // Reset section visuals
+      [1, 2, 3].forEach(n => {
+        const btn = document.getElementById(`ex5-part-${n}`);
+        btn.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50');
+      });
+
+      if (part === 2) {
+        document.getElementById('ex5-part-2').classList.add('border-emerald-500', 'bg-emerald-50');
+        exp.className = 'mt-3 text-xs p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200';
+        exp.innerHTML = '<strong>Spot on!</strong> Section 2 ("for pick up") is the mistake. Because "pick up" is a verb, it must be <strong>"to pick up"</strong>.';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex5 = true;
+      } else {
+        document.getElementById(`ex5-part-${part}`).classList.add('border-red-400', 'bg-red-50');
+        exp.className = 'mt-3 text-xs p-3 rounded-xl bg-amber-50 text-amber-900 border border-amber-200';
+        exp.innerHTML = `Section ${part} is completely correct! Look closely at how the purpose is introduced: Is "for" combined with a verb?`;
+        exerciseScores.ex5 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    let selectedMatchLeft = null;
+    let completedMatches = {};
+
+    const correctMatchPairs = {
+      1: 'learn',  // YouTube -> to learn how to bake
+      2: 'warmth', // fireplace -> for some extra warmth
+      3: 'pizza'   // restaurant -> for a warm pizza
+    };
+
+    function selectMatchLeft(id) {
+      selectedMatchLeft = id;
+      document.querySelectorAll('#ex6-left-col button').forEach(b => b.classList.remove('bg-purple-100', 'border-purple-500'));
+      document.getElementById(`ex6-l-${id}`).classList.add('bg-purple-100', 'border-purple-500');
+    }
+
+    function selectMatchRight(key) {
+      if (!selectedMatchLeft) return;
+
+      if (correctMatchPairs[selectedMatchLeft] === key) {
+        completedMatches[selectedMatchLeft] = key;
+        const lBtn = document.getElementById(`ex6-l-${selectedMatchLeft}`);
+        const rBtn = document.getElementById(`ex6-r-${key}`);
+
+        lBtn.classList.remove('bg-purple-100', 'border-purple-500');
+        lBtn.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-800', 'cursor-default');
+        lBtn.disabled = true;
+
+        rBtn.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-800', 'cursor-default');
+        rBtn.disabled = true;
+
+        selectedMatchLeft = null;
+        const total = Object.keys(completedMatches).length;
+        document.getElementById('ex6-match-count').textContent = total;
+
+        if (total === 3) {
+          const status = document.getElementById('ex6-status');
+          status.textContent = 'Completed';
+          status.className = 'text-xs font-bold text-emerald-600';
+          exerciseScores.ex6 = true;
+          updateScoreDisplay();
+        }
+      } else {
+        const rBtn = document.getElementById(`ex6-r-${key}`);
+        rBtn.classList.add('bg-red-50', 'border-red-400');
+        setTimeout(() => rBtn.classList.remove('bg-red-50', 'border-red-400'), 1000);
+      }
+    }
+
+    function resetMatchExercise() {
+      completedMatches = {};
+      selectedMatchLeft = null;
+      document.querySelectorAll('#ex6-left-col button, #ex6-right-col button').forEach(b => {
+        b.className = 'w-full text-left p-3 rounded-xl border border-slate-200 hover:border-purple-300 text-xs sm:text-sm font-medium transition';
+        b.disabled = false;
+      });
+      document.getElementById('ex6-match-count').textContent = '0';
+      document.getElementById('ex6-status').textContent = 'Not attempted';
+      document.getElementById('ex6-status').className = 'text-xs font-semibold text-slate-400';
+      exerciseScores.ex6 = false;
+      updateScoreDisplay();
+    }
+
+    function checkExercise7() {
+      const s1 = document.getElementById('ex7-select-1').value;
+      const s2 = document.getElementById('ex7-select-2').value;
+      const fb = document.getElementById('ex7-feedback');
+      const status = document.getElementById('ex7-status');
+
+      if (s1 === 'to' && s2 === 'buy') {
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.textContent = '✓ Correct! "to buy" transforms the noun into an action.';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex7 = true;
+      } else {
+        fb.className = 'text-xs font-semibold text-red-600';
+        fb.textContent = 'Remember: We need "to" + the base form of the verb ("buy").';
+        exerciseScores.ex7 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    function checkExercise8(opt) {
+      const fb = document.getElementById('ex8-feedback');
+      const status = document.getElementById('ex8-status');
+
+      ['a','b','c'].forEach(k => {
+        document.getElementById(`ex8-opt-${k}`).classList.remove('border-emerald-500', 'bg-emerald-50', 'border-red-400', 'bg-red-50');
+      });
+
+      if (opt === 'a') {
+        document.getElementById('ex8-opt-a').classList.add('border-emerald-500', 'bg-emerald-50');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.textContent = '✓ Perfect! "decided to take" combines the verb pattern (decide + to) with the base verb take.';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex8 = true;
+      } else {
+        document.getElementById(`ex8-opt-${opt}`).classList.add('border-red-400', 'bg-red-50');
+        fb.className = 'text-xs font-semibold text-red-600';
+        fb.textContent = 'The verb "decide" takes "to + verb": "decided to take a coffee break".';
+        exerciseScores.ex8 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    function checkExercise9(word) {
+      const fb = document.getElementById('ex9-feedback');
+      const status = document.getElementById('ex9-status');
+      const btnTo = document.getElementById('ex9-btn-to');
+      const btnFor = document.getElementById('ex9-btn-for');
+
+      if (word === 'to') {
+        btnTo.className = 'px-3 py-1 bg-emerald-500 text-white rounded-lg font-bold text-xs';
+        btnFor.className = 'px-3 py-1 bg-white border border-slate-300 rounded-lg font-bold text-xs';
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.textContent = '✓ Correct! "want to study" — verbs of desire like "want" pair with "to + base verb".';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex9 = true;
+      } else {
+        btnFor.className = 'px-3 py-1 bg-red-400 text-white rounded-lg font-bold text-xs';
+        fb.className = 'text-xs font-semibold text-red-600';
+        fb.textContent = 'Remember: We say "want to study", never "want for study".';
+        exerciseScores.ex9 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    const targetSentenceWords = ["Sophia", "went", "outside", "to", "breathe", "fresh", "air"];
+    let poolWords = ["Sophia", "outside", "to", "fresh", "went", "air", "breathe"];
+    let userSentence = [];
+
+    function initBuilder() {
+      const pool = document.getElementById('ex10-pool');
+      pool.innerHTML = '';
+      poolWords.forEach((w) => {
+        const btn = document.createElement('button');
+        btn.textContent = w;
+        btn.className = 'px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs font-semibold text-slate-800 transition word-chip';
+        btn.onclick = () => addWordToBuilder(w, btn);
+        pool.appendChild(btn);
+      });
+    }
+
+    function addWordToBuilder(word, btnElement) {
+      userSentence.push(word);
+      btnElement.style.display = 'none';
+
+      const slot = document.getElementById('ex10-slot');
+      const placeholder = document.getElementById('ex10-placeholder');
+      if (placeholder) placeholder.style.display = 'none';
+
+      const chip = document.createElement('span');
+      chip.textContent = word;
+      chip.className = 'px-2.5 py-1 rounded-md bg-amber-200 text-amber-900 font-bold text-xs';
+      slot.appendChild(chip);
+    }
+
+    function resetExercise10() {
+      userSentence = [];
+      const slot = document.getElementById('ex10-slot');
+      slot.innerHTML = '<span class="text-xs text-slate-400 italic" id="ex10-placeholder">Tap words below to arrange your sentence here...</span>';
+      document.getElementById('ex10-feedback').textContent = '';
+      document.getElementById('ex10-status').textContent = 'Not attempted';
+      document.getElementById('ex10-status').className = 'text-xs font-semibold text-slate-400';
+      exerciseScores.ex10 = false;
+      initBuilder();
+      updateScoreDisplay();
+    }
+
+    function checkExercise10() {
+      const fb = document.getElementById('ex10-feedback');
+      const status = document.getElementById('ex10-status');
+      
+      const built = userSentence.join(' ');
+      const target = targetSentenceWords.join(' ');
+
+      if (built === target) {
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.textContent = '✓ Outstanding! "Sophia went outside to breathe fresh air."';
+        status.textContent = 'Completed';
+        status.className = 'text-xs font-bold text-emerald-600';
+        exerciseScores.ex10 = true;
+      } else {
+        fb.className = 'text-xs font-semibold text-red-600';
+        fb.textContent = 'Check your order. Start with Subject + Verb, then destination, then "to breathe fresh air".';
+        exerciseScores.ex10 = false;
+      }
+      updateScoreDisplay();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTransform();
+      initBuilder();
+      updateScoreDisplay();
+    });
+  </script>
+</body>
+</html>
