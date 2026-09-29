@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superlatives Masterclass - Beauty & Describing Appearance</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              200: '#fbcfe8',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+              800: '#9d174d',
+              900: '#831843',
+            },
+            tealbrand: {
+              500: '#0d9488',
+              600: '#0f766e',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #fdfbfd;
+      color: #1e293b;
+    }
+    .tab-nav-btn {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tab-nav-btn.active {
+      background-color: #db2777;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(219, 39, 119, 0.3);
+    }
+    .dropzone-target.drag-over {
+      background-color: #fce7f3;
+      border-color: #db2777;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="bg-white/95 border-b border-rose-100 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-rose-400 flex items-center justify-center text-white shadow-md shadow-brand-500/25">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+            Superlatives <span class="text-brand-600">Masterclass</span>
+          </h1>
+          <p class="text-xs font-semibold text-slate-400">Designed by Babak Alaee</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center bg-slate-100/80 p-1.5 rounded-2xl gap-1 text-xs sm:text-sm font-semibold text-slate-600">
+        <button onclick="switchTab('discovery')" id="tab-btn-discovery" class="tab-nav-btn active px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+          <i data-lucide="compass" class="w-4 h-4"></i>
+          <span>1. Discovery</span>
+        </button>
+        <button onclick="switchTab('grammar')" id="tab-btn-grammar" class="tab-nav-btn px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>2. Grammar Rules</span>
+        </button>
+        <button onclick="switchTab('practice')" id="tab-btn-practice" class="tab-nav-btn px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+          <span>3. Exercises</span>
+        </button>
+        <button onclick="switchTab('wheel')" id="tab-btn-wheel" class="tab-nav-btn px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+          <i data-lucide="disc" class="w-4 h-4"></i>
+          <span>4. Fortune Wheel</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: DISCOVERY & EXPOSURE                -->
+    <!-- ========================================== -->
+    <section id="section-discovery" class="space-y-10 block">
+      
+      <!-- Welcome Hero Banner -->
+      <div class="bg-gradient-to-r from-rose-900 via-slate-900 to-purple-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-8 -bottom-8 w-60 h-60 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-2xl relative z-10">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-800/80 text-rose-200 text-xs font-bold mb-3 uppercase tracking-wider">
+            <i data-lucide="eye" class="w-3.5 h-3.5"></i> Notice the Language
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Beauty & Describing Appearance</h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Look at the portraits below and read about the Youth Style & Fashion Gala. Observe how we describe people with the number one features in the group!
+          </p>
+        </div>
+      </div>
+
+      <!-- Exposure Portraits Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Portrait 1: Hair Length -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-md transition">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" 
+               alt="Woman with long flowing hair" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/600x400/be185d/ffffff?text=Longest+Hair'">
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg">Hairstyle</span>
+            <h3 class="font-bold text-slate-800 text-base mt-2">Sofia</h3>
+            <p class="text-xs text-slate-500 mt-1">Sofia has <strong class="text-brand-700">the longest</strong> hair in our design club.</p>
+          </div>
+        </div>
+
+        <!-- Portrait 2: Smile -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-md transition">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80" 
+               alt="Person with wide smile" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/600x400/be185d/ffffff?text=Widest+Smile'">
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg">Facial Expression</span>
+            <h3 class="font-bold text-slate-800 text-base mt-2">Maya</h3>
+            <p class="text-xs text-slate-500 mt-1">Maya has <strong class="text-brand-700">the widest</strong> smile on the red carpet.</p>
+          </div>
+        </div>
+
+        <!-- Portrait 3: Height & Presence -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-md transition">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" 
+               alt="Tall stylish model" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/600x400/be185d/ffffff?text=Tallest+Model'">
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg">Height</span>
+            <h3 class="font-bold text-slate-800 text-base mt-2">Darius</h3>
+            <p class="text-xs text-slate-500 mt-1">Darius is <strong class="text-brand-700">the tallest</strong> model on the runway.</p>
+          </div>
+        </div>
+
+        <!-- Portrait 4: Athletic Build -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-md transition">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80" 
+               alt="Athletic runner" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/600x400/be185d/ffffff?text=Most+Athletic'">
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg">Physical Build</span>
+            <h3 class="font-bold text-slate-800 text-base mt-2">Elena</h3>
+            <p class="text-xs text-slate-500 mt-1">Elena is <strong class="text-brand-700">the most athletic</strong> student in our sports gym.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Exposure Reading Passage -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-rose-100 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold">
+            <i data-lucide="book-marked" class="w-4 h-4"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Read: Highlights of the Annual Style Showcase</h3>
+        </div>
+        <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4">
+          <p>
+            Tonight is our annual community fashion and style showcase, and everyone looks extraordinary! Standing at 198 cm, Darius is <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the tallest</strong> person on stage, while little Emma is <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the shortest</strong> model in the junior show.
+          </p>
+          <p>
+            Their hair and smiles draw everyone’s eyes. Sofia turned heads because she has <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the longest</strong> dark hair in the room, while Leo surprised the crowd with <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the curliest</strong> hairstyle. When photographers called out names, Maya lit up the whole hall with <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the warmest</strong> smile of the night.
+          </p>
+          <p>
+            The physical energy is unmistakable too. Elena trained hard every week, making her <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the most athletic</strong> runner on stage, and Julian won the audience award for having <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the most handsome</strong> vintage suit. Finally, the jury agreed that Noah had <strong class="text-brand-700 underline decoration-pink-300 font-semibold">the best</strong> haircut of the year!
+          </p>
+        </div>
+
+        <!-- Guided Discovery Questions -->
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <h4 class="text-sm font-bold text-slate-800 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <i data-lucide="help-circle" class="w-4 h-4 text-brand-600"></i> What rules did you notice?
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Question 1 -->
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+              <p class="text-xs font-semibold text-slate-700 mb-2.5">1. What little word always comes BEFORE a superlative?</p>
+              <div class="flex gap-2">
+                <button onclick="checkDiscovery(this, true, 'd1')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">the</button>
+                <button onclick="checkDiscovery(this, false, 'd1')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">than</button>
+                <button onclick="checkDiscovery(this, false, 'd1')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">a / an</button>
+              </div>
+              <p id="d1-feedback" class="text-[11px] font-medium mt-2 hidden"></p>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+              <p class="text-xs font-semibold text-slate-700 mb-2.5">2. What letters do we add to short words like <em>tall</em> &amp; <em>long</em>?</p>
+              <div class="flex gap-2">
+                <button onclick="checkDiscovery(this, false, 'd2')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">-er</button>
+                <button onclick="checkDiscovery(this, true, 'd2')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">-est</button>
+                <button onclick="checkDiscovery(this, false, 'd2')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">-ing</button>
+              </div>
+              <p id="d2-feedback" class="text-[11px] font-medium mt-2 hidden"></p>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+              <p class="text-xs font-semibold text-slate-700 mb-2.5">3. What word comes before longer adjectives like <em>athletic</em>?</p>
+              <div class="flex gap-2">
+                <button onclick="checkDiscovery(this, false, 'd3')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">more</button>
+                <button onclick="checkDiscovery(this, true, 'd3')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">most</button>
+                <button onclick="checkDiscovery(this, false, 'd3')" class="px-3 py-1.5 text-xs font-bold rounded-lg border bg-white hover:bg-rose-50 border-slate-300 text-slate-700 transition">much</button>
+              </div>
+              <p id="d3-feedback" class="text-[11px] font-medium mt-2 hidden"></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: GRAMMAR RULES & COMPARISONS        -->
+    <!-- ========================================== -->
+    <section id="section-grammar" class="space-y-8 hidden">
+      
+      <!-- Comparative vs. Superlative Concept Card -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-rose-100 shadow-sm">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Comparative vs. Superlative</h3>
+        <p class="text-slate-600 text-sm mb-6">
+          When talking about looks and appearance, remember this simple difference:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Comparative Side -->
+          <div class="bg-amber-50/70 border border-amber-200/90 rounded-2xl p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2.5 py-1 bg-amber-500 text-white text-xs font-bold rounded-lg">Comparative</span>
+              <h4 class="font-bold text-slate-800 text-sm">Comparing 2 People</h4>
+            </div>
+            <p class="text-xs text-slate-600 mb-3">Formula: <strong>adjective + -er than</strong> or <strong>more + adjective than</strong></p>
+            <div class="bg-white p-3.5 rounded-xl border border-amber-200 space-y-2 text-xs text-slate-700">
+              <p>• Darius is <strong class="text-amber-700">taller than</strong> Liam.</p>
+              <p>• Leo is <strong class="text-amber-700">more athletic than</strong> Sam.</p>
+            </div>
+          </div>
+
+          <!-- Superlative Side -->
+          <div class="bg-rose-50/70 border border-rose-200/90 rounded-2xl p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2.5 py-1 bg-brand-600 text-white text-xs font-bold rounded-lg">Superlative</span>
+              <h4 class="font-bold text-slate-800 text-sm">Number 1 in a Whole Group (3+)</h4>
+            </div>
+            <p class="text-xs text-slate-600 mb-3">Formula: <strong>the + adjective + -est</strong> or <strong>the most + adjective</strong></p>
+            <div class="bg-white p-3.5 rounded-xl border border-rose-200 space-y-2 text-xs text-slate-700">
+              <p>• Darius is <strong class="text-brand-700">the tallest</strong> boy in the club.</p>
+              <p>• Leo is <strong class="text-brand-700">the most athletic</strong> runner in our sports team.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Four Spelling Rules -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-rose-100 shadow-sm">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i data-lucide="layers" class="w-5 h-5 text-brand-600"></i> Spelling Rules for Appearance Adjectives
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Rule 1: Short Adjectives -->
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="text-xs font-bold text-brand-700 bg-rose-100 px-2 py-0.5 rounded">Rule 1: 1 Syllable</span>
+            <h5 class="text-sm font-bold text-slate-800 mt-2 mb-1">Add -est</h5>
+            <p class="text-xs text-slate-500 mb-2">Standard short words add <em>-est</em>.</p>
+            <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 font-mono">
+              <p>tall &rarr; <span class="text-brand-700 font-bold">the tallest</span></p>
+              <p>short &rarr; <span class="text-brand-700 font-bold">the shortest</span></p>
+              <p>dark &rarr; <span class="text-brand-700 font-bold">the darkest</span></p>
+            </div>
+          </div>
+
+          <!-- Rule 2: C-V-C -->
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="text-xs font-bold text-brand-700 bg-rose-100 px-2 py-0.5 rounded">Rule 2: C-V-C</span>
+            <h5 class="text-sm font-bold text-slate-800 mt-2 mb-1">Double the Letter</h5>
+            <p class="text-xs text-slate-500 mb-2">1 vowel + 1 consonant: double the final letter.</p>
+            <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 font-mono">
+              <p>slim &rarr; <span class="text-brand-700 font-bold">the slimmest</span></p>
+              <p>fit &rarr; <span class="text-brand-700 font-bold">the fittest</span></p>
+              <p>thin &rarr; <span class="text-brand-700 font-bold">the thinnest</span></p>
+            </div>
+          </div>
+
+          <!-- Rule 3: Ending in -y -->
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="text-xs font-bold text-brand-700 bg-rose-100 px-2 py-0.5 rounded">Rule 3: Ends in -y</span>
+            <h5 class="text-sm font-bold text-slate-800 mt-2 mb-1">Change -y to -iest</h5>
+            <p class="text-xs text-slate-500 mb-2">Remove the <em>-y</em> and add <em>-iest</em>.</p>
+            <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 font-mono">
+              <p>pretty &rarr; <span class="text-brand-700 font-bold">the prettiest</span></p>
+              <p>curly &rarr; <span class="text-brand-700 font-bold">the curliest</span></p>
+              <p>wavy &rarr; <span class="text-brand-700 font-bold">the waviest</span></p>
+            </div>
+          </div>
+
+          <!-- Rule 4: Long Adjectives -->
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="text-xs font-bold text-brand-700 bg-rose-100 px-2 py-0.5 rounded">Rule 4: 2+ Syllables</span>
+            <h5 class="text-sm font-bold text-slate-800 mt-2 mb-1">Use the most</h5>
+            <p class="text-xs text-slate-500 mb-2">Keep the word the same and place <em>the most</em> before it.</p>
+            <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 font-mono">
+              <p>stylish &rarr; <span class="text-brand-700 font-bold">the most stylish</span></p>
+              <p>handsome &rarr; <span class="text-brand-700 font-bold">the most handsome</span></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Simple Irregular Exceptions Card -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-rose-100 shadow-sm">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="p-1 rounded bg-rose-100 text-rose-700"><i data-lucide="sparkles" class="w-4 h-4"></i></span>
+          <h3 class="text-lg font-bold text-slate-900">Irregular Exceptions (Simple Examples)</h3>
+        </div>
+        <p class="text-slate-500 text-xs sm:text-sm mb-4">
+          These common adjectives don't use <em>-est</em>. Learn these two simple patterns:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="border border-slate-200 rounded-2xl p-4 bg-slate-50/60">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="font-bold text-slate-800 text-sm">good &rarr; better &rarr; the best</span>
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Irregular</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">Simple appearance example:</p>
+            <div class="bg-white p-3 rounded-xl border border-slate-200 text-xs text-slate-700">
+              "Noah has <strong>the best</strong> haircut in our class."
+            </div>
+          </div>
+
+          <div class="border border-slate-200 rounded-2xl p-4 bg-slate-50/60">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="font-bold text-slate-800 text-sm">bad &rarr; worse &rarr; the worst</span>
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-800">Irregular</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">Simple appearance example:</p>
+            <div class="bg-white p-3 rounded-xl border border-slate-200 text-xs text-slate-700">
+              "Jack had <strong>the worst</strong> posture before he started gym training."
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: 10 INTERACTIVE EXERCISES            -->
+    <!-- ========================================== -->
+    <section id="section-practice" class="space-y-6 hidden">
+      
+      <!-- Progress Tracker -->
+      <div class="bg-white rounded-2xl p-5 border border-rose-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="font-bold text-slate-800 text-base">Appearance Practice Challenges</h3>
+          <p class="text-xs text-slate-500">Test your mastery across 10 interactive activities!</p>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <div class="w-full sm:w-48 bg-slate-100 h-3 rounded-full overflow-hidden">
+            <div id="exercise-progress" class="bg-brand-600 h-full w-0 transition-all duration-300"></div>
+          </div>
+          <span id="score-text" class="text-xs font-bold text-slate-700 whitespace-nowrap">0 / 10 Completed</span>
+        </div>
+      </div>
+
+      <!-- Exercise 1: Drag & Drop -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-1">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">1</span>
+            <h4 class="font-bold text-slate-800">Pair Base Adjectives with their Superlatives</h4>
+          </div>
+          <span id="badge-ex-1" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-4">Drag each word on the left into its matching superlative on the right:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <div draggable="true" ondragstart="drag(event)" id="drag-tall" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-grab text-xs font-semibold text-slate-700 active:cursor-grabbing border border-slate-300">tall</div>
+            <div draggable="true" ondragstart="drag(event)" id="drag-pretty" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-grab text-xs font-semibold text-slate-700 active:cursor-grabbing border border-slate-300">pretty</div>
+            <div draggable="true" ondragstart="drag(event)" id="drag-stylish" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-grab text-xs font-semibold text-slate-700 active:cursor-grabbing border border-slate-300">stylish</div>
+            <div draggable="true" ondragstart="drag(event)" id="drag-slim" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-grab text-xs font-semibold text-slate-700 active:cursor-grabbing border border-slate-300">slim</div>
+          </div>
+
+          <div class="space-y-2">
+            <div ondragover="allowDrop(event)" ondrop="drop(event, 'drag-tall')" class="dropzone-target p-3 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl text-xs text-slate-600 min-h-[46px] flex items-center justify-between">
+              <span>the tallest</span>
+              <span class="status-icon"></span>
+            </div>
+            <div ondragover="allowDrop(event)" ondrop="drop(event, 'drag-pretty')" class="dropzone-target p-3 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl text-xs text-slate-600 min-h-[46px] flex items-center justify-between">
+              <span>the prettiest</span>
+              <span class="status-icon"></span>
+            </div>
+            <div ondragover="allowDrop(event)" ondrop="drop(event, 'drag-stylish')" class="dropzone-target p-3 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl text-xs text-slate-600 min-h-[46px] flex items-center justify-between">
+              <span>the most stylish</span>
+              <span class="status-icon"></span>
+            </div>
+            <div ondragover="allowDrop(event)" ondrop="drop(event, 'drag-slim')" class="dropzone-target p-3 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl text-xs text-slate-600 min-h-[46px] flex items-center justify-between">
+              <span>the slimmest</span>
+              <span class="status-icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise 2: Typing Superlative -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-2">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">2</span>
+            <h4 class="font-bold text-slate-800">Fill in the Blank: Hair Length</h4>
+          </div>
+          <span id="badge-ex-2" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Type the superlative form of the adjective in parentheses:</p>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          "Sofia has <input type="text" id="input-ex-2" placeholder="Your answer..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 w-44"> (long) hair in our class."
+        </p>
+        <div class="flex items-center gap-2">
+          <button onclick="checkTypingEx2()" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">Check</button>
+          <span id="feedback-ex-2" class="text-xs font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- Exercise 3: Comparative vs Superlative Multiple Choice -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-3">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">3</span>
+            <h4 class="font-bold text-slate-800">Choose the Correct Form: Two People</h4>
+          </div>
+          <span id="badge-ex-3" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          "Darius is 198 cm, but Tom is 185 cm. Darius is ________ than Tom."
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
+          <button onclick="checkEx3(this, false)" class="p-2.5 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the tallest</button>
+          <button onclick="checkEx3(this, true)" class="p-2.5 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">taller</button>
+          <button onclick="checkEx3(this, false)" class="p-2.5 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">tallest</button>
+          <button onclick="checkEx3(this, false)" class="p-2.5 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">more tall</button>
+        </div>
+        <span id="feedback-ex-3" class="text-xs font-semibold"></span>
+      </div>
+
+      <!-- Exercise 4: Sentence Word Unscramble -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">4</span>
+            <h4 class="font-bold text-slate-800">Sentence Builder: Warm Smile</h4>
+          </div>
+          <span id="badge-ex-4" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Click the word tiles below in the correct order to build the sentence:</p>
+        
+        <div id="scramble-answer-slot" class="min-h-[46px] p-2 bg-slate-50 border border-slate-300 rounded-xl flex flex-wrap gap-2 items-center mb-3">
+          <span class="text-xs text-slate-400 italic pointer-events-none" id="scramble-empty-text">Click words to place them here...</span>
+        </div>
+
+        <div id="scramble-pool" class="flex flex-wrap gap-2 mb-3">
+          <button onclick="addToScramble(this)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 border border-slate-300">warmest</button>
+          <button onclick="addToScramble(this)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 border border-slate-300">smile.</button>
+          <button onclick="addToScramble(this)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 border border-slate-300">Maya</button>
+          <button onclick="addToScramble(this)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 border border-slate-300">has</button>
+          <button onclick="addToScramble(this)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-bold text-slate-700 border border-slate-300">the</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="checkScrambleEx4()" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">Check</button>
+          <button onclick="resetScrambleEx4()" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold transition">Reset</button>
+          <span id="feedback-ex-4" class="text-xs font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- Exercise 5: Spot the Mistake (Unbiased neutral styling) -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-5">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">5</span>
+            <h4 class="font-bold text-slate-800">Spot the Mistake: Describing Height</h4>
+          </div>
+          <span id="badge-ex-5" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Click directly on the <strong>incorrect word</strong> in this sentence:</p>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm flex flex-wrap gap-2 items-center">
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">David</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">is</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">the</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, true)">most short</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">model</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">in</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">our</span>
+          <span class="cursor-pointer hover:bg-slate-200 px-2.5 py-1.5 rounded-lg border border-transparent transition select-none" onclick="checkSpotError(this, false)">group.</span>
+        </div>
+        <p id="feedback-ex-5" class="text-xs font-semibold mt-2.5"></p>
+      </div>
+
+      <!-- Exercise 6: Irregular Form Typing -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-6">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">6</span>
+            <h4 class="font-bold text-slate-800">Irregular Form: Best Haircut</h4>
+          </div>
+          <span id="badge-ex-6" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Type the superlative form of the adjective in parentheses:</p>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          "Noah has <input type="text" id="input-ex-6" placeholder="Your answer..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 w-44"> (good) haircut in the room."
+        </p>
+        <div class="flex items-center gap-2">
+          <button onclick="checkTypingEx6()" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">Check</button>
+          <span id="feedback-ex-6" class="text-xs font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- Exercise 7: Double Consonant Spelling -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-7">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">7</span>
+            <h4 class="font-bold text-slate-800">Spelling Check: Physical Build</h4>
+          </div>
+          <span id="badge-ex-7" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          Which is the correct spelling for the superlative of <strong>slim</strong>?
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-2">
+          <button onclick="checkEx7(this, false)" class="p-3 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the slimest</button>
+          <button onclick="checkEx7(this, true)" class="p-3 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the slimmest</button>
+          <button onclick="checkEx7(this, false)" class="p-3 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the most slim</button>
+        </div>
+        <span id="feedback-ex-7" class="text-xs font-semibold"></span>
+      </div>
+
+      <!-- Exercise 8: Long Adjective Typing -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-8">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">8</span>
+            <h4 class="font-bold text-slate-800">Long Adjective: Physical Build</h4>
+          </div>
+          <span id="badge-ex-8" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Type the superlative form of the adjective in parentheses:</p>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          "Leo is <input type="text" id="input-ex-8" placeholder="Your answer..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 w-52"> (athletic) student on our sports team."
+        </p>
+        <div class="flex items-center gap-2">
+          <button onclick="checkTypingEx8()" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">Check</button>
+          <span id="feedback-ex-8" class="text-xs font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- Exercise 9: True or False Concept Check -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-9">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">9</span>
+            <h4 class="font-bold text-slate-800">Rule Concept Check</h4>
+          </div>
+          <span id="badge-ex-9" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          "We can say: 'Maria is the prettyest girl in school.'"
+        </p>
+        <div class="flex gap-3 mb-2">
+          <button onclick="checkEx9(this, false)" class="px-6 py-2 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">True</button>
+          <button onclick="checkEx9(this, true)" class="px-6 py-2 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">False</button>
+        </div>
+        <span id="feedback-ex-9" class="text-xs font-semibold"></span>
+      </div>
+
+      <!-- Exercise 10: -y Ending Adjective (Hair Texture) -->
+      <div class="bg-white rounded-3xl p-6 border border-rose-100 shadow-sm" id="ex-card-10">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">10</span>
+            <h4 class="font-bold text-slate-800">Hair Texture: Ending in -y</h4>
+          </div>
+          <span id="badge-ex-10" class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium">Pending</span>
+        </div>
+        <p class="text-sm font-medium text-slate-700 mb-3">
+          "Among all my sisters, Nina has ________ hair."
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-2">
+          <button onclick="checkEx10(this, false)" class="p-3 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the curlyest</button>
+          <button onclick="checkEx10(this, true)" class="p-3 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the curliest</button>
+          <button onclick="checkEx10(this, false)" class="p-3 text-xs font-bold rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 transition">the most curliest</button>
+        </div>
+        <span id="feedback-ex-10" class="text-xs font-semibold"></span>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: FORTUNE WHEEL (SPEAKING PROMPTS)    -->
+    <!-- ========================================== -->
+    <section id="section-wheel" class="space-y-8 hidden">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-rose-100 shadow-sm">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="px-3 py-1 rounded-full bg-rose-100 text-brand-700 text-xs font-bold tracking-wide uppercase inline-flex items-center gap-1">
+            <i data-lucide="mic" class="w-3.5 h-3.5"></i> Classroom Speaking Practice
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Physical Features Fortune Wheel</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            Spin the wheel to get a simple conversation prompt about physical appearance and features!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Wheel Canvas -->
+          <div class="lg:col-span-7 flex flex-col items-center justify-center">
+            <div class="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] flex items-center justify-center">
+              
+              <!-- Fixed Top Needle at 12 o'clock -->
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-30 pointer-events-none drop-shadow-md">
+                <i data-lucide="navigation" class="w-10 h-10 text-brand-600 fill-brand-600 rotate-180"></i>
+              </div>
+
+              <!-- Canvas Wheel -->
+              <canvas id="wheel-canvas" width="380" height="380" class="rounded-full shadow-2xl border-4 border-white"></canvas>
+
+              <!-- Center Spin Button -->
+              <button onclick="spinWheel()" id="spin-hub-btn" class="absolute w-20 h-20 rounded-full bg-slate-900 text-white font-extrabold text-sm flex flex-col items-center justify-center shadow-2xl border-4 border-rose-300 hover:scale-105 active:scale-95 transition z-20 cursor-pointer">
+                <span>SPIN</span>
+                <i data-lucide="play" class="w-4 h-4 fill-white mt-0.5"></i>
+              </button>
+            </div>
+
+            <!-- Controls Below Wheel -->
+            <div class="mt-6 flex items-center gap-3">
+              <button onclick="spinWheel()" id="spin-main-btn" class="px-6 py-2.5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-lg shadow-brand-500/25 flex items-center gap-2 transition active:scale-95">
+                <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                <span>Spin Wheel</span>
+              </button>
+              <button onclick="resetWheelPrompt()" class="px-4 py-2.5 rounded-2xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-bold text-sm transition">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Prompt Result Card & Classroom Timer -->
+          <div class="lg:col-span-5 flex flex-col gap-5">
+            <div id="result-box" class="bg-gradient-to-br from-rose-50/50 to-pink-50/30 rounded-3xl p-6 border-2 border-dashed border-rose-300/80 transition-all duration-300">
+              <div class="flex items-center justify-between mb-3">
+                <span id="prompt-category" class="text-xs font-extrabold uppercase tracking-wider text-brand-700 bg-rose-100 px-3 py-1 rounded-full">
+                  Category: Ready
+                </span>
+                <i data-lucide="message-square" class="w-4 h-4 text-brand-600"></i>
+              </div>
+
+              <h4 id="prompt-text" class="text-base sm:text-lg font-bold text-slate-800 leading-snug mb-4">
+                Click the Spin button to get your speaking prompt!
+              </h4>
+
+              <div class="p-3.5 bg-white rounded-2xl border border-rose-200/60 shadow-xs">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Sentence Starter</span>
+                <p id="prompt-starter" class="text-xs font-semibold text-brand-700 italic">
+                  "In my opinion, the person who has..."
+                </p>
+              </div>
+            </div>
+
+            <!-- Speaking Timer -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-600 flex items-center gap-1.5">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-600"></i> Classroom Speaking Timer
+                </span>
+                <span id="timer-display" class="font-mono text-base font-bold text-slate-900">00:45</span>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="startTimer(30)" class="flex-1 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">30s</button>
+                <button onclick="startTimer(45)" class="flex-1 py-1.5 rounded-lg bg-rose-100 hover:bg-rose-200 text-brand-800 text-xs font-bold transition">45s</button>
+                <button onclick="startTimer(60)" class="flex-1 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">60s</button>
+                <button onclick="stopTimer()" class="px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold transition">Stop</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-rose-100 py-6 mt-12">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="text-xs font-medium text-slate-400">Designed by Babak Alaee</p>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC & INTERACTION ENGINE      -->
+  <!-- ========================================== -->
+  <script>
+    const state = {
+      activeTab: 'discovery',
+      completedExercises: new Set(),
+      isSpinning: false,
+      currentWheelAngle: 0,
+      wheelBag: [],
+      lastWheelIndex: null,
+      timerInterval: null,
+      scrambleWords: []
+    };
+
+    // 8 Varied Physical Appearance Segments (Simple & Direct)
+    const wheelSegments = [
+      {
+        label: "Tallest",
+        color: "#db2777",
+        prompt: "Who is the tallest person in your class or family?",
+        starter: '"In my class/family, the tallest person is..."'
+      },
+      {
+        label: "Shortest",
+        color: "#0284c7",
+        prompt: "Who is the shortest person in your family or group of friends?",
+        starter: '"The shortest person in my group is..."'
+      },
+      {
+        label: "Longest Hair",
+        color: "#7c3aed",
+        prompt: "Who has the longest hair among your classmates or family members?",
+        starter: '"The person who has the longest hair is..."'
+      },
+      {
+        label: "Shortest Hair",
+        color: "#0d9488",
+        prompt: "Who has the shortest hair in your family or class?",
+        starter: '"The person with the shortest hair is..."'
+      },
+      {
+        label: "Curliest Hair",
+        color: "#ea580c",
+        prompt: "Who has the curliest hair you know? Is it short or long?",
+        starter: '"My friend / cousin has the curliest hair..."'
+      },
+      {
+        label: "Straightest",
+        color: "#16a34a",
+        prompt: "Who has the straightest hair in your family or class?",
+        starter: '"In my family, ... has the straightest hair."'
+      },
+      {
+        label: "Darkest Eyes",
+        color: "#e11d48",
+        prompt: "Who has the darkest eyes among your friends or family?",
+        starter: '"The person with the darkest eyes is..."'
+      },
+      {
+        label: "Lightest Hair",
+        color: "#4f46e5",
+        prompt: "Who has the lightest hair in your classroom or family?",
+        starter: '"The person who has the lightest hair is..."'
+      }
+    ];
+
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      ['discovery', 'grammar', 'practice', 'wheel'].forEach(id => {
+        const btn = document.getElementById(`tab-btn-${id}`);
+        const sec = document.getElementById(`section-${id}`);
+        if (id === tabId) {
+          btn.classList.add('active');
+          sec.classList.remove('hidden');
+          sec.classList.add('block');
+        } else {
+          btn.classList.remove('active');
+          sec.classList.remove('block');
+          sec.classList.add('hidden');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (tabId === 'wheel') {
+        requestAnimationFrame(() => {
+          drawWheel();
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+      }
+    }
+
+    function checkDiscovery(btn, isCorrect, qId) {
+      const feedback = document.getElementById(`${qId}-feedback`);
+      feedback.classList.remove('hidden', 'text-emerald-700', 'text-rose-600');
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        feedback.classList.add('text-emerald-700');
+        feedback.textContent = "Correct! You discovered the rule.";
+      } else {
+        btn.classList.add('bg-rose-100', 'text-rose-700', 'border-rose-300');
+        feedback.classList.add('text-rose-600');
+        feedback.textContent = "Try again!";
+      }
+    }
+
+    function markCompleted(exNumber) {
+      state.completedExercises.add(exNumber);
+      const count = state.completedExercises.size;
+      const progressPercent = (count / 10) * 100;
+      document.getElementById('exercise-progress').style.width = `${progressPercent}%`;
+      document.getElementById('score-text').textContent = `${count} / 10 Completed`;
+
+      const badge = document.getElementById(`badge-ex-${exNumber}`);
+      if (badge) {
+        badge.className = "text-xs px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold";
+        badge.textContent = "Completed";
+      }
+
+      if (count === 10) {
+        triggerConfetti();
+      }
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add('drag-over');
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text/plain", ev.target.id);
+    }
+
+    function drop(ev, expectedId) {
+      ev.preventDefault();
+      const dropzone = ev.currentTarget;
+      dropzone.classList.remove('drag-over');
+      const draggedId = ev.dataTransfer.getData("text/plain");
+
+      if (draggedId === expectedId) {
+        const draggedElem = document.getElementById(draggedId);
+        dropzone.classList.remove('bg-slate-50', 'border-dashed');
+        dropzone.classList.add('bg-emerald-50', 'border-solid', 'border-emerald-400');
+        dropzone.querySelector('.status-icon').innerHTML = `<span class="text-xs font-bold text-emerald-700">✓ ${draggedElem.textContent}</span>`;
+        draggedElem.style.opacity = '0.3';
+        draggedElem.setAttribute('draggable', 'false');
+
+        const matched = document.querySelectorAll('.dropzone-target .status-icon span').length;
+        if (matched === 4) {
+          markCompleted(1);
+        }
+      } else {
+        dropzone.classList.add('bg-rose-50');
+        setTimeout(() => dropzone.classList.remove('bg-rose-50'), 800);
+      }
+    }
+
+    function checkTypingEx2() {
+      const val = document.getElementById('input-ex-2').value.trim().toLowerCase();
+      const fb = document.getElementById('feedback-ex-2');
+      if (val === 'the longest' || val === 'longest') {
+        fb.textContent = "Correct!";
+        fb.className = "text-xs font-semibold text-emerald-700";
+        markCompleted(2);
+      } else {
+        fb.textContent = "Not quite. Check your spelling and try again.";
+        fb.className = "text-xs font-semibold text-rose-600";
+      }
+    }
+
+    function checkEx3(btn, isCorrect) {
+      const fb = document.getElementById('feedback-ex-3');
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        fb.textContent = "Correct! When comparing 2 people, we use the comparative (-er than).";
+        fb.className = "text-xs font-semibold text-emerald-700 block mt-2";
+        markCompleted(3);
+      } else {
+        btn.classList.add('bg-rose-100', 'text-rose-700', 'border-rose-300');
+        fb.textContent = "Incorrect. Remember, we are comparing only two people here!";
+        fb.className = "text-xs font-semibold text-rose-600 block mt-2";
+      }
+    }
+
+    function addToScramble(btn) {
+      const emptyText = document.getElementById('scramble-empty-text');
+      if (emptyText) emptyText.remove();
+
+      state.scrambleWords.push(btn.textContent.trim());
+      const slot = document.getElementById('scramble-answer-slot');
+      const wordBadge = document.createElement('span');
+      wordBadge.className = "px-2.5 py-1 bg-rose-100 text-rose-800 rounded-lg text-xs font-bold";
+      wordBadge.textContent = btn.textContent.trim();
+      slot.appendChild(wordBadge);
+      btn.classList.add('opacity-30', 'pointer-events-none');
+    }
+
+    function resetScrambleEx4() {
+      state.scrambleWords = [];
+      const slot = document.getElementById('scramble-answer-slot');
+      slot.innerHTML = '<span class="text-xs text-slate-400 italic pointer-events-none" id="scramble-empty-text">Click words to place them here...</span>';
+      document.querySelectorAll('#scramble-pool button').forEach(b => {
+        b.classList.remove('opacity-30', 'pointer-events-none');
+      });
+      document.getElementById('feedback-ex-4').textContent = '';
+    }
+
+    function checkScrambleEx4() {
+      const userSentence = state.scrambleWords.join(' ');
+      const target = "Maya has the warmest smile.";
+      const fb = document.getElementById('feedback-ex-4');
+      if (userSentence === target) {
+        fb.textContent = "Correct order!";
+        fb.className = "text-xs font-semibold text-emerald-700";
+        markCompleted(4);
+      } else {
+        fb.textContent = "Incorrect word order. Click Reset and try again!";
+        fb.className = "text-xs font-semibold text-rose-600";
+      }
+    }
+
+    function checkSpotError(elem, isTarget) {
+      const fb = document.getElementById('feedback-ex-5');
+      if (isTarget) {
+        elem.classList.add('bg-rose-200', 'text-rose-800', 'font-bold');
+        fb.textContent = "Spot on! 'Short' is a one-syllable word, so we say 'the shortest', not 'the most short'.";
+        fb.className = "text-xs font-semibold mt-2.5 text-emerald-700";
+        markCompleted(5);
+      } else {
+        elem.classList.add('bg-slate-200');
+        fb.textContent = "That word is grammatically correct. Keep looking for the mistake!";
+        fb.className = "text-xs font-semibold mt-2.5 text-rose-600";
+      }
+    }
+
+    function checkTypingEx6() {
+      const val = document.getElementById('input-ex-6').value.trim().toLowerCase();
+      const fb = document.getElementById('feedback-ex-6');
+      if (val === 'the best' || val === 'best') {
+        fb.textContent = "Correct! 'Good' changes to 'the best'.";
+        fb.className = "text-xs font-semibold text-emerald-700";
+        markCompleted(6);
+      } else {
+        fb.textContent = "Incorrect. Remember the irregular exception for 'good'.";
+        fb.className = "text-xs font-semibold text-rose-600";
+      }
+    }
+
+    function checkEx7(btn, isCorrect) {
+      const fb = document.getElementById('feedback-ex-7');
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        fb.textContent = "Correct! 'Slim' has 1 vowel + 1 consonant, so we double the 'm': slimmest.";
+        fb.className = "text-xs font-semibold text-emerald-700 block mt-2";
+        markCompleted(7);
+      } else {
+        btn.classList.add('bg-rose-100', 'text-rose-700', 'border-rose-300');
+        fb.textContent = "Incorrect spelling. Check Rule 2 for C-V-C words.";
+        fb.className = "text-xs font-semibold text-rose-600 block mt-2";
+      }
+    }
+
+    function checkTypingEx8() {
+      const val = document.getElementById('input-ex-8').value.trim().toLowerCase();
+      const fb = document.getElementById('feedback-ex-8');
+      if (val === 'the most athletic' || val === 'most athletic') {
+        fb.textContent = "Correct! 'Athletic' has three syllables, so we use 'the most'.";
+        fb.className = "text-xs font-semibold text-emerald-700";
+        markCompleted(8);
+      } else {
+        fb.textContent = "Not quite. Remember to use 'the most' for long adjectives.";
+        fb.className = "text-xs font-semibold text-rose-600";
+      }
+    }
+
+    function checkEx9(btn, isCorrect) {
+      const fb = document.getElementById('feedback-ex-9');
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        fb.textContent = "Correct! For adjectives ending in -y, we change -y to -iest: 'the prettiest'.";
+        fb.className = "text-xs font-semibold text-emerald-700 block mt-2";
+        markCompleted(9);
+      } else {
+        btn.classList.add('bg-rose-100', 'text-rose-700', 'border-rose-300');
+        fb.textContent = "Incorrect. Think about what happens to the letter 'y'.";
+        fb.className = "text-xs font-semibold text-rose-600 block mt-2";
+      }
+    }
+
+    function checkEx10(btn, isCorrect) {
+      const fb = document.getElementById('feedback-ex-10');
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        fb.textContent = "Correct! 'Curly' ends in -y, which changes to -iest: 'the curliest'.";
+        fb.className = "text-xs font-semibold text-emerald-700 block mt-2";
+        markCompleted(10);
+      } else {
+        btn.classList.add('bg-rose-100', 'text-rose-700', 'border-rose-300');
+        fb.textContent = "Incorrect. Remember Rule 3 for words ending in -y.";
+        fb.className = "text-xs font-semibold text-rose-600 block mt-2";
+      }
+    }
+
+    function drawWheel() {
+      const canvas = document.getElementById('wheel-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const numSegments = wheelSegments.length;
+      const arcSize = (2 * Math.PI) / numSegments;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = centerX - 8;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      wheelSegments.forEach((seg, i) => {
+        const startAngle = i * arcSize;
+        const endAngle = startAngle + arcSize;
+
+        ctx.beginPath();
+        ctx.fillStyle = seg.color;
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.lineTo(centerX, centerY);
+        ctx.fill();
+
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(startAngle + arcSize / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 13px 'Plus Jakarta Sans', sans-serif";
+        ctx.shadowColor = "rgba(0,0,0,0.4)";
+        ctx.shadowBlur = 4;
+        ctx.fillText(seg.label, radius - 20, 5);
+        ctx.restore();
+      });
+    }
+
+    function spinWheel() {
+      if (state.isSpinning) return;
+      state.isSpinning = true;
+
+      const canvas = document.getElementById('wheel-canvas');
+      const numSegments = wheelSegments.length;
+      const segAngle = 360 / numSegments;
+
+      // Anti-repetition shuffle pool: ensures all 8 items appear before repeating,
+      // and never picks the same segment twice in a row.
+      if (!state.wheelBag || state.wheelBag.length === 0) {
+        let pool = Array.from({ length: numSegments }, (_, i) => i);
+        for (let i = pool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+        if (state.lastWheelIndex !== null && pool[0] === state.lastWheelIndex && pool.length > 1) {
+          [pool[0], pool[pool.length - 1]] = [pool[pool.length - 1], pool[0]];
+        }
+        state.wheelBag = pool;
+      }
+
+      const chosenIndex = state.wheelBag.pop();
+      state.lastWheelIndex = chosenIndex;
+
+      // Bisector angle of segment in canvas coordinates
+      const bisectorAngle = (chosenIndex + 0.5) * segAngle;
+
+      // Desired rotation so bisector lands at 270 degrees (12 o'clock needle)
+      let targetMod = (270 - bisectorAngle) % 360;
+      if (targetMod < 0) targetMod += 360;
+
+      let currentMod = state.currentWheelAngle % 360;
+      if (currentMod < 0) currentMod += 360;
+
+      let forwardDelta = (targetMod - currentMod) % 360;
+      if (forwardDelta <= 0) forwardDelta += 360;
+
+      const extraRotations = (5 + Math.floor(Math.random() * 3)) * 360;
+      const totalSpin = extraRotations + forwardDelta;
+      state.currentWheelAngle += totalSpin;
+
+      canvas.style.transition = 'transform 4s cubic-bezier(0.15, 0.9, 0.2, 1)';
+      canvas.style.transform = `rotate(${state.currentWheelAngle}deg)`;
+
+      document.getElementById('prompt-category').textContent = "Spinning...";
+      document.getElementById('prompt-text').textContent = "Selecting your appearance speaking prompt...";
+      document.getElementById('prompt-starter').textContent = "Waiting for pointer to land...";
+
+      const spinHub = document.getElementById('spin-hub-btn');
+      const spinMain = document.getElementById('spin-main-btn');
+      if (spinHub) spinHub.disabled = true;
+      if (spinMain) spinMain.disabled = true;
+
+      setTimeout(() => {
+        state.isSpinning = false;
+        if (spinHub) spinHub.disabled = false;
+        if (spinMain) spinMain.disabled = false;
+
+        const selectedSegment = wheelSegments[chosenIndex];
+        displayWheelPrompt(selectedSegment);
+        triggerConfetti();
+        startTimer(45);
+      }, 4000);
+    }
+
+    function displayWheelPrompt(seg) {
+      const cat = document.getElementById('prompt-category');
+      const txt = document.getElementById('prompt-text');
+      const starter = document.getElementById('prompt-starter');
+      const box = document.getElementById('result-box');
+
+      cat.textContent = `Category: ${seg.label}`;
+      txt.textContent = seg.prompt;
+      starter.textContent = seg.starter;
+
+      box.classList.remove('ring-4', 'ring-brand-400');
+      void box.offsetWidth;
+      box.classList.add('ring-4', 'ring-brand-400');
+      setTimeout(() => box.classList.remove('ring-4', 'ring-brand-400'), 1500);
+    }
+
+    function resetWheelPrompt() {
+      document.getElementById('prompt-category').textContent = "Category: Ready";
+      document.getElementById('prompt-text').textContent = "Click the Spin button to get your speaking prompt!";
+      document.getElementById('prompt-starter').textContent = '"In my opinion, the person who has..."';
+      stopTimer();
+    }
+
+    function startTimer(seconds) {
+      clearInterval(state.timerInterval);
+      let timeLeft = seconds;
+      updateTimerDisplay(timeLeft);
+
+      state.timerInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(state.timerInterval);
+          updateTimerDisplay(0);
+        } else {
+          updateTimerDisplay(timeLeft);
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(state.timerInterval);
+      updateTimerDisplay(0);
+    }
+
+    function updateTimerDisplay(sec) {
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = (sec % 60).toString().padStart(2, '0');
+      const elem = document.getElementById('timer-display');
+      if (elem) elem.textContent = `${m}:${s}`;
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 65,
+          spread: 70,
+          origin: { y: 0.7 }
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      drawWheel();
+    });
+  </script>
+</body>
+</html>
