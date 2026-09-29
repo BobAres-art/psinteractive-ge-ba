@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Style & Workplace Dress</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --error: #dc2626;
+      --highlight: #fef08a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 24px 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .nav-tabs {
+      display: flex;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .nav-tab {
+      padding: 14px 20px;
+      border: none;
+      background: transparent;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .nav-tab:hover {
+      color: var(--primary);
+    }
+
+    .nav-tab.active {
+      color: var(--primary);
+      background: var(--card-bg);
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .tab-content {
+      padding: 24px 20px;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Exposure Tab */
+    .dialogue-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .dialogue-line {
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .speaker {
+      font-weight: bold;
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .highlight-target {
+      transition: background-color 0.2s, font-weight 0.2s;
+    }
+
+    .highlighted {
+      background-color: var(--highlight);
+      font-weight: 600;
+      padding: 0 3px;
+      border-radius: 3px;
+    }
+
+    .toggle-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Form Tab */
+    .rule-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+
+    .rule-card h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
+
+    .rule-table th, .rule-table td {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .rule-table th {
+      background: #f8fafc;
+      font-weight: 600;
+    }
+
+    .tip-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem;
+    }
+
+    /* Practice Tab */
+    .exercise-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 20px;
+      background: #ffffff;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .mc-option {
+      display: block;
+      margin: 8px 0;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      background: #f8fafc;
+      transition: all 0.2s;
+    }
+
+    .mc-option:hover {
+      border-color: var(--primary);
+    }
+
+    .mc-option.correct {
+      background: #dcfce7;
+      border-color: var(--success);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .mc-option.incorrect {
+      background: #fee2e2;
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .feedback-msg {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .feedback-msg.correct { color: var(--success); }
+    .feedback-msg.incorrect { color: var(--error); }
+
+    /* Drag & Unscramble Components */
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+      min-height: 44px;
+      padding: 8px;
+      background: #f1f5f9;
+      border-radius: 6px;
+    }
+
+    .drop-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 48px;
+      padding: 8px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .word-chip {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      user-select: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .word-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Comparison Builder / Creative Tab */
+    .builder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .item-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+      background: #f8fafc;
+    }
+
+    .item-card h4 {
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .item-specs {
+      list-style: none;
+      font-size: 0.9rem;
+      text-align: left;
+      margin: 10px 0;
+    }
+
+    .item-specs li {
+      margin-bottom: 4px;
+    }
+
+    select, input[type="text"] {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      background: white;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    footer {
+      text-align: right;
+      padding: 16px 20px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .builder-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-tab {
+        padding: 12px 14px;
+        font-size: 0.85rem;
+      }
+      body {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Workplace Style & Dress Codes</h1>
+    <p>Compare outfits, workplace rules, and accessories with comparative structures.</p>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab(0)">1. Exposure</button>
+    <button class="nav-tab" onclick="switchTab(1)">2. Grammar Rules</button>
+    <button class="nav-tab" onclick="switchTab(2)">3. Practice Arena</button>
+    <button class="nav-tab" onclick="switchTab(3)">4. Style Consultant</button>
+  </nav>
+
+  <!-- TAB 1: EXPOSURE -->
+  <section class="tab-content active" id="tab-exposure">
+    <h3>Office Dress Code Discussion</h3>
+    <p>Read the conversation between Clara and Leo discussing the company's new hybrid wardrobe policy.</p>
+
+    <div class="dialogue-box">
+      <div class="dialogue-line">
+        <span class="speaker">Clara:</span>
+        Hi Leo! Are you wearing running shoes with a blazer? That looks <span class="highlight-target">more modern than</span> standard business suits, but is it allowed?
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">Leo:</span>
+        Yes! The management introduced a new dress guide yesterday. Everyday office wear is now <span class="highlight-target">more casual than</span> before.
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">Clara:</span>
+        That is great news. High heels are <span class="highlight-target">nicer than</span> sneakers for events, but flat shoes are definitely <span class="highlight-target">more comfortable than</span> heels at my standing desk.
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">Leo:</span>
+        Exactly. And my dark jeans look <span class="highlight-target">better than</span> my faded ones, so they still look smart. Plus, getting dressed in the morning is now <span class="highlight-target">easier than</span> ever.
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">Clara:</span>
+        True! A simple leather belt makes this outfit <span class="highlight-target">classier than</span> a plain sport look. However, meeting clients is still <span class="highlight-target">more formal than</span> regular work days.
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">Leo:</span>
+        Of course. We don't want our client presentations to look <span class="highlight-target">worse than</span> our competitors' presentations!
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleHighlights()">
+      <span>💡 Toggle Comparison Highlights</span>
+    </button>
+  </section>
+
+  <!-- TAB 2: FORM -->
+  <section class="tab-content" id="tab-form">
+    <div class="rule-card">
+      <h3>1. One-Syllable Adjectives</h3>
+      <p>Add <strong>-er + than</strong> to short adjectives.</p>
+      <table class="rule-table">
+        <tr>
+          <th>Adjective Type</th>
+          <th>Rule</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>General 1-syllable</td>
+          <td>+ <strong>-er</strong></td>
+          <td>smart &rarr; smart<strong>er</strong> than</td>
+        </tr>
+        <tr>
+          <td>Ending in <strong>-e</strong></td>
+          <td>+ <strong>-r</strong></td>
+          <td>nice &rarr; nice<strong>r</strong> than</td>
+        </tr>
+        <tr>
+          <td>Consonant + Vowel + Consonant (CVC)</td>
+          <td>Double final letter + <strong>-er</strong></td>
+          <td>big &rarr; big<strong>ger</strong> than</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <h3>2. Two-Syllable Adjectives Ending in -y</h3>
+      <p>Change <strong>-y</strong> to <strong>-ier + than</strong>.</p>
+      <table class="rule-table">
+        <tr>
+          <th>Base Adjective</th>
+          <th>Comparative Form</th>
+          <th>Example Sentence</th>
+        </tr>
+        <tr>
+          <td>easy</td>
+          <td>eas<strong>ier</strong></td>
+          <td>Linen is <em>easier</em> to wash than silk.</td>
+        </tr>
+        <tr>
+          <td>classy</td>
+          <td>class<strong>ier</strong></td>
+          <td>A watch looks <em>classier</em> than a plastic bracelet.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <h3>3. Long Adjectives (2+ Syllables, not ending in -y)</h3>
+      <p>Use <strong>more + adjective + than</strong>. Do not modify the ending of the adjective.</p>
+      <table class="rule-table">
+        <tr>
+          <th>Adjective</th>
+          <th>Comparative Form</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>formal</td>
+          <td><strong>more</strong> formal</td>
+          <td>Suits are <em>more formal than</em> hoodies.</td>
+        </tr>
+        <tr>
+          <td>comfortable</td>
+          <td><strong>more</strong> comfortable</td>
+          <td>Sneakers are <em>more comfortable than</em> boots.</td>
+        </tr>
+        <tr>
+          <td>expensive</td>
+          <td><strong>more</strong> expensive</td>
+          <td>Gold watches are <em>more expensive than</em> silver ones.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <h3>4. Irregular Comparatives</h3>
+      <p>These adjectives completely change their form. Memorize them:</p>
+      <table class="rule-table">
+        <tr>
+          <th>Adjective</th>
+          <th>Comparative</th>
+          <th>Context</th>
+        </tr>
+        <tr>
+          <td>good</td>
+          <td><strong>better than</strong></td>
+          <td>This jacket is <em>better</em> for cold offices.</td>
+        </tr>
+        <tr>
+          <td>bad</td>
+          <td><strong>worse than</strong></td>
+          <td>Wrinkled shirts look <em>worse</em> than casual t-shirts.</td>
+        </tr>
+        <tr>
+          <td>far</td>
+          <td><strong>farther / further than</strong></td>
+          <td>The outlet store is <em>further</em> than the mall.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="tip-box">
+      <strong>Important Word Order Reminder:</strong> Always remember to place <strong>than</strong> directly before the second object or person you are comparing!
+    </div>
+  </section>
+
+  <!-- TAB 3: PRACTICE -->
+  <section class="tab-content" id="tab-practice">
+    
+    <!-- Exercise 1: Single Syllable (MCQ) -->
+    <div class="exercise-card" id="ex1">
+      <div class="exercise-title">Exercise 1: Short Adjectives</div>
+      <p>My winter coat is __________ my summer jacket.</p>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex1', true)">warmer than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex1', false)">more warm than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex1', false)">warmmer than</div>
+      <div class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 2: CVC Rule (MCQ) -->
+    <div class="exercise-card" id="ex2">
+      <div class="exercise-title">Exercise 2: Spelling Check</div>
+      <p>A laptop bag is usually __________ a handbag.</p>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex2', false)">biger than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex2', true)">bigger than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex2', false)">more big than</div>
+      <div class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 3: -y Ending (MCQ) -->
+    <div class="exercise-card" id="ex3">
+      <div class="exercise-title">Exercise 3: -y Adjectives</div>
+      <p>This wool sweater is __________ that cotton t-shirt.</p>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex3', false)">more heavy than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex3', false)">heavyer than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex3', true)">heavier than</div>
+      <div class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 4: Long Adjectives (MCQ) -->
+    <div class="exercise-card" id="ex4">
+      <div class="exercise-title">Exercise 4: Long Adjectives</div>
+      <p>Designer suits are __________ standard work clothes.</p>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex4', true)">more expensive than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex4', false)">expensiver than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex4', false)">more expensiver than</div>
+      <div class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 5: Irregular Form (MCQ) -->
+    <div class="exercise-card" id="ex5">
+      <div class="exercise-title">Exercise 5: Irregulars</div>
+      <p>Leather shoes look __________ plastic sandals for an interview.</p>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex5', false)">gooder than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex5', true)">better than</div>
+      <div class="mc-option" onclick="checkMCQ(this, 'ex5', false)">more good than</div>
+      <div class="feedback-msg"></div>
+    </div>
+
+    <!-- Exercise 6: Dropdown Cloze Matrix -->
+    <div class="exercise-card" id="ex6">
+      <div class="exercise-title">Exercise 6: Complete the Office Dress Guide</div>
+      <p style="margin-bottom: 12px;">Select the best comparative forms:</p>
+      <p style="margin-bottom: 8px;">
+        1. On casual Fridays, jeans are 
+        <select id="dd1">
+          <option value="">-- Choose --</option>
+          <option value="correct">more popular than</option>
+          <option value="wrong">popularer than</option>
+        </select>
+        trousers.
+      </p>
+      <p style="margin-bottom: 8px;">
+        2. A dark tie is 
+        <select id="dd2">
+          <option value="">-- Choose --</option>
+          <option value="wrong">more traditional</option>
+          <option value="correct">more traditional than</option>
+        </select>
+        a neon tie.
+      </p>
+      <p style="margin-bottom: 8px;">
+        3. Wearing dirty sneakers looks 
+        <select id="dd3">
+          <option value="">-- Choose --</option>
+          <option value="correct">worse than</option>
+          <option value="wrong">badder than</option>
+        </select>
+        wearing simple shoes.
+      </p>
+      <button class="action-btn" onclick="checkDropdowns()">Check Choices</button>
+      <div class="feedback-msg" id="dd-feedback"></div>
+    </div>
+
+    <!-- Exercise 7: Sentence Unscramble 1 -->
+    <div class="exercise-card" id="ex7">
+      <div class="exercise-title">Exercise 7: Reorder the Comparison</div>
+      <p>Click words in order to form a correct sentence:</p>
+      <div class="drop-zone" id="drop-zone-1"></div>
+      <div class="word-bank" id="word-bank-1">
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-1', 'word-bank-1')">than</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-1', 'word-bank-1')">Blazers</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-1', 'word-bank-1')">are</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-1', 'word-bank-1')">hoodies.</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-1', 'word-bank-1')">smarter</span>
+      </div>
+      <button class="action-btn" onclick="checkUnscramble(1, ['Blazers', 'are', 'smarter', 'than', 'hoodies.'])">Verify Order</button>
+      <div class="feedback-msg" id="unscramble-fb-1"></div>
+    </div>
+
+    <!-- Exercise 8: Sentence Unscramble 2 -->
+    <div class="exercise-card" id="ex8">
+      <div class="exercise-title">Exercise 8: Reorder Long Adjectives</div>
+      <p>Click words in order to construct the comparison:</p>
+      <div class="drop-zone" id="drop-zone-2"></div>
+      <div class="word-bank" id="word-bank-2">
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">watches</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">expensive</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">Gold</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">more</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">than</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">are</span>
+        <span class="word-chip" onclick="moveChip(this, 'drop-zone-2', 'word-bank-2')">silver.</span>
+      </div>
+      <button class="action-btn" onclick="checkUnscramble(2, ['Gold', 'watches', 'are', 'more', 'expensive', 'than', 'silver.'])">Verify Order</button>
+      <div class="feedback-msg" id="unscramble-fb-2"></div>
+    </div>
+
+  </section>
+
+  <!-- TAB 4: CREATIVE EXPANSION (STYLE CONSULTANT) -->
+  <section class="tab-content" id="tab-creative">
+    <h3>Virtual Style Consultant</h3>
+    <p>Compare two workplace accessory setups and evaluate which one fits the situation best.</p>
+
+    <div class="builder-grid">
+      <div class="item-card">
+        <h4>Option A: The Classic Briefcase</h4>
+        <ul class="item-specs">
+          <li>Price: $180 (High)</li>
+          <li>Formality: High</li>
+          <li>Weight: 2.1 kg</li>
+          <li>Comfort: Moderate</li>
+        </ul>
+      </div>
+      <div class="item-card">
+        <h4>Option B: The Modern Laptop Backpack</h4>
+        <ul class="item-specs">
+          <li>Price: $65 (Moderate)</li>
+          <li>Formality: Medium</li>
+          <li>Weight: 0.9 kg</li>
+          <li>Comfort: High</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exercise-card" style="margin-top: 20px;">
+      <div class="exercise-title">Consultant Quick Check</div>
+      <p style="margin-bottom: 8px;">Complete the consultation summary:</p>
+      
+      <p style="margin-bottom: 8px;">
+        1. The backpack is 
+        <select id="c1">
+          <option value="">-- Choose --</option>
+          <option value="correct">lighter than</option>
+          <option value="wrong">more light than</option>
+        </select>
+        the briefcase.
+      </p>
+
+      <p style="margin-bottom: 8px;">
+        2. The briefcase is 
+        <select id="c2">
+          <option value="">-- Choose --</option>
+          <option value="correct">more expensive than</option>
+          <option value="wrong">expensiver than</option>
+        </select>
+        the backpack.
+      </p>
+
+      <p style="margin-bottom: 8px;">
+        3. For daily bike commuting, the backpack is 
+        <select id="c3">
+          <option value="">-- Choose --</option>
+          <option value="correct">better than</option>
+          <option value="wrong">gooder than</option>
+        </select>
+        the briefcase.
+      </p>
+      <button class="action-btn" onclick="checkConsultant()">Check Advice</button>
+      <div class="feedback-msg" id="consultant-fb"></div>
+    </div>
+  </section>
+
+  <footer>
+    Designed by Babak Alaee
+  </footer>
+</div>
+
+<script>
+  function switchTab(index) {
+    const tabs = document.querySelectorAll('.nav-tab');
+    const contents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+    });
+    
+    contents.forEach((content, i) => {
+      content.classList.toggle('active', i === index);
+    });
+  }
+
+  let highlightsActive = false;
+  function toggleHighlights() {
+    highlightsActive = !highlightsActive;
+    const targets = document.querySelectorAll('.highlight-target');
+    targets.forEach(el => {
+      el.classList.toggle('highlighted', highlightsActive);
+    });
+  }
+
+  function checkMCQ(element, parentId, isCorrect) {
+    const parent = document.getElementById(parentId);
+    const options = parent.querySelectorAll('.mc-option');
+    const fb = parent.querySelector('.feedback-msg');
+    
+    options.forEach(opt => {
+      opt.classList.remove('correct', 'incorrect');
+    });
+
+    if (isCorrect) {
+      element.classList.add('correct');
+      fb.className = 'feedback-msg correct';
+      fb.textContent = 'Well done! That is the correct comparative form.';
+    } else {
+      element.classList.add('incorrect');
+      fb.className = 'feedback-msg incorrect';
+      fb.textContent = 'Not quite. Check the syllable count or spelling rules and try again!';
+    }
+  }
+
+  function checkDropdowns() {
+    const d1 = document.getElementById('dd1').value;
+    const d2 = document.getElementById('dd2').value;
+    const d3 = document.getElementById('dd3').value;
+    const fb = document.getElementById('dd-feedback');
+
+    if (d1 === 'correct' && d2 === 'correct' && d3 === 'correct') {
+      fb.className = 'feedback-msg correct';
+      fb.textContent = 'Excellent! All choices are grammatically accurate.';
+    } else {
+      fb.className = 'feedback-msg incorrect';
+      fb.textContent = 'Some choices need revision. Remember to use "than" and check the irregular forms.';
+    }
+  }
+
+  function moveChip(chip, dropId, bankId) {
+    const currentParent = chip.parentElement.id;
+    if (currentParent === bankId) {
+      document.getElementById(dropId).appendChild(chip);
+    } else {
+      document.getElementById(bankId).appendChild(chip);
+    }
+  }
+
+  function checkUnscramble(num, correctArr) {
+    const dropZone = document.getElementById(`drop-zone-${num}`);
+    const chips = dropZone.querySelectorAll('.word-chip');
+    const fb = document.getElementById(`unscramble-fb-${num}`);
+    
+    const userWords = Array.from(chips).map(c => c.textContent.trim());
+    
+    if (userWords.length !== correctArr.length) {
+      fb.className = 'feedback-msg incorrect';
+      fb.textContent = 'Please place all words into the answer box before checking.';
+      return;
+    }
+
+    const isMatch = userWords.every((val, index) => val === correctArr[index]);
+    
+    if (isMatch) {
+      fb.className = 'feedback-msg correct';
+      fb.textContent = 'Correct sentence structure!';
+    } else {
+      fb.className = 'feedback-msg incorrect';
+      fb.textContent = 'Incorrect word order. Try clicking words back to the bank and reordering.';
+    }
+  }
+
+  function checkConsultant() {
+    const c1 = document.getElementById('c1').value;
+    const c2 = document.getElementById('c2').value;
+    const c3 = document.getElementById('c3').value;
+    const fb = document.getElementById('consultant-fb');
+
+    if (c1 === 'correct' && c2 === 'correct' && c3 === 'correct') {
+      fb.className = 'feedback-msg correct';
+      fb.textContent = 'Great job! You successfully compared both workplace items.';
+    } else {
+      fb.className = 'feedback-msg incorrect';
+      fb.textContent = 'Look closely at syllable counts and irregular forms (e.g. good -> better).';
+    }
+  }
+</script>
+
+</body>
+</html>
