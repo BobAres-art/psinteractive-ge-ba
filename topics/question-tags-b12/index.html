@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Question Tags in Child Psychology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .nav-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .drop-slot.drag-over {
+      background-color: #e0e7ff !important;
+      border-color: #4f46e5 !important;
+      transform: scale(1.02);
+    }
+    .memory-card {
+      perspective: 1000px;
+      user-select: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .memory-card:active {
+      transform: scale(0.97);
+    }
+    /* Hide scrollbars for clean nav on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-400 text-white flex items-center justify-center font-bold text-lg shadow-sm shadow-indigo-200">
+          ?
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Mastering Question Tags</h1>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200">Clinical Focus</span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium">Observational Child Psychology Contexts</p>
+        </div>
+      </div>
+      
+      <!-- Attribution -->
+      <div class="text-right">
+        <span class="text-xs font-semibold text-slate-400 block tracking-wide">Designed by Babak Alaee</span>
+        <div class="flex items-center justify-end gap-1.5 mt-0.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-[11px] text-slate-600 font-medium">Interactive Suite</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 border-t border-slate-100">
+      <nav class="flex space-x-1 sm:space-x-2 py-2 overflow-x-auto text-sm no-scrollbar">
+        <button onclick="switchTab('discovery')" id="tab-discovery" class="nav-btn active flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-slate-600 hover:text-slate-900 whitespace-nowrap transition-all">
+          <span>🧸</span> Case Immersion
+        </button>
+        <button onclick="switchTab('rules')" id="tab-rules" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-slate-600 hover:text-slate-900 whitespace-nowrap transition-all">
+          <span>🧠</span> Rules & Acoustic Pitch
+        </button>
+        <button onclick="switchTab('practice')" id="tab-practice" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-slate-600 hover:text-slate-900 whitespace-nowrap transition-all">
+          <span>🧩</span> Practice Lab (10 Tasks)
+        </button>
+        <button onclick="switchTab('wheel')" id="tab-wheel" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-slate-600 hover:text-slate-900 whitespace-nowrap transition-all">
+          <span>🎡</span> Scenario Fortune Wheel
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: IMMERSION & DISCOVERY -->
+    <!-- ========================================== -->
+    <section id="section-discovery" class="space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800">Observational Pediatric Consultation</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">The Playroom Case Study: Observing Leo</h2>
+        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+          Dr. Clara Vance (Clinical Child Psychologist) and Mark (Play Therapist) are reviewing video logs of 4-year-old Leo during sensory transitions. Read their dialogue carefully and observe how they formulate tag questions.
+        </p>
+      </div>
+
+      <!-- Dialogue & Photo Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col justify-between border border-slate-200">
+          <div class="space-y-4 text-slate-700 leading-relaxed text-base sm:text-lg font-serif">
+            <p>
+              <strong class="font-sans text-indigo-700 text-xs tracking-wider uppercase block font-bold mb-1">Dr. Vance (Psychologist):</strong>
+              "Leo was playing cooperatively with the blocks before the transition bell, <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-200">wasn't he?</span> Yet nobody warned him five minutes prior to clean-up, <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-200">did they?</span>"
+            </p>
+            <p>
+              <strong class="font-sans text-emerald-700 text-xs tracking-wider uppercase block font-bold mb-1">Mark (Play Therapist):</strong>
+              "I'm not misinterpreting his sensory regulation cues, <span class="bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded border border-emerald-200">am I?</span> He rarely tolerates sudden acoustic shifts without distress, <span class="bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded border border-emerald-200">does he?</span> He barely had time to self-soothe before the meltdown, <span class="bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded border border-emerald-200">did he?</span>"
+            </p>
+            <p>
+              <strong class="font-sans text-indigo-700 text-xs tracking-wider uppercase block font-bold mb-1">Dr. Vance:</strong>
+              "Let's review the video recording of his solitary play, <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-200">shall we?</span> His emotional regulation has improved substantially over the semester, <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-200">hasn't it?</span> Please pass me his developmental assessment chart, <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-200">will you?</span>"
+            </p>
+            <p>
+              <strong class="font-sans text-emerald-700 text-xs tracking-wider uppercase block font-bold mb-1">Mark:</strong>
+              "I'm responsible for drafting the updated sensory support plan, <span class="bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded border border-emerald-200">aren't I?</span> Nothing was overlooked during the parental interview, <span class="bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded border border-emerald-200">was it?</span>"
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-sans">
+            <span>Institute of Child Psychology</span>
+            <span class="italic">Clinical Supervision Log #42</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative rounded-2xl overflow-hidden shadow-md flex-1 group min-h-[220px]">
+            <img 
+              src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1000&q=80" 
+              alt="Child exploring sensory blocks in a playroom" 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              onerror="this.src='https://placehold.co/800x500/312e81/ffffff?text=Child+Play+Therapy+Session'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent flex items-end p-5">
+              <p class="text-white text-sm font-medium">Sensory play assessment: evaluating motor autonomy and self-regulation.</p>
+            </div>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden shadow-md h-48 group">
+            <img 
+              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1000&q=80" 
+              alt="Psychologists observing clinical interactions" 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              onerror="this.src='https://placehold.co/800x300/1e1b4b/ffffff?text=Developmental+Assessment'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-5">
+              <p class="text-white text-xs font-medium">Observational charting of peer interaction and attachment security.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inductive Guided Questions -->
+      <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+            <span>💡</span> Inductive Grammar Discovery
+          </div>
+          <h3 class="text-2xl font-bold mb-2">Uncover the Patterns Yourself</h3>
+          <p class="text-indigo-200 text-sm mb-6">
+            Review how the therapists framed their questions. Click the option that best describes each grammar rule:
+          </p>
+
+          <div class="space-y-5">
+            <!-- Discovery Q1 -->
+            <div class="bg-white/10 rounded-xl p-4 sm:p-5 border border-white/10">
+              <p class="font-semibold text-sm sm:text-base mb-3">
+                1. Look at Mark's question: <span class="text-indigo-200 italic">"I'm responsible for drafting the updated support plan, aren't I?"</span> What happens to the positive phrase "I am"?
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm">
+                <button onclick="checkInductive(1, false, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all">It forms "amn't I?"</button>
+                <button onclick="checkInductive(1, true, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all font-medium">It uniquely transforms into "aren't I?"</button>
+                <button onclick="checkInductive(1, false, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all">It replaces the pronoun with "me"</button>
+              </div>
+              <div id="inductive-fb-1" class="hidden text-xs mt-3 pt-2 border-t border-white/15"></div>
+            </div>
+
+            <!-- Discovery Q2 -->
+            <div class="bg-white/10 rounded-xl p-4 sm:p-5 border border-white/10">
+              <p class="font-semibold text-sm sm:text-base mb-3">
+                2. In: <span class="text-indigo-200 italic">"He rarely tolerates sudden acoustic shifts, does he?"</span> Why is the tag positive ("does he?") without any visible word "not"?
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm">
+                <button onclick="checkInductive(2, true, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all font-medium">"Rarely" makes the sentence negative in meaning.</button>
+                <button onclick="checkInductive(2, false, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all">Psychology verbs require positive tags.</button>
+                <button onclick="checkInductive(2, false, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all">It is an informal exception.</button>
+              </div>
+              <div id="inductive-fb-2" class="hidden text-xs mt-3 pt-2 border-t border-white/15"></div>
+            </div>
+
+            <!-- Discovery Q3 -->
+            <div class="bg-white/10 rounded-xl p-4 sm:p-5 border border-white/10">
+              <p class="font-semibold text-sm sm:text-base mb-3">
+                3. Examine Dr. Vance's clinical proposal: <span class="text-indigo-200 italic">"Let's review the video recording, shall we?"</span> What tag follows collaborative suggestions starting with "Let's"?
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm">
+                <button onclick="checkInductive(3, false, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all">will we?</button>
+                <button onclick="checkInductive(3, true, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all font-medium">shall we?</button>
+                <button onclick="checkInductive(3, false, this)" class="inductive-btn text-left p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all">don't we?</button>
+              </div>
+              <div id="inductive-fb-3" class="hidden text-xs mt-3 pt-2 border-t border-white/15"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: RULES & ACOUSTIC PITCH -->
+    <!-- ========================================== -->
+    <section id="section-rules" class="hidden space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800">Child Psychology Clinical Grammar</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Grammar Rules & Acoustic Pitch</h2>
+        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+          In clinical child consultations, intonation communicates whether a psychologist is checking facts they already know, or seeking genuine information from parents.
+        </p>
+      </div>
+
+      <!-- Core Principle Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-card p-6 sm:p-7 rounded-2xl border-l-4 border-indigo-600 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-lg text-slate-900">1. Polarity Inversion</h4>
+            <span class="text-xl">⚖️</span>
+          </div>
+          <p class="text-sm text-slate-600">The tag reverses the grammatical polarity of the statement:</p>
+          <div class="space-y-2 text-sm">
+            <div class="p-3 bg-emerald-50 text-emerald-900 rounded-xl border border-emerald-100 flex items-center justify-between">
+              <span><strong>Affirmative</strong>: Leo exhibits secure attachment,</span>
+              <span class="font-bold text-emerald-700 bg-white px-2 py-0.5 rounded shadow-xs">doesn't he? ⊖</span>
+            </div>
+            <div class="p-3 bg-rose-50 text-rose-900 rounded-xl border border-rose-100 flex items-center justify-between">
+              <span><strong>Negative</strong>: The toddler hasn't missed any milestones,</span>
+              <span class="font-bold text-rose-700 bg-white px-2 py-0.5 rounded shadow-xs">has he? ⊕</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 sm:p-7 rounded-2xl border-l-4 border-indigo-600 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-lg text-slate-900">2. Auxiliary & Modal Echoing</h4>
+            <span class="text-xl">🔁</span>
+          </div>
+          <p class="text-sm text-slate-600">Echo the principal auxiliary verb; insert <em>do / does / did</em> for simple tenses:</p>
+          <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span class="text-slate-500 block">The infant can babble</span>
+              <span class="font-semibold text-slate-800">can't she?</span>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span class="text-slate-500 block">Parents used to co-sleep</span>
+              <span class="font-semibold text-slate-800">didn't they?</span>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span class="text-slate-500 block">He has responded well</span>
+              <span class="font-semibold text-slate-800">hasn't he?</span>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span class="text-slate-500 block">They struggled with sleep</span>
+              <span class="font-semibold text-slate-800">didn't they?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nuances & Special Cases Interactive Grid -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span class="text-indigo-600">★</span> Special Linguistic Nuances in Child Psychology
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">First-Person Singular</span>
+            <h5 class="font-bold text-slate-900 text-sm">"I am" → aren't I?</h5>
+            <p class="text-xs text-slate-600 mt-1">"I'm evaluating his cognitive flexibility correctly, <strong>aren't I?</strong>"<br><span class="text-slate-400 italic">Negative: "I am not overreacting, <strong>am I?</strong>"</span></p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Semi-Negative Adverbs</span>
+            <h5 class="font-bold text-slate-900 text-sm">Hardly, Barely, Rarely, Seldom</h5>
+            <p class="text-xs text-slate-600 mt-1">Create negative polarity, requiring a positive tag.<br>"A two-year-old rarely suppresses an impulse, <strong>does she?</strong>"</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Clinical Suggestions</span>
+            <h5 class="font-bold text-slate-900 text-sm">Let's → shall we?</h5>
+            <p class="text-xs text-slate-600 mt-1">Used when inviting parents or co-therapists.<br>"Let's observe how the toddler handles separation, <strong>shall we?</strong>"</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Indefinite People Pronouns</span>
+            <h5 class="font-bold text-slate-900 text-sm">Someone, Nobody, Everyone → they</h5>
+            <p class="text-xs text-slate-600 mt-1">Pronoun 'they' reflects plural referents.<br>"Nobody comforted the crying infant, <strong>did they?</strong>"</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Inanimate Pronouns</span>
+            <h5 class="font-bold text-slate-900 text-sm">Nothing, Everything → it</h5>
+            <p class="text-xs text-slate-600 mt-1">Concepts and objects resolve to singular 'it'.<br>"Nothing calms a sensory overload immediately, <strong>does it?</strong>"</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Parental Directives</span>
+            <h5 class="font-bold text-slate-900 text-sm">Imperatives → will you?</h5>
+            <p class="text-xs text-slate-600 mt-1">Softens clinical instructions to parents.<br>"Keep a daily sleep diary this week, <strong>will you?</strong>"</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl">
+        <div class="max-w-3xl mb-6">
+          <div class="inline-flex items-center gap-2 bg-indigo-500/20 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full mb-3">
+            <span>🔊</span> Acoustic Pitch Synthesizer (Extended 2.5-Second Vocal Glide)
+          </div>
+          <h3 class="text-2xl font-bold">Hear the Intonation Clearly</h3>
+          <p class="text-slate-300 text-sm mt-1">
+            We built harmonic oscillators so you can clearly hear the difference between a falling confirmation pitch and a rising genuine question.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Falling Intonation Card -->
+          <div class="bg-white/5 border border-white/10 rounded-xl p-5 hover:border-amber-400/40 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-amber-400 font-bold text-sm tracking-wide flex items-center gap-1">
+                  Falling Pitch ↘ (Seeking Confirmation)
+                </span>
+                <span class="text-xs bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded font-mono">Pitch Drops at Tag</span>
+              </div>
+              <p class="text-xs text-slate-300">
+                The psychologist already knows or anticipates agreement. The sentence maintains a steady pitch and plunges distinctly downward on the tag.
+              </p>
+              <div class="mt-4 p-3 bg-black/40 rounded-lg text-xs font-mono text-indigo-200">
+                "Leo feels safer following a predictable schedule, <span class="text-amber-300 font-bold underline">doesn't he? ↘</span>"
+              </div>
+              <div class="mt-3 text-xs text-amber-200/80 font-mono">
+                Pitch path: 340Hz (Statement) ➔ drops sharply down to 130Hz (Tag)
+              </div>
+            </div>
+
+            <button onclick="playEnhancedIntonation('falling')" class="mt-6 w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 text-sm transition-all shadow-md active:scale-95">
+              <span>▶ Play Falling Tone (↘ 2.5s)</span>
+            </button>
+          </div>
+
+          <!-- Rising Intonation Card -->
+          <div class="bg-white/5 border border-white/10 rounded-xl p-5 hover:border-emerald-400/40 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-emerald-400 font-bold text-sm tracking-wide flex items-center gap-1">
+                  Rising Pitch ↗ (Genuine Inquiry)
+                </span>
+                <span class="text-xs bg-emerald-400/20 text-emerald-300 px-2 py-0.5 rounded font-mono">Pitch Climbs at Tag</span>
+              </div>
+              <p class="text-xs text-slate-300">
+                The therapist does not know and is asking a genuine question. The pitch starts lower and swoops high up into the air on the tag.
+              </p>
+              <div class="mt-4 p-3 bg-black/40 rounded-lg text-xs font-mono text-indigo-200">
+                "The nursery hasn't reported separation distress today, <span class="text-emerald-300 font-bold underline">have they? ↗</span>"
+              </div>
+              <div class="mt-3 text-xs text-emerald-200/80 font-mono">
+                Pitch path: 210Hz (Statement) ➔ glides high up to 540Hz (Tag)
+              </div>
+            </div>
+
+            <button onclick="playEnhancedIntonation('rising')" class="mt-6 w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 text-sm transition-all shadow-md active:scale-95">
+              <span>▶ Play Rising Tone (↗ 2.5s)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: PRACTICE LAB (10 EXERCISES & MEMORY GAME) -->
+    <!-- ========================================== -->
+    <section id="section-practice" class="space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800">Child Psychology Diagnostic Laboratory</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">10 Interactive Practice Tasks</h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Test your mastery across developmental psychology scenarios through drag-and-drop, typing, clinical error rectification, an embedded memory game, and more.
+        </p>
+      </div>
+
+      <!-- EXERCISE 1: Drag-and-Drop Matching -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex1-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">1</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Tactile Tag Snapping: Developmental Milestones</h3>
+          </div>
+          <span id="ex1-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Drag each question tag into its matching clinical statement, or tap a tag and then tap the target slot:</p>
+
+        <!-- Draggable Bank -->
+        <div class="flex flex-wrap gap-2.5 p-4 bg-slate-100 rounded-xl mb-6 min-h-[56px] items-center" id="drag-source-bank">
+          <div draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipTap(this)" data-tag="won't they?" class="draggable-tag bg-white border border-slate-300 text-slate-800 px-3.5 py-1.5 rounded-lg text-sm font-semibold shadow-xs cursor-pointer hover:border-indigo-500">won't they?</div>
+          <div draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipTap(this)" data-tag="aren't I?" class="draggable-tag bg-white border border-slate-300 text-slate-800 px-3.5 py-1.5 rounded-lg text-sm font-semibold shadow-xs cursor-pointer hover:border-indigo-500">aren't I?</div>
+          <div draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipTap(this)" data-tag="did they?" class="draggable-tag bg-white border border-slate-300 text-slate-800 px-3.5 py-1.5 rounded-lg text-sm font-semibold shadow-xs cursor-pointer hover:border-indigo-500">did they?</div>
+          <div draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipTap(this)" data-tag="shall we?" class="draggable-tag bg-white border border-slate-300 text-slate-800 px-3.5 py-1.5 rounded-lg text-sm font-semibold shadow-xs cursor-pointer hover:border-indigo-500">shall we?</div>
+        </div>
+
+        <!-- Target Sentences -->
+        <div class="space-y-3.5">
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-sm">
+            <span>1. I am accurately scoring the child's executive function test,</span>
+            <div class="drop-slot w-36 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-semibold text-xs text-slate-400 bg-slate-50 cursor-pointer" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'aren\'t I?')" onclick="handleSlotTap(this, 'aren\'t I?')">Drop Tag Here</div>
+          </div>
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-sm">
+            <span>2. Neither of the parents noted bedtime anxieties in the questionnaire,</span>
+            <div class="drop-slot w-36 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-semibold text-xs text-slate-400 bg-slate-50 cursor-pointer" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'did they?')" onclick="handleSlotTap(this, 'did they?')">Drop Tag Here</div>
+          </div>
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-sm">
+            <span>3. Let's introduce the sandbox during the next play therapy hour,</span>
+            <div class="drop-slot w-36 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-semibold text-xs text-slate-400 bg-slate-50 cursor-pointer" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'shall we?')" onclick="handleSlotTap(this, 'shall we?')">Drop Tag Here</div>
+          </div>
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-sm">
+            <span>4. The pediatricians will present their findings on adolescent sleep hygiene,</span>
+            <div class="drop-slot w-36 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-semibold text-xs text-slate-400 bg-slate-50 cursor-pointer" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'won\'t they?')" onclick="handleSlotTap(this, 'won\'t they?')">Drop Tag Here</div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center justify-end gap-3">
+          <button onclick="resetEx1()" class="text-xs text-slate-500 hover:text-slate-800 font-medium">Reset</button>
+          <button onclick="validateEx1()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-all">Verify Slots</button>
+        </div>
+      </div>
+
+      <!-- EXERCISE 2: Quick-Type Tag Infill -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex2-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">2</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Rapid Clinical Infill</h3>
+          </div>
+          <span id="ex2-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Type the exact tag into each developmental observation (e.g., <span class="font-mono bg-slate-100 px-1 py-0.5 rounded text-xs">didn't he?</span>):</p>
+
+        <div class="space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-white border border-slate-200 rounded-xl text-sm">
+            <span>1. The patient used to experience night terrors during toddlerhood,</span>
+            <input type="text" id="ex2-q1" placeholder="tag?" class="w-full sm:w-44 px-3 py-1.5 rounded-lg border border-slate-300 font-mono text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-white border border-slate-200 rounded-xl text-sm">
+            <span>2. Nothing alarming surfaced during the fine-motor screening,</span>
+            <input type="text" id="ex2-q2" placeholder="tag?" class="w-full sm:w-44 px-3 py-1.5 rounded-lg border border-slate-300 font-mono text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-white border border-slate-200 rounded-xl text-sm">
+            <span>3. Everyone on the clinical team had endorsed the sensory diet,</span>
+            <input type="text" id="ex2-q3" placeholder="tag?" class="w-full sm:w-44 px-3 py-1.5 rounded-lg border border-slate-300 font-mono text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center justify-end gap-3">
+          <button onclick="validateEx2()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-all">Submit Answers</button>
+        </div>
+        <div id="ex2-feedback" class="hidden text-xs mt-3 p-3 rounded-lg"></div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-indigo-200/90 shadow-md bg-gradient-to-br from-indigo-50/40 via-white to-white" id="memory-game-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">3</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Memory Match: Psychology Cases & Tags</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold text-slate-500">Pairs Matched: <span id="memory-matches-count" class="font-bold text-indigo-700">0/4</span></span>
+            <button onclick="initMemoryGame()" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-white px-2.5 py-1 rounded-lg border border-indigo-200 shadow-xs">Shuffle / Reset</button>
+          </div>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Flip two cards at a time to pair each psychological observation with its correct grammatical tag:</p>
+
+        <!-- Memory Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 select-none" id="memory-board">
+          <!-- Populated by JS -->
+        </div>
+        <div id="memory-status-banner" class="hidden mt-4 p-3 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-xl text-center">
+          🎉 Incredible memory! You have matched all clinical tag pairs!
+        </div>
+      </div>
+
+      <!-- EXERCISE 4: Intonation & Intent Detective -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex3-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">4</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Parental Consultation Pitch Detective</h3>
+          </div>
+          <span id="ex3-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Determine whether the speaker should use falling (↘ confirmation) or rising (↗ genuine question) intonation:</p>
+
+        <div class="space-y-4">
+          <div class="p-4 bg-white border border-slate-200 rounded-xl text-sm space-y-3">
+            <p class="text-slate-800">
+              <strong>Context A:</strong> A psychologist and mother are watching the child laugh and play happily with puzzle toys right before their eyes. The psychologist remarks: <em>"He really thrives when given open-ended choices, doesn't he?"</em>
+            </p>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <button onclick="setEx3Choice(1, 'falling', this)" class="ex3-opt-1 px-4 py-2 rounded-lg border border-slate-300 hover:border-indigo-600 font-semibold transition-all">Falling pitch ↘ (Expects natural agreement)</button>
+              <button onclick="setEx3Choice(1, 'rising', this)" class="ex3-opt-1 px-4 py-2 rounded-lg border border-slate-300 hover:border-indigo-600 font-semibold transition-all">Rising pitch ↗ (Genuinely unsure if the child enjoys puzzles)</button>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white border border-slate-200 rounded-xl text-sm space-y-3">
+            <p class="text-slate-800">
+              <strong>Context B:</strong> A father has just entered the consultation room. The therapist hasn't read the preschool teacher's report yet and asks: <em>"The school hasn't called about separation anxiety this week, have they?"</em>
+            </p>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <button onclick="setEx3Choice(2, 'falling', this)" class="ex3-opt-2 px-4 py-2 rounded-lg border border-slate-300 hover:border-indigo-600 font-semibold transition-all">Falling pitch ↘ (Insisting that no calls happened)</button>
+              <button onclick="setEx3Choice(2, 'rising', this)" class="ex3-opt-2 px-4 py-2 rounded-lg border border-slate-300 hover:border-indigo-600 font-semibold transition-all">Rising pitch ↗ (Genuine inquiry / looking for information)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center justify-end">
+          <button onclick="validateEx3()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-all">Check Intonation Answers</button>
+        </div>
+      </div>
+
+      <!-- EXERCISE 5: Spot & Fix the Mistake -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex4-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">5</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Diagnostic Error Rectification</h3>
+          </div>
+          <span id="ex4-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-4">
+          One of the following clinical notes has an incorrect question tag. Click the faulty sentence, then pick the appropriate replacement:
+        </p>
+
+        <div class="space-y-2.5 text-sm" id="ex4-options">
+          <div onclick="selectEx4Target(1, this)" class="ex4-row p-3 rounded-xl border border-slate-200 bg-white hover:border-indigo-400 cursor-pointer transition-all">
+            A) The toddler barely spoke during his first play therapy assessment, did he?
+          </div>
+          <div onclick="selectEx4Target(2, this)" class="ex4-row p-3 rounded-xl border border-slate-200 bg-white hover:border-indigo-400 cursor-pointer transition-all">
+            B) Someone left the developmental psych test kit unlocked, didn't he?
+          </div>
+          <div onclick="selectEx4Target(3, this)" class="ex4-row p-3 rounded-xl border border-slate-200 bg-white hover:border-indigo-400 cursor-pointer transition-all">
+            C) Don't interrupt the child while she is constructing her sand tray world, will you?
+          </div>
+        </div>
+
+        <div id="ex4-correction-box" class="hidden mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-xl space-y-3">
+          <p class="text-xs font-bold text-indigo-900">What should replace the faulty tag in sentence B?</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="resolveEx4Correction('didn\'t they?')" class="px-3 py-1.5 rounded-lg bg-white border border-indigo-300 hover:bg-indigo-600 hover:text-white font-semibold transition-all">Change to: "didn't they?"</button>
+            <button onclick="resolveEx4Correction('did he?')" class="px-3 py-1.5 rounded-lg bg-white border border-indigo-300 hover:bg-indigo-600 hover:text-white font-semibold transition-all">Change to: "did he?"</button>
+            <button onclick="resolveEx4Correction('don\'t they?')" class="px-3 py-1.5 rounded-lg bg-white border border-indigo-300 hover:bg-indigo-600 hover:text-white font-semibold transition-all">Change to: "don't they?"</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 6: The Semi-Negative Trap -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex5-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">6</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">The Semi-Negative Pediatric Trap</h3>
+          </div>
+          <span id="ex5-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Select the correct tag for statements featuring semi-negative adverbs (<em>seldom, scarcely, hardly</em>):</p>
+
+        <div class="space-y-4 text-sm">
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+            <p class="font-medium text-slate-900">"Preschoolers seldom articulate complex emotional stressors in words, _______?"</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <button onclick="answerEx5(1, 'do they', this)" class="ex5-q1-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">do they?</button>
+              <button onclick="answerEx5(1, 'don\'t they', this)" class="ex5-q1-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">don't they?</button>
+              <button onclick="answerEx5(1, 'does it', this)" class="ex5-q1-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">does it?</button>
+              <button onclick="answerEx5(1, 'doesn\'t it', this)" class="ex5-q1-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">doesn't it?</button>
+            </div>
+          </div>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+            <p class="font-medium text-slate-900">"We could scarcely observe any sibling rivalry during the home visit, _______?"</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <button onclick="answerEx5(2, 'couldn\'t we', this)" class="ex5-q2-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">couldn't we?</button>
+              <button onclick="answerEx5(2, 'could we', this)" class="ex5-q2-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">could we?</button>
+              <button onclick="answerEx5(2, 'did we', this)" class="ex5-q2-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">did we?</button>
+              <button onclick="answerEx5(2, 'can we', this)" class="ex5-q2-btn p-2 rounded-lg border border-slate-200 hover:bg-indigo-50">can we?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 7: Pronoun Switchboard -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex6-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">7</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Subject Pronoun Switchboard</h3>
+          </div>
+          <span id="ex6-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Assign the exact tag pronoun corresponding to each developmental subject:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="p-3 bg-white border border-slate-200 rounded-xl space-y-2">
+            <span class="font-bold text-slate-900 block text-sm">"Everything in the sensory room is sanitized"</span>
+            <select id="ex6-sel1" class="w-full p-2 border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Select Pronoun</option>
+              <option value="they">they</option>
+              <option value="it">it</option>
+              <option value="there">there</option>
+            </select>
+          </div>
+          <div class="p-3 bg-white border border-slate-200 rounded-xl space-y-2">
+            <span class="font-bold text-slate-900 block text-sm">"Everybody in the nursery cooperated"</span>
+            <select id="ex6-sel2" class="w-full p-2 border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Select Pronoun</option>
+              <option value="they">they</option>
+              <option value="he">he</option>
+              <option value="it">it</option>
+            </select>
+          </div>
+          <div class="p-3 bg-white border border-slate-200 rounded-xl space-y-2">
+            <span class="font-bold text-slate-900 block text-sm">"There was noticeable emotional distress"</span>
+            <select id="ex6-sel3" class="w-full p-2 border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Select Pronoun</option>
+              <option value="it">it</option>
+              <option value="there">there</option>
+              <option value="they">they</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-5 flex justify-end">
+          <button onclick="validateEx6()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-all">Check Pronouns</button>
+        </div>
+      </div>
+
+      <!-- EXERCISE 8: Imperatives & Polite Requests Wheel -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex7-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">8</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Parental Guidance Directives</h3>
+          </div>
+          <span id="ex7-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Select the appropriate tag for guidance suggestions vs. parental directives:</p>
+
+        <div class="space-y-3 text-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-white border border-slate-200 rounded-xl gap-2">
+            <span>"Don't shame the child when accidents happen during potty training,"</span>
+            <div class="flex gap-2">
+              <button onclick="setEx7(1, 'will you?', this)" class="ex7-btn-1 text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:border-indigo-600">will you?</button>
+              <button onclick="setEx7(1, 'shall we?', this)" class="ex7-btn-1 text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:border-indigo-600">shall we?</button>
+              <button onclick="setEx7(1, 'do you?', this)" class="ex7-btn-1 text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:border-indigo-600">do you?</button>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-white border border-slate-200 rounded-xl gap-2">
+            <span>"Let's assess the child's secure attachment behaviors together,"</span>
+            <div class="flex gap-2">
+              <button onclick="setEx7(2, 'shall we?', this)" class="ex7-btn-2 text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:border-indigo-600">shall we?</button>
+              <button onclick="setEx7(2, 'will you?', this)" class="ex7-btn-2 text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:border-indigo-600">will you?</button>
+              <button onclick="setEx7(2, 'won\'t we?', this)" class="ex7-btn-2 text-xs px-3 py-1.5 rounded-lg border border-slate-300 hover:border-indigo-600">won't we?</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex justify-end">
+          <button onclick="validateEx7()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-all">Check Pairings</button>
+        </div>
+      </div>
+
+      <!-- EXERCISE 9: Rapid-Fire Polarity Flip -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex9-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">9</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Behavioral Polarity Inversion</h3>
+          </div>
+          <span id="ex9-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">See how switching the clinical assertion changes the polarity:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div class="p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl space-y-3">
+            <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider block">Statement 1 (Positive)</span>
+            <p class="font-medium text-slate-800">"The infant had already formed a strong bond with his caregiver,"</p>
+            <div class="flex gap-2 text-xs">
+              <button onclick="flipCheck(1, 'hadn\'t he?', true, this)" class="flip1-btn px-3 py-1.5 rounded-lg bg-white border border-emerald-300 font-bold hover:bg-emerald-600 hover:text-white transition-all">hadn't he?</button>
+              <button onclick="flipCheck(1, 'had he?', false, this)" class="flip1-btn px-3 py-1.5 rounded-lg bg-white border border-emerald-300 font-bold hover:bg-emerald-600 hover:text-white transition-all">had he?</button>
+            </div>
+          </div>
+
+          <div class="p-4 bg-rose-50/70 border border-rose-200 rounded-xl space-y-3">
+            <span class="text-xs font-bold text-rose-800 uppercase tracking-wider block">Statement 2 (Negative)</span>
+            <p class="font-medium text-slate-800">"The infant hadn't yet formed a strong bond with his caregiver,"</p>
+            <div class="flex gap-2 text-xs">
+              <button onclick="flipCheck(2, 'had he?', true, this)" class="flip2-btn px-3 py-1.5 rounded-lg bg-white border border-rose-300 font-bold hover:bg-rose-600 hover:text-white transition-all">had he?</button>
+              <button onclick="flipCheck(2, 'hadn\'t he?', false, this)" class="flip2-btn px-3 py-1.5 rounded-lg bg-white border border-rose-300 font-bold hover:bg-rose-600 hover:text-white transition-all">hadn't he?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 10: The Master Paragraph Editor -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex10-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">10</span>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Case Conference Synthesis Text</h3>
+          </div>
+          <span id="ex10-status" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pending</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Complete Dr. Vance's clinical review summary by picking each tag:</p>
+
+        <div class="p-5 sm:p-6 bg-white border border-slate-200 rounded-xl leading-relaxed text-sm sm:text-base text-slate-800 font-serif space-y-4">
+          <p>
+            "You used to specialize in developmental pediatric neuropsychology, 
+            <select id="ex10-tag1" class="font-sans font-medium text-xs p-1.5 border border-slate-300 rounded-md bg-slate-50 text-indigo-800">
+              <option value="">[choose tag]</option>
+              <option value="didn't you">didn't you</option>
+              <option value="haven't you">haven't you</option>
+              <option value="did you">did you</option>
+            </select>?
+            I suppose nobody informed the parents about the sensory processing test,
+            <select id="ex10-tag2" class="font-sans font-medium text-xs p-1.5 border border-slate-300 rounded-md bg-slate-50 text-indigo-800">
+              <option value="">[choose tag]</option>
+              <option value="did they">did they</option>
+              <option value="didn't they">didn't they</option>
+              <option value="did he">did he</option>
+            </select>?
+            Well, let's reschedule the play observation for Monday morning,
+            <select id="ex10-tag3" class="font-sans font-medium text-xs p-1.5 border border-slate-300 rounded-md bg-slate-50 text-indigo-800">
+              <option value="">[choose tag]</option>
+              <option value="shall we">shall we</option>
+              <option value="will you">will you</option>
+              <option value="don't we">don't we</option>
+            </select>!
+            I'm accurately capturing the child's developmental timeline,
+            <select id="ex10-tag4" class="font-sans font-medium text-xs p-1.5 border border-slate-300 rounded-md bg-slate-50 text-indigo-800">
+              <option value="">[choose tag]</option>
+              <option value="aren't I">aren't I</option>
+              <option value="amn't I">amn't I</option>
+              <option value="don't I">don't I</option>
+            </select>?"
+          </p>
+        </div>
+
+        <div class="mt-5 flex items-center justify-end">
+          <button onclick="validateEx10()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-5 py-2.5 rounded-lg transition-all shadow-sm">Verify Synthesis Text</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: CHILD PSYCHOLOGY SCENARIO FORTUNE WHEEL -->
+    <!-- ========================================== -->
+    <section id="section-wheel" class="hidden space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800">Interactive Clinical Scenarios</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Child Psychology Scenario Wheel</h2>
+        <p class="text-slate-600 text-sm sm:text-base">Spin the wheel to land on an authentic clinical dilemma or developmental observation, then construct and test the appropriate question tag!</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- The Wheel Canvas Side -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center">
+          <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+            <!-- Pointer indicator -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 w-0 h-0 border-l-[14px] border-l-transparent border-r-[14px] border-r-transparent border-t-[24px] border-t-amber-500 drop-shadow-md"></div>
+            
+            <canvas id="wheel-canvas" width="384" height="384" class="w-full h-full rounded-full shadow-2xl border-4 border-white cursor-pointer transition-transform duration-300 hover:scale-[1.01]"></canvas>
+            
+            <!-- Center Spin Hub Button -->
+            <button onclick="spinWheel()" id="spin-btn" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-slate-900 text-white font-bold text-sm tracking-wider shadow-2xl border-4 border-indigo-300 hover:bg-indigo-600 hover:scale-105 active:scale-95 transition-all flex flex-col items-center justify-center">
+              <span>SPIN</span>
+              <span class="text-[9px] text-indigo-200">WHEEL</span>
+            </button>
+          </div>
+          <p class="text-xs text-slate-500 mt-4 font-medium">Click "SPIN" or tap the wheel to draw a child psychology scenario.</p>
+        </div>
+
+        <!-- The Generated Scenario Challenge Panel -->
+        <div class="lg:col-span-6">
+          <div id="wheel-result-card" class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600" id="wheel-topic-badge">Clinical Scenario Awaiting Spin</span>
+              <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full font-bold">Scenario Engine</span>
+            </div>
+
+            <div id="wheel-empty-state" class="py-10 text-center space-y-3">
+              <div class="w-16 h-16 mx-auto rounded-full bg-indigo-50 flex items-center justify-center text-3xl">🎡</div>
+              <h4 class="font-bold text-slate-800 text-lg">Ready to Spin</h4>
+              <p class="text-sm text-slate-500 max-w-sm mx-auto">
+                Each segment features a developmental observation (e.g. sensory over-responsivity, secure attachment, peer empathy). Spin the wheel to begin!
+              </p>
+            </div>
+
+            <div id="wheel-active-state" class="hidden space-y-4">
+              <div>
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Clinical Statement:</span>
+                <p id="wheel-scenario-text" class="text-base sm:text-lg font-serif font-bold text-slate-900 mt-1 leading-relaxed">
+                  "..."
+                </p>
+              </div>
+
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1">
+                <span class="font-bold text-slate-800 block">Psychological Objective:</span>
+                <span id="wheel-scenario-goal">Prompt...</span>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-700">Type the correct question tag:</label>
+                <div class="flex gap-2">
+                  <input type="text" id="wheel-user-input" placeholder="e.g. didn't they?" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 font-mono text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <button onclick="checkWheelAnswer()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all shadow-sm">
+                    Validate Tag
+                  </button>
+                </div>
+              </div>
+
+              <div id="wheel-feedback-box" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+
+              <div class="pt-2 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100">
+                <span>Want another clinical scenario?</span>
+                <button onclick="spinWheel()" class="text-indigo-600 hover:text-indigo-800 font-bold">Spin Again →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white/70 py-6 text-center text-xs text-slate-400">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>Interactive Child Psychology Pedagogical Environment</p>
+      <p class="font-medium text-slate-500">Designed by Babak Alaee</p>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl text-sm font-medium flex items-center gap-2.5">
+    <span id="toast-icon">✨</span>
+    <span id="toast-message">Notification</span>
+  </div>
+
+  <script>
+    // State management for all 10 exercises
+    const exerciseState = {
+      1: { completed: false, score: 0 },
+      2: { completed: false, score: 0 },
+      3: { completed: false, score: 0 },
+      4: { completed: false, score: 0 },
+      5: { completed: false, score: 0 },
+      6: { completed: false, score: 0 },
+      7: { completed: false, score: 0 },
+      8: { completed: false, score: 0 },
+      9: { completed: false, score: 0 },
+      10: { completed: false, score: 0 }
+    };
+
+    // Navigation Tab Switcher
+    function switchTab(tabId) {
+      ['discovery', 'rules', 'practice', 'wheel'].forEach(id => {
+        const sec = document.getElementById('section-' + id);
+        const btn = document.getElementById('tab-' + id);
+        if (sec) sec.classList.add('hidden');
+        if (btn) btn.classList.remove('active');
+      });
+
+      const activeSec = document.getElementById('section-' + tabId);
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeSec) activeSec.classList.remove('hidden');
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (tabId === 'practice') {
+        initMemoryGame();
+      }
+      if (tabId === 'wheel') {
+        drawWheel();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toast Notification Utility
+    function showToast(msg, icon = '✨') {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-message');
+      const iconEl = document.getElementById('toast-icon');
+      if (!toast || !msgEl || !iconEl) return;
+      msgEl.textContent = msg;
+      iconEl.textContent = icon;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // ==========================================
+    // NATURAL SPEECH PROSODY MODEL (Web Speech API)
+    // ==========================================
+    let availableVoices = [];
+    let selectedVoice = null;
+
+    function populateVoices() {
+      if (!('speechSynthesis' in window)) return;
+      availableVoices = window.speechSynthesis.getVoices();
+      const select = document.getElementById('voice-select');
+      if (!select) return;
+
+      const englishVoices = availableVoices.filter(v => v.lang.startsWith('en'));
+      const voiceList = englishVoices.length > 0 ? englishVoices : availableVoices;
+
+      select.innerHTML = '';
+      voiceList.forEach((voice, index) => {
+        const opt = document.createElement('option');
+        opt.value = voice.name;
+        opt.textContent = `${voice.name} (${voice.lang})${voice.default ? ' — Default' : ''}`;
+        select.appendChild(opt);
+      });
+
+      // Prefer premium/natural sounding voices
+      const preferred = voiceList.find(v => 
+        /natural|google|samantha|daniel|karen|serena|oliver|victoria/i.test(v.name)
+      ) || voiceList[0];
+
+      if (preferred) {
+        select.value = preferred.name;
+        selectedVoice = preferred;
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      populateVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = populateVoices;
+      }
+    }
+
+    function changeVoice() {
+      const select = document.getElementById('voice-select');
+      if (!select) return;
+      selectedVoice = availableVoices.find(v => v.name === select.value) || null;
+      showToast(`Selected voice: ${selectedVoice ? selectedVoice.name : 'System default'}`, '🎙️');
+    }
+
+    function speakNaturalIntonation(type) {
+      if (!('speechSynthesis' in window)) {
+        showToast("Speech synthesis is not supported on this device/browser.", "⚠️");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const waveFalling = document.getElementById('wave-falling');
+      const waveRising = document.getElementById('wave-rising');
+      if (waveFalling) waveFalling.classList.add('hidden');
+      if (waveRising) waveRising.classList.add('hidden');
+
+      if (type === 'falling') {
+        if (waveFalling) waveFalling.classList.remove('hidden');
+
+        // Segment 1: Main clinical observation (neutral, warm pace)
+        const uStatement = new SpeechSynthesisUtterance("Leo feels safer following a predictable schedule");
+        if (selectedVoice) uStatement.voice = selectedVoice;
+        uStatement.rate = 0.94;
+        uStatement.pitch = 1.0;
+
+        // Segment 2: Falling tag - low pitch, downward terminal intonation
+        const uTag = new SpeechSynthesisUtterance("doesn't he.");
+        if (selectedVoice) uTag.voice = selectedVoice;
+        uTag.rate = 0.88;
+        uTag.pitch = 0.72; // Distinctly lower pitch for confirmation
+
+        uTag.onend = () => {
+          if (waveFalling) waveFalling.classList.add('hidden');
+        };
+
+        window.speechSynthesis.speak(uStatement);
+        window.speechSynthesis.speak(uTag);
+        showToast("Speaking with Falling Intonation ↘ (Confirmation Drop)", "🗣️");
+
+      } else {
+        if (waveRising) waveRising.classList.remove('hidden');
+
+        // Segment 1: Main clinical statement
+        const uStatement = new SpeechSynthesisUtterance("The nursery hasn't reported separation distress today");
+        if (selectedVoice) uStatement.voice = selectedVoice;
+        uStatement.rate = 0.96;
+        uStatement.pitch = 0.95;
+
+        // Segment 2: Rising tag - higher pitch, upward inquiry contour
+        const uTag = new SpeechSynthesisUtterance("have they?");
+        if (selectedVoice) uTag.voice = selectedVoice;
+        uTag.rate = 1.05;
+        uTag.pitch = 1.48; // Distinctly higher pitch for genuine question
+
+        uTag.onend = () => {
+          if (waveRising) waveRising.classList.add('hidden');
+        };
+
+        window.speechSynthesis.speak(uStatement);
+        window.speechSynthesis.speak(uTag);
+        showToast("Speaking with Rising Intonation ↗ (Question Lift)", "🗣️");
+      }
+    }
+
+    // Direct alias so any previous button calls to playEnhancedIntonation resolve seamlessly
+    function playEnhancedIntonation(type) {
+      speakNaturalIntonation(type);
+    }
+
+    // Inductive Discovery Checkers
+    function checkInductive(qNum, isCorrect, btn) {
+      const parent = btn.parentElement;
+      const buttons = parent.querySelectorAll('.inductive-btn');
+      buttons.forEach(b => {
+        b.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+        b.classList.add('bg-white/10');
+      });
+
+      const fb = document.getElementById(`inductive-fb-${qNum}`);
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white');
+        btn.classList.remove('bg-white/10');
+        if (qNum === 1) {
+          fb.innerHTML = `<span class="text-emerald-300 font-bold">✓ Exactly!</span> Standard English switches positive "I am" to <em>aren't I?</em> for easier phonological cadence.`;
+        } else if (qNum === 2) {
+          fb.innerHTML = `<span class="text-emerald-300 font-bold">✓ Spot on!</span> Semi-negative adverbs like <em>rarely, barely, seldom</em> require a positive question tag.`;
+        } else if (qNum === 3) {
+          fb.innerHTML = `<span class="text-emerald-300 font-bold">✓ Correct!</span> Collaborative suggestions starting with <em>Let's</em> invariably take the tag <em>shall we?</em>`;
+        }
+      } else {
+        btn.classList.add('bg-rose-600', 'text-white');
+        btn.classList.remove('bg-white/10');
+        fb.innerHTML = `<span class="text-rose-300 font-bold">Not quite.</span> Look back at the dialogue line and check the exact grammatical phrasing.`;
+      }
+    }
+
+    // EXERCISE 1: Drag & Drop Logic
+    let draggedTag = null;
+    let selectedChip = null;
+
+    function handleDragStart(e) {
+      draggedTag = e.target.getAttribute('data-tag');
+      e.dataTransfer.setData('text/plain', draggedTag);
+    }
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    }
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+    function handleDrop(e, expectedTag) {
+      e.preventDefault();
+      const slot = e.currentTarget;
+      slot.classList.remove('drag-over');
+      const tagText = e.dataTransfer.getData('text/plain') || draggedTag;
+      if (tagText) {
+        slot.textContent = tagText;
+        slot.dataset.assigned = tagText;
+        slot.classList.remove('text-slate-400');
+        slot.classList.add('text-indigo-900', 'bg-indigo-50', 'border-indigo-400');
+      }
+    }
+    function handleChipTap(el) {
+      document.querySelectorAll('.draggable-tag').forEach(t => t.classList.remove('ring-2', 'ring-indigo-600'));
+      el.classList.add('ring-2', 'ring-indigo-600');
+      selectedChip = el.getAttribute('data-tag');
+      showToast(`Selected "${selectedChip}". Now tap your target slot.`, "👆");
+    }
+    function handleSlotTap(slot, expected) {
+      if (selectedChip) {
+        slot.textContent = selectedChip;
+        slot.dataset.assigned = selectedChip;
+        slot.classList.remove('text-slate-400');
+        slot.classList.add('text-indigo-900', 'bg-indigo-50', 'border-indigo-400');
+        selectedChip = null;
+        document.querySelectorAll('.draggable-tag').forEach(t => t.classList.remove('ring-2', 'ring-indigo-600'));
+      }
+    }
+    function validateEx1() {
+      const slots = document.querySelectorAll('#ex1-card .drop-slot');
+      const answers = ["aren't I?", "did they?", "shall we?", "won't they?"];
+      let allCorrect = true;
+      let filled = 0;
+
+      slots.forEach((s, idx) => {
+        const assigned = s.dataset.assigned;
+        if (assigned) filled++;
+        if (assigned === answers[idx]) {
+          s.classList.remove('border-rose-400', 'bg-rose-50');
+          s.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+        } else {
+          allCorrect = false;
+          s.classList.remove('border-emerald-500', 'bg-emerald-50');
+          s.classList.add('border-rose-400', 'bg-rose-50', 'text-rose-900');
+        }
+      });
+
+      if (filled < 4) {
+        showToast("Please assign all 4 slots before checking!", "⚠️");
+        return;
+      }
+
+      const status = document.getElementById('ex1-status');
+      if (allCorrect) {
+        exerciseState[1].completed = true;
+        exerciseState[1].score = 1;
+        status.textContent = "Solved (100%)";
+        status.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700";
+        showToast("Exercise 1 Complete!", "🎉");
+      } else {
+        exerciseState[1].completed = true;
+        exerciseState[1].score = 0.5;
+        status.textContent = "Partial (50%)";
+        status.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700";
+        showToast("Some slots need adjusting.", "💡");
+      }
+    }
+    function resetEx1() {
+      document.querySelectorAll('#ex1-card .drop-slot').forEach(s => {
+        s.textContent = "Drop Tag Here";
+        delete s.dataset.assigned;
+        s.className = "drop-slot w-36 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-semibold text-xs text-slate-400 bg-slate-50 cursor-pointer";
+      });
+      exerciseState[1].completed = false;
+      exerciseState[1].score = 0;
+      document.getElementById('ex1-status').textContent = "Pending";
+      document.getElementById('ex1-status').className = "text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600";
+    }
+
+    // EXERCISE 2: Text Infill
+    function validateEx2() {
+      const q1 = document.getElementById('ex2-q1').value.trim().toLowerCase().replace(/[?]/g, '');
+      const q2 = document.getElementById('ex2-q2').value.trim().toLowerCase().replace(/[?]/g, '');
+      const q3 = document.getElementById('ex2-q3').value.trim().toLowerCase().replace(/[?]/g, '');
+
+      let correct = 0;
+      if (q1 === "didn't he") correct++;
+      if (q2 === "did it") correct++;
+      if (q3 === "hadn't they") correct++;
+
+      const fb = document.getElementById('ex2-feedback');
+      fb.classList.remove('hidden');
+
+      if (correct === 3) {
+        fb.className = "text-xs mt-3 p-3 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200";
+        fb.innerHTML = `<strong>Accurate!</strong> 1) "Used to" takes <em>didn't he?</em>, 2) "Nothing" takes <em>it</em> with a positive tag → <em>did it?</em>, 3) "Everyone had" takes plural pronoun <em>hadn't they?</em>`;
+        exerciseState[2].completed = true;
+        exerciseState[2].score = 1;
+        document.getElementById('ex2-status').textContent = "Solved (100%)";
+        document.getElementById('ex2-status').className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700";
+      } else {
+        fb.className = "text-xs mt-3 p-3 rounded-lg bg-amber-50 text-amber-800 border border-amber-200";
+        fb.innerHTML = `You got ${correct}/3 correct. Check: "used to" maps to <em>didn't</em>; "nothing" takes <em>it</em> with positive tag; "everyone" takes <em>they</em>.`;
+        exerciseState[2].completed = true;
+        exerciseState[2].score = Math.round((correct / 3) * 10) / 10;
+        document.getElementById('ex2-status').textContent = `${Math.round((correct/3)*100)}%`;
+      }
+    }
+
+    // EXERCISE 3: Memory Game Engine
+    const memoryPairs = [
+      { id: 1, text: "The toddler can regulate emotions,", type: "prompt" },
+      { id: 1, text: "can't she?", type: "tag" },
+      { id: 2, text: "Nobody brought the sensory toys,", type: "prompt" },
+      { id: 2, text: "did they?", type: "tag" },
+      { id: 3, text: "I'm charting his attention span,", type: "prompt" },
+      { id: 3, text: "aren't I?", type: "tag" },
+      { id: 4, text: "Let's observe their social play,", type: "prompt" },
+      { id: 4, text: "shall we?", type: "tag" }
+    ];
+
+    let memoryCards = [];
+    let flippedCards = [];
+    let matchedPairsCount = 0;
+    let memoryLock = false;
+
+    function initMemoryGame() {
+      const board = document.getElementById('memory-board');
+      if (!board) return;
+      board.innerHTML = '';
+      flippedCards = [];
+      matchedPairsCount = 0;
+      memoryLock = false;
+      document.getElementById('memory-matches-count').textContent = '0/4';
+      document.getElementById('memory-status-banner').classList.add('hidden');
+
+      memoryCards = [...memoryPairs].sort(() => Math.random() - 0.5);
+
+      memoryCards.forEach((card, index) => {
+        const cardEl = document.createElement('div');
+        cardEl.className = "memory-card h-24 sm:h-28 bg-white border-2 border-indigo-200 rounded-xl flex items-center justify-center p-3 text-center cursor-pointer transition-all shadow-sm hover:border-indigo-400";
+        cardEl.dataset.index = index;
+        cardEl.dataset.pairId = card.id;
+
+        cardEl.innerHTML = `
+          <div class="card-inner text-xs sm:text-sm font-semibold text-indigo-950 flex flex-col items-center justify-center">
+            <span class="text-slate-400 text-lg mb-1">🧠</span>
+            <span class="text-slate-500 font-bold text-xs">Tap Card</span>
+          </div>
+        `;
+
+        cardEl.onclick = () => handleMemoryFlip(cardEl, card);
+        board.appendChild(cardEl);
+      });
+    }
+
+    function handleMemoryFlip(el, card) {
+      if (memoryLock || el.classList.contains('matched') || flippedCards.some(f => f.el === el)) return;
+
+      el.classList.remove('bg-white', 'border-indigo-200');
+      el.classList.add('bg-indigo-600', 'border-indigo-700', 'text-white');
+      el.innerHTML = `<div class="text-xs sm:text-sm font-bold text-white px-1 leading-snug">${card.text}</div>`;
+
+      flippedCards.push({ el, card });
+
+      if (flippedCards.length === 2) {
+        memoryLock = true;
+        const [first, second] = flippedCards;
+
+        if (first.card.id === second.card.id && first.card.type !== second.card.type) {
+          setTimeout(() => {
+            first.el.classList.remove('bg-indigo-600', 'border-indigo-700');
+            first.el.classList.add('bg-emerald-600', 'border-emerald-700', 'matched');
+            second.el.classList.remove('bg-indigo-600', 'border-indigo-700');
+            second.el.classList.add('bg-emerald-600', 'border-emerald-700', 'matched');
+
+            matchedPairsCount++;
+            document.getElementById('memory-matches-count').textContent = `${matchedPairsCount}/4`;
+            flippedCards = [];
+            memoryLock = false;
+
+            if (matchedPairsCount === 4) {
+              document.getElementById('memory-status-banner').classList.remove('hidden');
+              exerciseState[3].completed = true;
+              exerciseState[3].score = 1;
+              showToast("All Child Psychology memory pairs matched!", "🎉");
+            }
+          }, 500);
+        } else {
+          setTimeout(() => {
+            [first, second].forEach(item => {
+              item.el.classList.remove('bg-indigo-600', 'border-indigo-700', 'text-white');
+              item.el.classList.add('bg-white', 'border-indigo-200');
+              item.el.innerHTML = `
+                <div class="card-inner text-xs sm:text-sm font-semibold text-indigo-950 flex flex-col items-center justify-center">
+                  <span class="text-slate-400 text-lg mb-1">🧠</span>
+                  <span class="text-slate-500 font-bold text-xs">Tap Card</span>
+                </div>
+              `;
+            });
+            flippedCards = [];
+            memoryLock = false;
+          }, 1100);
+        }
+      }
+    }
+
+    // EXERCISE 4: Intonation Choice
+    const ex3Choices = { 1: null, 2: null };
+    function setEx3Choice(qNum, choice, btn) {
+      ex3Choices[qNum] = choice;
+      document.querySelectorAll(`.ex3-opt-${qNum}`).forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+      });
+      btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+    }
+
+    function validateEx3() {
+      if (!ex3Choices[1] || !ex3Choices[2]) {
+        showToast("Please choose an answer for both clinical contexts!", "⚠️");
+        return;
+      }
+      let correct = 0;
+      if (ex3Choices[1] === 'falling') correct++;
+      if (ex3Choices[2] === 'rising') correct++;
+
+      const status = document.getElementById('ex3-status');
+      if (correct === 2) {
+        exerciseState[4].completed = true;
+        exerciseState[4].score = 1;
+        status.textContent = "Solved (100%)";
+        status.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700";
+        showToast("Intonations recognized accurately!", "🎯");
+      } else {
+        exerciseState[4].completed = true;
+        exerciseState[4].score = 0.5;
+        status.textContent = "Partial (50%)";
+        status.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700";
+      }
+    }
+
+    // EXERCISE 5: Error Correction
+    let selectedEx4 = null;
+    function selectEx4Target(num, row) {
+      selectedEx4 = num;
+      document.querySelectorAll('.ex4-row').forEach(r => r.classList.remove('border-indigo-600', 'bg-indigo-50'));
+      row.classList.add('border-indigo-600', 'bg-indigo-50');
+
+      const corrBox = document.getElementById('ex4-correction-box');
+      if (num === 2) {
+        corrBox.classList.remove('hidden');
+        showToast("Sentence B selected! Now select the correct replacement tag.", "🔍");
+      } else {
+        corrBox.classList.add('hidden');
+        showToast("That sentence is already correct. Look for the error.", "💡");
+      }
+    }
+
+    function resolveEx4Correction(replacement) {
+      const status = document.getElementById('ex4-status');
+      if (replacement === "didn't they?") {
+        exerciseState[5].completed = true;
+        exerciseState[5].score = 1;
+        status.textContent = "Solved (100%)";
+        status.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700";
+        showToast("Correct! 'Someone' resolves to the plural pronoun 'they'!", "🎉");
+      } else {
+        showToast("Incorrect pronoun for an indefinite subject.", "❌");
+      }
+    }
+
+    // EXERCISE 6: Semi-Negative
+    const ex5Answers = { 1: null, 2: null };
+    function answerEx5(qNum, choice, btn) {
+      ex5Answers[qNum] = choice;
+      document.querySelectorAll(`.ex5-q${qNum}-btn`).forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white');
+      });
+      btn.classList.add('bg-indigo-600', 'text-white');
+
+      if (ex5Answers[1] && ex5Answers[2]) {
+        let sc = 0;
+        if (ex5Answers[1] === 'do they') sc += 0.5;
+        if (ex5Answers[2] === 'could we') sc += 0.5;
+        exerciseState[6].completed = true;
+        exerciseState[6].score = sc;
+        const status = document.getElementById('ex5-status');
+        status.textContent = sc === 1 ? "Solved (100%)" : `${sc * 100}%`;
+        status.className = sc === 1 ? "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700" : "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700";
+      }
+    }
+
+    // EXERCISE 7: Pronoun Switchboard
+    function validateEx6() {
+      const s1 = document.getElementById('ex6-sel1').value;
+      const s2 = document.getElementById('ex6-sel2').value;
+      const s3 = document.getElementById('ex6-sel3').value;
+
+      if (!s1 || !s2 || !s3) {
+        showToast("Please assign all three pronouns.", "⚠️");
+        return;
+      }
+
+      let sc = 0;
+      if (s1 === 'it') sc += 0.34;
+      if (s2 === 'they') sc += 0.33;
+      if (s3 === 'there') sc += 0.33;
+
+      const rounded = Math.round(sc);
+      exerciseState[7].completed = true;
+      exerciseState[7].score = rounded === 1 ? 1 : 0.5;
+      const status = document.getElementById('ex6-status');
+      status.textContent = rounded === 1 ? "Solved (100%)" : "Partial";
+      status.className = rounded === 1 ? "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700" : "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700";
+      showToast(rounded === 1 ? "Pronouns assigned accurately!" : "Review indefinite pronouns.", rounded === 1 ? "✓" : "💡");
+    }
+
+    // EXERCISE 8: Directives
+    const ex7Selections = { 1: null, 2: null };
+    function setEx7(qNum, tag, btn) {
+      ex7Selections[qNum] = tag;
+      document.querySelectorAll(`.ex7-btn-${qNum}`).forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+      });
+      btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+    }
+
+    function validateEx7() {
+      if (!ex7Selections[1] || !ex7Selections[2]) {
+        showToast("Select tags for both statements.", "⚠️");
+        return;
+      }
+      let sc = 0;
+      if (ex7Selections[1] === 'will you?') sc += 0.5;
+      if (ex7Selections[2] === 'shall we?') sc += 0.5;
+
+      exerciseState[8].completed = true;
+      exerciseState[8].score = sc;
+      const status = document.getElementById('ex7-status');
+      status.textContent = sc === 1 ? "Solved (100%)" : "Partial";
+      status.className = sc === 1 ? "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700" : "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700";
+    }
+
+    // EXERCISE 9: Polarity Flip
+    const flipState = { 1: false, 2: false };
+    function flipCheck(num, tag, isCorrect, btn) {
+      document.querySelectorAll(`.flip${num}-btn`).forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white');
+      });
+      btn.classList.add('bg-indigo-600', 'text-white');
+      flipState[num] = isCorrect;
+
+      if (flipState[1] && flipState[2]) {
+        exerciseState[9].completed = true;
+        exerciseState[9].score = 1;
+        const status = document.getElementById('ex9-status');
+        status.textContent = "Solved (100%)";
+        status.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700";
+        showToast("Behavioral polarity flipped flawlessly!", "⚡");
+      }
+    }
+
+    // EXERCISE 10: Paragraph Completion
+    function validateEx10() {
+      const t1 = document.getElementById('ex10-tag1').value;
+      const t2 = document.getElementById('ex10-tag2').value;
+      const t3 = document.getElementById('ex10-tag3').value;
+      const t4 = document.getElementById('ex10-tag4').value;
+
+      if (!t1 || !t2 || !t3 || !t4) {
+        showToast("Please choose tags for all 4 gaps in the review passage.", "⚠️");
+        return;
+      }
+
+      let count = 0;
+      if (t1 === "didn't you") count++;
+      if (t2 === "did they") count++;
+      if (t3 === "shall we") count++;
+      if (t4 === "aren't I") count++;
+
+      const sc = count / 4;
+      exerciseState[10].completed = true;
+      exerciseState[10].score = sc;
+      const status = document.getElementById('ex10-status');
+      status.textContent = sc === 1 ? "Mastered (100%)" : `${Math.round(sc * 100)}%`;
+      status.className = sc === 1 ? "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700" : "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700";
+
+      if (sc === 1) {
+        showToast("All clinical conference gaps verified accurately!", "🎓");
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+        }
+      }
+    }
+
+    // ==========================================
+    // SECTION 4: SCENARIO FORTUNE WHEEL ENGINE
+    // ==========================================
+    const wheelScenarios = [
+      {
+        topic: "Sensory Processing",
+        text: "The four-year-old child rarely tolerates loud siren noises during play sessions,",
+        correct: "does he?",
+        alternatives: ["does he", "does she?", "does she"],
+        goal: "Confirm the semi-negative frequency adverb 'rarely' using the simple present auxiliary."
+      },
+      {
+        topic: "Attachment Theory",
+        text: "The infant was smiling warmly whenever the primary caregiver entered the room,",
+        correct: "wasn't she?",
+        alternatives: ["wasn't she", "wasn't he?", "wasn't he"],
+        goal: "Formulate a negative past continuous tag to confirm maternal attunement."
+      },
+      {
+        topic: "Play Therapy Strategy",
+        text: "Let's analyze how the toddler handles sharing blocks in the sandbox,",
+        correct: "shall we?",
+        alternatives: ["shall we"],
+        goal: "Construct a polite proposal tag after the collaborative suggestion 'Let's'."
+      },
+      {
+        topic: "Clinical Supervision",
+        text: "I'm assessing the child's fine-motor coordination objectively,",
+        correct: "aren't I?",
+        alternatives: ["aren't I"],
+        goal: "Supply the unique first-person affirmative irregular tag form."
+      },
+      {
+        topic: "Parental Guidance",
+        text: "Don't scold the toddler when separation anxiety peaks at drop-off,",
+        correct: "will you?",
+        alternatives: ["will you", "would you?", "would you"],
+        goal: "Provide the standard modal tag for a polite negative imperative instruction."
+      },
+      {
+        topic: "Cognitive Milestones",
+        text: "Preschoolers used to struggle with understanding conservation of volume,",
+        correct: "didn't they?",
+        alternatives: ["didn't they"],
+        goal: "Echo the auxiliary required for past habit 'used to'."
+      },
+      {
+        topic: "Behavioral Observation",
+        text: "Nobody noticed the child withdrawing to the quiet reading corner,",
+        correct: "did they?",
+        alternatives: ["did they"],
+        goal: "Pair the negative indefinite pronoun 'nobody' with a positive tag and plural pronoun."
+      },
+      {
+        topic: "Emotional Regulation",
+        text: "Nothing calmed the toddler's sensory overload until the lights were dimmed,",
+        correct: "did it?",
+        alternatives: ["did it"],
+        goal: "Select the pronoun 'it' with a positive auxiliary for 'nothing'."
+      }
+    ];
+
+    const wheelColors = [
+      '#4f46e5', '#4338ca', '#3730a3', '#6366f1',
+      '#818cf8', '#4f46e5', '#312e81', '#4338ca'
+    ];
+
+    let currentAngle = 0;
+    let isSpinning = false;
+    let activeWheelScenario = null;
+
+    function drawWheel() {
+      const canvas = document.getElementById('wheel-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const numSegments = wheelScenarios.length;
+      const arcSize = (2 * Math.PI) / numSegments;
+      const radius = canvas.width / 2;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < numSegments; i++) {
+        const angle = currentAngle + i * arcSize;
+        ctx.beginPath();
+        ctx.fillStyle = wheelColors[i % wheelColors.length];
+        ctx.moveTo(radius, radius);
+        ctx.arc(radius, radius, radius - 8, angle, angle + arcSize);
+        ctx.lineTo(radius, radius);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(radius, radius);
+        ctx.rotate(angle + arcSize / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px "Plus Jakarta Sans", sans-serif';
+        const label = wheelScenarios[i].topic;
+        ctx.fillText(label, radius - 24, 4);
+        ctx.restore();
+      }
+
+      ctx.beginPath();
+      ctx.arc(radius, radius, radius - 8, 0, 2 * Math.PI);
+      ctx.strokeStyle = '#e0e7ff';
+      ctx.lineWidth = 6;
+      ctx.stroke();
+    }
+
+    function spinWheel() {
+      if (isSpinning) return;
+      isSpinning = true;
+
+      const spinBtn = document.getElementById('spin-btn');
+      if (spinBtn) {
+        spinBtn.disabled = true;
+        spinBtn.classList.add('opacity-70');
+      }
+
+      const totalSlices = wheelScenarios.length;
+      const targetIndex = Math.floor(Math.random() * totalSlices);
+      const extraSpins = 5 + Math.floor(Math.random() * 4);
+      const sliceRadian = (2 * Math.PI) / totalSlices;
+
+      const targetAngleAtPointer = (1.5 * Math.PI) - (targetIndex * sliceRadian) - (sliceRadian / 2);
+      const finalAngle = currentAngle + (extraSpins * 2 * Math.PI) + (targetAngleAtPointer - (currentAngle % (2 * Math.PI)));
+
+      const duration = 3800;
+      const startTime = performance.now();
+      const startAngle = currentAngle;
+
+      function animateSpin(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        currentAngle = startAngle + (finalAngle - startAngle) * easeOut;
+
+        drawWheel();
+
+        if (progress < 1) {
+          requestAnimationFrame(animateSpin);
+        } else {
+          isSpinning = false;
+          if (spinBtn) {
+            spinBtn.disabled = false;
+            spinBtn.classList.remove('opacity-70');
+          }
+          activeWheelScenario = wheelScenarios[targetIndex];
+          displayWheelScenario(activeWheelScenario);
+        }
+      }
+      requestAnimationFrame(animateSpin);
+    }
+
+    function displayWheelScenario(sc) {
+      const emptyState = document.getElementById('wheel-empty-state');
+      const activeState = document.getElementById('wheel-active-state');
+      if (emptyState) emptyState.classList.add('hidden');
+      if (activeState) activeState.classList.remove('hidden');
+
+      document.getElementById('wheel-topic-badge').textContent = `Clinical Topic: ${sc.topic}`;
+      document.getElementById('wheel-scenario-text').textContent = `"${sc.text}"`;
+      document.getElementById('wheel-scenario-goal').textContent = sc.goal;
+
+      const input = document.getElementById('wheel-user-input');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+
+      const fb = document.getElementById('wheel-feedback-box');
+      if (fb) fb.classList.add('hidden');
+      showToast(`Landed on: ${sc.topic}! Formulate the tag.`, "🎡");
+    }
+
+    function checkWheelAnswer() {
+      if (!activeWheelScenario) return;
+      const input = document.getElementById('wheel-user-input');
+      const userText = input.value.trim().toLowerCase();
+      const cleaned = userText.replace(/[?]/g, '');
+
+      const isMatch = activeWheelScenario.correct.replace(/[?]/g, '').toLowerCase() === cleaned ||
+                      (activeWheelScenario.alternatives && activeWheelScenario.alternatives.some(a => a.replace(/[?]/g, '').toLowerCase() === cleaned));
+
+      const fb = document.getElementById('wheel-feedback-box');
+      fb.classList.remove('hidden');
+
+      if (isMatch) {
+        fb.className = "p-3 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200";
+        fb.innerHTML = `✓ Brilliant! <strong>"${activeWheelScenario.correct}"</strong> fits the psychological observation precisely.`;
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } });
+        }
+      } else {
+        fb.className = "p-3 rounded-xl text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200";
+        fb.innerHTML = `Not quite. Expected: <strong>"${activeWheelScenario.correct}"</strong>. Look closely at the subject and auxiliary in the prompt.`;
+      }
+    }
+
+    // Initialize components on load
+    window.addEventListener('DOMContentLoaded', () => {
+      drawWheel();
+      initMemoryGame();
+      const canvas = document.getElementById('wheel-canvas');
+      if (canvas) canvas.onclick = spinWheel;
+    });
+  </script>
+</body>
+</html>
