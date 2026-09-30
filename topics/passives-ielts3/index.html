@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering the Passive Voice: Discovery & Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b'
+            },
+            accent: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            },
+            amberBrand: {
+              50: '#fffbeb',
+              500: '#f59e0b',
+              600: '#d97706'
+            },
+            purpleBrand: {
+              50: '#faf5ff',
+              500: '#a855f7',
+              600: '#9333ea'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Smooth Transitions & Scrollbars */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+    .passive-highlight {
+      background-color: #fef08a;
+      color: #854d0e;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      border-bottom: 2px solid #ca8a04;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .shimmer-bg {
+      background: linear-gradient(120deg, #f8fafc 0%, #e2e8f0 50%, #f8fafc 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen antialiased flex flex-col selection:bg-brand-100 selection:text-brand-900">
+
+  <!-- Floating Audio Sound FX Toggle & Score pill -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-600 text-white shadow-md shadow-brand-500/20">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </span>
+            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 font-serif">
+              Mastering the Passive Voice
+            </h1>
+          </div>
+          <p class="text-xs sm:text-sm font-medium text-slate-500 mt-0.5 tracking-wide">
+            Designed by Babak Alaee
+          </p>
+        </div>
+
+        <!-- Navigation Tabs & Global Status -->
+        <div class="flex items-center flex-wrap gap-2 sm:gap-3">
+          <!-- Navigation Buttons -->
+          <div class="inline-flex p-1 bg-slate-100 rounded-2xl border border-slate-200">
+            <button id="tab-btn-practice" onclick="switchTab('practice')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold shadow-xs bg-white text-slate-900 transition-all">
+              <i data-lucide="book-open" class="w-4 h-4 text-brand-600"></i>
+              <span>Discovery & Practice</span>
+            </button>
+            <button id="tab-btn-arcade" onclick="switchTab('arcade')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-all">
+              <i data-lucide="gamepad-2" class="w-4 h-4 text-purpleBrand-500"></i>
+              <span>The Passive Arcade</span>
+            </button>
+          </div>
+
+          <!-- Total Exercises Solved Counter -->
+          <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs sm:text-sm font-semibold">
+            <i data-lucide="award" class="w-4 h-4 text-emerald-600"></i>
+            <span>Mastery: <span id="mastery-score">0</span> / 10</span>
+          </div>
+
+          <!-- Sound Toggle Button -->
+          <button id="sound-toggle-btn" onclick="toggleMute()" title="Toggle Sound FX" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 transition">
+            <i data-lucide="volume-2" id="sound-icon" class="w-4 h-4 text-slate-600"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Toast Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl border border-slate-700 text-sm font-medium">
+    <span id="toast-icon">✨</span>
+    <span id="toast-message">Message text</span>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: DISCOVERY & PRACTICE SECTION        -->
+    <!-- ========================================== -->
+    <div id="section-practice" class="space-y-12">
+
+      <!-- Hero & Exposure Gallery -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-50 rounded-full blur-3xl -z-0 pointer-events-none"></div>
+        <div class="relative z-10">
+          
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-xs uppercase font-extrabold tracking-wider bg-brand-100 text-brand-700 px-3 py-1 rounded-full">
+              Phase 1: Real-World Exposure
+            </span>
+            <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i> 3 min read & exploration
+            </span>
+          </div>
+
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 font-serif leading-tight">
+            The Secret Life of a Renaissance Masterpiece
+          </h2>
+          <p class="text-slate-600 mt-2 max-w-3xl text-sm sm:text-base leading-relaxed">
+            Read through the historical chronicle below. Pay special attention to <strong>who</strong> receives the action and notice how events are narrated across different times.
+          </p>
+
+          <!-- Photo Exposure Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+            <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-4/3 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80" 
+                   alt="Classic Oil Painting Restoration" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                   onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Art+Conservation'">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex items-end p-3.5">
+                <span class="text-xs font-semibold text-white tracking-wide">Delicate Restoration Work</span>
+              </div>
+            </div>
+
+            <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-4/3 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=700&q=80" 
+                   alt="Archival Discovery Laboratory" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                   onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Gallery+Archive'">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex items-end p-3.5">
+                <span class="text-xs font-semibold text-white tracking-wide">High-Tech Pigment Analysis</span>
+              </div>
+            </div>
+
+            <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-4/3 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=700&q=80" 
+                   alt="Grand National Gallery Exhibition" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                   onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Grand+Museum'">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex items-end p-3.5">
+                <span class="text-xs font-semibold text-white tracking-wide">National Museum Wing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reading Text (Un-highlighted by default) -->
+          <div class="p-6 sm:p-7 bg-amber-50/50 border border-amber-200/80 rounded-2xl relative text-slate-800 leading-relaxed font-sans text-base sm:text-lg">
+            <div id="narrative-text" class="space-y-4">
+              <p>
+                In the grand vaults of the Florentine archives, treasures <span class="pv-token" data-tense="present-simple" data-desc="Present Simple Passive (general rule/habit)">are protected</span> under climate-controlled conditions daily. Thousands of fragile manuscripts <span class="pv-token" data-tense="present-simple" data-desc="Present Simple Passive (regular action)">are inspected</span> by conservators every single morning before the public arrives.
+              </p>
+              <p>
+                A remarkable fresco <span class="pv-token" data-tense="past-simple" data-desc="Past Simple Passive (completed action in the past)">was discovered</span> behind a damp brick partition during renovation work in 1994. Initial tests confirmed that priceless gold leaf <span class="pv-token" data-tense="past-simple" data-desc="Past Simple Passive (completed event)">was applied</span> by the workshop of Giotto.
+              </p>
+              <p>
+                Right now, modern methods have entered the scene. The delicate central figure <span class="pv-token" data-tense="present-continuous" data-desc="Present Continuous Passive (action happening right now)">is being cleaned</span> with state-of-the-art pulsed lasers, while high-resolution scans <span class="pv-token" data-tense="present-continuous" data-desc="Present Continuous Passive (ongoing project right now)">are being uploaded</span> to an international research portal.
+              </p>
+              <p>
+                So far, great progress has followed: hundreds of lost sketches <span class="pv-token" data-tense="present-perfect" data-desc="Present Perfect Passive (recent result with present relevance)">have been documented</span>, and critical funding <span class="pv-token" data-tense="present-perfect" data-desc="Present Perfect Passive (completed with current impact)">has been secured</span> for the coming decade.
+              </p>
+            </div>
+
+            <!-- Detective Mode Action Bar -->
+            <div class="mt-6 pt-5 border-t border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-amber-900 font-medium">
+                <i data-lucide="search" class="w-4 h-4 text-amber-600"></i>
+                <span>Notice the action verbs: Who is performing them, or is the focus on the artifact?</span>
+              </div>
+              <button id="detective-btn" onclick="toggleDetectiveMode()" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-amber-600 text-white hover:bg-amber-700 shadow-md shadow-amber-600/20 flex items-center gap-2 transition active:scale-95">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+                <span id="detective-btn-text">Turn on Detective Mode (Reveal Passives)</span>
+              </button>
+            </div>
+            <!-- Detective Explanation Box -->
+            <div id="detective-panel" class="hidden mt-4 p-4 rounded-xl bg-white border border-amber-300 text-xs sm:text-sm text-slate-700">
+              <p class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-600"></i>
+                Found 8 Passive Structures in 4 Tenses:
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                <div class="p-2 rounded bg-amber-100/60 border border-amber-200">
+                  <span class="font-bold text-amber-900 block text-xs uppercase">Present Simple</span>
+                  <p class="mt-1">"are protected", "are inspected"</p>
+                </div>
+                <div class="p-2 rounded bg-blue-100/60 border border-blue-200">
+                  <span class="font-bold text-blue-900 block text-xs uppercase">Past Simple</span>
+                  <p class="mt-1">"was discovered", "was applied"</p>
+                </div>
+                <div class="p-2 rounded bg-purple-100/60 border border-purple-200">
+                  <span class="font-bold text-purple-900 block text-xs uppercase">Pres. Continuous</span>
+                  <p class="mt-1">"is being cleaned", "are being uploaded"</p>
+                </div>
+                <div class="p-2 rounded bg-emerald-100/60 border border-emerald-200">
+                  <span class="font-bold text-emerald-900 block text-xs uppercase">Pres. Perfect</span>
+                  <p class="mt-1">"have been documented", "has been secured"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Discovery Comprehension Check -->
+          <div class="mt-8 bg-slate-50 border border-slate-200 rounded-2xl p-5">
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2 mb-3">
+              <i data-lucide="help-circle" class="w-4 h-4 text-brand-600"></i>
+              Text Comprehension: Focus & Flow
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Question 1 -->
+              <div class="p-4 bg-white rounded-xl border border-slate-200">
+                <p class="text-sm font-semibold text-slate-800 mb-2">1. In the first sentence, why doesn't the writer start with "Conservators protect treasures"?</p>
+                <div class="space-y-2 text-xs sm:text-sm">
+                  <label class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 cursor-pointer border border-transparent has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                    <input type="radio" name="comp1" value="wrong" class="text-brand-600">
+                    <span>Because the conservators do not exist in reality.</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 cursor-pointer border border-transparent has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                    <input type="radio" name="comp1" value="correct" class="text-brand-600">
+                    <span>Because the <strong>treasures</strong> (the receiver of action) are the main topic of interest.</span>
+                  </label>
+                </div>
+                <button onclick="checkComprehension('comp1', this)" class="mt-3 text-xs font-bold text-brand-600 hover:text-brand-700">Check Answer &rarr;</button>
+                <span class="comp-feedback ml-3 text-xs font-semibold"></span>
+              </div>
+
+              <!-- Question 2 -->
+              <div class="p-4 bg-white rounded-xl border border-slate-200">
+                <p class="text-sm font-semibold text-slate-800 mb-2">2. What indicates that the cleaning with lasers is currently in progress?</p>
+                <div class="space-y-2 text-xs sm:text-sm">
+                  <label class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 cursor-pointer border border-transparent has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                    <input type="radio" name="comp2" value="wrong" class="text-brand-600">
+                    <span>The use of "was applied" in 1994.</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 cursor-pointer border border-transparent has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                    <input type="radio" name="comp2" value="correct" class="text-brand-600">
+                    <span>The auxiliary combo <strong>"is being cleaned"</strong> (Present Continuous Passive).</span>
+                  </label>
+                </div>
+                <button onclick="checkComprehension('comp2', this)" class="mt-3 text-xs font-bold text-brand-600 hover:text-brand-700">Check Answer &rarr;</button>
+                <span class="comp-feedback ml-3 text-xs font-semibold"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Grammatical Blueprint & Formulas Section -->
+      <section class="space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs uppercase font-extrabold tracking-wider bg-accent-100 text-accent-700 px-3 py-1 rounded-full">
+              Phase 2: Master Blueprint
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+              The Four Key Passive Formulas
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+              The core formula of ANY passive is always: <strong class="text-slate-900">Be (in target tense) + Past Participle (V3)</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4 Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          
+          <!-- Present Simple Passive -->
+          <div class="bg-white rounded-2xl p-5 border-t-4 border-amber-500 border-x border-b border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">Routine / Facts</span>
+                <i data-lucide="calendar" class="w-4 h-4 text-amber-500"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Present Simple Passive</h3>
+              <div class="mt-3 p-2.5 bg-slate-50 rounded-xl font-mono text-xs text-slate-800 border border-slate-200">
+                am / is / are + <span class="text-amber-700 font-bold">Past Participle</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-3">Used for regular routines, universal facts, and fixed protocols.</p>
+              <div class="mt-3 text-xs italic text-slate-500 border-l-2 border-amber-400 pl-2">
+                "The gallery doors <strong>are unlocked</strong> at 9:00 AM."
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+              Active: Conservators inspect manuscripts &rarr; Passive: Manuscripts <em>are inspected</em>.
+            </div>
+          </div>
+
+          <!-- Past Simple Passive -->
+          <div class="bg-white rounded-2xl p-5 border-t-4 border-blue-500 border-x border-b border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">Completed Past</span>
+                <i data-lucide="history" class="w-4 h-4 text-blue-500"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Past Simple Passive</h3>
+              <div class="mt-3 p-2.5 bg-slate-50 rounded-xl font-mono text-xs text-slate-800 border border-slate-200">
+                was / were + <span class="text-blue-700 font-bold">Past Participle</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-3">Used for completed single events or actions at a specific past time.</p>
+              <div class="mt-3 text-xs italic text-slate-500 border-l-2 border-blue-400 pl-2">
+                "The lost canvas <strong>was discovered</strong> in 1994."
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+              Active: Workers built the wing &rarr; Passive: The wing <em>was built</em>.
+            </div>
+          </div>
+
+          <!-- Present Continuous Passive -->
+          <div class="bg-white rounded-2xl p-5 border-t-4 border-purple-500 border-x border-b border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">Happening Now</span>
+                <i data-lucide="activity" class="w-4 h-4 text-purple-500"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Present Continuous Passive</h3>
+              <div class="mt-3 p-2.5 bg-slate-50 rounded-xl font-mono text-xs text-slate-800 border border-slate-200">
+                is / are + <span class="text-purple-600 font-bold">being</span> + <span class="text-purple-700 font-bold">Past Participle</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-3">Used for actions actively taking place right around this exact moment.</p>
+              <div class="mt-3 text-xs italic text-slate-500 border-l-2 border-purple-400 pl-2">
+                "The portrait <strong>is being cleaned</strong> this week."
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+              Active: They are restoring it &rarr; Passive: It <em>is being restored</em>.
+            </div>
+          </div>
+
+          <!-- Present Perfect Passive -->
+          <div class="bg-white rounded-2xl p-5 border-t-4 border-emerald-500 border-x border-b border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">Recent Result</span>
+                <i data-lucide="check-check" class="w-4 h-4 text-emerald-500"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">Present Perfect Passive</h3>
+              <div class="mt-3 p-2.5 bg-slate-50 rounded-xl font-mono text-xs text-slate-800 border border-slate-200">
+                has / have + <span class="text-emerald-600 font-bold">been</span> + <span class="text-emerald-700 font-bold">Past Participle</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-3">Used for actions with direct consequence or news connected to now.</p>
+              <div class="mt-3 text-xs italic text-slate-500 border-l-2 border-emerald-400 pl-2">
+                "All stolen pieces <strong>have been recovered</strong>."
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+              Active: They have published results &rarr; Passive: Results <em>have been published</em>.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Strategy Accordions: Why Passive & By-agent -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-slate-100/80 rounded-2xl p-4 border border-slate-200">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-1">
+              <i data-lucide="target" class="w-4 h-4 text-brand-600"></i>
+              1. Receiver is the Focus
+            </h4>
+            <p class="text-xs text-slate-600">
+              When the object is more important than who did it. e.g., <em>"The cathedral was completed in 1345."</em>
+            </p>
+          </div>
+
+          <div class="bg-slate-100/80 rounded-2xl p-4 border border-slate-200">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-1">
+              <i data-lucide="user-x" class="w-4 h-4 text-accent-600"></i>
+              2. Agent is Obvious or Unknown
+            </h4>
+            <p class="text-xs text-slate-600">
+              If everyone knows who does it, or nobody knows. e.g., <em>"My car was stolen last night."</em>
+            </p>
+          </div>
+
+          <div class="bg-slate-100/80 rounded-2xl p-4 border border-slate-200">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-1">
+              <i data-lucide="feather" class="w-4 h-4 text-purpleBrand-500"></i>
+              3. Objective & Formal Tone
+            </h4>
+            <p class="text-xs text-slate-600">
+              Common in academic writing, journalism, and scientific papers. e.g., <em>"The sample is heated to 100°C."</em>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 Diverse Interactive Exercises -->
+      <section class="space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-200 pb-4">
+          <div>
+            <span class="text-xs uppercase font-extrabold tracking-wider bg-brand-100 text-brand-700 px-3 py-1 rounded-full">
+              Phase 3: Interactive Mastery
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+              10 Practice Challenges
+            </h2>
+            <p class="text-slate-500 text-sm">Solve each interactive puzzle below to earn your completion badge.</p>
+          </div>
+          <button onclick="resetAllExercises()" class="self-start sm:self-auto text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-600 transition flex items-center gap-1.5">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            Reset All Exercises
+          </button>
+        </div>
+
+        <!-- EXERCISE 1: Multiple Choice Tense Identification -->
+        <div id="ex-card-1" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs transition">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">1</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Tense Identification</h3>
+            </div>
+            <span id="ex1-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-4">
+            Identify the passive tense used in this sentence:<br>
+            <span class="font-serif italic font-semibold text-slate-900 text-base">"The sculpture has been examined by three independent specialists."</span>
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <button onclick="checkMCQ(1, 'past-simple', false, this)" class="p-3 text-left border rounded-xl hover:bg-slate-50 transition border-slate-200">A) Past Simple Passive</button>
+            <button onclick="checkMCQ(1, 'present-perfect', true, this)" class="p-3 text-left border rounded-xl hover:bg-slate-50 transition border-slate-200">B) Present Perfect Passive</button>
+            <button onclick="checkMCQ(1, 'present-continuous', false, this)" class="p-3 text-left border rounded-xl hover:bg-slate-50 transition border-slate-200">C) Present Continuous Passive</button>
+            <button onclick="checkMCQ(1, 'present-simple', false, this)" class="p-3 text-left border rounded-xl hover:bg-slate-50 transition border-slate-200">D) Present Simple Passive</button>
+          </div>
+          <div id="ex1-feedback" class="mt-3 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 2: Drag & Drop Word Tile Builder -->
+        <div id="ex-card-2" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">2</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Word Tile Reconstructor</h3>
+            </div>
+            <span id="ex2-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Click or tap the word tiles in the correct sequence to build a grammatically correct passive sentence:
+          </p>
+
+          <!-- Sentence Build Drop Zone -->
+          <div id="tile-zone" class="min-h-12 p-3 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center mb-3">
+            <span id="tile-placeholder" class="text-xs text-slate-400">Tap words from below to construct here...</span>
+          </div>
+
+          <!-- Tile Source Pool -->
+          <div id="tile-pool" class="flex flex-wrap gap-2 p-2 bg-slate-50 rounded-xl border border-slate-200">
+            <!-- Tiles will be rendered dynamically by JS -->
+          </div>
+
+          <div class="mt-3 flex items-center justify-between">
+            <button onclick="resetTiles()" class="text-xs text-slate-500 hover:text-slate-800 font-semibold">Clear Tiles</button>
+            <button onclick="checkTiles()" class="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition">Check Sentence</button>
+          </div>
+          <div id="ex2-feedback" class="mt-2 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 3: Fill-in-the-Blank Typing Exercise -->
+        <div id="ex-card-3" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">3</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Precision Typing</h3>
+            </div>
+            <span id="ex3-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Fill in the blank with the appropriate passive form to complete the sentence:
+          </p>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 text-sm">
+            <span>The ancient marble vase</span>
+            <input type="text" id="ex3-input" placeholder="Type here..." class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:outline-hidden focus:ring-2 focus:ring-brand-500 w-48 text-center">
+            <span>from the municipal museum in 1982.</span>
+          </div>
+          <div class="mt-3 flex items-center justify-end">
+            <button onclick="checkTypingEx3()" class="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition">Submit Answer</button>
+          </div>
+          <div id="ex3-feedback" class="mt-2 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 4: Spot the Error & Click to Fix -->
+        <div id="ex-card-4" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">4</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Interactive Error Hunter</h3>
+            </div>
+            <span id="ex4-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Click on the <strong>incorrect segment</strong> in the sentence below:
+          </p>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap gap-2 text-sm font-medium">
+            <span class="error-part px-2.5 py-1 rounded-md border border-transparent hover:border-slate-300 cursor-pointer bg-white" onclick="checkErrorHunter(4, false, this)">Every Friday,</span>
+            <span class="error-part px-2.5 py-1 rounded-md border border-transparent hover:border-slate-300 cursor-pointer bg-white" onclick="checkErrorHunter(4, false, this)">all the security cameras</span>
+            <span class="error-part px-2.5 py-1 rounded-md border border-transparent hover:border-slate-300 cursor-pointer bg-white" onclick="checkErrorHunter(4, true, this)">is calibrated</span>
+            <span class="error-part px-2.5 py-1 rounded-md border border-transparent hover:border-slate-300 cursor-pointer bg-white" onclick="checkErrorHunter(4, false, this)">by the chief engineer.</span>
+          </div>
+          <div id="ex4-correction" class="hidden mt-3 p-3 bg-brand-50 border border-brand-200 rounded-xl text-xs text-brand-900">
+            <strong>Well spotted!</strong> "Cameras" is plural, so it must be <span class="underline font-bold">are calibrated</span> instead of "is calibrated" (Present Simple Passive).
+          </div>
+          <div id="ex4-feedback" class="mt-2 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 5: Active to Passive Transformation -->
+        <div id="ex-card-5" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">5</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Active &rarr; Passive Transformation</h3>
+            </div>
+            <span id="ex5-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <div class="p-3.5 bg-slate-100 rounded-xl text-slate-800 text-sm mb-3">
+            <strong>Active Sentence:</strong> "Archaeologists have cataloged twenty Roman coins this afternoon."
+          </div>
+          <p class="text-slate-700 text-xs sm:text-sm mb-3">Choose the mathematically correct passive equivalent:</p>
+          <div class="space-y-2 text-xs sm:text-sm">
+            <button onclick="checkTransformation(5, false, this)" class="w-full text-left p-3 border rounded-xl hover:bg-slate-50 transition border-slate-200">
+              A) Twenty Roman coins were cataloged by archaeologists this afternoon.
+            </button>
+            <button onclick="checkTransformation(5, true, this)" class="w-full text-left p-3 border rounded-xl hover:bg-slate-50 transition border-slate-200">
+              B) Twenty Roman coins have been cataloged this afternoon.
+            </button>
+            <button onclick="checkTransformation(5, false, this)" class="w-full text-left p-3 border rounded-xl hover:bg-slate-50 transition border-slate-200">
+              C) Twenty Roman coins are being cataloged by archaeologists this afternoon.
+            </button>
+          </div>
+          <div id="ex5-feedback" class="mt-3 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 6: 4-Bucket Tense Sorter -->
+        <div id="ex-card-6" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">6</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Tense Buckets Sorting Challenge</h3>
+            </div>
+            <span id="ex6-status" class="text-xs font-semibold text-slate-400">0 / 4 Sorted</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Select an item from the pool, then click its destination tense bucket:
+          </p>
+
+          <!-- Selected card indicator -->
+          <div class="text-xs font-semibold text-slate-500 mb-2">
+            Selected item: <span id="bucket-selected-item-text" class="text-brand-600 italic">None (click a card below)</span>
+          </div>
+
+          <!-- Item Pool -->
+          <div id="bucket-item-pool" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Buckets -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div onclick="dropIntoBucket('present-simple')" class="bucket-target p-3.5 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/50 hover:bg-amber-100/50 transition cursor-pointer text-center">
+              <h5 class="text-xs font-bold uppercase text-amber-800">Present Simple</h5>
+              <div id="bucket-present-simple" class="mt-2 space-y-1 min-h-10 text-xs"></div>
+            </div>
+
+            <div onclick="dropIntoBucket('past-simple')" class="bucket-target p-3.5 rounded-xl border-2 border-dashed border-blue-300 bg-blue-50/50 hover:bg-blue-100/50 transition cursor-pointer text-center">
+              <h5 class="text-xs font-bold uppercase text-blue-800">Past Simple</h5>
+              <div id="bucket-past-simple" class="mt-2 space-y-1 min-h-10 text-xs"></div>
+            </div>
+
+            <div onclick="dropIntoBucket('present-continuous')" class="bucket-target p-3.5 rounded-xl border-2 border-dashed border-purple-300 bg-purple-50/50 hover:bg-purple-100/50 transition cursor-pointer text-center">
+              <h5 class="text-xs font-bold uppercase text-purple-800">Pres. Continuous</h5>
+              <div id="bucket-present-continuous" class="mt-2 space-y-1 min-h-10 text-xs"></div>
+            </div>
+
+            <div onclick="dropIntoBucket('present-perfect')" class="bucket-target p-3.5 rounded-xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 hover:bg-emerald-100/50 transition cursor-pointer text-center">
+              <h5 class="text-xs font-bold uppercase text-emerald-800">Present Perfect</h5>
+              <div id="bucket-present-perfect" class="mt-2 space-y-1 min-h-10 text-xs"></div>
+            </div>
+          </div>
+          <div id="ex6-feedback" class="mt-3 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 7: News Headline Differentiator -->
+        <div id="ex-card-7" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">7</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Breaking News: Ongoing vs Routine</h3>
+            </div>
+            <span id="ex7-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Choose the form that describes an action in active progress <em>as we speak</em>:
+          </p>
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+            <p class="text-sm font-semibold text-slate-800">"Look at the main hall! The ancient tapestry _______ for tonight's gala."</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 text-xs sm:text-sm">
+              <button onclick="checkHeadline(7, true, this)" class="p-3 text-left border rounded-xl hover:bg-white transition border-slate-200">
+                A) is being hung
+              </button>
+              <button onclick="checkHeadline(7, false, this)" class="p-3 text-left border rounded-xl hover:bg-white transition border-slate-200">
+                B) is hung
+              </button>
+            </div>
+          </div>
+          <div id="ex7-feedback" class="mt-3 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 8: Auxiliary Verb Detective -->
+        <div id="ex-card-8" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">8</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">The Missing Auxiliary</h3>
+            </div>
+            <span id="ex8-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Select the auxiliary form that accurately completes the sentence:
+          </p>
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-wrap items-center gap-2 text-sm font-medium">
+            <span>"Fortunately, the rare manuscripts</span>
+            <select id="ex8-select" class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm font-bold text-brand-700 focus:outline-hidden focus:ring-2 focus:ring-brand-500">
+              <option value="">-- Choose Auxiliary --</option>
+              <option value="were">were</option>
+              <option value="has been">has been</option>
+              <option value="have been">have been</option>
+              <option value="are being">are being</option>
+            </select>
+            <span>preserved without water damage."</span>
+          </div>
+          <div class="mt-3 flex justify-end">
+            <button onclick="checkAuxiliaryEx8()" class="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition">Verify Auxiliary</button>
+          </div>
+          <div id="ex8-feedback" class="mt-2 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 9: Real-World Situation Context Match -->
+        <div id="ex-card-9" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">9</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Context & Function Pairing</h3>
+            </div>
+            <span id="ex9-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <p class="text-slate-700 text-sm mb-3">
+            Match the situation to the most natural passive sentence:
+          </p>
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs sm:text-sm font-medium text-amber-900 mb-3">
+            <strong>Situation:</strong> The museum director is giving a press release about a sudden recovery of a stolen jewel that happened an hour ago.
+          </div>
+          <div class="space-y-2 text-xs sm:text-sm">
+            <button onclick="checkContextEx9(false, this)" class="w-full text-left p-3 border rounded-xl hover:bg-slate-50 transition border-slate-200">
+              A) "The diamond is stolen every year."
+            </button>
+            <button onclick="checkContextEx9(true, this)" class="w-full text-left p-3 border rounded-xl hover:bg-slate-50 transition border-slate-200">
+              B) "The royal diamond has just been recovered!"
+            </button>
+            <button onclick="checkContextEx9(false, this)" class="w-full text-left p-3 border rounded-xl hover:bg-slate-50 transition border-slate-200">
+              C) "The royal diamond was being recovered."
+            </button>
+          </div>
+          <div id="ex9-feedback" class="mt-3 text-xs font-semibold hidden"></div>
+        </div>
+
+        <!-- EXERCISE 10: Sentence Rewrite Challenge -->
+        <div id="ex-card-10" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">10</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Grand Rewrite Challenge</h3>
+            </div>
+            <span id="ex10-status" class="text-xs font-semibold text-slate-400">Not Completed</span>
+          </div>
+          <div class="p-3.5 bg-slate-100 rounded-xl text-slate-800 text-sm mb-3">
+            <strong>Active Prompt:</strong> "Leonardo da Vinci painted the Mona Lisa in the early 16th century."
+          </div>
+          <p class="text-slate-700 text-xs sm:text-sm mb-3">
+            Rewrite this active sentence in the passive voice:
+          </p>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <input type="text" id="ex10-input" placeholder="Type your passive rewrite here..." class="grow px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-500">
+            <button onclick="checkRewriteEx10()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-sm transition">
+              Verify Rewrite
+            </button>
+          </div>
+          <div id="ex10-feedback" class="mt-3 text-xs font-semibold hidden"></div>
+        </div>
+
+      </section>
+
+      <!-- Completion Banner when 10/10 reached -->
+      <div id="completion-banner" class="hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-3xl p-8 sm:p-10 shadow-xl relative overflow-hidden text-center">
+        <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+          <div class="inline-flex p-3 bg-white/20 backdrop-blur-md rounded-2xl">
+            <i data-lucide="trophy" class="w-10 h-10 text-yellow-300"></i>
+          </div>
+          <h3 class="text-2xl sm:text-4xl font-extrabold font-serif">Passive Voice Mastery Achieved!</h3>
+          <p class="text-emerald-100 text-sm sm:text-base">
+            You have successfully identified, classified, and constructed all 4 passive tenses with precision. Now test your quick reflexes in the arcade!
+          </p>
+          <button onclick="switchTab('arcade')" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white text-emerald-900 font-extrabold text-sm hover:bg-emerald-50 transition transform hover:scale-105 shadow-lg">
+            <i data-lucide="gamepad-2" class="w-5 h-5 text-emerald-600"></i>
+            Enter The Passive Arcade
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: THE PASSIVE ARCADE (GAMES)          -->
+    <!-- ========================================== -->
+    <div id="section-arcade" class="hidden space-y-8">
+      
+      <!-- Arcade Header -->
+      <div class="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-purple-900/50 shadow-xl relative overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <span class="text-xs uppercase font-extrabold tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-full">
+              Gamified Reinforcement
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold font-serif mt-2 text-white">
+              The Passive Arcade
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-1">
+              Test your speed, memory, and grammatical instinct through two rapid interactive mechanics.
+            </p>
+          </div>
+
+          <!-- Arcade Mode Selector -->
+          <div class="flex flex-wrap gap-2">
+            <button id="btn-game-timerush" onclick="selectArcadeMode('timerush')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-purple-600 text-white hover:bg-purple-500 transition shadow-lg shadow-purple-600/30 flex items-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4"></i> Time-Rush Sorter
+            </button>
+            <button id="btn-game-memory" onclick="selectArcadeMode('memory')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition flex items-center gap-2">
+              <i data-lucide="grid" class="w-4 h-4"></i> Memory Match
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME 1: TIME-RUSH TENSE SORTER -->
+      <div id="arcade-mode-timerush" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-purple-50 text-purple-600 rounded-2xl">
+              <i data-lucide="timer" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">Time-Rush Tense Sorter</h3>
+              <p class="text-xs text-slate-500">Categorize each incoming sentence before the 45-second clock expires!</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="text-center px-4 py-1.5 bg-slate-100 rounded-xl">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Score</span>
+              <span id="rush-score" class="text-lg font-extrabold text-slate-900 font-mono">0</span>
+            </div>
+            <div class="text-center px-4 py-1.5 bg-slate-100 rounded-xl">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Streak</span>
+              <span id="rush-streak" class="text-lg font-extrabold text-purple-600 font-mono">0x</span>
+            </div>
+            <div class="text-center px-4 py-1.5 bg-amber-50 border border-amber-200 rounded-xl">
+              <span class="text-[10px] text-amber-700 uppercase font-bold block">Timer</span>
+              <span id="rush-timer" class="text-lg font-extrabold text-amber-700 font-mono">45s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Game Arena -->
+        <div id="rush-arena-box" class="min-h-56 flex flex-col items-center justify-center p-6 bg-slate-50 rounded-2xl border-2 border-slate-200 text-center relative overflow-hidden">
+          <div id="rush-start-screen" class="space-y-4">
+            <p class="text-sm text-slate-600 max-w-md">
+              A sentence will appear. Quickly click the correct passive tense button below. Keep a continuous streak to maximize your score!
+            </p>
+            <button onclick="startTimeRushGame()" class="px-6 py-3 rounded-2xl bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-sm shadow-md shadow-purple-600/30 transition transform hover:scale-105">
+              Start 45s Challenge
+            </button>
+          </div>
+
+          <div id="rush-active-screen" class="hidden w-full max-w-xl space-y-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
+              Identify Sentence Tense
+            </span>
+            <div id="rush-sentence-display" class="text-lg sm:text-xl font-bold text-slate-900 font-serif min-h-16 flex items-center justify-center">
+              "Loading sentence..."
+            </div>
+            <!-- Progress visual bar -->
+            <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+              <div id="rush-time-bar" class="bg-purple-600 h-full w-full transition-all duration-1000 ease-linear"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Answer Buttons for Time Rush -->
+        <div id="rush-answer-buttons" class="grid grid-cols-2 sm:grid-cols-4 gap-3 opacity-50 pointer-events-none">
+          <button onclick="handleRushAnswer('present-simple')" class="p-4 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm text-center transition shadow-xs">
+            Present Simple
+          </button>
+          <button onclick="handleRushAnswer('past-simple')" class="p-4 rounded-xl border border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-900 font-bold text-xs sm:text-sm text-center transition shadow-xs">
+            Past Simple
+          </button>
+          <button onclick="handleRushAnswer('present-continuous')" class="p-4 rounded-xl border border-purple-300 bg-purple-50 hover:bg-purple-100 text-purple-900 font-bold text-xs sm:text-sm text-center transition shadow-xs">
+            Pres. Continuous
+          </button>
+          <button onclick="handleRushAnswer('present-perfect')" class="p-4 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-bold text-xs sm:text-sm text-center transition shadow-xs">
+            Present Perfect
+          </button>
+        </div>
+      </div>
+
+      <!-- GAME 2: PASSIVE MEMORY MATCH -->
+      <div id="arcade-mode-memory" class="hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-brand-50 text-brand-600 rounded-2xl">
+              <i data-lucide="layers" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">Passive Memory Match</h3>
+              <p class="text-xs text-slate-500">Pair Active Situations with their exact Passive Partners.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="text-center px-4 py-1.5 bg-slate-100 rounded-xl">
+              <span class="text-[10px] text-slate-400 uppercase font-bold block">Moves</span>
+              <span id="mem-moves" class="text-lg font-extrabold text-slate-900 font-mono">0</span>
+            </div>
+            <div class="text-center px-4 py-1.5 bg-emerald-50 border border-emerald-200 rounded-xl">
+              <span class="text-[10px] text-emerald-700 uppercase font-bold block">Matched</span>
+              <span id="mem-matched" class="text-lg font-extrabold text-emerald-700 font-mono">0 / 6</span>
+            </div>
+            <button onclick="initMemoryGame()" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition flex items-center gap-1.5">
+              <i data-lucide="shuffle" class="w-3.5 h-3.5"></i> Reshuffle
+            </button>
+          </div>
+        </div>
+
+        <!-- Memory Card Grid (4x3 = 12 cards) -->
+        <div id="memory-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer with Subtle Attribution -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-800 font-serif">Mastering the Passive Voice</span>
+        <span>•</span>
+        <span>Designed by Babak Alaee</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Present Simple</span>
+        <span>•</span>
+        <span>Past Simple</span>
+        <span>•</span>
+        <span>Present Continuous</span>
+        <span>•</span>
+        <span>Present Perfect</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC & AUDIO SYNTHESIS ENGINE  -->
+  <!-- ========================================== -->
+  <script>
+    // Zero-dependency Web Audio Synthesizer for high-fidelity interactive clicks & chimes
+    let isMuted = false;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, delay = 0) {
+      if (isMuted) return;
+      try {
+        const ctx = getAudioContext();
+        setTimeout(() => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, ctx.currentTime);
+          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + duration);
+        }, delay * 1000);
+      } catch (e) {
+        // Fallback silently if audio context is blocked
+      }
+    }
+
+    function soundCorrect() {
+      playTone(523.25, 'sine', 0.15, 0);       // C5
+      playTone(659.25, 'sine', 0.15, 0.08);    // E5
+      playTone(783.99, 'sine', 0.25, 0.16);    // G5
+    }
+
+    function soundError() {
+      playTone(260, 'sawtooth', 0.12, 0);
+      playTone(200, 'sawtooth', 0.22, 0.1);
+    }
+
+    function soundClick() {
+      playTone(400, 'triangle', 0.05, 0);
+    }
+
+    function soundFanfare() {
+      playTone(523.25, 'triangle', 0.2, 0);
+      playTone(659.25, 'triangle', 0.2, 0.15);
+      playTone(783.99, 'triangle', 0.2, 0.3);
+      playTone(1046.50, 'triangle', 0.45, 0.45);
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const icon = document.getElementById('sound-icon');
+      if (isMuted) {
+        icon.setAttribute('data-lucide', 'volume-x');
+        showToast('🔇 Audio muted');
+      } else {
+        icon.setAttribute('data-lucide', 'volume-2');
+        soundClick();
+        showToast('🔊 Audio enabled');
+      }
+      lucide.createIcons();
+    }
+
+    function showToast(msg, icon = '✨') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-icon').innerText = icon;
+      document.getElementById('toast-message').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2600);
+    }
+
+    // Global State Tracker
+    const solvedExercises = new Set();
+
+    function markExerciseSolved(exNum) {
+      if (!solvedExercises.has(exNum)) {
+        solvedExercises.add(exNum);
+        document.getElementById('mastery-score').innerText = solvedExercises.size;
+        
+        const card = document.getElementById(`ex-card-${exNum}`);
+        if (card) {
+          card.classList.add('ring-2', 'ring-emerald-500/50');
+        }
+
+        const statusLabel = document.getElementById(`ex${exNum}-status`);
+        if (statusLabel) {
+          statusLabel.innerHTML = '<span class="text-emerald-600 font-bold flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> Solved</span>';
+          lucide.createIcons();
+        }
+
+        if (solvedExercises.size === 10) {
+          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+          soundFanfare();
+          document.getElementById('completion-banner').classList.remove('hidden');
+        }
+      }
+    }
+
+    function switchTab(tabId) {
+      soundClick();
+      const practiceSec = document.getElementById('section-practice');
+      const arcadeSec = document.getElementById('section-arcade');
+      const btnPractice = document.getElementById('tab-btn-practice');
+      const btnArcade = document.getElementById('tab-btn-arcade');
+
+      if (tabId === 'practice') {
+        practiceSec.classList.remove('hidden');
+        arcadeSec.classList.add('hidden');
+        btnPractice.className = 'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold shadow-xs bg-white text-slate-900 transition-all';
+        btnArcade.className = 'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-all';
+      } else {
+        practiceSec.classList.add('hidden');
+        arcadeSec.classList.remove('hidden');
+        btnArcade.className = 'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold shadow-xs bg-white text-slate-900 transition-all';
+        btnPractice.className = 'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-all';
+        lucide.createIcons();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    let detectiveOn = false;
+    function toggleDetectiveMode() {
+      detectiveOn = !detectiveOn;
+      const tokens = document.querySelectorAll('.pv-token');
+      const panel = document.getElementById('detective-panel');
+      const btnText = document.getElementById('detective-btn-text');
+
+      if (detectiveOn) {
+        soundCorrect();
+        tokens.forEach(el => el.classList.add('passive-highlight'));
+        panel.classList.remove('hidden');
+        btnText.innerText = 'Hide Passive Highlights';
+        showToast('🔍 8 Passive forms revealed in the text!', '🔎');
+      } else {
+        soundClick();
+        tokens.forEach(el => el.classList.remove('passive-highlight'));
+        panel.classList.add('hidden');
+        btnText.innerText = 'Turn on Detective Mode (Reveal Passives)';
+      }
+    }
+
+    function checkComprehension(qName, btnEl) {
+      const selected = document.querySelector(`input[name="${qName}"]:checked`);
+      const feedback = btnEl.nextElementSibling;
+      if (!selected) {
+        feedback.innerText = 'Please select an option first!';
+        feedback.className = 'comp-feedback ml-3 text-xs font-semibold text-amber-600';
+        soundError();
+        return;
+      }
+      if (selected.value === 'correct') {
+        feedback.innerText = '✓ Correct insight!';
+        feedback.className = 'comp-feedback ml-3 text-xs font-semibold text-emerald-600';
+        soundCorrect();
+      } else {
+        feedback.innerText = '✗ Re-read the passage carefully.';
+        feedback.className = 'comp-feedback ml-3 text-xs font-semibold text-red-500';
+        soundError();
+      }
+    }
+
+    function checkMCQ(exNum, selectedTense, isCorrect, btnEl) {
+      const parent = btnEl.parentElement;
+      const feedback = document.getElementById(`ex${exNum}-feedback`);
+      parent.querySelectorAll('button').forEach(b => {
+        b.classList.remove('bg-emerald-50', 'border-emerald-500', 'bg-red-50', 'border-red-400', 'font-bold');
+      });
+
+      if (isCorrect) {
+        soundCorrect();
+        btnEl.classList.add('bg-emerald-50', 'border-emerald-500', 'font-bold', 'text-emerald-900');
+        feedback.innerHTML = '<span class="text-emerald-600 font-semibold">✓ Exactly right! "has been examined" = Present Perfect Passive (has/have + been + V3).</span>';
+        feedback.classList.remove('hidden');
+        markExerciseSolved(exNum);
+      } else {
+        soundError();
+        btnEl.classList.add('bg-red-50', 'border-red-400');
+        feedback.innerHTML = '<span class="text-red-500 font-semibold">✗ Not quite. Look closely at "has been" + past participle.</span>';
+        feedback.classList.remove('hidden');
+      }
+    }
+
+    const originalTiles = ["The", "gallery", "ceiling", "is", "being", "repainted", "today."];
+    let shuffledTiles = [...originalTiles].sort(() => Math.random() - 0.5);
+    let currentTileSequence = [];
+
+    function renderTiles() {
+      const pool = document.getElementById('tile-pool');
+      const zone = document.getElementById('tile-zone');
+      pool.innerHTML = '';
+      
+      shuffledTiles.forEach((word, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-semibold shadow-xs hover:border-slate-400 active:scale-95 transition';
+        btn.innerText = word;
+        btn.onclick = () => addTileToZone(word, idx);
+        pool.appendChild(btn);
+      });
+
+      // Render Zone
+      zone.innerHTML = '';
+      if (currentTileSequence.length === 0) {
+        zone.innerHTML = '<span id="tile-placeholder" class="text-xs text-slate-400">Tap words from below to construct here...</span>';
+      } else {
+        currentTileSequence.forEach((word, idx) => {
+          const chip = document.createElement('span');
+          chip.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-brand-100 text-brand-900 border border-brand-300 text-xs font-bold cursor-pointer hover:bg-brand-200 transition';
+          chip.innerHTML = `${word} <span class="text-brand-600 font-normal">&times;</span>`;
+          chip.onclick = () => removeTileFromZone(idx);
+          zone.appendChild(chip);
+        });
+      }
+    }
+
+    function addTileToZone(word, originalIndex) {
+      soundClick();
+      currentTileSequence.push(word);
+      shuffledTiles.splice(originalIndex, 1);
+      renderTiles();
+    }
+
+    function removeTileFromZone(index) {
+      soundClick();
+      const removed = currentTileSequence.splice(index, 1)[0];
+      shuffledTiles.push(removed);
+      renderTiles();
+    }
+
+    function resetTiles() {
+      soundClick();
+      currentTileSequence = [];
+      shuffledTiles = [...originalTiles].sort(() => Math.random() - 0.5);
+      renderTiles();
+      document.getElementById('ex2-feedback').classList.add('hidden');
+    }
+
+    function checkTiles() {
+      const sentence = currentTileSequence.join(' ');
+      const target = originalTiles.join(' ');
+      const feedback = document.getElementById('ex2-feedback');
+      feedback.classList.remove('hidden');
+
+      if (sentence === target) {
+        soundCorrect();
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Perfect construction! "is being repainted" is Present Continuous Passive.</span>';
+        markExerciseSolved(2);
+      } else {
+        soundError();
+        feedback.innerHTML = `<span class="text-red-500 font-semibold">✗ Not in order yet. Remember: Subject + is/are + being + Past Participle.</span>`;
+      }
+    }
+
+    function checkTypingEx3() {
+      const val = document.getElementById('ex3-input').value.trim().toLowerCase();
+      const feedback = document.getElementById('ex3-feedback');
+      feedback.classList.remove('hidden');
+
+      // singular: "was stolen"
+      if (val === 'was stolen') {
+        soundCorrect();
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Correct! "The vase was stolen" (Past Simple Passive).</span>';
+        markExerciseSolved(3);
+      } else {
+        soundError();
+        feedback.innerHTML = '<span class="text-red-500 font-semibold">✗ Incorrect. "Vase" is singular, past simple of be is "was", and V3 of steal is "stolen".</span>';
+      }
+    }
+
+    function checkErrorHunter(exNum, isTargetError, el) {
+      const feedback = document.getElementById('ex4-feedback');
+      const correction = document.getElementById('ex4-correction');
+      feedback.classList.remove('hidden');
+
+      if (isTargetError) {
+        soundCorrect();
+        el.classList.add('bg-red-100', 'border-red-400', 'text-red-700', 'line-through');
+        correction.classList.remove('hidden');
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Error located! Plural subject "cameras" needs "are", not "is".</span>';
+        markExerciseSolved(4);
+      } else {
+        soundError();
+        feedback.innerHTML = '<span class="text-amber-700 font-semibold">That part is grammatically fine. Keep looking for subject-verb agreement!</span>';
+      }
+    }
+
+    function checkTransformation(exNum, isCorrect, btn) {
+      const parent = btn.parentElement;
+      const feedback = document.getElementById(`ex${exNum}-feedback`);
+      feedback.classList.remove('hidden');
+      parent.querySelectorAll('button').forEach(b => b.classList.remove('bg-emerald-50', 'border-emerald-500', 'bg-red-50', 'border-red-400', 'font-bold'));
+
+      if (isCorrect) {
+        soundCorrect();
+        btn.classList.add('bg-emerald-50', 'border-emerald-500', 'font-bold');
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Excellent transformation! "have cataloged" (Present Perfect Active) becomes "have been cataloged" (Present Perfect Passive).</span>';
+        markExerciseSolved(5);
+      } else {
+        soundError();
+        btn.classList.add('bg-red-50', 'border-red-400');
+        feedback.innerHTML = '<span class="text-red-500 font-semibold">✗ Incorrect tense. Maintain the Present Perfect aspect ("have been").</span>';
+      }
+    }
+
+    const bucketItems = [
+      { id: 'b1', text: 'The gallery is guarded by lasers.', target: 'present-simple' },
+      { id: 'b2', text: 'The antique frame was restored in 2011.', target: 'past-simple' },
+      { id: 'b3', text: 'The rare books are being treated right now.', target: 'present-continuous' },
+      { id: 'b4', text: 'The gallery has been nominated for an award.', target: 'present-perfect' }
+    ];
+    let selectedBucketItem = null;
+    let correctlyBucketSorted = 0;
+
+    function renderBucketCards() {
+      const pool = document.getElementById('bucket-item-pool');
+      pool.innerHTML = '';
+      bucketItems.forEach(item => {
+        if (!item.placed) {
+          const div = document.createElement('div');
+          div.className = `p-3 rounded-xl border text-xs font-semibold cursor-pointer transition ${selectedBucketItem && selectedBucketItem.id === item.id ? 'bg-brand-50 border-brand-500 ring-2 ring-brand-400 text-brand-900' : 'bg-white border-slate-200 hover:border-slate-400 text-slate-800'}`;
+          div.innerText = item.text;
+          div.onclick = () => selectItemForBucket(item);
+          pool.appendChild(div);
+        }
+      });
+    }
+
+    function selectItemForBucket(item) {
+      soundClick();
+      selectedBucketItem = item;
+      document.getElementById('bucket-selected-item-text').innerText = `"${item.text}"`;
+      renderBucketCards();
+    }
+
+    function dropIntoBucket(targetTense) {
+      if (!selectedBucketItem) {
+        showToast('Please select a sentence card first!');
+        soundError();
+        return;
+      }
+      const feedback = document.getElementById('ex6-feedback');
+      feedback.classList.remove('hidden');
+
+      if (selectedBucketItem.target === targetTense) {
+        soundCorrect();
+        selectedBucketItem.placed = true;
+        const bucketContainer = document.getElementById(`bucket-${targetTense}`);
+        const chip = document.createElement('div');
+        chip.className = 'p-1.5 bg-white border border-slate-200 rounded-lg text-[11px] font-bold text-slate-800 shadow-xs';
+        chip.innerText = selectedBucketItem.text;
+        bucketContainer.appendChild(chip);
+
+        correctlyBucketSorted++;
+        document.getElementById('ex6-status').innerText = `${correctlyBucketSorted} / 4 Sorted`;
+        selectedBucketItem = null;
+        document.getElementById('bucket-selected-item-text').innerText = 'None (click a card below)';
+        renderBucketCards();
+
+        if (correctlyBucketSorted === 4) {
+          feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ All 4 sentences sorted into their accurate tenses!</span>';
+          markExerciseSolved(6);
+        } else {
+          feedback.innerHTML = '<span class="text-emerald-600 font-medium">✓ Correct bucket! Keep going.</span>';
+        }
+      } else {
+        soundError();
+        feedback.innerHTML = `<span class="text-red-500 font-semibold">✗ That sentence does not match ${targetTense.replace('-', ' ')}. Try again!</span>`;
+      }
+    }
+
+    function checkHeadline(exNum, isCorrect, btn) {
+      const parent = btn.parentElement;
+      const feedback = document.getElementById(`ex${exNum}-feedback`);
+      feedback.classList.remove('hidden');
+      parent.querySelectorAll('button').forEach(b => b.classList.remove('bg-emerald-50', 'border-emerald-500', 'bg-red-50', 'border-red-400', 'font-bold'));
+
+      if (isCorrect) {
+        soundCorrect();
+        btn.classList.add('bg-emerald-50', 'border-emerald-500', 'font-bold');
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ "is being hung" shows action in active progress right now!</span>';
+        markExerciseSolved(7);
+      } else {
+        soundError();
+        btn.classList.add('bg-red-50', 'border-red-400');
+        feedback.innerHTML = '<span class="text-red-500 font-semibold">✗ "is hung" states a routine rule, not what is unfolding this instant.</span>';
+      }
+    }
+
+    function checkAuxiliaryEx8() {
+      const select = document.getElementById('ex8-select');
+      const val = select.value;
+      const feedback = document.getElementById('ex8-feedback');
+      feedback.classList.remove('hidden');
+
+      if (val === 'have been') {
+        soundCorrect();
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Spot on! Plural "rare manuscripts" + Present Perfect requires "have been".</span>';
+        markExerciseSolved(8);
+      } else {
+        soundError();
+        feedback.innerHTML = '<span class="text-red-500 font-semibold">✗ Recheck the subject number (plural) and target tense (Present Perfect).</span>';
+      }
+    }
+
+    function checkContextEx9(isCorrect, btn) {
+      const parent = btn.parentElement;
+      const feedback = document.getElementById('ex9-feedback');
+      feedback.classList.remove('hidden');
+      parent.querySelectorAll('button').forEach(b => b.classList.remove('bg-emerald-50', 'border-emerald-500', 'bg-red-50', 'border-red-400', 'font-bold'));
+
+      if (isCorrect) {
+        soundCorrect();
+        btn.classList.add('bg-emerald-50', 'border-emerald-500', 'font-bold');
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Exactly. Present Perfect Passive connects a fresh past event to current news!</span>';
+        markExerciseSolved(9);
+      } else {
+        soundError();
+        btn.classList.add('bg-red-50', 'border-red-400');
+        feedback.innerHTML = '<span class="text-red-500 font-semibold">✗ Think about breaking news with present impact.</span>';
+      }
+    }
+
+    function checkRewriteEx10() {
+      const input = document.getElementById('ex10-input').value.trim().toLowerCase().replace(/[.,]/g, '');
+      const targetA = "the mona lisa was painted by leonardo da vinci in the early 16th century";
+      const targetB = "in the early 16th century the mona lisa was painted by leonardo da vinci";
+      const feedback = document.getElementById('ex10-feedback');
+      feedback.classList.remove('hidden');
+
+      if (input === targetA || input === targetB) {
+        soundCorrect();
+        feedback.innerHTML = '<span class="text-emerald-600 font-bold">✓ Masterful rewrite! "The Mona Lisa was painted by Leonardo da Vinci in the early 16th century."</span>';
+        markExerciseSolved(10);
+      } else {
+        soundError();
+        feedback.innerHTML = `<span class="text-red-500 font-semibold">✗ Check wording. Required formula: "The Mona Lisa was painted by Leonardo da Vinci in the early 16th century".</span>`;
+      }
+    }
+
+    function resetAllExercises() {
+      soundClick();
+      solvedExercises.clear();
+      document.getElementById('mastery-score').innerText = '0';
+      document.getElementById('completion-banner').classList.add('hidden');
+      
+      // Reset statuses
+      for (let i = 1; i <= 10; i++) {
+        const card = document.getElementById(`ex-card-${i}`);
+        if (card) card.classList.remove('ring-2', 'ring-emerald-500/50');
+        const st = document.getElementById(`ex${i}-status`);
+        if (st) st.innerText = 'Not Completed';
+        const fb = document.getElementById(`ex${i}-feedback`);
+        if (fb) fb.classList.add('hidden');
+      }
+
+      // Reset inputs & buttons
+      document.getElementById('ex3-input').value = '';
+      document.getElementById('ex10-input').value = '';
+      document.getElementById('ex8-select').value = '';
+      document.getElementById('ex4-correction').classList.add('hidden');
+
+      // Reset Tile Ex2
+      resetTiles();
+
+      // Reset Buckets Ex6
+      bucketItems.forEach(i => i.placed = false);
+      correctlyBucketSorted = 0;
+      document.getElementById('ex6-status').innerText = '0 / 4 Sorted';
+      ['present-simple', 'past-simple', 'present-continuous', 'present-perfect'].forEach(t => {
+        document.getElementById(`bucket-${t}`).innerHTML = '';
+      });
+      renderBucketCards();
+
+      showToast('All exercises reset!', '🔄');
+    }
+
+    let rushTimer = null;
+    let rushTimeLeft = 45;
+    let rushScore = 0;
+    let rushStreak = 0;
+    let currentRushQuestion = null;
+    let rushQuestionDeck = [];
+
+    // Expanded pool of 30 distinct sentences (10 original + 20 new)
+    const rushSentences = [
+      // Original 10
+      { text: "These ancient manuscripts are preserved in temperature-regulated vaults.", tense: "present-simple" },
+      { text: "The grand colonnade was designed by Bernini in the 17th century.", tense: "past-simple" },
+      { text: "Fresh updates are being published right now by our conservation team.", tense: "present-continuous" },
+      { text: "Several Roman amphorae have been recovered from the seabed this month.", tense: "present-perfect" },
+      { text: "Oil paintings are dusted with goat-hair brushes every Tuesday.", tense: "present-simple" },
+      { text: "The gallery's security alarm was triggered by an earthquake.", tense: "past-simple" },
+      { text: "A rare mosaic is being carefully excavated in the courtyard as we speak.", tense: "present-continuous" },
+      { text: "Three original sketches have been attributed to Rembrandt this year.", tense: "present-perfect" },
+      { text: "Tours are conducted by certified art historians each morning.", tense: "present-simple" },
+      { text: "The medieval chalice was auctioned in London back in 1968.", tense: "past-simple" },
+
+      // 20 Brand New Additions (5 per tense)
+      // Present Simple Passive
+      { text: "Admission fees are waived for students every first Sunday.", tense: "present-simple" },
+      { text: "Antique tapestries are kept away from direct sunlight at all times.", tense: "present-simple" },
+      { text: "All incoming postal deliveries are screened by security personnel.", tense: "present-simple" },
+      { text: "Audio guides are provided in twelve languages at the reception desk.", tense: "present-simple" },
+      { text: "Sensitive temperature readings are logged automatically every hour.", tense: "present-simple" },
+
+      // Past Simple Passive
+      { text: "The prehistoric fossils were discovered by two hikers in 1974.", tense: "past-simple" },
+      { text: "The East Wing was inaugurated by the mayor three decades ago.", tense: "past-simple" },
+      { text: "Priceless emerald jewels were smuggled across the border in 1938.", tense: "past-simple" },
+      { text: "The marble statue was damaged during the historic flood of 1966.", tense: "past-simple" },
+      { text: "Detailed architectural blueprints were drawn by local draftsmen in 1890.", tense: "past-simple" },
+
+      // Present Continuous Passive
+      { text: "The Renaissance fresco is being analyzed with ultraviolet light right now.", tense: "present-continuous" },
+      { text: "Damaged wooden panels are being treated for termites this afternoon.", tense: "present-continuous" },
+      { text: "New climate sensors are being installed across all main galleries.", tense: "present-continuous" },
+      { text: "A bronze equestrian monument is being transported to Berlin today.", tense: "present-continuous" },
+      { text: "The central exhibition hall is being prepared for the VIP opening.", tense: "present-continuous" },
+
+      // Present Perfect Passive
+      { text: "Dozens of counterfeit artifacts have been seized by customs officers.", tense: "present-perfect" },
+      { text: "Over two million digital visitors have been registered this semester.", tense: "present-perfect" },
+      { text: "A generous endowment has been granted to the research library.", tense: "present-perfect" },
+      { text: "The lost bronze sculpture has finally been identified by curators.", tense: "present-perfect" },
+      { text: "All archive catalogs have been updated following the latest findings.", tense: "present-perfect" }
+    ];
+
+    function selectArcadeMode(mode) {
+      soundClick();
+      const timeRushEl = document.getElementById('arcade-mode-timerush');
+      const memoryEl = document.getElementById('arcade-mode-memory');
+      const btnRush = document.getElementById('btn-game-timerush');
+      const btnMem = document.getElementById('btn-game-memory');
+
+      if (mode === 'timerush') {
+        timeRushEl.classList.remove('hidden');
+        memoryEl.classList.add('hidden');
+        btnRush.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-purple-600 text-white hover:bg-purple-500 transition shadow-lg shadow-purple-600/30 flex items-center gap-2';
+        btnMem.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition flex items-center gap-2';
+      } else {
+        timeRushEl.classList.add('hidden');
+        memoryEl.classList.remove('hidden');
+        btnMem.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-purple-600 text-white hover:bg-purple-500 transition shadow-lg shadow-purple-600/30 flex items-center gap-2';
+        btnRush.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition flex items-center gap-2';
+        initMemoryGame();
+      }
+    }
+
+    function initRushDeck() {
+      // Create a freshly shuffled clone of the complete 30-sentence pool
+      rushQuestionDeck = [...rushSentences].sort(() => Math.random() - 0.5);
+    }
+
+    function startTimeRushGame() {
+      soundCorrect();
+      rushScore = 0;
+      rushStreak = 0;
+      rushTimeLeft = 45;
+      document.getElementById('rush-score').innerText = rushScore;
+      document.getElementById('rush-streak').innerText = '0x';
+      document.getElementById('rush-timer').innerText = `${rushTimeLeft}s`;
+
+      document.getElementById('rush-start-screen').classList.add('hidden');
+      document.getElementById('rush-active-screen').classList.remove('hidden');
+      
+      const btnGroup = document.getElementById('rush-answer-buttons');
+      btnGroup.classList.remove('opacity-50', 'pointer-events-none');
+
+      initRushDeck();
+      nextRushQuestion();
+
+      clearInterval(rushTimer);
+      rushTimer = setInterval(() => {
+        rushTimeLeft--;
+        document.getElementById('rush-timer').innerText = `${rushTimeLeft}s`;
+        const percentage = (rushTimeLeft / 45) * 100;
+        document.getElementById('rush-time-bar').style.width = `${percentage}%`;
+
+        if (rushTimeLeft <= 0) {
+          endRushGame();
+        }
+      }, 1000);
+    }
+
+    function nextRushQuestion() {
+      // Replenish and reshuffle deck only if all 30 sentences have been used
+      if (rushQuestionDeck.length === 0) {
+        initRushDeck();
+      }
+      currentRushQuestion = rushQuestionDeck.pop();
+      document.getElementById('rush-sentence-display').innerText = `"${currentRushQuestion.text}"`;
+    }
+
+    function handleRushAnswer(tenseChoice) {
+      if (rushTimeLeft <= 0) return;
+
+      if (tenseChoice === currentRushQuestion.tense) {
+        soundCorrect();
+        rushStreak++;
+        const multiplier = Math.min(rushStreak, 4);
+        rushScore += (100 * multiplier);
+        document.getElementById('rush-score').innerText = rushScore;
+        document.getElementById('rush-streak').innerText = `${rushStreak}x`;
+        showToast(`+${100 * multiplier} pts! (${rushStreak}x Streak)`, '🔥');
+      } else {
+        soundError();
+        rushStreak = 0;
+        document.getElementById('rush-streak').innerText = '0x';
+        showToast('Streak broken! -0 pts', '⚠️');
+      }
+
+      nextRushQuestion();
+    }
+
+    function endRushGame() {
+      clearInterval(rushTimer);
+      soundFanfare();
+      confetti({ particleCount: 80, spread: 60 });
+
+      document.getElementById('rush-active-screen').classList.add('hidden');
+      const startScreen = document.getElementById('rush-start-screen');
+      startScreen.classList.remove('hidden');
+      startScreen.innerHTML = `
+        <div class="space-y-3">
+          <span class="text-3xl">⏱️</span>
+          <h4 class="text-xl font-extrabold text-slate-900">Time's Up!</h4>
+          <p class="text-sm text-slate-600">You scored <strong>${rushScore}</strong> points with high streaks!</p>
+          <button onclick="startTimeRushGame()" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md transition">
+            Play Again
+          </button>
+        </div>
+      `;
+      document.getElementById('rush-answer-buttons').classList.add('opacity-50', 'pointer-events-none');
+    }
+
+    const memoryPairs = [
+      { id: 1, active: "Leonardo painted it.", passive: "It was painted by Leonardo." },
+      { id: 2, active: "They clean the statues daily.", passive: "The statues are cleaned daily." },
+      { id: 3, active: "They are restoring the altar.", passive: "The altar is being restored." },
+      { id: 4, active: "They have found the manuscript.", passive: "The manuscript has been found." },
+      { id: 5, active: "Guards lock the doors at 8.", passive: "The doors are locked at 8." },
+      { id: 6, active: "Scientists have analyzed the ink.", passive: "The ink has been analyzed." }
+    ];
+
+    let memoryCards = [];
+    let flippedCards = [];
+    let memoryMoves = 0;
+    let memoryMatches = 0;
+    let lockBoard = false;
+
+    function initMemoryGame() {
+      memoryMoves = 0;
+      memoryMatches = 0;
+      flippedCards = [];
+      lockBoard = false;
+      document.getElementById('mem-moves').innerText = '0';
+      document.getElementById('mem-matched').innerText = '0 / 6';
+
+      // Create flat deck of 12 cards
+      memoryCards = [];
+      memoryPairs.forEach(p => {
+        memoryCards.push({ pairId: p.id, text: p.active, role: 'Active' });
+        memoryCards.push({ pairId: p.id, text: p.passive, role: 'Passive' });
+      });
+
+      // Shuffle
+      memoryCards.sort(() => Math.random() - 0.5);
+
+      const grid = document.getElementById('memory-grid');
+      grid.innerHTML = '';
+      memoryCards.forEach((card, index) => {
+        const cardEl = document.createElement('div');
+        cardEl.className = 'memory-card h-28 sm:h-32 p-3 rounded-2xl border-2 border-slate-200 bg-slate-100 hover:bg-slate-200/80 cursor-pointer flex flex-col items-center justify-center text-center transition-all select-none duration-300 relative overflow-hidden';
+        cardEl.dataset.index = index;
+        cardEl.innerHTML = `
+          <div class="card-back flex flex-col items-center justify-center text-slate-400">
+            <i data-lucide="help-circle" class="w-6 h-6"></i>
+            <span class="text-[10px] uppercase font-bold mt-1 tracking-wider">Tap to Flip</span>
+          </div>
+          <div class="card-front hidden flex flex-col items-center justify-center w-full h-full p-2">
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full mb-1 ${card.role === 'Active' ? 'bg-amber-100 text-amber-800' : 'bg-brand-100 text-brand-800'}">${card.role}</span>
+            <span class="text-xs font-semibold text-slate-900 leading-tight">${card.text}</span>
+          </div>
+        `;
+        cardEl.onclick = () => flipMemoryCard(cardEl, card);
+        grid.appendChild(cardEl);
+      });
+      lucide.createIcons();
+    }
+
+    function flipMemoryCard(el, card) {
+      if (lockBoard) return;
+      if (el.classList.contains('matched') || el.classList.contains('flipped')) return;
+
+      soundClick();
+      el.classList.add('flipped', 'bg-white', 'border-brand-500', 'shadow-md');
+      el.classList.remove('bg-slate-100');
+      el.querySelector('.card-back').classList.add('hidden');
+      el.querySelector('.card-front').classList.remove('hidden');
+
+      flippedCards.push({ el, card });
+
+      if (flippedCards.length === 2) {
+        memoryMoves++;
+        document.getElementById('mem-moves').innerText = memoryMoves;
+        checkForMemoryMatch();
+      }
+    }
+
+    function checkForMemoryMatch() {
+      lockBoard = true;
+      const [c1, c2] = flippedCards;
+
+      if (c1.card.pairId === c2.card.pairId && c1.card.role !== c2.card.role) {
+        // Match!
+        soundCorrect();
+        setTimeout(() => {
+          c1.el.classList.add('matched', 'bg-emerald-50', 'border-emerald-500', 'pointer-events-none');
+          c2.el.classList.add('matched', 'bg-emerald-50', 'border-emerald-500', 'pointer-events-none');
+          memoryMatches++;
+          document.getElementById('mem-matched').innerText = `${memoryMatches} / 6`;
+          flippedCards = [];
+          lockBoard = false;
+
+          if (memoryMatches === 6) {
+            soundFanfare();
+            confetti({ particleCount: 100, spread: 70 });
+            showToast('🎉 Master Matcher! All pairs matched!', '🏆');
+          }
+        }, 500);
+      } else {
+        // Not a match
+        soundError();
+        setTimeout(() => {
+          [c1, c2].forEach(({ el }) => {
+            el.classList.remove('flipped', 'bg-white', 'border-brand-500', 'shadow-md');
+            el.classList.add('bg-slate-100');
+            el.querySelector('.card-back').classList.remove('hidden');
+            el.querySelector('.card-front').classList.add('hidden');
+          });
+          flippedCards = [];
+          lockBoard = false;
+        }, 1100);
+      }
+    }
+
+    window.onload = function() {
+      lucide.createIcons();
+      renderTiles();
+      renderBucketCards();
+      initMemoryGame();
+    };
+  </script>
+</body>
+</html>
