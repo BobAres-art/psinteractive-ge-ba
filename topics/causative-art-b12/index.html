@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Causatives: Have & Get</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            tealAccent: {
+              500: '#0d9488',
+              600: '#0f766e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbars and fine aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .perspective {
+      perspective: 1000px;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .causative-highlight {
+      background: linear-gradient(120deg, rgba(254, 240, 138, 0.7) 0%, rgba(253, 224, 71, 0.8) 100%);
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.35rem;
+      font-weight: 600;
+      color: #713f12;
+      border-bottom: 2px solid #ca8a04;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-4 gap-2">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-teal-500 text-white shadow-sm">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </span>
+            <h1 class="text-xl sm:text-2xl font-display font-extrabold tracking-tight text-slate-900">
+              Mastering Causatives: <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-600">Have & Get</span>
+            </h1>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-500 font-medium mt-0.5 tracking-wide flex items-center gap-1.5">
+            <span>Designed by Babak Alaee</span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+            <span class="text-slate-400">Interactive Grammar Experience</span>
+          </p>
+        </div>
+
+        <!-- Global Sound and Reset Quick controls -->
+        <div class="flex items-center gap-2 self-end sm:self-center">
+          <button id="audio-toggle-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold transition" title="Toggle audio feedback">
+            <i data-lucide="volume-2" id="audio-icon" class="w-4 h-4 text-indigo-600"></i>
+            <span id="audio-label">Sound FX: ON</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex space-x-1 sm:space-x-3 overflow-x-auto pb-2 scrollbar-none pt-1">
+        <button onclick="switchTab('tab-discover')" id="tabBtn-discover" class="tab-btn active px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition bg-indigo-50 text-indigo-700 shadow-xs border border-indigo-200/60">
+          <i data-lucide="compass" class="w-4 h-4"></i>
+          1. Discover & Explore
+        </button>
+        <button onclick="switchTab('tab-rules')" id="tabBtn-rules" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition text-slate-600 hover:text-indigo-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          2. Grammar Rules & Guide
+        </button>
+        <button onclick="switchTab('tab-practice')" id="tabBtn-practice" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition text-slate-600 hover:text-indigo-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="check-check" class="w-4 h-4"></i>
+          3. Practice Arena (10 Exercises)
+        </button>
+        <button onclick="switchTab('tab-game')" id="tabBtn-game" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg flex items-center gap-2 whitespace-nowrap transition text-slate-600 hover:text-indigo-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+          4. Quick-Fix Blitz (Game)
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <section id="tab-discover" class="tab-content block space-y-8">
+      <!-- Exposure Banner Images -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="relative group rounded-2xl overflow-hidden shadow-sm h-48 border border-slate-200">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80" alt="Renovating space" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-3.5">
+            <span class="text-white text-xs font-semibold tracking-wide flex items-center gap-1.5"><i data-lucide="paint-brush" class="w-3.5 h-3.5 text-amber-400"></i> Interior Painting</span>
+          </div>
+        </div>
+        <div class="relative group rounded-2xl overflow-hidden shadow-sm h-48 border border-slate-200">
+          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Catering preparation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-3.5">
+            <span class="text-white text-xs font-semibold tracking-wide flex items-center gap-1.5"><i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-400"></i> Banquet Catering</span>
+          </div>
+        </div>
+        <div class="relative group rounded-2xl overflow-hidden shadow-sm h-48 border border-slate-200">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Lighting and chandelier repair" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-3.5">
+            <span class="text-white text-xs font-semibold tracking-wide flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i> Electrical & Lighting</span>
+          </div>
+        </div>
+        <div class="relative group rounded-2xl overflow-hidden shadow-sm h-48 border border-slate-200">
+          <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80" alt="Music soundboard" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-3.5">
+            <span class="text-white text-xs font-semibold tracking-wide flex items-center gap-1.5"><i data-lucide="music" class="w-3.5 h-3.5 text-amber-400"></i> Audio Engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Narrative & Toggle Controls -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 border-b border-slate-100 gap-4">
+          <div>
+            <span class="px-2.5 py-1 text-xs font-bold tracking-wider uppercase bg-teal-50 text-teal-700 rounded-full border border-teal-200">Context in Action</span>
+            <h2 class="text-2xl font-serif font-bold text-slate-900 mt-1">The Grand Opening of Atelier Lumière</h2>
+            <p class="text-sm text-slate-500">Read the narrative naturally. Pay close attention to how actions were arranged and who actually performed them.</p>
+          </div>
+          <button id="toggle-highlight-btn" onclick="toggleHighlights()" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+            <i data-lucide="eye" id="toggle-highlight-icon" class="w-4 h-4"></i>
+            <span id="toggle-highlight-text">Reveal Causative Forms</span>
+          </button>
+        </div>
+
+        <!-- 200-Word Context Story -->
+        <article id="story-container" class="mt-6 text-slate-700 text-base sm:text-lg leading-relaxed font-sans space-y-4">
+          <p>
+            When Elena decided to open Atelier Lumière, an upscale creative venue downtown, she knew she couldn’t handle every task alone. Three weeks before the opening gala, Elena <span data-causative="active-have">had the painters coat</span> the interior walls in warm champagne tones. Because the vintage fixtures were delicate, she <span data-causative="active-get">got a certified electrician to restore</span> the antique brass chandeliers so that they would shine safely.
+          </p>
+          <p>
+            Time was running short, so Elena also <span data-causative="passive-have">had the hardwood floor polished</span> by a specialized restoration crew. The original catering company cancelled abruptly, but after several persistent phone calls, Elena managed to <span data-causative="active-get">get a renowned pastry chef to prepare</span> sixty custom dessert towers.
+          </p>
+          <p>
+            On the final morning, she <span data-causative="active-have">had her assistant print</span> the embossed guest lists and <span data-causative="passive-get">got the audio system calibrated</span> by a professional sound engineer. When the doors finally opened and the jazz quartet played, guests praised the spotless venue. Elena smiled gracefully: she had not picked up a single wrench or paintbrush herself, yet through coordination and persuasion, she had brought the entire vision to life.
+          </p>
+        </article>
+
+        <div id="highlight-legend" class="hidden mt-6 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="flex items-center gap-2 p-2 bg-amber-50 rounded-lg text-amber-900 border border-amber-200">
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span><strong>Active 'Have':</strong> Subject + have + person + base verb</span>
+          </div>
+          <div class="flex items-center gap-2 p-2 bg-teal-50 rounded-lg text-teal-900 border border-teal-200">
+            <span class="w-3 h-3 rounded-full bg-teal-400"></span>
+            <span><strong>Active 'Get':</strong> Subject + get + person + to-verb</span>
+          </div>
+          <div class="flex items-center gap-2 p-2 bg-indigo-50 rounded-lg text-indigo-900 border border-indigo-200">
+            <span class="w-3 h-3 rounded-full bg-indigo-400"></span>
+            <span><strong>Passive:</strong> have/get + object + past participle (V3)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Story Comprehension -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 text-indigo-600 mb-3">
+              <i data-lucide="check-circle" class="w-5 h-5"></i>
+              <h3 class="font-display font-bold text-lg text-slate-900">Story Comprehension Check</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">Did Elena personally complete these manual tasks, or did someone else do them for her?</p>
+            
+            <div class="space-y-3" id="comp-questions">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm">
+                <p class="font-medium text-slate-800 mb-2">1. Who physically painted the walls in champagne tones?</p>
+                <div class="flex gap-2">
+                  <button onclick="checkStoryAnswer(this, false)" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold hover:bg-slate-100 transition">Elena herself</button>
+                  <button onclick="checkStoryAnswer(this, true)" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold hover:bg-slate-100 transition">Professional painters</button>
+                </div>
+                <p class="feedback-msg text-xs mt-2 hidden font-semibold"></p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm">
+                <p class="font-medium text-slate-800 mb-2">2. How did Elena secure the pastry chef after the cancellation?</p>
+                <div class="flex gap-2">
+                  <button onclick="checkStoryAnswer(this, true)" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold hover:bg-slate-100 transition">Through persuasion & multiple calls</button>
+                  <button onclick="checkStoryAnswer(this, false)" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold hover:bg-slate-100 transition">By baking the desserts herself</button>
+                </div>
+                <p class="feedback-msg text-xs mt-2 hidden font-semibold"></p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400">
+            Notice how English expresses arranging services rather than doing them directly.
+          </div>
+        </div>
+
+        <!-- Inductive Pattern Discovery -->
+        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 p-6 rounded-2xl text-white shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 text-teal-300 mb-3">
+              <i data-lucide="lightbulb" class="w-5 h-5"></i>
+              <h3 class="font-display font-bold text-lg text-white">Notice the Grammar Code</h3>
+            </div>
+            <p class="text-sm text-slate-300 mb-4">Observe the two contrasting sentences extracted from Elena's story:</p>
+
+            <div class="space-y-3 text-xs sm:text-sm">
+              <div class="bg-white/10 p-3 rounded-xl border border-white/10">
+                <span class="text-amber-300 font-bold block mb-1">Sentence A:</span>
+                "Elena <span class="underline decoration-amber-400 decoration-2 font-bold">had the painters coat</span> the interior walls."
+              </div>
+              <div class="bg-white/10 p-3 rounded-xl border border-white/10">
+                <span class="text-teal-300 font-bold block mb-1">Sentence B:</span>
+                "She <span class="underline decoration-teal-400 decoration-2 font-bold">got an electrician to restore</span> the antique brass chandeliers."
+              </div>
+            </div>
+
+            <!-- Discovery Question -->
+            <div class="mt-5 p-3.5 bg-white/5 rounded-xl border border-white/10">
+              <p class="text-xs text-indigo-200 font-semibold mb-2">What structural difference do you spot after the person?</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <button onclick="checkDiscoveryAnswer(this, false)" class="p-2 text-left rounded-lg bg-white/10 hover:bg-white/20 transition">Both take "to + verb"</button>
+                <button onclick="checkDiscoveryAnswer(this, true)" class="p-2 text-left rounded-lg bg-white/10 hover:bg-white/20 transition">"Have" uses bare infinitive; "get" uses "to + infinitive"</button>
+              </div>
+              <p id="discovery-feedback" class="text-xs mt-2.5 hidden font-semibold"></p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs text-slate-300">Ready to examine the complete framework?</span>
+            <button onclick="switchTab('tab-rules')" class="text-xs font-bold text-teal-300 hover:text-teal-200 flex items-center gap-1">
+              Explore Rules Guide <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-rules" class="tab-content hidden space-y-8">
+      <!-- Big Philosophy Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-md relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl">
+          <span class="px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-indigo-500/30 text-indigo-300 border border-indigo-400/30">Essential Framework</span>
+          <h2 class="text-2xl sm:text-4xl font-display font-extrabold text-white mt-3 mb-2">The Architecture of Causatives</h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            We use causative verbs when we <strong>cause</strong> someone else to take an action, or when we arrange for a professional service rather than doing it ourselves. The two pillars are <span class="text-amber-300 font-bold">Active Causation</span> (focus on the agent) and <span class="text-teal-300 font-bold">Passive Causation</span> (focus on the task accomplished).
+          </p>
+        </div>
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
+
+      <!-- Active vs Passive Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Active Causative Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-lg border border-amber-200">Type A: Active</span>
+              <span class="text-xs text-slate-400 font-medium">Focus on the Doer</span>
+            </div>
+            <h3 class="text-xl font-display font-bold text-slate-900 mb-1">Active Causatives: Have & Get</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-5">You identify the person performing the action. Notice the crucial grammatical difference between the two verbs:</p>
+
+            <!-- Formula 1: HAVE -->
+            <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-amber-500 mb-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sm text-slate-900">1. HAVE + Person + Base Verb (Bare Infinitive)</h4>
+                <span class="text-[11px] bg-slate-200 px-2 py-0.5 rounded text-slate-700 font-medium">Delegating / Authority</span>
+              </div>
+              <p class="text-xs text-slate-600">Giving someone the job, responsibility, or customary instruction.</p>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-xs text-slate-800 font-mono">
+                Formula: <span class="text-indigo-600 font-bold">Subject</span> + <span class="text-amber-600 font-bold">HAVE</span> + <span class="text-emerald-600 font-bold">Person</span> + <span class="text-rose-600 font-bold">Base Form (do)</span>
+              </div>
+              <p class="text-xs text-slate-700 italic">"I <strong>had the mechanic inspect</strong> the engine before our trip."</p>
+            </div>
+
+            <!-- Formula 2: GET -->
+            <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-indigo-500 space-y-2">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sm text-slate-900">2. GET + Person + TO-Infinitive</h4>
+                <span class="text-[11px] bg-indigo-100 px-2 py-0.5 rounded text-indigo-700 font-medium">Persuading / Convincing</span>
+              </div>
+              <p class="text-xs text-slate-600">Overcoming resistance, encouraging, or convincing someone to act.</p>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-xs text-slate-800 font-mono">
+                Formula: <span class="text-indigo-600 font-bold">Subject</span> + <span class="text-indigo-600 font-bold">GET</span> + <span class="text-emerald-600 font-bold">Person</span> + <span class="text-rose-600 font-bold">TO + Verb</span>
+              </div>
+              <p class="text-xs text-slate-700 italic">"She finally <strong>got her brother to lend</strong> her his camera."</p>
+            </div>
+          </div>
+
+          <!-- Quick Tip -->
+          <div class="mt-6 p-3 bg-amber-50 rounded-xl border border-amber-200/70 text-xs text-amber-900 flex items-start gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+            <span><strong>Memory Trigger:</strong> <code class="bg-amber-100 px-1 rounded">G-E-T</code> pairs with <code class="bg-amber-100 px-1 rounded">T-O</code> (<span class="font-semibold">Get ... TO do</span>). <code class="bg-amber-100 px-1 rounded">HAVE</code> prefers no 'to'.</span>
+          </div>
+        </div>
+
+        <!-- Passive Causative Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-teal-100 text-teal-900 text-xs font-bold rounded-lg border border-teal-200">Type B: Passive</span>
+              <span class="text-xs text-slate-400 font-medium">Focus on the Outcome</span>
+            </div>
+            <h3 class="text-xl font-display font-bold text-slate-900 mb-1">Passive Causative: Have / Get Something Done</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-5">Used when the exact person doing the job is obvious, unimportant, or when emphasizing the finished product:</p>
+
+            <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-teal-500 mb-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sm text-slate-900">Formula: Subject + HAVE/GET + Object + Past Participle (V3)</h4>
+              </div>
+              <p class="text-xs text-slate-600">Both <em>have</em> and <em>get</em> can be used interchangeably here, though <em>get</em> is slightly more informal and emphasizes effort.</p>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-xs text-slate-800 font-mono">
+                <span class="text-indigo-600 font-bold">Subject</span> + <span class="text-teal-600 font-bold">HAVE / GET</span> + <span class="text-emerald-600 font-bold">Object (Thing)</span> + <span class="text-rose-600 font-bold">Past Participle (V3)</span>
+              </div>
+              <ul class="text-xs text-slate-700 space-y-1 list-disc list-inside">
+                <li>"We <strong>had the roof repaired</strong> after the storm."</li>
+                <li>"I must <strong>get my passport renewed</strong> next week."</li>
+              </ul>
+            </div>
+
+            <!-- Nuance: Misfortune / Accident -->
+            <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-rose-400 space-y-2">
+              <h4 class="font-bold text-sm text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="shield-alert" class="w-4 h-4 text-rose-500"></i>
+                Bonus Meaning: Unexpected Misfortunes
+              </h4>
+              <p class="text-xs text-slate-600">The passive structure is also used when something unpleasant happens to someone's property (the subject did not cause it):</p>
+              <p class="text-xs text-rose-800 font-medium italic">"Marcus <strong>had his wallet stolen</strong> on the crowded subway."</p>
+            </div>
+          </div>
+
+          <!-- Quick Tip -->
+          <div class="mt-6 p-3 bg-teal-50 rounded-xl border border-teal-200/70 text-xs text-teal-900 flex items-start gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-teal-600 shrink-0 mt-0.5"></i>
+            <span><strong>Golden Rule:</strong> Whenever the item directly follows have/get (e.g. <em>hair, phone, roof, car</em>), use the <strong>Past Participle</strong>!</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-6 bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-lg font-display font-bold">Comparative Reference Table</h3>
+            <p class="text-xs text-slate-400">Click the audio button to hear natural native intonation and rhythm.</p>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded bg-white/10 text-teal-300">Quick Study Matrix</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100 text-slate-700 uppercase text-[11px] font-bold border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-4 sm:px-6">Structure</th>
+                <th class="py-3 px-4">Meaning / Nuance</th>
+                <th class="py-3 px-4">Example Sentence</th>
+                <th class="py-3 px-4 text-center">Listen</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600">
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">have + someone + do</td>
+                <td class="py-3.5 px-4">Delegating, instructing, formal arrangement</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-indigo-700">"The architect had the builder modify the entrance."</td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="speakSentence('The architect had the builder modify the entrance.')" class="p-2 rounded-lg hover:bg-indigo-50 text-indigo-600 transition" title="Speak sentence">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">get + someone + to do</td>
+                <td class="py-3.5 px-4">Persuading, encouraging, convincing with effort</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-indigo-700">"We got the consultant to give us an extra consultation."</td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="speakSentence('We got the consultant to give us an extra consultation.')" class="p-2 rounded-lg hover:bg-indigo-50 text-indigo-600 transition" title="Speak sentence">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">have + something + done</td>
+                <td class="py-3.5 px-4">Arranging a paid service / focusing on the task</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-indigo-700">"They had their wedding photos retouched by an artist."</td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="speakSentence('They had their wedding photos retouched by an artist.')" class="p-2 rounded-lg hover:bg-indigo-50 text-indigo-600 transition" title="Speak sentence">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">get + something + done</td>
+                <td class="py-3.5 px-4">Informal service arrangement / emphasizing completion</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-indigo-700">"I need to get my teeth cleaned before Thursday."</td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="speakSentence('I need to get my teeth cleaned before Thursday.')" class="p-2 rounded-lg hover:bg-indigo-50 text-indigo-600 transition" title="Speak sentence">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-practice" class="tab-content hidden space-y-8">
+      
+      <!-- Progress & Score Header -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Practice Arena</span>
+          <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Ten Multi-Format Challenges</h2>
+          <p class="text-xs text-slate-500">Test unscrambling, error hunting, nuanced choice, active-to-passive conversion, and cloze dialogues.</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs font-bold text-slate-400 block uppercase">Completed</span>
+            <span id="arena-score" class="text-2xl font-extrabold text-indigo-600">0 <span class="text-slate-300 text-sm font-normal">/ 10</span></span>
+          </div>
+          <button onclick="resetAllExercises()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs font-bold transition flex items-center gap-1.5">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All
+          </button>
+        </div>
+      </div>
+
+      <!-- 10 Exercises Container -->
+      <div class="space-y-6">
+
+        <!-- EXERCISE 1: Word Order Unscrambler (Click / Drag simulation) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-1">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 1: Word Order Scramble</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-3">Click the word tiles in order to assemble the sentence: <span class="italic text-slate-500">"We arranged for the plumber to fix the leaking pipe using 'got'."</span></p>
+          
+          <!-- Selected Slot Area -->
+          <div id="unscramble-slot" class="min-h-12 p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl flex flex-wrap gap-2 items-center mb-3">
+            <span class="text-xs text-slate-400 placeholder">Tap words below to place them here...</span>
+          </div>
+          
+          <!-- Word pool -->
+          <div id="unscramble-bank" class="flex flex-wrap gap-2 mb-4">
+            <!-- Tiles populated by JS -->
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Check Sentence</button>
+            <button onclick="resetEx1()" class="text-xs text-slate-500 hover:underline">Clear Tiles</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 2: Fill in the Verb Form (Active vs Passive) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-2">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 2: Type the Correct Verb Form</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-4">Type the appropriate form of the verb in parentheses (base form, infinitive with <em>to</em>, or past participle):</p>
+          
+          <div class="space-y-3 text-sm">
+            <div class="p-3 bg-slate-50 rounded-xl flex flex-col sm:flex-row sm:items-center gap-2">
+              <span class="text-slate-700">1. I finally got my sister</span>
+              <input type="text" id="ex2-input1" placeholder="(lend)" class="w-32 px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:border-indigo-500 focus:outline-none font-medium">
+              <span class="text-slate-700">me her laptop for the presentation.</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl flex flex-col sm:flex-row sm:items-center gap-2">
+              <span class="text-slate-700">2. The manager had the technician</span>
+              <input type="text" id="ex2-input2" placeholder="(reboot)" class="w-32 px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:border-indigo-500 focus:outline-none font-medium">
+              <span class="text-slate-700">the main server during lunch.</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl flex flex-col sm:flex-row sm:items-center gap-2">
+              <span class="text-slate-700">3. We need to have our air conditioner</span>
+              <input type="text" id="ex2-input3" placeholder="(service)" class="w-32 px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:border-indigo-500 focus:outline-none font-medium">
+              <span class="text-slate-700">before summer arrives.</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Check Answers</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 3: Multiple Choice with Real Nuance -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-3">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 3: Nuance Multiple Choice</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-3">Choose the sentence that implies the speaker <em>persuaded</em> or <em>convinced someone with some effort</em> rather than just issuing a routine instruction:</p>
+          
+          <div class="space-y-2 text-sm" id="ex3-options">
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex3" value="A" class="text-indigo-600 focus:ring-indigo-500">
+              <span>A) "I had the tailor shorten the sleeves on my coat."</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex3" value="B" class="text-indigo-600 focus:ring-indigo-500">
+              <span>B) "I got my reluctant friend to join our weekend volunteering team."</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex3" value="C" class="text-indigo-600 focus:ring-indigo-500">
+              <span>C) "I had my car washed at the gas station this morning."</span>
+            </label>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Confirm Choice</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 4: Active-to-Passive Causative Transformer -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-4">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 4: Active to Passive Transformation</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-2">Transform this active causative into a passive causative focusing on the object:</p>
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs font-mono text-amber-900 mb-3">
+            Original: "The director had the graphic designer redesign the company logo."
+          </div>
+          
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm mb-3">
+            <span class="text-slate-700 font-medium">"The director had the company logo</span>
+            <input type="text" id="ex4-input" placeholder="type verb here..." class="w-48 px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:border-indigo-500 focus:outline-none font-medium">
+            <span class="text-slate-700 font-medium">by the graphic designer."</span>
+          </div>
+
+          <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Verify Transformation</button>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 5: Spot & Click the Mistake -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 5: Interactive Error Hunter</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-2">Click on the single word that contains a grammatical error in the sentence below:</p>
+          
+          <div id="ex5-clickable-words" class="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200 my-3">
+            <!-- Words injected via JS -->
+          </div>
+
+          <div id="ex5-correction-panel" class="hidden mt-3 p-3 bg-indigo-50 rounded-xl border border-indigo-100 flex items-center gap-3">
+            <span class="text-xs text-indigo-900 font-medium">You selected: <span id="ex5-selected-word" class="font-bold"></span>. Type the correct word:</span>
+            <input type="text" id="ex5-correct-word-input" class="w-28 px-2 py-1 text-xs border border-indigo-300 rounded-lg">
+            <button onclick="verifyEx5Correction()" class="px-3 py-1 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-700 transition">Submit Correction</button>
+          </div>
+
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 6: Bucket Categorizer (Classification) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 6: Category Sorter</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-3">Select the correct grammatical classification for each sentence:</p>
+
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div class="p-3 bg-slate-50 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-2 border border-slate-200">
+              <span class="text-slate-800 font-medium">1. "She got her roommate to wash the dishes."</span>
+              <select id="ex6-sel1" class="border border-slate-300 rounded-lg p-1.5 text-xs bg-white font-medium">
+                <option value="">Select Category...</option>
+                <option value="active-have">Active Have (Instruction)</option>
+                <option value="active-get">Active Get (Persuasion)</option>
+                <option value="passive">Passive Causative (Service Done)</option>
+              </select>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-2 border border-slate-200">
+              <span class="text-slate-800 font-medium">2. "I had my eyes tested at the optician's."</span>
+              <select id="ex6-sel2" class="border border-slate-300 rounded-lg p-1.5 text-xs bg-white font-medium">
+                <option value="">Select Category...</option>
+                <option value="active-have">Active Have (Instruction)</option>
+                <option value="active-get">Active Get (Persuasion)</option>
+                <option value="passive">Passive Causative (Service Done)</option>
+              </select>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-2 border border-slate-200">
+              <span class="text-slate-800 font-medium">3. "The chef had his apprentice chop the onions."</span>
+              <select id="ex6-sel3" class="border border-slate-300 rounded-lg p-1.5 text-xs bg-white font-medium">
+                <option value="">Select Category...</option>
+                <option value="active-have">Active Have (Instruction)</option>
+                <option value="active-get">Active Get (Persuasion)</option>
+                <option value="passive">Passive Causative (Service Done)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx6()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Check Categories</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 7: Nuance Selector (Have vs Get) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-7">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 7: Choose Have vs Get by Context</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-3">Select whether <code class="text-indigo-600 font-mono">had</code> or <code class="text-indigo-600 font-mono">got</code> is required by the verb form that follows:</p>
+
+          <div class="space-y-3 text-sm">
+            <div class="p-3 bg-slate-50 rounded-xl flex items-center justify-between">
+              <span>"The professor <select id="ex7-q1" class="border border-slate-300 rounded p-1 mx-1 text-xs"><option value="">--</option><option value="had">had</option><option value="got">got</option></select> the teaching assistant <strong>grade</strong> the essays."</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl flex items-center justify-between">
+              <span>"I finally <select id="ex7-q2" class="border border-slate-300 rounded p-1 mx-1 text-xs"><option value="">--</option><option value="had">had</option><option value="got">got</option></select> the landlord <strong>to replace</strong> the noisy heater."</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx7()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Check Nuance</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 8: Dialogue Cloze Passage (At the Photo Studio) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-8">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 8: Dialogue Gap-Fill</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-3">Complete this studio conversation by choosing the correct forms:</p>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3 text-sm leading-relaxed">
+            <p><strong>Liam:</strong> "Your headshots look stunning, Clara! Did you take them yourself?"</p>
+            <p><strong>Clara:</strong> "Not at all! I 
+              <select id="ex8-gap1" class="border border-slate-300 rounded p-1 text-xs bg-white">
+                <option value="">(choose)</option>
+                <option value="had them taken">had them taken</option>
+                <option value="had them take">had them take</option>
+                <option value="got them took">got them took</option>
+              </select>
+              at Studio 9. Then I 
+              <select id="ex8-gap2" class="border border-slate-300 rounded p-1 text-xs bg-white">
+                <option value="">(choose)</option>
+                <option value="got the photographer to adjust">got the photographer to adjust</option>
+                <option value="got the photographer adjust">got the photographer adjust</option>
+                <option value="had the photographer to adjust">had the photographer to adjust</option>
+              </select>
+              the studio lighting."
+            </p>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx8()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Check Dialogue</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 9: Rephrase Challenge -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-9">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 9: Professional Rephrase</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-2">Rewrite the following prompt using a passive causative starting with "We had...":</p>
+          <div class="p-3 bg-indigo-50 rounded-xl border border-indigo-100 text-xs font-mono text-indigo-900 mb-3">
+            Prompt: "A professional technician cleaned our solar panels."
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-slate-700">"We had</span>
+            <input type="text" id="ex9-input" placeholder="our solar panels cleaned" class="flex-1 max-w-md px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:border-indigo-500 focus:outline-none">
+            <span class="text-sm font-medium text-slate-700">."</span>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx9()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Check Rephrase</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+        <!-- EXERCISE 10: Odd One Out Form Selector -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm exercise-card" id="ex-card-10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md border border-indigo-200">Exercise 10: Grammatical Odd One Out</span>
+            <span class="status-badge text-xs font-semibold text-slate-400">Not attempted</span>
+          </div>
+          <p class="text-sm font-medium text-slate-800 mb-3">Which ONE sentence contains a <strong>grammatically incorrect</strong> causative structure?</p>
+
+          <div class="space-y-2 text-sm" id="ex10-options">
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex10" value="1" class="text-indigo-600">
+              <span>A) "She had her doctor examine the test results."</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex10" value="2" class="text-indigo-600">
+              <span>B) "He got his assistant to photocopy the contract."</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex10" value="3" class="text-indigo-600">
+              <span>C) "They had the mechanic to replace the transmission."</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+              <input type="radio" name="ex10" value="4" class="text-indigo-600">
+              <span>D) "I got my teeth whitened before the wedding."</span>
+            </label>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <button onclick="checkEx10()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">Confirm Incorrect Sentence</button>
+          </div>
+          <div class="feedback hidden text-xs font-bold mt-3 p-3 rounded-xl"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="tab-game" class="tab-content hidden space-y-6">
+      
+      <!-- Game Container Card -->
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden">
+        <!-- Game Top Bar -->
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-widest bg-amber-400 text-slate-900">Arcade Mode</span>
+              <h2 class="text-xl sm:text-2xl font-display font-extrabold">The Event Organizer Blitz</h2>
+            </div>
+            <p class="text-xs text-indigo-200 mt-1">Solve incoming event mishaps by picking the perfect causative solution before time runs out!</p>
+          </div>
+
+          <!-- Live Score & Timer HUD -->
+          <div class="flex items-center gap-4 bg-white/10 px-5 py-2.5 rounded-2xl backdrop-blur-xs border border-white/10">
+            <div class="text-center">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-indigo-200 block">Timer</span>
+              <span id="game-timer" class="text-2xl font-mono font-black text-amber-400">45s</span>
+            </div>
+            <div class="w-px h-8 bg-white/20"></div>
+            <div class="text-center">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-indigo-200 block">Score</span>
+              <span id="game-score" class="text-2xl font-mono font-black text-teal-300">0</span>
+            </div>
+            <div class="w-px h-8 bg-white/20"></div>
+            <div class="text-center">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-indigo-200 block">Streak</span>
+              <span id="game-streak" class="text-2xl font-mono font-black text-white">0🔥</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game Body / Canvas Area -->
+        <div class="p-6 sm:p-10 min-h-[380px] flex flex-col items-center justify-center relative">
+          
+          <!-- Start Screen Overlay -->
+          <div id="game-start-screen" class="text-center max-w-md space-y-5">
+            <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center shadow-inner">
+              <i data-lucide="zap" class="w-8 h-8"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-display font-bold text-slate-900">45-Second Causative Rush</h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-2">
+                Emergencies are arising at the VIP Gala! For each scenario, choose the causative construction with 100% accurate grammar. Fast correct answers build combo multipliers!
+              </p>
+            </div>
+            <button onclick="startGame()" class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-teal-600 hover:from-indigo-700 hover:to-teal-700 text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5 active:translate-y-0">
+              Start Blitz Challenge
+            </button>
+          </div>
+
+          <!-- Active Question Area -->
+          <div id="game-play-screen" class="w-full max-w-2xl hidden space-y-6">
+            <!-- Problem Banner -->
+            <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-2xl flex items-center gap-4">
+              <span id="game-scenario-icon" class="text-3xl shrink-0">🎤</span>
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 block">Crisis Scenario</span>
+                <p id="game-scenario-text" class="text-base sm:text-lg font-bold text-slate-900">The main microphone is making a loud buzzing feedback!</p>
+              </div>
+            </div>
+
+            <!-- Answer Options -->
+            <div id="game-options-container" class="grid grid-cols-1 gap-3">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Game Over Screen -->
+          <div id="game-over-screen" class="text-center max-w-md space-y-5 hidden">
+            <div class="w-16 h-16 mx-auto bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center">
+              <i data-lucide="award" class="w-8 h-8"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-display font-bold text-slate-900">Challenge Completed!</h3>
+              <p class="text-sm text-slate-500 mt-1">Here is how well you handled the gala crisis:</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex justify-around">
+              <div>
+                <span class="text-xs text-slate-400 font-bold uppercase block">Final Score</span>
+                <span id="game-final-score" class="text-3xl font-extrabold text-indigo-600 font-mono">0</span>
+              </div>
+              <div>
+                <span class="text-xs text-slate-400 font-bold uppercase block">Highest Streak</span>
+                <span id="game-final-streak" class="text-3xl font-extrabold text-teal-600 font-mono">0</span>
+              </div>
+            </div>
+            <p id="game-evaluation" class="text-xs font-semibold text-slate-700"></p>
+            <button onclick="startGame()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition">
+              Play Again
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-auto border-t border-slate-200 bg-white py-6">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-xs text-slate-500">
+        Mastering Causatives: Active & Passive 'Have' & 'Get' &bull; 
+        <span class="font-medium text-slate-700">Designed by Babak Alaee</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition duration-300 pointer-events-none bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl text-xs font-medium flex items-center gap-2 border border-slate-700">
+    <i data-lucide="info" class="w-4 h-4 text-teal-400"></i>
+    <span id="toast-text">Message</span>
+  </div>
+
+  <script>
+    /* Audio synthesizer using standard Web Audio API */
+    let audioEnabled = true;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, delay = 0) {
+      if (!audioEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        setTimeout(() => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, ctx.currentTime);
+          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + duration);
+        }, delay);
+      } catch (e) {
+        console.warn("Audio Context unavailable", e);
+      }
+    }
+
+    function soundSuccess() {
+      playTone(523.25, 'sine', 0.15, 0);   // C5
+      playTone(659.25, 'sine', 0.2, 100);  // E5
+      playTone(783.99, 'sine', 0.35, 200); // G5
+    }
+
+    function soundError() {
+      playTone(280, 'triangle', 0.15, 0);
+      playTone(220, 'triangle', 0.25, 120);
+    }
+
+    function soundClick() {
+      playTone(800, 'sine', 0.05, 0);
+    }
+
+    // Audio Toggle Handler
+    document.getElementById('audio-toggle-btn').addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      const label = document.getElementById('audio-label');
+      const icon = document.getElementById('audio-icon');
+      if (audioEnabled) {
+        label.textContent = "Sound FX: ON";
+        icon.setAttribute('data-lucide', 'volume-2');
+        showToast("Sound effects enabled");
+      } else {
+        label.textContent = "Sound FX: OFF";
+        icon.setAttribute('data-lucide', 'volume-x');
+        showToast("Sound effects muted");
+      }
+      lucide.createIcons();
+    });
+
+    // Native Speech Synthesis for sentences
+    function speakSentence(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        utterance.pitch = 1.0;
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+        showToast("Playing pronunciation...");
+      } else {
+        showToast("Speech synthesis not supported on your browser");
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const txt = document.getElementById('toast-text');
+      txt.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    function switchTab(tabId) {
+      soundClick();
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-50', 'text-indigo-700', 'shadow-xs', 'border-indigo-200/60');
+        btn.classList.add('text-slate-600', 'border-transparent');
+      });
+
+      // Show selected tab
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      // Update button style
+      const activeBtn = document.getElementById('tabBtn-' + tabId.replace('tab-', ''));
+      if (activeBtn) {
+        activeBtn.classList.add('bg-indigo-50', 'text-indigo-700', 'shadow-xs', 'border-indigo-200/60');
+        activeBtn.classList.remove('text-slate-600', 'border-transparent');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lucide.createIcons();
+    }
+
+    let highlightsVisible = false;
+    function toggleHighlights() {
+      soundClick();
+      highlightsVisible = !highlightsVisible;
+      const elements = document.querySelectorAll('[data-causative]');
+      const legend = document.getElementById('highlight-legend');
+      const btnText = document.getElementById('toggle-highlight-text');
+      const icon = document.getElementById('toggle-highlight-icon');
+
+      elements.forEach(el => {
+        if (highlightsVisible) {
+          el.classList.add('causative-highlight');
+        } else {
+          el.classList.remove('causative-highlight');
+        }
+      });
+
+      if (highlightsVisible) {
+        legend.classList.remove('hidden');
+        btnText.textContent = "Hide Causative Forms";
+        icon.setAttribute('data-lucide', 'eye-off');
+        showToast("Causatives highlighted in story!");
+      } else {
+        legend.classList.add('hidden');
+        btnText.textContent = "Reveal Causative Forms";
+        icon.setAttribute('data-lucide', 'eye');
+      }
+      lucide.createIcons();
+    }
+
+    function checkStoryAnswer(btn, isCorrect) {
+      const parent = btn.closest('div').parentElement;
+      const fb = parent.querySelector('.feedback-msg');
+      fb.classList.remove('hidden', 'text-emerald-600', 'text-rose-600');
+
+      if (isCorrect) {
+        soundSuccess();
+        fb.classList.add('text-emerald-600');
+        fb.textContent = "✓ Exactly! Elena hired and coordinated professionals rather than doing the manual labor.";
+        btn.classList.add('bg-emerald-100', 'border-emerald-300', 'text-emerald-800');
+      } else {
+        soundError();
+        fb.classList.add('text-rose-600');
+        fb.textContent = "✗ Re-read carefully: The story states she did not pick up a paintbrush or wrench herself.";
+        btn.classList.add('bg-rose-100', 'border-rose-300', 'text-rose-800');
+      }
+    }
+
+    function checkDiscoveryAnswer(btn, isCorrect) {
+      const fb = document.getElementById('discovery-feedback');
+      fb.classList.remove('hidden', 'text-emerald-300', 'text-rose-300');
+      if (isCorrect) {
+        soundSuccess();
+        fb.classList.add('text-emerald-300');
+        fb.textContent = "✓ Brilliant observation! 'Have someone DO' takes the bare infinitive, while 'Get someone TO DO' requires the to-infinitive.";
+        btn.classList.add('bg-emerald-600/40', 'border', 'border-emerald-400');
+      } else {
+        soundError();
+        fb.classList.add('text-rose-300');
+        fb.textContent = "✗ Look closer at the underlined words: Notice 'coat' (no to) versus 'to restore'.";
+      }
+    }
+
+    let exerciseStatus = {
+      ex1: false, ex2: false, ex3: false, ex4: false, ex5: false,
+      ex6: false, ex7: false, ex8: false, ex9: false, ex10: false
+    };
+
+    function updateExerciseTracker(num, isCorrect) {
+      exerciseStatus['ex' + num] = isCorrect;
+      const card = document.getElementById(`ex-card-${num}`);
+      const badge = card.querySelector('.status-badge');
+      if (badge) {
+        if (isCorrect) {
+          badge.textContent = "Completed ✓";
+          badge.className = "status-badge text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded";
+        } else {
+          badge.textContent = "Needs correction";
+          badge.className = "status-badge text-xs font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded";
+        }
+      }
+
+      const totalCorrect = Object.values(exerciseStatus).filter(Boolean).length;
+      document.getElementById('arena-score').innerHTML = `${totalCorrect} <span class="text-slate-300 text-sm font-normal">/ 10</span>`;
+
+      if (totalCorrect === 10) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        showToast("🌟 Outstanding! All 10 challenges mastered!");
+      }
+    }
+
+    function resetAllExercises() {
+      soundClick();
+      for (let i = 1; i <= 10; i++) {
+        exerciseStatus['ex' + i] = false;
+        const card = document.getElementById(`ex-card-${i}`);
+        const badge = card.querySelector('.status-badge');
+        if (badge) {
+          badge.textContent = "Not attempted";
+          badge.className = "status-badge text-xs font-semibold text-slate-400";
+        }
+        const fb = card.querySelector('.feedback');
+        if (fb) fb.classList.add('hidden');
+      }
+      resetEx1();
+      document.getElementById('ex2-input1').value = '';
+      document.getElementById('ex2-input2').value = '';
+      document.getElementById('ex2-input3').value = '';
+      document.querySelectorAll('input[name="ex3"]').forEach(r => r.checked = false);
+      document.getElementById('ex4-input').value = '';
+      resetEx5();
+      document.getElementById('ex6-sel1').value = '';
+      document.getElementById('ex6-sel2').value = '';
+      document.getElementById('ex6-sel3').value = '';
+      document.getElementById('ex7-q1').value = '';
+      document.getElementById('ex7-q2').value = '';
+      document.getElementById('ex8-gap1').value = '';
+      document.getElementById('ex8-gap2').value = '';
+      document.getElementById('ex9-input').value = '';
+      document.querySelectorAll('input[name="ex10"]').forEach(r => r.checked = false);
+
+      document.getElementById('arena-score').innerHTML = `0 <span class="text-slate-300 text-sm font-normal">/ 10</span>`;
+      showToast("All exercises reset");
+    }
+
+    const ex1Words = ["We", "got", "the plumber", "to fix", "the leaking pipe"];
+    let ex1CurrentSelected = [];
+
+    function initEx1() {
+      const bank = document.getElementById('unscramble-bank');
+      bank.innerHTML = '';
+      // Shuffle
+      const shuffled = [...ex1Words].sort(() => 0.5 - Math.random());
+      shuffled.forEach((w) => {
+        const btn = document.createElement('button');
+        btn.textContent = w;
+        btn.className = "px-3 py-1.5 bg-slate-100 hover:bg-indigo-100 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition active:scale-95";
+        btn.onclick = () => selectEx1Word(btn, w);
+        bank.appendChild(btn);
+      });
+    }
+
+    function selectEx1Word(btn, word) {
+      soundClick();
+      const slot = document.getElementById('unscramble-slot');
+      const placeholder = slot.querySelector('.placeholder');
+      if (placeholder) placeholder.remove();
+
+      ex1CurrentSelected.push(word);
+      btn.disabled = true;
+      btn.classList.add('opacity-30', 'pointer-events-none');
+
+      const tile = document.createElement('span');
+      tile.textContent = word;
+      tile.className = "px-3 py-1 bg-indigo-600 text-white font-semibold text-xs rounded-lg flex items-center gap-1 shadow-2xs";
+      slot.appendChild(tile);
+    }
+
+    function resetEx1() {
+      ex1CurrentSelected = [];
+      const slot = document.getElementById('unscramble-slot');
+      slot.innerHTML = '<span class="text-xs text-slate-400 placeholder">Tap words below to place them here...</span>';
+      initEx1();
+    }
+
+    function checkEx1() {
+      const sentence = ex1CurrentSelected.join(' ');
+      const fb = document.querySelector('#ex-card-1 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (sentence === "We got the plumber to fix the leaking pipe") {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Perfect! 'Got + person + TO-infinitive' is the correct active form.";
+        updateExerciseTracker(1, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Not quite. Follow the pattern: Subject (We) + got + person (the plumber) + to fix + object.";
+        updateExerciseTracker(1, false);
+      }
+    }
+
+    function checkEx2() {
+      const a1 = document.getElementById('ex2-input1').value.trim().toLowerCase();
+      const a2 = document.getElementById('ex2-input2').value.trim().toLowerCase();
+      const a3 = document.getElementById('ex2-input3').value.trim().toLowerCase();
+      const fb = document.querySelector('#ex-card-2 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      const c1 = (a1 === "to lend");
+      const c2 = (a2 === "reboot");
+      const c3 = (a3 === "serviced");
+
+      if (c1 && c2 && c3) {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ 3/3 Correct! 1) 'to lend' (got + to), 2) 'reboot' (had + bare verb), 3) 'serviced' (passive V3).";
+        updateExerciseTracker(2, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = `Review: (1) got requires 'to lend', (2) had requires bare 'reboot', (3) passive requires past participle 'serviced'.`;
+        updateExerciseTracker(2, false);
+      }
+    }
+
+    function checkEx3() {
+      const selected = document.querySelector('input[name="ex3"]:checked');
+      const fb = document.querySelector('#ex-card-3 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (selected && selected.value === "B") {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Spot on! 'Get someone to do something' emphasizes persuasion and overcoming hesitation.";
+        updateExerciseTracker(3, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Option B is correct because 'got my reluctant friend to join' implies persuasion.";
+        updateExerciseTracker(3, false);
+      }
+    }
+
+    function checkEx4() {
+      const ans = document.getElementById('ex4-input').value.trim().toLowerCase();
+      const fb = document.querySelector('#ex-card-4 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (ans === "redesigned") {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Accurate! 'Had + something + redesigned' (Past Participle V3).";
+        updateExerciseTracker(4, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Remember the passive causative requires the past participle (V3): 'redesigned'.";
+        updateExerciseTracker(4, false);
+      }
+    }
+
+    const ex5Sentence = "Yesterday our department manager had the contractor to submit the revised budget before noon.";
+    let ex5ClickedWord = "";
+
+    function initEx5() {
+      const container = document.getElementById('ex5-clickable-words');
+      container.innerHTML = '';
+      const words = ex5Sentence.split(' ');
+      words.forEach(word => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.className = "cursor-pointer px-2 py-1 bg-white hover:bg-amber-100 rounded-md border border-slate-200 text-slate-800 text-xs font-medium transition";
+        span.onclick = () => selectEx5Word(span, word);
+        container.appendChild(span);
+      });
+    }
+
+    function selectEx5Word(el, word) {
+      soundClick();
+      document.querySelectorAll('#ex5-clickable-words span').forEach(s => s.classList.remove('bg-amber-200', 'border-amber-400', 'font-bold'));
+      el.classList.add('bg-amber-200', 'border-amber-400', 'font-bold');
+      ex5ClickedWord = word.replace(/[.,]/g, '');
+
+      const panel = document.getElementById('ex5-correction-panel');
+      const label = document.getElementById('ex5-selected-word');
+      label.textContent = `"${word}"`;
+      panel.classList.remove('hidden');
+    }
+
+    function resetEx5() {
+      ex5ClickedWord = "";
+      document.getElementById('ex5-correction-panel').classList.add('hidden');
+      document.getElementById('ex5-correct-word-input').value = "";
+      initEx5();
+    }
+
+    function verifyEx5Correction() {
+      const correction = document.getElementById('ex5-correct-word-input').value.trim().toLowerCase();
+      const fb = document.querySelector('#ex-card-5 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (ex5ClickedWord.toLowerCase() === "to" || ex5ClickedWord.toLowerCase() === "submit" || ex5ClickedWord.toLowerCase() === "to submit") {
+        if (correction === "submit" || correction === "got") {
+          soundSuccess();
+          fb.classList.add('bg-emerald-50', 'text-emerald-800');
+          fb.textContent = "✓ Excellent detective work! 'Had someone' takes the bare infinitive (remove 'to submit' -> 'submit'), or change 'had' to 'got'.";
+          updateExerciseTracker(5, true);
+          return;
+        }
+      }
+      soundError();
+      fb.classList.add('bg-rose-50', 'text-rose-800');
+      fb.textContent = "✗ 'Had' cannot be followed by 'to submit'. The bare infinitive 'submit' is required.";
+      updateExerciseTracker(5, false);
+    }
+
+    function checkEx6() {
+      const s1 = document.getElementById('ex6-sel1').value;
+      const s2 = document.getElementById('ex6-sel2').value;
+      const s3 = document.getElementById('ex6-sel3').value;
+      const fb = document.querySelector('#ex-card-6 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (s1 === 'active-get' && s2 === 'passive' && s3 === 'active-have') {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ All 3 classified correctly! 1: Active Get (Persuasion), 2: Passive Causative, 3: Active Have (Instruction).";
+        updateExerciseTracker(6, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Check again: 'got ... to wash' is Active Get; 'had my eyes tested' is Passive; 'had his apprentice chop' is Active Have.";
+        updateExerciseTracker(6, false);
+      }
+    }
+
+    function checkEx7() {
+      const q1 = document.getElementById('ex7-q1').value;
+      const q2 = document.getElementById('ex7-q2').value;
+      const fb = document.querySelector('#ex-card-7 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (q1 === 'had' && q2 === 'got') {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Spot on! 'Had' governs the bare verb 'grade', while 'got' is required before 'to replace'.";
+        updateExerciseTracker(7, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Look at the infinitives: bare 'grade' demands 'had'; 'to replace' demands 'got'.";
+        updateExerciseTracker(7, false);
+      }
+    }
+
+    function checkEx8() {
+      const g1 = document.getElementById('ex8-gap1').value;
+      const g2 = document.getElementById('ex8-gap2').value;
+      const fb = document.querySelector('#ex-card-8 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (g1 === 'had them taken' && g2 === 'got the photographer to adjust') {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Flawless! 'Had them taken' (Passive) and 'got the photographer to adjust' (Active Get).";
+        updateExerciseTracker(8, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Keep in mind: 'them' (the photos) requires past participle 'taken', and 'got' requires 'to adjust'.";
+        updateExerciseTracker(8, false);
+      }
+    }
+
+    function checkEx9() {
+      const raw = document.getElementById('ex9-input').value.trim().toLowerCase().replace(/[.,]/g, '');
+      const fb = document.querySelector('#ex-card-9 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (raw === "our solar panels cleaned" || raw === "the solar panels cleaned") {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Brilliant rephrase! 'We had our solar panels cleaned' expresses the passive causative accurately.";
+        updateExerciseTracker(9, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Expected: 'our solar panels cleaned' (Object + Past Participle).";
+        updateExerciseTracker(9, false);
+      }
+    }
+
+    function checkEx10() {
+      const selected = document.querySelector('input[name="ex10"]:checked');
+      const fb = document.querySelector('#ex-card-10 .feedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+      if (selected && selected.value === "3") {
+        soundSuccess();
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.textContent = "✓ Correct! 'They had the mechanic to replace...' is ungrammatical. Active 'have' must take the bare infinitive 'replace'.";
+        updateExerciseTracker(10, true);
+      } else {
+        soundError();
+        fb.classList.add('bg-rose-50', 'text-rose-800');
+        fb.textContent = "✗ Sentence C contains the blunder: 'had the mechanic to replace' (should be 'replace' without 'to').";
+        updateExerciseTracker(10, false);
+      }
+    }
+
+    const gameDatabase = [
+      {
+        scenario: "The grand piano in the lobby is out of tune right before VIP arrivals!",
+        icon: "🎹",
+        correct: "We must have a professional tune the piano.",
+        options: [
+          "We must have a professional tune the piano.",
+          "We must have a professional to tune the piano.",
+          "We must get a professional tune the piano."
+        ],
+        explanation: "'Have someone tune' requires the bare infinitive."
+      },
+      {
+        scenario: "The ballroom walls look smudged and outdated!",
+        icon: "🎨",
+        correct: "The planner had the ballroom repainted yesterday.",
+        options: [
+          "The planner had the ballroom repainted yesterday.",
+          "The planner had the ballroom repaint yesterday.",
+          "The planner got the ballroom repaint yesterday."
+        ],
+        explanation: "Passive causative with the object: had + object + repainted (V3)."
+      },
+      {
+        scenario: "The celebrity keynote speaker was hesitant to travel during rain.",
+        icon: "⭐",
+        correct: "The host got the keynote speaker to attend after all.",
+        options: [
+          "The host got the keynote speaker to attend after all.",
+          "The host got the keynote speaker attend after all.",
+          "The host had the keynote speaker to attend after all."
+        ],
+        explanation: "Active 'get' indicates persuasion and takes 'to attend'."
+      },
+      {
+        scenario: "The flower bouquets need fresh water and trimming before the ceremony.",
+        icon: "💐",
+        correct: "The florist had her assistant trim the roses.",
+        options: [
+          "The florist had her assistant trim the roses.",
+          "The florist had her assistant to trim the roses.",
+          "The florist got her assistant trim the roses."
+        ],
+        explanation: "Active 'have' takes the bare infinitive."
+      },
+      {
+        scenario: "The audio microphones have static feedback across all speakers!",
+        icon: "🎤",
+        correct: "We should get the sound engineer to test the frequencies.",
+        options: [
+          "We should get the sound engineer to test the frequencies.",
+          "We should get the sound engineer test the frequencies.",
+          "We should have the sound engineer to test the frequencies."
+        ],
+        explanation: "'Get + person + to test'."
+      },
+      {
+        scenario: "All 200 souvenir gift bags must be packaged neatly tonight.",
+        icon: "🎁",
+        correct: "She had the gift bags assembled by the staff.",
+        options: [
+          "She had the gift bags assembled by the staff.",
+          "She had the gift bags assemble by the staff.",
+          "She got the gift bags assemble by the staff."
+        ],
+        explanation: "Passive: 'had + the gift bags + assembled'."
+      },
+      {
+        scenario: "The chef was very reluctant to add vegan desserts at the eleventh hour.",
+        icon: "🧁",
+        correct: "We got the chef to prepare vegan tarts.",
+        options: [
+          "We got the chef to prepare vegan tarts.",
+          "We had the chef to prepare vegan tarts.",
+          "We got the chef prepare vegan tarts."
+        ],
+        explanation: "Persuading someone requires 'get + person + TO verb'."
+      }
+    ];
+
+    let gameTimer = 45;
+    let gameInterval = null;
+    let gameScore = 0;
+    let gameStreak = 0;
+    let gameMaxStreak = 0;
+    let currentGameIndex = 0;
+    let shuffledGameItems = [];
+
+    function startGame() {
+      soundClick();
+      gameTimer = 45;
+      gameScore = 0;
+      gameStreak = 0;
+      gameMaxStreak = 0;
+      shuffledGameItems = [...gameDatabase].sort(() => 0.5 - Math.random());
+      currentGameIndex = 0;
+
+      document.getElementById('game-start-screen').classList.add('hidden');
+      document.getElementById('game-over-screen').classList.add('hidden');
+      document.getElementById('game-play-screen').classList.remove('hidden');
+
+      updateGameHUD();
+      renderGameQuestion();
+
+      if (gameInterval) clearInterval(gameInterval);
+      gameInterval = setInterval(() => {
+        gameTimer--;
+        updateGameHUD();
+        if (gameTimer <= 0) {
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function updateGameHUD() {
+      const timerEl = document.getElementById('game-timer');
+      timerEl.textContent = `${gameTimer}s`;
+      if (gameTimer <= 10) {
+        timerEl.classList.remove('text-amber-400');
+        timerEl.classList.add('text-rose-500');
+      } else {
+        timerEl.classList.add('text-amber-400');
+        timerEl.classList.remove('text-rose-500');
+      }
+      document.getElementById('game-score').textContent = gameScore;
+      document.getElementById('game-streak').textContent = `${gameStreak}🔥`;
+    }
+
+    function renderGameQuestion() {
+      if (currentGameIndex >= shuffledGameItems.length) {
+        // Reshuffle if player answers all before timer ends
+        shuffledGameItems = [...gameDatabase].sort(() => 0.5 - Math.random());
+        currentGameIndex = 0;
+      }
+
+      const item = shuffledGameItems[currentGameIndex];
+      document.getElementById('game-scenario-icon').textContent = item.icon;
+      document.getElementById('game-scenario-text').textContent = item.scenario;
+
+      const container = document.getElementById('game-options-container');
+      container.innerHTML = '';
+
+      // Shuffle options
+      const opts = [...item.options].sort(() => 0.5 - Math.random());
+      opts.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-400 bg-white hover:bg-indigo-50/50 text-slate-800 text-xs sm:text-sm font-semibold transition active:scale-[0.99] flex items-center justify-between";
+        btn.onclick = () => handleGameAnswer(btn, opt, item);
+        container.appendChild(btn);
+      });
+    }
+
+    function handleGameAnswer(btn, chosen, item) {
+      const isCorrect = (chosen === item.correct);
+      const allBtns = document.querySelectorAll('#game-options-container button');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        soundSuccess();
+        gameStreak++;
+        if (gameStreak > gameMaxStreak) gameMaxStreak = gameStreak;
+        // Points with streak multiplier
+        const pointsAwarded = 100 + (gameStreak * 20);
+        gameScore += pointsAwarded;
+        btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900');
+        showToast(`+${pointsAwarded} pts! Correct causative structure.`);
+      } else {
+        soundError();
+        gameStreak = 0;
+        btn.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900');
+        // highlight correct one
+        allBtns.forEach(b => {
+          if (b.textContent === item.correct) {
+            b.classList.add('bg-emerald-50', 'border-emerald-400');
+          }
+        });
+        showToast("Oops! Remember: " + item.explanation);
+      }
+
+      updateGameHUD();
+      setTimeout(() => {
+        currentGameIndex++;
+        renderGameQuestion();
+      }, 700);
+    }
+
+    function endGame() {
+      clearInterval(gameInterval);
+      soundSuccess();
+      confetti({ particleCount: 70, spread: 60 });
+      document.getElementById('game-play-screen').classList.add('hidden');
+      document.getElementById('game-over-screen').classList.remove('hidden');
+
+      document.getElementById('game-final-score').textContent = gameScore;
+      document.getElementById('game-final-streak').textContent = `${gameMaxStreak}🔥`;
+
+      const evalEl = document.getElementById('game-evaluation');
+      if (gameScore >= 700) {
+        evalEl.textContent = "🏆 Master Coordinator! You have exceptional fluency with active and passive causatives under pressure!";
+      } else if (gameScore >= 350) {
+        evalEl.textContent = "👏 Great reflexes! With just a bit more practice on 'get someone to do', you will be unstoppable!";
+      } else {
+        evalEl.textContent = "💪 Good effort! Revisit the Rules Guide tab to solidify the bare infinitive versus to-infinitive distinctions.";
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initEx1();
+      initEx5();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
