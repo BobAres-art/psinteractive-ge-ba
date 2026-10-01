@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Practice: Comparatives &amp; Superlatives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-page: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --correct: #16a34a;
+      --correct-bg: #f0fdf4;
+      --incorrect: #dc2626;
+      --incorrect-bg: #fef2f2;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      padding: 2.5rem 1rem;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .question-item {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .question-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .sentence {
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 2.2;
+    }
+
+    .word-prompt {
+      font-weight: 600;
+      color: var(--primary);
+      padding: 0.1rem 0.35rem;
+      background: #eff6ff;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+
+    .input-box {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.35rem 0.65rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      outline: none;
+      transition: all 0.15s ease-in-out;
+      width: 140px;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .input-box:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .input-box.correct {
+      border-color: var(--correct);
+      background-color: var(--correct-bg);
+      color: var(--correct);
+      font-weight: 600;
+    }
+
+    .input-box.incorrect {
+      border-color: var(--incorrect);
+      background-color: var(--incorrect-bg);
+      color: var(--incorrect);
+    }
+
+    .solution-text {
+      display: none;
+      margin-top: 0.35rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--correct);
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      flex: 1;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    #results-banner {
+      display: none;
+      text-align: center;
+      margin-top: 1.25rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Everyday Shopping Practice</h1>
+      <p>Type the correct form of the word in each gap.</p>
+    </header>
+
+    <div class="card">
+      <form id="quiz-form" autocomplete="off">
+        <div class="question-list">
+
+          <!-- 1 -->
+          <div class="question-item">
+            <span class="sentence">
+              1. This black leather jacket is <input type="text" class="input-box" data-answers='["cheaper"]'> than that wool coat. <span class="word-prompt">(cheap)</span>
+            </span>
+            <div class="solution-text">Answer: cheaper</div>
+          </div>
+
+          <!-- 2 -->
+          <div class="question-item">
+            <span class="sentence">
+              2. The supermarket near the station is the <input type="text" class="input-box" data-answers='["biggest"]'> in our town. <span class="word-prompt">(big)</span>
+            </span>
+            <div class="solution-text">Answer: biggest</div>
+          </div>
+
+          <!-- 3 -->
+          <div class="question-item">
+            <span class="sentence">
+              3. Silk shirts are usually <input type="text" class="input-box" data-answers='["more expensive"]'> than cotton shirts. <span class="word-prompt">(expensive)</span>
+            </span>
+            <div class="solution-text">Answer: more expensive</div>
+          </div>
+
+          <!-- 4 -->
+          <div class="question-item">
+            <span class="sentence">
+              4. Saturday afternoon is the <input type="text" class="input-box" data-answers='["busiest"]'> time to visit the mall. <span class="word-prompt">(busy)</span>
+            </span>
+            <div class="solution-text">Answer: busiest</div>
+          </div>
+
+          <!-- 5 -->
+          <div class="question-item">
+            <span class="sentence">
+              5. These brown boots are <input type="text" class="input-box" data-answers='["more comfortable"]'> than my old running shoes. <span class="word-prompt">(comfortable)</span>
+            </span>
+            <div class="solution-text">Answer: more comfortable</div>
+          </div>
+
+          <!-- 6 -->
+          <div class="question-item">
+            <span class="sentence">
+              6. The bakery on King Street has the <input type="text" class="input-box" data-answers='["best"]'> bread in the city. <span class="word-prompt">(good)</span>
+            </span>
+            <div class="solution-text">Answer: best</div>
+          </div>
+
+          <!-- 7 -->
+          <div class="question-item">
+            <span class="sentence">
+              7. Online delivery is often <input type="text" class="input-box" data-answers='["faster"]'> than driving to the city center. <span class="word-prompt">(fast)</span>
+            </span>
+            <div class="solution-text">Answer: faster</div>
+          </div>
+
+          <!-- 8 -->
+          <div class="question-item">
+            <span class="sentence">
+              8. The corner store is <input type="text" class="input-box" data-answers='["closer"]'> to my house than the department store. <span class="word-prompt">(close)</span>
+            </span>
+            <div class="solution-text">Answer: closer</div>
+          </div>
+
+          <!-- 9 -->
+          <div class="question-item">
+            <span class="sentence">
+              9. This is the <input type="text" class="input-box" data-answers='["worst"]'> shopping cart because the wheels do not turn. <span class="word-prompt">(bad)</span>
+            </span>
+            <div class="solution-text">Answer: worst</div>
+          </div>
+
+          <!-- 10 -->
+          <div class="question-item">
+            <span class="sentence">
+              10. The boutique on the second floor is the <input type="text" class="input-box" data-answers='["most expensive"]'> store here. <span class="word-prompt">(expensive)</span>
+            </span>
+            <div class="solution-text">Answer: most expensive</div>
+          </div>
+
+          <!-- 11 -->
+          <div class="question-item">
+            <span class="sentence">
+              11. A shopping trolley is <input type="text" class="input-box" data-answers='["heavier"]'> to push than a small hand basket. <span class="word-prompt">(heavy)</span>
+            </span>
+            <div class="solution-text">Answer: heavier</div>
+          </div>
+
+          <!-- 12 -->
+          <div class="question-item">
+            <span class="sentence">
+              12. Paying by card is often <input type="text" class="input-box" data-answers='["easier"]'> than counting out cash. <span class="word-prompt">(easy)</span>
+            </span>
+            <div class="solution-text">Answer: easier</div>
+          </div>
+
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Check Answers</button>
+          <button type="button" id="reset-btn" class="btn-secondary">Reset</button>
+        </div>
+      </form>
+
+      <div id="results-banner"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('quiz-form');
+    const resetBtn = document.getElementById('reset-btn');
+    const inputs = document.querySelectorAll('.input-box');
+    const banner = document.getElementById('results-banner');
+    const solutions = document.querySelectorAll('.solution-text');
+
+    function cleanString(str) {
+      return str.trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let correctCount = 0;
+
+      inputs.forEach((input) => {
+        const acceptable = JSON.parse(input.dataset.answers).map(cleanString);
+        const val = cleanString(input.value);
+        const parent = input.closest('.question-item');
+        const solutionEl = parent.querySelector('.solution-text');
+
+        input.classList.remove('correct', 'incorrect');
+
+        if (acceptable.includes(val)) {
+          input.classList.add('correct');
+          solutionEl.style.display = 'none';
+          correctCount++;
+        } else {
+          input.classList.add('incorrect');
+          solutionEl.style.display = 'block';
+        }
+      });
+
+      banner.style.display = 'block';
+      banner.textContent = `Score: ${correctCount} / ${inputs.length}`;
+      banner.style.color = correctCount === inputs.length ? 'var(--correct)' : 'var(--text-main)';
+    });
+
+    resetBtn.addEventListener('click', () => {
+      inputs.forEach((input) => {
+        input.value = '';
+        input.classList.remove('correct', 'incorrect');
+      });
+      solutions.forEach((el) => {
+        el.style.display = 'none';
+      });
+      banner.style.display = 'none';
+      inputs[0].focus();
+    });
+  </script>
+</body>
+</html>
