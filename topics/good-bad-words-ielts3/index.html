@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuances & Collocations: Descriptive Lexicon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #e0e7ff;
+      --primary-dark: #3730a3;
+      --pos-bg: #ecfdf5;
+      --pos-border: #a7f3d0;
+      --pos-accent: #059669;
+      --pos-chip: #d1fae5;
+      --neg-bg: #fff1f2;
+      --neg-border: #fecdd3;
+      --neg-accent: #e11d48;
+      --neg-chip: #ffe4e6;
+      --neutral-50: #f8fafc;
+      --neutral-100: #f1f5f9;
+      --neutral-200: #e2e8f0;
+      --neutral-300: #cbd5e1;
+      --neutral-700: #334155;
+      --neutral-800: #1e293b;
+      --neutral-900: #0f172a;
+      --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+      --card-shadow-hover: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+      color: var(--neutral-800);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header Styles */
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--neutral-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(120deg, #1e293b, #4f46e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .designer-credit {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Navigation Tabs */
+    .tab-nav {
+      display: inline-flex;
+      background: var(--neutral-100);
+      padding: 5px;
+      border-radius: 9999px;
+      gap: 6px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 0.65rem 1.6rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--neutral-700);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Subheadings */
+    .section-intro {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      color: var(--neutral-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro p {
+      color: #64748b;
+      font-size: 1rem;
+    }
+
+    /* Filter Controls in Explorer */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 1px solid var(--neutral-200);
+      padding: 0.45rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Cards Grid */
+    .words-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .word-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .word-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .word-card.positive {
+      border-top: 5px solid var(--pos-accent);
+    }
+
+    .word-card.negative {
+      border-top: 5px solid var(--neg-accent);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .word-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--neutral-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pronounce-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #94a3b8;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      padding: 2px;
+    }
+
+    .pronounce-btn:hover {
+      color: var(--primary);
+    }
+
+    .tone-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+    }
+
+    .tone-badge.pos {
+      background: var(--pos-chip);
+      color: var(--pos-accent);
+    }
+
+    .tone-badge.neg {
+      background: var(--neg-chip);
+      color: var(--neg-accent);
+    }
+
+    .meaning-block {
+      font-size: 0.95rem;
+      color: var(--neutral-700);
+      margin-bottom: 0.75rem;
+    }
+
+    .distinction-box {
+      background: var(--neutral-50);
+      border-left: 3px solid var(--neutral-300);
+      padding: 0.6rem 0.8rem;
+      font-size: 0.88rem;
+      color: #475569;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1.1rem;
+    }
+
+    .distinction-box strong {
+      color: var(--neutral-800);
+    }
+
+    .collocation-area {
+      margin-top: auto;
+      padding-top: 0.9rem;
+      border-top: 1px dashed var(--neutral-200);
+    }
+
+    .collocation-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .collocations-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .colloc-chip {
+      background: var(--neutral-100);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--neutral-700);
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--neutral-200);
+    }
+
+    /* Exercises Section */
+    .exercise-score-board {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--neutral-200);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .score-stat {
+      text-align: center;
+    }
+
+    .score-stat .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .score-stat .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .exercise-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--neutral-200);
+    }
+
+    .ex-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--neutral-100);
+      padding-bottom: 0.75rem;
+    }
+
+    .ex-number {
+      font-size: 0.85rem;
+      font-weight: 800;
+      background: var(--primary);
+      color: white;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .ex-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--neutral-900);
+    }
+
+    .ex-instruction {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Options and Interactive Elements */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .opt-btn {
+      background: var(--neutral-50);
+      border: 1.5px solid var(--neutral-200);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .opt-btn.correct {
+      background: var(--pos-bg) !important;
+      border-color: var(--pos-accent) !important;
+      color: var(--pos-accent) !important;
+      font-weight: 700;
+    }
+
+    .opt-btn.wrong {
+      background: var(--neg-bg) !important;
+      border-color: var(--neg-accent) !important;
+      color: var(--neg-accent) !important;
+    }
+
+    .feedback-msg {
+      margin-top: 1rem;
+      padding: 0.85rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      display: none;
+    }
+
+    .feedback-msg.show {
+      display: block;
+    }
+
+    .feedback-msg.correct {
+      background: var(--pos-bg);
+      color: #065f46;
+      border: 1px solid var(--pos-border);
+    }
+
+    .feedback-msg.wrong {
+      background: var(--neg-bg);
+      color: #9f1239;
+      border: 1px solid var(--neg-border);
+    }
+
+    /* Drag and drop containers */
+    .drag-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--neutral-100);
+      border-radius: 12px;
+      min-height: 54px;
+    }
+
+    .draggable-chip {
+      background: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--neutral-300);
+      font-weight: 600;
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .draggable-chip:active {
+      cursor: grabbing;
+    }
+
+    .drop-targets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .drop-target-box {
+      background: var(--neutral-50);
+      border: 2px dashed var(--neutral-300);
+      border-radius: 12px;
+      padding: 1.2rem;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .drop-target-box.drag-over {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .drop-target-box .target-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--neutral-700);
+    }
+
+    /* Typing exercise */
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .text-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--neutral-300);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .text-input:focus {
+      border-color: var(--primary);
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Game Tab Styles */
+    .game-control-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 1.25rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .game-stat {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--neutral-800);
+    }
+
+    .game-stat span {
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      perspective: 1000px;
+    }
+
+    @media (max-width: 800px) {
+      .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .memory-card {
+      height: 120px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .memory-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .memory-card.matched {
+      transform: rotateY(180deg);
+      cursor: default;
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+
+    .card-back {
+      background: white;
+      transform: rotateY(180deg);
+      border: 2px solid var(--neutral-200);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--neutral-900);
+    }
+
+    .memory-card.matched .card-back {
+      background: var(--pos-bg);
+      border-color: var(--pos-accent);
+      color: var(--pos-accent);
+    }
+
+    /* Modal */
+    .game-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .game-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .game-modal.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--neutral-900);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Slider exercise */
+    .scale-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 1.5rem 0;
+    }
+
+    .scale-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--neutral-50);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+    }
+
+    /* Badge tags */
+    .highlight-pill {
+      background: #eef2ff;
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <h1 class="main-title">Descriptive Lexicon: Nuance & Collocation</h1>
+      <p class="designer-credit">Designed by Babak Alaee</p>
+      
+      <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('explorer')">Vocabulary Explorer</button>
+        <button class="tab-btn" onclick="switchTab('exercises')">Interactive Practice</button>
+        <button class="tab-btn" onclick="switchTab('game')">LexiMatch Game</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- TAB 1: EXPLORER -->
+    <section id="explorer" class="tab-content active">
+      <div class="section-intro">
+        <h2>Nuances, Precision & Natural Collocations</h2>
+        <p>Discover subtle differences between seemingly identical descriptors and master the phrases native speakers naturally pair them with.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCards('all')">All (18)</button>
+        <button class="filter-btn" onclick="filterCards('positive')">Positive Descriptors</button>
+        <button class="filter-btn" onclick="filterCards('negative')">Negative Descriptors</button>
+      </div>
+
+      <div class="words-grid" id="wordsGrid">
+        <!-- Dynamically injected via JavaScript for clean code -->
+      </div>
+    </section>
+
+    <!-- TAB 2: EXERCISES -->
+    <section id="exercises" class="tab-content">
+      <div class="section-intro">
+        <h2>Targeted Mastery Exercises</h2>
+        <p>Apply fine-grained understanding through 10 diversified, contextual tasks.</p>
+      </div>
+
+      <div class="exercise-score-board">
+        <div class="score-stat">
+          <div class="num" id="completedCount">0 / 10</div>
+          <div class="label">Completed</div>
+        </div>
+        <div class="score-stat">
+          <div class="num" id="correctScore">0</div>
+          <div class="label">Correct Answers</div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 1: Multiple Choice (Collocation Precision) -->
+      <div class="exercise-card" id="ex1">
+        <div class="ex-header">
+          <span class="ex-number">Ex 1</span>
+          <h3 class="ex-title">Collocation Precision</h3>
+        </div>
+        <p class="ex-instruction">Which adjective forms the most natural, idiomatic academic and professional collocation with <strong>"opportunity"</strong> to describe a colossal, rare chance?</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx1(this, false)">stunning</button>
+          <button class="opt-btn" onclick="checkEx1(this, true)">tremendous</button>
+          <button class="opt-btn" onclick="checkEx1(this, false)">absurd</button>
+          <button class="opt-btn" onclick="checkEx1(this, false)">marvellous</button>
+        </div>
+        <div class="feedback-msg" id="fb1"></div>
+      </div>
+
+      <!-- EXERCISE 2: Drag and Drop Distinction -->
+      <div class="exercise-card" id="ex2">
+        <div class="ex-header">
+          <span class="ex-number">Ex 2</span>
+          <h3 class="ex-title">Distinction Sorting</h3>
+        </div>
+        <p class="ex-instruction">Drag each word into the category matching its precise nuance.</p>
+        <div class="drag-zone" id="dragZone2">
+          <div class="draggable-chip" draggable="true" id="drag_bizarre" ondragstart="drag(event)">bizarre</div>
+          <div class="draggable-chip" draggable="true" id="drag_absurd" ondragstart="drag(event)">absurd</div>
+          <div class="draggable-chip" draggable="true" id="drag_distressing" ondragstart="drag(event)">distressing</div>
+        </div>
+        <div class="drop-targets">
+          <div class="drop-target-box" ondragover="allowDrop(event)" ondrop="drop(event, 'logic')">
+            <span class="target-label">Logical Incongruity / Defies Reason</span>
+          </div>
+          <div class="drop-target-box" ondragover="allowDrop(event)" ondrop="drop(event, 'weird')">
+            <span class="target-label">Peculiar / Uncanny & Strange</span>
+          </div>
+          <div class="drop-target-box" ondragover="allowDrop(event)" ondrop="drop(event, 'pain')">
+            <span class="target-label">Emotional Anguish / Acute Worry</span>
+          </div>
+        </div>
+        <div class="feedback-msg" id="fb2"></div>
+      </div>
+
+      <!-- EXERCISE 3: Gap Fill with Semantic Nuance -->
+      <div class="exercise-card" id="ex3">
+        <div class="ex-header">
+          <span class="ex-number">Ex 3</span>
+          <h3 class="ex-title">Sensory Impact Selection</h3>
+        </div>
+        <p class="ex-instruction">"As the bride entered the cathedral, the guests gasped at her ________ wedding dress and appearance." Choose the word emphasizing breathtaking <em>visual beauty</em>:</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx3(this, false)">outstanding</button>
+          <button class="opt-btn" onclick="checkEx3(this, true)">stunning</button>
+          <button class="opt-btn" onclick="checkEx3(this, false)">brilliant</button>
+          <button class="opt-btn" onclick="checkEx3(this, false)">harmful</button>
+        </div>
+        <div class="feedback-msg" id="fb3"></div>
+      </div>
+
+      <!-- EXERCISE 4: Typing / Recall Fill-in -->
+      <div class="exercise-card" id="ex4">
+        <div class="ex-header">
+          <span class="ex-number">Ex 4</span>
+          <h3 class="ex-title">Exact Collocation Recall</h3>
+        </div>
+        <p class="ex-instruction">Complete the famous idiom often used in journalism to describe extreme climate or severe weather conditions: <strong>"________ weather"</strong> (Starts with <strong>d</strong>, 8 letters, means intensely unpleasant or ominous).</p>
+        <div class="input-row">
+          <input type="text" class="text-input" id="inputEx4" placeholder="Type word here..." autocomplete="off">
+          <button class="action-btn" onclick="checkEx4()">Verify</button>
+        </div>
+        <div class="feedback-msg" id="fb4"></div>
+      </div>
+
+      <!-- EXERCISE 5: The "Odd-One-Out" Context Test -->
+      <div class="exercise-card" id="ex5">
+        <div class="ex-header">
+          <span class="ex-number">Ex 5</span>
+          <h3 class="ex-title">Contextual Odd-One-Out</h3>
+        </div>
+        <p class="ex-instruction">Three of these words can naturally collocate with <strong>"achievement"</strong>. Which one sounds unnatural or inappropriate in standard usage?</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx5(this, false)">extraordinary achievement</button>
+          <button class="opt-btn" onclick="checkEx5(this, false)">magnificent achievement</button>
+          <button class="opt-btn" onclick="checkEx5(this, true)">delightful achievement</button>
+          <button class="opt-btn" onclick="checkEx5(this, false)">outstanding achievement</button>
+        </div>
+        <div class="feedback-msg" id="fb5"></div>
+      </div>
+
+      <!-- EXERCISE 6: Nuance Matching (Emotional Weight) -->
+      <div class="exercise-card" id="ex6">
+        <div class="ex-header">
+          <span class="ex-number">Ex 6</span>
+          <h3 class="ex-title">Distress vs. Discomfort</h3>
+        </div>
+        <p class="ex-instruction">"The prolonged silence during the salary negotiation was extremely ________, making everyone shift in their chairs." Which fits physical or social unease rather than deep grief?</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx6(this, false)">distressing</button>
+          <button class="opt-btn" onclick="checkEx6(this, false)">disgusting</button>
+          <button class="opt-btn" onclick="checkEx6(this, true)">uncomfortable</button>
+          <button class="opt-btn" onclick="checkEx6(this, false)">harmful</button>
+        </div>
+        <div class="feedback-msg" id="fb6"></div>
+      </div>
+
+      <!-- EXERCISE 7: Sensory Revulsion vs Logic -->
+      <div class="exercise-card" id="ex7">
+        <div class="ex-header">
+          <span class="ex-number">Ex 7</span>
+          <h3 class="ex-title">Sensory Revulsion</h3>
+        </div>
+        <p class="ex-instruction">Which adjective specifically denotes a physiological response of profound revulsion, nausea, or intense moral offense?</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx7(this, true)">disgusting</button>
+          <button class="opt-btn" onclick="checkEx7(this, false)">absurd</button>
+          <button class="opt-btn" onclick="checkEx7(this, false)">bizarre</button>
+          <button class="opt-btn" onclick="checkEx7(this, false)">upsetting</button>
+        </div>
+        <div class="feedback-msg" id="fb7"></div>
+      </div>
+
+      <!-- EXERCISE 8: Intellect vs. Grandeur -->
+      <div class="exercise-card" id="ex8">
+        <div class="ex-header">
+          <span class="ex-number">Ex 8</span>
+          <h3 class="ex-title">Intellect vs. Grandeur</h3>
+        </div>
+        <p class="ex-instruction">Choose the adjective best suited to describe a clever scientific innovation or an exceptionally sharp mind (Mental acuity over majestic scale):</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx8(this, false)">magnificent</button>
+          <button class="opt-btn" onclick="checkEx8(this, false)">tremendous</button>
+          <button class="opt-btn" onclick="checkEx8(this, true)">brilliant</button>
+          <button class="opt-btn" onclick="checkEx8(this, false)">marvellous</button>
+        </div>
+        <div class="feedback-msg" id="fb8"></div>
+      </div>
+
+      <!-- EXERCISE 9: Cause of Injury / Damage -->
+      <div class="exercise-card" id="ex9">
+        <div class="ex-header">
+          <span class="ex-number">Ex 9</span>
+          <h3 class="ex-title">Detrimental Impact</h3>
+        </div>
+        <p class="ex-instruction">Which adjective conveys an objective capacity to cause tangible injury, physical degradation, or ecological impairment?</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx9(this, true)">harmful</button>
+          <button class="opt-btn" onclick="checkEx9(this, false)">terrible</button>
+          <button class="opt-btn" onclick="checkEx9(this, false)">uncomfortable</button>
+          <button class="opt-btn" onclick="checkEx9(this, false)">dreadful</button>
+        </div>
+        <div class="feedback-msg" id="fb9"></div>
+      </div>
+
+      <!-- EXERCISE 10: Comparative Nuance Classification -->
+      <div class="exercise-card" id="ex10">
+        <div class="ex-header">
+          <span class="ex-number">Ex 10</span>
+          <h3 class="ex-title">Whimsical Delight vs Monumental Scale</h3>
+        </div>
+        <p class="ex-instruction">Which adjective is traditionally reserved for charming, agreeable experiences like afternoon tea, hospitality, or pleasant company, rather than massive imperial grandeur?</p>
+        <div class="options-grid">
+          <button class="opt-btn" onclick="checkEx10(this, false)">magnificent</button>
+          <button class="opt-btn" onclick="checkEx10(this, true)">delightful</button>
+          <button class="opt-btn" onclick="checkEx10(this, false)">outstanding</button>
+          <button class="opt-btn" onclick="checkEx10(this, false)">impressive</button>
+        </div>
+        <div class="feedback-msg" id="fb10"></div>
+      </div>
+    </section>
+
+    <!-- TAB 3: GAME (LexiMatch Memory) -->
+    <section id="game" class="tab-content">
+      <div class="section-intro">
+        <h2>LexiMatch Collocation Memory</h2>
+        <p>Test your working memory and collocation pairing. Match each target adjective with its most quintessential natural pairing or context.</p>
+      </div>
+
+      <div class="game-control-panel">
+        <div class="game-stat">Moves: <span id="gameMoves">0</span></div>
+        <div class="game-stat">Pairs Found: <span id="matchedPairs">0 / 8</span></div>
+        <div class="game-stat">Timer: <span id="gameTimer">00:00</span></div>
+        <button class="action-btn" onclick="initMemoryGame()">Restart Game</button>
+      </div>
+
+      <div class="memory-grid" id="memoryGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Game Completion Modal -->
+  <div class="game-modal" id="gameModal">
+    <div class="modal-box">
+      <h3>Bravo!</h3>
+      <p id="modalStats" style="margin-bottom: 1.5rem; color: #64748b; font-size: 1.1rem;"></p>
+      <button class="action-btn" style="width: 100%;" onclick="closeModalAndRestart()">Play Another Round</button>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       DATA SOURCE: LEXICON DICTIONARY & COLOCATIONS
+       ========================================================== */
+    const vocabularyData = [
+      // POSITIVE WORDS
+      {
+        word: "brilliant",
+        tone: "positive",
+        meaning: "Exceptionally clever, radiant, or mentally astute.",
+        nuance: "Emphasizes sharp intellectual genius or vivid illumination rather than mere size.",
+        collocations: ["brilliant mind", "brilliant idea", "brilliant performance"]
+      },
+      {
+        word: "marvellous",
+        tone: "positive",
+        meaning: "Causing wonder, intense admiration, or warm satisfaction.",
+        nuance: "Carries an enthusiastic, slightly classic tone of joyful approval.",
+        collocations: ["marvellous news", "marvellous weather", "marvellous opportunity"]
+      },
+      {
+        word: "delightful",
+        tone: "positive",
+        meaning: "Giving keen pleasure, charm, and contentment.",
+        nuance: "Gentle and heartwarming; best for sensory, social, or hospitality experiences.",
+        collocations: ["delightful evening", "delightful surprise", "delightful host"]
+      },
+      {
+        word: "outstanding",
+        tone: "positive",
+        meaning: "Clearly superior to others in the same class; standing apart.",
+        nuance: "Objective merit and measurable distinction against benchmarks.",
+        collocations: ["outstanding achievement", "outstanding contribution", "outstanding debt"]
+      },
+      {
+        word: "extraordinary",
+        tone: "positive",
+        meaning: "Going far beyond what is usual, normal, or expected.",
+        nuance: "Focuses on rarity, uniqueness, or singular occurrences.",
+        collocations: ["extraordinary circumstances", "extraordinary talent", "extraordinary courage"]
+      },
+      {
+        word: "stunning",
+        tone: "positive",
+        meaning: "Extremely impressive, beautiful, or shocking to the senses.",
+        nuance: "Literally 'stuns'—leaves someone momentarily speechless by visual impact.",
+        collocations: ["stunning view", "stunning victory", "stunning dress"]
+      },
+      {
+        word: "impressive",
+        tone: "positive",
+        meaning: "Evoking admiration through size, skill, stature, or importance.",
+        nuance: "Inspires respect and esteem through clear capability or solid results.",
+        collocations: ["impressive credentials", "impressive track record", "impressive array"]
+      },
+      {
+        word: "tremendous",
+        tone: "positive",
+        meaning: "Extraordinarily large in scale, intensity, amount, or power.",
+        nuance: "Focuses on volume, force, weight, or sheer quantity.",
+        collocations: ["tremendous effort", "tremendous pressure", "tremendous amount"]
+      },
+      {
+        word: "magnificent",
+        tone: "positive",
+        meaning: "Strikingly grand, stately, majestic, or noble in appearance.",
+        nuance: "Denotes imperial scale, architectural splendor, or royal grandeur.",
+        collocations: ["magnificent palace", "magnificent view", "magnificent spectacle"]
+      },
+
+      // NEGATIVE WORDS
+      {
+        word: "absurd",
+        tone: "negative",
+        meaning: "Wildly unreasonable, illogical, or completely ridiculous.",
+        nuance: "Contradicts basic common sense, logic, or proportionality.",
+        collocations: ["absurd suggestion", "absurd price", "utterly absurd"]
+      },
+      {
+        word: "harmful",
+        tone: "negative",
+        meaning: "Causing or likely to cause material damage, hurt, or impairment.",
+        nuance: "Objective and measurable; common in scientific, legal, and health contexts.",
+        collocations: ["harmful effects", "harmful emissions", "harmful to health"]
+      },
+      {
+        word: "bizarre",
+        tone: "negative",
+        meaning: "Very strange, unconventional, or eccentric in an odd way.",
+        nuance: "Focuses on eccentricity, uncanny oddities, or peculiar happenings.",
+        collocations: ["bizarre behavior", "bizarre coincidence", "bizarre twist"]
+      },
+      {
+        word: "terrible",
+        tone: "negative",
+        meaning: "Extremely bad, severe, distressing, or of very poor quality.",
+        nuance: "General and ubiquitous; expresses widespread, severe negative reaction.",
+        collocations: ["terrible mistake", "terrible tragedy", "terrible headache"]
+      },
+      {
+        word: "disgusting",
+        tone: "negative",
+        meaning: "Arousing strong revulsion, nausea, or profound moral indignation.",
+        nuance: "Involves visceral physical repulsion or revolting ethical conduct.",
+        collocations: ["disgusting smell", "disgusting habit", "disgusting behavior"]
+      },
+      {
+        word: "uncomfortable",
+        tone: "negative",
+        meaning: "Causing physical unease, social awkwardness, or slight embarrassment.",
+        nuance: "Mild to moderate friction; physical distress or social friction.",
+        collocations: ["uncomfortable silence", "uncomfortable truth", "uncomfortable seat"]
+      },
+      {
+        word: "distressing",
+        tone: "negative",
+        meaning: "Causing severe mental anguish, anxiety, sorrow, or profound worry.",
+        nuance: "Affects the emotional state deeply; triggers empathy or grief.",
+        collocations: ["distressing news", "distressing symptoms", "deeply distressing"]
+      },
+      {
+        word: "upsetting",
+        tone: "negative",
+        meaning: "Disturbing one's emotional equilibrium; making someone sad or vexed.",
+        nuance: "Slightly less severe than distressing; denotes emotional disquiet.",
+        collocations: ["upsetting experience", "upsetting event", "upsetting news"]
+      },
+      {
+        word: "dreadful",
+        tone: "negative",
+        meaning: "Extremely disagreeable, grave, ominous, or shocking.",
+        nuance: "Often paired with weather, impending doom, or shockingly poor standard.",
+        collocations: ["dreadful weather", "dreadful mistake", "dreadful accident"]
+      }
+    ];
+
+    /* ==========================================================
+       TAB CONTROLLER
+       ========================================================== */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      if (event && event.target) {
+        event.target.classList.add('active');
+      } else {
+        const defaultBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+        if (defaultBtn) defaultBtn.classList.add('active');
+      }
+
+      const activeSection = document.getElementById(tabId);
+      if (activeSection) activeSection.classList.add('active');
+
+      if (tabId === 'game' && !memoryGameInitialized) {
+        initMemoryGame();
+      }
+    }
+
+    /* ==========================================================
+       TAB 1: RENDER CARDS & PRONUNCIATION
+       ========================================================== */
+    function renderWordCards(filter = 'all') {
+      const grid = document.getElementById('wordsGrid');
+      grid.innerHTML = '';
+
+      const filtered = vocabularyData.filter(item => {
+        if (filter === 'all') return true;
+        return item.tone === filter;
+      });
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `word-card ${item.tone}`;
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="word-title">
+              ${item.word}
+              <button class="pronounce-btn" title="Listen" onclick="pronounceWord('${item.word}')">🔊</button>
+            </div>
+            <span class="tone-badge ${item.tone === 'positive' ? 'pos' : 'neg'}">${item.tone}</span>
+          </div>
+          <div class="meaning-block">${item.meaning}</div>
+          <div class="distinction-box">
+            <strong>Nuance Difference:</strong> ${item.nuance}
+          </div>
+          <div class="collocation-area">
+            <div class="collocation-title">Frequent Collocations</div>
+            <div class="collocations-list">
+              ${item.collocations.map(c => `<span class="colloc-chip">${c}</span>`).join('')}
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCards(type) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderWordCards(type);
+    }
+
+    function pronounceWord(w) {
+      if ('speechSynthesis' in window) {
+        const utter = new SpeechSynthesisUtterance(w);
+        utter.lang = 'en-GB';
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
+    /* ==========================================================
+       TAB 2: EXERCISES LOGIC & SCORE TRACKER
+       ========================================================== */
+    let exercisesCompleted = new Set();
+    let totalScore = 0;
+
+    function updateScoreBoard(isCorrect) {
+      if (isCorrect) totalScore++;
+      document.getElementById('correctScore').textContent = totalScore;
+      document.getElementById('completedCount').textContent = `${exercisesCompleted.size} / 10`;
+    }
+
+    function handleStandardFeedback(cardId, fbId, isCorrect, correctMsg, errorMsg) {
+      const card = document.getElementById(cardId);
+      const fb = document.getElementById(fbId);
+      fb.className = `feedback-msg show ${isCorrect ? 'correct' : 'wrong'}`;
+      fb.innerHTML = isCorrect ? `<strong>✓ Correct!</strong> ${correctMsg}` : `<strong>✕ Not quite.</strong> ${errorMsg}`;
+
+      if (!exercisesCompleted.has(cardId)) {
+        exercisesCompleted.add(cardId);
+        updateScoreBoard(isCorrect);
+      }
+    }
+
+    // EX 1
+    function checkEx1(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex1', 'fb1', isCorrect,
+        "'Tremendous opportunity' is the standard, high-impact idiom for an exceptionally massive or consequential chance.",
+        "'Tremendous' fits 'opportunity' best here when denoting sheer scale and potential."
+      );
+    }
+
+    // EX 2 (Drag & Drop)
+    let droppedCount = 0;
+    const dropMapping = {
+      'drag_absurd': 'logic',
+      'drag_bizarre': 'weird',
+      'drag_distressing': 'pain'
+    };
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add('drag-over');
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev, category) {
+      ev.preventDefault();
+      ev.currentTarget.classList.remove('drag-over');
+      const chipId = ev.dataTransfer.getData("text");
+      const chipElem = document.getElementById(chipId);
+
+      if (dropMapping[chipId] === category) {
+        ev.currentTarget.appendChild(chipElem);
+        chipElem.draggable = false;
+        chipElem.style.borderColor = "var(--pos-accent)";
+        chipElem.style.background = "var(--pos-bg)";
+        droppedCount++;
+
+        if (droppedCount === 3) {
+          handleStandardFeedback(
+            'ex2', 'fb2', true,
+            "All categorized correctly! 'Absurd' defies rational logic, 'bizarre' is uncanny/strange, and 'distressing' evokes deep anguish.",
+            ""
+          );
+        }
+      } else {
+        const fb = document.getElementById('fb2');
+        fb.className = 'feedback-msg show wrong';
+        fb.innerHTML = "Remember: 'Absurd' deals with reason, 'bizarre' with eccentricity, and 'distressing' with sorrow.";
+      }
+    }
+
+    // EX 3
+    function checkEx3(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex3', 'fb3', isCorrect,
+        "'Stunning' emphasizes dazzling visual splendor that momentarily knocks one breathless.",
+        "'Stunning' is particularly linked to striking visual aesthetics."
+      );
+    }
+
+    // EX 4 (Typing)
+    function checkEx4() {
+      const val = document.getElementById('inputEx4').value.trim().toLowerCase();
+      const isCorrect = (val === 'dreadful');
+      handleStandardFeedback(
+        'ex4', 'fb4', isCorrect,
+        "'Dreadful weather' is a quintessentially natural British and international English collocation.",
+        "The target word is 'dreadful'."
+      );
+      if (isCorrect) document.getElementById('inputEx4').disabled = true;
+    }
+
+    // EX 5
+    function checkEx5(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex5', 'fb5', isCorrect,
+        "'Delightful' collocates with pleasant, charming social situations (tea, evening, smile). An achievement is marked by scale or skill (outstanding, extraordinary, magnificent).",
+        "'Delightful' does not naturally describe monumental achievements."
+      );
+    }
+
+    // EX 6
+    function checkEx6(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex6', 'fb6', isCorrect,
+        "'Uncomfortable silence' is the exact collocation for social tension and physical fidgeting.",
+        "Social awkwardness without tragic sorrow is best termed 'uncomfortable'."
+      );
+    }
+
+    // EX 7
+    function checkEx7(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex7', 'fb7', isCorrect,
+        "'Disgusting' is rooted in physical nausea and moral revulsion (e.g. disgusting smell, disgusting corruption).",
+        "'Disgusting' is the only word here directly indicating visceral nausea."
+      );
+    }
+
+    // EX 8
+    function checkEx8(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex8', 'fb8', isCorrect,
+        "'Brilliant' is the premier adjective for cognitive genius, intellect, and razor-sharp ideas.",
+        "'Brilliant' highlights mental cleverness."
+      );
+    }
+
+    // EX 9
+    function checkEx9(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex9', 'fb9', isCorrect,
+        "'Harmful' explicitly implies damage, hazard, or physiological degradation (harmful chemicals, harmful to species).",
+        "'Harmful' is the standard term for causing measurable damage or injury."
+      );
+    }
+
+    // EX 10
+    function checkEx10(btn, isCorrect) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      handleStandardFeedback(
+        'ex10', 'fb10', isCorrect,
+        "'Delightful' captures charm and cozy pleasure, whereas 'magnificent' denotes regal, grand scale.",
+        "'Delightful' is uniquely reserved for pleasant and charming experiences."
+      );
+    }
+
+    /* ==========================================================
+       TAB 3: GAME (LEXIMATCH COLLOCATION MEMORY)
+       ========================================================== */
+    let memoryGameInitialized = false;
+    let cardPairs = [
+      { text: "magnificent", matchId: 1, type: "word" },
+      { text: "palace architecture", matchId: 1, type: "partner" },
+
+      { text: "bizarre", matchId: 2, type: "word" },
+      { text: "unexplained coincidence", matchId: 2, type: "partner" },
+
+      { text: "harmful", matchId: 3, type: "word" },
+      { text: "chemical emissions", matchId: 3, type: "partner" },
+
+      { text: "stunning", matchId: 4, type: "word" },
+      { text: "breathtaking view", matchId: 4, type: "partner" },
+
+      { text: "absurd", matchId: 5, type: "word" },
+      { text: "illogical suggestion", matchId: 5, type: "partner" },
+
+      { text: "distressing", matchId: 6, type: "word" },
+      { text: "heartbreaking news", matchId: 6, type: "partner" },
+
+      { text: "brilliant", matchId: 7, type: "word" },
+      { text: "inventive idea", matchId: 7, type: "partner" },
+
+      { text: "uncomfortable", matchId: 8, type: "word" },
+      { text: "awkward silence", matchId: 8, type: "partner" }
+    ];
+
+    let flippedCards = [];
+    let moves = 0;
+    let pairsFound = 0;
+    let timerInterval = null;
+    let secondsElapsed = 0;
+
+    function shuffle(array) {
+      let currentIndex = array.length, randomIndex;
+      while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
+
+    function initMemoryGame() {
+      memoryGameInitialized = true;
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = '';
+      flippedCards = [];
+      moves = 0;
+      pairsFound = 0;
+      secondsElapsed = 0;
+
+      clearInterval(timerInterval);
+      document.getElementById('gameMoves').textContent = moves;
+      document.getElementById('matchedPairs').textContent = "0 / 8";
+      document.getElementById('gameTimer').textContent = "00:00";
+
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        let m = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        let s = String(secondsElapsed % 60).padStart(2, '0');
+        document.getElementById('gameTimer').textContent = `${m}:${s}`;
+      }, 1000);
+
+      const shuffled = shuffle([...cardPairs]);
+
+      shuffled.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.matchId = item.matchId;
+        card.dataset.index = index;
+
+        card.innerHTML = `
+          <div class="card-face card-front">✦</div>
+          <div class="card-face card-back">${item.text}</div>
+        `;
+
+        card.addEventListener('click', () => onCardClicked(card));
+        grid.appendChild(card);
+      });
+    }
+
+    function onCardClicked(card) {
+      if (flippedCards.length === 2 || card.classList.contains('flipped') || card.classList.contains('matched')) {
+        return;
+      }
+
+      card.classList.add('flipped');
+      flippedCards.push(card);
+
+      if (flippedCards.length === 2) {
+        moves++;
+        document.getElementById('gameMoves').textContent = moves;
+        checkMatch();
+      }
+    }
+
+    function checkMatch() {
+      const [c1, c2] = flippedCards;
+      const m1 = c1.dataset.matchId;
+      const m2 = c2.dataset.matchId;
+
+      if (m1 === m2) {
+        setTimeout(() => {
+          c1.classList.add('matched');
+          c2.classList.add('matched');
+          flippedCards = [];
+          pairsFound++;
+          document.getElementById('matchedPairs').textContent = `${pairsFound} / 8`;
+
+          if (pairsFound === 8) {
+            endGame();
+          }
+        }, 500);
+      } else {
+        setTimeout(() => {
+          c1.classList.remove('flipped');
+          c2.classList.remove('flipped');
+          flippedCards = [];
+        }, 900);
+      }
+    }
+
+    function endGame() {
+      clearInterval(timerInterval);
+      const modal = document.getElementById('gameModal');
+      const stats = document.getElementById('modalStats');
+      const timeStr = document.getElementById('gameTimer').textContent;
+      stats.innerHTML = `You completed all collocation matches in <strong>${moves} moves</strong> and <strong>${timeStr}</strong>!`;
+      modal.classList.add('active');
+    }
+
+    function closeModalAndRestart() {
+      document.getElementById('gameModal').classList.remove('active');
+      initMemoryGame();
+    }
+
+    // INITIAL RENDER
+    window.addEventListener('DOMContentLoaded', () => {
+      renderWordCards('all');
+    });
+  </script>
+</body>
+</html>
