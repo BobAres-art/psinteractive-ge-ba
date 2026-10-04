@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Everyday Responsibilities: Talking About What People Have to Do at Work</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              900: '#134e4a',
+            },
+            accent: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gradient-hero {
+      background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.12), transparent 45%),
+                  radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.12), transparent 50%),
+                  #ffffff;
+    }
+    .pill-active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .smooth-transition {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .token-chip {
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease, background-color 0.2s;
+    }
+    .token-chip:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-brand-100 selection:text-brand-900 min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-accent-600 text-white font-bold text-sm shadow-sm">
+            ✓
+          </span>
+          <h1 class="text-xl sm:text-2xl font-bold font-display text-slate-900 tracking-tight">
+            Everyday Responsibilities: Talking About What People Have to Do at Work
+          </h1>
+        </div>
+        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-1 pl-10">
+          Designed by Babak Alaee
+        </p>
+      </div>
+
+      <nav class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 pl-10 md:pl-0">
+        <a href="#exposure" class="px-3 py-1.5 rounded-full hover:bg-slate-100 hover:text-slate-900 transition">1. The Story</a>
+        <a href="#rules" class="px-3 py-1.5 rounded-full hover:bg-slate-100 hover:text-slate-900 transition">2. The Rules</a>
+        <a href="#practice" class="px-3 py-1.5 rounded-full bg-accent-50 text-accent-700 font-semibold hover:bg-accent-100 transition">3. 10 Exercises</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+    <section id="exposure" class="scroll-mt-24 space-y-8">
+      <div class="gradient-hero rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div class="max-w-3xl">
+          <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-900 font-semibold text-xs tracking-wider uppercase mb-3">
+            Real-World Context
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-slate-900 mb-3">
+            A Day in the Life: Different Jobs, Different Rules
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            Every career comes with specific routines, duties, and workplace guidelines. Read carefully about Maya, Liam, and Carlos to discover how their daily responsibilities differ.
+          </p>
+        </div>
+
+        <!-- Professional Cards with Unsplash Photos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <!-- Elena: Cashier -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col group hover:shadow-md transition">
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=700&q=80" 
+                alt="Friendly cashier greeting customers at a store checkout counter" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/0d9488/ffffff?text=Cashier'"
+              />
+              <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm">
+                Elena • Supermarket Cashier
+              </span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between text-slate-700 text-sm leading-relaxed space-y-3">
+              <p>
+                Elena works at a busy supermarket in town. She has to arrive early at 7:30 AM to count the money in the cash register. She has to wear a clean store apron and a name badge, and she has to be polite and friendly to every shopper.
+              </p>
+              <p class="text-slate-500 text-xs">
+                However, she doesn't have to carry heavy boxes in the warehouse, and she doesn't have to work late at night on Sundays.
+              </p>
+            </div>
+          </div>
+
+          <!-- Liam: Remote Designer -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col group hover:shadow-md transition">
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80" 
+                alt="Graphic designer working on a modern laptop computer" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/4f46e5/ffffff?text=Remote+Designer'"
+              />
+              <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm">
+                Liam • Graphic Designer
+              </span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between text-slate-700 text-sm leading-relaxed space-y-3">
+              <p>
+                Liam is a freelance digital designer who works completely from home. He has to meet strict client deadlines, and he has to check his client messages every morning.
+              </p>
+              <p class="text-slate-500 text-xs">
+                Luckily, Liam doesn't have to commute in heavy city traffic, and he doesn't have to wear a suit or formal clothes. He can comfortably work in simple jeans and a T-shirt.
+              </p>
+            </div>
+          </div>
+
+          <!-- Carlos: Head Chef -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col group hover:shadow-md transition">
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=700&q=80" 
+                alt="Head chef garnishing a gourmet plate in a restaurant kitchen" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/ea580c/ffffff?text=Head+Chef'"
+              />
+              <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm">
+                Carlos • Restaurant Head Chef
+              </span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between text-slate-700 text-sm leading-relaxed space-y-3">
+              <p>
+                Carlos leads the team in an Italian bistro kitchen. He and his team have to inspect the freshness of fish and vegetables every day. They have to keep their workstations completely clean and sanitized.
+              </p>
+              <p class="text-slate-500 text-xs">
+                Do they have to wash all the dishes themselves? No, they don't! The dishwashing staff takes care of that, so Carlos doesn't have to spend hours at the sink.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 bg-slate-900 text-white rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+            <h3 class="text-lg sm:text-xl font-bold font-display flex items-center gap-2">
+              <span class="text-brand-400">💡</span> Check Your Understanding
+            </h3>
+            <span class="text-xs text-slate-400">Answer based on the story above</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="comprehensionContainer">
+            <!-- Question 1 -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+              <p class="text-sm font-semibold text-slate-200">1. Does Elena need to wear a uniform or special clothes?</p>
+              <div class="space-y-1.5 text-xs">
+                <button onclick="checkComprehension(this, true, 'Yes! The text says she has to wear a clean store apron and a name badge.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  A) Yes, she has to wear a store apron and a name badge.
+                </button>
+                <button onclick="checkComprehension(this, false, 'Look back at Elena\'s text: she has to wear an apron and badge.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  B) No, she can wear anything she likes.
+                </button>
+              </div>
+              <div class="comp-feedback hidden text-xs p-2 rounded mt-2"></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+              <p class="text-sm font-semibold text-slate-200">2. Why doesn't Liam wear a formal suit?</p>
+              <div class="space-y-1.5 text-xs">
+                <button onclick="checkComprehension(this, false, 'The company doesn\'t mandate suits at home.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  A) He does not own any clean clothes.
+                </button>
+                <button onclick="checkComprehension(this, true, 'Spot on! Because he works from home, he doesn\'t have to wear formal clothes.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  B) He works from home, so it is not necessary.
+                </button>
+              </div>
+              <div class="comp-feedback hidden text-xs p-2 rounded mt-2"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+              <p class="text-sm font-semibold text-slate-200">3. Does Carlos wash all restaurant dishes at night?</p>
+              <div class="space-y-1.5 text-xs">
+                <button onclick="checkComprehension(this, true, 'Correct! The story says: No, they don\'t! Other staff wash dishes, so he doesn\'t have to.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  A) No, he doesn't have to because assistants do it.
+                </button>
+                <button onclick="checkComprehension(this, false, 'The story mentions dishwashing staff take care of that.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  B) Yes, he has to wash every plate by hand.
+                </button>
+              </div>
+              <div class="comp-feedback hidden text-xs p-2 rounded mt-2"></div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+              <p class="text-sm font-semibold text-slate-200">4. What is a shared rule for both Carlos and his team?</p>
+              <div class="space-y-1.5 text-xs">
+                <button onclick="checkComprehension(this, true, 'Exactly! They have to keep their workstations completely clean and sanitized.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  A) They have to keep their workstations sanitized.
+                </button>
+                <button onclick="checkComprehension(this, false, 'The text states they inspect food and keep stations clean, not cook at 5 AM.')" class="w-full text-left p-2.5 rounded-lg bg-slate-700/60 hover:bg-slate-700 transition">
+                  B) They have to open the doors at 5:00 AM.
+                </button>
+              </div>
+              <div class="comp-feedback hidden text-xs p-2 rounded mt-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="scroll-mt-24 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full bg-accent-100 text-accent-800 font-semibold text-xs tracking-wider uppercase">
+          Guided Discovery & Rulebook
+        </span>
+        <h2 class="text-3xl font-extrabold font-display text-slate-900">
+          How to Express Obligations & Rules
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Notice how English changes when we speak about obligations (things we must do) versus things that are optional (no obligation).
+        </p>
+      </div>
+
+      <!-- Discovery Interactive Toggle -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-amber-900 font-bold text-base sm:text-lg">
+            <span>🔎</span> Notice the Discovery Clues:
+          </div>
+          <p class="text-slate-700 text-sm max-w-xl">
+            When an action is <strong>mandatory / an official rule</strong>, we use <em>have to</em> or <em>has to</em>. When an action is <strong>not mandatory (you have freedom / choice)</strong>, what do we say?
+          </p>
+        </div>
+        <button 
+          id="revealRuleBtn"
+          onclick="toggleRuleDiscovery()" 
+          class="shrink-0 px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm shadow-sm transition">
+          Reveal Meaning Difference
+        </button>
+      </div>
+
+      <div id="ruleDiscoveryDetails" class="hidden bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-teal-50/70 border border-teal-200">
+            <h4 class="font-bold text-teal-900 text-sm flex items-center gap-1.5">
+              <span>✅</span> HAVE TO / HAS TO = 100% Obligation
+            </h4>
+            <p class="text-slate-700 text-xs mt-1.5 leading-relaxed">
+              It is necessary or a rule. You do not have a choice.
+              <br><strong class="text-teal-950 font-medium">Example:</strong> Cashiers <em>have to</em> count the money. Elena <em>has to</em> arrive on time.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-rose-50/70 border border-rose-200">
+            <h4 class="font-bold text-rose-900 text-sm flex items-center gap-1.5">
+              <span>❌</span> DON'T / DOESN'T HAVE TO = 0% Obligation (Optional)
+            </h4>
+            <p class="text-slate-700 text-xs mt-1.5 leading-relaxed">
+              It is NOT necessary. You can do it if you want, but there is no rule requiring it.
+              <br><strong class="text-rose-950 font-medium">Example:</strong> Liam <em>doesn't have to</em> wear a necktie at home.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="font-bold text-lg font-display">Grammar Table: <code class="text-teal-300 font-mono text-sm">have to + verb</code></h3>
+            <p class="text-xs text-slate-400">Notice the base form of the main verb never changes!</p>
+          </div>
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+            Base Verb Form (clean, be, eat, stay...)
+          </span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 text-xs font-bold uppercase tracking-wider">
+                <th class="p-4">Subject</th>
+                <th class="p-4">Affirmative (+)</th>
+                <th class="p-4">Negative (−)</th>
+                <th class="p-4">Question (?)</th>
+                <th class="p-4">Short Answers</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 font-medium">
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-4 text-slate-900 font-semibold bg-slate-50/50">
+                  I / You / We / They
+                </td>
+                <td class="p-4">
+                  <span class="text-accent-700 font-bold">have to</span> clean the desks.
+                </td>
+                <td class="p-4">
+                  <span class="text-rose-600 font-bold">don't have to</span> eat in the lunchroom.
+                </td>
+                <td class="p-4">
+                  <span class="text-indigo-600 font-bold">Do</span> you <span class="text-accent-700 font-bold">have to</span> eat at your desk?
+                </td>
+                <td class="p-4 space-y-1 text-xs">
+                  <div>Yes, you <strong class="text-emerald-600">do</strong>.</div>
+                  <div>No, you <strong class="text-rose-600">don't</strong>.</div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-4 text-slate-900 font-semibold bg-slate-50/50">
+                  He / She / It
+                </td>
+                <td class="p-4">
+                  <span class="text-accent-700 font-bold">has to</span> be very clear.
+                </td>
+                <td class="p-4">
+                  <span class="text-rose-600 font-bold">doesn't have to</span> stay outside.
+                </td>
+                <td class="p-4">
+                  <span class="text-indigo-600 font-bold">Does</span> it <span class="text-accent-700 font-bold">have to</span> be so loud in here?
+                </td>
+                <td class="p-4 space-y-1 text-xs">
+                  <div>Yes, it <strong class="text-emerald-600">does</strong>.</div>
+                  <div>No, it <strong class="text-rose-600">doesn't</strong>.</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-4 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span><strong>Golden Rule:</strong> In questions and negatives, the main helper verb is <em>do/does</em>, so we always say <em>have to</em> (NEVER "doesn't has to").</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="practice" class="scroll-mt-24 space-y-10">
+      <div class="border-b border-slate-200 pb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-900 font-semibold text-xs tracking-wider uppercase mb-1">
+            Interactive Practice Arena
+          </span>
+          <h2 class="text-3xl font-extrabold font-display text-slate-900">
+            Ten Skill-Building Challenges
+          </h2>
+          <p class="text-slate-600 text-sm">
+            Put your grammar knowledge to work across ten distinct exercise types.
+          </p>
+        </div>
+
+        <!-- Global Score Counter -->
+        <div class="bg-white border border-slate-200 rounded-2xl px-5 py-3 shadow-sm flex items-center gap-4 self-start">
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Progress</div>
+            <div class="text-xl font-black text-accent-600 font-display" id="globalScoreText">0 / 10 Completed</div>
+          </div>
+          <div class="w-12 h-12 rounded-full border-4 border-slate-100 border-t-accent-600 flex items-center justify-center font-bold text-xs" id="globalPercentText">
+            0%
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- EXERCISE 1: Classic Multiple Choice Form Select -->
+      <!-- ============================================== -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex1-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-sm">1</span>
+            <h3 class="font-bold text-lg text-slate-900">Choose the Right Form: have to or has to?</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Multiple Choice</span>
+        </div>
+
+        <p class="text-sm text-slate-600">Select the correct verb to complete each worker's description.</p>
+
+        <div class="space-y-4" id="ex1-questions">
+          <!-- Question 1.1 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <p class="text-sm font-medium text-slate-800">1. A pilot <span class="text-indigo-600 font-bold">[ ... ]</span> speak fluent English during international flights.</p>
+            <div class="flex items-center gap-2">
+              <button onclick="handleEx1(this, 'has to', true, 1)" class="ex1-btn px-4 py-2 text-xs font-bold rounded-lg border border-slate-300 hover:bg-indigo-50 hover:border-indigo-300 transition">has to</button>
+              <button onclick="handleEx1(this, 'have to', false, 1)" class="ex1-btn px-4 py-2 text-xs font-bold rounded-lg border border-slate-300 hover:bg-indigo-50 hover:border-indigo-300 transition">have to</button>
+            </div>
+          </div>
+          <!-- Question 1.2 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <p class="text-sm font-medium text-slate-800">2. Teachers <span class="text-indigo-600 font-bold">[ ... ]</span> prepare lesson materials before class begins.</p>
+            <div class="flex items-center gap-2">
+              <button onclick="handleEx1(this, 'have to', true, 2)" class="ex1-btn px-4 py-2 text-xs font-bold rounded-lg border border-slate-300 hover:bg-indigo-50 hover:border-indigo-300 transition">have to</button>
+              <button onclick="handleEx1(this, 'has to', false, 2)" class="ex1-btn px-4 py-2 text-xs font-bold rounded-lg border border-slate-300 hover:bg-indigo-50 hover:border-indigo-300 transition">has to</button>
+            </div>
+          </div>
+          <!-- Question 1.3 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <p class="text-sm font-medium text-slate-800">3. I <span class="text-indigo-600 font-bold">[ ... ]</span> send my weekly project report every Friday afternoon.</p>
+            <div class="flex items-center gap-2">
+              <button onclick="handleEx1(this, 'have to', true, 3)" class="ex1-btn px-4 py-2 text-xs font-bold rounded-lg border border-slate-300 hover:bg-indigo-50 hover:border-indigo-300 transition">have to</button>
+              <button onclick="handleEx1(this, 'has to', false, 3)" class="ex1-btn px-4 py-2 text-xs font-bold rounded-lg border border-slate-300 hover:bg-indigo-50 hover:border-indigo-300 transition">has to</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="ex1-status" class="text-xs font-medium text-slate-500"></div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex2-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-sm">2</span>
+            <h3 class="font-bold text-lg text-slate-900">Tap-and-Place: Negative Obligations</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-50 text-teal-700 border border-teal-200">Tile Placement</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Click the correct tile below to place either <strong class="text-rose-600">don't have to</strong> or <strong class="text-rose-600">doesn't have to</strong> into the empty space.
+        </p>
+
+        <!-- Sentences with Drop Slots -->
+        <div class="space-y-4">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 text-sm text-slate-800">
+            <span>A software engineer</span>
+            <div id="slot-ex2-1" class="min-w-[130px] h-9 px-3 rounded-lg border-2 border-dashed border-slate-300 bg-white flex items-center justify-center text-xs font-bold text-slate-400">
+              [ Tap a tile ]
+            </div>
+            <span>wear a chef's uniform.</span>
+            <button onclick="clearSlot('slot-ex2-1')" class="text-slate-400 hover:text-slate-600 text-xs ml-auto">✕ Clear</button>
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 text-sm text-slate-800">
+            <span>We</span>
+            <div id="slot-ex2-2" class="min-w-[130px] h-9 px-3 rounded-lg border-2 border-dashed border-slate-300 bg-white flex items-center justify-center text-xs font-bold text-slate-400">
+              [ Tap a tile ]
+            </div>
+            <span>work on Saturdays because the office is closed.</span>
+            <button onclick="clearSlot('slot-ex2-2')" class="text-slate-400 hover:text-slate-600 text-xs ml-auto">✕ Clear</button>
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 text-sm text-slate-800">
+            <span>Liam</span>
+            <div id="slot-ex2-3" class="min-w-[130px] h-9 px-3 rounded-lg border-2 border-dashed border-slate-300 bg-white flex items-center justify-center text-xs font-bold text-slate-400">
+              [ Tap a tile ]
+            </div>
+            <span>commute to an office building every morning.</span>
+            <button onclick="clearSlot('slot-ex2-3')" class="text-slate-400 hover:text-slate-600 text-xs ml-auto">✕ Clear</button>
+          </div>
+        </div>
+
+        <!-- Available Bank of Tiles -->
+        <div class="p-4 bg-slate-100/70 rounded-xl border border-slate-200 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-semibold text-slate-500 mr-2">Available Words:</span>
+          <button onclick="placeTile('doesn\'t have to')" class="token-chip px-3.5 py-1.5 rounded-lg bg-white border border-slate-300 shadow-sm text-xs font-bold text-rose-600 hover:bg-rose-50 hover:border-rose-300">
+            doesn't have to
+          </button>
+          <button onclick="placeTile('don\'t have to')" class="token-chip px-3.5 py-1.5 rounded-lg bg-white border border-slate-300 shadow-sm text-xs font-bold text-rose-600 hover:bg-rose-50 hover:border-rose-300">
+            don't have to
+          </button>
+          <button onclick="placeTile('doesn\'t have to')" class="token-chip px-3.5 py-1.5 rounded-lg bg-white border border-slate-300 shadow-sm text-xs font-bold text-rose-600 hover:bg-rose-50 hover:border-rose-300">
+            doesn't have to
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button onclick="verifyEx2()" class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs transition shadow-sm">
+            Check Answers
+          </button>
+          <div id="ex2-feedback" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex3-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-violet-100 text-violet-700 font-bold flex items-center justify-center text-sm">3</span>
+            <h3 class="font-bold text-lg text-slate-900">Type the Correct Forms</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-50 text-violet-700 border border-violet-200">Typing & Accuracy</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Type the missing phrase into each box. Use words like <em>have to, has to, don't have to,</em> or <em>doesn't have to</em>.
+        </p>
+
+        <div class="space-y-4 text-sm text-slate-800">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center gap-2">
+            <span>1. She is an architect. She</span>
+            <input type="text" id="ex3-input-1" placeholder="type here..." class="px-3 py-1.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-500 font-medium text-xs w-40">
+            <span>(draw) detailed building plans.</span>
+            <span id="ex3-mark-1" class="ml-auto text-xs font-semibold"></span>
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center gap-2">
+            <span>2. On vacation, you</span>
+            <input type="text" id="ex3-input-2" placeholder="type here..." class="px-3 py-1.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-500 font-medium text-xs w-40">
+            <span>(wake up - negative) at 6:00 AM.</span>
+            <span id="ex3-mark-2" class="ml-auto text-xs font-semibold"></span>
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center gap-2">
+            <span>3. Taxi drivers</span>
+            <input type="text" id="ex3-input-3" placeholder="type here..." class="px-3 py-1.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-500 font-medium text-xs w-40">
+            <span>(hold) a valid commercial driver's license.</span>
+            <span id="ex3-mark-3" class="ml-auto text-xs font-semibold"></span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button onclick="checkEx3()" class="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs transition shadow-sm">
+            Check My Typing
+          </button>
+          <div id="ex3-feedback" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex4-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">4</span>
+            <h3 class="font-bold text-lg text-slate-900">Sentence Scrambler: Question Builder</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">Interactive Order</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Build the question by clicking the words in the right order: <br>
+          <span class="text-slate-800 font-semibold italic">Target meaning: Asking if a mechanic needs to buy their own tools.</span>
+        </p>
+
+        <!-- Assembled Sentence Box -->
+        <div class="min-h-[58px] p-3 rounded-xl border-2 border-dashed border-blue-200 bg-blue-50/40 flex flex-wrap items-center gap-2" id="scrambleDisplay">
+          <span class="text-xs text-blue-400 italic" id="scramblePlaceholder">Click the word tiles below in sequence...</span>
+        </div>
+
+        <!-- Available Chips -->
+        <div class="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200" id="scrambleChips">
+          <button onclick="addWordToScramble(this, 'Does')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">Does</button>
+          <button onclick="addWordToScramble(this, 'the')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">the</button>
+          <button onclick="addWordToScramble(this, 'mechanic')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">mechanic</button>
+          <button onclick="addWordToScramble(this, 'have to')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">have to</button>
+          <button onclick="addWordToScramble(this, 'buy')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">buy</button>
+          <button onclick="addWordToScramble(this, 'new')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">new</button>
+          <button onclick="addWordToScramble(this, 'tools?')" class="token-chip px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm">tools?</button>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <button onclick="checkScramble()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition shadow-sm">
+              Check Order
+            </button>
+            <button onclick="resetScramble()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 transition">
+              Reset
+            </button>
+          </div>
+          <div id="scrambleFeedback" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex5-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-rose-100 text-rose-700 font-bold flex items-center justify-center text-sm">5</span>
+            <h3 class="font-bold text-lg text-slate-900">Grammar Detective: Spot the Mistake</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">Error Identification</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Each sentence below contains ONE grammatical mistake. Click on the incorrect word or segment to identify it!
+        </p>
+
+        <div class="space-y-4">
+          <!-- Detective Item 1 -->
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+            <p class="text-xs font-semibold text-slate-500">Sentence 1: Click the mistake</p>
+            <div class="flex flex-wrap items-center gap-1.5 text-sm" id="detective-1">
+              <span onclick="checkDetective(this, false, 'Liam is the correct subject.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">Liam</span>
+              <span onclick="checkDetective(this, false, 'doesn\'t is the correct auxiliary verb for he/she.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">doesn't</span>
+              <span onclick="checkDetective(this, true, 'BINGO! After doesn\'t we always use HAVE TO, never has to!')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">has to</span>
+              <span onclick="checkDetective(this, false, 'wear is in the base form, which is correct.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">wear</span>
+              <span onclick="checkDetective(this, false, 'a uniform is correct.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">a uniform.</span>
+            </div>
+            <div class="detective-note text-xs hidden mt-1"></div>
+          </div>
+
+          <!-- Detective Item 2 -->
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+            <p class="text-xs font-semibold text-slate-500">Sentence 2: Click the mistake</p>
+            <div class="flex flex-wrap items-center gap-1.5 text-sm" id="detective-2">
+              <span onclick="checkDetective(this, false, 'The chef is the correct subject.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">The chef</span>
+              <span onclick="checkDetective(this, false, 'has to is correct for singular chef.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">has to</span>
+              <span onclick="checkDetective(this, true, 'EXACTLY! After have to / has to, the verb must be in base form (cook), NOT with -s (cooks)!')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">cooks</span>
+              <span onclick="checkDetective(this, false, 'dinner is correct.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">dinner</span>
+              <span onclick="checkDetective(this, false, 'promptly is correct.')" class="cursor-pointer px-2 py-1 rounded hover:bg-slate-200">promptly.</span>
+            </div>
+            <div class="detective-note text-xs hidden mt-1"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex6-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-sm">6</span>
+            <h3 class="font-bold text-lg text-slate-900">Meaning Check: Necessary vs Optional</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Concept Distinction</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Read each sentence and decide: Is this an <strong>Obligation (Must do)</strong> or is it <strong>Optional (No obligation / free choice)</strong>?
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Card A -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+            <p class="text-xs text-slate-400 font-bold uppercase">Situation A</p>
+            <p class="text-sm font-semibold text-slate-800">"Airline pilots have to pass regular medical exams."</p>
+            <div class="flex gap-2">
+              <button onclick="checkMeaningCard(this, 'obligation', true)" class="w-1/2 py-2 text-xs font-bold rounded-lg border border-slate-300 bg-white hover:bg-emerald-50 transition">Obligation (Mandatory)</button>
+              <button onclick="checkMeaningCard(this, 'optional', false)" class="w-1/2 py-2 text-xs font-bold rounded-lg border border-slate-300 bg-white hover:bg-rose-50 transition">Optional (Free Choice)</button>
+            </div>
+            <div class="card-fb text-xs hidden"></div>
+          </div>
+
+          <!-- Card B -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+            <p class="text-xs text-slate-400 font-bold uppercase">Situation B</p>
+            <p class="text-sm font-semibold text-slate-800">"Liam doesn't have to wear leather shoes at his home desk."</p>
+            <div class="flex gap-2">
+              <button onclick="checkMeaningCard(this, 'obligation', false)" class="w-1/2 py-2 text-xs font-bold rounded-lg border border-slate-300 bg-white hover:bg-rose-50 transition">Obligation (Mandatory)</button>
+              <button onclick="checkMeaningCard(this, 'optional', true)" class="w-1/2 py-2 text-xs font-bold rounded-lg border border-slate-300 bg-white hover:bg-emerald-50 transition">Optional (Free Choice)</button>
+            </div>
+            <div class="card-fb text-xs hidden"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex7-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 font-bold flex items-center justify-center text-sm">7</span>
+            <h3 class="font-bold text-lg text-slate-900">Question & Short Answer Matchmaker</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200">Matching</span>
+        </div>
+
+        <p class="text-sm text-slate-600">Match the workplace question to its grammatically accurate short response.</p>
+
+        <div class="space-y-3">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+            <span class="font-medium text-slate-800">1. "Do you have to wear a security badge?"</span>
+            <select id="match-1" class="text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-cyan-500">
+              <option value="">-- Choose correct short response --</option>
+              <option value="yes-i-do">Yes, I do.</option>
+              <option value="yes-i-have">Yes, I have.</option>
+              <option value="no-she-doesnt">No, she doesn't.</option>
+            </select>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+            <span class="font-medium text-slate-800">2. "Does Marco have to work on Saturday evenings?"</span>
+            <select id="match-2" class="text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-cyan-500">
+              <option value="">-- Choose correct short response --</option>
+              <option value="no-he-hasnt">No, he hasn't.</option>
+              <option value="no-he-doesnt">No, he doesn't.</option>
+              <option value="yes-they-do">Yes, they do.</option>
+            </select>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+            <span class="font-medium text-slate-800">3. "Do flight attendants have to speak foreign languages?"</span>
+            <select id="match-3" class="text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-cyan-500">
+              <option value="">-- Choose correct short response --</option>
+              <option value="yes-they-do">Yes, they do.</option>
+              <option value="yes-we-has">Yes, we has.</option>
+              <option value="no-it-isnt">No, it isn't.</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button onclick="checkMatchmaker()" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-semibold text-xs transition shadow-sm">
+            Validate Matches
+          </button>
+          <div id="matchmakerFeedback" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex8-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 font-bold flex items-center justify-center text-sm">8</span>
+            <h3 class="font-bold text-lg text-slate-900">Job Rule Inspector: Who Does What?</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200">Logic & Vocabulary</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Match the obligation rule to the correct professional. Click the job button that fits the duty best:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Item 1 -->
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div class="text-sm font-medium text-slate-800">
+              "She <strong>has to</strong> scan grocery items and count money at the register."
+            </div>
+            <div class="flex gap-2">
+              <button onclick="checkInspector(this, 'cashier', true)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-slate-300 hover:bg-amber-50 transition">Supermarket Cashier</button>
+              <button onclick="checkInspector(this, 'graphic', false)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-slate-300 hover:bg-amber-50 transition">Graphic Designer</button>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div class="text-sm font-medium text-slate-800">
+              "He <strong>doesn't have to</strong> stand on his feet in a kitchen all day."
+            </div>
+            <div class="flex gap-2">
+              <button onclick="checkInspector(this, 'chef', false)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-slate-300 hover:bg-amber-50 transition">Restaurant Chef</button>
+              <button onclick="checkInspector(this, 'designer', true)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-slate-300 hover:bg-amber-50 transition">Remote Designer</button>
+            </div>
+          </div>
+        </div>
+        <div id="inspectorFeedback" class="text-xs font-semibold text-slate-500"></div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex9-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-fuchsia-100 text-fuchsia-700 font-bold flex items-center justify-center text-sm">9</span>
+            <h3 class="font-bold text-lg text-slate-900">Sentence Transformation: Affirmative to Negative</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-fuchsia-50 text-fuchsia-700 border border-fuchsia-200">Sentence Re-writing</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Transform the affirmative sentence into a negative statement. <br>
+          <span class="text-xs text-slate-500">Prompt: "Carlos has to wash the pots and pans."</span>
+        </p>
+
+        <div class="space-y-3">
+          <div class="flex flex-col sm:flex-row items-center gap-3">
+            <span class="text-sm font-medium text-slate-800 shrink-0">Carlos</span>
+            <input 
+              type="text" 
+              id="ex9-input" 
+              placeholder="doesn't have to wash" 
+              class="w-full sm:w-80 px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-fuchsia-500 focus:outline-none"
+            />
+            <span class="text-sm font-medium text-slate-800 shrink-0">the pots and pans.</span>
+          </div>
+
+          <p class="text-[11px] text-slate-400 italic">Hint: Remember that when using "doesn't", the verb changes back to "have to wash".</p>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button onclick="checkEx9()" class="px-5 py-2.5 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold text-xs transition shadow-sm">
+            Check Transformation
+          </button>
+          <div id="ex9-feedback" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6" id="ex10-card">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm">10</span>
+            <h3 class="font-bold text-lg text-slate-900">Your Turn! Personal Job Profile Creator</h3>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Creative Production</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          Now describe your current job, study routine, or your dream career! Fill in what you <strong class="text-teal-700">have to</strong> do and what you <strong class="text-rose-600">don't have to</strong> do.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-700">Your Profession / Role:</label>
+            <input type="text" id="userRole" placeholder="e.g. Student, Software Tester, Nurse..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-700">One thing you HAVE TO do:</label>
+            <input type="text" id="userHaveTo" placeholder="e.g. attend morning meetings / review code..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+          </div>
+          <div class="space-y-1.5 md:col-span-2">
+            <label class="text-xs font-bold text-slate-700">One thing you DON'T HAVE TO do:</label>
+            <input type="text" id="userDontHaveTo" placeholder="e.g. wear formal shoes / work on weekends..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="generateJobProfile()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs transition shadow-sm">
+            Generate Profile Card
+          </button>
+          <button id="copyProfileBtn" onclick="copyProfileCard()" class="hidden px-4 py-2 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100 text-xs font-medium transition">
+            📋 Copy Profile
+          </button>
+        </div>
+
+        <!-- Generated Output Card -->
+        <div id="userProfileOutput" class="hidden p-5 rounded-2xl bg-gradient-to-r from-teal-50 to-indigo-50 border border-teal-200 space-y-2">
+          <h4 class="font-bold text-slate-900 text-sm font-display flex items-center gap-2">
+            <span>✨</span> <span id="outTitle">My Workplace Profile</span>
+          </h4>
+          <p class="text-xs text-slate-700 leading-relaxed" id="outText"></p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 text-center space-y-6">
+      <h3 class="text-2xl sm:text-3xl font-black font-display tracking-tight">
+        Grammar Mastered! 🌟
+      </h3>
+      <p class="text-slate-300 max-w-xl mx-auto text-sm leading-relaxed">
+        You've explored authentic reading passages, analyzed grammatical rules for obligation, and completed ten varied practice exercises.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 text-xs font-semibold">
+        <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20">I/You/We/They have to</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20">He/She/It has to</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20">Don't have to = Not necessary</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20">Do / Does ... have to?</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 mt-16 py-8 text-center text-xs text-slate-500">
+    <p>Everyday Responsibilities • English Grammar Resource</p>
+    <p class="mt-1 font-medium text-slate-400">Designed by Babak Alaee</p>
+  </footer>
+
+  <script>
+    // State Tracker
+    const exerciseState = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+      9: false,
+      10: false
+    };
+
+    function updateGlobalScore() {
+      const completedCount = Object.values(exerciseState).filter(Boolean).length;
+      document.getElementById('globalScoreText').innerText = `${completedCount} / 10 Completed`;
+      const pct = Math.round((completedCount / 10) * 100);
+      document.getElementById('globalPercentText').innerText = `${pct}%`;
+    }
+
+    // 1. Reading Comprehension Logic
+    function checkComprehension(button, isCorrect, explanation) {
+      const parent = button.closest('.space-y-2');
+      const feedback = parent.querySelector('.comp-feedback');
+      const allButtons = parent.querySelectorAll('button');
+
+      allButtons.forEach(btn => {
+        btn.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+        btn.disabled = true;
+      });
+
+      feedback.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-200', 'bg-rose-950/80', 'text-rose-200');
+
+      if (isCorrect) {
+        button.classList.add('bg-emerald-600', 'text-white');
+        feedback.classList.add('bg-emerald-950/80', 'text-emerald-200');
+        feedback.innerHTML = `✓ ${explanation}`;
+      } else {
+        button.classList.add('bg-rose-600', 'text-white');
+        feedback.classList.add('bg-rose-950/80', 'text-rose-200');
+        feedback.innerHTML = `✗ ${explanation}`;
+      }
+    }
+
+    // 2. Rule Discovery Toggle
+    function toggleRuleDiscovery() {
+      const details = document.getElementById('ruleDiscoveryDetails');
+      const btn = document.getElementById('revealRuleBtn');
+      if (details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        btn.innerText = 'Hide Details';
+      } else {
+        details.classList.add('hidden');
+        btn.innerText = 'Reveal Meaning Difference';
+      }
+    }
+
+    // EXERCISE 1 Logic
+    const ex1Answers = { 1: false, 2: false, 3: false };
+    function handleEx1(btn, val, isCorrect, qNum) {
+      const container = btn.parentElement;
+      container.querySelectorAll('button').forEach(b => {
+        b.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white');
+        ex1Answers[qNum] = true;
+      } else {
+        btn.classList.add('bg-rose-600', 'text-white');
+        ex1Answers[qNum] = false;
+      }
+
+      if (ex1Answers[1] && ex1Answers[2] && ex1Answers[3]) {
+        document.getElementById('ex1-status').innerHTML = '<span class="text-emerald-600 font-bold">✓ Fantastic! All 3 answers in Exercise 1 are correct!</span>';
+        exerciseState[1] = true;
+        updateGlobalScore();
+      }
+    }
+
+    // EXERCISE 2 Logic
+    let activeTileWord = null;
+    function placeTile(word) {
+      activeTileWord = word;
+      // find first empty slot or update slot
+      const slots = ['slot-ex2-1', 'slot-ex2-2', 'slot-ex2-3'];
+      for (const slotId of slots) {
+        const el = document.getElementById(slotId);
+        if (el.innerText.includes('[ Tap a tile ]') || el.innerText.trim() === '') {
+          el.innerText = word;
+          el.classList.remove('text-slate-400');
+          el.classList.add('text-rose-600', 'border-rose-400', 'bg-rose-50');
+          break;
+        }
+      }
+    }
+
+    function clearSlot(slotId) {
+      const el = document.getElementById(slotId);
+      el.innerText = '[ Tap a tile ]';
+      el.classList.add('text-slate-400');
+      el.classList.remove('text-rose-600', 'border-rose-400', 'bg-rose-50');
+    }
+
+    function verifyEx2() {
+      const s1 = document.getElementById('slot-ex2-1').innerText.trim();
+      const s2 = document.getElementById('slot-ex2-2').innerText.trim();
+      const s3 = document.getElementById('slot-ex2-3').innerText.trim();
+      const fb = document.getElementById('ex2-feedback');
+
+      const correct1 = s1 === "doesn't have to";
+      const correct2 = s2 === "don't have to";
+      const correct3 = s3 === "doesn't have to";
+
+      if (correct1 && correct2 && correct3) {
+        fb.innerHTML = '<span class="text-emerald-600">✓ Perfect negative placements!</span>';
+        exerciseState[2] = true;
+        updateGlobalScore();
+      } else {
+        fb.innerHTML = '<span class="text-rose-600">Check subjects: Engineer (he/she), We, and Liam (he).</span>';
+      }
+    }
+
+    // EXERCISE 3 Logic
+    function checkEx3() {
+      const normalize = str => str.toLowerCase().trim().replace(/\s+/g, ' ');
+      const val1 = normalize(document.getElementById('ex3-input-1').value);
+      const val2 = normalize(document.getElementById('ex3-input-2').value);
+      const val3 = normalize(document.getElementById('ex3-input-3').value);
+
+      const m1 = document.getElementById('ex3-mark-1');
+      const m2 = document.getElementById('ex3-mark-2');
+      const m3 = document.getElementById('ex3-mark-3');
+
+      let correctCount = 0;
+
+      // Question 1: has to / has to draw
+      if (val1 === 'has to' || val1 === 'has to draw') {
+        m1.innerHTML = '✓ Correct';
+        m1.className = 'ml-auto text-xs font-semibold text-emerald-600';
+        correctCount++;
+      } else {
+        m1.innerHTML = '✗ Use "has to"';
+        m1.className = 'ml-auto text-xs font-semibold text-rose-600';
+      }
+
+      // Question 2: don't have to / don't have to wake up / do not have to
+      if (val2 === "don't have to" || val2 === "do not have to" || val2.startsWith("don't have to wake")) {
+        m2.innerHTML = '✓ Correct';
+        m2.className = 'ml-auto text-xs font-semibold text-emerald-600';
+        correctCount++;
+      } else {
+        m2.innerHTML = '✗ Use "don\'t have to"';
+        m2.className = 'ml-auto text-xs font-semibold text-rose-600';
+      }
+
+      // Question 3: have to / have to hold
+      if (val3 === 'have to' || val3 === 'have to hold') {
+        m3.innerHTML = '✓ Correct';
+        m3.className = 'ml-auto text-xs font-semibold text-emerald-600';
+        correctCount++;
+      } else {
+        m3.innerHTML = '✗ Drivers is plural -> "have to"';
+        m3.className = 'ml-auto text-xs font-semibold text-rose-600';
+      }
+
+      const fb = document.getElementById('ex3-feedback');
+      if (correctCount === 3) {
+        fb.innerHTML = '<span class="text-emerald-600">✓ All blanks accurately typed!</span>';
+        exerciseState[3] = true;
+        updateGlobalScore();
+      } else {
+        fb.innerHTML = `<span class="text-rose-600">${correctCount}/3 correct. Keep trying!</span>`;
+      }
+    }
+
+    // EXERCISE 4 Logic (Sentence Scrambler)
+    const scrambleState = [];
+    function addWordToScramble(btn, word) {
+      scrambleState.push(word);
+      btn.disabled = true;
+      btn.classList.add('opacity-40', 'cursor-not-allowed');
+
+      const display = document.getElementById('scrambleDisplay');
+      document.getElementById('scramblePlaceholder').classList.add('hidden');
+
+      const chip = document.createElement('span');
+      chip.className = 'px-3 py-1 bg-white border border-blue-300 rounded-lg text-xs font-bold text-blue-900 shadow-xs animate-fade';
+      chip.innerText = word;
+      display.appendChild(chip);
+    }
+
+    function resetScramble() {
+      scrambleState.length = 0;
+      const display = document.getElementById('scrambleDisplay');
+      display.innerHTML = '<span class="text-xs text-blue-400 italic" id="scramblePlaceholder">Click the word tiles below in sequence...</span>';
+      const container = document.getElementById('scrambleChips');
+      container.querySelectorAll('button').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('opacity-40', 'cursor-not-allowed');
+      });
+      document.getElementById('scrambleFeedback').innerText = '';
+    }
+
+    function checkScramble() {
+      const target = "Does the mechanic have to buy new tools?";
+      const current = scrambleState.join(" ");
+      const fb = document.getElementById('scrambleFeedback');
+
+      if (current === target) {
+        fb.innerHTML = '<span class="text-emerald-600">✓ Excellent question word order!</span>';
+        exerciseState[4] = true;
+        updateGlobalScore();
+      } else {
+        fb.innerHTML = '<span class="text-rose-600">Not quite! Target: Does + subject + have to + verb...</span>';
+      }
+    }
+
+    // EXERCISE 5 Detective Logic
+    let ex5Hits = 0;
+    function checkDetective(span, isError, explanation) {
+      const parent = span.closest('.space-y-2');
+      const note = parent.querySelector('.detective-note');
+      note.classList.remove('hidden', 'text-emerald-600', 'text-rose-600');
+
+      if (isError) {
+        span.classList.add('bg-rose-500', 'text-white');
+        note.classList.add('text-emerald-600', 'font-bold');
+        note.innerText = explanation;
+        ex5Hits++;
+        if (ex5Hits >= 2) {
+          exerciseState[5] = true;
+          updateGlobalScore();
+        }
+      } else {
+        note.classList.add('text-slate-500');
+        note.innerText = explanation;
+      }
+    }
+
+    // EXERCISE 6 Meaning Logic
+    let ex6Score = 0;
+    function checkMeaningCard(btn, choice, isCorrect) {
+      const parent = btn.parentElement;
+      const feedback = parent.parentElement.querySelector('.card-fb');
+      feedback.classList.remove('hidden');
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white');
+        feedback.className = 'card-fb text-xs text-emerald-600 font-bold';
+        feedback.innerText = '✓ Correct interpretation!';
+        ex6Score++;
+        if (ex6Score >= 2) {
+          exerciseState[6] = true;
+          updateGlobalScore();
+        }
+      } else {
+        btn.classList.add('bg-rose-600', 'text-white');
+        feedback.className = 'card-fb text-xs text-rose-600 font-bold';
+        feedback.innerText = '✗ Re-check: "don\'t have to" = no obligation; "have to" = compulsory';
+      }
+    }
+
+    // EXERCISE 7 Matchmaker
+    function checkMatchmaker() {
+      const a1 = document.getElementById('match-1').value;
+      const a2 = document.getElementById('match-2').value;
+      const a3 = document.getElementById('match-3').value;
+      const fb = document.getElementById('matchmakerFeedback');
+
+      if (a1 === 'yes-i-do' && a2 === 'no-he-doesnt' && a3 === 'yes-they-do') {
+        fb.innerHTML = '<span class="text-emerald-600">✓ All short answers match perfectly!</span>';
+        exerciseState[7] = true;
+        updateGlobalScore();
+      } else {
+        fb.innerHTML = '<span class="text-rose-600">Check auxiliary consistency (do / don\'t / does / doesn\'t).</span>';
+      }
+    }
+
+    // EXERCISE 8 Inspector
+    let ex8Count = 0;
+    function checkInspector(btn, job, isCorrect) {
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-600', 'text-white');
+        ex8Count++;
+        if (ex8Count >= 2) {
+          document.getElementById('inspectorFeedback').innerHTML = '<span class="text-emerald-600 font-bold">✓ Rules matched to appropriate professions!</span>';
+          exerciseState[8] = true;
+          updateGlobalScore();
+        }
+      } else {
+        btn.classList.add('bg-rose-600', 'text-white');
+      }
+    }
+
+    // EXERCISE 9 Transformation
+    function checkEx9() {
+      const val = document.getElementById('ex9-input').value.toLowerCase().trim();
+      const fb = document.getElementById('ex9-feedback');
+
+      if (val === "doesn't have to wash" || val === "does not have to wash") {
+        fb.innerHTML = '<span class="text-emerald-600">✓ Flawless negative transformation!</span>';
+        exerciseState[9] = true;
+        updateGlobalScore();
+      } else {
+        fb.innerHTML = '<span class="text-rose-600">Try: doesn\'t have to wash</span>';
+      }
+    }
+
+    // EXERCISE 10 Profile Generator
+    function generateJobProfile() {
+      const role = document.getElementById('userRole').value.trim() || 'Professional';
+      const haveTo = document.getElementById('userHaveTo').value.trim() || 'fulfill my key daily responsibilities';
+      const dontHaveTo = document.getElementById('userDontHaveTo').value.trim() || 'stress about minor issues';
+
+      const title = document.getElementById('outTitle');
+      const text = document.getElementById('outText');
+      const box = document.getElementById('userProfileOutput');
+      const copyBtn = document.getElementById('copyProfileBtn');
+
+      title.innerText = `Workplace Profile: ${role}`;
+      text.innerHTML = `As a <strong>${role}</strong>, I <strong>have to</strong> ${haveTo}. On the other hand, I <strong>don't have to</strong> ${dontHaveTo}.`;
+
+      box.classList.remove('hidden');
+      copyBtn.classList.remove('hidden');
+
+      exerciseState[10] = true;
+      updateGlobalScore();
+    }
+
+    function copyProfileCard() {
+      const text = document.getElementById('outText').innerText;
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      const copyBtn = document.getElementById('copyProfileBtn');
+      copyBtn.innerText = '✓ Copied!';
+      setTimeout(() => {
+        copyBtn.innerText = '📋 Copy Profile';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
