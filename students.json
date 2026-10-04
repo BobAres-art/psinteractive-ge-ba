@@ -20,7 +20,8 @@
       "comparatives-publichealth-c11",
       "causative-fuel-b12",
       "neither-so-b12",
-      "pastsimple-perfect-presentperfect-linegraph-b12"
+      "pastsimple-perfect-presentperfect-linegraph-b12",
+      "that-of-demonstrative"
     ]
   },
   "lavin": {
@@ -65,7 +66,9 @@
       "review-units7-8-evolvee2",
       "superlatives-appearance-evolvee2",
       "comparatives-dresscode-evolvee2",
-      "comparative-superlative-practice-evolvee2"
+      "comparative-superlative-practice-evolvee2",
+      "will-prediction-evolvee2",
+      "have-to-evolvee2"
     ]
   }
 }
