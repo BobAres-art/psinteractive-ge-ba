@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Ties: People, Roles & Possessions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fdf4ff',
+              100: '#fae8ff',
+              500: '#a855f7',
+              600: '#9333ea',
+              700: '#7e22ce',
+              800: '#6b21a8',
+            },
+            accent: {
+              500: '#ec4899',
+              600: '#db2777',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .draggable-chip {
+      cursor: grab;
+      user-select: none;
+    }
+    .draggable-chip:active {
+      cursor: grabbing;
+    }
+    .dropzone.dragover {
+      border-color: #9333ea !important;
+      background-color: #fae8ff !important;
+    }
+    .fade-in {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen font-sans selection:bg-brand-100 selection:text-brand-800">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-600 text-white font-bold text-sm">EN</span>
+          <h1 class="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-900">
+            My Family and Friends: People, Roles & Possessions
+          </h1>
+        </div>
+        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-0.5 tracking-wide">
+          Designed by Babak Alaee
+        </p>
+      </div>
+
+      <!-- Live Overall Completion Score Pill -->
+      <div class="flex items-center gap-3 bg-slate-100 px-4 py-2 rounded-xl border border-slate-200/80 self-start sm:self-auto">
+        <div class="text-xs">
+          <span class="text-slate-500 font-medium">Activity Progress:</span>
+          <span id="score-counter" class="font-bold text-brand-700 ml-1">0 / 10 Completed</span>
+        </div>
+        <div class="w-24 sm:w-28 bg-slate-200 h-2 rounded-full overflow-hidden">
+          <div id="progress-bar-fill" class="bg-brand-600 h-full w-0 transition-all duration-500"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-12">
+
+    <!-- SECTION 1: Context & Exposure -->
+    <section class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8">
+      <div>
+        <span class="inline-block px-3 py-1 bg-brand-50 text-brand-700 border border-brand-200 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Part 1 &bull; Story & Photos</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 font-display">Meet Daniel's Family and Friends</h2>
+        <p class="text-slate-600 mt-1">Read Daniel's story about his relatives and roommates. Look at how he describes each person and their belongings.</p>
+      </div>
+
+      <!-- Photo Gallery of Family Members -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 aspect-square">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" 
+               alt="Sara, Daniel's sister" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+               onerror="this.src='https://placehold.co/400x400/fae8ff/7e22ce?text=Sara'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3">
+            <span class="text-white text-xs sm:text-sm font-semibold">Sara (Sister)</span>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 aspect-square">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80" 
+               alt="Leo, Daniel's brother" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+               onerror="this.src='https://placehold.co/400x400/fae8ff/7e22ce?text=Leo'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3">
+            <span class="text-white text-xs sm:text-sm font-semibold">Leo (Brother)</span>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 aspect-square">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+               alt="Emma, Daniel's roommate" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+               onerror="this.src='https://placehold.co/400x400/fae8ff/7e22ce?text=Emma'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3">
+            <span class="text-white text-xs sm:text-sm font-semibold">Emma (Roommate)</span>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 aspect-square">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80" 
+               alt="Parents: Arthur and Maria" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+               onerror="this.src='https://placehold.co/400x400/fae8ff/7e22ce?text=Parents'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3">
+            <span class="text-white text-xs sm:text-sm font-semibold">Mom & Dad (Parents)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Natural Family Story with Simple Words -->
+      <article class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-relaxed text-slate-700 text-base sm:text-lg space-y-4">
+        <p>
+          Hi! I am Daniel. I am from Indiana. My family is very warm and friendly, and our house is always full of laughter.
+        </p>
+        <p>
+          This is my older sister, Sara. She is twenty-two years old, and she is a student at the university. Her room is upstairs. She is very neat, and her books are always tidy on her shelf. Next is my brother, Leo. He is only ten years old. His favorite toy is a red bicycle. He is often in the garden with our dog, Buster. Buster is small, and its tail never stops wagging!
+        </p>
+        <p>
+          Emma is also in the living room today. She is my roommate and good friend. She is not my girlfriend, but we are like family. My parents are at work right now. Their names are Arthur and Maria. They are happy people. Are you close with your family? Is your family big or small?
+        </p>
+      </article>
+
+      <!-- Text Comprehension Check -->
+      <div class="bg-brand-50/50 rounded-2xl p-6 border border-brand-100 space-y-4">
+        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+          <span>💡</span> Quick Story Check
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm" id="reading-comp-container">
+          <!-- Question 1 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+            <p class="font-semibold text-slate-800">1. Who is Sara?</p>
+            <div class="space-y-1.5" id="comp-q1-options">
+              <button onclick="handleCompClick(1, 'Daniel\'s sister', true, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">Daniel's sister</button>
+              <button onclick="handleCompClick(1, 'Daniel\'s roommate', false, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">Daniel's roommate</button>
+              <button onclick="handleCompClick(1, 'Daniel\'s mom', false, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">Daniel's mother</button>
+            </div>
+            <div id="comp-fb-1" class="text-xs font-semibold hidden pt-1"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+            <p class="font-semibold text-slate-800">2. What is Leo's favorite toy?</p>
+            <div class="space-y-1.5" id="comp-q2-options">
+              <button onclick="handleCompClick(2, 'A red bicycle', true, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">A red bicycle</button>
+              <button onclick="handleCompClick(2, 'A blue car', false, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">A blue car</button>
+              <button onclick="handleCompClick(2, 'A toy dog', false, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">A toy dog</button>
+            </div>
+            <div id="comp-fb-2" class="text-xs font-semibold hidden pt-1"></div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+            <p class="font-semibold text-slate-800">3. Is Emma Daniel's girlfriend?</p>
+            <div class="space-y-1.5" id="comp-q3-options">
+              <button onclick="handleCompClick(3, 'Yes, she is', false, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">Yes, she is.</button>
+              <button onclick="handleCompClick(3, 'No, she is his roommate', true, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">No, she is his roommate.</button>
+              <button onclick="handleCompClick(3, 'No, she is his mother', false, this)" class="w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium">No, she is his mother.</button>
+            </div>
+            <div id="comp-fb-3" class="text-xs font-semibold hidden pt-1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Grammar Reference -->
+    <section class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8">
+      <div>
+        <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Part 2 &bull; Grammar Rules</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 font-display">Grammar Reference: Verb 'BE' & Possessive Adjectives</h2>
+        <p class="text-slate-600 mt-1">Review the basic forms below. Look at the examples about family members, friends, and everyday items.</p>
+      </div>
+
+      <!-- Table 1: Verb Be Formations -->
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+              <th class="p-3 sm:p-4">Subject</th>
+              <th class="p-3 sm:p-4">Affirmative (+)</th>
+              <th class="p-3 sm:p-4">Negative (-)</th>
+              <th class="p-3 sm:p-4">Question (?)</th>
+              <th class="p-3 sm:p-4">Short Answers</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white text-slate-700">
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 sm:p-4 font-bold text-slate-900">I</td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-brand-600">am</span> from Indiana.<br><span class="text-xs text-slate-500">(I'm)</span></td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-rose-600">'m not</span> from Florida.</td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-indigo-600">Am I</span> late?</td>
+              <td class="p-3 sm:p-4">Yes, <span class="font-semibold">I am</span>. / No, <span class="font-semibold">I'm not</span>.</td>
+            </tr>
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 sm:p-4 font-bold text-slate-900">He / She / It</td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-brand-600">is</span> my roommate.<br><span class="text-xs text-slate-500">(He's / She's / It's)</span></td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-rose-600">'s not</span> my boyfriend. / <span class="font-semibold text-rose-600">isn't</span> my boyfriend.</td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-indigo-600">Is he / she / it</span> from Indiana?</td>
+              <td class="p-3 sm:p-4">Yes, <span class="font-semibold">she is</span>. / No, <span class="font-semibold">she isn't</span> (or <span class="font-semibold">she's not</span>).</td>
+            </tr>
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 sm:p-4 font-bold text-slate-900">You / We / They</td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-brand-600">are</span> close friends.<br><span class="text-xs text-slate-500">(You're / We're / They're)</span></td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-rose-600">'re not</span> close friends. / <span class="font-semibold text-rose-600">aren't</span> close friends.</td>
+              <td class="p-3 sm:p-4"><span class="font-semibold text-indigo-600">Are they</span> your neighbors?</td>
+              <td class="p-3 sm:p-4">Yes, <span class="font-semibold">they are</span>. / No, <span class="font-semibold">they're not</span> (or <span class="font-semibold">they aren't</span>).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Callouts -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-5">
+          <h4 class="font-bold text-amber-900 text-sm flex items-center gap-1.5 mb-2">
+            <span>💡</span> Notice: Two Natural Ways to Say "Not"
+          </h4>
+          <p class="text-xs sm:text-sm text-amber-800 leading-relaxed">
+            People use both styles every day. Both are correct:
+          </p>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-xs font-medium text-amber-900">
+            <div class="bg-white/80 p-2.5 rounded-lg border border-amber-200">
+              <span class="text-amber-600 font-bold block mb-1">Style 1:</span>
+              • you're not<br>• we're not<br>• they're not<br>• he's / she's / it's not
+            </div>
+            <div class="bg-white/80 p-2.5 rounded-lg border border-amber-200">
+              <span class="text-amber-600 font-bold block mb-1">Style 2:</span>
+              • you aren't<br>• we aren't<br>• they aren't<br>• he / she / it isn't
+            </div>
+          </div>
+        </div>
+
+        <!-- Table 2: Possessive Adjectives -->
+        <div class="bg-purple-50/80 border border-purple-200 rounded-2xl p-5">
+          <h4 class="font-bold text-purple-950 text-sm flex items-center gap-1.5 mb-2">
+            <span>🔑</span> Subject Pronoun &rarr; Possessive Adjective
+          </h4>
+          <p class="text-xs text-purple-900 mb-3">
+            Possessive adjectives come <em>before a noun</em> to say whose family member or thing it is:
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center">
+              <span class="text-slate-400 block text-[10px]">I &rarr;</span>
+              <strong class="text-brand-700 font-bold">my</strong> sister
+            </div>
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center">
+              <span class="text-slate-400 block text-[10px]">You &rarr;</span>
+              <strong class="text-brand-700 font-bold">your</strong> brother
+            </div>
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center">
+              <span class="text-slate-400 block text-[10px]">He &rarr;</span>
+              <strong class="text-brand-700 font-bold">his</strong> father
+            </div>
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center">
+              <span class="text-slate-400 block text-[10px]">She &rarr;</span>
+              <strong class="text-brand-700 font-bold">her</strong> mother
+            </div>
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center">
+              <span class="text-slate-400 block text-[10px]">It &rarr;</span>
+              <strong class="text-brand-700 font-bold">its</strong> toy
+            </div>
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center">
+              <span class="text-slate-400 block text-[10px]">We &rarr;</span>
+              <strong class="text-brand-700 font-bold">our</strong> house
+            </div>
+            <div class="bg-white p-2 rounded-lg border border-purple-100 text-center col-span-2">
+              <span class="text-slate-400 block text-[10px]">They &rarr;</span>
+              <strong class="text-brand-700 font-bold">their</strong> parents
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Practice Activities (10 Unique Interactive Exercises) -->
+    <div class="space-y-8">
+      <div class="border-b border-slate-200 pb-4">
+        <span class="inline-block px-3 py-1 bg-purple-50 text-purple-700 border border-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Part 3 &bull; Practice Arena</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 font-display">10 Fun Practice Activities</h2>
+        <p class="text-slate-600 mt-1">Complete each activity about family and friends to test your understanding.</p>
+      </div>
+
+      <!-- EXERCISE 1: Multiple Choice (Pronoun vs Possessive in Family Context) -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-1">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">1</span>
+            <h3 class="font-bold text-slate-900 text-lg">Pronoun or Possessive? (Choose One)</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex1">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Click the right word to finish each sentence about family members.</p>
+
+        <div class="space-y-4 text-sm" id="ex1-questions">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span>1. Laura has a brother. <span class="font-bold text-brand-700">[ ___ ]</span> name is Ben.</span>
+            <div class="flex gap-2">
+              <button onclick="setRadioChoice(this, 'ex1-1', 'His')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">His</button>
+              <button onclick="setRadioChoice(this, 'ex1-1', 'He')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">He</button>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span>2. <span class="font-bold text-brand-700">[ ___ ]</span> are my grandparents. They live next door.</span>
+            <div class="flex gap-2">
+              <button onclick="setRadioChoice(this, 'ex1-2', 'They')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">They</button>
+              <button onclick="setRadioChoice(this, 'ex1-2', 'Their')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">Their</button>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span>3. I love cats. This is <span class="font-bold text-brand-700">[ ___ ]</span> pet kitten, Mimi.</span>
+            <div class="flex gap-2">
+              <button onclick="setRadioChoice(this, 'ex1-3', 'my')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">my</button>
+              <button onclick="setRadioChoice(this, 'ex1-3', 'I')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">I</button>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span>4. We love our house because <span class="font-bold text-brand-700">[ ___ ]</span> garden is big and green.</span>
+            <div class="flex gap-2">
+              <button onclick="setRadioChoice(this, 'ex1-4', 'its')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">its</button>
+              <button onclick="setRadioChoice(this, 'ex1-4', 'it')" class="ex1-btn px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-medium">it</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx1()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx1()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex1-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 2: Fill-in-the-Blank with Verb 'be' (Input typing) -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-2">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">2</span>
+            <h3 class="font-bold text-slate-900 text-lg">Type the Verb 'BE' (am / is / are)</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex2">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Type the correct form of <em>be</em> into each blank. You can write the full word or a contraction.</p>
+
+        <div class="space-y-4 text-sm" id="ex2-list">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>1. Tom</span>
+            <input type="text" id="ex2-input-1" class="border border-slate-300 rounded-lg px-2.5 py-1 w-28 text-center font-semibold focus:outline-brand-600" placeholder="be form">
+            <span>my cousin from Texas. (+)</span>
+            <span id="ex2-status-1" class="text-xs font-bold ml-auto"></span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>2. I</span>
+            <input type="text" id="ex2-input-2" class="border border-slate-300 rounded-lg px-2.5 py-1 w-28 text-center font-semibold focus:outline-brand-600" placeholder="be form">
+            <span>an only child; I have two brothers. (-)</span>
+            <span id="ex2-status-2" class="text-xs font-bold ml-auto"></span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>3. We</span>
+            <input type="text" id="ex2-input-3" class="border border-slate-300 rounded-lg px-2.5 py-1 w-28 text-center font-semibold focus:outline-brand-600" placeholder="be form">
+            <span>very proud of our little sister today. (+)</span>
+            <span id="ex2-status-3" class="text-xs font-bold ml-auto"></span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>4. My grandparents</span>
+            <input type="text" id="ex2-input-4" class="border border-slate-300 rounded-lg px-2.5 py-1 w-28 text-center font-semibold focus:outline-brand-600" placeholder="be form">
+            <span>at home right now; they are visiting us. (-)</span>
+            <span id="ex2-status-4" class="text-xs font-bold ml-auto"></span>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx2()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx2()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex2-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 3: Drag & Drop Word Bank (Possessive Adjectives) -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-3">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">3</span>
+            <h3 class="font-bold text-slate-900 text-lg">Drag & Drop: Complete the Family Sentences</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex3">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-4">Drag a word tile into each empty box (or click a tile, then click a box).</p>
+
+        <!-- Word Bank Tiles -->
+        <div class="bg-slate-100 p-3.5 rounded-xl flex flex-wrap gap-2.5 mb-6" id="ex3-tile-bank">
+          <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipClick(this)" class="draggable-chip px-3 py-1.5 bg-white border border-slate-300 text-slate-800 font-bold rounded-lg shadow-xs hover:border-brand-500" data-word="my">my</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipClick(this)" class="draggable-chip px-3 py-1.5 bg-white border border-slate-300 text-slate-800 font-bold rounded-lg shadow-xs hover:border-brand-500" data-word="his">his</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipClick(this)" class="draggable-chip px-3 py-1.5 bg-white border border-slate-300 text-slate-800 font-bold rounded-lg shadow-xs hover:border-brand-500" data-word="her">her</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipClick(this)" class="draggable-chip px-3 py-1.5 bg-white border border-slate-300 text-slate-800 font-bold rounded-lg shadow-xs hover:border-brand-500" data-word="our">our</span>
+          <span draggable="true" ondragstart="handleDragStart(event)" onclick="handleChipClick(this)" class="draggable-chip px-3 py-1.5 bg-white border border-slate-300 text-slate-800 font-bold rounded-lg shadow-xs hover:border-brand-500" data-word="their">their</span>
+        </div>
+
+        <div class="space-y-4 text-sm" id="ex3-dropzones">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>1. Meet my uncle Paul.</span>
+            <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="handleDropzoneClick(this)" class="dropzone w-24 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-bold text-brand-700 bg-white cursor-pointer" data-expected="his"></div>
+            <span>car is parked outside.</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>2. Anna is my aunt, and</span>
+            <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="handleDropzoneClick(this)" class="dropzone w-24 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-bold text-brand-700 bg-white cursor-pointer" data-expected="her"></div>
+            <span>daughter is my favorite cousin.</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>3. I am Mark, and this is</span>
+            <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="handleDropzoneClick(this)" class="dropzone w-24 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-bold text-brand-700 bg-white cursor-pointer" data-expected="my"></div>
+            <span>baby brother.</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>4. We live in this town; this is</span>
+            <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="handleDropzoneClick(this)" class="dropzone w-24 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-bold text-brand-700 bg-white cursor-pointer" data-expected="our"></div>
+            <span>family home.</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+            <span>5. The twin boys are in bed;</span>
+            <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="handleDropzoneClick(this)" class="dropzone w-24 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-bold text-brand-700 bg-white cursor-pointer" data-expected="their"></div>
+            <span>bedroom is very quiet now.</span>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx3()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx3()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex3-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 4: Interactive Word Order / Scramble Tiles -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-4">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">4</span>
+            <h3 class="font-bold text-slate-900 text-lg">Sentence Builder: Word Order</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex4">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Click words from the tile bank to build correct sentences about family and friends.</p>
+
+        <div class="space-y-6" id="scramble-container">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3" id="scramble-box-1">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+              <span>Task: Build a question about someone's sister</span>
+              <button onclick="resetScrambleItem(1)" class="text-brand-600 hover:underline">Clear line</button>
+            </div>
+            <!-- Word pool -->
+            <div class="flex flex-wrap gap-2" id="scramble-pool-1"></div>
+            <!-- Target line -->
+            <div class="min-h-[46px] p-2 bg-white rounded-lg border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center" id="scramble-target-1"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3" id="scramble-box-2">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+              <span>Task: Build a negative sentence about parents</span>
+              <button onclick="resetScrambleItem(2)" class="text-brand-600 hover:underline">Clear line</button>
+            </div>
+            <!-- Word pool -->
+            <div class="flex flex-wrap gap-2" id="scramble-pool-2"></div>
+            <!-- Target line -->
+            <div class="min-h-[46px] p-2 bg-white rounded-lg border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center" id="scramble-target-2"></div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx4()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx4()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset All</button>
+          <div id="ex4-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 5: Spot and Fix the Mistake -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-5">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">5</span>
+            <h3 class="font-bold text-slate-900 text-lg">Error Detector: Spot & Fix the Mistake</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex5">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Click the word with the mistake in each sentence, then type the correct word below.</p>
+
+        <div class="space-y-4 text-sm" id="mistake-items">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" id="mistake-row-1">
+            <div class="sentence-tokens flex flex-wrap items-center gap-1.5" data-sentence-id="1">
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">This</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">is</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">my</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">father</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">and</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, true)">he</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">name</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">is</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(1, this, false)">Carlos.</span>
+            </div>
+            <div class="correction-box mt-3 flex items-center gap-2 hidden" id="fix-box-1">
+              <span class="text-xs text-slate-500">Change selected word to:</span>
+              <input type="text" id="fix-input-1" class="border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold w-32" placeholder="Correct word">
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" id="mistake-row-2">
+            <div class="sentence-tokens flex flex-wrap items-center gap-1.5" data-sentence-id="2">
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(2, this, false)">My</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(2, this, false)">cousins</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(2, this, true)">isn't</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(2, this, false)">at</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(2, this, false)">home</span>
+              <span class="token px-2 py-1 bg-white border border-slate-200 rounded cursor-pointer hover:border-brand-500" onclick="selectMistakeToken(2, this, false)">today.</span>
+            </div>
+            <div class="correction-box mt-3 flex items-center gap-2 hidden" id="fix-box-2">
+              <span class="text-xs text-slate-500">Change selected word to:</span>
+              <input type="text" id="fix-input-2" class="border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold w-32" placeholder="Correct word">
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx5()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx5()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex5-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 6: Short Answer Matching -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">6</span>
+            <h3 class="font-bold text-slate-900 text-lg">Short Answer Matching Dialogue</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex6">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Match each family question with its correct short answer.</p>
+
+        <div class="space-y-3 text-sm" id="ex6-container">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 items-center">
+            <span class="font-medium text-slate-800">1. "Are you and your brother students?"</span>
+            <select id="ex6-sel-1" class="border border-slate-300 rounded-lg p-2 bg-white font-medium text-xs sm:text-sm">
+              <option value="">-- Choose matching answer --</option>
+              <option value="A">No, they're not.</option>
+              <option value="B">Yes, we are.</option>
+              <option value="C">Yes, she is.</option>
+              <option value="D">No, he isn't.</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 items-center">
+            <span class="font-medium text-slate-800">2. "Is your mother from Mexico?"</span>
+            <select id="ex6-sel-2" class="border border-slate-300 rounded-lg p-2 bg-white font-medium text-xs sm:text-sm">
+              <option value="">-- Choose matching answer --</option>
+              <option value="A">No, they're not.</option>
+              <option value="B">Yes, we are.</option>
+              <option value="C">Yes, she is.</option>
+              <option value="D">No, he isn't.</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 items-center">
+            <span class="font-medium text-slate-800">3. "Are your grandparents in the garden?"</span>
+            <select id="ex6-sel-3" class="border border-slate-300 rounded-lg p-2 bg-white font-medium text-xs sm:text-sm">
+              <option value="">-- Choose matching answer --</option>
+              <option value="A">No, they're not.</option>
+              <option value="B">Yes, we are.</option>
+              <option value="C">Yes, she is.</option>
+              <option value="D">No, he isn't.</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx6()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx6()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex6-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 7: Interactive Memory / Pronoun-Possessive Card Flip & Pair Up -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-7">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">7</span>
+            <h3 class="font-bold text-slate-900 text-lg">Pair Up: Pronoun to Possessive</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex7">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Click a family subject card on the left, then click its possessive word on the right.</p>
+
+        <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto" id="card-match-board">
+          <!-- Left Column (Family Subjects) -->
+          <div class="space-y-2.5" id="match-col-left">
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="we" onclick="handleCardClick(this, 'left')">We (My family)</div>
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="they" onclick="handleCardClick(this, 'left')">They (My parents)</div>
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="he" onclick="handleCardClick(this, 'left')">He (My father)</div>
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="it" onclick="handleCardClick(this, 'left')">It (Our dog)</div>
+          </div>
+          <!-- Right Column (Possessives Shuffled) -->
+          <div class="space-y-2.5" id="match-col-right">
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="he" onclick="handleCardClick(this, 'right')">his</div>
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="it" onclick="handleCardClick(this, 'right')">its</div>
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="we" onclick="handleCardClick(this, 'right')">our</div>
+            <div class="match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500" data-match="they" onclick="handleCardClick(this, 'right')">their</div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="resetEx7()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset Cards</button>
+          <div id="ex7-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 8: Family Chat Group Simulation -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-8">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">8</span>
+            <h3 class="font-bold text-slate-900 text-lg">Family Chat Group: Complete the Messages</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex8">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Choose the correct words to complete the family group chat messages.</p>
+
+        <!-- Mock WhatsApp / Messenger Window -->
+        <div class="max-w-2xl mx-auto rounded-2xl border border-slate-300 overflow-hidden bg-white shadow-xs">
+          <div class="bg-brand-700 text-white px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base">🏡</span>
+              <span class="font-bold text-xs sm:text-sm">Family Dinner Chat</span>
+            </div>
+            <span class="text-[11px] text-brand-200">Daniel, Mom, Sara</span>
+          </div>
+
+          <div class="p-5 space-y-4 text-sm bg-slate-50/50">
+            <!-- Message 1 -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-rose-500 text-white font-bold flex items-center justify-center text-xs shrink-0">Mom</div>
+              <div>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-bold text-slate-900 text-xs">Mom</span>
+                  <span class="text-[10px] text-slate-400">5:10 PM</span>
+                </div>
+                <p class="text-slate-700 mt-1 bg-white p-2.5 rounded-xl border border-slate-200 inline-block">
+                  Hi Daniel! <select id="ex8-s1" class="border border-slate-300 rounded px-1.5 py-0.5 font-bold"><option value="">...</option><option value="Is">Is</option><option value="Are">Are</option></select> your roommate home for dinner tonight?
+                </p>
+              </div>
+            </div>
+
+            <!-- Message 2 -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-xs shrink-0">Dan</div>
+              <div>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-bold text-slate-900 text-xs">Daniel</span>
+                  <span class="text-[10px] text-slate-400">5:12 PM</span>
+                </div>
+                <p class="text-slate-700 mt-1 bg-white p-2.5 rounded-xl border border-slate-200 inline-block">
+                  Yes, <select id="ex8-s2" class="border border-slate-300 rounded px-1.5 py-0.5 font-bold"><option value="">...</option><option value="she's">she's</option><option value="her">her</option></select> here. And <select id="ex8-s3" class="border border-slate-300 rounded px-1.5 py-0.5 font-bold"><option value="">...</option><option value="she">she</option><option value="her">her</option></select> brother is visiting too!
+                </p>
+              </div>
+            </div>
+
+            <!-- Message 3 -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs shrink-0">Sara</div>
+              <div>
+                <div class="flex items-baseline gap-2">
+                  <span class="font-bold text-slate-900 text-xs">Sara</span>
+                  <span class="text-[10px] text-slate-400">5:14 PM</span>
+                </div>
+                <p class="text-slate-700 mt-1 bg-white p-2.5 rounded-xl border border-slate-200 inline-block">
+                  Wonderful! <select id="ex8-s4" class="border border-slate-300 rounded px-1.5 py-0.5 font-bold"><option value="">...</option><option value="Our">Our</option><option value="We're">We're</option></select> dining table is big enough for everyone.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx8()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Chat Answers</button>
+          <button onclick="resetEx8()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex8-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 9: Contraction Transformation Challenge -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-9">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">9</span>
+            <h3 class="font-bold text-slate-900 text-lg">Contractions: Shorten the Sentence</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex9">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Rewrite the sentence using a short form (contraction). For negative sentences, either common way is accepted!</p>
+
+        <div class="space-y-4 text-sm" id="ex9-list">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <p class="font-medium text-slate-700">Full Form: <strong class="text-slate-900">"We are not at home."</strong></p>
+            <div class="flex items-center gap-2">
+              <input type="text" id="ex9-input-1" class="border border-slate-300 rounded-lg px-3 py-1.5 w-full max-w-md font-semibold focus:outline-brand-600" placeholder="Type sentence with contraction...">
+              <span id="ex9-status-1" class="text-xs font-bold shrink-0"></span>
+            </div>
+            <p class="text-[11px] text-slate-500">Hint: You can write <em>We're not...</em> or <em>We aren't...</em></p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <p class="font-medium text-slate-700">Full Form: <strong class="text-slate-900">"He is my best friend."</strong></p>
+            <div class="flex items-center gap-2">
+              <input type="text" id="ex9-input-2" class="border border-slate-300 rounded-lg px-3 py-1.5 w-full max-w-md font-semibold focus:outline-brand-600" placeholder="Type sentence with contraction...">
+              <span id="ex9-status-2" class="text-xs font-bold shrink-0"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx9()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Answers</button>
+          <button onclick="resetEx9()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex9-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 10: Interactive Family Album Profile -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" id="ex-10">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">10</span>
+            <h3 class="font-bold text-slate-900 text-lg">Family Photo Card: Choose the Right Words</h3>
+          </div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600" id="badge-ex10">Incomplete</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-5">Fill in the family album card by picking the correct pronouns, verbs, and possessive adjectives.</p>
+
+        <div class="bg-gradient-to-br from-purple-900 to-indigo-950 text-white p-6 rounded-2xl shadow-md max-w-xl mx-auto space-y-4 text-sm">
+          <div class="flex items-center gap-3 border-b border-purple-800 pb-3">
+            <div class="w-12 h-12 rounded-xl bg-brand-500 text-white font-bold flex items-center justify-center text-xl shadow-inner">
+              📸
+            </div>
+            <div>
+              <h4 class="font-bold text-base text-white">Our Family Album Note</h4>
+              <p class="text-xs text-purple-200">Complete the photo description</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 leading-relaxed text-purple-100">
+            <p>
+              "Hello! 
+              <select id="p10-s1" class="bg-purple-800 text-white border border-purple-600 rounded px-2 py-1 text-xs font-bold">
+                <option value="">(pronoun)</option>
+                <option value="I">I</option>
+                <option value="My">My</option>
+              </select> 
+              <select id="p10-s2" class="bg-purple-800 text-white border border-purple-600 rounded px-2 py-1 text-xs font-bold">
+                <option value="">(be verb)</option>
+                <option value="am">am</option>
+                <option value="is">is</option>
+                <option value="are">are</option>
+              </select> 
+              Sam. 
+              <select id="p10-s3" class="bg-purple-800 text-white border border-purple-600 rounded px-2 py-1 text-xs font-bold">
+                <option value="">(possessive)</option>
+                <option value="My">My</option>
+                <option value="I">I</option>
+                <option value="His">His</option>
+              </select> 
+              brother is an artist.
+            </p>
+
+            <p>
+              This is my grandmother. 
+              <select id="p10-s4" class="bg-purple-800 text-white border border-purple-600 rounded px-2 py-1 text-xs font-bold">
+                <option value="">(pronoun)</option>
+                <option value="She">She</option>
+                <option value="Her">Her</option>
+              </select>
+              <select id="p10-s5" class="bg-purple-800 text-white border border-purple-600 rounded px-2 py-1 text-xs font-bold">
+                <option value="">(be verb)</option>
+                <option value="is">is</option>
+                <option value="are">are</option>
+              </select>
+              very kind. 
+              <select id="p10-s6" class="bg-purple-800 text-white border border-purple-600 rounded px-2 py-1 text-xs font-bold">
+                <option value="">(possessive)</option>
+                <option value="Her">Her</option>
+                <option value="She">She</option>
+                <option value="Their">Their</option>
+              </select>
+              cakes are delicious!"
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button onclick="checkEx10()" class="px-5 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">Check Photo Card</button>
+          <button onclick="resetEx10()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition">Reset</button>
+          <div id="ex10-feedback" class="text-sm font-semibold ml-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL RECAP & RESTART -->
+    <section class="bg-gradient-to-r from-brand-600 to-indigo-700 text-white rounded-3xl p-8 sm:p-12 shadow-lg text-center space-y-4">
+      <h3 class="text-2xl sm:text-3xl font-extrabold font-display">Talk About Your Family!</h3>
+      <p class="max-w-xl mx-auto text-brand-100 text-sm sm:text-base leading-relaxed">
+        Use <em>be</em> and possessive words like <em>my, his, her, our, their</em> whenever you introduce your relatives, friends, and pets.
+      </p>
+      <div class="pt-2 flex justify-center gap-4">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-6 py-2.5 rounded-xl bg-white text-brand-700 font-bold hover:bg-slate-100 transition shadow-sm">
+          Return to Top &uarr;
+        </button>
+        <button onclick="resetAllActivities()" class="px-6 py-2.5 rounded-xl bg-brand-800/60 hover:bg-brand-800 text-white border border-white/20 font-semibold transition">
+          Reset All Exercises
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-400">
+    Designed by Babak Alaee &bull; Interactive Grammar Laboratory
+  </footer>
+
+  <script>
+    // State management for progress tracking
+    const exerciseStatus = {
+      ex1: false,
+      ex2: false,
+      ex3: false,
+      ex4: false,
+      ex5: false,
+      ex6: false,
+      ex7: false,
+      ex8: false,
+      ex9: false,
+      ex10: false
+    };
+
+    function updateMasterProgress() {
+      const completedCount = Object.values(exerciseStatus).filter(Boolean).length;
+      document.getElementById('score-counter').textContent = `${completedCount} / 10 Completed`;
+      const pct = (completedCount / 10) * 100;
+      document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+
+      if (completedCount === 10) {
+        try {
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        } catch(e) {}
+      }
+    }
+
+    function markBadge(exKey, passed) {
+      exerciseStatus[exKey] = passed;
+      const badge = document.getElementById(`badge-${exKey}`);
+      if (!badge) return;
+      if (passed) {
+        badge.textContent = "Completed ✓";
+        badge.className = "text-xs font-semibold px-2.5 py-1 rounded bg-emerald-100 text-emerald-800";
+      } else {
+        badge.textContent = "Incomplete";
+        badge.className = "text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-600";
+      }
+      updateMasterProgress();
+    }
+
+    /* --- Part 1: Story Comprehension Handling --- */
+    function handleCompClick(qNum, value, isCorrect, btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('button').forEach(b => {
+        b.className = "w-full text-left px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition text-xs font-medium";
+      });
+      const fb = document.getElementById(`comp-fb-${qNum}`);
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        btn.className = "w-full text-left px-3 py-2 rounded-lg border border-emerald-500 bg-emerald-50 text-emerald-800 font-semibold text-xs";
+        fb.textContent = "Correct! ✓";
+        fb.className = "text-xs font-semibold pt-1 text-emerald-600";
+      } else {
+        btn.className = "w-full text-left px-3 py-2 rounded-lg border border-rose-300 bg-rose-50 text-rose-800 font-medium text-xs";
+        fb.textContent = "Look back at Daniel's story above.";
+        fb.className = "text-xs font-semibold pt-1 text-rose-600";
+      }
+    }
+
+    /* --- Exercise 1: Multiple Choice --- */
+    const ex1Answers = {};
+    function setRadioChoice(btn, groupKey, value) {
+      ex1Answers[groupKey] = value;
+      const parent = btn.parentElement;
+      parent.querySelectorAll('button').forEach(b => {
+        b.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
+        b.classList.add('bg-white', 'text-slate-800');
+      });
+      btn.classList.add('bg-brand-600', 'text-white', 'border-brand-600');
+      btn.classList.remove('bg-white', 'text-slate-800');
+    }
+
+    function checkEx1() {
+      const fb = document.getElementById('ex1-feedback');
+      const correct = {
+        'ex1-1': 'His',
+        'ex1-2': 'They',
+        'ex1-3': 'my',
+        'ex1-4': 'its'
+      };
+      let score = 0;
+      for (const [k, v] of Object.entries(correct)) {
+        if (ex1Answers[k] === v) score++;
+      }
+      if (score === 4) {
+        fb.innerHTML = "<span class='text-emerald-600'>Great job! 4/4 correct.</span>";
+        markBadge('ex1', true);
+      } else {
+        fb.innerHTML = `<span class='text-rose-600'>You got ${score} of 4 correct. Remember: possessive words come before a noun (like 'his name', 'my pet').</span>`;
+        markBadge('ex1', false);
+      }
+    }
+
+    function resetEx1() {
+      for (let k in ex1Answers) delete ex1Answers[k];
+      document.querySelectorAll('#ex1-questions button').forEach(b => {
+        b.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
+        b.classList.add('bg-white', 'text-slate-800');
+      });
+      document.getElementById('ex1-feedback').textContent = '';
+      markBadge('ex1', false);
+    }
+
+    /* --- Exercise 2: Fill in the blank typing --- */
+    function checkEx2() {
+      const a1 = document.getElementById('ex2-input-1').value.trim().toLowerCase();
+      const a2 = document.getElementById('ex2-input-2').value.trim().toLowerCase();
+      const a3 = document.getElementById('ex2-input-3').value.trim().toLowerCase();
+      const a4 = document.getElementById('ex2-input-4').value.trim().toLowerCase();
+
+      const ok1 = a1 === 'is';
+      const ok2 = a2 === "am not" || a2 === "'m not" || a2 === "m not";
+      const ok3 = a3 === 'are' || a3 === "'re";
+      const ok4 = a4 === "aren't" || a4 === "are not" || a4 === "'re not";
+
+      document.getElementById('ex2-status-1').innerHTML = ok1 ? "<span class='text-emerald-600'>✓</span>" : "<span class='text-rose-500'>✗</span>";
+      document.getElementById('ex2-status-2').innerHTML = ok2 ? "<span class='text-emerald-600'>✓</span>" : "<span class='text-rose-500'>✗</span>";
+      document.getElementById('ex2-status-3').innerHTML = ok3 ? "<span class='text-emerald-600'>✓</span>" : "<span class='text-rose-500'>✗</span>";
+      document.getElementById('ex2-status-4').innerHTML = ok4 ? "<span class='text-emerald-600'>✓</span>" : "<span class='text-rose-500'>✗</span>";
+
+      const fb = document.getElementById('ex2-feedback');
+      if (ok1 && ok2 && ok3 && ok4) {
+        fb.innerHTML = "<span class='text-emerald-600'>All forms are correct! Very good.</span>";
+        markBadge('ex2', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Check the red answers. Check singular (is) vs plural (are).</span>";
+        markBadge('ex2', false);
+      }
+    }
+
+    function resetEx2() {
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`ex2-input-${i}`).value = '';
+        document.getElementById(`ex2-status-${i}`).textContent = '';
+      }
+      document.getElementById('ex2-feedback').textContent = '';
+      markBadge('ex2', false);
+    }
+
+    /* --- Exercise 3: Drag and Drop Word Bank --- */
+    let selectedChipWord = null;
+
+    function handleDragStart(e) {
+      e.dataTransfer.setData('text/plain', e.target.getAttribute('data-word'));
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('dragover');
+    }
+
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove('dragover');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      const zone = e.currentTarget;
+      zone.classList.remove('dragover');
+      const word = e.dataTransfer.getData('text/plain');
+      if (word) {
+        zone.textContent = word;
+      }
+    }
+
+    function handleChipClick(chip) {
+      selectedChipWord = chip.getAttribute('data-word');
+      document.querySelectorAll('#ex3-tile-bank .draggable-chip').forEach(c => c.classList.remove('ring-2', 'ring-brand-500'));
+      chip.classList.add('ring-2', 'ring-brand-500');
+    }
+
+    function handleDropzoneClick(zone) {
+      if (selectedChipWord) {
+        zone.textContent = selectedChipWord;
+        selectedChipWord = null;
+        document.querySelectorAll('#ex3-tile-bank .draggable-chip').forEach(c => c.classList.remove('ring-2', 'ring-brand-500'));
+      } else if (zone.textContent) {
+        zone.textContent = '';
+      }
+    }
+
+    function checkEx3() {
+      const zones = document.querySelectorAll('#ex3-dropzones .dropzone');
+      let allCorrect = true;
+      zones.forEach(z => {
+        const expected = z.getAttribute('data-expected');
+        const text = z.textContent.trim().toLowerCase();
+        if (text === expected) {
+          z.classList.add('border-emerald-500', 'bg-emerald-50');
+          z.classList.remove('border-rose-400', 'bg-rose-50');
+        } else {
+          z.classList.add('border-rose-400', 'bg-rose-50');
+          z.classList.remove('border-emerald-500', 'bg-emerald-50');
+          allCorrect = false;
+        }
+      });
+      const fb = document.getElementById('ex3-feedback');
+      if (allCorrect) {
+        fb.innerHTML = "<span class='text-emerald-600'>Excellent! All sentences are complete.</span>";
+        markBadge('ex3', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Some boxes are incorrect or empty. Click a box to clear it.</span>";
+        markBadge('ex3', false);
+      }
+    }
+
+    function resetEx3() {
+      document.querySelectorAll('#ex3-dropzones .dropzone').forEach(z => {
+        z.textContent = '';
+        z.className = "dropzone w-24 h-9 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center font-bold text-brand-700 bg-white cursor-pointer";
+      });
+      document.getElementById('ex3-feedback').textContent = '';
+      markBadge('ex3', false);
+    }
+
+    /* --- Exercise 4: Sentence Scrambles with Family Context --- */
+    const scrambleData = {
+      1: {
+        pool: ["Is", "your", "sister", "at", "home", "?"],
+        correct: "Is your sister at home ?"
+      },
+      2: {
+        pool: ["Our", "parents", "are", "not", "busy", "today", "."],
+        correct: "Our parents are not busy today ."
+      }
+    };
+
+    function initScramble() {
+      for (const [id, data] of Object.entries(scrambleData)) {
+        renderScramblePool(id);
+      }
+    }
+
+    function renderScramblePool(id) {
+      const poolContainer = document.getElementById(`scramble-pool-${id}`);
+      const targetContainer = document.getElementById(`scramble-target-${id}`);
+      poolContainer.innerHTML = '';
+      targetContainer.innerHTML = '';
+
+      const shuffled = [...scrambleData[id].pool].sort(() => Math.random() - 0.5);
+      shuffled.forEach(token => {
+        const btn = document.createElement('button');
+        btn.textContent = token;
+        btn.className = "px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-800 font-medium text-xs hover:border-brand-500 shadow-2xs";
+        btn.onclick = () => {
+          targetContainer.appendChild(btn);
+          btn.onclick = () => {
+            poolContainer.appendChild(btn);
+            btn.onclick = () => targetContainer.appendChild(btn);
+          };
+        };
+        poolContainer.appendChild(btn);
+      });
+    }
+
+    function resetScrambleItem(id) {
+      renderScramblePool(id);
+    }
+
+    function checkEx4() {
+      let bothOk = true;
+      for (const [id, data] of Object.entries(scrambleData)) {
+        const targetWords = Array.from(document.getElementById(`scramble-target-${id}`).children).map(c => c.textContent.trim());
+        const sentence = targetWords.join(' ');
+        if (sentence !== data.correct) {
+          bothOk = false;
+        }
+      }
+      const fb = document.getElementById('ex4-feedback');
+      if (bothOk) {
+        fb.innerHTML = "<span class='text-emerald-600'>Perfect word order! 2/2 correct.</span>";
+        markBadge('ex4', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>One or both sentences are in the wrong order. Click 'Clear line' to try again.</span>";
+        markBadge('ex4', false);
+      }
+    }
+
+    function resetEx4() {
+      initScramble();
+      document.getElementById('ex4-feedback').textContent = '';
+      markBadge('ex4', false);
+    }
+
+    /* --- Exercise 5: Spot the Mistake --- */
+    const mistakeState = {
+      1: { selectedWrong: false, typedFix: "" },
+      2: { selectedWrong: false, typedFix: "" }
+    };
+
+    function selectMistakeToken(rowId, el, isTarget) {
+      const container = el.closest('.sentence-tokens');
+      container.querySelectorAll('.token').forEach(t => t.classList.remove('bg-amber-100', 'border-amber-400', 'font-bold'));
+      el.classList.add('bg-amber-100', 'border-amber-400', 'font-bold');
+      mistakeState[rowId].selectedWrong = isTarget;
+      document.getElementById(`fix-box-${rowId}`).classList.remove('hidden');
+    }
+
+    function checkEx5() {
+      const fix1 = document.getElementById('fix-input-1').value.trim().toLowerCase();
+      const fix2 = document.getElementById('fix-input-2').value.trim().toLowerCase();
+
+      // sentence 1 error is "he" before name -> his
+      const ok1 = mistakeState[1].selectedWrong && fix1 === 'his';
+      // sentence 2 error is "isn't" with cousins (plural) -> aren't or are not
+      const ok2 = mistakeState[2].selectedWrong && (fix2 === "aren't" || fix2 === "are not" || fix2 === "'re not");
+
+      const fb = document.getElementById('ex5-feedback');
+      if (ok1 && ok2) {
+        fb.innerHTML = "<span class='text-emerald-600'>Well done! You found and corrected both errors.</span>";
+        markBadge('ex5', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Check again: one is a possessive word (his) and one is plural verb 'be' (aren't).</span>";
+        markBadge('ex5', false);
+      }
+    }
+
+    function resetEx5() {
+      for (let i = 1; i <= 2; i++) {
+        mistakeState[i] = { selectedWrong: false, typedFix: "" };
+        const row = document.getElementById(`mistake-row-${i}`);
+        row.querySelectorAll('.token').forEach(t => t.classList.remove('bg-amber-100', 'border-amber-400', 'font-bold'));
+        document.getElementById(`fix-box-${i}`).classList.add('hidden');
+        document.getElementById(`fix-input-${i}`).value = '';
+      }
+      document.getElementById('ex5-feedback').textContent = '';
+      markBadge('ex5', false);
+    }
+
+    /* --- Exercise 6: Short Answer Matching --- */
+    function checkEx6() {
+      const q1 = document.getElementById('ex6-sel-1').value; // "Are you and your brother..." -> Yes, we are. (B)
+      const q2 = document.getElementById('ex6-sel-2').value; // "Is your mother..." -> Yes, she is. (C)
+      const q3 = document.getElementById('ex6-sel-3').value; // "Are your grandparents..." -> No, they're not. (A)
+
+      const passed = (q1 === 'B' && q2 === 'C' && q3 === 'A');
+      const fb = document.getElementById('ex6-feedback');
+      if (passed) {
+        fb.innerHTML = "<span class='text-emerald-600'>Great job! All three short answers match.</span>";
+        markBadge('ex6', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Check the pronoun in each answer (you and brother = we; grandparents = they).</span>";
+        markBadge('ex6', false);
+      }
+    }
+
+    function resetEx6() {
+      document.getElementById('ex6-sel-1').value = '';
+      document.getElementById('ex6-sel-2').value = '';
+      document.getElementById('ex6-sel-3').value = '';
+      document.getElementById('ex6-feedback').textContent = '';
+      markBadge('ex6', false);
+    }
+
+    /* --- Exercise 7: Card Pair Up Match --- */
+    let selectedLeftCard = null;
+    let selectedRightCard = null;
+    let ex7PairsFound = 0;
+
+    function handleCardClick(card, side) {
+      if (card.classList.contains('bg-emerald-100')) return;
+
+      if (side === 'left') {
+        document.querySelectorAll('#match-col-left .match-card').forEach(c => {
+          if (!c.classList.contains('bg-emerald-100')) c.classList.remove('border-brand-600', 'bg-brand-50');
+        });
+        card.classList.add('border-brand-600', 'bg-brand-50');
+        selectedLeftCard = card;
+      } else {
+        document.querySelectorAll('#match-col-right .match-card').forEach(c => {
+          if (!c.classList.contains('bg-emerald-100')) c.classList.remove('border-brand-600', 'bg-brand-50');
+        });
+        card.classList.add('border-brand-600', 'bg-brand-50');
+        selectedRightCard = card;
+      }
+
+      if (selectedLeftCard && selectedRightCard) {
+        const valL = selectedLeftCard.getAttribute('data-match');
+        const valR = selectedRightCard.getAttribute('data-match');
+
+        if (valL === valR) {
+          [selectedLeftCard, selectedRightCard].forEach(c => {
+            c.className = "match-card p-3 rounded-xl border-2 border-emerald-500 bg-emerald-100 font-bold text-center text-emerald-900";
+          });
+          ex7PairsFound++;
+          selectedLeftCard = null;
+          selectedRightCard = null;
+
+          if (ex7PairsFound === 4) {
+            document.getElementById('ex7-feedback').innerHTML = "<span class='text-emerald-600'>All pairs matched correctly!</span>";
+            markBadge('ex7', true);
+          }
+        } else {
+          const l = selectedLeftCard;
+          const r = selectedRightCard;
+          [l, r].forEach(c => c.classList.add('border-rose-400', 'bg-rose-50'));
+          setTimeout(() => {
+            [l, r].forEach(c => {
+              c.className = "match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500";
+            });
+          }, 600);
+          selectedLeftCard = null;
+          selectedRightCard = null;
+        }
+      }
+    }
+
+    function resetEx7() {
+      ex7PairsFound = 0;
+      selectedLeftCard = null;
+      selectedRightCard = null;
+      document.querySelectorAll('#card-match-board .match-card').forEach(c => {
+        c.className = "match-card p-3 rounded-xl border-2 border-slate-200 bg-slate-50 font-bold text-center cursor-pointer transition hover:border-brand-500";
+      });
+      document.getElementById('ex7-feedback').textContent = '';
+      markBadge('ex7', false);
+    }
+
+    /* --- Exercise 8: Chat Dialogue --- */
+    function checkEx8() {
+      const s1 = document.getElementById('ex8-s1').value; // Is
+      const s2 = document.getElementById('ex8-s2').value; // she's
+      const s3 = document.getElementById('ex8-s3').value; // her
+      const s4 = document.getElementById('ex8-s4').value; // Our
+
+      const ok = (s1 === 'Is' && s2 === "she's" && s3 === 'her' && s4 === 'Our');
+      const fb = document.getElementById('ex8-feedback');
+      if (ok) {
+        fb.innerHTML = "<span class='text-emerald-600'>Family chat completed correctly!</span>";
+        markBadge('ex8', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Look closely at 'her brother' (possessive) and 'Our dining table'.</span>";
+        markBadge('ex8', false);
+      }
+    }
+
+    function resetEx8() {
+      ['ex8-s1', 'ex8-s2', 'ex8-s3', 'ex8-s4'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('ex8-feedback').textContent = '';
+      markBadge('ex8', false);
+    }
+
+    /* --- Exercise 9: Contraction Transformation --- */
+    function checkEx9() {
+      const clean = str => str.trim().toLowerCase().replace(/[.!]/g, '').replace(/\s+/g, ' ');
+      const t1 = clean(document.getElementById('ex9-input-1').value);
+      const t2 = clean(document.getElementById('ex9-input-2').value);
+
+      // "We are not at home" -> "we're not at home" OR "we aren't at home"
+      const ok1 = (t1 === "we're not at home" || t1 === "we aren't at home");
+      // "He is my best friend" -> "he's my best friend"
+      const ok2 = (t2 === "he's my best friend");
+
+      document.getElementById('ex9-status-1').innerHTML = ok1 ? "<span class='text-emerald-600'>✓ Correct</span>" : "<span class='text-rose-500'>✗ Try again</span>";
+      document.getElementById('ex9-status-2').innerHTML = ok2 ? "<span class='text-emerald-600'>✓ Correct</span>" : "<span class='text-rose-500'>✗ Try again</span>";
+
+      const fb = document.getElementById('ex9-feedback');
+      if (ok1 && ok2) {
+        fb.innerHTML = "<span class='text-emerald-600'>Both contracted sentences are correct!</span>";
+        markBadge('ex9', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Check spelling: use an apostrophe ('). E.g., we're not / we aren't / he's</span>";
+        markBadge('ex9', false);
+      }
+    }
+
+    function resetEx9() {
+      document.getElementById('ex9-input-1').value = '';
+      document.getElementById('ex9-input-2').value = '';
+      document.getElementById('ex9-status-1').textContent = '';
+      document.getElementById('ex9-status-2').textContent = '';
+      document.getElementById('ex9-feedback').textContent = '';
+      markBadge('ex9', false);
+    }
+
+    /* --- Exercise 10: Profile Builder --- */
+    function checkEx10() {
+      const s1 = document.getElementById('p10-s1').value; // I
+      const s2 = document.getElementById('p10-s2').value; // am
+      const s3 = document.getElementById('p10-s3').value; // My
+      const s4 = document.getElementById('p10-s4').value; // She
+      const s5 = document.getElementById('p10-s5').value; // is
+      const s6 = document.getElementById('p10-s6').value; // Her
+
+      const ok = (s1 === 'I' && s2 === 'am' && s3 === 'My' && s4 === 'She' && s5 === 'is' && s6 === 'Her');
+      const fb = document.getElementById('ex10-feedback');
+
+      if (ok) {
+        fb.innerHTML = "<span class='text-emerald-600'>Awesome! The family photo card is 100% correct.</span>";
+        markBadge('ex10', true);
+      } else {
+        fb.innerHTML = "<span class='text-rose-600'>Some words are not correct. Remember: 'She is...' but 'Her cakes...'</span>";
+        markBadge('ex10', false);
+      }
+    }
+
+    function resetEx10() {
+      for (let i = 1; i <= 6; i++) {
+        document.getElementById(`p10-s${i}`).value = '';
+      }
+      document.getElementById('ex10-feedback').textContent = '';
+      markBadge('ex10', false);
+    }
+
+    /* --- Global Reset Helper --- */
+    function resetAllActivities() {
+      resetEx1();
+      resetEx2();
+      resetEx3();
+      resetEx4();
+      resetEx5();
+      resetEx6();
+      resetEx7();
+      resetEx8();
+      resetEx9();
+      resetEx10();
+      updateMasterProgress();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initScramble();
+    });
+  </script>
+</body>
+</html>

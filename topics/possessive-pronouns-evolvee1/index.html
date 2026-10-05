@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Possession & Question Words</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            accent: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+    }
+    .exercise-card {
+      transition: all 0.25s ease-in-out;
+    }
+    .exercise-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+    .draggable-chip {
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+    .draggable-chip:active {
+      cursor: grabbing;
+    }
+    .drop-zone {
+      transition: all 0.2s ease;
+      min-height: 120px;
+    }
+    .drop-zone.drag-over {
+      border-color: #4f46e5;
+      background-color: #f5f3ff;
+      transform: scale(1.01);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-brand-100 selection:text-brand-900">
+
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex flex-col">
+        <a href="#hero" class="text-xl sm:text-2xl font-extrabold font-display tracking-tight text-slate-900 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm shadow-md font-bold">P</span>
+          <span>Possession & Belonging</span>
+        </a>
+        <span class="text-xs font-medium text-slate-500 tracking-wide mt-0.5">Designed by Babak Alaee</span>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+        <a href="#stories" class="hover:text-emerald-700 transition">Stories & Jobs</a>
+        <a href="#comprehension" class="hover:text-emerald-700 transition">Reading Check</a>
+        <a href="#grammar-guide" class="hover:text-emerald-700 transition">Grammar Discovery</a>
+        <a href="#practice-lab" class="hover:text-emerald-700 transition">Practice Lab (10 Tasks)</a>
+      </nav>
+
+      <!-- Progress pill -->
+      <div class="flex items-center gap-3 bg-slate-100/90 py-1.5 px-3.5 rounded-full border border-slate-200 text-xs sm:text-sm">
+        <i data-lucide="award" class="w-4 h-4 text-emerald-600"></i>
+        <span class="font-semibold text-slate-700">Lab Score:</span>
+        <span id="global-score" class="font-bold text-emerald-600">0</span>
+        <span class="text-slate-400">/</span>
+        <span id="max-possible-score" class="text-slate-500 font-medium">10</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero" class="pt-32 pb-16 bg-gradient-to-b from-emerald-50/60 via-slate-50 to-slate-50 border-b border-slate-200/60">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-6">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Natural Workplace Language Immersion
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-slate-900 tracking-tight leading-tight">
+        Who owns this tool? <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-600">Explore Possession at Work</span>
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Step inside <strong class="text-slate-800">The Hive Creative Studio</strong>. Meet four professionals, explore their everyday routines, and discover how we talk about belongings, owners, and questions naturally.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#stories" class="px-6 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 shadow-sm transition flex items-center gap-2">
+          Start Reading <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+        <a href="#grammar-guide" class="px-6 py-3 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 shadow-sm transition">
+          Direct to Grammar Rules
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-slate-200">
+      <div>
+        <span class="text-xs uppercase tracking-wider font-bold text-emerald-700">Part 1 &bull; Natural Exposure</span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-slate-900 mt-1">A Day at The Hive Creative Studio</h2>
+      </div>
+      <p class="text-sm text-slate-500 mt-2 sm:mt-0 max-w-md">
+        Read about four friendly workers. Notice how they talk about their everyday tools, rooms, and jobs.
+      </p>
+    </div>
+
+    <!-- Profiles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Card 1: Elena -->
+      <article class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+        <div class="relative h-60 w-full overflow-hidden bg-slate-100">
+          <img 
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80" 
+            alt="Elena, Office Manager at her desk" 
+            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-semibold">
+            Elena &bull; Office Manager
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Elena is the manager. She helps everyone in the office. "Today my morning is very busy," Elena says. "Our company has a big team. Who's in the meeting room right now? Liam always finishes his work early, so his desk is already clean and ready."
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+            <span>Primary tool: Tablet & notebook</span>
+            <button onclick="speakText(this.getAttribute('data-text'))" data-text="Elena is the manager. She helps everyone in the office. Today my morning is very busy, Elena says. Our company has a big team. Who's in the meeting room right now? Liam always finishes his work early, so his desk is already clean and ready." class="text-emerald-700 hover:text-emerald-800 font-semibold inline-flex items-center gap-1">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Listen
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Liam -->
+      <article class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+        <div class="relative h-60 w-full overflow-hidden bg-slate-100">
+          <img 
+            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80" 
+            alt="Liam drawing plans" 
+            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-semibold">
+            Liam &bull; Building Designer
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Liam draws plans for new houses. He sees a long ruler on his table. "Whose ruler is this?" Liam asks his friends. "Is it yours, Priya? Or is it Marco's? It is not mine. My ruler is in my bag."
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+            <span>Primary tool: Long ruler & drawing pencils</span>
+            <button onclick="speakText(this.getAttribute('data-text'))" data-text="Liam draws plans for new houses. He sees a long ruler on his table. Whose ruler is this? Liam asks his friends. Is it yours, Priya? Or is it Marco's? It is not mine. My ruler is in my bag." class="text-emerald-700 hover:text-emerald-800 font-semibold inline-flex items-center gap-1">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Listen
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Priya -->
+      <article class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+        <div class="relative h-60 w-full overflow-hidden bg-slate-100">
+          <img 
+            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80" 
+            alt="Priya the artist" 
+            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-semibold">
+            Priya &bull; Graphic Artist
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Priya draws logos and websites on computers. She looks at two screens. "This laptop on the left is Elena's, but the big screen is hers too," Priya explains. "Elena lets me use it. Her screen is great for colors, and our boss loved our ideas yesterday."
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+            <span>Primary tool: Digital drawing pen & screen</span>
+            <button onclick="speakText(this.getAttribute('data-text'))" data-text="Priya draws logos and websites on computers. She looks at two screens. This laptop on the left is Elena's, but the big screen is hers too, Priya explains. Elena lets me use it. Her screen is great for colors, and our boss loved our ideas yesterday." class="text-emerald-700 hover:text-emerald-800 font-semibold inline-flex items-center gap-1">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Listen
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Marco -->
+      <article class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+        <div class="relative h-60 w-full overflow-hidden bg-slate-100">
+          <img 
+            src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80" 
+            alt="Marco taking photos" 
+            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-semibold">
+            Marco &bull; Food Photographer
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Marco takes photos of delicious food in the kitchen. "Who's taking photos today?" Marco asks. "These camera lenses belong to the studio, so they are ours. But this old camera stand is mine. I brought it from home."
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+            <span>Primary tool: Camera & lights</span>
+            <button onclick="speakText(this.getAttribute('data-text'))" data-text="Marco takes photos of delicious food in the kitchen. Who's taking photos today? Marco asks. These camera lenses belong to the studio, so they are ours. But this old camera stand is mine. I brought it from home." class="text-emerald-700 hover:text-emerald-800 font-semibold inline-flex items-center gap-1">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Listen
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="comprehension" class="py-16 bg-slate-100/70 border-y border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs uppercase tracking-wider font-bold text-emerald-700">Part 2 &bull; Comprehension Check</span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-slate-900 mt-1">Check Your Understanding of the Stories</h2>
+        <p class="text-slate-500 text-sm mt-2">Answer these simple questions about the workers and their tools.</p>
+      </div>
+
+      <div class="space-y-6" id="comprehension-container">
+        
+        <!-- Q1 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" data-comp-card="1">
+          <h3 class="font-semibold text-slate-800 text-base mb-3">1. Where is Liam's ruler?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <button type="button" onclick="selectComp(1, 'A', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">A) On Marco's kitchen table</button>
+            <button type="button" onclick="selectComp(1, 'B', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">B) Inside his bag</button>
+            <button type="button" onclick="selectComp(1, 'C', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">C) In Elena's car</button>
+            <button type="button" onclick="selectComp(1, 'D', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">D) At the front door</button>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <button onclick="checkComp(1, 'B')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg transition">Submit Answer</button>
+            <div id="comp-feedback-1" class="text-xs font-medium"></div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" data-comp-card="2">
+          <h3 class="font-semibold text-slate-800 text-base mb-3">2. Who owns the big screen that Priya uses?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <button type="button" onclick="selectComp(2, 'A', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">A) It belongs to Priya</button>
+            <button type="button" onclick="selectComp(2, 'B', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">B) It is Marco's screen</button>
+            <button type="button" onclick="selectComp(2, 'C', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">C) It belongs to Elena</button>
+            <button type="button" onclick="selectComp(2, 'D', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">D) It belongs to a hotel</button>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <button onclick="checkComp(2, 'C')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg transition">Submit Answer</button>
+            <div id="comp-feedback-2" class="text-xs font-medium"></div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" data-comp-card="3">
+          <h3 class="font-semibold text-slate-800 text-base mb-3">3. What item did Marco bring from his home?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <button type="button" onclick="selectComp(3, 'A', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">A) The camera lenses</button>
+            <button type="button" onclick="selectComp(3, 'B', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">B) The camera stand</button>
+            <button type="button" onclick="selectComp(3, 'C', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">C) A big box of apples</button>
+            <button type="button" onclick="selectComp(3, 'D', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">D) A new blue pen</button>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <button onclick="checkComp(3, 'B')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg transition">Submit Answer</button>
+            <div id="comp-feedback-3" class="text-xs font-medium"></div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" data-comp-card="4">
+          <h3 class="font-semibold text-slate-800 text-base mb-3">4. Liam asks: "Whose ruler is this?" What does he want to know?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <button type="button" onclick="selectComp(4, 'A', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">A) Which person owns the ruler?</button>
+            <button type="button" onclick="selectComp(4, 'B', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">B) What color is the ruler?</button>
+            <button type="button" onclick="selectComp(4, 'C', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">C) How much was the ruler?</button>
+            <button type="button" onclick="selectComp(4, 'D', this)" class="comp-btn text-left p-3 rounded-xl border border-slate-200 hover:border-emerald-500 transition">D) Where can he buy a ruler?</button>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <button onclick="checkComp(4, 'A')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg transition">Submit Answer</button>
+            <div id="comp-feedback-4" class="text-xs font-medium"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="grammar-guide" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="text-xs uppercase tracking-wider font-bold text-emerald-700">Part 3 &bull; Grammar Discovery</span>
+      <h2 class="text-3xl font-bold font-display text-slate-900 mt-1">Rules of Possession & Question Words</h2>
+      <p class="text-slate-600 mt-2 text-sm sm:text-base">
+        Observe how English signals ownership. Compare forms side-by-side, discover the golden differences, and test out how sentences transform.
+      </p>
+    </div>
+
+    <!-- Rule 1: Adjective vs Pronoun comparison table -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 mb-12">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div>
+          <span class="inline-block px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-md mb-1">RULE 1</span>
+          <h3 class="text-xl font-bold text-slate-900">Possessive Adjectives vs. Possessive Pronouns</h3>
+          <p class="text-slate-500 text-xs sm:text-sm mt-0.5">
+            Adjectives need a <strong>noun</strong> after them. Pronouns replace the noun completely!
+          </p>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl text-xs font-semibold">
+          <button id="toggle-adj" onclick="togglePronounView('adj')" class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-800 transition">Focus Adjectives (+ noun)</button>
+          <button id="toggle-pro" onclick="togglePronounView('pro')" class="px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition">Focus Pronouns (alone)</button>
+        </div>
+      </div>
+
+      <!-- Comparison Grid -->
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[560px]">
+          <thead>
+            <tr class="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200">
+              <th class="py-3 px-4">Subject</th>
+              <th class="py-3 px-4 bg-emerald-50/50 rounded-t-lg">Possessive Adjective <span class="block text-[11px] font-normal text-emerald-700">Followed by a noun</span></th>
+              <th class="py-3 px-4 bg-indigo-50/50 rounded-t-lg">Possessive Pronoun <span class="block text-[11px] font-normal text-indigo-700">Stands on its own</span></th>
+              <th class="py-3 px-4">Example in Workplace</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-sm font-medium text-slate-700" id="pronoun-table-body">
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3.5 px-4 font-bold text-slate-900">I</td>
+              <td class="py-3.5 px-4 text-emerald-700 font-semibold bg-emerald-50/30">my <span class="text-slate-400 font-normal">laptop</span></td>
+              <td class="py-3.5 px-4 text-indigo-700 font-semibold bg-indigo-50/30">mine</td>
+              <td class="py-3.5 px-4 text-xs text-slate-500">"This is <span class="text-emerald-700 font-semibold">my</span> desk." &rarr; "This desk is <span class="text-indigo-700 font-semibold">mine</span>."</td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3.5 px-4 font-bold text-slate-900">you</td>
+              <td class="py-3.5 px-4 text-emerald-700 font-semibold bg-emerald-50/30">your <span class="text-slate-400 font-normal">tablet</span></td>
+              <td class="py-3.5 px-4 text-indigo-700 font-semibold bg-indigo-50/30">yours</td>
+              <td class="py-3.5 px-4 text-xs text-slate-500">"Is this <span class="text-emerald-700 font-semibold">your</span> pen?" &rarr; "Is this pen <span class="text-indigo-700 font-semibold">yours</span>?"</td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3.5 px-4 font-bold text-slate-900">he</td>
+              <td class="py-3.5 px-4 text-emerald-700 font-semibold bg-emerald-50/30">his <span class="text-slate-400 font-normal">ruler</span></td>
+              <td class="py-3.5 px-4 text-indigo-700 font-semibold bg-indigo-50/30">his</td>
+              <td class="py-3.5 px-4 text-xs text-slate-500">"It is <span class="text-emerald-700 font-semibold">his</span> blueprint." &rarr; "The blueprint is <span class="text-indigo-700 font-semibold">his</span>."</td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3.5 px-4 font-bold text-slate-900">she</td>
+              <td class="py-3.5 px-4 text-emerald-700 font-semibold bg-emerald-50/30">her <span class="text-slate-400 font-normal">camera</span></td>
+              <td class="py-3.5 px-4 text-indigo-700 font-semibold bg-indigo-50/30">hers</td>
+              <td class="py-3.5 px-4 text-xs text-slate-500">"That's <span class="text-emerald-700 font-semibold">her</span> office." &rarr; "That office is <span class="text-indigo-700 font-semibold">hers</span>."</td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3.5 px-4 font-bold text-slate-900">we</td>
+              <td class="py-3.5 px-4 text-emerald-700 font-semibold bg-emerald-50/30">our <span class="text-slate-400 font-normal">studio</span></td>
+              <td class="py-3.5 px-4 text-indigo-700 font-semibold bg-indigo-50/30">ours</td>
+              <td class="py-3.5 px-4 text-xs text-slate-500">"This is <span class="text-emerald-700 font-semibold">our</span> project." &rarr; "This project is <span class="text-indigo-700 font-semibold">ours</span>."</td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3.5 px-4 font-bold text-slate-900">they</td>
+              <td class="py-3.5 px-4 text-emerald-700 font-semibold bg-emerald-50/30">their <span class="text-slate-400 font-normal">keys</span></td>
+              <td class="py-3.5 px-4 text-indigo-700 font-semibold bg-indigo-50/30">theirs</td>
+              <td class="py-3.5 px-4 text-xs text-slate-500">"These are <span class="text-emerald-700 font-semibold">their</span> tools." &rarr; "These tools are <span class="text-indigo-700 font-semibold">theirs</span>."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick interactive formula -->
+      <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">!</span>
+          <span class="text-slate-700 font-medium">Memory trick: Most possessive pronouns end with <strong class="text-indigo-600 font-bold">-s</strong> (your<strong>s</strong>, her<strong>s</strong>, our<strong>s</strong>, their<strong>s</strong>), except <strong class="text-indigo-600 font-bold">mine</strong> and <strong class="text-indigo-600 font-bold">his</strong>!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      
+      <!-- Card A: Who's -->
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50/40 p-6 sm:p-7 rounded-3xl border border-amber-200/80 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-2.5 py-1 bg-amber-200/80 text-amber-900 text-xs font-bold rounded-lg tracking-wide uppercase">Contraction</span>
+          <span class="text-xl font-bold font-mono text-amber-700">Who's</span>
+        </div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">Who's = <span class="text-amber-700">Who is</span></h4>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+          Contains an apostrophe representing the missing letter <em>i</em>. It always asks about the <strong>identity</strong> of a person doing something or located somewhere.
+        </p>
+        <div class="space-y-2 bg-white/80 p-3.5 rounded-xl border border-amber-200/60 text-xs sm:text-sm">
+          <p class="text-slate-700 font-medium">&bull; "<strong>Who's</strong> coming to the meeting?" (= <em>Who is</em> coming)</p>
+          <p class="text-slate-700 font-medium">&bull; "<strong>Who's</strong> from Puebla? Cecilia." (= <em>Who is</em> from Puebla)</p>
+        </div>
+        <div class="mt-4 text-[11px] text-amber-800 font-semibold bg-amber-100/60 px-3 py-1.5 rounded-lg inline-block">
+          Test: Can you say "Who is"? If YES &rarr; use <span class="underline">Who's</span>.
+        </div>
+      </div>
+
+      <!-- Card B: Whose -->
+      <div class="bg-gradient-to-br from-teal-50 to-emerald-50/40 p-6 sm:p-7 rounded-3xl border border-teal-200/80 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-2.5 py-1 bg-teal-200/80 text-teal-900 text-xs font-bold rounded-lg tracking-wide uppercase">Possession</span>
+          <span class="text-xl font-bold font-mono text-teal-700">Whose</span>
+        </div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">Whose = <span class="text-teal-700">Belonging to which person</span></h4>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+          Has NO apostrophe. It asks who owns or has a relationship with something or someone.
+        </p>
+        <div class="space-y-2 bg-white/80 p-3.5 rounded-xl border border-teal-200/60 text-xs sm:text-sm">
+          <p class="text-slate-700 font-medium">&bull; "<strong>Whose</strong> bag is this?" (= Which person owns this bag?)</p>
+          <p class="text-slate-700 font-medium">&bull; "<strong>Whose</strong> family lives in Puebla? Cecilia's."</p>
+        </div>
+        <div class="mt-4 text-[11px] text-teal-800 font-semibold bg-teal-100/60 px-3 py-1.5 rounded-lg inline-block">
+          Test: Can you say "Who is"? If NO &rarr; use <span class="underline">Whose</span>.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Rule 3: The Apostrophe -'s and "belong to" -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 text-xs font-bold rounded-md">RULE 3</span>
+        <h3 class="text-lg sm:text-xl font-bold text-slate-900">The Apostrophe -'s &amp; Alternative Phrases</h3>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-600 mb-6 max-w-2xl">
+        We add <strong>'s</strong> to a person's name to show possession. In conversational English, there are two equivalent ways to ask about and state ownership:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+          <span class="font-bold text-slate-900 flex items-center gap-1.5">
+            <i data-lucide="help-circle" class="w-4 h-4 text-indigo-600"></i> Asking about ownership:
+          </span>
+          <p class="text-slate-700 font-medium">&bull; "<strong>Whose</strong> is this?" / "<strong>Whose</strong> bag is this?"</p>
+          <p class="text-slate-700 font-medium">&bull; "<strong>Who does</strong> this bag <strong>belong to</strong>?"</p>
+          <span class="text-[11px] text-slate-500 mt-1">Both questions have the exact same meaning!</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+          <span class="font-bold text-slate-900 flex items-center gap-1.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i> Answering with -'s or pronoun:
+          </span>
+          <p class="text-slate-700 font-medium">&bull; "It's <strong>Elena's</strong>." / "It's <strong>my son's</strong> keychain."</p>
+          <p class="text-slate-700 font-medium">&bull; "It's <strong>mine</strong>." / "It <strong>belongs to me</strong>."</p>
+          <span class="text-[11px] text-slate-500 mt-1">Note: <em>my son's keychain</em> = the keychain that belongs to my son.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice-lab" class="py-16 bg-slate-100/60 border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-wider font-bold text-emerald-700">Part 4 &bull; Practice Lab</span>
+        <h2 class="text-3xl font-bold font-display text-slate-900 mt-1">10 Interactive Practical Challenges</h2>
+        <p class="text-slate-500 text-sm mt-2">
+          Complete each task to earn badges and master possessive forms in natural workplace contexts.
+        </p>
+      </div>
+
+      <div class="space-y-10">
+
+        <!-- ================= EXERCISE 1 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-1">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">1</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Drag &amp; Drop: Classify the Word Bank</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">Drag &amp; Drop</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">
+            Drag each possessive word from the bank into its correct category below. (Touch devices: tap a word, then tap the target zone).
+          </p>
+
+          <!-- Word bank -->
+          <div class="p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-300 min-h-[58px] flex flex-wrap gap-2.5 items-center justify-center mb-6" id="ex1-bank">
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="my" data-cat="adj" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">my</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="hers" data-cat="pro" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">hers</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="their" data-cat="adj" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">their</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="ours" data-cat="pro" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">ours</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="your" data-cat="adj" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">your</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="theirs" data-cat="pro" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">theirs</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="mine" data-cat="pro" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">mine</div>
+            <div draggable="true" ondragstart="dragWord(event)" onclick="chipTap(this)" data-word="our" data-cat="adj" class="draggable-chip px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl text-xs sm:text-sm shadow-sm hover:border-emerald-500">our</div>
+          </div>
+
+          <!-- Target Drop Zones -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="drop-zone p-4 rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50/40 flex flex-col" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropWord(event, 'adj')" onclick="dropZoneTap('adj')">
+              <span class="font-bold text-xs uppercase tracking-wide text-emerald-800 mb-2 flex items-center justify-between">
+                <span>Possessive Adjectives (+ noun)</span>
+                <span id="ex1-adj-count" class="text-xs text-emerald-600 font-normal">0/4</span>
+              </span>
+              <div id="ex1-zone-adj" class="flex flex-wrap gap-2 flex-1"></div>
+            </div>
+
+            <div class="drop-zone p-4 rounded-2xl border-2 border-dashed border-indigo-300 bg-indigo-50/40 flex flex-col" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropWord(event, 'pro')" onclick="dropZoneTap('pro')">
+              <span class="font-bold text-xs uppercase tracking-wide text-indigo-800 mb-2 flex items-center justify-between">
+                <span>Possessive Pronouns (stands alone)</span>
+                <span id="ex1-pro-count" class="text-xs text-indigo-600 font-normal">0/4</span>
+              </span>
+              <div id="ex1-zone-pro" class="flex flex-wrap gap-2 flex-1"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex gap-2">
+              <button onclick="checkExercise1()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Check Sorting</button>
+              <button onclick="resetExercise1()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs sm:text-sm font-semibold hover:bg-slate-50 transition">Reset</button>
+            </div>
+            <div id="ex1-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 2 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-2">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">2</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Rapid Decision: "Who's" or "Whose"?</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200">Selection</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            Choose <span class="font-mono font-bold text-amber-700">Who's</span> (= who is) or <span class="font-mono font-bold text-teal-700">Whose</span> (= possession) for each easy sentence.
+          </p>
+
+          <div class="space-y-4" id="ex2-list">
+            <!-- Item 1 -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm" data-ex2="1">
+              <span class="text-slate-800 font-medium">1. <span class="underline font-bold text-slate-900">[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</span> working late in the office today?</span>
+              <div class="flex gap-2">
+                <button type="button" onclick="setEx2(1, 'Who\'s', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Who's</button>
+                <button type="button" onclick="setEx2(1, 'Whose', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Whose</button>
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm" data-ex2="2">
+              <span class="text-slate-800 font-medium">2. <span class="underline font-bold text-slate-900">[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</span> pen is on the floor?</span>
+              <div class="flex gap-2">
+                <button type="button" onclick="setEx2(2, 'Who\'s', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Who's</button>
+                <button type="button" onclick="setEx2(2, 'Whose', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Whose</button>
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm" data-ex2="3">
+              <span class="text-slate-800 font-medium">3. Elena wants to know <span class="underline font-bold text-slate-900">[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</span> calling the studio phone.</span>
+              <div class="flex gap-2">
+                <button type="button" onclick="setEx2(3, 'Who\'s', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Who's</button>
+                <button type="button" onclick="setEx2(3, 'Whose', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Whose</button>
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm" data-ex2="4">
+              <span class="text-slate-800 font-medium">4. <span class="underline font-bold text-slate-900">[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</span> blue car is parked outside?</span>
+              <div class="flex gap-2">
+                <button type="button" onclick="setEx2(4, 'Who\'s', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Who's</button>
+                <button type="button" onclick="setEx2(4, 'Whose', this)" class="ex2-btn px-4 py-1.5 rounded-lg border border-slate-200 bg-white font-medium hover:border-slate-400 text-xs">Whose</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <button onclick="checkExercise2()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Verify Decisions</button>
+            <div id="ex2-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 3 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-3">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">3</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Sentence Transformation: From Adjective to Pronoun</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-200">Typing</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-2">
+            Change each sentence to use a possessive pronoun at the end.
+          </p>
+          <div class="text-xs text-slate-400 mb-6 italic">Model: "This is my hat." &rarr; "This hat is mine."</div>
+
+          <div class="space-y-5">
+            <!-- Trans 1 -->
+            <div class="p-4 bg-slate-50 rounded-2xl">
+              <div class="text-sm font-medium text-slate-800 mb-2">1. "This is her pen."</div>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <span class="text-xs sm:text-sm text-slate-500 font-medium">Type:</span>
+                <input type="text" id="ex3-input-1" placeholder="This pen is..." class="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-indigo-600 bg-white" autocomplete="off" />
+              </div>
+              <div id="ex3-hint-1" class="text-[11px] text-slate-400 mt-1.5 hidden">Hint: Write "This pen is hers."</div>
+            </div>
+
+            <!-- Trans 2 -->
+            <div class="p-4 bg-slate-50 rounded-2xl">
+              <div class="text-sm font-medium text-slate-800 mb-2">2. "These are our books."</div>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <span class="text-xs sm:text-sm text-slate-500 font-medium">Type:</span>
+                <input type="text" id="ex3-input-2" placeholder="These books are..." class="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-indigo-600 bg-white" autocomplete="off" />
+              </div>
+              <div id="ex3-hint-2" class="text-[11px] text-slate-400 mt-1.5 hidden">Hint: Write "These books are ours."</div>
+            </div>
+
+            <!-- Trans 3 -->
+            <div class="p-4 bg-slate-50 rounded-2xl">
+              <div class="text-sm font-medium text-slate-800 mb-2">3. "That is your desk."</div>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <span class="text-xs sm:text-sm text-slate-500 font-medium">Type:</span>
+                <input type="text" id="ex3-input-3" placeholder="That desk is..." class="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-indigo-600 bg-white" autocomplete="off" />
+              </div>
+              <div id="ex3-hint-3" class="text-[11px] text-slate-400 mt-1.5 hidden">Hint: Write "That desk is yours."</div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex gap-2">
+              <button onclick="checkExercise3()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Check Sentences</button>
+              <button onclick="toggleHintsEx3()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs sm:text-sm font-semibold hover:bg-slate-50 transition">Show / Hide Hints</button>
+            </div>
+            <div id="ex3-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 4 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-4">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">4</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Studio Detective: Whose Pen Is It?</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-700 rounded-full border border-purple-200">Detective MC</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">
+            Elena found a blue pen on the table.
+          </p>
+
+          <div class="p-5 bg-purple-50/50 rounded-2xl border border-purple-100 mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-xl shrink-0 shadow-sm">
+              <i data-lucide="help-circle" class="w-6 h-6"></i>
+            </div>
+            <div class="text-sm">
+              <p class="font-bold text-slate-800">Situation:</p>
+              <p class="text-slate-600">Elena asks Priya if she owns the pen.</p>
+              <p class="text-purple-900 font-semibold mt-1">Elena: "Excuse me Priya, is this pen ________?"</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm" id="ex4-options">
+            <button onclick="selectEx4('your', this)" class="ex4-opt text-left p-3.5 rounded-xl border border-slate-200 hover:border-purple-500 bg-white transition font-medium">A) your</button>
+            <button onclick="selectEx4('yours', this)" class="ex4-opt text-left p-3.5 rounded-xl border border-slate-200 hover:border-purple-500 bg-white transition font-medium">B) yours</button>
+            <button onclick="selectEx4('you', this)" class="ex4-opt text-left p-3.5 rounded-xl border border-slate-200 hover:border-purple-500 bg-white transition font-medium">C) you</button>
+            <button onclick="selectEx4('your\'s', this)" class="ex4-opt text-left p-3.5 rounded-xl border border-slate-200 hover:border-purple-500 bg-white transition font-medium">D) your's (with apostrophe)</button>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <button onclick="checkExercise4()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Confirm Selection</button>
+            <div id="ex4-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 5 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-5">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">5</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Sentence Scramble: Build the Natural Question</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-200">Interactive Clicker</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">
+            Tap words from the tile bank to make a clear question about the owner of the book.
+          </p>
+
+          <!-- Assembled area -->
+          <div class="p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl min-h-[58px] flex flex-wrap gap-2 items-center mb-4" id="ex5-assembled">
+            <span class="text-xs text-slate-400 italic" id="ex5-placeholder">Tap words below in the correct order...</span>
+          </div>
+
+          <!-- Tiles pool -->
+          <div class="flex flex-wrap gap-2 p-3 bg-white border border-slate-200 rounded-2xl" id="ex5-pool">
+            <!-- Tiles populated by JS -->
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex gap-2">
+              <button onclick="checkExercise5()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Check Sentence Order</button>
+              <button onclick="resetExercise5()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs sm:text-sm font-semibold hover:bg-slate-50 transition">Clear</button>
+            </div>
+            <div id="ex5-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 6 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">6</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Spot the Error: Click to Fix</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 rounded-full border border-rose-200">Interactive Fix</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">
+            Each sentence has one mistake. <strong>Click the wrong word</strong> to make it right!
+          </p>
+
+          <div class="space-y-4 text-sm" id="ex6-container">
+            <!-- Sentence A -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex-1 text-slate-800 leading-relaxed" id="ex6-sent-1">
+                "Excuse me, <span onclick="clickEx6Word(1, this)" class="ex6-word px-1.5 py-0.5 rounded cursor-pointer hover:bg-rose-100 transition">whose</span> the new teacher in room 3?"
+              </div>
+              <div id="ex6-status-1" class="text-xs font-semibold text-slate-400">Click the wrong word</div>
+            </div>
+
+            <!-- Sentence B -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex-1 text-slate-800 leading-relaxed" id="ex6-sent-2">
+                "Liam left <span onclick="clickEx6Word(2, this)" class="ex6-word px-1.5 py-0.5 rounded cursor-pointer hover:bg-rose-100 transition">he</span> notebook on the desk yesterday."
+              </div>
+              <div id="ex6-status-2" class="text-xs font-semibold text-slate-400">Click the wrong word</div>
+            </div>
+
+            <!-- Sentence C -->
+            <div class="p-4 bg-slate-50 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex-1 text-slate-800 leading-relaxed" id="ex6-sent-3">
+                "This water bottle is not mine; it is <span onclick="clickEx6Word(3, this)" class="ex6-word px-1.5 py-0.5 rounded cursor-pointer hover:bg-rose-100 transition">her</span>."
+              </div>
+              <div id="ex6-status-3" class="text-xs font-semibold text-slate-400">Click the wrong word</div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <button onclick="checkExercise6()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Evaluate Corrections</button>
+            <div id="ex6-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 7 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-7">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">7</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Cloze Dialogue: The Lost Keys</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-teal-50 text-teal-700 rounded-full border border-teal-200">Conversation Cloze</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            Fill in the blanks in this short conversation between Marco and Elena.
+          </p>
+
+          <div class="p-5 bg-slate-50 rounded-2xl space-y-4 text-sm text-slate-800 leading-relaxed">
+            <div class="flex items-baseline gap-2">
+              <span class="font-bold text-slate-900 w-16 shrink-0">Marco:</span>
+              <div>
+                "Hey Elena,
+                <select id="ex7-gap-1" class="mx-1 px-2 py-1 rounded-lg border border-slate-300 text-xs sm:text-sm bg-white font-medium focus:border-emerald-600">
+                  <option value="">-- select --</option>
+                  <option value="Who's">Who's</option>
+                  <option value="Whose">Whose</option>
+                </select>
+                keys are these on the table?
+                <select id="ex7-gap-2" class="mx-1 px-2 py-1 rounded-lg border border-slate-300 text-xs sm:text-sm bg-white font-medium focus:border-emerald-600">
+                  <option value="">-- select --</option>
+                  <option value="Who's">Who's</option>
+                  <option value="Whose">Whose</option>
+                </select>
+                still in the office?"
+              </div>
+            </div>
+
+            <div class="flex items-baseline gap-2">
+              <span class="font-bold text-slate-900 w-16 shrink-0">Elena:</span>
+              <div>
+                "Let me see. Priya has a blue car key, so I think they are
+                <select id="ex7-gap-3" class="mx-1 px-2 py-1 rounded-lg border border-slate-300 text-xs sm:text-sm bg-white font-medium focus:border-emerald-600">
+                  <option value="">-- select --</option>
+                  <option value="her">her</option>
+                  <option value="hers">hers</option>
+                </select>
+                keys. Yes, they are definitely
+                <select id="ex7-gap-4" class="mx-1 px-2 py-1 rounded-lg border border-slate-300 text-xs sm:text-sm bg-white font-medium focus:border-emerald-600">
+                  <option value="">-- select --</option>
+                  <option value="her">her</option>
+                  <option value="hers">hers</option>
+                </select>
+                ."
+              </div>
+            </div>
+
+            <div class="flex items-baseline gap-2">
+              <span class="font-bold text-slate-900 w-16 shrink-0">Marco:</span>
+              <div>
+                "Great! I will put them safely in
+                <select id="ex7-gap-5" class="mx-1 px-2 py-1 rounded-lg border border-slate-300 text-xs sm:text-sm bg-white font-medium focus:border-emerald-600">
+                  <option value="">-- select --</option>
+                  <option value="our">our</option>
+                  <option value="ours">ours</option>
+                </select>
+                office box."
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <button onclick="checkExercise7()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Validate Dialogue</button>
+            <div id="ex7-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 8 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-8">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">8</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Pair Matching: Sentence to Possessive Pronoun</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200">Matching</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">
+            Click one sentence on the left, then click the correct pronoun sentence on the right.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="ex8-container">
+            <div class="space-y-2.5" id="ex8-left">
+              <button onclick="clickMatchLeft(1, this)" class="match-left-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-medium text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>The camera belongs to me</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+              <button onclick="clickMatchLeft(2, this)" class="match-left-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-medium text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>The office belongs to us</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+              <button onclick="clickMatchLeft(3, this)" class="match-left-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-medium text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>The car belongs to Liam</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+              <button onclick="clickMatchLeft(4, this)" class="match-left-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-medium text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>The bags belong to the students</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+            </div>
+
+            <div class="space-y-2.5" id="ex8-right">
+              <button onclick="clickMatchRight('his', this)" class="match-right-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-bold text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>It is his.</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+              <button onclick="clickMatchRight('theirs', this)" class="match-right-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-bold text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>They are theirs.</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+              <button onclick="clickMatchRight('mine', this)" class="match-right-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-bold text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>It is mine.</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+              <button onclick="clickMatchRight('ours', this)" class="match-right-btn w-full p-3 text-left rounded-xl border border-slate-200 hover:border-slate-400 font-bold text-xs sm:text-sm transition bg-white flex items-center justify-between">
+                <span>It is ours.</span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex gap-2">
+              <button onclick="checkExercise8()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Check Pairs</button>
+              <button onclick="resetExercise8()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs sm:text-sm font-semibold hover:bg-slate-50 transition">Reset Matching</button>
+            </div>
+            <div id="ex8-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 9 ================= -->
+        <div class="exercise-card bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm" id="ex-9">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">9</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Reformulation: Apostrophe -'s &amp; Ownership</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-cyan-50 text-cyan-700 rounded-full border border-cyan-200">Sentence Rewrite</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">
+            Answer the questions using the name with <strong>'s</strong>.
+            <br><span class="italic text-xs text-slate-400">Example: "The phone belongs to Marco." &rarr; "It is Marco's phone."</span>
+          </p>
+
+          <div class="space-y-4">
+            <!-- 9.1 -->
+            <div class="p-4 bg-slate-50 rounded-2xl">
+              <label class="block text-xs sm:text-sm font-medium text-slate-800 mb-1.5">
+                1. "The car belongs to Liam." &rarr; <em>Whose car is this?</em>
+              </label>
+              <input type="text" id="ex9-input-1" placeholder="Type: It is Liam's / It is Liam's car" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm bg-white focus:outline-none focus:border-cyan-600" autocomplete="off" />
+            </div>
+
+            <!-- 9.2 -->
+            <div class="p-4 bg-slate-50 rounded-2xl">
+              <label class="block text-xs sm:text-sm font-medium text-slate-800 mb-1.5">
+                2. "The office belongs to Elena." &rarr; <em>Whose office is this?</em>
+              </label>
+              <input type="text" id="ex9-input-2" placeholder="Type: It is Elena's / It is Elena's office" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm bg-white focus:outline-none focus:border-cyan-600" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <button onclick="checkExercise9()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition">Evaluate 's Forms</button>
+            <div id="ex9-feedback" class="text-xs sm:text-sm font-semibold"></div>
+          </div>
+        </div>
+
+        <!-- ================= EXERCISE 10 ================= -->
+        <div class="exercise-card bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-700" id="ex-10">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-700 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-xs">10</span>
+              <h3 class="font-bold text-white text-base sm:text-lg">Master Challenge: Studio Lost &amp; Found</h3>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">Grand Finale</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+            Choose the correct word for each question.
+          </p>
+
+          <div class="space-y-6">
+            <!-- 10.1 -->
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10" data-ex10-q="1">
+              <p class="text-xs sm:text-sm font-medium mb-3">1. "A: ________ opening the office door? B: Elena is."</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                <button type="button" onclick="selectEx10(1, 'Whose', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">Whose</button>
+                <button type="button" onclick="selectEx10(1, 'Who\'s', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">Who's</button>
+                <button type="button" onclick="selectEx10(1, 'Who', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">Who</button>
+                <button type="button" onclick="selectEx10(1, 'Whos', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">Whos</button>
+              </div>
+            </div>
+
+            <!-- 10.2 -->
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10" data-ex10-q="2">
+              <p class="text-xs sm:text-sm font-medium mb-3">2. "Liam asked: 'Whose jacket is this?' Priya replied: 'It's ________.'"</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                <button type="button" onclick="selectEx10(2, 'my', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">my</button>
+                <button type="button" onclick="selectEx10(2, 'mine', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">mine</button>
+                <button type="button" onclick="selectEx10(2, 'me', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">me</button>
+                <button type="button" onclick="selectEx10(2, 'mines', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium">mines</button>
+              </div>
+            </div>
+
+            <!-- 10.3 -->
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10" data-ex10-q="3">
+              <p class="text-xs sm:text-sm font-medium mb-3">3. "We like ________ new office, and they like ________ too."</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <button type="button" onclick="selectEx10(3, 'our / theirs', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium text-left">A) our / theirs</button>
+                <button type="button" onclick="selectEx10(3, 'ours / their', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium text-left">B) ours / their</button>
+                <button type="button" onclick="selectEx10(3, 'our / their', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium text-left">C) our / their</button>
+                <button type="button" onclick="selectEx10(3, 'ours / theirs', this)" class="ex10-opt p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-transparent font-medium text-left">D) ours / theirs</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-700">
+            <button onclick="checkExercise10()" class="px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs sm:text-sm hover:bg-emerald-400 transition shadow-lg flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4"></i> Submit Grand Finale
+            </button>
+            <div id="ex10-feedback" class="text-xs sm:text-sm font-bold"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Completion Banner (hidden until exercises are done) -->
+      <div id="celebration-banner" class="hidden mt-12 p-8 rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-700 text-white text-center shadow-xl">
+        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+          <i data-lucide="trophy" class="w-8 h-8 text-yellow-300"></i>
+        </div>
+        <h3 class="text-2xl font-bold font-display">Congratulations!</h3>
+        <p class="text-sm text-emerald-100 max-w-md mx-auto mt-1 mb-6">
+          You have mastered Possessive Adjectives, Possessive Pronouns, Apostrophe 's, and Who's vs. Whose.
+        </p>
+        <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-900 rounded-full text-xs font-bold shadow-md">
+          <i data-lucide="award" class="w-4 h-4 text-emerald-600"></i> Perfect Mastery Completed
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-white border-t border-slate-200 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">P</span>
+        <span class="font-semibold text-slate-700">Grammar Immersion Workspace</span>
+      </div>
+      <div>Designed by <strong class="text-slate-800 font-semibold">Babak Alaee</strong></div>
+      <div class="text-slate-400">&copy; All learning materials curated for natural discovery.</div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-medium">
+    <span id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      initExercise5();
+    });
+
+    // Score Tracking System
+    const completedExercises = new Set();
+    function awardExercise(num) {
+      if (!completedExercises.has(num)) {
+        completedExercises.add(num);
+        const scoreEl = document.getElementById('global-score');
+        scoreEl.textContent = completedExercises.size;
+        showToast(`Exercise ${num} completed! Total: ${completedExercises.size}/10`, 'success');
+        if (completedExercises.size === 10) {
+          document.getElementById('celebration-banner').classList.remove('hidden');
+          lucide.createIcons();
+        }
+      }
+    }
+
+    // Toast Notification helper (replaces alerts)
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMsg.textContent = message;
+      if (type === 'success') {
+        toastIcon.innerHTML = '✨';
+      } else if (type === 'error') {
+        toastIcon.innerHTML = '⚠️';
+      } else {
+        toastIcon.innerHTML = '💡';
+      }
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+
+    // Audio Speech Synthesis for texts
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+        showToast('Playing clear pronunciation audio...', 'info');
+      } else {
+        showToast('Speech audio is not supported in this browser.', 'error');
+      }
+    }
+
+    // Section 2: Comprehension Check
+    const compAnswers = {};
+    function selectComp(qNum, choice, btn) {
+      compAnswers[qNum] = choice;
+      const parent = btn.closest('[data-comp-card]');
+      parent.querySelectorAll('.comp-btn').forEach(b => {
+        b.classList.remove('border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'font-semibold');
+      });
+      btn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'font-semibold');
+    }
+
+    function checkComp(qNum, correctVal) {
+      const feedback = document.getElementById(`comp-feedback-${qNum}`);
+      if (!compAnswers[qNum]) {
+        feedback.className = 'text-xs font-semibold text-amber-600';
+        feedback.textContent = 'Please choose an option first.';
+        return;
+      }
+      if (compAnswers[qNum] === correctVal) {
+        feedback.className = 'text-xs font-semibold text-emerald-600 flex items-center gap-1';
+        feedback.innerHTML = '✓ Correct understanding from the story!';
+      } else {
+        feedback.className = 'text-xs font-semibold text-rose-500';
+        feedback.textContent = 'Not quite. Check Liam or Elena\'s story and try again!';
+      }
+    }
+
+    // Section 3: Grammar view toggles
+    function togglePronounView(type) {
+      const adjBtn = document.getElementById('toggle-adj');
+      const proBtn = document.getElementById('toggle-pro');
+      const rows = document.querySelectorAll('#pronoun-table-body tr');
+
+      if (type === 'adj') {
+        adjBtn.className = 'px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-800 transition';
+        proBtn.className = 'px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition';
+        rows.forEach(r => {
+          r.children[1].classList.add('ring-2', 'ring-emerald-400');
+          r.children[2].classList.remove('ring-2', 'ring-indigo-400');
+        });
+      } else {
+        proBtn.className = 'px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-800 transition';
+        adjBtn.className = 'px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition';
+        rows.forEach(r => {
+          r.children[2].classList.add('ring-2', 'ring-indigo-400');
+          r.children[1].classList.remove('ring-2', 'ring-emerald-400');
+        });
+      }
+    }
+
+    // ================= EXERCISE 1 (Drag & Drop + Mobile Tap) =================
+    let draggedElement = null;
+    let tappedChip = null;
+
+    function dragWord(ev) {
+      draggedElement = ev.target;
+      ev.dataTransfer.setData('text/plain', ev.target.dataset.word);
+    }
+    function allowDrop(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add('drag-over');
+    }
+    function dragLeave(ev) {
+      ev.currentTarget.classList.remove('drag-over');
+    }
+    function dropWord(ev, zoneType) {
+      ev.preventDefault();
+      ev.currentTarget.classList.remove('drag-over');
+      if (draggedElement) {
+        document.getElementById(`ex1-zone-${zoneType}`).appendChild(draggedElement);
+        draggedElement = null;
+        updateEx1Counts();
+      }
+    }
+
+    // Mobile fallback tap support
+    function chipTap(el) {
+      if (tappedChip) {
+        tappedChip.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50');
+      }
+      tappedChip = el;
+      el.classList.add('ring-2', 'ring-emerald-600', 'bg-emerald-50');
+      showToast(`Selected "${el.dataset.word}". Now tap a target category box below.`, 'info');
+    }
+
+    function dropZoneTap(zoneType) {
+      if (tappedChip) {
+        document.getElementById(`ex1-zone-${zoneType}`).appendChild(tappedChip);
+        tappedChip.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50');
+        tappedChip = null;
+        updateEx1Counts();
+      }
+    }
+
+    function updateEx1Counts() {
+      const adjCount = document.getElementById('ex1-zone-adj').children.length;
+      const proCount = document.getElementById('ex1-zone-pro').children.length;
+      document.getElementById('ex1-adj-count').textContent = `${adjCount}/4`;
+      document.getElementById('ex1-pro-count').textContent = `${proCount}/4`;
+    }
+
+    function checkExercise1() {
+      const adjChips = document.querySelectorAll('#ex1-zone-adj .draggable-chip');
+      const proChips = document.querySelectorAll('#ex1-zone-pro .draggable-chip');
+      const feedback = document.getElementById('ex1-feedback');
+
+      let allCorrect = true;
+      let totalPlaced = adjChips.length + proChips.length;
+
+      if (totalPlaced < 8) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please place all 8 words into the categories before checking.';
+        return;
+      }
+
+      adjChips.forEach(c => {
+        if (c.dataset.cat !== 'adj') allCorrect = false;
+      });
+      proChips.forEach(c => {
+        if (c.dataset.cat !== 'pro') allCorrect = false;
+      });
+
+      if (allCorrect) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Perfectly classified! Adjectives require nouns, while pronouns stand alone.';
+        awardExercise(1);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Some words are in the wrong group. Look out for words ending in -s (hers, ours, theirs) and "mine"!';
+      }
+    }
+
+    function resetExercise1() {
+      const bank = document.getElementById('ex1-bank');
+      document.querySelectorAll('.draggable-chip').forEach(c => bank.appendChild(c));
+      updateEx1Counts();
+      document.getElementById('ex1-feedback').textContent = '';
+    }
+
+    // ================= EXERCISE 2 =================
+    const ex2Selections = {};
+    function setEx2(num, val, btn) {
+      ex2Selections[num] = val;
+      const card = btn.closest('[data-ex2]');
+      card.querySelectorAll('.ex2-btn').forEach(b => {
+        b.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-600');
+        b.classList.add('bg-white', 'text-slate-800');
+      });
+      btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+      btn.classList.remove('bg-white');
+    }
+
+    function checkExercise2() {
+      const feedback = document.getElementById('ex2-feedback');
+      const answers = { 1: "Who's", 2: "Whose", 3: "Who's", 4: "Whose" };
+      let filled = 0;
+      let correct = 0;
+
+      for (let i = 1; i <= 4; i++) {
+        if (ex2Selections[i]) {
+          filled++;
+          if (ex2Selections[i] === answers[i]) correct++;
+        }
+      }
+
+      if (filled < 4) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please make a choice for all 4 items.';
+        return;
+      }
+
+      if (correct === 4) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Excellent! You successfully distinguished between "Who is" and possession!';
+        awardExercise(2);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = `You scored ${correct}/4. Remember: If you can substitute "Who is", use Who's!`;
+      }
+    }
+
+    // ================= EXERCISE 3 =================
+    function checkExercise3() {
+      const i1 = document.getElementById('ex3-input-1').value.trim().toLowerCase().replace(/[.!]/g, '');
+      const i2 = document.getElementById('ex3-input-2').value.trim().toLowerCase().replace(/[.!]/g, '');
+      const i3 = document.getElementById('ex3-input-3').value.trim().toLowerCase().replace(/[.!]/g, '');
+      const feedback = document.getElementById('ex3-feedback');
+
+      const valid1 = (i1 === 'this pen is hers');
+      const valid2 = (i2 === 'these books are ours');
+      const valid3 = (i3 === 'that desk is yours');
+
+      if (!i1 || !i2 || !i3) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please complete all three sentences.';
+        return;
+      }
+
+      if (valid1 && valid2 && valid3) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Outstanding! Sentences correctly restructured with possessive pronouns.';
+        awardExercise(3);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Check your answers: "This pen is hers", "These books are ours", "That desk is yours".';
+      }
+    }
+
+    function toggleHintsEx3() {
+      for (let i = 1; i <= 3; i++) {
+        const hint = document.getElementById(`ex3-hint-${i}`);
+        hint.classList.toggle('hidden');
+      }
+    }
+
+    // ================= EXERCISE 4 =================
+    let ex4Choice = null;
+    function selectEx4(val, btn) {
+      ex4Choice = val;
+      document.querySelectorAll('.ex4-opt').forEach(b => {
+        b.classList.remove('border-purple-600', 'bg-purple-100/50', 'text-purple-900', 'font-bold');
+      });
+      btn.classList.add('border-purple-600', 'bg-purple-100/50', 'text-purple-900', 'font-bold');
+    }
+
+    function checkExercise4() {
+      const feedback = document.getElementById('ex4-feedback');
+      if (!ex4Choice) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please click an option first.';
+        return;
+      }
+      if (ex4Choice === 'yours') {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Perfect! "Yours" is the possessive pronoun standing on its own without a following noun.';
+        awardExercise(4);
+      } else if (ex4Choice === 'your\'s') {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Watch out: Possessive pronouns never take an apostrophe (yours, NOT your\'s).';
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Incorrect. "Your" must be followed by a noun, but here there is no noun after the blank.';
+      }
+    }
+
+    // ================= EXERCISE 5 =================
+    const ex5Words = ['Whose', 'book', 'is', 'on', 'the', 'desk?'];
+    let ex5CurrentAssembled = [];
+
+    function initExercise5() {
+      const pool = document.getElementById('ex5-pool');
+      pool.innerHTML = '';
+      // Shuffled
+      const shuffled = [...ex5Words].sort(() => Math.random() - 0.5);
+      shuffled.forEach((word) => {
+        const tile = document.createElement('button');
+        tile.className = 'ex5-tile px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-medium rounded-xl text-xs sm:text-sm transition';
+        tile.textContent = word;
+        tile.onclick = () => addTileToEx5(word, tile);
+        pool.appendChild(tile);
+      });
+    }
+
+    function addTileToEx5(word, tileElement) {
+      ex5CurrentAssembled.push({ word, tileElement });
+      tileElement.style.display = 'none';
+      renderEx5Assembled();
+    }
+
+    function renderEx5Assembled() {
+      const container = document.getElementById('ex5-assembled');
+      const placeholder = document.getElementById('ex5-placeholder');
+      container.innerHTML = '';
+
+      if (ex5CurrentAssembled.length === 0) {
+        container.appendChild(placeholder);
+        return;
+      }
+
+      ex5CurrentAssembled.forEach((item, idx) => {
+        const chip = document.createElement('span');
+        chip.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-300 rounded-lg text-xs sm:text-sm font-semibold text-slate-800 shadow-xs cursor-pointer hover:bg-rose-50 hover:border-rose-300';
+        chip.innerHTML = `${item.word} <span class="text-slate-400 hover:text-rose-600 text-xs">&times;</span>`;
+        chip.onclick = () => removeTileFromEx5(idx);
+        container.appendChild(chip);
+      });
+    }
+
+    function removeTileFromEx5(index) {
+      const item = ex5CurrentAssembled.splice(index, 1)[0];
+      item.tileElement.style.display = 'inline-block';
+      renderEx5Assembled();
+    }
+
+    function resetExercise5() {
+      ex5CurrentAssembled = [];
+      initExercise5();
+      renderEx5Assembled();
+      document.getElementById('ex5-feedback').textContent = '';
+    }
+
+    function checkExercise5() {
+      const assembledText = ex5CurrentAssembled.map(i => i.word).join(' ');
+      const target = 'Whose book is on the desk?';
+      const feedback = document.getElementById('ex5-feedback');
+
+      if (ex5CurrentAssembled.length === 0) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please assemble the sentence first.';
+        return;
+      }
+
+      if (assembledText === target) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Spot on question formation! "Whose" + [noun] + [verb]';
+        awardExercise(5);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Not quite. Order should be: "Whose book is on the desk?"';
+      }
+    }
+
+    // ================= EXERCISE 6 =================
+    const ex6Fixed = { 1: false, 2: false, 3: false };
+    function clickEx6Word(sentId, span) {
+      const status = document.getElementById(`ex6-status-${sentId}`);
+      if (sentId === 1) {
+        span.textContent = "who's";
+        span.classList.add('bg-emerald-100', 'text-emerald-800', 'font-bold');
+        status.innerHTML = '<span class="text-emerald-600 font-semibold">✓ Corrected to "who\'s" (Who is)</span>';
+        ex6Fixed[1] = true;
+      } else if (sentId === 2) {
+        span.textContent = "his";
+        span.classList.add('bg-emerald-100', 'text-emerald-800', 'font-bold');
+        status.innerHTML = '<span class="text-emerald-600 font-semibold">✓ Corrected to "his"</span>';
+        ex6Fixed[2] = true;
+      } else if (sentId === 3) {
+        span.textContent = "hers";
+        span.classList.add('bg-emerald-100', 'text-emerald-800', 'font-bold');
+        status.innerHTML = '<span class="text-emerald-600 font-semibold">✓ Corrected to "hers"</span>';
+        ex6Fixed[3] = true;
+      }
+    }
+
+    function checkExercise6() {
+      const feedback = document.getElementById('ex6-feedback');
+      if (ex6Fixed[1] && ex6Fixed[2] && ex6Fixed[3]) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ All 3 errors detected and repaired successfully!';
+        awardExercise(6);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Click on the erroneous word inside all 3 sentences to trigger corrections.';
+      }
+    }
+
+    // ================= EXERCISE 7 =================
+    function checkExercise7() {
+      const g1 = document.getElementById('ex7-gap-1').value;
+      const g2 = document.getElementById('ex7-gap-2').value;
+      const g3 = document.getElementById('ex7-gap-3').value;
+      const g4 = document.getElementById('ex7-gap-4').value;
+      const g5 = document.getElementById('ex7-gap-5').value;
+      const feedback = document.getElementById('ex7-feedback');
+
+      if (!g1 || !g2 || !g3 || !g4 || !g5) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please make a selection for every blank.';
+        return;
+      }
+
+      const isG1 = (g1 === 'Whose');
+      const isG2 = (g2 === "Who's");
+      const isG3 = (g3 === 'her');
+      const isG4 = (g4 === 'hers');
+      const isG5 = (g5 === 'our');
+
+      if (isG1 && isG2 && isG3 && isG4 && isG5) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Bravo! Complete dialogue natural flow achieved.';
+        awardExercise(7);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Some choices need revision. Re-read: Whose keycard? Who is still inside? her keys / it is hers / our locker.';
+      }
+    }
+
+    // ================= EXERCISE 8 (Matching Pairs) =================
+    let selectedLeftId = null;
+    let selectedLeftBtn = null;
+    const matchesMap = {}; // leftId -> rightValue
+
+    function clickMatchLeft(id, btn) {
+      document.querySelectorAll('.match-left-btn').forEach(b => b.classList.remove('ring-2', 'ring-amber-500', 'bg-amber-50'));
+      selectedLeftId = id;
+      selectedLeftBtn = btn;
+      btn.classList.add('ring-2', 'ring-amber-500', 'bg-amber-50');
+      showToast('Selected phrase. Now click its matching pronoun on the right.', 'info');
+    }
+
+    function clickMatchRight(val, btn) {
+      if (!selectedLeftId) {
+        showToast('Please select a phrase from the left column first!', 'error');
+        return;
+      }
+      matchesMap[selectedLeftId] = val;
+      
+      // Visual feedback
+      selectedLeftBtn.classList.remove('ring-2', 'ring-amber-500', 'bg-amber-50');
+      selectedLeftBtn.classList.add('border-emerald-500', 'bg-emerald-50/50');
+      btn.classList.add('border-emerald-500', 'bg-emerald-50/50');
+
+      showToast(`Linked!`, 'success');
+      selectedLeftId = null;
+      selectedLeftBtn = null;
+    }
+
+    function checkExercise8() {
+      const feedback = document.getElementById('ex8-feedback');
+      const correct = { 1: 'mine', 2: 'ours', 3: 'his', 4: 'theirs' };
+
+      if (Object.keys(matchesMap).length < 4) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please match all 4 pairs.';
+        return;
+      }
+
+      let allMatch = true;
+      for (let k = 1; k <= 4; k++) {
+        if (matchesMap[k] !== correct[k]) allMatch = false;
+      }
+
+      if (allMatch) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ All 4 pairs successfully matched!';
+        awardExercise(8);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'One or more pairs are mismatched. Hit Reset to try again.';
+      }
+    }
+
+    function resetExercise8() {
+      for (const k in matchesMap) delete matchesMap[k];
+      selectedLeftId = null;
+      selectedLeftBtn = null;
+      document.querySelectorAll('.match-left-btn, .match-right-btn').forEach(b => {
+        b.className = b.className.replace(/border-emerald-500|bg-emerald-50\/50|ring-2|ring-amber-500|bg-amber-50/g, '').trim();
+      });
+      document.getElementById('ex8-feedback').textContent = '';
+    }
+
+    // ================= EXERCISE 9 =================
+    function checkExercise9() {
+      const v1 = document.getElementById('ex9-input-1').value.trim().toLowerCase().replace(/[.!'"]/g, '');
+      const v2 = document.getElementById('ex9-input-2').value.trim().toLowerCase().replace(/[.!'"]/g, '');
+      const feedback = document.getElementById('ex9-feedback');
+
+      if (!v1 || !v2) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-amber-600';
+        feedback.textContent = 'Please write both sentences.';
+        return;
+      }
+
+      const ok1 = v1.includes("liam") && (v1.includes("car") || v1.includes("liam"));
+      const ok2 = v2.includes("elena") && (v2.includes("office") || v2.includes("elena"));
+
+      if (ok1 && ok2) {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-emerald-600';
+        feedback.textContent = '✓ Well done! Possession correctly indicated with Liam\'s and Elena\'s!';
+        awardExercise(9);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-semibold text-rose-500';
+        feedback.textContent = 'Make sure you include the person\'s name with \'s (e.g. Liam\'s car / Elena\'s office).';
+      }
+    }
+
+    // ================= EXERCISE 10 =================
+    const ex10Answers = {};
+    function selectEx10(q, val, btn) {
+      ex10Answers[q] = val;
+      const card = btn.closest('[data-ex10-q]');
+      card.querySelectorAll('.ex10-opt').forEach(b => {
+        b.classList.remove('bg-emerald-500', 'text-slate-950', 'border-emerald-400');
+        b.classList.add('bg-white/10', 'text-white');
+      });
+      btn.classList.add('bg-emerald-500', 'text-slate-950', 'border-emerald-400');
+      btn.classList.remove('bg-white/10', 'text-white');
+    }
+
+    function checkExercise10() {
+      const feedback = document.getElementById('ex10-feedback');
+      const target = { 1: "Who's", 2: "mine", 3: "our / theirs" };
+
+      if (!ex10Answers[1] || !ex10Answers[2] || !ex10Answers[3]) {
+        feedback.className = 'text-xs sm:text-sm font-bold text-amber-400';
+        feedback.textContent = 'Please answer all three questions in the Grand Finale.';
+        return;
+      }
+
+      const c1 = (ex10Answers[1] === target[1]);
+      const c2 = (ex10Answers[2] === target[2]);
+      const c3 = (ex10Answers[3] === target[3]);
+
+      if (c1 && c2 && c3) {
+        feedback.className = 'text-xs sm:text-sm font-bold text-emerald-400';
+        feedback.textContent = '★ 3/3 Perfect Score! Master Challenge Conquered!';
+        awardExercise(10);
+      } else {
+        feedback.className = 'text-xs sm:text-sm font-bold text-rose-400';
+        feedback.textContent = 'Review your selections: 1 needs "Who is", 2 needs a pronoun standing alone, 3 needs adjective + pronoun.';
+      }
+    }
+  </script>
+</body>
+</html>
