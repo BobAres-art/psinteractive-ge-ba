@@ -70,5 +70,13 @@
       "will-prediction-evolvee2",
       "have-to-evolvee2"
     ]
+  },
+  
+  "evolvee1": {
+    "name": "Evolve E1",
+    "topics": [
+      "be-possessives-evolvee1",
+      "possessive-pronouns-evolvee1"
+    ]
   }
 }
