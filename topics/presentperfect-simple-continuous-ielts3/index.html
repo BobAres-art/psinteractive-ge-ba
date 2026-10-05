@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Present Perfect: Simple vs. Continuous</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            },
+            accent: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            },
+            warm: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .badge-pulse {
+      animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .75; transform: scale(1.05); }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen selection:bg-brand-500 selection:text-white">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="p-2 bg-brand-50 text-brand-600 rounded-xl inline-flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </span>
+          <h1 class="text-xl sm:text-2xl font-bold font-display text-slate-900 tracking-tight">
+            Present Perfect: Simple vs. Continuous
+          </h1>
+        </div>
+        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-0.5 tracking-wide italic">
+          Designed by Babak Alaee
+        </p>
+      </div>
+
+      <!-- Live score badge & navigation jump buttons -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+          <span>Score: <span id="overallScore" class="text-emerald-700 font-bold">0</span> / 10</span>
+        </div>
+        <a href="#practice-zone" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition">
+          Practice Lab
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-12">
+
+    <section class="space-y-6">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs uppercase tracking-wider font-bold text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">
+          Visual Exposure
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
+          The Room Dilemma: Result vs. Activity
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          Look at both scenarios carefully. Notice how changing the tense shifts the speaker's attention between <strong>what is accomplished</strong> and <strong>the process or its side effects</strong>.
+        </p>
+      </div>
+
+      <!-- Visual cards side-by-side -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Room A: Simple (Result) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:border-brand-200 transition-all">
+          <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-100">
+            <img 
+              src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80" 
+              alt="Immaculate, newly painted living room with modern clean decor" 
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              onerror="this.src='https://placehold.co/800x500/e2e8f0/334155?text=Newly+Painted+Living+Room'"
+            />
+            <div class="absolute top-3 left-3 bg-emerald-600 text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow">
+              Job Complete
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md text-white p-3 rounded-xl border border-white/20 text-xs">
+              <span class="font-semibold text-emerald-300">Visual Evidence:</span> Clean fresh walls, no ladders, furniture in place, ready to enjoy.
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="inline-block px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">
+                Present Perfect Simple
+              </div>
+              <h3 class="text-xl font-bold text-slate-900">"She has painted the living room."</h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                The focus is purely on the <strong>completed result</strong>. It doesn't matter how long it took, whether she is tired, or what tools she used. The task is finished and the room is fresh.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span class="flex items-center gap-1.5"><i data-lucide="check-check" class="w-4 h-4 text-emerald-600"></i> Answers: <em>What has been done?</em></span>
+              <span class="font-medium text-slate-700">Finished Product</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room B: Continuous (Process / Paraphernalia) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:border-brand-200 transition-all">
+          <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-100">
+            <img 
+              src="https://images.unsplash.com/photo-1697967464378-1498c293e1aa?auto=format&fit=crop&w=1000&q=80" 
+              alt="Bedroom renovation in progress with stepladder, paint buckets, trays, and drop sheets with no people" 
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              onerror="this.src='https://placehold.co/800x500/e2e8f0/334155?text=Bedroom+with+Painting+Paraphernalia'"
+            />
+            <div class="absolute top-3 left-3 bg-amber-600 text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow">
+              Activity & Paraphernalia
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md text-white p-3 rounded-xl border border-white/20 text-xs">
+              <span class="font-semibold text-amber-300">Visual Evidence:</span> Stepladder out, open paint cans, rollers, and drop sheets with no one in the room (in-progress activity).
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="inline-block px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-bold uppercase tracking-wider mb-2">
+                Present Perfect Continuous
+              </div>
+              <h3 class="text-xl font-bold text-slate-900">"She has been painting the bedroom."</h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                The focus is on the <strong>activity itself</strong>, its duration, or visible present signs (the open paint buckets, ladder, and supplies lying around the room). The painting is still in progress!
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-amber-600"></i> Answers: <em>How has time been spent?</em></span>
+              <span class="font-medium text-slate-700">Ongoing / Recent Action</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Second Exposure Pair: The Baking Scenario -->
+      <div class="pt-4">
+        <div class="mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 font-display">
+            Scenario 2: The Kitchen Mystery (Finished Cake vs. Messy Activity)
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          
+          <!-- Kitchen A: Simple (Completed Cake) -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:border-brand-200 transition-all">
+            <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-100">
+              <img 
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=80" 
+                alt="A clean kitchen counter with a beautifully baked chocolate cake on a stand" 
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                onerror="this.src='https://placehold.co/800x500/e2e8f0/334155?text=Clean+Kitchen+with+Finished+Cake'"
+              />
+              <div class="absolute top-3 left-3 bg-emerald-600 text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow">
+                Finished Output
+              </div>
+              <div class="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md text-white p-3 rounded-xl border border-white/20 text-xs">
+                <span class="font-semibold text-emerald-300">Visual Evidence:</span> An immaculate kitchen, a delicious finished cake ready to serve, zero mess.
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div class="inline-block px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">
+                  Present Perfect Simple
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">"She has baked a cake."</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                  We look at the <strong>finished product</strong> sitting on the kitchen counter. The task is completed, the cake exists, and the objective has been reached.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <span class="flex items-center gap-1.5"><i data-lucide="award" class="w-4 h-4 text-emerald-600"></i> Answers: <em>What was produced?</em></span>
+                <span class="font-medium text-slate-700">Completed Tangible Cake</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kitchen B: Continuous (Messy Kitchen, No Cake) -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col hover:border-brand-200 transition-all shadow-sm">
+            <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-100">
+              <img 
+                src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80" 
+                alt="Messy kitchen counter with flour spilled, bowls, whisks, and cooking utensils lying around with no cake" 
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                onerror="this.src='https://placehold.co/800x500/e2e8f0/334155?text=Messy+Kitchen+with+Flour+and+Bowls'"
+              />
+              <div class="absolute top-3 left-3 bg-amber-600 text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow">
+                Process & Aftermath
+              </div>
+              <div class="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md text-white p-3 rounded-xl border border-white/20 text-xs">
+                <span class="font-semibold text-amber-300">Visual Evidence:</span> Flour dust on the surface, mixing bowls and utensils everywhere, but no cake in sight!
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div class="inline-block px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-bold uppercase tracking-wider mb-2">
+                  Present Perfect Continuous
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">"She has been baking."</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                  We look at the <strong>aftermath and signs of the activity</strong>. The kitchen is upside down with flour and utensils. We don't see or mention a finished cake—we are explaining why the kitchen looks this way!
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <span class="flex items-center gap-1.5"><i data-lucide="flame" class="w-4 h-4 text-amber-600"></i> Answers: <em>What caused this state?</em></span>
+                <span class="font-medium text-slate-700">Recent / Ongoing Baking</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick Interactive Contrast Toggle -->
+      <div class="bg-indigo-50/70 border border-indigo-100 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1">
+          <p class="text-sm font-semibold text-indigo-900 flex items-center gap-1.5">
+            <i data-lucide="lightbulb" class="w-4 h-4 text-indigo-600"></i>
+            Key takeaway in one glance:
+          </p>
+          <p class="text-xs sm:text-sm text-indigo-700">
+            <strong>Simple</strong> looks at the <span class="underline decoration-emerald-500 font-semibold text-emerald-800">completed output</span> (How many? How much?). 
+            <strong>Continuous</strong> looks at the <span class="underline decoration-amber-500 font-semibold text-amber-800">unfolding process</span> (How long? Why is there paint on your clothes?).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs uppercase tracking-wider font-bold text-slate-500 bg-slate-200/60 px-3 py-1 rounded-full">
+          Grammar Blueprint
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
+          How the Forms Differ
+        </h2>
+        <p class="text-sm text-slate-600">
+          Switch through the core dimensions of contrast to see formulas, trigger keywords, and practical examples.
+        </p>
+      </div>
+
+      <!-- Interactive tabs for rules -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="flex flex-wrap border-b border-slate-200 bg-slate-50/80 p-1.5 gap-1.5" id="rulesTabContainer">
+          <button onclick="switchTab('result-activity')" class="rule-tab flex-1 min-w-[130px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-center transition bg-white shadow-sm text-brand-700 border border-slate-200" data-target="result-activity">
+            Result vs. Activity
+          </button>
+          <button onclick="switchTab('quantity-duration')" class="rule-tab flex-1 min-w-[130px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-center transition text-slate-600 hover:text-slate-900" data-target="quantity-duration">
+            Quantity vs. Duration
+          </button>
+          <button onclick="switchTab('perm-temp')" class="rule-tab flex-1 min-w-[130px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-center transition text-slate-600 hover:text-slate-900" data-target="perm-temp">
+            Permanent vs. Temporary
+          </button>
+          <button onclick="switchTab('stative')" class="rule-tab flex-1 min-w-[130px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-center transition text-slate-600 hover:text-slate-900" data-target="stative">
+            Stative Verbs Trap
+          </button>
+        </div>
+
+        <div class="p-6 sm:p-8" id="tabContentArea">
+          <!-- Dynamic Tab Content injected by JS below -->
+        </div>
+      </div>
+
+      <!-- Interactive Verb Sandbox Tester -->
+      <div class="glass-card rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200">
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+              <i data-lucide="flask-conical" class="w-5 h-5 text-brand-600"></i>
+              Interactive Verb Sandbox
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Select a verb to instantly test how both forms change meaning and why context decides the winner.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5" id="verbButtons">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <div id="verbDetailsBox" class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamic verb comparison rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <section id="practice-zone" class="space-y-6 pt-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-5">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+            Hands-on Practice
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mt-2">
+            10 Varied Practice Exercises
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            Carefully analyze the clue words, completed actions, side-effects, and verb types.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="resetAllExercises()" class="px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All
+          </button>
+        </div>
+      </div>
+
+      <!-- Exercise Containers (1 to 10) -->
+      <div class="space-y-6" id="exercisesContainer">
+        
+        <!-- EXERCISE 1: Contextual Multiple Choice -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-1">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 1 of 10 &bull; Context Clues</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">The Exhausted Cook</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              "Look at Mark's kitchen! There is flour on his forehead, dirty dishes in the sink, and he looks wiped out. He <span class="underline decoration-indigo-400 font-semibold decoration-2">[cook]</span> all afternoon."
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q1-options">
+            <button onclick="checkMCQ(1, 'A', 'has cooked', false)" class="opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>A)</strong> has cooked</span>
+              <span class="result-icon"></span>
+            </button>
+            <button onclick="checkMCQ(1, 'B', 'has been cooking', true)" class="opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>B)</strong> has been cooking</span>
+              <span class="result-icon"></span>
+            </button>
+          </div>
+          <div id="q1-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 2: Drag & Drop Sorting Category -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 2 of 10 &bull; Categorization</span>
+            <span class="status-indicator text-slate-400 font-medium">Sort all 4 items</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">Classify the Core Focus</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              Click any item below to send it to the category you think it emphasizes: <strong>Finished Result/Quantity</strong> or <strong>Process/Duration</strong>.
+            </p>
+          </div>
+
+          <!-- Pool of items to sort -->
+          <div class="flex flex-wrap gap-2.5 p-3.5 bg-slate-50 rounded-xl border border-slate-200 min-h-[56px]" id="dragPool">
+            <button onclick="selectSortItem(this, 'res')" class="sortable-chip bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg shadow-sm hover:border-brand-500 hover:bg-brand-50 transition cursor-pointer" data-id="1">
+              "I have written 4 essays today."
+            </button>
+            <button onclick="selectSortItem(this, 'dur')" class="sortable-chip bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg shadow-sm hover:border-brand-500 hover:bg-brand-50 transition cursor-pointer" data-id="2">
+              "I have been writing essays all morning."
+            </button>
+            <button onclick="selectSortItem(this, 'res')" class="sortable-chip bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg shadow-sm hover:border-brand-500 hover:bg-brand-50 transition cursor-pointer" data-id="3">
+              "We have repaired the tire."
+            </button>
+            <button onclick="selectSortItem(this, 'dur')" class="sortable-chip bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg shadow-sm hover:border-brand-500 hover:bg-brand-50 transition cursor-pointer" data-id="4">
+              "His hands are covered in grease because he has been repairing cars."
+            </button>
+          </div>
+
+          <!-- Target Buckets -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl border-2 border-dashed border-emerald-300 bg-emerald-50/40 min-h-[120px] flex flex-col justify-between" id="bucketResult" onclick="placeItem('res')">
+              <div>
+                <span class="text-xs font-bold text-emerald-800 uppercase tracking-wide flex items-center gap-1.5">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i> Result / Quantity / Completion
+                </span>
+                <div class="mt-2 space-y-1.5 bucket-items" id="itemsResult"></div>
+              </div>
+              <span class="text-[11px] text-emerald-600 mt-2 block">Click an item above then click here, or tap directly.</span>
+            </div>
+
+            <div class="p-4 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/40 min-h-[120px] flex flex-col justify-between" id="bucketDuration" onclick="placeItem('dur')">
+              <div>
+                <span class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
+                  <i data-lucide="hourglass" class="w-4 h-4"></i> Activity / Duration / Evidence
+                </span>
+                <div class="mt-2 space-y-1.5 bucket-items" id="itemsDuration"></div>
+              </div>
+              <span class="text-[11px] text-amber-600 mt-2 block">Click an item above then click here, or tap directly.</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="validateSortingExercise()" class="px-4 py-2 bg-slate-900 text-white text-xs sm:text-sm font-semibold rounded-xl hover:bg-slate-800 transition">
+              Check Placements
+            </button>
+            <button onclick="resetSortingExercise()" class="px-3 py-2 text-xs font-medium text-slate-500 hover:text-slate-800">
+              Reset Sorting
+            </button>
+          </div>
+          <div id="q2-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 3: Fill-in-the-blank typing with intelligent check -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 3 of 10 &bull; Sentence Completion</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">How many books?</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              "How many chapters <span class="font-mono text-brand-600 font-semibold">(you / read)</span> so far today?"
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+            <input 
+              type="text" 
+              id="q3-input" 
+              placeholder="Type verb phrase here (e.g. have you read)" 
+              class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm font-mono"
+              onkeydown="if(event.key==='Enter') checkTyping(3)"
+            />
+            <button onclick="checkTyping(3)" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition">
+              Submit Answer
+            </button>
+          </div>
+          <div id="q3-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 4: Spot the Error in Sentence -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-4">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 4 of 10 &bull; Spot The Error</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">Identify the Broken Grammar</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              One of the highlighted parts contains a grammatical flaw based on the rules we studied. Click on the error.
+            </p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm sm:text-base leading-loose">
+            "I 
+            <button onclick="selectErrorPart(this, false, 4)" class="err-part px-2 py-1 mx-1 rounded border border-slate-300 hover:bg-slate-200 font-medium transition">
+              have been knowing
+            </button>
+            Julian for twelve years, and we
+            <button onclick="selectErrorPart(this, true, 4)" class="err-part px-2 py-1 mx-1 rounded border border-slate-300 hover:bg-slate-200 font-medium transition">
+              have always supported
+            </button>
+            each other."
+          </div>
+          <div id="q4-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 5: Which Scenario Fits? -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 5 of 10 &bull; Scenario Matching</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">"Someone has eaten my chocolates!" vs "Someone has been eating my chocolates!"</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              Which situation correctly corresponds to: <strong class="text-slate-900">"Someone has been eating my chocolates!"</strong>?
+            </p>
+          </div>
+          <div class="space-y-2.5" id="q5-options">
+            <button onclick="checkScenario(5, 'A', false)" class="opt-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>A)</strong> The box is completely empty; not a single chocolate is left.</span>
+              <span class="result-icon"></span>
+            </button>
+            <button onclick="checkScenario(5, 'B', true)" class="opt-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>B)</strong> Half the chocolates are gone, and sweet wrappers are scattered on the table.</span>
+              <span class="result-icon"></span>
+            </button>
+          </div>
+          <div id="q5-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 6: Complete with Type-In (Duration vs Result) -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-6">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 6 of 10 &bull; Formulation</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">The Continuous Waiting Game</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              "I am soaking wet because I <span class="font-mono text-brand-600 font-semibold">(wait)</span> at the bus stop for forty minutes."
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+            <input 
+              type="text" 
+              id="q6-input" 
+              placeholder="Type verb form here (e.g. have waited / have been waiting)" 
+              class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm font-mono"
+              onkeydown="if(event.key==='Enter') checkTyping(6)"
+            />
+            <button onclick="checkTyping(6)" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition">
+              Submit Answer
+            </button>
+          </div>
+          <div id="q6-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 7: Interactive Tile Placement -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-7">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 7 of 10 &bull; Interactive Tile Insertion</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">The Broken Glass</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              Click the correct tile below to complete the sentence naturally:
+            </p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm sm:text-base">
+            "Be careful with that glass! You 
+            <span id="q7-slot" class="inline-block min-w-[140px] text-center px-3 py-1 mx-1 border-b-2 border-brand-500 bg-white rounded font-semibold text-brand-700">[Select tile below]</span> 
+            three cups this week!"
+          </div>
+          <div class="flex flex-wrap gap-2.5 pt-2" id="q7-tiles">
+            <button onclick="placeTileQ7('have been breaking', false)" class="tile-btn px-4 py-2 bg-white border border-slate-300 hover:border-brand-500 text-xs sm:text-sm font-medium rounded-xl transition shadow-sm">
+              have been breaking
+            </button>
+            <button onclick="placeTileQ7('have broken', true)" class="tile-btn px-4 py-2 bg-white border border-slate-300 hover:border-brand-500 text-xs sm:text-sm font-medium rounded-xl transition shadow-sm">
+              have broken
+            </button>
+          </div>
+          <div id="q7-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 8: Nuance Challenge -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-8">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 8 of 10 &bull; Semantic Nuance</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">Temporary vs. Permanent Habit</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              Elena says: <em>"I usually live in Madrid, but I <span class="underline decoration-indigo-400 font-semibold">[live]</span> with my sister in London until my apartment is ready."</em> Which option highlights this temporary arrangement?
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q8-options">
+            <button onclick="checkMCQ(8, 'A', 'have lived', false)" class="opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>A)</strong> have lived</span>
+              <span class="result-icon"></span>
+            </button>
+            <button onclick="checkMCQ(8, 'B', 'have been living', true)" class="opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>B)</strong> have been living</span>
+              <span class="result-icon"></span>
+            </button>
+          </div>
+          <div id="q8-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 9: Stative Verbs Trap -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-9">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 9 of 10 &bull; The Stative Rule</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">Belongings & States</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              "They <span class="font-mono text-brand-600 font-semibold">(own)</span> that vintage convertible since 2015."
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q9-options">
+            <button onclick="checkMCQ(9, 'A', 'have been owning', false)" class="opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>A)</strong> have been owning</span>
+              <span class="result-icon"></span>
+            </button>
+            <button onclick="checkMCQ(9, 'B', 'have owned', true)" class="opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>B)</strong> have owned</span>
+              <span class="result-icon"></span>
+            </button>
+          </div>
+          <div id="q9-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+        <!-- EXERCISE 10: Dialogue Reconstruction -->
+        <div class="exercise-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4" id="ex-card-10">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-brand-600 uppercase tracking-wider">Exercise 10 of 10 &bull; Interactive Synthesis</span>
+            <span class="status-indicator text-slate-400 font-medium">Unanswered</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900">Dialogue Analysis</h4>
+            <p class="text-sm text-slate-600 mt-1">
+              <strong>Alex:</strong> "You look really out of breath!" <br>
+              <strong>Sam:</strong> "Yes, I <em>_______</em> in the park. But luckily, I <em>_______</em> my 5-kilometer target!"
+            </p>
+          </div>
+          <div class="space-y-2.5" id="q10-options">
+            <button onclick="checkMCQ(10, 'A', 'have run / have been finishing', false)" class="opt-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>A)</strong> have run / have been finishing</span>
+              <span class="result-icon"></span>
+            </button>
+            <button onclick="checkMCQ(10, 'B', 'have been running / have reached', true)" class="opt-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>B)</strong> have been running / have reached</span>
+              <span class="result-icon"></span>
+            </button>
+            <button onclick="checkMCQ(10, 'C', 'have run / have reached', false)" class="opt-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between">
+              <span><strong>C)</strong> have run / have reached</span>
+              <span class="result-icon"></span>
+            </button>
+          </div>
+          <div id="q10-explanation" class="hidden text-xs sm:text-sm p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-lg space-y-6">
+      <div class="max-w-2xl">
+        <span class="text-xs uppercase font-bold tracking-widest text-indigo-400 bg-indigo-900/60 px-3 py-1 rounded-full border border-indigo-700">
+          Cheat Sheet
+        </span>
+        <h3 class="text-2xl font-bold font-display mt-3">Quick Decision Tree</h3>
+        <p class="text-slate-300 text-sm mt-1">
+          When in doubt during speaking or writing, ask yourself these 3 diagnostic questions:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div class="bg-white/10 rounded-2xl p-5 border border-white/10 backdrop-blur-sm">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm mb-3">1</div>
+          <h4 class="font-bold text-base text-white">Is there a number/quantity?</h4>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            If you mention <em>how many cups, books, miles, or times</em>, choose <strong>Present Perfect Simple</strong>.
+          </p>
+        </div>
+
+        <div class="bg-white/10 rounded-2xl p-5 border border-white/10 backdrop-blur-sm">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm mb-3">2</div>
+          <h4 class="font-bold text-base text-white">Is it a Stative Verb?</h4>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            Verbs of thinking, emotion, and possession (<em>know, believe, like, have</em>) cannot be continuous in this context. Use <strong>Simple</strong>.
+          </p>
+        </div>
+
+        <div class="bg-white/10 rounded-2xl p-5 border border-white/10 backdrop-blur-sm">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-sm mb-3">3</div>
+          <h4 class="font-bold text-base text-white">Explaining Present Clues?</h4>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            Tired eyes, muddy boots, wet hair, smelling of smoke? The recent <strong>Continuous</strong> activity explains the present condition!
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-16 border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 space-y-1">
+      <p class="font-medium text-slate-700">Present Perfect Interactive Exploration</p>
+      <p class="italic text-slate-400">Designed by Babak Alaee</p>
+    </div>
+  </footer>
+
+  <script>
+    // State management
+    const state = {
+      score: 0,
+      answered: {
+        1: false, 2: false, 3: false, 4: false, 5: false,
+        6: false, 7: false, 8: false, 9: false, 10: false
+      },
+      selectedSortChip: null
+    };
+
+    // Tab definitions for the Grammar Matrix
+    const rulesData = {
+      'result-activity': {
+        title: 'Result vs. Activity (Outcome vs. Process)',
+        simpleTitle: 'Present Perfect Simple: Focus on Result',
+        simpleDesc: 'Emphasizes that an action is accomplished. The result is what matters right now.',
+        simpleExample: '"I have repaired the car." (The car runs now; the repair is complete.)',
+        simpleFormula: 'Subject + have / has + Past Participle (V3)',
+        contTitle: 'Present Perfect Continuous: Focus on Activity',
+        contDesc: 'Emphasizes the duration or process of the action. It may or may not be finished.',
+        contExample: '"I have been repairing the car." (That explains why my hands are greasy; the car might still need work.)',
+        contFormula: 'Subject + have / has + been + Verb-ing'
+      },
+      'quantity-duration': {
+        title: 'How much / How many vs. How long',
+        simpleTitle: 'Simple = "How many? How much? How often?"',
+        simpleDesc: 'Whenever you state completed quantities, counts, or frequencies, you must use the simple form.',
+        simpleExample: '"She has written 5 chapters." / "He has called three times."',
+        simpleFormula: 'How many times / How much accomplished',
+        contTitle: 'Continuous = "How long?"',
+        contDesc: 'Focuses on the ongoing passage of time from past until now without focusing on how many units were finished.',
+        contExample: '"She has been writing for four hours." / "He has been calling all morning."',
+        contFormula: 'for [duration] / since [point in time] / all day'
+      },
+      'perm-temp': {
+        title: 'Permanent Habit vs. Temporary Situation',
+        simpleTitle: 'Simple = Permanent / Long-term state',
+        simpleDesc: 'Used for things seen as stable, permanent facts of life over extended time.',
+        simpleExample: '"My parents have lived in this village their whole lives."',
+        simpleFormula: 'Habitual or long-standing reality',
+        contTitle: 'Continuous = Temporary / Short-term phase',
+        contDesc: 'Used for temporary periods, new routines, or arrangements that are not expected to last forever.',
+        contExample: '"I have been staying with friends while looking for a flat."',
+        contFormula: 'Temporary, recent, or unusual pattern'
+      },
+      'stative': {
+        title: 'The Stative Verbs Trap',
+        simpleTitle: 'Stative Verbs MUST use Simple',
+        simpleDesc: 'Verbs of feeling, mental state, sense, and possession are rarely used in continuous tenses. Even when answering "how long", you must use the Simple form.',
+        simpleExample: '"I have known Mark since childhood." (NOT: I have been knowing...)',
+        simpleFormula: 'know, believe, belong, like, understand, exist, have (possession)',
+        contTitle: 'Dynamic Action Verbs can take both',
+        contDesc: 'Physical or cognitive actions that take energy and time can freely appear in the continuous form.',
+        contExample: '"I have been learning English." (Learn is dynamic; know is stative.)',
+        contFormula: 'read, paint, run, wait, work, cook, study'
+      }
+    };
+
+    // Verb tester database
+    const verbDatabase = {
+      'paint': {
+        name: 'paint',
+        simple: 'She has painted three rooms this week.',
+        simpleNote: 'Completed output (3 finished rooms).',
+        cont: 'She has been painting all morning.',
+        contNote: 'Process and spent time; clothes have paint on them.'
+      },
+      'read': {
+        name: 'read',
+        simple: 'I have read that novel twice.',
+        simpleNote: 'Finished accomplishment and frequency (twice).',
+        cont: 'I have been reading that novel for two hours.',
+        contNote: 'Activity still in progress; describes what you spent time doing.'
+      },
+      'wait': {
+        name: 'wait',
+        simple: 'I have waited, but nobody came.',
+        simpleNote: 'Completed period of waiting.',
+        cont: 'I have been waiting here in the cold for 40 minutes!',
+        contNote: 'Emphasizes patience, irritation, and continuous duration.'
+      },
+      'know': {
+        name: 'know (Stative)',
+        simple: 'We have known each other for a decade.',
+        simpleNote: 'Correct. Stative verb showing a mental relationship.',
+        cont: 'Incorrect: *We have been knowing each other...*',
+        contNote: '"Know" cannot take continuous when expressing relationship.'
+      },
+      'work': {
+        name: 'work',
+        simple: 'She has worked here for 20 years.',
+        simpleNote: 'Seen as a long-term, permanent career.',
+        cont: 'She has been working on this project all night.',
+        contNote: 'Temporary, intense recent effort; explains tiredness.'
+      }
+    };
+
+    function switchTab(tabKey) {
+      // update tab buttons visual
+      document.querySelectorAll('.rule-tab').forEach(btn => {
+        if (btn.getAttribute('data-target') === tabKey) {
+          btn.className = 'rule-tab flex-1 min-w-[130px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-center transition bg-white shadow-sm text-brand-700 border border-slate-200';
+        } else {
+          btn.className = 'rule-tab flex-1 min-w-[130px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-center transition text-slate-600 hover:text-slate-900';
+        }
+      });
+
+      const data = rulesData[tabKey];
+      const container = document.getElementById('tabContentArea');
+
+      container.innerHTML = `
+        <div class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">${data.title}</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3">
+            <div class="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200/80 space-y-3">
+              <span class="text-xs font-bold text-emerald-800 uppercase tracking-wide inline-flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> ${data.simpleTitle}
+              </span>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${data.simpleDesc}</p>
+              <div class="p-3 bg-white rounded-xl border border-emerald-200 text-xs sm:text-sm font-medium text-slate-800">
+                ${data.simpleExample}
+              </div>
+              <div class="text-[11px] font-mono text-emerald-700 bg-emerald-100/60 px-2.5 py-1 rounded inline-block">
+                ${data.simpleFormula}
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-amber-50/50 border border-amber-200/80 space-y-3">
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-wide inline-flex items-center gap-1.5">
+                <i data-lucide="activity" class="w-4 h-4 text-amber-600"></i> ${data.contTitle}
+              </span>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${data.contDesc}</p>
+              <div class="p-3 bg-white rounded-xl border border-amber-200 text-xs sm:text-sm font-medium text-slate-800">
+                ${data.contExample}
+              </div>
+              <div class="text-[11px] font-mono text-amber-700 bg-amber-100/60 px-2.5 py-1 rounded inline-block">
+                ${data.contFormula}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function renderVerbTester() {
+      const btnContainer = document.getElementById('verbButtons');
+      btnContainer.innerHTML = '';
+      const verbs = Object.keys(verbDatabase);
+
+      verbs.forEach((key, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = key;
+        btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition ${
+          index === 0 ? 'bg-brand-600 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+        }`;
+        btn.onclick = () => selectVerb(key, btn);
+        btnContainer.appendChild(btn);
+      });
+
+      selectVerb(verbs[0], btnContainer.children[0]);
+    }
+
+    function selectVerb(verbKey, activeBtn) {
+      document.querySelectorAll('#verbButtons button').forEach(b => {
+        b.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition bg-slate-100 hover:bg-slate-200 text-slate-700';
+      });
+      if (activeBtn) {
+        activeBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition bg-brand-600 text-white shadow-sm';
+      }
+
+      const item = verbDatabase[verbKey];
+      const box = document.getElementById('verbDetailsBox');
+
+      box.innerHTML = `
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Simple Form</span>
+          <p class="text-sm font-semibold text-slate-900">${item.simple}</p>
+          <p class="text-xs text-slate-600">${item.simpleNote}</p>
+        </div>
+        <div class="p-4 rounded-xl bg-indigo-50/50 border border-indigo-200 space-y-2">
+          <span class="text-xs font-bold text-indigo-700 uppercase tracking-wider">Continuous Form</span>
+          <p class="text-sm font-semibold text-indigo-950">${item.cont}</p>
+          <p class="text-xs text-indigo-800">${item.contNote}</p>
+        </div>
+      `;
+    }
+
+    function updateScoreDisplay() {
+      const count = Object.values(state.answered).filter(v => v === true).length;
+      document.getElementById('overallScore').textContent = count;
+    }
+
+    // MCQ Checker (Q1, Q8, Q9, Q10)
+    function checkMCQ(qNum, choice, phrase, isCorrect) {
+      const card = document.getElementById(`ex-card-${qNum}`);
+      const explanation = document.getElementById(`q${qNum}-explanation`);
+      const buttons = card.querySelectorAll('.opt-btn');
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.remove('hover:border-brand-500', 'hover:bg-brand-50/50');
+      });
+
+      const selectedBtn = event.currentTarget;
+
+      if (isCorrect) {
+        selectedBtn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+        selectedBtn.querySelector('.result-icon').innerHTML = '<i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>';
+        if (!state.answered[qNum]) {
+          state.answered[qNum] = true;
+          updateScoreDisplay();
+        }
+        card.querySelector('.status-indicator').textContent = 'Correct';
+        card.querySelector('.status-indicator').className = 'status-indicator text-emerald-600 font-bold';
+      } else {
+        selectedBtn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-900');
+        selectedBtn.querySelector('.result-icon').innerHTML = '<i data-lucide="x" class="w-4 h-4 text-rose-600"></i>';
+        card.querySelector('.status-indicator').textContent = 'Review & Retry';
+        card.querySelector('.status-indicator').className = 'status-indicator text-rose-600 font-bold';
+      }
+
+      // Detailed explanations
+      const explanations = {
+        1: "<strong>Explanation:</strong> The visual and physical clues (flour on his forehead, dirty dishes, being exhausted) describe the visible side-effects of an activity. Therefore, <em>'has been cooking'</em> is the correct form.",
+        8: "<strong>Explanation:</strong> <em>'Have been living'</em> emphasizes a temporary, current arrangement contrasting with her normal life in Madrid.",
+        9: "<strong>Explanation:</strong> <em>'Own'</em> is a stative verb expressing possession. Stative verbs do not normally take continuous tenses, so <em>'have owned'</em> is strictly required.",
+        10: "<strong>Explanation:</strong> <em>'Have been running'</em> explains being out of breath (recent activity), whereas reaching the 5-kilometer target is a completed outcome (<em>'have reached'</em>)."
+      };
+
+      explanation.innerHTML = explanations[qNum] || '';
+      explanation.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Exercise 2: Interactive Categorization
+    let selectedSortBtn = null;
+    let selectedType = null;
+
+    function selectSortItem(btn, type) {
+      if (selectedSortBtn) {
+        selectedSortBtn.classList.remove('ring-2', 'ring-brand-500');
+      }
+      selectedSortBtn = btn;
+      selectedType = type;
+      btn.classList.add('ring-2', 'ring-brand-500');
+    }
+
+    function placeItem(bucketType) {
+      if (!selectedSortBtn) return;
+      const targetBucket = bucketType === 'res' ? document.getElementById('itemsResult') : document.getElementById('itemsDuration');
+      
+      // Store user placement on the element
+      selectedSortBtn.dataset.userPlaced = bucketType;
+      selectedSortBtn.classList.remove('ring-2', 'ring-brand-500');
+      targetBucket.appendChild(selectedSortBtn);
+      selectedSortBtn = null;
+    }
+
+    function validateSortingExercise() {
+      const pool = document.getElementById('dragPool');
+      const resultBucket = document.getElementById('itemsResult');
+      const durationBucket = document.getElementById('itemsDuration');
+      const explanation = document.getElementById('q2-explanation');
+      const card = document.getElementById('ex-card-2');
+
+      const allItems = document.querySelectorAll('.sortable-chip');
+      let allCorrect = true;
+      let countPlaced = 0;
+
+      allItems.forEach(chip => {
+        const correctType = chip.getAttribute('onclick').includes("'res'") ? 'res' : 'dur';
+        const userPlaced = chip.dataset.userPlaced;
+
+        if (!userPlaced) {
+          allCorrect = false;
+        } else {
+          countPlaced++;
+          if (userPlaced === correctType) {
+            chip.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+            chip.classList.remove('border-rose-400', 'bg-rose-50');
+          } else {
+            allCorrect = false;
+            chip.classList.add('border-rose-400', 'bg-rose-50', 'text-rose-900');
+          }
+        }
+      });
+
+      if (countPlaced < 4) {
+        explanation.innerHTML = "<strong>Please place all 4 sentences</strong> into one of the two boxes before checking!";
+        explanation.classList.remove('hidden');
+        return;
+      }
+
+      if (allCorrect) {
+        if (!state.answered[2]) {
+          state.answered[2] = true;
+          updateScoreDisplay();
+        }
+        card.querySelector('.status-indicator').textContent = 'All Correct!';
+        card.querySelector('.status-indicator').className = 'status-indicator text-emerald-600 font-bold';
+        explanation.innerHTML = "<strong>Well done!</strong> '4 essays' and 'repaired the tire' focus on completed achievements/quantities (Simple). 'Writing all morning' and 'greasy hands from repairing' focus on duration and ongoing physical evidence (Continuous).";
+      } else {
+        card.querySelector('.status-indicator').textContent = 'Some errors found';
+        card.querySelector('.status-indicator').className = 'status-indicator text-rose-600 font-bold';
+        explanation.innerHTML = "<strong>Notice:</strong> Items with numbers or completed states belong in the Result box. Items describing time spans (all morning) or side effects belong in the Duration box.";
+      }
+      explanation.classList.remove('hidden');
+    }
+
+    function resetSortingExercise() {
+      const pool = document.getElementById('dragPool');
+      document.querySelectorAll('.sortable-chip').forEach(chip => {
+        chip.className = 'sortable-chip bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg shadow-sm hover:border-brand-500 hover:bg-brand-50 transition cursor-pointer';
+        delete chip.dataset.userPlaced;
+        pool.appendChild(chip);
+      });
+      document.getElementById('q2-explanation').classList.add('hidden');
+      document.getElementById('ex-card-2').querySelector('.status-indicator').textContent = 'Sort all 4 items';
+      document.getElementById('ex-card-2').querySelector('.status-indicator').className = 'status-indicator text-slate-400 font-medium';
+    }
+
+    // Exercise 3 & 6: Fill-in-the-blank typing
+    function checkTyping(qNum) {
+      const input = document.getElementById(`q${qNum}-input`);
+      const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+      const card = document.getElementById(`ex-card-${qNum}`);
+      const explanation = document.getElementById(`q${qNum}-explanation`);
+
+      let correctAnswers = [];
+      let explText = '';
+
+      if (qNum === 3) {
+        correctAnswers = ['have you read', 'have you been reading'];
+        // specifically test for "have you read" because of "how many chapters"
+        if (val === 'have you read') {
+          handleTypingSuccess(3, card, explanation, "<strong>Spot on!</strong> With 'How many chapters', we ask about completed quantities, so <em>'have you read'</em> is the correct choice.");
+        } else if (val === 'have you been reading') {
+          handleTypingError(3, card, explanation, "Remember: When we specify <strong>'how many'</strong> (chapters), we focus on the quantity completed, which requires Present Perfect Simple: <em>have you read</em>.");
+        } else {
+          handleTypingError(3, card, explanation, "Look closely at the question: <em>How many chapters [you / read]...?</em>. Target: <strong>have you read</strong>.");
+        }
+      } else if (qNum === 6) {
+        if (val === 'have been waiting' || val === "'ve been waiting") {
+          handleTypingSuccess(6, card, explanation, "<strong>Excellent!</strong> Waiting for forty minutes is a duration that explains your current condition (soaking wet). <em>'have been waiting'</em> is ideal.");
+        } else {
+          handleTypingError(6, card, explanation, "Consider the duration ('for forty minutes') and present symptom ('soaking wet'). Target: <strong>have been waiting</strong>.");
+        }
+      }
+    }
+
+    function handleTypingSuccess(qNum, card, explanation, msg) {
+      if (!state.answered[qNum]) {
+        state.answered[qNum] = true;
+        updateScoreDisplay();
+      }
+      card.querySelector('.status-indicator').textContent = 'Correct';
+      card.querySelector('.status-indicator').className = 'status-indicator text-emerald-600 font-bold';
+      explanation.innerHTML = msg;
+      explanation.classList.remove('hidden');
+    }
+
+    function handleTypingError(qNum, card, explanation, msg) {
+      card.querySelector('.status-indicator').textContent = 'Try again';
+      card.querySelector('.status-indicator').className = 'status-indicator text-rose-600 font-bold';
+      explanation.innerHTML = msg;
+      explanation.classList.remove('hidden');
+    }
+
+    // Exercise 4: Spot the Error
+    function selectErrorPart(btn, isCorrectAnswer, qNum) {
+      const card = document.getElementById(`ex-card-${qNum}`);
+      const explanation = document.getElementById(`q${qNum}-explanation`);
+      
+      card.querySelectorAll('.err-part').forEach(b => {
+        b.classList.remove('bg-rose-100', 'border-rose-500', 'bg-emerald-100', 'border-emerald-500');
+      });
+
+      if (!isCorrectAnswer) { // Clicked "have been knowing" (which is indeed the faulty part)
+        btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900');
+        if (!state.answered[qNum]) {
+          state.answered[qNum] = true;
+          updateScoreDisplay();
+        }
+        card.querySelector('.status-indicator').textContent = 'Correctly Identified!';
+        card.querySelector('.status-indicator').className = 'status-indicator text-emerald-600 font-bold';
+        explanation.innerHTML = "<strong>Identified!</strong> <em>'have been knowing'</em> is wrong because <em>know</em> is a stative verb. It must be <strong>'have known'</strong>.";
+      } else {
+        btn.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900');
+        card.querySelector('.status-indicator').textContent = 'Not that one';
+        card.querySelector('.status-indicator').className = 'status-indicator text-rose-600 font-bold';
+        explanation.innerHTML = "<strong>'have always supported'</strong> is standard and correct. Look at the other verb: Can we use continuous with <em>know</em>?";
+      }
+      explanation.classList.remove('hidden');
+    }
+
+    // Exercise 5: Scenario Matching
+    function checkScenario(qNum, choice, isCorrect) {
+      const card = document.getElementById(`ex-card-${qNum}`);
+      const explanation = document.getElementById(`q${qNum}-explanation`);
+      const buttons = card.querySelectorAll('.opt-btn');
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.remove('hover:border-brand-500', 'hover:bg-brand-50/50');
+      });
+
+      const selectedBtn = event.currentTarget;
+
+      if (isCorrect) {
+        selectedBtn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+        selectedBtn.querySelector('.result-icon').innerHTML = '<i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>';
+        if (!state.answered[qNum]) {
+          state.answered[qNum] = true;
+          updateScoreDisplay();
+        }
+        card.querySelector('.status-indicator').textContent = 'Correct';
+        card.querySelector('.status-indicator').className = 'status-indicator text-emerald-600 font-bold';
+        explanation.innerHTML = "<strong>Exactly:</strong> <em>'Someone has been eating...'</em> highlights the ongoing activity or visible traces (wrappers, some still remaining). If all were gone, you'd say: <em>'Someone has eaten my chocolates!'</em>";
+      } else {
+        selectedBtn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-900');
+        selectedBtn.querySelector('.result-icon').innerHTML = '<i data-lucide="x" class="w-4 h-4 text-rose-600"></i>';
+        card.querySelector('.status-indicator').textContent = 'Incorrect';
+        card.querySelector('.status-indicator').className = 'status-indicator text-rose-600 font-bold';
+        explanation.innerHTML = "If the box is completely empty, the action is 100% finished with a complete result: <em>Someone has eaten my chocolates</em>.";
+      }
+      explanation.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Exercise 7: Tile placement
+    function placeTileQ7(text, isCorrect) {
+      const slot = document.getElementById('q7-slot');
+      const card = document.getElementById('ex-card-7');
+      const explanation = document.getElementById('q7-explanation');
+
+      slot.textContent = text;
+
+      if (isCorrect) {
+        slot.className = 'inline-block min-w-[140px] text-center px-3 py-1 mx-1 border-b-2 border-emerald-500 bg-emerald-50 text-emerald-800 rounded font-semibold';
+        if (!state.answered[7]) {
+          state.answered[7] = true;
+          updateScoreDisplay();
+        }
+        card.querySelector('.status-indicator').textContent = 'Correct';
+        card.querySelector('.status-indicator').className = 'status-indicator text-emerald-600 font-bold';
+        explanation.innerHTML = "<strong>Correct:</strong> 'Three cups' is a specific quantity completed. We do not use continuous with numbers of items produced or destroyed.";
+      } else {
+        slot.className = 'inline-block min-w-[140px] text-center px-3 py-1 mx-1 border-b-2 border-rose-500 bg-rose-50 text-rose-800 rounded font-semibold';
+        card.querySelector('.status-indicator').textContent = 'Incorrect';
+        card.querySelector('.status-indicator').className = 'status-indicator text-rose-600 font-bold';
+        explanation.innerHTML = "Because we say <strong>'three cups'</strong>, we are counting occurrences. Quantity requires Present Perfect Simple: <em>'have broken'</em>.";
+      }
+      explanation.classList.remove('hidden');
+    }
+
+    // Global Reset
+    function resetAllExercises() {
+      // reset score and states
+      for (let i = 1; i <= 10; i++) {
+        state.answered[i] = false;
+        const explanation = document.getElementById(`q${i}-explanation`);
+        if (explanation) {
+          explanation.classList.add('hidden');
+          explanation.innerHTML = '';
+        }
+        const card = document.getElementById(`ex-card-${i}`);
+        if (card) {
+          const indicator = card.querySelector('.status-indicator');
+          if (indicator) {
+            indicator.textContent = 'Unanswered';
+            indicator.className = 'status-indicator text-slate-400 font-medium';
+          }
+          // enable all option buttons
+          card.querySelectorAll('.opt-btn').forEach(btn => {
+            btn.disabled = false;
+            btn.className = 'opt-btn text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 text-sm font-medium transition flex items-center justify-between';
+            const icon = btn.querySelector('.result-icon');
+            if (icon) icon.innerHTML = '';
+          });
+          // clear text inputs
+          const input = card.querySelector('input[type="text"]');
+          if (input) input.value = '';
+        }
+      }
+
+      // specific resets
+      resetSortingExercise();
+
+      // reset tile Q7
+      const slot7 = document.getElementById('q7-slot');
+      if (slot7) {
+        slot7.textContent = '[Select tile below]';
+        slot7.className = 'inline-block min-w-[140px] text-center px-3 py-1 mx-1 border-b-2 border-brand-500 bg-white rounded font-semibold text-brand-700';
+      }
+
+      // reset error picking Q4
+      document.querySelectorAll('#ex-card-4 .err-part').forEach(b => {
+        b.className = 'err-part px-2 py-1 mx-1 rounded border border-slate-300 hover:bg-slate-200 font-medium transition';
+      });
+
+      updateScoreDisplay();
+      lucide.createIcons();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      switchTab('result-activity');
+      renderVerbTester();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
