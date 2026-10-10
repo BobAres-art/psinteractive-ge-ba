@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering the Passive Voice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .slot-transition {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes dropDownGlow {
+      0% { transform: translateY(-8px); opacity: 0.4; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .animate-drop {
+      animation: dropDownGlow 0.4s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
+
+  <header class="border-b border-slate-200/80 bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-600 text-white font-black text-sm shadow-md shadow-indigo-150">
+            P
+          </span>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+            Mastering the Passive Voice
+          </h1>
+        </div>
+        <p class="text-xs font-medium text-slate-500 mt-0.5 pl-10">
+          Designed by <span class="text-indigo-600 font-semibold">Babak Alaee</span>
+        </p>
+      </div>
+
+      <nav class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl text-xs sm:text-sm font-semibold">
+        <a href="#morph-lab" class="px-3 py-1.5 rounded-lg text-indigo-700 bg-white shadow-sm transition-all">Morph Lab</a>
+        <a href="#quick-matrix" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all">Form Summary</a>
+        <a href="#practice-arena" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all">Practice (5)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-10">
+
+    <section id="morph-lab" class="scroll-mt-20 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-1">
+            <span>⚡</span> Interactive Laboratory
+          </div>
+          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Active to Passive Morph Lab</h2>
+        </div>
+
+        <!-- Tense selector pills -->
+        <div class="flex flex-wrap items-center gap-1.5 p-1.5 bg-white rounded-2xl border border-slate-200 shadow-sm" id="morph-tense-pills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Main Bright Interactive Studio -->
+      <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-100 p-5 sm:p-8 space-y-6">
+
+        <!-- Controls toolbar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Step Progress:</span>
+            <div class="flex items-center gap-1.5" id="morph-step-indicators">
+              <!-- Dots injected by JS -->
+            </div>
+            <span class="text-xs font-mono font-bold text-indigo-600 ml-1" id="step-counter-text">Step 0/4</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="prevMorphStep()" id="btn-morph-prev" class="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none transition">
+              ← Back
+            </button>
+            <button onclick="nextMorphStep()" id="btn-morph-next" class="px-4 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow-sm transition">
+              Next Movement →
+            </button>
+            <button onclick="resetMorphStep()" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-700 transition">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Simultaneous Active and Passive Visual Planes -->
+        <div class="space-y-4">
+          
+          <!-- TOP PLANE: Active Sentence -->
+          <div class="bg-slate-50/90 rounded-2xl p-4 sm:p-5 border border-slate-200/80">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-slate-400"></span> Active Sentence (Top Plane)
+              </span>
+              <span class="text-xs font-mono text-slate-400" id="morph-active-tense-label">Present Simple</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono-code text-sm sm:text-base font-semibold" id="active-slots-container">
+              <!-- Active Slots injected here -->
+            </div>
+          </div>
+
+          <!-- Dynamic Direction Flow Indicator -->
+          <div class="flex items-center justify-center py-0.5">
+            <div class="flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-50/80 border border-indigo-100 text-indigo-700 text-xs font-bold tracking-wide">
+              <span>↓ Object moves down into Subject position & verb expands</span>
+            </div>
+          </div>
+
+          <!-- BOTTOM PLANE: Passive Sentence Building -->
+          <div class="bg-gradient-to-b from-indigo-50/50 to-white rounded-2xl p-4 sm:p-5 border-2 border-indigo-200/80 shadow-inner">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-700 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-indigo-600 animate-ping"></span> Passive Sentence (Bottom Plane)
+              </span>
+              <span class="text-xs font-mono font-semibold text-indigo-600" id="morph-passive-formula-badge">am/is/are + V3</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5 font-mono-code text-sm sm:text-base font-semibold" id="passive-slots-container">
+              <!-- Passive Slots injected here -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Live Step Explanation Box (Concise) -->
+        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 flex items-start gap-3.5">
+          <div class="w-7 h-7 rounded-xl bg-indigo-600 text-white font-bold text-xs flex items-center justify-center shrink-0" id="live-step-badge">
+            0
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900" id="live-step-title">Initial Active State</div>
+            <p class="text-xs text-slate-600 mt-0.5 leading-relaxed" id="live-step-desc">
+              Notice the subject doing the action directly to the object. Click 'Next Movement' to begin shifting into passive.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="quick-matrix" class="scroll-mt-20 space-y-4">
+      <div class="border-b border-slate-200 pb-3">
+        <h2 class="text-xl font-bold text-slate-900 tracking-tight">Form Quick Reference</h2>
+        <p class="text-xs text-slate-500 mt-0.5">Concise summary of the auxiliary formulas across all 5 tenses.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3" id="quick-cards-grid">
+        <!-- Rendered compactly via JS -->
+      </div>
+    </section>
+
+    <section id="practice-arena" class="scroll-mt-20 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
+        <div>
+          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Practice Arena</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Type the passive counterpart for each sentence. Answers are strictly concealed until verified.</p>
+        </div>
+        <div class="flex items-center gap-3 bg-white px-3.5 py-2 rounded-2xl border border-slate-200 shadow-sm text-xs">
+          <span class="font-bold text-slate-500">Solved:</span>
+          <div class="flex items-center gap-1.5" id="practice-score-dots">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="dot-0"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="dot-1"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="dot-2"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="dot-3"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-300" id="dot-4"></span>
+          </div>
+          <span class="font-bold text-indigo-700 font-mono ml-1" id="practice-score-text">0 / 5</span>
+        </div>
+      </div>
+
+      <div class="space-y-4" id="practice-cards-list">
+        <!-- 5 exercise cards injected here -->
+      </div>
+
+      <!-- Completion Celebration Card -->
+      <div id="practice-completion-banner" class="hidden bg-emerald-600 text-white rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-lg">
+        <div class="text-3xl">✨ 5/5 Completed!</div>
+        <p class="text-xs sm:text-sm text-emerald-100 max-w-md mx-auto">
+          You have accurately converted all five tenses into their passive forms.
+        </p>
+        <button onclick="resetAllExercises()" class="px-5 py-2 bg-white text-emerald-800 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow">
+          Reset All Exercises
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white mt-12 py-5 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-1.5">
+      <p>Mastering the Passive Voice</p>
+      <p class="font-medium">Designed by <span class="text-slate-800 font-semibold">Babak Alaee</span></p>
+    </div>
+  </footer>
+
+  <div id="toast-bar" class="fixed bottom-5 right-5 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center px-4 py-2.5 rounded-2xl shadow-lg border text-xs font-semibold"></div>
+
+  <script>
+    // Data definition for all 5 requested tenses
+    const TENSES = {
+      pres_simp: {
+        id: "pres_simp",
+        title: "Present Simple",
+        shortFormula: "am / is / are + V3",
+        active: {
+          subj: "The architect",
+          verb: "designs",
+          obj: "the blueprints"
+        },
+        passiveSlots: {
+          subj: "The blueprints",
+          beAspect: "are",
+          v3: "designed",
+          agent: "by the architect"
+        },
+        steps: [
+          { title: "Active Baseline", desc: "'The architect' performs the action on 'the blueprints'." },
+          { title: "Object Drops to Subject", desc: "'the blueprints' drops down to become the new subject." },
+          { title: "Add 'Be' in Present Simple", desc: "Because 'blueprints' is plural, we insert 'are'." },
+          { title: "Convert to Participle (V3)", desc: "'design' converts into the past participle 'designed'." },
+          { title: "Attach Optional Agent", desc: "The original subject attaches at the end with 'by'." }
+        ]
+      },
+      pres_cont: {
+        id: "pres_cont",
+        title: "Present Continuous",
+        shortFormula: "am/is/are + being + V3",
+        active: {
+          subj: "The chef",
+          verb: "is preparing",
+          obj: "the meals"
+        },
+        passiveSlots: {
+          subj: "The meals",
+          beAspect: "are being",
+          v3: "prepared",
+          agent: "by the chef"
+        },
+        steps: [
+          { title: "Active Baseline", desc: "'The chef' is currently in the middle of preparing 'the meals'." },
+          { title: "Object Drops to Subject", desc: "'the meals' drops down into the new grammatical subject slot." },
+          { title: "Add 'Be' + 'being'", desc: "Plural subject takes 'are', plus 'being' to preserve ongoing aspect." },
+          { title: "Convert to Participle (V3)", desc: "The main verb becomes the past participle 'prepared'." },
+          { title: "Attach Optional Agent", desc: "'by the chef' completes the passive sentence." }
+        ]
+      },
+      pres_perf: {
+        id: "pres_perf",
+        title: "Present Perfect Simple",
+        shortFormula: "has/have + been + V3",
+        active: {
+          subj: "The company",
+          verb: "has launched",
+          obj: "the satellites"
+        },
+        passiveSlots: {
+          subj: "The satellites",
+          beAspect: "have been",
+          v3: "launched",
+          agent: "by the company"
+        },
+        steps: [
+          { title: "Active Baseline", desc: "'The company' has completed the launch of 'the satellites'." },
+          { title: "Object Drops to Subject", desc: "'the satellites' shifts down to the subject slot." },
+          { title: "Add 'have/has' + 'been'", desc: "Plural 'satellites' triggers 'have been'." },
+          { title: "Convert to Participle (V3)", desc: "The verb retains its past participle 'launched'." },
+          { title: "Attach Optional Agent", desc: "The initiator is added with 'by the company'." }
+        ]
+      },
+      past_cont: {
+        id: "past_cont",
+        title: "Past Continuous",
+        shortFormula: "was / were + being + V3",
+        active: {
+          subj: "The engineers",
+          verb: "were inspecting",
+          obj: "the bridge cables"
+        },
+        passiveSlots: {
+          subj: "The bridge cables",
+          beAspect: "were being",
+          v3: "inspected",
+          agent: "by the engineers"
+        },
+        steps: [
+          { title: "Active Baseline", desc: "'The engineers' were actively inspecting 'the bridge cables' in the past." },
+          { title: "Object Drops to Subject", desc: "'the bridge cables' drops down into the new grammatical subject slot." },
+          { title: "Add 'was/were' + 'being'", desc: "Plural subject takes 'were', plus 'being' to preserve ongoing past aspect." },
+          { title: "Convert to Participle (V3)", desc: "The verb 'inspect' converts into the participle 'inspected'." },
+          { title: "Attach Optional Agent", desc: "'by the engineers' completes the passive sentence." }
+        ]
+      },
+      past_simp: {
+        id: "past_simp",
+        title: "Past Simple",
+        shortFormula: "was / were + V3",
+        active: {
+          subj: "The composer",
+          verb: "wrote",
+          obj: "the symphony"
+        },
+        passiveSlots: {
+          subj: "The symphony",
+          beAspect: "was",
+          v3: "written",
+          agent: "by the composer"
+        },
+        steps: [
+          { title: "Active Baseline", desc: "'The composer' finished writing 'the symphony' in the past." },
+          { title: "Object Drops to Subject", desc: "'the symphony' moves down as the recipient subject." },
+          { title: "Add 'was / were'", desc: "Singular 'symphony' takes past auxiliary 'was'." },
+          { title: "Convert to Participle (V3)", desc: "Irregular verb 'wrote' becomes past participle 'written'." },
+          { title: "Attach Optional Agent", desc: "The original agent finishes as 'by the composer'." }
+        ]
+      }
+    };
+
+    // Practice exercises: Exactly 1 for each of the 5 tenses
+    const EXERCISES = [
+      {
+        id: 0,
+        tenseName: "Present Simple",
+        active: "A dedicated crew cleans the subway cars every night.",
+        accepted: [
+          "the subway cars are cleaned every night by a dedicated crew",
+          "the subway cars are cleaned by a dedicated crew every night",
+          "the subway cars are cleaned every night"
+        ],
+        canonical: "The subway cars are cleaned every night by a dedicated crew.",
+        note: "Plural 'subway cars' takes 'are' + regular V3 'cleaned'."
+      },
+      {
+        id: 1,
+        tenseName: "Present Continuous",
+        active: "Technicians are currently repairing the central power generator.",
+        accepted: [
+          "the central power generator is currently being repaired by technicians",
+          "the central power generator is being currently repaired by technicians",
+          "the central power generator is being repaired currently by technicians",
+          "the central power generator is currently being repaired",
+          "the central power generator is being repaired"
+        ],
+        canonical: "The central power generator is currently being repaired by technicians.",
+        note: "Singular generator takes 'is' + 'being' + V3 'repaired'."
+      },
+      {
+        id: 2,
+        tenseName: "Present Perfect Simple",
+        active: "The international jury has selected the winning documentary.",
+        accepted: [
+          "the winning documentary has been selected by the international jury",
+          "the winning documentary has been selected"
+        ],
+        canonical: "The winning documentary has been selected by the international jury.",
+        note: "Singular documentary takes 'has been' + V3 'selected'."
+      },
+      {
+        id: 3,
+        tenseName: "Past Continuous",
+        active: "The detectives were investigating the suspicious transaction all afternoon.",
+        accepted: [
+          "the suspicious transaction was being investigated all afternoon by the detectives",
+          "the suspicious transaction was being investigated by the detectives all afternoon",
+          "the suspicious transaction was being investigated all afternoon",
+          "the suspicious transaction was being investigated"
+        ],
+        canonical: "The suspicious transaction was being investigated all afternoon by the detectives.",
+        note: "Singular 'transaction' takes 'was' + 'being' + V3 'investigated'."
+      },
+      {
+        id: 4,
+        tenseName: "Past Simple",
+        active: "A local gardener found the historic silver coins yesterday.",
+        accepted: [
+          "the historic silver coins were found yesterday by a local gardener",
+          "the historic silver coins were found by a local gardener yesterday",
+          "the historic silver coins were found yesterday",
+          "the historic silver coins were found"
+        ],
+        canonical: "The historic silver coins were found yesterday by a local gardener.",
+        note: "Plural coins takes 'were' + irregular participle 'found'."
+      }
+    ];
+
+    let currentTenseKey = 'pres_simp';
+    let currentStep = 0; // 0 to 4
+    const userExerciseState = [null, null, null, null, null];
+
+    function initMorphLab() {
+      // Build Tense Selector Pills
+      const pillsContainer = document.getElementById('morph-tense-pills');
+      pillsContainer.innerHTML = Object.keys(TENSES).map(key => {
+        const item = TENSES[key];
+        const isActive = (key === currentTenseKey);
+        return `
+          <button onclick="setMorphTense('${key}')" id="pill-${key}" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${isActive ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}">
+            ${item.title}
+          </button>
+        `;
+      }).join('');
+
+      renderMorphView();
+    }
+
+    function setMorphTense(key) {
+      currentTenseKey = key;
+      currentStep = 0; // reset to active baseline on switch
+
+      // Update pills appearance
+      Object.keys(TENSES).forEach(k => {
+        const btn = document.getElementById(`pill-${k}`);
+        if (k === key) {
+          btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100';
+        }
+      });
+
+      renderMorphView();
+    }
+
+    function renderMorphView() {
+      const data = TENSES[currentTenseKey];
+      
+      document.getElementById('morph-active-tense-label').textContent = data.title;
+      document.getElementById('morph-passive-formula-badge').textContent = data.shortFormula;
+      document.getElementById('step-counter-text').textContent = `Step ${currentStep} / 4`;
+
+      // Render step progress dots
+      const dotsContainer = document.getElementById('morph-step-indicators');
+      dotsContainer.innerHTML = [0, 1, 2, 3, 4].map(s => {
+        const isCurrent = s === currentStep;
+        const isDone = s < currentStep;
+        let color = "bg-slate-200";
+        if (isCurrent) color = "bg-indigo-600 scale-125 ring-2 ring-indigo-200";
+        else if (isDone) color = "bg-indigo-400";
+        return `<span class="w-2.5 h-2.5 rounded-full transition-all ${color}"></span>`;
+      }).join('');
+
+      // Button states
+      document.getElementById('btn-morph-prev').disabled = (currentStep === 0);
+      document.getElementById('btn-morph-next').disabled = (currentStep === 4);
+
+      // Render Top Active Slots
+      const activeContainer = document.getElementById('active-slots-container');
+      const objMovingDown = currentStep >= 1;
+      const subjMovingDown = currentStep >= 4;
+
+      activeContainer.innerHTML = `
+        <div class="p-3 rounded-xl border border-slate-200 bg-white slot-transition ${subjMovingDown ? 'opacity-40 line-through' : ''}">
+          <span class="text-[10px] uppercase font-mono tracking-wider text-slate-400 block mb-0.5">Active Subject</span>
+          <span class="text-sky-700">${data.active.subj}</span>
+        </div>
+        <div class="p-3 rounded-xl border border-slate-200 bg-white slot-transition ${currentStep >= 2 ? 'opacity-40' : ''}">
+          <span class="text-[10px] uppercase font-mono tracking-wider text-slate-400 block mb-0.5">Active Verb</span>
+          <span class="text-emerald-700">${data.active.verb}</span>
+        </div>
+        <div class="p-3 rounded-xl border border-slate-200 bg-white slot-transition ${objMovingDown ? 'opacity-30 line-through scale-95' : 'ring-2 ring-pink-300 ring-offset-1'}">
+          <span class="text-[10px] uppercase font-mono tracking-wider text-pink-500 font-bold block mb-0.5">Direct Object</span>
+          <span class="text-pink-600">${data.active.obj}</span>
+        </div>
+      `;
+
+      // Render Bottom Passive Slots (Progressively revealed)
+      const passiveContainer = document.getElementById('passive-slots-container');
+      
+      const s1Revealed = currentStep >= 1;
+      const s2Revealed = currentStep >= 2;
+      const s3Revealed = currentStep >= 3;
+      const s4Revealed = currentStep >= 4;
+
+      passiveContainer.innerHTML = `
+        <!-- Passive Subject Slot -->
+        <div class="p-3 rounded-xl border ${s1Revealed ? 'border-pink-300 bg-pink-50/70 text-pink-700 animate-drop shadow-sm' : 'border-dashed border-slate-300 bg-white/60 text-slate-400'} slot-transition">
+          <span class="text-[10px] uppercase font-mono tracking-wider ${s1Revealed ? 'text-pink-600 font-bold' : 'text-slate-400'} block mb-0.5">1. Passive Subject</span>
+          <span class="font-bold">${s1Revealed ? data.passiveSlots.subj : '...'}</span>
+        </div>
+
+        <!-- Auxiliary 'Be' + Aspect Slot -->
+        <div class="p-3 rounded-xl border ${s2Revealed ? 'border-emerald-300 bg-emerald-50/80 text-emerald-800 animate-drop shadow-sm' : 'border-dashed border-slate-300 bg-white/60 text-slate-400'} slot-transition">
+          <span class="text-[10px] uppercase font-mono tracking-wider ${s2Revealed ? 'text-emerald-700 font-bold' : 'text-slate-400'} block mb-0.5">2. Auxiliary 'Be'</span>
+          <span class="font-bold">${s2Revealed ? data.passiveSlots.beAspect : '...'}</span>
+        </div>
+
+        <!-- Past Participle V3 Slot -->
+        <div class="p-3 rounded-xl border ${s3Revealed ? 'border-purple-300 bg-purple-50/80 text-purple-800 animate-drop shadow-sm' : 'border-dashed border-slate-300 bg-white/60 text-slate-400'} slot-transition">
+          <span class="text-[10px] uppercase font-mono tracking-wider ${s3Revealed ? 'text-purple-700 font-bold' : 'text-slate-400'} block mb-0.5">3. Verb (V3)</span>
+          <span class="font-bold">${s3Revealed ? data.passiveSlots.v3 : '...'}</span>
+        </div>
+
+        <!-- Optional Agent Slot -->
+        <div class="p-3 rounded-xl border ${s4Revealed ? 'border-slate-300 bg-slate-100/80 text-slate-700 animate-drop' : 'border-dashed border-slate-200 bg-white/40 text-slate-400'} slot-transition">
+          <span class="text-[10px] uppercase font-mono tracking-wider text-slate-500 block mb-0.5">4. (by + Agent)</span>
+          <span class="font-medium">${s4Revealed ? data.passiveSlots.agent : '...'}</span>
+        </div>
+      `;
+
+      // Live Step Explanation
+      const stepInfo = data.steps[currentStep];
+      document.getElementById('live-step-badge').textContent = currentStep;
+      document.getElementById('live-step-title').textContent = stepInfo.title;
+      document.getElementById('live-step-desc').textContent = stepInfo.desc;
+    }
+
+    function nextMorphStep() {
+      if (currentStep < 4) {
+        currentStep++;
+        renderMorphView();
+      }
+    }
+
+    function prevMorphStep() {
+      if (currentStep > 0) {
+        currentStep--;
+        renderMorphView();
+      }
+    }
+
+    function resetMorphStep() {
+      currentStep = 0;
+      renderMorphView();
+    }
+
+    function renderQuickMatrix() {
+      const grid = document.getElementById('quick-cards-grid');
+      const cards = [
+        { name: "Present Simple", formula: "am / is / are + V3", ex: "The coffee is brewed." },
+        { name: "Present Continuous", formula: "am / is / are + being + V3", ex: "The meals are being prepared." },
+        { name: "Present Perfect", formula: "has / have + been + V3", ex: "The files have been saved." },
+        { name: "Past Continuous", formula: "was / were + being + V3", ex: "The road was being repaired." },
+        { name: "Past Simple", formula: "was / were + V3", ex: "The song was written." }
+      ];
+
+      grid.innerHTML = cards.map(c => `
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow transition">
+          <div class="text-xs font-bold text-indigo-700">${c.name}</div>
+          <div class="font-mono-code text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg mt-2 inline-block">
+            ${c.formula}
+          </div>
+          <div class="text-xs text-slate-500 mt-2.5 pt-2 border-t border-slate-100 font-mono-code">
+            "${c.ex}"
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderPracticeCards() {
+      const container = document.getElementById('practice-cards-list');
+      container.innerHTML = EXERCISES.map((ex, idx) => `
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-sm" id="card-${idx}">
+          <div class="flex items-center justify-between text-xs mb-2">
+            <span class="font-bold text-indigo-600 uppercase tracking-wider">${ex.tenseName}</span>
+            <span class="text-slate-400 font-mono">#${idx + 1}</span>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-3 mb-3">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Active sentence:</span>
+            <p class="font-mono-code text-sm sm:text-base font-semibold text-slate-800">
+              "${ex.active}"
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input 
+              type="text" 
+              id="input-${idx}" 
+              placeholder="Type the passive sentence here..." 
+              class="flex-grow px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm font-mono-code focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              onkeydown="if(event.key==='Enter') evaluateAnswer(${idx})"
+              autocomplete="off"
+            />
+            <button 
+              onclick="evaluateAnswer(${idx})" 
+              class="px-4 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 transition shadow-sm shrink-0"
+            >
+              Check Answer
+            </button>
+          </div>
+
+          <!-- Dynamic feedback box (never hinted before clicking check) -->
+          <div id="feedback-${idx}" class="hidden mt-3 p-3 rounded-xl text-xs"></div>
+        </div>
+      `).join('');
+    }
+
+    function cleanString(str) {
+      return str
+        .toLowerCase()
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function evaluateAnswer(idx) {
+      const input = document.getElementById(`input-${idx}`);
+      const val = cleanString(input.value);
+      const exercise = EXERCISES[idx];
+      const feedback = document.getElementById(`feedback-${idx}`);
+      const card = document.getElementById(`card-${idx}`);
+
+      if (!val) {
+        showToast("Please type a sentence before checking.", "warn");
+        input.focus();
+        return;
+      }
+
+      const isCorrect = exercise.accepted.some(acc => cleanString(acc) === val);
+      userExerciseState[idx] = isCorrect;
+
+      feedback.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-900', 'bg-rose-50', 'border-rose-200', 'text-rose-900');
+
+      if (isCorrect) {
+        feedback.className = "mt-3 p-3 rounded-xl text-xs bg-emerald-50 border border-emerald-200 text-emerald-900";
+        feedback.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-emerald-700">✓ Correct!</span>
+            <span class="text-slate-600 font-mono-code">${exercise.canonical}</span>
+          </div>
+        `;
+        card.classList.remove('border-rose-200');
+        card.classList.add('border-emerald-300');
+      } else {
+        feedback.className = "mt-3 p-3 rounded-xl text-xs bg-rose-50 border border-rose-200 text-rose-900";
+        feedback.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span><strong>✕ Review Form:</strong> Pay attention to the auxiliary verb and participle.</span>
+            <button onclick="revealCanonical(${idx})" class="text-xs font-bold text-rose-800 underline hover:text-rose-950 shrink-0">
+              Show Answer
+            </button>
+          </div>
+        `;
+        card.classList.add('border-rose-200');
+      }
+
+      updateExerciseScore();
+    }
+
+    function revealCanonical(idx) {
+      const exercise = EXERCISES[idx];
+      const feedback = document.getElementById(`feedback-${idx}`);
+      feedback.innerHTML = `
+        <div class="text-xs space-y-1">
+          <div class="font-bold text-slate-800">Model Answer:</div>
+          <div class="font-mono-code font-bold text-indigo-700 bg-white p-2 rounded-lg border border-indigo-200">
+            "${exercise.canonical}"
+          </div>
+          <div class="text-slate-500">${exercise.note}</div>
+        </div>
+      `;
+    }
+
+    function updateExerciseScore() {
+      let solved = 0;
+      userExerciseState.forEach((state, i) => {
+        const dot = document.getElementById(`dot-${i}`);
+        if (state === true) {
+          solved++;
+          dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
+        } else if (state === false) {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-rose-400";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300";
+        }
+      });
+
+      document.getElementById('practice-score-text').textContent = `${solved} / 5`;
+
+      if (solved === 5) {
+        document.getElementById('practice-completion-banner').classList.remove('hidden');
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
+        }
+      }
+    }
+
+    function resetAllExercises() {
+      for (let i = 0; i < 5; i++) {
+        userExerciseState[i] = null;
+        const input = document.getElementById(`input-${i}`);
+        if (input) input.value = '';
+        const feedback = document.getElementById(`feedback-${i}`);
+        if (feedback) {
+          feedback.className = 'hidden';
+          feedback.innerHTML = '';
+        }
+        const card = document.getElementById(`card-${i}`);
+        if (card) card.className = 'bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-sm';
+      }
+      document.getElementById('practice-completion-banner').classList.add('hidden');
+      updateExerciseScore();
+      showToast("Exercises reset.", "info");
+    }
+
+    function showToast(msg, type = "info") {
+      const t = document.getElementById('toast-bar');
+      t.textContent = msg;
+      let style = "bg-slate-900 text-white border-slate-800";
+      if (type === 'warn') style = "bg-amber-900 text-amber-100 border-amber-800";
+      t.className = `fixed bottom-5 right-5 z-50 transform translate-y-0 opacity-100 transition-all duration-300 flex items-center px-4 py-2.5 rounded-2xl shadow-lg border text-xs font-semibold ${style}`;
+
+      setTimeout(() => {
+        t.className = `fixed bottom-5 right-5 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center px-4 py-2.5 rounded-2xl shadow-lg border text-xs font-semibold ${style}`;
+      }, 2400);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initMorphLab();
+      renderQuickMatrix();
+      renderPracticeCards();
+      updateExerciseScore();
+    });
+  </script>
+</body>
+</html>
