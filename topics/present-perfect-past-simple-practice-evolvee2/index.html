@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience vs. History: Present Perfect & Past Simple</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti for rewards -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      min-height: 100vh;
+      color: #1e293b;
+    }
+    .tab-active {
+      background-color: #4f46e5;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35);
+    }
+    .badge-pulse {
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.03); }
+    }
+    .interactive-card {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .interactive-card:hover {
+      transform: translateY(-2px);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-800 antialiased">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 backdrop-blur-md bg-white/90 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="text-center sm:text-left">
+        <div class="flex items-center justify-center sm:justify-start gap-2">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold shadow">
+            ✦
+          </span>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-700 via-indigo-600 to-teal-600 bg-clip-text text-transparent">
+            Experience vs. History
+          </h1>
+        </div>
+        <!-- Subtitle subtly attributing the designer as requested -->
+        <p class="text-xs sm:text-sm font-medium text-slate-400 mt-0.5 tracking-wide">
+          Designed by Babak Alaee
+        </p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center p-1 bg-slate-100 rounded-xl border border-slate-200 w-full sm:w-auto overflow-x-auto justify-center">
+        <button id="nav-learn" onclick="switchTab('learn')" class="tab-btn tab-active px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap">
+          <span>💡</span> Learn &amp; Explore
+        </button>
+        <button id="nav-practice" onclick="switchTab('practice')" class="tab-btn text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap">
+          <span>✍️</span> Practice (20)
+        </button>
+        <button id="nav-verbs" onclick="switchTab('verbs')" class="tab-btn text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap">
+          <span>📖</span> Verb Bank
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8 sm:px-6">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: LEARN & EXPLORE (Interactive Form) -->
+    <!-- ========================================== -->
+    <section id="tab-learn" class="space-y-8">
+      <!-- Quick Comparison Header Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Present Perfect Card -->
+        <div class="bg-white rounded-2xl border-2 border-indigo-100 p-6 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full -z-0 pointer-events-none"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-700 rounded-lg text-xs font-bold uppercase tracking-wider">
+              <span>🌟</span> Life Experience
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Present Perfect</h2>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Use it when talking about <strong>things you have done in your life up to now</strong>. The exact time does <em>not</em> matter.
+            </p>
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 font-mono text-xs sm:text-sm">
+              <div class="text-indigo-700 font-bold">Subject + have / has + V3 (Past Participle)</div>
+            </div>
+            <div class="text-xs text-slate-500 flex flex-wrap gap-1.5 pt-1">
+              <span class="font-semibold text-slate-700">Clue words:</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">ever</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">never</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">before</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">already</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">twice</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Past Simple Card -->
+        <div class="bg-white rounded-2xl border-2 border-teal-100 p-6 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full -z-0 pointer-events-none"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-teal-700 rounded-lg text-xs font-bold uppercase tracking-wider">
+              <span>📅</span> Finished History
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Past Simple</h2>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Use it when an action happened at a <strong>specific, finished past time</strong>. The time period is completely over.
+            </p>
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 font-mono text-xs sm:text-sm">
+              <div class="text-teal-700 font-bold">Subject + V2 (Past Simple form)</div>
+            </div>
+            <div class="text-xs text-slate-500 flex flex-wrap gap-1.5 pt-1">
+              <span class="font-semibold text-slate-700">Clue words:</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">yesterday</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">last week/summer</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">two days ago</span>
+              <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-700 font-medium">in 2019</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Sentence Transformer Widget -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>⚡</span> Interactive Sentence Transformer
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Switch subjects, tenses, and modes to see how auxiliary verbs and verb forms transform automatically!
+            </p>
+          </div>
+
+          <!-- Tense Selector Buttons -->
+          <div class="inline-flex p-1 bg-slate-100 rounded-xl border border-slate-200 text-xs font-semibold">
+            <button id="mode-perf" onclick="setBuilderTense('perf')" class="px-3 py-1.5 rounded-md transition-all bg-indigo-600 text-white shadow-sm">
+              Present Perfect
+            </button>
+            <button id="mode-past" onclick="setBuilderTense('past')" class="px-3 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900">
+              Past Simple
+            </button>
+          </div>
+        </div>
+
+        <!-- Controls: Subject and Type -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">1. Choose Subject</label>
+            <div id="subject-selector" class="grid grid-cols-4 gap-2">
+              <button onclick="setBuilderSubject('I')" class="sub-btn py-2 text-xs font-semibold rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 transition-all">I</button>
+              <button onclick="setBuilderSubject('She')" class="sub-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400 transition-all">She</button>
+              <button onclick="setBuilderSubject('We')" class="sub-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400 transition-all">We</button>
+              <button onclick="setBuilderSubject('They')" class="sub-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400 transition-all">They</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">2. Sentence Type</label>
+            <div id="type-selector" class="grid grid-cols-3 gap-2">
+              <button onclick="setBuilderType('aff')" class="type-btn py-2 text-xs font-semibold rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 transition-all">(+) Positive</button>
+              <button onclick="setBuilderType('neg')" class="type-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400 transition-all">(-) Negative</button>
+              <button onclick="setBuilderType('quest')" class="type-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400 transition-all">(?) Question</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula Banner -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs sm:text-sm">
+          <span class="text-slate-500 font-semibold">Active Structure Formula:</span>
+          <span id="formula-label" class="font-mono font-bold text-indigo-700">Subject + have / has + Past Participle (V3)</span>
+        </div>
+
+        <!-- Live Sentence Display Box -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Live Constructed Sentence:</label>
+          <div class="bg-slate-900 rounded-2xl p-4 sm:p-5 shadow-inner">
+            <div id="tokens-display" class="flex flex-wrap items-center gap-2">
+              <!-- Dynamically populated by updateTransformer() -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Explanation Tip -->
+        <div class="bg-indigo-50/70 border border-indigo-100 rounded-xl p-3.5 flex items-start gap-3">
+          <span class="text-indigo-600 text-base leading-none mt-0.5">💡</span>
+          <p id="tip-text" class="text-xs sm:text-sm text-indigo-900 font-medium leading-relaxed">
+            <!-- Dynamically populated -->
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: PRACTICE CHALLENGE (20 Exercises)  -->
+    <!-- ========================================== -->
+    <section id="tab-practice" class="space-y-6 hidden">
+      <!-- Progress Bar & Score Counter -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="w-full sm:w-1/2">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-1.5">
+            <span>Overall Progress</span>
+            <span id="progress-text">0 of 20 completed</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div id="progress-bar-fill" class="bg-indigo-600 h-full rounded-full transition-all duration-300 w-0"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+          <div class="bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-xl text-center">
+            <span class="block text-xs font-semibold text-indigo-600">Current Score</span>
+            <span id="score-display" class="text-lg font-extrabold text-indigo-900">0 / 20</span>
+          </div>
+          <button onclick="checkAllExercises()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow transition-all active:scale-95">
+            Check All
+          </button>
+          <button onclick="resetAllExercises()" class="px-3 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs rounded-xl border border-slate-200 transition-all">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Exercise List Container -->
+      <div id="exercises-container" class="space-y-4">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: VERB REFERENCE BANK                 -->
+    <!-- ========================================== -->
+    <section id="tab-verbs" class="space-y-6 hidden">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>📚</span> Complete Exercise Verb Bank
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">
+              Look up the base form, past simple (V2), and past participle (V3) for all verbs featured in our exercises.
+            </p>
+          </div>
+          <!-- Search & Filter -->
+          <div class="relative w-full md:w-64">
+            <input 
+              type="text" 
+              id="verb-search-input" 
+              oninput="filterVerbs()" 
+              placeholder="Search verb (e.g. eat, see)..." 
+              class="w-full text-xs sm:text-sm pl-9 pr-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-slate-50"
+            >
+            <span class="absolute left-3 top-3 text-slate-400 text-xs">🔍</span>
+          </div>
+        </div>
+
+        <!-- Verb Table -->
+        <div class="overflow-x-auto border border-slate-100 rounded-xl">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[11px]">
+                <th class="py-3 px-4">Base Form (Infinitive)</th>
+                <th class="py-3 px-4 text-teal-700">Past Simple (V2)</th>
+                <th class="py-3 px-4 text-indigo-700">Past Participle (V3)</th>
+                <th class="py-3 px-4 hidden sm:table-cell">Example Sentence</th>
+              </tr>
+            </thead>
+            <tbody id="verb-table-body" class="divide-y divide-slate-100 font-normal">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-auto border-t border-slate-200 bg-white py-4">
+    <div class="max-w-5xl mx-auto px-4 text-center text-xs text-slate-400">
+      <p>Interactive Grammar Review &bull; Designed by Babak Alaee</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      const tabs = ['learn', 'practice', 'verbs'];
+      tabs.forEach(t => {
+        const sec = document.getElementById(`tab-${t}`);
+        const btn = document.getElementById(`nav-${t}`);
+        if (t === tabId) {
+          sec.classList.remove('hidden');
+          btn.classList.add('tab-active');
+          btn.classList.remove('text-slate-600');
+        } else {
+          sec.classList.add('hidden');
+          btn.classList.remove('tab-active');
+          btn.classList.add('text-slate-600');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // SENTENCE TRANSFORMER BUILDER STATE (TAB 1)
+    // ==========================================
+    let builderState = {
+      tense: 'perf', // 'perf' or 'past'
+      subject: 'I',
+      type: 'aff',   // 'aff', 'neg', 'quest'
+      verb: { base: 'visit', past: 'visited', pp: 'visited', object: 'Rome' }
+    };
+
+    function setBuilderTense(tense) {
+      builderState.tense = tense;
+      const perfBtn = document.getElementById('mode-perf');
+      const pastBtn = document.getElementById('mode-past');
+      if (perfBtn && pastBtn) {
+        if (tense === 'perf') {
+          perfBtn.className = 'px-3 py-1.5 rounded-md transition-all bg-indigo-600 text-white shadow-sm';
+          pastBtn.className = 'px-3 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900';
+        } else {
+          pastBtn.className = 'px-3 py-1.5 rounded-md transition-all bg-teal-600 text-white shadow-sm';
+          perfBtn.className = 'px-3 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900';
+        }
+      }
+      updateTransformer();
+    }
+
+    function setBuilderSubject(sub) {
+      builderState.subject = sub;
+      document.querySelectorAll('#subject-selector button').forEach(b => {
+        if (b.innerText === sub) {
+          b.className = 'sub-btn py-2 text-xs font-semibold rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700';
+        } else {
+          b.className = 'sub-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400';
+        }
+      });
+      updateTransformer();
+    }
+
+    function setBuilderType(type) {
+      builderState.type = type;
+      const map = { aff: '(+) Positive', neg: '(-) Negative', quest: '(?) Question' };
+      document.querySelectorAll('#type-selector button').forEach(b => {
+        if (b.innerText === map[type]) {
+          b.className = 'type-btn py-2 text-xs font-semibold rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700';
+        } else {
+          b.className = 'type-btn py-2 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:border-indigo-400';
+        }
+      });
+      updateTransformer();
+    }
+
+    function updateTransformer() {
+      const container = document.getElementById('tokens-display');
+      const formula = document.getElementById('formula-label');
+      const tip = document.getElementById('tip-text');
+      if (!container || !formula || !tip) return;
+
+      const is3rd = (builderState.subject === 'She');
+      let tokens = [];
+
+      if (builderState.tense === 'perf') {
+        const aux = is3rd ? 'has' : 'have';
+        const negAux = is3rd ? "hasn't" : "haven't";
+
+        if (builderState.type === 'aff') {
+          formula.innerText = 'Subject + have / has + Past Participle (V3)';
+          tokens = [
+            { text: builderState.subject, color: 'bg-slate-700 text-white' },
+            { text: aux, color: 'bg-indigo-600 text-white' },
+            { text: builderState.verb.pp, color: 'bg-purple-600 text-white' },
+            { text: builderState.verb.object + ' (before).', color: 'bg-slate-800 text-slate-300' }
+          ];
+          tip.innerText = `Subject (${builderState.subject}) takes '${aux}', followed by the Past Participle ('${builderState.verb.pp}'). No finished time is mentioned!`;
+        } else if (builderState.type === 'neg') {
+          formula.innerText = 'Subject + haven\'t / hasn\'t + Past Participle (V3)';
+          tokens = [
+            { text: builderState.subject, color: 'bg-slate-700 text-white' },
+            { text: negAux + ' (or: has/have never)', color: 'bg-rose-600 text-white' },
+            { text: builderState.verb.pp, color: 'bg-purple-600 text-white' },
+            { text: builderState.verb.object + '.', color: 'bg-slate-800 text-slate-300' }
+          ];
+          tip.innerText = `Negative experience uses '${negAux}' + Past Participle, or you can say '${builderState.subject} ${aux} never ${builderState.verb.pp}'.`;
+        } else {
+          formula.innerText = 'Have / Has + Subject + ever + Past Participle (V3)?';
+          tokens = [
+            { text: (is3rd ? 'Has' : 'Have'), color: 'bg-indigo-600 text-white' },
+            { text: builderState.subject.toLowerCase(), color: 'bg-slate-700 text-white' },
+            { text: 'ever', color: 'bg-amber-600 text-white' },
+            { text: builderState.verb.pp, color: 'bg-purple-600 text-white' },
+            { text: builderState.verb.object + '?', color: 'bg-slate-800 text-slate-300' }
+          ];
+          tip.innerText = `In questions about life experience, start with '${is3rd ? 'Has' : 'Have'}' and often use 'ever' before the Past Participle.`;
+        }
+      } else {
+        // Past Simple
+        if (builderState.type === 'aff') {
+          formula.innerText = 'Subject + Past Simple (V2) + Finished Time';
+          tokens = [
+            { text: builderState.subject, color: 'bg-slate-700 text-white' },
+            { text: builderState.verb.past, color: 'bg-teal-600 text-white' },
+            { text: builderState.verb.object, color: 'bg-slate-800 text-slate-300' },
+            { text: 'last summer.', color: 'bg-teal-900 text-teal-200 border border-teal-500/30' }
+          ];
+          tip.innerText = `Because 'last summer' is a finished time, we use the simple past form ('${builderState.verb.past}'). No 'have/has'!`;
+        } else if (builderState.type === 'neg') {
+          formula.innerText = 'Subject + didn\'t + Base Form (V1) + Finished Time';
+          tokens = [
+            { text: builderState.subject, color: 'bg-slate-700 text-white' },
+            { text: "didn't", color: 'bg-rose-600 text-white' },
+            { text: builderState.verb.base, color: 'bg-amber-600 text-white' },
+            { text: builderState.verb.object, color: 'bg-slate-800 text-slate-300' },
+            { text: 'yesterday.', color: 'bg-teal-900 text-teal-200 border border-teal-500/30' }
+          ];
+          tip.innerText = `In the Past Simple negative, 'didn\'t' takes the past marker, so the verb returns to base form ('${builderState.verb.base}').`;
+        } else {
+          formula.innerText = 'Did + Subject + Base Form (V1) + Finished Time?';
+          tokens = [
+            { text: 'Did', color: 'bg-teal-600 text-white' },
+            { text: builderState.subject.toLowerCase(), color: 'bg-slate-700 text-white' },
+            { text: builderState.verb.base, color: 'bg-amber-600 text-white' },
+            { text: builderState.verb.object, color: 'bg-slate-800 text-slate-300' },
+            { text: 'in 2022?', color: 'bg-teal-900 text-teal-200 border border-teal-500/30' }
+          ];
+          tip.innerText = `Questions in Past Simple start with 'Did', followed by the base verb ('${builderState.verb.base}').`;
+        }
+      }
+
+      container.innerHTML = tokens.map(t => `
+        <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-xs ${t.color}">
+          ${t.text}
+        </span>
+      `).join('');
+    }
+
+    // ==========================================
+    // 15 EXERCISES DATA (TAB 2)
+    // ==========================================
+    // Strictly no answer hinted beforehand in placeholders
+    const exercisesData = [
+      {
+        id: 1,
+        prompt: "A: ________ you ever ________ sushi before? (eat)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["Have"], key: "f1" },
+          { placeholder: "verb", expected: ["eaten"], key: "f2" }
+        ],
+        context: "Asking about someone's life experience (notice the clue 'ever' and 'before').",
+        fullAnswer: "Have ... eaten",
+        explanation: "We are asking about a life experience (notice 'ever'), so we use Present Perfect: 'Have you ever eaten'."
+      },
+      {
+        id: 2,
+        prompt: "B: Yes, I ________ it for dinner yesterday. (eat)",
+        type: "single",
+        fields: [
+          { placeholder: "type verb here", expected: ["ate"], key: "f1" }
+        ],
+        context: "Notice the time clue 'yesterday'.",
+        fullAnswer: "ate",
+        explanation: "'Yesterday' is a finished time, so we must use the Past Simple: 'ate'."
+      },
+      {
+        id: 3,
+        prompt: "Maria ________ never ________ to a foreign country in her life. (travel)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["has"], key: "f1" },
+          { placeholder: "verb", expected: ["traveled", "travelled"], key: "f2" }
+        ],
+        context: "General life experience with 'never' and Maria (she).",
+        fullAnswer: "has ... traveled",
+        explanation: "Talking about general life experience with 'never'. Maria takes 'has' + past participle 'traveled'."
+      },
+      {
+        id: 4,
+        prompt: "My brother ________ a new laptop two days ago. (buy)",
+        type: "single",
+        fields: [
+          { placeholder: "type verb here", expected: ["bought"], key: "f1" }
+        ],
+        context: "Notice the clear finished time clue 'two days ago'.",
+        fullAnswer: "bought",
+        explanation: "'Two days ago' is a specific finished past time, which requires the Past Simple 'bought'."
+      },
+      {
+        id: 5,
+        prompt: "I ________ my wallet yesterday morning, but I found it later! (lose)",
+        type: "single",
+        fields: [
+          { placeholder: "type verb here", expected: ["lost"], key: "f1" }
+        ],
+        context: "The action happened at a specific past time ('yesterday morning').",
+        fullAnswer: "lost",
+        explanation: "'Yesterday morning' defines the exact past moment, so we use the Past Simple 'lost'."
+      },
+      {
+        id: 6,
+        prompt: "________ you ________ to the teacher after class last Friday? (speak)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["Did"], key: "f1" },
+          { placeholder: "verb", expected: ["speak"], key: "f2" }
+        ],
+        context: "Specific finished time: 'last Friday'.",
+        fullAnswer: "Did ... speak",
+        explanation: "Questions about a finished time ('last Friday') use Past Simple: 'Did' + base verb 'speak'."
+      },
+      {
+        id: 7,
+        prompt: "They ________ already ________ that movie twice. (see)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["have"], key: "f1" },
+          { placeholder: "verb", expected: ["seen"], key: "f2" }
+        ],
+        context: "Talking about experience ('twice in life'). No exact time.",
+        fullAnswer: "have ... seen",
+        explanation: "Life experience happening 'twice' without a specific date takes the Present Perfect: 'have seen'."
+      },
+      {
+        id: 8,
+        prompt: "We ________ to Italy in 2019 for our summer holiday. (go)",
+        type: "single",
+        fields: [
+          { placeholder: "type verb here", expected: ["went"], key: "f1" }
+        ],
+        context: "Specific finished year: 'in 2019'.",
+        fullAnswer: "went",
+        explanation: "'In 2019' is a finished past year, so we use the Past Simple 'went'."
+      },
+      {
+        id: 9,
+        prompt: "________ she ever ________ a horse? (ride)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["Has"], key: "f1" },
+          { placeholder: "verb", expected: ["ridden"], key: "f2" }
+        ],
+        context: "Asking about life experience with 'she' and 'ever'.",
+        fullAnswer: "Has ... ridden",
+        explanation: "Experience question with 'she' requires 'Has' + past participle 'ridden'."
+      },
+      {
+        id: 10,
+        prompt: "He ________ his leg last winter while skiing. (break)",
+        type: "single",
+        fields: [
+          { placeholder: "type verb here", expected: ["broke"], key: "f1" }
+        ],
+        context: "Specific past occasion: 'last winter'.",
+        fullAnswer: "broke",
+        explanation: "'Last winter' indicates a finished past time, which takes Past Simple 'broke'."
+      },
+      {
+        id: 11,
+        prompt: "I ________ a very famous actor once in an elevator! (meet)",
+        type: "single",
+        fields: [
+          { placeholder: "verb or auxiliary + verb", expected: ["have met", "'ve met", "met"], key: "f1" }
+        ],
+        context: "A life event ('once'). Note: 'have met' highlights life experience; 'met' is also acceptable.",
+        fullAnswer: "have met (or met)",
+        explanation: "Talking about having an experience ('once in my life') uses Present Perfect 'have met'."
+      },
+      {
+        id: 12,
+        prompt: "She ________ not ________ breakfast this morning before leaving for school. (eat)",
+        type: "single",
+        fields: [
+          { placeholder: "negative verb form", expected: ["didn't eat", "did not eat"], key: "f1" }
+        ],
+        context: "A completed event earlier today: 'before leaving for school'.",
+        fullAnswer: "didn't eat",
+        explanation: "Talking about a specific finished routine before leaving school uses Past Simple: 'didn\'t eat'."
+      },
+      {
+        id: 13,
+        prompt: "________ you ________ in an airplane before? (fly)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["Have"], key: "f1" },
+          { placeholder: "verb", expected: ["flown"], key: "f2" }
+        ],
+        context: "Checking life experience ('before').",
+        fullAnswer: "Have ... flown",
+        explanation: "Checking whether an experience has ever occurred before takes Present Perfect: 'Have you flown'."
+      },
+      {
+        id: 14,
+        prompt: "Alexander Graham Bell ________ the telephone in 1876. (invent)",
+        type: "single",
+        fields: [
+          { placeholder: "type verb here", expected: ["invented"], key: "f1" }
+        ],
+        context: "Historical event with a specific finished year ('in 1876').",
+        fullAnswer: "invented",
+        explanation: "Historical events tied to a specific past year ('in 1876') strictly use Past Simple: 'invented'."
+      },
+      {
+        id: 15,
+        prompt: "I am nervous because I ________ never ________ in public before. (sing)",
+        type: "split",
+        fields: [
+          { placeholder: "auxiliary", expected: ["have"], key: "f1" },
+          { placeholder: "verb", expected: ["sung"], key: "f2" }
+        ],
+        context: "Life experience up to now with 'never' and 'before'.",
+        fullAnswer: "have ... sung",
+        explanation: "Expressing zero life experience up to now: 'I have never sung in public before'."
+      },
+      {
+        id: 16,
+        prompt: "Question: Have you ever visited London? (Clue: Answer in a positive sentence using 'twice')",
+        type: "sentence",
+        fields: [
+          { placeholder: "Type your complete sentence here...", expected: ["I have visited London twice", "I've visited London twice"], key: "f1" }
+        ],
+        context: "Life experience happening 'twice' in your life.",
+        fullAnswer: "I have visited London twice.",
+        explanation: "Because you are describing a life experience without a finished past time, use Present Perfect: 'I have visited London twice.'"
+      },
+      {
+        id: 17,
+        prompt: "Question: Where did you go yesterday? (Clue: go to the park)",
+        type: "sentence",
+        fields: [
+          { placeholder: "Type your complete sentence here...", expected: ["I went to the park"], key: "f1" }
+        ],
+        context: "Finished time: 'yesterday'.",
+        fullAnswer: "I went to the park.",
+        explanation: "'Yesterday' refers to a finished moment in the past, so answer in the Past Simple: 'I went to the park.'"
+      },
+      {
+        id: 18,
+        prompt: "Question: Have you ever eaten pizza? (Clue: Answer positively using 'many times')",
+        type: "sentence",
+        fields: [
+          { placeholder: "Type your complete sentence here...", expected: ["I have eaten pizza many times", "I've eaten pizza many times"], key: "f1" }
+        ],
+        context: "Life experience: 'many times' in your life.",
+        fullAnswer: "I have eaten pizza many times.",
+        explanation: "'Many times' tells about your life experience up to now, requiring Present Perfect: 'I have eaten pizza many times.'"
+      },
+      {
+        id: 19,
+        prompt: "Question: What did you buy last weekend? (Clue: buy a book)",
+        type: "sentence",
+        fields: [
+          { placeholder: "Type your complete sentence here...", expected: ["I bought a book"], key: "f1" }
+        ],
+        context: "Finished time: 'last weekend'.",
+        fullAnswer: "I bought a book.",
+        explanation: "The question refers to a finished past weekend, so the answer must use Past Simple: 'I bought a book.'"
+      },
+      {
+        id: 20,
+        prompt: "Question: Have you ever ridden a camel? (Clue: Answer in a negative sentence using 'never')",
+        type: "sentence",
+        fields: [
+          { placeholder: "Type your complete sentence here...", expected: ["I have never ridden a camel", "I've never ridden a camel"], key: "f1" }
+        ],
+        context: "Life experience up to now with 'never'.",
+        fullAnswer: "I have never ridden a camel.",
+        explanation: "To express zero life experience using 'never', use Present Perfect: 'I have never ridden a camel.'"
+      }
+    ];
+
+    // ==========================================
+    // VERB BANK DATA (TAB 3)
+    // ==========================================
+    const verbBank = [
+      { base: "be", past: "was / were", pp: "been", example: "Have you ever been to Paris?" },
+      { base: "break", past: "broke", pp: "broken", example: "He broke his leg last winter." },
+      { base: "buy", past: "bought", pp: "bought", example: "I bought a laptop two days ago." },
+      { base: "eat", past: "ate", pp: "eaten", example: "I have eaten Mexican food many times." },
+      { base: "fly", past: "flew", pp: "flown", example: "Have you ever flown in a helicopter?" },
+      { base: "go", past: "went", pp: "gone / been", example: "We went to Italy in 2019." },
+      { base: "invent", past: "invented", pp: "invented", example: "They invented the device last year." },
+      { base: "lose", past: "lost", pp: "lost", example: "I lost my keys yesterday." },
+      { base: "meet", past: "met", pp: "met", example: "I have met someone famous once." },
+      { base: "read", past: "read", pp: "read", example: "She read three books last month." },
+      { base: "ride", past: "rode", pp: "ridden", example: "Has she ever ridden a horse?" },
+      { base: "see", past: "saw", pp: "seen", example: "We have seen that movie twice." },
+      { base: "sing", past: "sang", pp: "sung", example: "I have never sung karaoke before." },
+      { base: "speak", past: "spoke", pp: "spoken", example: "Did you speak to the doctor yesterday?" },
+      { base: "travel", past: "traveled", pp: "traveled", example: "She has never traveled alone before." },
+      { base: "visit", past: "visited", pp: "visited", example: "I visited London in 2018." },
+      { base: "write", past: "wrote", pp: "written", example: "He wrote an essay yesterday." }
+    ];
+
+    function renderExercises() {
+      const container = document.getElementById('exercises-container');
+      container.innerHTML = exercisesData.map((ex, index) => {
+        let inputHtml = "";
+
+        if (ex.type === "sentence") {
+          // Whole sentence input format
+          inputHtml = `
+            <div class="space-y-2">
+              <p class="text-sm sm:text-base font-semibold text-slate-800">${ex.prompt}</p>
+              <input 
+                type="text" 
+                id="ex-${ex.id}-f1" 
+                data-key="f1" 
+                data-ex="${ex.id}"
+                placeholder="${ex.fields[0].placeholder}"
+                class="w-full px-3.5 py-2.5 text-sm sm:text-base border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 font-medium text-slate-800 bg-white"
+                autocomplete="off"
+                onkeypress="handleKeyPress(event, ${ex.id})"
+              />
+            </div>
+          `;
+        } else if (ex.type === "split") {
+          // Question or split format with 2 inputs
+          const parts = ex.prompt.split("________");
+          inputHtml = `
+            <div class="flex flex-wrap items-center gap-2 text-sm sm:text-base font-medium text-slate-800 leading-loose">
+              <span>${parts[0]}</span>
+              <input 
+                type="text" 
+                id="ex-${ex.id}-f1" 
+                data-key="f1" 
+                data-ex="${ex.id}"
+                placeholder="${ex.fields[0].placeholder}"
+                class="px-2.5 py-1.5 w-24 text-center border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 font-semibold text-slate-800 bg-white"
+                autocomplete="off"
+                onkeypress="handleKeyPress(event, ${ex.id})"
+              />
+              <span>${parts[1]}</span>
+              <input 
+                type="text" 
+                id="ex-${ex.id}-f2" 
+                data-key="f2" 
+                data-ex="${ex.id}"
+                placeholder="${ex.fields[1].placeholder}"
+                class="px-2.5 py-1.5 w-28 text-center border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 font-semibold text-slate-800 bg-white"
+                autocomplete="off"
+                onkeypress="handleKeyPress(event, ${ex.id})"
+              />
+              <span>${parts[2]}</span>
+            </div>
+          `;
+        } else {
+          // Single blank format
+          const parts = ex.prompt.split("________");
+          inputHtml = `
+            <div class="flex flex-wrap items-center gap-2 text-sm sm:text-base font-medium text-slate-800 leading-loose">
+              <span>${parts[0]}</span>
+              <input 
+                type="text" 
+                id="ex-${ex.id}-f1" 
+                data-key="f1" 
+                data-ex="${ex.id}"
+                placeholder="${ex.fields[0].placeholder}"
+                class="px-3 py-1.5 w-36 text-center border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 font-semibold text-slate-800 bg-white"
+                autocomplete="off"
+                onkeypress="handleKeyPress(event, ${ex.id})"
+              />
+              <span>${parts[1]}</span>
+            </div>
+          `;
+        }
+
+        return `
+          <div id="card-ex-${ex.id}" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm interactive-card transition-all">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+                #${index + 1}
+              </span>
+              <div id="badge-status-${ex.id}" class="hidden text-xs font-bold px-2.5 py-1 rounded-full"></div>
+            </div>
+
+            <div class="my-2">
+              ${inputHtml}
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-4 pt-3 border-t border-slate-100">
+              <span class="text-xs text-slate-400 italic">
+                Clue context: ${ex.context}
+              </span>
+              <button 
+                onclick="checkSingleExercise(${ex.id})"
+                class="self-end sm:self-auto px-4 py-1.5 bg-slate-100 hover:bg-indigo-50 text-indigo-700 hover:text-indigo-800 font-bold text-xs rounded-lg border border-slate-200 transition-all active:scale-95"
+              >
+                Check
+              </button>
+            </div>
+
+            <!-- Feedback section revealed after check -->
+            <div id="feedback-${ex.id}" class="hidden mt-3 p-3 rounded-xl text-xs space-y-1"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function normalize(text) {
+      return (text || '').trim().toLowerCase().replace(/[.!?]/g, '').replace(/\s+/g, ' ');
+    }
+
+    function checkSingleExercise(exId) {
+      const ex = exercisesData.find(e => e.id === exId);
+      if (!ex) return false;
+
+      let allCorrect = true;
+      let hasEmpty = false;
+
+      ex.fields.forEach(f => {
+        const input = document.getElementById(`ex-${ex.id}-${f.key}`);
+        const userVal = normalize(input.value);
+        if (!userVal) {
+          hasEmpty = true;
+        }
+        const matches = f.expected.some(exp => normalize(exp) === userVal);
+        if (!matches) {
+          allCorrect = false;
+        }
+      });
+
+      const card = document.getElementById(`card-ex-${ex.id}`);
+      const badge = document.getElementById(`badge-status-${ex.id}`);
+      const feedback = document.getElementById(`feedback-${ex.id}`);
+
+      badge.classList.remove('hidden');
+      feedback.classList.remove('hidden');
+
+      if (allCorrect) {
+        card.classList.remove('border-rose-200', 'bg-rose-50/20');
+        card.classList.add('border-emerald-200', 'bg-emerald-50/30');
+
+        badge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800';
+        badge.innerHTML = '✓ Correct!';
+
+        feedback.className = 'mt-3 p-3 rounded-xl text-xs bg-emerald-50 border border-emerald-200 text-emerald-900';
+        feedback.innerHTML = `
+          <div class="font-bold flex items-center gap-1.5">
+            <span>🎉 Excellent!</span>
+          </div>
+          <p class="mt-0.5 text-emerald-800">${ex.explanation}</p>
+        `;
+      } else {
+        card.classList.remove('border-emerald-200', 'bg-emerald-50/30');
+        card.classList.add('border-rose-200', 'bg-rose-50/20');
+
+        badge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-rose-100 text-rose-800';
+        badge.innerHTML = '✕ Not quite';
+
+        feedback.className = 'mt-3 p-3 rounded-xl text-xs bg-rose-50 border border-rose-200 text-rose-900';
+        feedback.innerHTML = `
+          <div class="font-bold">Correct answer: <span class="font-mono underline">${ex.fullAnswer}</span></div>
+          <p class="mt-0.5 text-rose-800">${ex.explanation}</p>
+        `;
+      }
+
+      updateOverallStats();
+      return allCorrect;
+    }
+
+    function checkAllExercises() {
+      let score = 0;
+      exercisesData.forEach(ex => {
+        const isCorrect = checkSingleExercise(ex.id);
+        if (isCorrect) score++;
+      });
+
+      // Celebration effect when perfect score is achieved
+      if (score === exercisesData.length && typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function resetAllExercises() {
+      exercisesData.forEach(ex => {
+        ex.fields.forEach(f => {
+          const input = document.getElementById(`ex-${ex.id}-${f.key}`);
+          input.value = '';
+          input.classList.remove('border-emerald-500', 'border-rose-500');
+        });
+
+        const card = document.getElementById(`card-ex-${ex.id}`);
+        card.classList.remove('border-emerald-200', 'bg-emerald-50/30', 'border-rose-200', 'bg-rose-50/20');
+
+        const badge = document.getElementById(`badge-status-${ex.id}`);
+        badge.classList.add('hidden');
+
+        const feedback = document.getElementById(`feedback-${ex.id}`);
+        feedback.classList.add('hidden');
+      });
+
+      updateOverallStats();
+    }
+
+    function updateOverallStats() {
+      let completedCount = 0;
+      let score = 0;
+
+      exercisesData.forEach(ex => {
+        const badge = document.getElementById(`badge-status-${ex.id}`);
+        if (!badge.classList.contains('hidden')) {
+          completedCount++;
+          if (badge.innerText.includes('Correct')) {
+            score++;
+          }
+        }
+      });
+
+      document.getElementById('score-display').innerText = `${score} / ${exercisesData.length}`;
+      document.getElementById('progress-text').innerText = `${completedCount} of ${exercisesData.length} checked`;
+
+      const percentage = (completedCount / exercisesData.length) * 100;
+      document.getElementById('progress-bar-fill').style.width = `${percentage}%`;
+    }
+
+    function handleKeyPress(e, exId) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        checkSingleExercise(exId);
+      }
+    }
+
+    function renderVerbTable(verbsToRender) {
+      const tbody = document.getElementById('verb-table-body');
+      if (verbsToRender.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="4" class="text-center py-6 text-slate-400">
+              No matching verbs found. Try another search.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = verbsToRender.map(v => `
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="py-3 px-4 font-semibold text-slate-800">
+            ${v.base}
+          </td>
+          <td class="py-3 px-4 font-mono font-bold text-teal-700 bg-teal-50/40">
+            ${v.past}
+          </td>
+          <td class="py-3 px-4 font-mono font-bold text-indigo-700 bg-indigo-50/40">
+            ${v.pp}
+          </td>
+          <td class="py-3 px-4 text-slate-500 italic hidden sm:table-cell">
+            "${v.example}"
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterVerbs() {
+      const query = normalize(document.getElementById('verb-search-input').value);
+      const filtered = verbBank.filter(v => 
+        normalize(v.base).includes(query) || 
+        normalize(v.past).includes(query) || 
+        normalize(v.pp).includes(query)
+      );
+      renderVerbTable(filtered);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateTransformer();
+      renderExercises();
+      renderVerbTable(verbBank);
+    });
+  </script>
+</body>
+</html>
