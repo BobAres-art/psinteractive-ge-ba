@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connecting Ideas: Relative Pronouns (Who, Which, That)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .merge-pill {
+      transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
+      50% { box-shadow: 0 0 28px rgba(99, 102, 241, 0.65); }
+    }
+    .glow-bridge {
+      animation: pulseGlow 2.5s infinite;
+    }
+    .exercise-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .exercise-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 flex flex-col items-center selection:bg-indigo-500 selection:text-white">
+
+  <header class="w-full bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-white/95">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold text-lg shadow-sm">⚡</span>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Connecting Ideas: Relative Pronouns</h1>
+        </div>
+        <p class="text-xs text-slate-400 font-medium tracking-wide mt-0.5 ml-10">Designed by Babak Alaee</p>
+      </div>
+      
+      <!-- Global Score Pill -->
+      <div class="flex items-center gap-3 bg-slate-100 px-4 py-2 rounded-full border border-slate-200 text-sm font-semibold">
+        <span class="text-slate-500">Practice Score:</span>
+        <span id="score-display" class="text-indigo-600 text-base font-bold">0 / 10</span>
+        <div class="w-16 bg-slate-200 h-2.5 rounded-full overflow-hidden ml-1">
+          <div id="score-bar" class="bg-indigo-600 h-full w-0 transition-all duration-500 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full max-w-5xl px-4 sm:px-6 py-8 flex flex-col gap-10">
+
+    <!-- Interactive Navigation Banner -->
+    <nav class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm text-sm font-semibold">
+      <a href="#discovery" class="px-4 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition flex items-center gap-2">
+        <span>🧪</span> 1. Visual Merger Lab
+      </a>
+      <a href="#rules" class="px-4 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition flex items-center gap-2">
+        <span>📖</span> 2. Rules & Blueprint
+      </a>
+      <a href="#exercises" class="px-4 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition flex items-center gap-2">
+        <span>🎯</span> 3. Interactive Practice (10)
+      </a>
+    </nav>
+
+    <section id="discovery" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-extrabold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">Stage 1: Exploration</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-2">The Sentence Merger Machine</h2>
+          <p class="text-slate-500 text-sm mt-1">Watch how two repetitive thoughts snap into one smooth, elegant sentence.</p>
+        </div>
+        
+        <!-- Example Selector Tabs -->
+        <div class="flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-xs font-semibold" id="machine-scenario-tabs">
+          <button onclick="loadMergerScenario('person')" id="tab-person" class="px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-sm transition">👤 Person</button>
+          <button onclick="loadMergerScenario('object')" id="tab-object" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-indigo-600 transition">🏠 Place/Thing</button>
+          <button onclick="loadMergerScenario('nature')" id="tab-nature" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-indigo-600 transition">🏔️ Plural / Nature</button>
+        </div>
+      </div>
+
+      <!-- Merger Interactive Stage -->
+      <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 shadow-inner relative flex flex-col items-center justify-center min-h-[340px]">
+        
+        <!-- Step Indicator -->
+        <div class="flex items-center gap-3 mb-6">
+          <span id="step-badge-1" class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-indigo-500 text-white">1</span>
+          <div class="w-8 h-0.5 bg-slate-600"></div>
+          <span id="step-badge-2" class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-slate-700 text-slate-400">2</span>
+          <div class="w-8 h-0.5 bg-slate-600"></div>
+          <span id="step-badge-3" class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-slate-700 text-slate-400">3</span>
+        </div>
+
+        <!-- Dynamic Visualization Container -->
+        <div id="merger-visual-canvas" class="w-full max-w-2xl text-center py-4 flex flex-col items-center justify-center min-h-[140px]">
+          <!-- Injected via JavaScript based on step & scenario -->
+        </div>
+
+        <!-- Explanation Caption -->
+        <p id="merger-caption" class="text-xs sm:text-sm text-indigo-200 font-medium text-center mt-4 max-w-lg min-h-[38px]">
+          Here are two independent sentences sharing the same subject.
+        </p>
+
+        <!-- Control Buttons -->
+        <div class="flex items-center gap-3 mt-6">
+          <button id="prev-step-btn" onclick="stepMerger(-1)" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold border border-slate-700 transition disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+            ← Previous Step
+          </button>
+          <button id="next-step-btn" onclick="stepMerger(1)" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/30 transition flex items-center gap-2">
+            <span>Next Action</span> →
+          </button>
+          <button onclick="resetMerger()" class="p-2.5 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition" title="Reset scenario">
+            🔄
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-amber-50/70 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl mt-0.5">💡</span>
+          <div>
+            <h3 class="text-sm font-bold text-amber-900">What did you notice?</h3>
+            <p class="text-xs text-amber-800 mt-0.5 leading-relaxed">
+              When we merged the sentences, the repetitive word disappeared, and a connector joined both thoughts. Which word did we use for people? What about things?
+            </p>
+          </div>
+        </div>
+        <button onclick="revealDiscoveryInsight()" id="discovery-btn" class="shrink-0 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
+          Confirm My Guess
+        </button>
+      </div>
+
+      <div id="discovery-reveal" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm font-medium leading-relaxed">
+        🎉 <strong>Spot on!</strong> For <strong>people</strong>, we connect using <span class="bg-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">who</span> or <span class="bg-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">that</span>. For <strong>objects and nature</strong>, we connect using <span class="bg-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">which</span> or <span class="bg-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">that</span>! Notice how <span class="bg-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">that</span> works for both!
+      </div>
+    </section>
+
+    <section id="rules" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <div class="mb-6 pb-4 border-b border-slate-100">
+        <span class="text-xs uppercase tracking-wider font-extrabold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Stage 2: Grammar Blueprint</span>
+        <h2 class="text-2xl font-bold text-slate-900 mt-2">The Golden Rule Guide</h2>
+        <p class="text-slate-500 text-sm mt-1">Relative pronouns add extra detail without creating clunky, repetitive sentences.</p>
+      </div>
+
+      <!-- Two Column Visual Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- People Card -->
+        <div class="bg-gradient-to-b from-blue-50/70 to-white border border-blue-200/80 rounded-2xl p-6 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
+                <span>👤</span> Talking About PEOPLE
+              </span>
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">2 Options</span>
+            </div>
+            
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Use <span class="text-blue-600">WHO</span> or <span class="text-blue-600">THAT</span></h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+              When the extra description tells us about a person or group of people, use <strong>who</strong> or <strong>that</strong>.
+            </p>
+
+            <!-- Toggle Demo -->
+            <div class="bg-white border border-blue-100 rounded-xl p-4 shadow-sm">
+              <div class="text-xs text-slate-400 font-semibold mb-2">TRY TOGGLING THE CONNECTOR:</div>
+              <div class="text-sm font-semibold text-slate-800 flex flex-wrap items-center gap-1.5 leading-relaxed">
+                <span>I know the woman</span>
+                <span id="demo-person-word" class="px-2 py-0.5 bg-blue-600 text-white rounded-md font-mono text-xs font-bold transition-all">who</span>
+                <span>lives next door.</span>
+              </div>
+              <div class="mt-3 flex gap-2">
+                <button onclick="togglePersonExample('who')" id="btn-who" class="px-2.5 py-1 text-xs rounded-lg bg-blue-600 text-white font-semibold transition">Show "who"</button>
+                <button onclick="togglePersonExample('that')" id="btn-that-p" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200 transition">Show "that"</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-3 border-t border-blue-100/80 text-xs text-blue-900/70 flex items-center gap-1.5">
+            <span>✨</span> <em>Both options are completely natural and correct!</em>
+          </div>
+        </div>
+
+        <!-- Things / Nature Card -->
+        <div class="bg-gradient-to-b from-emerald-50/70 to-white border border-emerald-200/80 rounded-2xl p-6 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+                <span>📦</span> Talking About THINGS & ANIMALS
+              </span>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">2 Options</span>
+            </div>
+            
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Use <span class="text-emerald-600">WHICH</span> or <span class="text-emerald-600">THAT</span></h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+              When describing objects, apartments, animals, plants, or ideas, use <strong>which</strong> or <strong>that</strong>.
+            </p>
+
+            <!-- Toggle Demo -->
+            <div class="bg-white border border-emerald-100 rounded-xl p-4 shadow-sm">
+              <div class="text-xs text-slate-400 font-semibold mb-2">TRY TOGGLING THE CONNECTOR:</div>
+              <div class="text-sm font-semibold text-slate-800 flex flex-wrap items-center gap-1.5 leading-relaxed">
+                <span>I live in an apartment</span>
+                <span id="demo-thing-word" class="px-2 py-0.5 bg-emerald-600 text-white rounded-md font-mono text-xs font-bold transition-all">that</span>
+                <span>is near the park.</span>
+              </div>
+              <div class="mt-3 flex gap-2">
+                <button onclick="toggleThingExample('that')" id="btn-that-t" class="px-2.5 py-1 text-xs rounded-lg bg-emerald-600 text-white font-semibold transition">Show "that"</button>
+                <button onclick="toggleThingExample('which')" id="btn-which" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200 transition">Show "which"</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-emerald-100/80 text-xs text-emerald-900/70 flex items-center gap-1.5">
+            <span>🌿</span> <em>Never use "who" for objects or plants!</em>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-6 bg-slate-900 text-white rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="md:max-w-xs">
+          <span class="text-xs uppercase font-extrabold text-amber-400 tracking-wider">Secret Superpower</span>
+          <h4 class="text-lg font-bold text-white mt-1">The Magic of "THAT"</h4>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            Notice how <span class="text-amber-300 font-semibold">THAT</span> appears on both sides? It acts like a bridge for both people and things!
+          </p>
+        </div>
+
+        <div class="flex-1 w-full grid grid-cols-3 gap-2 text-center text-xs font-semibold">
+          <div class="bg-slate-800/80 border border-blue-500/30 rounded-xl p-3 flex flex-col items-center justify-center">
+            <span class="text-blue-400 font-mono text-base font-bold">WHO</span>
+            <span class="text-slate-300 text-[11px] mt-1">Only People 👤</span>
+          </div>
+          <div class="bg-amber-950/40 border border-amber-500/50 rounded-xl p-3 flex flex-col items-center justify-center scale-105 shadow-lg shadow-amber-500/10">
+            <span class="text-amber-400 font-mono text-base font-bold">THAT ⭐</span>
+            <span class="text-amber-200 text-[11px] mt-1">People & Things 👥📦</span>
+          </div>
+          <div class="bg-slate-800/80 border border-emerald-500/30 rounded-xl p-3 flex flex-col items-center justify-center">
+            <span class="text-emerald-400 font-mono text-base font-bold">WHICH</span>
+            <span class="text-slate-300 text-[11px] mt-1">Only Things 🚗🌲</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercises" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-extrabold text-purple-600 bg-purple-50 px-3 py-1 rounded-full">Stage 3: Interactive Practice</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-2">Ten Hands-On Challenges</h2>
+          <p class="text-slate-500 text-sm mt-1">Complete each activity to test your skills. No clues are revealed until you test your answer!</p>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition">
+          ↺ Reset All 10
+        </button>
+      </div>
+
+      <div id="ex1-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 1 OF 10 • MULTIPLE CHOICE</span>
+          <span id="ex1-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <h4 class="text-sm sm:text-base font-bold text-slate-900 mb-2">
+          The teacher <span class="underline decoration-indigo-500 decoration-2 font-mono text-indigo-700 font-semibold">[ ? ]</span> helped me after school was very kind.
+        </h4>
+        <p class="text-xs text-slate-500 mb-4">Choose the appropriate pronoun for this sentence:</p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-w-md">
+          <button onclick="checkEx1('which')" class="ex1-btn py-2.5 px-4 bg-white hover:bg-indigo-50 hover:border-indigo-300 border border-slate-200 rounded-xl text-sm font-semibold transition text-slate-700">which</button>
+          <button onclick="checkEx1('who')" class="ex1-btn py-2.5 px-4 bg-white hover:bg-indigo-50 hover:border-indigo-300 border border-slate-200 rounded-xl text-sm font-semibold transition text-slate-700">who</button>
+          <button onclick="checkEx1('where')" class="ex1-btn py-2.5 px-4 bg-white hover:bg-indigo-50 hover:border-indigo-300 border border-slate-200 rounded-xl text-sm font-semibold transition text-slate-700">where</button>
+        </div>
+        <div id="ex1-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex2-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 2 OF 10 • TAP-TO-SLOT TILE</span>
+          <span id="ex2-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Tap one of the pronoun chips below to insert it into the missing slot:</p>
+        
+        <div class="bg-white p-4 rounded-xl border border-slate-200 text-sm sm:text-base font-semibold text-slate-800 flex flex-wrap items-center gap-2 mb-4">
+          <span>I bought a new laptop</span>
+          <span id="ex2-slot" class="min-w-[70px] text-center px-3 py-1 border-2 border-dashed border-indigo-400 rounded-lg text-indigo-700 font-mono bg-indigo-50/50">
+            [ ? ]
+          </span>
+          <span>has great battery life.</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="placeEx2Chip('who')" class="px-3.5 py-1.5 bg-white border border-slate-300 hover:border-indigo-500 hover:text-indigo-600 text-xs font-bold rounded-lg transition shadow-sm">who</button>
+          <button onclick="placeEx2Chip('which')" class="px-3.5 py-1.5 bg-white border border-slate-300 hover:border-indigo-500 hover:text-indigo-600 text-xs font-bold rounded-lg transition shadow-sm">which</button>
+          <button onclick="placeEx2Chip('when')" class="px-3.5 py-1.5 bg-white border border-slate-300 hover:border-indigo-500 hover:text-indigo-600 text-xs font-bold rounded-lg transition shadow-sm">when</button>
+          <button onclick="checkEx2()" class="ml-auto px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Verify Slot</button>
+        </div>
+        <div id="ex2-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex3-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 3 OF 10 • CATEGORY SORTING</span>
+          <span id="ex3-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-4">Sort each noun phrase into the connector it requires (<span class="font-mono font-bold">WHO</span> or <span class="font-mono font-bold">WHICH</span>):</p>
+        
+        <!-- Sorting Pool -->
+        <div id="ex3-items-pool" class="flex flex-wrap gap-2 mb-4 p-3 bg-white border border-slate-200 rounded-xl min-h-[50px]">
+          <span onclick="assignEx3(this, 'who-bin')" data-type="person" class="cursor-pointer bg-slate-100 hover:bg-indigo-50 hover:border-indigo-400 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition">👤 the dentist</span>
+          <span onclick="assignEx3(this, 'which-bin')" data-type="thing" class="cursor-pointer bg-slate-100 hover:bg-indigo-50 hover:border-indigo-400 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition">🏢 the hotel</span>
+          <span onclick="assignEx3(this, 'who-bin')" data-type="person" class="cursor-pointer bg-slate-100 hover:bg-indigo-50 hover:border-indigo-400 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition">👥 two pilots</span>
+          <span onclick="assignEx3(this, 'which-bin')" data-type="thing" class="cursor-pointer bg-slate-100 hover:bg-indigo-50 hover:border-indigo-400 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition">📱 my smartphone</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Bin WHO -->
+          <div class="bg-blue-50/60 border-2 border-dashed border-blue-300 rounded-xl p-3 min-h-[90px] flex flex-col justify-between">
+            <span class="text-xs font-bold text-blue-800">Requires "WHO" (People)</span>
+            <div id="who-bin" class="flex flex-wrap gap-1.5 my-2"></div>
+            <span class="text-[10px] text-blue-500">Tap items above to sort here</span>
+          </div>
+
+          <!-- Bin WHICH -->
+          <div class="bg-emerald-50/60 border-2 border-dashed border-emerald-300 rounded-xl p-3 min-h-[90px] flex flex-col justify-between">
+            <span class="text-xs font-bold text-emerald-800">Requires "WHICH" (Things / Places)</span>
+            <div id="which-bin" class="flex flex-wrap gap-1.5 my-2"></div>
+            <span class="text-[10px] text-emerald-500">Tap items above to sort here</span>
+          </div>
+        </div>
+
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="resetEx3()" class="text-xs text-slate-500 hover:text-slate-800 underline">Reset items</button>
+          <button onclick="checkEx3()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Check Sorting</button>
+        </div>
+        <div id="ex3-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex4-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 4 OF 10 • SENTENCE BUILDER</span>
+          <span id="ex4-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <div class="bg-indigo-50/50 border border-indigo-100 p-3 rounded-xl mb-3 text-xs text-slate-600">
+          <strong>Task:</strong> Combine these two thoughts: <em>"She has a dog."</em> + <em>"The dog barks at night."</em>
+        </div>
+
+        <div class="text-xs text-slate-500 mb-2">Tap the words in correct order:</div>
+        
+        <!-- Drop Area -->
+        <div id="ex4-dropzone" class="bg-white border-2 border-dashed border-slate-300 rounded-xl p-3 min-h-[50px] flex flex-wrap gap-2 items-center mb-3">
+          <span class="text-xs text-slate-400 italic" id="ex4-placeholder">Tap words below to arrange your sentence here...</span>
+        </div>
+
+        <!-- Word Bank -->
+        <div id="ex4-wordbank" class="flex flex-wrap gap-2 mb-4">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button onclick="initEx4()" class="text-xs text-slate-500 hover:text-slate-800 underline">Clear sentence</button>
+          <button onclick="checkEx4()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Verify Order</button>
+        </div>
+        <div id="ex4-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex5-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 5 OF 10 • SPOT THE ERROR</span>
+          <span id="ex5-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">One of the underlined words below is incorrect. Click on the mistake:</p>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-4 text-sm sm:text-base font-medium text-slate-800 flex flex-wrap items-center gap-2 mb-4">
+          <span>The woman</span>
+          <button onclick="selectEx5Word(this, 'which')" class="ex5-word-btn px-2 py-1 rounded bg-slate-100 hover:bg-amber-100 border border-slate-300 font-semibold transition">which</button>
+          <span>baked</span>
+          <button onclick="selectEx5Word(this, 'the')" class="ex5-word-btn px-2 py-1 rounded bg-slate-100 hover:bg-amber-100 border border-slate-300 font-semibold transition">the</button>
+          <span>delicious cake is my aunt.</span>
+        </div>
+
+        <div id="ex5-correction-panel" class="hidden bg-indigo-50 border border-indigo-200 p-3 rounded-xl mb-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <span class="text-xs font-bold text-indigo-900">Great spot! What should replace "which"?</span>
+          <div class="flex gap-2">
+            <button onclick="solveEx5('who')" class="px-3 py-1 bg-white hover:bg-indigo-600 hover:text-white border border-indigo-300 text-indigo-800 text-xs font-bold rounded-lg transition">who</button>
+            <button onclick="solveEx5('where')" class="px-3 py-1 bg-white hover:bg-indigo-600 hover:text-white border border-indigo-300 text-indigo-800 text-xs font-bold rounded-lg transition">where</button>
+          </div>
+        </div>
+        <div id="ex5-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex6-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 6 OF 10 • MULTI-SELECT</span>
+          <span id="ex6-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <h4 class="text-sm sm:text-base font-bold text-slate-900 mb-2">
+          "The red car <span class="text-indigo-600 font-mono">[ ? ]</span> was parked outside belongs to my brother."
+        </h4>
+        <p class="text-xs text-slate-500 mb-3">Select <strong>ALL</strong> pronouns that can grammatically complete this sentence:</p>
+
+        <div class="flex flex-wrap gap-4 mb-4">
+          <label class="flex items-center gap-2 cursor-pointer bg-white px-3.5 py-2 rounded-xl border border-slate-200 hover:border-indigo-300 text-xs font-bold text-slate-700">
+            <input type="checkbox" id="ex6-opt-who" class="w-4 h-4 text-indigo-600 rounded"> who
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer bg-white px-3.5 py-2 rounded-xl border border-slate-200 hover:border-indigo-300 text-xs font-bold text-slate-700">
+            <input type="checkbox" id="ex6-opt-which" class="w-4 h-4 text-indigo-600 rounded"> which
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer bg-white px-3.5 py-2 rounded-xl border border-slate-200 hover:border-indigo-300 text-xs font-bold text-slate-700">
+            <input type="checkbox" id="ex6-opt-that" class="w-4 h-4 text-indigo-600 rounded"> that
+          </label>
+        </div>
+
+        <button onclick="checkEx6()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Submit Choices</button>
+        <div id="ex6-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex7-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 7 OF 10 • TYPING INPUT</span>
+          <span id="ex7-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Type either valid pronoun into the blank box:</p>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-4 text-sm sm:text-base font-medium text-slate-800 flex flex-wrap items-center gap-2 mb-3">
+          <span>The friendly architect</span>
+          <input type="text" id="ex7-input" placeholder="type pronoun" autocomplete="off" class="w-32 px-2.5 py-1 text-xs border border-slate-300 rounded-lg font-mono focus:border-indigo-500 focus:outline-none">
+          <span>designed this hospital won an award.</span>
+        </div>
+
+        <button onclick="checkEx7()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Check Spelling</button>
+        <div id="ex7-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex8-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 8 OF 10 • MATCHING PUZZLE</span>
+          <span id="ex8-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-4">Click a starter on the left, then click its logical matching ending on the right:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Left Starters -->
+          <div class="space-y-2">
+            <div onclick="selectEx8Left(this, 'left1')" id="ex8-l-left1" class="ex8-left-item cursor-pointer p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold hover:border-indigo-400 transition">
+              1. I like the student...
+            </div>
+            <div onclick="selectEx8Left(this, 'left2')" id="ex8-l-left2" class="ex8-left-item cursor-pointer p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold hover:border-indigo-400 transition">
+              2. She found a key...
+            </div>
+          </div>
+
+          <!-- Right Endings -->
+          <div class="space-y-2">
+            <div onclick="selectEx8Right(this, 'rightB')" id="ex8-r-rightB" class="ex8-right-item cursor-pointer p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold hover:border-indigo-400 transition">
+              A. ...which opens the front entrance.
+            </div>
+            <div onclick="selectEx8Right(this, 'rightA')" id="ex8-r-rightA" class="ex8-right-item cursor-pointer p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold hover:border-indigo-400 transition">
+              B. ...who always arrives on time.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex items-center justify-between">
+          <span id="ex8-pair-status" class="text-xs text-slate-500">Pick 1 left item first</span>
+          <button onclick="checkEx8()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Confirm Pairs</button>
+        </div>
+        <div id="ex8-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex9-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 9 OF 10 • DIALOGUE COMPLETION</span>
+          <span id="ex9-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-4">Select the correct relative pronouns to complete the conversation:</p>
+
+        <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 mb-4">
+          <!-- Speaker A -->
+          <div class="flex items-start gap-3">
+            <span class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0">A</span>
+            <div class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+              "Do you know the barista
+              <select id="ex9-sel1" class="border border-slate-300 rounded px-1.5 py-0.5 font-mono text-xs font-semibold bg-slate-50">
+                <option value="">[ ? ]</option>
+                <option value="who">who</option>
+                <option value="which">which</option>
+              </select>
+              makes the oat latte?"
+            </div>
+          </div>
+
+          <!-- Speaker B -->
+          <div class="flex items-start gap-3">
+            <span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">B</span>
+            <div class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+              "Yes! And I really like the cafe
+              <select id="ex9-sel2" class="border border-slate-300 rounded px-1.5 py-0.5 font-mono text-xs font-semibold bg-slate-50">
+                <option value="">[ ? ]</option>
+                <option value="who">who</option>
+                <option value="which">which</option>
+              </select>
+              opened across the street."
+            </div>
+          </div>
+        </div>
+
+        <button onclick="checkEx9()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Check Dialogue</button>
+        <div id="ex9-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+      <div id="ex10-card" class="exercise-card bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">EXERCISE 10 OF 10 • MASTERY MERGE</span>
+          <span id="ex10-status" class="text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">Pending</span>
+        </div>
+        <div class="bg-indigo-50/50 border border-indigo-100 p-3 rounded-xl mb-3 text-xs text-slate-700">
+          <strong>Original Sentences:</strong><br>
+          Sentence 1: <em>"There are mountains in the north."</em><br>
+          Sentence 2: <em>"They have snow on them all year."</em>
+        </div>
+
+        <p class="text-xs text-slate-500 mb-3">Which merged sentence connects both thoughts correctly?</p>
+
+        <div class="space-y-2 mb-4">
+          <label class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 cursor-pointer text-xs font-medium text-slate-700">
+            <input type="radio" name="ex10-radio" value="opt1" class="mt-0.5 text-indigo-600">
+            <span>There are mountains in the north who have snow on them all year.</span>
+          </label>
+          <label class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 cursor-pointer text-xs font-medium text-slate-700">
+            <input type="radio" name="ex10-radio" value="opt2" class="mt-0.5 text-indigo-600">
+            <span>There are mountains in the north that have snow on them all year.</span>
+          </label>
+          <label class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 cursor-pointer text-xs font-medium text-slate-700">
+            <input type="radio" name="ex10-radio" value="opt3" class="mt-0.5 text-indigo-600">
+            <span>There are mountains in the north they have snow on them all year.</span>
+          </label>
+        </div>
+
+        <button onclick="checkEx10()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition shadow-sm">Submit Final Mastery</button>
+        <div id="ex10-feedback" class="hidden mt-4 text-xs font-semibold p-3 rounded-xl"></div>
+      </div>
+
+    </section>
+
+    <div id="celebration-banner" class="hidden bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-3xl p-8 text-center shadow-lg">
+      <div class="text-4xl mb-2">🎉 🌟 🏆</div>
+      <h3 class="text-2xl font-black">Splendid Work! You Mastered Relative Pronouns!</h3>
+      <p class="text-indigo-100 text-sm mt-1 max-w-md mx-auto">
+        You successfully understood how to connect independent sentences using <strong>who</strong>, <strong>which</strong>, and <strong>that</strong>!
+      </p>
+      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-5 px-6 py-2.5 bg-white text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-50 shadow transition">
+        Review from Top
+      </button>
+    </div>
+
+  </main>
+
+  <footer class="w-full bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-400">
+    <p>English Relative Pronouns Interactive Laboratory • Designed by Babak Alaee</p>
+  </footer>
+
+  <script>
+    /* Global State */
+    const appState = {
+      score: 0,
+      completedExercises: new Set(),
+      mergerScenario: 'person',
+      mergerStep: 1
+    };
+
+    /* Scenarios Data for Merger Machine */
+    const mergerScenarios = {
+      person: {
+        title: "Person Example",
+        s1: "I know the doctor.",
+        s2: "The doctor works in the clinic.",
+        repeatedNoun: "the doctor",
+        category: "Person",
+        connector: "who",
+        mergedSentence: "I know the doctor who works in the clinic.",
+        caption1: "Two independent sentences. Both mention the same doctor.",
+        caption2: "The subject is a person. In sentence 2, 'The doctor' is repetitive.",
+        caption3: "Sentence 2 loses the repeated subject, and 'who' links both parts seamlessly!"
+      },
+      object: {
+        title: "Thing / Object Example",
+        s1: "I live in an apartment.",
+        s2: "My apartment is near the park.",
+        repeatedNoun: "apartment",
+        category: "Thing / Place",
+        connector: "that",
+        mergedSentence: "I live in an apartment that is near the park.",
+        caption1: "Two sentences describing the living place.",
+        caption2: "'Apartment' is a physical place or thing.",
+        caption3: "We drop the repetitive subject and link using 'that' (or 'which')!"
+      },
+      nature: {
+        title: "Plural / Nature Example",
+        s1: "There are mountains in the north.",
+        s2: "They have snow on them all year.",
+        repeatedNoun: "mountains / they",
+        category: "Plural Objects",
+        connector: "which",
+        mergedSentence: "There are mountains in the north which have snow on them all year.",
+        caption1: "Two separate statements about the northern mountains.",
+        caption2: "'They' refers back to 'mountains' (inanimate plural).",
+        caption3: "The pronoun 'they' is replaced by 'which' (or 'that') into one complete thought!"
+      }
+    };
+
+    function loadMergerScenario(key) {
+      appState.mergerScenario = key;
+      appState.mergerStep = 1;
+      
+      // Update Tab Styles
+      ['person', 'object', 'nature'].forEach(tab => {
+        const el = document.getElementById(`tab-${tab}`);
+        if(tab === key) {
+          el.className = "px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-sm transition";
+        } else {
+          el.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-indigo-600 transition";
+        }
+      });
+
+      renderMergerView();
+    }
+
+    function stepMerger(delta) {
+      appState.mergerStep = Math.max(1, Math.min(3, appState.mergerStep + delta));
+      renderMergerView();
+    }
+
+    function resetMerger() {
+      appState.mergerStep = 1;
+      renderMergerView();
+    }
+
+    function renderMergerView() {
+      const data = mergerScenarios[appState.mergerScenario];
+      const step = appState.mergerStep;
+      const canvas = document.getElementById('merger-visual-canvas');
+      const caption = document.getElementById('merger-caption');
+
+      // Update step badges
+      for (let i = 1; i <= 3; i++) {
+        const badge = document.getElementById(`step-badge-${i}`);
+        if (i <= step) {
+          badge.className = "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-indigo-500 text-white transition";
+        } else {
+          badge.className = "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-slate-700 text-slate-400 transition";
+        }
+      }
+
+      // Buttons
+      document.getElementById('prev-step-btn').disabled = (step === 1);
+      document.getElementById('next-step-btn').disabled = (step === 3);
+
+      if (step === 1) {
+        caption.innerText = data.caption1;
+        canvas.innerHTML = `
+          <div class="flex flex-col sm:flex-row items-center gap-4 animate-fade">
+            <div class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 shadow text-sm font-medium text-slate-100">
+              ${data.s1}
+            </div>
+            <span class="text-indigo-400 font-bold text-lg">+</span>
+            <div class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 shadow text-sm font-medium text-slate-100">
+              ${data.s2}
+            </div>
+          </div>
+        `;
+      } else if (step === 2) {
+        caption.innerText = data.caption2;
+        canvas.innerHTML = `
+          <div class="flex flex-col items-center gap-3">
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+              <div class="bg-slate-800 border border-indigo-400/50 rounded-xl px-4 py-2.5 text-sm text-slate-100">
+                ${data.s1}
+              </div>
+              <div class="bg-slate-800 border border-indigo-400/50 rounded-xl px-4 py-2.5 text-sm text-slate-100">
+                <span class="line-through text-rose-400 decoration-rose-500 decoration-2">${data.repeatedNoun}</span> ${data.s2.replace(data.repeatedNoun, '').trim()}
+              </div>
+            </div>
+            <div class="inline-flex items-center gap-2 bg-indigo-950/80 border border-indigo-500/50 text-indigo-300 text-xs px-3 py-1 rounded-full mt-2">
+              <span>🔍 Category:</span> <strong class="text-white">${data.category}</strong>
+            </div>
+          </div>
+        `;
+      } else if (step === 3) {
+        caption.innerText = data.caption3;
+        canvas.innerHTML = `
+          <div class="flex flex-col items-center gap-3 animate-bounce-short">
+            <div class="glow-bridge bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white rounded-2xl px-6 py-4 shadow-xl border border-indigo-300 text-base sm:text-lg font-bold flex flex-wrap items-center justify-center gap-2">
+              <span>${data.mergedSentence.split(data.connector)[0]}</span>
+              <span class="bg-white text-indigo-800 px-2.5 py-0.5 rounded-lg shadow-sm font-mono uppercase tracking-wider text-sm font-extrabold">${data.connector}</span>
+              <span>${data.mergedSentence.split(data.connector)[1]}</span>
+            </div>
+            <span class="text-xs text-emerald-300 font-medium">✨ Smooth, unified statement formed!</span>
+          </div>
+        `;
+      }
+    }
+
+    function revealDiscoveryInsight() {
+      document.getElementById('discovery-reveal').classList.remove('hidden');
+      document.getElementById('discovery-btn').classList.add('hidden');
+    }
+
+    function togglePersonExample(word) {
+      document.getElementById('demo-person-word').innerText = word;
+      if(word === 'who') {
+        document.getElementById('btn-who').className = "px-2.5 py-1 text-xs rounded-lg bg-blue-600 text-white font-semibold transition";
+        document.getElementById('btn-that-p').className = "px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200 transition";
+      } else {
+        document.getElementById('btn-that-p').className = "px-2.5 py-1 text-xs rounded-lg bg-blue-600 text-white font-semibold transition";
+        document.getElementById('btn-who').className = "px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200 transition";
+      }
+    }
+
+    function toggleThingExample(word) {
+      document.getElementById('demo-thing-word').innerText = word;
+      if(word === 'that') {
+        document.getElementById('btn-that-t').className = "px-2.5 py-1 text-xs rounded-lg bg-emerald-600 text-white font-semibold transition";
+        document.getElementById('btn-which').className = "px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200 transition";
+      } else {
+        document.getElementById('btn-which').className = "px-2.5 py-1 text-xs rounded-lg bg-emerald-600 text-white font-semibold transition";
+        document.getElementById('btn-that-t').className = "px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200 transition";
+      }
+    }
+
+    function registerSuccess(exId) {
+      if (!appState.completedExercises.has(exId)) {
+        appState.completedExercises.add(exId);
+        appState.score = appState.completedExercises.size;
+        updateScoreboard();
+      }
+    }
+
+    function updateScoreboard() {
+      const score = appState.score;
+      document.getElementById('score-display').innerText = `${score} / 10`;
+      document.getElementById('score-bar').style.width = `${(score / 10) * 100}%`;
+
+      if (score === 10) {
+        document.getElementById('celebration-banner').classList.remove('hidden');
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+        }
+      }
+    }
+
+    function checkEx1(choice) {
+      const fb = document.getElementById('ex1-feedback');
+      const badge = document.getElementById('ex1-status');
+      fb.classList.remove('hidden');
+
+      if (choice === 'who') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Correct! 'The teacher' is a person, so we use 'who' (or 'that').";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(1);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Not quite. 'The teacher' refers to a human being, not an object or a place.";
+      }
+    }
+
+    let ex2Selected = '';
+    function placeEx2Chip(word) {
+      ex2Selected = word;
+      const slot = document.getElementById('ex2-slot');
+      slot.innerText = word;
+      slot.className = "min-w-[70px] text-center px-3 py-1 border-2 border-indigo-500 rounded-lg text-indigo-700 font-mono bg-indigo-100/60 font-bold";
+    }
+
+    function checkEx2() {
+      const fb = document.getElementById('ex2-feedback');
+      const badge = document.getElementById('ex2-status');
+      fb.classList.remove('hidden');
+
+      if (ex2Selected === 'which') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Perfect! A 'laptop' is an object / device, so 'which' is the accurate choice here.";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(2);
+      } else if (!ex2Selected) {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-amber-100 text-amber-800 border border-amber-200";
+        fb.innerText = "Please select a pronoun first by tapping one of the chips!";
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Remember: laptops are electronics (things), not people or times.";
+      }
+    }
+
+    function assignEx3(el, targetBinId) {
+      const targetBin = document.getElementById(targetBinId);
+      targetBin.appendChild(el);
+    }
+
+    function resetEx3() {
+      const pool = document.getElementById('ex3-items-pool');
+      const whoBin = document.getElementById('who-bin');
+      const whichBin = document.getElementById('which-bin');
+      
+      while (whoBin.firstChild) pool.appendChild(whoBin.firstChild);
+      while (whichBin.firstChild) pool.appendChild(whichBin.firstChild);
+      
+      document.getElementById('ex3-feedback').classList.add('hidden');
+    }
+
+    function checkEx3() {
+      const whoBin = document.getElementById('who-bin');
+      const whichBin = document.getElementById('which-bin');
+      const fb = document.getElementById('ex3-feedback');
+      const badge = document.getElementById('ex3-status');
+      fb.classList.remove('hidden');
+
+      const whoItems = Array.from(whoBin.children);
+      const whichItems = Array.from(whichBin.children);
+
+      if (whoItems.length + whichItems.length < 4) {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-amber-100 text-amber-800 border border-amber-200";
+        fb.innerText = "Please sort all 4 items into the bins before checking!";
+        return;
+      }
+
+      const whoValid = whoItems.every(item => item.dataset.type === 'person');
+      const whichValid = whichItems.every(item => item.dataset.type === 'thing');
+
+      if (whoValid && whichValid) {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Spot on! 'Dentist' & 'pilots' are people (WHO). 'Hotel' & 'smartphone' are things/places (WHICH).";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(3);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ A few items are in the wrong bin. Check if each item is a person or an object.";
+      }
+    }
+
+    const ex4Words = ["She", "has", "a dog", "that", "barks", "at night."];
+    let ex4Current = [];
+
+    function initEx4() {
+      ex4Current = [];
+      const bank = document.getElementById('ex4-wordbank');
+      const dropzone = document.getElementById('ex4-dropzone');
+      bank.innerHTML = '';
+      dropzone.innerHTML = '<span class="text-xs text-slate-400 italic" id="ex4-placeholder">Tap words below to arrange your sentence here...</span>';
+      
+      const shuffled = [...ex4Words].sort(() => Math.random() - 0.5);
+      shuffled.forEach(w => {
+        const btn = document.createElement('button');
+        btn.innerText = w;
+        btn.className = "px-3 py-1.5 bg-white border border-slate-300 hover:border-indigo-400 rounded-lg text-xs font-semibold text-slate-700 transition";
+        btn.onclick = () => addToEx4(w, btn);
+        bank.appendChild(btn);
+      });
+      document.getElementById('ex4-feedback').classList.add('hidden');
+    }
+
+    function addToEx4(word, btn) {
+      const ph = document.getElementById('ex4-placeholder');
+      if (ph) ph.remove();
+
+      ex4Current.push(word);
+      btn.style.visibility = 'hidden';
+
+      const tag = document.createElement('span');
+      tag.innerText = word;
+      tag.className = "bg-indigo-50 border border-indigo-200 text-indigo-800 font-semibold text-xs px-2.5 py-1 rounded-lg";
+      document.getElementById('ex4-dropzone').appendChild(tag);
+    }
+
+    function checkEx4() {
+      const fb = document.getElementById('ex4-feedback');
+      const badge = document.getElementById('ex4-status');
+      fb.classList.remove('hidden');
+
+      const target = "She has a dog that barks at night.";
+      if (ex4Current.join(' ') === target) {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Excellent sentence merger! 'that' connects the description directly to the dog.";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(4);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ The word order is not quite right yet. Try clearing and arranging again!";
+      }
+    }
+
+    function selectEx5Word(btn, word) {
+      const panel = document.getElementById('ex5-correction-panel');
+      const fb = document.getElementById('ex5-feedback');
+      fb.classList.add('hidden');
+
+      if (word === 'which') {
+        panel.classList.remove('hidden');
+      } else {
+        panel.classList.add('hidden');
+        fb.classList.remove('hidden');
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ That word is fine! Look closely at the pronoun used for 'The woman'.";
+      }
+    }
+
+    function solveEx5(replacement) {
+      const fb = document.getElementById('ex5-feedback');
+      const badge = document.getElementById('ex5-status');
+      fb.classList.remove('hidden');
+
+      if (replacement === 'who') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Well done! 'The woman' is a person, so 'which' was incorrect. 'who' (or 'that') is correct!";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(5);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Not 'where'. We need the relative pronoun for a person.";
+      }
+    }
+
+    function checkEx6() {
+      const who = document.getElementById('ex6-opt-who').checked;
+      const which = document.getElementById('ex6-opt-which').checked;
+      const that = document.getElementById('ex6-opt-that').checked;
+      const fb = document.getElementById('ex6-feedback');
+      const badge = document.getElementById('ex6-status');
+      fb.classList.remove('hidden');
+
+      if (!who && which && that) {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Exact! A car is a thing, so BOTH 'which' and 'that' are valid grammatically!";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(6);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Not quite. Remember: 'car' is a thing (can take which and that), but never 'who'.";
+      }
+    }
+
+    function checkEx7() {
+      const val = document.getElementById('ex7-input').value.trim().toLowerCase();
+      const fb = document.getElementById('ex7-feedback');
+      const badge = document.getElementById('ex7-status');
+      fb.classList.remove('hidden');
+
+      if (val === 'who' || val === 'that') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = `✓ Excellent! "${val}" fits naturally because an architect is a person.`;
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(7);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Try again. Which relative pronouns connect people? (Hint: 3-4 letters)";
+      }
+    }
+
+    let ex8SelectedLeft = null;
+    let ex8SelectedRight = null;
+    let ex8Pairs = {};
+
+    function selectEx8Left(el, id) {
+      document.querySelectorAll('.ex8-left-item').forEach(i => i.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50'));
+      el.classList.add('ring-2', 'ring-indigo-500', 'bg-indigo-50');
+      ex8SelectedLeft = id;
+      document.getElementById('ex8-pair-status').innerText = `Selected item ${id === 'left1' ? '1' : '2'}. Now pick its matching ending on the right.`;
+    }
+
+    function selectEx8Right(el, id) {
+      if (!ex8SelectedLeft) {
+        document.getElementById('ex8-pair-status').innerText = "Please choose a left sentence starter first!";
+        return;
+      }
+      ex8Pairs[ex8SelectedLeft] = id;
+      el.classList.add('bg-emerald-50', 'border-emerald-400');
+      document.getElementById('ex8-pair-status').innerText = `Matched item! Match the other or click confirm.`;
+    }
+
+    function checkEx8() {
+      const fb = document.getElementById('ex8-feedback');
+      const badge = document.getElementById('ex8-status');
+      fb.classList.remove('hidden');
+
+      // Correct pairing: left1 (student -> who) = rightA ("who always arrives..."), left2 (key -> which) = rightB ("which opens...")
+      if (ex8Pairs['left1'] === 'rightA' && ex8Pairs['left2'] === 'rightB') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Perfect matches! Student matches 'who', and the key matches 'which'.";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(8);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Some matches are incomplete or incorrect. Ensure persons connect with 'who' and objects with 'which'.";
+      }
+    }
+
+    function checkEx9() {
+      const s1 = document.getElementById('ex9-sel1').value;
+      const s2 = document.getElementById('ex9-sel2').value;
+      const fb = document.getElementById('ex9-feedback');
+      const badge = document.getElementById('ex9-status');
+      fb.classList.remove('hidden');
+
+      if (s1 === 'who' && s2 === 'which') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Flawless conversation! The barista is a person (who), and the cafe is a place/thing (which).";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(9);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Check your selections. Is the barista a person? Is the cafe an object/place?";
+      }
+    }
+
+    function checkEx10() {
+      const selected = document.querySelector('input[name="ex10-radio"]:checked');
+      const fb = document.getElementById('ex10-feedback');
+      const badge = document.getElementById('ex10-status');
+      fb.classList.remove('hidden');
+
+      if (!selected) {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-amber-100 text-amber-800 border border-amber-200";
+        fb.innerText = "Please select one of the options to check your answer.";
+        return;
+      }
+
+      if (selected.value === 'opt2') {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200";
+        fb.innerText = "✓ Masterful! Mountains are things in nature, so 'that' (or 'which') connects them accurately without repeating 'they'.";
+        badge.innerText = "Completed";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700";
+        registerSuccess(10);
+      } else {
+        fb.className = "mt-4 text-xs font-semibold p-3 rounded-xl bg-rose-100 text-rose-800 border border-rose-200";
+        fb.innerText = "✕ Option incorrect. Mountains cannot take 'who', and leaving 'they' repeats the pronoun unnecessarily.";
+      }
+    }
+
+    function resetAllExercises() {
+      appState.completedExercises.clear();
+      appState.score = 0;
+      updateScoreboard();
+
+      // Reset badges & feedbacks
+      for(let i = 1; i <= 10; i++) {
+        const b = document.getElementById(`ex${i}-status`);
+        if (b) {
+          b.innerText = "Pending";
+          b.className = "text-xs font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600";
+        }
+        const fb = document.getElementById(`ex${i}-feedback`);
+        if (fb) fb.classList.add('hidden');
+      }
+
+      // Specific resets
+      ex2Selected = '';
+      document.getElementById('ex2-slot').innerText = "[ ? ]";
+      document.getElementById('ex2-slot').className = "min-w-[70px] text-center px-3 py-1 border-2 border-dashed border-indigo-400 rounded-lg text-indigo-700 font-mono bg-indigo-50/50";
+      
+      resetEx3();
+      initEx4();
+      
+      document.getElementById('ex5-correction-panel').classList.add('hidden');
+      document.getElementById('ex6-opt-who').checked = false;
+      document.getElementById('ex6-opt-which').checked = false;
+      document.getElementById('ex6-opt-that').checked = false;
+      document.getElementById('ex7-input').value = '';
+      
+      ex8SelectedLeft = null;
+      ex8SelectedRight = null;
+      ex8Pairs = {};
+      document.querySelectorAll('.ex8-left-item, .ex8-right-item').forEach(el => {
+        el.className = "cursor-pointer p-3 bg-white border border-slate-200 rounded-xl text-xs font-semibold hover:border-indigo-400 transition";
+      });
+      document.getElementById('ex8-pair-status').innerText = "Pick 1 left item first";
+
+      document.getElementById('ex9-sel1').value = "";
+      document.getElementById('ex9-sel2').value = "";
+
+      const ex10Radio = document.querySelector('input[name="ex10-radio"]:checked');
+      if (ex10Radio) ex10Radio.checked = false;
+
+      document.getElementById('celebration-banner').classList.add('hidden');
+    }
+
+    window.onload = function() {
+      renderMergerView();
+      initEx4();
+    };
+  </script>
+</body>
+</html>
