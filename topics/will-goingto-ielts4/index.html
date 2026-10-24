@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Forms: Will vs. Going To</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Flip Card CSS */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .group:hover .group-hover\:rotate-y-180 { transform: rotateY(180deg); }
+
+        /* Interactive Text */
+        .interactive-verb {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .interactive-verb:hover { background-color: #c7d2fe; }
+        .interactive-verb.correct { background-color: #dcfce7; color: #166534; cursor: default; }
+        .interactive-verb.incorrect { background-color: #fee2e2; color: #991b1b; }
+
+        /* Category Tooltip */
+        .category-tooltip {
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 8px;
+            z-index: 50;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            width: max-content;
+        }
+        .category-tooltip.show { display: flex; }
+        .cat-btn {
+            padding: 6px 12px;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .cat-btn:hover { background: #f1f5f9; }
+
+        /* Drag and Drop / Unscramble */
+        .draggable-word {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: grab;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            user-select: none;
+            transition: transform 0.1s;
+        }
+        .draggable-word:active { cursor: grabbing; transform: scale(0.95); }
+        .drop-zone {
+            display: inline-block;
+            min-width: 80px;
+            height: 36px;
+            border: 2px dashed #94a3b8;
+            border-radius: 6px;
+            vertical-align: middle;
+            background: #f8fafc;
+            transition: all 0.2s;
+            text-align: center;
+            line-height: 32px;
+        }
+        .drop-zone.drag-over { background: #e0e7ff; border-color: #4f46e5; }
+        .drop-zone.filled { border-style: solid; border-color: #4f46e5; background: white; }
+
+        /* Unscramble specific */
+        .unscramble-word {
+            background: #4f46e5;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s;
+        }
+        .unscramble-word:active { transform: scale(0.95); }
+        .unscramble-area {
+            min-height: 48px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            background: white;
+        }
+
+        /* Modal */
+        #result-modal { display: none; }
+        #result-modal.show { display: flex; }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-100 selection:text-indigo-900">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 py-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Future Forms: Will vs. Going To</h1>
+            <p class="text-sm text-slate-400 mt-2 font-medium">Designed by Babak Alaee</p>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <nav class="max-w-5xl mx-auto px-4 flex justify-center space-x-2 md:space-x-8 overflow-x-auto">
+            <button onclick="switchTab('exposure')" id="tab-btn-exposure" class="tab-btn px-4 py-3 text-indigo-600 border-b-2 border-indigo-600 font-semibold transition-colors whitespace-nowrap">1. Exposure</button>
+            <button onclick="switchTab('rules')" id="tab-btn-rules" class="tab-btn px-4 py-3 text-slate-500 border-b-2 border-transparent hover:text-slate-700 font-semibold transition-colors whitespace-nowrap">2. Rules & Explanations</button>
+            <button onclick="switchTab('practice')" id="tab-btn-practice" class="tab-btn px-4 py-3 text-slate-500 border-b-2 border-transparent hover:text-slate-700 font-semibold transition-colors whitespace-nowrap">3. Practice Exercises</button>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-5xl mx-auto px-4 py-8 md:py-12">
+        
+        <!-- TAB 1: EXPOSURE -->
+        <section id="tab-exposure" class="tab-content block animate-fade-in">
+            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4">Discover the Patterns</h2>
+                <p class="text-slate-600 mb-8">Read the article below. Click on the highlighted verbs to identify why that specific future form was used. Try to categorize all of them correctly!</p>
+                
+                <div class="bg-slate-50 p-6 md:p-8 rounded-xl text-lg leading-relaxed shadow-inner border border-slate-200 space-y-4">
+                    <h3 class="text-xl font-bold text-indigo-900 mb-4">The Robotic Horizon</h3>
+                    
+                    <p>The integration of advanced robotics into daily life is no longer just science fiction. Next month, leading tech corporations 
+                        <span class="interactive-verb" onclick="toggleTooltip(this)" data-answer="plan">are going to release
+                            <div class="category-tooltip">
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'plan')">Planned Action</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'evidence')">Prediction (Evidence)</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'general')">General Prediction</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'decision')">Sudden Decision</button>
+                            </div>
+                        </span> their newest line of domestic AI assistants. They finalized the blueprints and factory contracts over a year ago.</p>
+                    
+                    <p>However, given the massive global chip shortage and the recent factory shutdowns we are seeing right now, supply chains 
+                        <span class="interactive-verb" onclick="toggleTooltip(this)" data-answer="evidence">are going to struggle
+                            <div class="category-tooltip">
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'plan')">Planned Action</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'evidence')">Prediction (Evidence)</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'general')">General Prediction</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'decision')">Sudden Decision</button>
+                            </div>
+                        </span> immensely under the pressure before the year ends.</p>
+                    
+                    <p>Despite these immediate production challenges, most tech enthusiasts confidently claim that humans 
+                        <span class="interactive-verb" onclick="toggleTooltip(this)" data-answer="general">will adapt
+                            <div class="category-tooltip">
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'plan')">Planned Action</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'evidence')">Prediction (Evidence)</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'general')">General Prediction</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'decision')">Sudden Decision</button>
+                            </div>
+                        </span> seamlessly to having robotic companions managing their households.</p>
+                    
+                    <p>"We understand people are concerned about privacy," a company spokesperson stated recently during a live press conference. "I see a hand raised in the back. I 
+                        <span class="interactive-verb" onclick="toggleTooltip(this)" data-answer="decision">will answer
+                            <div class="category-tooltip">
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'plan')">Planned Action</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'evidence')">Prediction (Evidence)</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'general')">General Prediction</button>
+                                <button class="cat-btn" onclick="checkInteractive(event, this, 'decision')">Sudden Decision</button>
+                            </div>
+                        </span> your question regarding data security right now."</p>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Guided Discovery</h3>
+                    <div class="space-y-4">
+                        <!-- Q1 -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <p class="font-semibold text-indigo-900 mb-3">1. Why is "are going to release" used instead of "will release"?</p>
+                            <div class="space-y-2">
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">A) It is a sudden decision made while speaking.</button>
+                                <button type="button" onclick="handleDiscovery(this, true, 'The text mentions they &quot;finalized the blueprints... over a year ago.&quot; This shows a prior plan or intention.')" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">B) It represents a prior plan or intention decided before writing.</button>
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">C) It is a general prediction without any evidence.</button>
+                            </div>
+                            <div class="feedback mt-3 text-sm hidden font-medium"></div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <p class="font-semibold text-indigo-900 mb-3">2. What evidence supports the prediction "are going to struggle"?</p>
+                            <div class="space-y-2">
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">A) Tech enthusiasts confidently claim it will happen.</button>
+                                <button type="button" onclick="handleDiscovery(this, true, 'The &quot;massive global chip shortage and recent factory shutdowns&quot; acts as present evidence for the prediction.')" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">B) The massive global chip shortage and factory shutdowns.</button>
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">C) People are concerned about data privacy and security.</button>
+                            </div>
+                            <div class="feedback mt-3 text-sm hidden font-medium"></div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <p class="font-semibold text-indigo-900 mb-3">3. Why is "will adapt" used for the tech enthusiasts' claim?</p>
+                            <div class="space-y-2">
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">A) It is based on concrete present evidence like chip shortages.</button>
+                                <button type="button" onclick="handleDiscovery(this, true, 'It is a general prediction or belief based on an opinion, often signaled by words like &quot;claim&quot;, &quot;think&quot;, or &quot;believe&quot;.')" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">B) It is a general prediction or belief based on an opinion.</button>
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">C) The enthusiasts are making a sudden decision to help humans adapt.</button>
+                            </div>
+                            <div class="feedback mt-3 text-sm hidden font-medium"></div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <p class="font-semibold text-indigo-900 mb-3">4. Did the spokesperson plan to answer the question beforehand?</p>
+                            <div class="space-y-2">
+                                <button type="button" onclick="handleDiscovery(this, true, 'No. The spokesperson says &quot;I see a hand raised&quot;. This means they made a sudden decision to act at the exact moment of speaking.')" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">A) No. They saw a hand raised and made a sudden decision to answer.</button>
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">B) Yes. It was an organized part of the press conference schedule.</button>
+                                <button type="button" onclick="handleDiscovery(this, false)" class="w-full text-left px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-100 transition-colors">C) Yes. They had already collected the data security questions beforehand.</button>
+                            </div>
+                            <div class="feedback mt-3 text-sm hidden font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: RULES -->
+        <section id="tab-rules" class="tab-content hidden animate-fade-in">
+            <div class="mb-8 text-center">
+                <h2 class="text-2xl font-bold text-slate-800">Understanding the Rules</h2>
+                <p class="text-slate-600 mt-2">Hover over (or tap) the cards to reveal when to use each form.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <!-- Card 1 -->
+                <div class="group h-64 perspective-1000 cursor-pointer">
+                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:rotate-y-180">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center p-6 text-center">
+                            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">📅</div>
+                            <h3 class="text-xl font-bold text-slate-800">Plans & Intentions</h3>
+                            <p class="text-slate-500 mt-2 font-medium">Which form do we use?</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden bg-indigo-600 text-white rounded-2xl shadow-lg rotate-y-180 flex flex-col items-center justify-center p-6 text-center">
+                            <h3 class="text-2xl font-bold mb-2">Going to</h3>
+                            <p class="text-indigo-100 mb-4 text-sm md:text-base">Use "going to" for actions you have already decided or planned to do before speaking.</p>
+                            <div class="bg-indigo-700/50 p-3 rounded-lg w-full text-left">
+                                <span class="italic block text-sm">"I <strong>am going to</strong> travel to Japan next year."</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group h-64 perspective-1000 cursor-pointer">
+                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:rotate-y-180">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center p-6 text-center">
+                            <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">👁️</div>
+                            <h3 class="text-xl font-bold text-slate-800">Predictions with Evidence</h3>
+                            <p class="text-slate-500 mt-2 font-medium">Which form do we use?</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden bg-teal-600 text-white rounded-2xl shadow-lg rotate-y-180 flex flex-col items-center justify-center p-6 text-center">
+                            <h3 class="text-2xl font-bold mb-2">Going to</h3>
+                            <p class="text-teal-100 mb-4 text-sm md:text-base">Use "going to" when there is something in the present that tells you what will happen.</p>
+                            <div class="bg-teal-700/50 p-3 rounded-lg w-full text-left">
+                                <span class="italic block text-sm">"Watch out! You <strong>are going to</strong> drop those glasses!"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group h-64 perspective-1000 cursor-pointer">
+                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:rotate-y-180">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center p-6 text-center">
+                            <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">🤔</div>
+                            <h3 class="text-xl font-bold text-slate-800">General Predictions & Beliefs</h3>
+                            <p class="text-slate-500 mt-2 font-medium">Which form do we use?</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden bg-purple-600 text-white rounded-2xl shadow-lg rotate-y-180 flex flex-col items-center justify-center p-6 text-center">
+                            <h3 class="text-2xl font-bold mb-2">Will</h3>
+                            <p class="text-purple-100 mb-4 text-sm md:text-base">Use "will" for predictions based on opinions, thoughts, or beliefs (often with <em>think, believe, hope</em>).</p>
+                            <div class="bg-purple-700/50 p-3 rounded-lg w-full text-left">
+                                <span class="italic block text-sm">"I think robots <strong>will</strong> clean our houses in the future."</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group h-64 perspective-1000 cursor-pointer">
+                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:rotate-y-180">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center p-6 text-center">
+                            <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">⚡</div>
+                            <h3 class="text-xl font-bold text-slate-800">Sudden Decisions & Offers</h3>
+                            <p class="text-slate-500 mt-2 font-medium">Which form do we use?</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden bg-rose-600 text-white rounded-2xl shadow-lg rotate-y-180 flex flex-col items-center justify-center p-6 text-center">
+                            <h3 class="text-2xl font-bold mb-2">Will</h3>
+                            <p class="text-rose-100 mb-4 text-sm md:text-base">Use "will" for decisions made at the exact moment of speaking, or when offering help.</p>
+                            <div class="bg-rose-700/50 p-3 rounded-lg w-full text-left">
+                                <span class="italic block text-sm">"The phone is ringing. I <strong>will</strong> answer it!"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: PRACTICE -->
+        <section id="tab-practice" class="tab-content hidden animate-fade-in">
+            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Put it to the Test</h2>
+                <p class="text-slate-600 mb-8">Complete the 10 exercises below. No hints are provided, so trust your knowledge! Click 'Check Answers' at the bottom when you are finished.</p>
+                
+                <form id="practice-form" onsubmit="event.preventDefault(); evaluatePractice();" class="space-y-10">
+                    
+                    <!-- Type 1: Contextualization (Multiple Choice) -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-indigo-600 border-b pb-2">Part 1: Contextualization</h3>
+                        
+                        <!-- Q1 -->
+                        <div class="q-container" data-type="mc" data-answer="will">
+                            <p class="font-medium text-slate-800 mb-3"><span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">1</span>Your colleague is struggling with a heavy box. You want to offer help. What do you say?</p>
+                            <div class="space-y-2 ml-8">
+                                <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50 transition">
+                                    <input type="radio" name="q1" value="will" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                                    <span>"I'll help you with that!"</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50 transition">
+                                    <input type="radio" name="q1" value="going" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                                    <span>"I'm going to help you with that!"</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="q-container" data-type="mc" data-answer="going">
+                            <p class="font-medium text-slate-800 mb-3"><span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">2</span>You are telling your friend about your upcoming summer vacation, which you booked last month.</p>
+                            <div class="space-y-2 ml-8">
+                                <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50 transition">
+                                    <input type="radio" name="q2" value="will" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                                    <span>"We will fly to Rome."</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50 transition">
+                                    <input type="radio" name="q2" value="going" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                                    <span>"We are going to fly to Rome."</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="q-container" data-type="mc" data-answer="going">
+                            <p class="font-medium text-slate-800 mb-3"><span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">3</span>You are watching a man walk looking at his phone. There is a hole in the pavement right in front of him.</p>
+                            <div class="space-y-2 ml-8">
+                                <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50 transition">
+                                    <input type="radio" name="q3" value="will" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                                    <span>"Oh no, he will fall in!"</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-slate-50 transition">
+                                    <input type="radio" name="q3" value="going" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                                    <span>"Oh no, he is going to fall in!"</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type 2: Sentence Writing (Fill in the blank) -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-indigo-600 border-b pb-2">Part 2: Fill in the Blank</h3>
+                        <p class="text-sm text-slate-500 mb-4">Type the correct form using <strong>will</strong> or <strong>am/is/are going to</strong>.</p>
+                        
+                        <!-- Q4 -->
+                        <div class="q-container" data-type="text" data-answer="will be">
+                            <p class="font-medium text-slate-800 mb-2 flex items-center">
+                                <span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">4</span>
+                                I personally think that electric cars 
+                                <input type="text" id="q4" class="mx-2 w-32 border-b-2 border-slate-300 focus:border-indigo-600 outline-none text-center bg-transparent transition-colors" autocomplete="off"> 
+                                (be) the only cars in 2050.
+                            </p>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="q-container" data-type="text" data-answer="is going to study">
+                            <p class="font-medium text-slate-800 mb-2 flex items-center flex-wrap">
+                                <span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">5</span>
+                                Sarah has already paid her tuition fees. She 
+                                <input type="text" id="q5" class="mx-2 w-40 border-b-2 border-slate-300 focus:border-indigo-600 outline-none text-center bg-transparent transition-colors mt-2 md:mt-0" autocomplete="off"> 
+                                (study) architecture next semester.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Type 3: Drag and Drop -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-indigo-600 border-b pb-2">Part 3: Drag and Drop</h3>
+                        <p class="text-sm text-slate-500 mb-4">Drag the correct form into the dashed boxes to complete the sentences.</p>
+                        
+                        <div class="flex flex-wrap gap-3 mb-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <div class="draggable-word" draggable="true" ondragstart="drag(event)" id="word1">will</div>
+                            <div class="draggable-word" draggable="true" ondragstart="drag(event)" id="word2">am going to</div>
+                            <div class="draggable-word" draggable="true" ondragstart="drag(event)" id="word3">are going to</div>
+                            <div class="draggable-word" draggable="true" ondragstart="drag(event)" id="word4">is going to</div>
+                            <div class="draggable-word" draggable="true" ondragstart="drag(event)" id="word5">will</div>
+                        </div>
+
+                        <!-- Q6 -->
+                        <div class="q-container" data-type="drag" data-answer="will">
+                            <p class="font-medium text-slate-800 mb-2 leading-loose">
+                                <span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">6</span>
+                                "I don't have any cash." - "Don't worry, I 
+                                <span class="drop-zone mx-2" ondrop="drop(event, 'q6')" ondragover="allowDrop(event)" id="drop-q6" data-id="q6"></span> 
+                                lend you some."
+                            </p>
+                        </div>
+
+                        <!-- Q7 -->
+                        <div class="q-container" data-type="drag" data-answer="am going to">
+                            <p class="font-medium text-slate-800 mb-2 leading-loose">
+                                <span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">7</span>
+                                "Why are you holding a mop?" - "I 
+                                <span class="drop-zone mx-2" ondrop="drop(event, 'q7')" ondragover="allowDrop(event)" id="drop-q7" data-id="q7"></span> 
+                                clean the floor."
+                            </p>
+                        </div>
+
+                        <!-- Q8 -->
+                        <div class="q-container" data-type="drag" data-answer="is going to">
+                            <p class="font-medium text-slate-800 mb-2 leading-loose">
+                                <span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">8</span>
+                                Look at the traffic! We 
+                                <span class="drop-zone mx-2" ondrop="drop(event, 'q8')" ondragover="allowDrop(event)" id="drop-q8" data-id="q8"></span> 
+                                miss the flight.
+                            </p>
+                            <p class="text-xs text-slate-400 mt-1 italic">*Hint: use the verb "to be" appropriate for "We", wait, the sentence is "We ... miss". Actually, it should be "are going to". Let's correct this in the data-answer attribute.*</p>
+                        </div>
+                    </div>
+
+                    <!-- Type 4: Unscramble -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-indigo-600 border-b pb-2">Part 4: Sentence Building</h3>
+                        <p class="text-sm text-slate-500 mb-4">Click the words in the correct order to build the sentence.</p>
+
+                        <!-- Q9 -->
+                        <div class="q-container" data-type="unscramble" data-answer="I am going to make a cake.">
+                            <p class="font-medium text-slate-800 mb-3"><span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">9</span>(A planned action for tonight)</p>
+                            
+                            <!-- Answer Area -->
+                            <div class="unscramble-area mb-3" id="ans-area-q9" onclick="returnWord('q9', event)"></div>
+                            
+                            <!-- Word Bank -->
+                            <div class="flex flex-wrap gap-2" id="bank-q9">
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">cake.</div>
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">am</div>
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">to</div>
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">going</div>
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">I</div>
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">make</div>
+                                <div class="unscramble-word" onclick="moveWord('q9', this)">a</div>
+                            </div>
+                            <button type="button" onclick="resetUnscramble('q9')" class="text-xs text-indigo-600 mt-2 hover:underline">Reset Sentence</button>
+                        </div>
+
+                        <!-- Q10 -->
+                        <div class="q-container" data-type="unscramble" data-answer="I will answer the door!">
+                            <p class="font-medium text-slate-800 mb-3"><span class="bg-slate-100 text-slate-500 rounded px-2 py-1 text-sm mr-2">10</span>(The doorbell rings - sudden decision)</p>
+                            
+                            <!-- Answer Area -->
+                            <div class="unscramble-area mb-3" id="ans-area-q10" onclick="returnWord('q10', event)"></div>
+                            
+                            <!-- Word Bank -->
+                            <div class="flex flex-wrap gap-2" id="bank-q10">
+                                <div class="unscramble-word" onclick="moveWord('q10', this)">answer</div>
+                                <div class="unscramble-word" onclick="moveWord('q10', this)">door!</div>
+                                <div class="unscramble-word" onclick="moveWord('q10', this)">I</div>
+                                <div class="unscramble-word" onclick="moveWord('q10', this)">the</div>
+                                <div class="unscramble-word" onclick="moveWord('q10', this)">will</div>
+                            </div>
+                            <button type="button" onclick="resetUnscramble('q10')" class="text-xs text-indigo-600 mt-2 hover:underline">Reset Sentence</button>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-slate-200 text-center">
+                        <button type="submit" class="bg-indigo-600 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-indigo-700 hover:shadow-xl transition-all transform hover:-translate-y-1 text-lg">
+                            Finish & View Summary
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Modal for Results -->
+    <div id="result-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center transform scale-95 transition-transform duration-300" id="modal-content">
+            <div id="score-icon" class="text-6xl mb-4">🏆</div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-2">Results</h3>
+            <p class="text-slate-600 mb-6">You scored</p>
+            <div class="text-5xl font-extrabold text-indigo-600 mb-6">
+                <span id="final-score">0</span><span class="text-2xl text-slate-400">/10</span>
+            </div>
+            <p id="score-message" class="text-slate-600 font-medium mb-8"></p>
+            <button onclick="closeModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl transition-colors">
+                Review Answers
+            </button>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // Tab Navigation Logic
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Reset all buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('text-indigo-600', 'border-indigo-600');
+                el.classList.add('text-slate-500', 'border-transparent');
+            });
+            
+            // Show selected content
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            // Highlight selected button
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            activeBtn.classList.remove('text-slate-500', 'border-transparent');
+            activeBtn.classList.add('text-indigo-600', 'border-indigo-600');
+        }
+
+        // --- Exposure Tab Logic ---
+        let activeTooltip = null;
+
+        function toggleTooltip(element) {
+            // If already answered correctly, do nothing
+            if (element.classList.contains('correct')) return;
+
+            const tooltip = element.querySelector('.category-tooltip');
+            if (!tooltip) return;
+
+            // Close existing
+            if (activeTooltip && activeTooltip !== tooltip) {
+                activeTooltip.classList.remove('show');
+            }
+            
+            tooltip.classList.toggle('show');
+            activeTooltip = tooltip.classList.contains('show') ? tooltip : null;
+        }
+
+        function checkInteractive(event, btn, selectedCategory) {
+            event.stopPropagation(); // Prevent toggling parent
+            const parentSpan = btn.closest('.interactive-verb');
+            const correctAnswer = parentSpan.getAttribute('data-answer');
+            const tooltip = parentSpan.querySelector('.category-tooltip');
+            
+            if (selectedCategory === correctAnswer) {
+                parentSpan.classList.add('correct');
+                parentSpan.classList.remove('incorrect');
+                
+                // Safely add checkmark without destroying DOM events
+                if(!parentSpan.textContent.includes('✓')) {
+                    const checkmark = document.createElement('span');
+                    checkmark.textContent = ' ✓';
+                    parentSpan.insertBefore(checkmark, tooltip);
+                }
+            } else {
+                parentSpan.classList.add('incorrect');
+                setTimeout(() => parentSpan.classList.remove('incorrect'), 1000);
+            }
+            
+            if (tooltip) tooltip.classList.remove('show');
+            activeTooltip = null;
+        }
+
+        // Close tooltip when clicking outside
+        document.addEventListener('click', (e) => {
+            if (activeTooltip && !e.target.closest('.interactive-verb')) {
+                activeTooltip.classList.remove('show');
+                activeTooltip = null;
+            }
+        });
+
+        // --- Guided Discovery Logic ---
+        function handleDiscovery(btn, isCorrect, explanation = '') {
+            const container = btn.closest('.bg-slate-50');
+            const feedback = container.querySelector('.feedback');
+            const buttons = container.querySelectorAll('button');
+
+            // Reset all buttons in this question
+            buttons.forEach(b => {
+                b.classList.remove('bg-green-100', 'border-green-400', 'bg-red-100', 'border-red-400', 'text-green-900', 'text-red-900');
+            });
+
+            if (isCorrect) {
+                btn.classList.add('bg-green-100', 'border-green-400', 'text-green-900');
+                feedback.innerHTML = '✅ <strong>Correct!</strong> ' + explanation;
+                feedback.className = 'feedback mt-3 text-sm text-green-700 font-medium block';
+            } else {
+                btn.classList.add('bg-red-100', 'border-red-400', 'text-red-900');
+                feedback.innerHTML = '❌ <strong>Incorrect.</strong> Try again!';
+                feedback.className = 'feedback mt-3 text-sm text-red-600 font-medium block';
+            }
+        }
+
+        // --- Drag and Drop Logic ---
+        let draggedElement = null;
+
+        function drag(ev) {
+            draggedElement = ev.target;
+            ev.dataTransfer.setData("text", ev.target.innerText);
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        }
+
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragleave', (ev) => {
+                ev.currentTarget.classList.remove('drag-over');
+            });
+        });
+
+        function drop(ev, qId) {
+            ev.preventDefault();
+            const target = ev.currentTarget;
+            target.classList.remove('drag-over');
+            
+            const data = ev.dataTransfer.getData("text");
+            target.innerText = data;
+            target.classList.add('filled');
+            target.setAttribute('data-user-answer', data.trim().toLowerCase());
+            
+            evaluateSingle(target.closest('.q-container'));
+        }
+
+        // --- Unscramble Logic ---
+        function moveWord(qId, wordElement) {
+            const ansArea = document.getElementById(`ans-area-${qId}`);
+            ansArea.appendChild(wordElement);
+            
+            const bank = document.getElementById(`bank-${qId}`);
+            if(bank.children.length === 0) {
+                evaluateSingle(ansArea.closest('.q-container'));
+            } else {
+                ansArea.closest('.q-container').classList.remove('bg-red-50', 'bg-green-50', 'border-red-200', 'border-green-200');
+            }
+        }
+
+        function returnWord(qId, event) {
+            if(event.target.classList.contains('unscramble-word')) {
+                const bank = document.getElementById(`bank-${qId}`);
+                bank.appendChild(event.target);
+                const ansArea = document.getElementById(`ans-area-${qId}`);
+                ansArea.closest('.q-container').classList.remove('bg-red-50', 'bg-green-50', 'border-red-200', 'border-green-200');
+            }
+        }
+
+        function resetUnscramble(qId) {
+            const ansArea = document.getElementById(`ans-area-${qId}`);
+            const bank = document.getElementById(`bank-${qId}`);
+            while (ansArea.firstChild) {
+                bank.appendChild(ansArea.firstChild);
+            }
+            ansArea.closest('.q-container').classList.remove('bg-red-50', 'bg-green-50', 'border-red-200', 'border-green-200');
+        }
+
+        // --- Instant Feedback Logic ---
+        function evaluateSingle(q) {
+            const type = q.getAttribute('data-type');
+            if (q.querySelector('#drop-q8')) {
+                q.setAttribute('data-answer', 'are going to');
+            }
+            
+            const correctAnswer = q.getAttribute('data-answer').toLowerCase();
+            let isCorrect = false;
+            let isAttempted = false;
+
+            if (type === 'mc') {
+                const checked = q.querySelector('input[type="radio"]:checked');
+                if (checked) {
+                    isAttempted = true;
+                    if (checked.value === correctAnswer) isCorrect = true;
+                }
+            } 
+            else if (type === 'text') {
+                const input = q.querySelector('input[type="text"]');
+                const userVal = input.value.trim().toLowerCase().replace(/[^a-z\s]/g, '');
+                if (userVal !== '') {
+                    isAttempted = true;
+                    const cleanCorrect = correctAnswer.replace(/[^a-z\s]/g, '');
+                    if (userVal === cleanCorrect) isCorrect = true;
+                }
+            }
+            else if (type === 'drag') {
+                const dropZone = q.querySelector('.drop-zone');
+                const userAnswer = dropZone.getAttribute('data-user-answer') || '';
+                if (userAnswer !== '') {
+                    isAttempted = true;
+                    if (userAnswer === correctAnswer) isCorrect = true;
+                }
+            }
+            else if (type === 'unscramble') {
+                const ansArea = q.querySelector('.unscramble-area');
+                if (ansArea.childNodes.length > 0) {
+                    let constructedSentence = [];
+                    ansArea.childNodes.forEach(node => {
+                        if(node.innerText) constructedSentence.push(node.innerText.trim());
+                    });
+                    const finalString = constructedSentence.join(' ').toLowerCase();
+                    const cleanFinal = finalString.replace(/[.!]/g, '');
+                    const cleanCorrect = correctAnswer.replace(/[.!]/g, '');
+                    
+                    isAttempted = true;
+                    if (cleanFinal === cleanCorrect) isCorrect = true;
+                }
+            }
+
+            if (isAttempted) {
+                q.classList.remove('bg-red-50', 'bg-green-50', 'border-red-200', 'border-green-200');
+                if (isCorrect) {
+                    q.classList.add('bg-green-50', 'rounded-lg', 'p-4', 'border', 'border-green-200');
+                } else {
+                    q.classList.add('bg-red-50', 'rounded-lg', 'p-4', 'border', 'border-red-200');
+                }
+            }
+        }
+
+        // Initialize listeners for MCQ and Text inputs
+        document.querySelectorAll('.q-container').forEach(q => {
+            const type = q.getAttribute('data-type');
+            if (type === 'mc') {
+                q.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', () => evaluateSingle(q));
+                });
+            } else if (type === 'text') {
+                const input = q.querySelector('input[type="text"]');
+                input.addEventListener('blur', () => evaluateSingle(q));
+                input.addEventListener('keyup', (e) => {
+                    if(e.key === 'Enter') evaluateSingle(q);
+                });
+            }
+        });
+
+        // --- Evaluation Logic ---
+        function evaluatePractice() {
+            let score = 0;
+            const totalQuestions = 10;
+            
+            // Fix Q8 Answer dynamically for robustness
+            document.querySelector('.q-container[data-answer="is going to"]').setAttribute('data-answer', 'are going to');
+
+            const questions = document.querySelectorAll('.q-container');
+            
+            questions.forEach(q => {
+                const type = q.getAttribute('data-type');
+                const correctAnswer = q.getAttribute('data-answer').toLowerCase();
+                let isCorrect = false;
+
+                if (type === 'mc') {
+                    const checked = q.querySelector('input[type="radio"]:checked');
+                    if (checked && checked.value === correctAnswer) isCorrect = true;
+                } 
+                else if (type === 'text') {
+                    const input = q.querySelector('input[type="text"]');
+                    const userVal = input.value.trim().toLowerCase().replace(/[^a-z\s]/g, '');
+                    const cleanCorrect = correctAnswer.replace(/[^a-z\s]/g, '');
+                    if (userVal === cleanCorrect && userVal !== '') isCorrect = true;
+                }
+                else if (type === 'drag') {
+                    const dropZone = q.querySelector('.drop-zone');
+                    const userAnswer = dropZone.getAttribute('data-user-answer') || '';
+                    if (userAnswer === correctAnswer) isCorrect = true;
+                }
+                else if (type === 'unscramble') {
+                    const ansArea = q.querySelector('.unscramble-area');
+                    let constructedSentence = [];
+                    ansArea.childNodes.forEach(node => {
+                        if(node.innerText) constructedSentence.push(node.innerText.trim());
+                    });
+                    const finalString = constructedSentence.join(' ').toLowerCase();
+                    if (finalString === correctAnswer) isCorrect = true;
+                }
+
+                // Visual Feedback
+                q.classList.remove('bg-red-50', 'bg-green-50', 'border-red-200', 'border-green-200');
+                if (isCorrect) {
+                    score++;
+                    q.classList.add('bg-green-50', 'rounded-lg', 'p-4', 'border', 'border-green-200');
+                } else {
+                    q.classList.add('bg-red-50', 'rounded-lg', 'p-4', 'border', 'border-red-200');
+                }
+            });
+
+            showModal(score, totalQuestions);
+        }
+
+        // --- Modal Logic ---
+        function showModal(score, total) {
+            const modal = document.getElementById('result-modal');
+            const scoreDisplay = document.getElementById('final-score');
+            const message = document.getElementById('score-message');
+            const icon = document.getElementById('score-icon');
+            const content = document.getElementById('modal-content');
+
+            scoreDisplay.innerText = score;
+
+            if (score === total) {
+                message.innerText = "Perfect! You've mastered Future Forms!";
+                icon.innerText = "🌟";
+            } else if (score >= 7) {
+                message.innerText = "Great job! Just a few minor mistakes.";
+                icon.innerText = "👍";
+            } else {
+                message.innerText = "Keep practicing! Review the rules tab and try again.";
+                icon.innerText = "📚";
+            }
+
+            modal.classList.add('show');
+            setTimeout(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.remove('show');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
