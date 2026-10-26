@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peculiar Occupations Wheel</title>
+  <!-- Google Fonts & Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .wheel-card-shadow {
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+    }
+    .pointer-shadow {
+      filter: drop-shadow(0 4px 6px rgba(239, 68, 68, 0.45));
+    }
+    /* Smooth transitions for card highlights */
+    .highlight-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased selection:bg-amber-400 selection:text-slate-900 relative">
+
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <!-- Navigation / Clean Light Header -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🎡</span>
+          <h1 class="text-lg sm:text-xl font-black font-display tracking-tight text-slate-900">
+            Peculiar Occupations Wheel
+          </h1>
+        </div>
+        <p class="text-xs text-slate-500 font-medium tracking-wide">
+          Designed by Babak Alaee
+        </p>
+      </div>
+
+      <!-- Quick Controls -->
+      <div class="flex items-center gap-2">
+        <button id="soundToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-slate-50 text-xs font-semibold text-slate-600 transition-colors">
+          <span id="soundIcon">🔊</span>
+          <span id="soundText" class="hidden sm:inline">Sound</span>
+        </button>
+        <button id="openDirectoryBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition-colors">
+          <span>📋</span>
+          <span>All 30 Jobs</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-6xl mx-auto px-4 py-6 sm:py-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left Column: The Wheel -->
+      <div class="lg:col-span-7 flex flex-col items-center justify-center">
+        
+        <!-- Top Pointer -->
+        <div class="relative z-20 -mb-4 flex flex-col items-center pointer-events-none">
+          <div id="pointerIndicator" class="w-7 h-9 bg-rose-500 rounded-b-full pointer-shadow transform origin-top flex items-end justify-center pb-1 transition-transform duration-75">
+            <div class="w-2 h-2 rounded-full bg-white shadow-sm"></div>
+          </div>
+        </div>
+
+        <!-- Wheel Canvas Container -->
+        <div class="relative p-2.5 rounded-full bg-white wheel-card-shadow border border-slate-200">
+          <div class="relative rounded-full overflow-hidden flex items-center justify-center">
+            <canvas id="wheelCanvas" width="520" height="520" class="w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] md:w-[480px] md:h-[480px] cursor-pointer"></canvas>
+            
+            <!-- Wheel Center Trigger Button -->
+            <button id="centerSpinBtn" class="absolute inset-0 m-auto w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-slate-900 hover:bg-slate-800 text-white border-4 border-white shadow-xl flex flex-col items-center justify-center text-center transition-transform active:scale-95 disabled:pointer-events-none">
+              <span class="text-xs uppercase tracking-widest font-black text-amber-300">SPIN</span>
+              <span class="text-base sm:text-lg">⚡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Spin Action Button -->
+        <div class="mt-6 flex items-center gap-3">
+          <button id="spinBtn" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-base rounded-2xl shadow-lg shadow-amber-500/25 transition-all transform active:scale-95 disabled:opacity-50 disabled:pointer-events-none">
+            Spin the Wheel
+          </button>
+          <button id="randomPickBtn" title="Instant Random Pick" class="px-4 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-sm rounded-2xl transition-all">
+            🎲 Quick Pick
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Job Card & Decision Prompt -->
+      <div class="lg:col-span-5">
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 wheel-card-shadow highlight-card">
+          
+          <!-- Top Row: Category & Salary -->
+          <div class="flex items-center justify-between gap-2 mb-4 pb-4 border-b border-slate-100">
+            <span id="jobCategory" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200/80">
+              Odd Career
+            </span>
+            <span id="jobSalary" class="px-3 py-1 rounded-xl text-sm font-black text-emerald-700 bg-emerald-50 border border-emerald-200">
+              ~$35,000 - $65,000/yr
+            </span>
+          </div>
+
+          <!-- Job Title -->
+          <div class="mb-4">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Selected Occupation</span>
+            <h2 id="jobTitle" class="text-2xl sm:text-3xl font-black font-display text-slate-900 tracking-tight leading-tight">
+              Snake Venom Milker
+            </h2>
+          </div>
+
+          <!-- One-line Description -->
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 mb-6">
+            <p id="jobDescription" class="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
+              Manually extracts deadly venom from live venomous serpents to develop antivenoms and lifesaving medicines.
+            </p>
+          </div>
+
+          <!-- The Dilemma & Decision Buttons -->
+          <div class="space-y-4">
+            <div>
+              <h3 class="text-sm font-extrabold text-slate-900">Would you take this job?</h3>
+              <p class="text-xs text-slate-500">Pick your stance and defend your point of view:</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2.5">
+              <button class="vote-btn py-3 px-2 rounded-2xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs sm:text-sm font-bold flex flex-col items-center gap-1 transition-all" data-vote="yes">
+                <span>👍 Yes, hire me!</span>
+                <span id="countYes" class="text-[11px] font-normal text-emerald-700 bg-white/80 px-2 py-0.5 rounded-full">0</span>
+              </button>
+
+              <button class="vote-btn py-3 px-2 rounded-2xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-800 text-xs sm:text-sm font-bold flex flex-col items-center gap-1 transition-all" data-vote="no">
+                <span>👎 No way!</span>
+                <span id="countNo" class="text-[11px] font-normal text-rose-700 bg-white/80 px-2 py-0.5 rounded-full">0</span>
+              </button>
+
+              <button class="vote-btn py-3 px-2 rounded-2xl border border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs sm:text-sm font-bold flex flex-col items-center gap-1 transition-all" data-vote="depends">
+                <span>🤔 Depends...</span>
+                <span id="countDepends" class="text-[11px] font-normal text-amber-700 bg-white/80 px-2 py-0.5 rounded-full">0</span>
+              </button>
+            </div>
+
+            <!-- Crisp One-line Talking Prompt -->
+            <div id="promptBox" class="mt-4 p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-xs text-amber-950 font-medium flex items-center gap-2.5">
+              <span class="text-base">💬</span>
+              <span id="promptText">Explain your choice to your partner in 30 seconds.</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Slide-out Drawer: All 30 Jobs -->
+  <div id="directoryDrawer" class="fixed inset-0 z-50 hidden">
+    <div id="drawerBackdrop" class="absolute inset-0 bg-slate-900/30 backdrop-blur-xs"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white border-l border-slate-200 p-6 flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
+        <div>
+          <h3 class="text-lg font-black font-display text-slate-900">All 30 Odd Occupations</h3>
+          <p class="text-xs text-slate-500">Click any job to load it onto the card</p>
+        </div>
+        <button id="closeDrawerBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold">
+          ✕
+        </button>
+      </div>
+
+      <div class="mb-3">
+        <input type="text" id="drawerSearch" placeholder="Search title or keyword..." class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-amber-500 bg-slate-50">
+      </div>
+
+      <div id="drawerList" class="flex-1 overflow-y-auto space-y-2 pr-1">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ========================================================================
+       1. 30 REAL, WEIRD JOBS (Concise Payment & 1-Line Description)
+       ======================================================================== */
+    const JOBS = [
+      {
+        id: 1,
+        title: "Snake Venom Milker",
+        category: "Hazardous",
+        salary: "$35,000 - $65,000/yr",
+        description: "Manually extracts deadly venom from live venomous serpents to develop antivenoms and lifesaving medicines."
+      },
+      {
+        id: 2,
+        title: "Golf Ball Diver",
+        category: "Outdoors",
+        salary: "$50,000 - $100,000/yr",
+        description: "Scuba dives into murky, alligator- and leech-infested golf course water hazards to salvage lost balls."
+      },
+      {
+        id: 3,
+        title: "Professional Sleeper",
+        category: "Testing",
+        salary: "$30,000 - $40,000/yr",
+        description: "Takes naps in hotels, hospital sleep labs, and luxury mattresses while connected to biometric sensors."
+      },
+      {
+        id: 4,
+        title: "Pet Food Taster",
+        category: "Culinary",
+        salary: "$40,000 - $75,000/yr",
+        description: "Samples premium animal kibble and canned food to assess flavor, texture, and nutritional freshness."
+      },
+      {
+        id: 5,
+        title: "Iceberg Mover",
+        category: "Maritime",
+        salary: "$60,000 - $80,000/yr",
+        description: "Uses high-powered tugboats to tow massive drifting Arctic icebergs away from offshore oil rigs."
+      },
+      {
+        id: 6,
+        title: "Water Slide Tester",
+        category: "Entertainment",
+        salary: "$30,000 - $45,000/yr",
+        description: "Rides brand-new water slides at theme parks worldwide to evaluate splash speed and safety landings."
+      },
+      {
+        id: 7,
+        title: "Odor Tester",
+        category: "Cosmetics",
+        salary: "$35,000 - $55,000/yr",
+        description: "Evaluates body odor and breath samples before and after testing deodorants, gums, and mouthwashes."
+      },
+      {
+        id: 8,
+        title: "Line Stander",
+        category: "Service",
+        salary: "$25 - $40/hr",
+        description: "Waits in freezing or sweltering lines for hours to secure product drops, visas, or black-tie events for wealthy clients."
+      },
+      {
+        id: 9,
+        title: "Face Feeler",
+        category: "Sensory",
+        salary: "$30,000 - $45,000/yr",
+        description: "Uses bare hands to touch subjects' skin before and after using lotions to gauge softness changes."
+      },
+      {
+        id: 10,
+        title: "IMAX Screen Cleaner",
+        category: "Maintenance",
+        salary: "$45,000 - $65,000/yr",
+        description: "Repels from 80-foot auditorium ceilings with harnesses and microfiber mops to remove dust from giant cinema screens."
+      },
+      {
+        id: 11,
+        title: "Fortune Cookie Writer",
+        category: "Creative",
+        salary: "$40,000 - $80,000/yr",
+        description: "Crafts witty, insightful, and memorable one-line prophecies for millions of dessert cookies."
+      },
+      {
+        id: 12,
+        title: "Live Mannequin",
+        category: "Fashion",
+        salary: "$20 - $35/hr",
+        description: "Stands completely motionless for hours in luxury shop windows to attract passersby."
+      },
+      {
+        id: 13,
+        title: "Crime Scene Cleaner",
+        category: "Sanitation",
+        salary: "$50,000 - $90,000/yr",
+        description: "Sanitizes biohazard zones and traumatic aftermaths using specialized hazmat equipment."
+      },
+      {
+        id: 14,
+        title: "Dinosaur Fossil Restorer",
+        category: "Science",
+        salary: "$45,000 - $75,000/yr",
+        description: "Uses dental picks and microscopes for months to gently chip prehistoric rock off fragile dinosaur bones."
+      },
+      {
+        id: 15,
+        title: "Volcanologist Technician",
+        category: "Extreme",
+        salary: "$55,000 - $85,000/yr",
+        description: "Hikes active volcano craters in thermal heat suits to collect lava and toxic gas samples."
+      },
+      {
+        id: 16,
+        title: "Professional Mourner",
+        category: "Ceremonial",
+        salary: "$50 - $150/service",
+        description: "Attends funerals of strangers to boost attendance and express grief on behalf of families."
+      },
+      {
+        id: 17,
+        title: "Train Pusher (Oshiya)",
+        category: "Transit",
+        salary: "$30,000 - $42,000/yr",
+        description: "Safely pushes passengers into crowded subway trains during Tokyo rush hour so doors can close."
+      },
+      {
+        id: 18,
+        title: "Panda Nanny",
+        category: "Wildlife",
+        salary: "$32,000/yr + perks",
+        description: "Spends all day hugging, feeding, and playing with baby giant pandas at wildlife preservation reserves."
+      },
+      {
+        id: 19,
+        title: "Ostrich Babysitter",
+        category: "Farming",
+        salary: "$20,000 - $30,000/yr",
+        description: "Keeps young ostriches calm and prevents them from pecking or injuring one another on farms."
+      },
+      {
+        id: 20,
+        title: "Pearl Diver",
+        category: "Maritime",
+        salary: "$40,000 - $70,000/yr",
+        description: "Dives deep into oceans without tanks to harvest rare wild pearl oysters from reefs."
+      },
+      {
+        id: 21,
+        title: "Scuba Pizza Deliverer",
+        category: "Hospitality",
+        salary: "$30,000 - $40,000/yr + tips",
+        description: "Carries watertight pizza cases underwater to deliver fresh food to submerged sea hotels."
+      },
+      {
+        id: 22,
+        title: "Extreme Window Washer",
+        category: "High Altitude",
+        salary: "$50,000 - $85,000/yr",
+        description: "Suspends from ropes hundreds of meters in the air to polish the glass of supertall skyscrapers."
+      },
+      {
+        id: 23,
+        title: "Storm Chaser",
+        category: "Meteorology",
+        salary: "$45,000 - $75,000/yr",
+        description: "Drives armored research vehicles directly into tornado paths to record meteorological data."
+      },
+      {
+        id: 24,
+        title: "Airplane Repossessor",
+        category: "Aviation",
+        salary: "$60,000 - $120,000/yr",
+        description: "Infiltrates remote hangars and pilots defaulted private jets and commercial planes back to creditors."
+      },
+      {
+        id: 25,
+        title: "Feng Shui Consultant",
+        category: "Design",
+        salary: "$50,000 - $110,000/yr",
+        description: "Inspects multimillion-dollar estates and offices to rearrange furniture and optimize spiritual energy flow."
+      },
+      {
+        id: 26,
+        title: "Stunt Double",
+        category: "Film",
+        salary: "$60,000 - $120,000/yr",
+        description: "Performs high-risk vehicle crashes, fiery explosions, and rooftop falls in place of Hollywood actors."
+      },
+      {
+        id: 27,
+        title: "Cheese Sculptor",
+        category: "Art",
+        salary: "$35,000 - $65,000/yr",
+        description: "Carves intricate portraits, monuments, and animals out of 500-pound wheels of cheddar for luxury events."
+      },
+      {
+        id: 28,
+        title: "Ash Glassblower",
+        category: "Artisan",
+        salary: "$40,000 - $70,000/yr",
+        description: "Infuses cremation ashes into custom molten glass sculptures, marbles, and keepsakes for grieving pet owners."
+      },
+      {
+        id: 29,
+        title: "Tea Sommelier",
+        category: "Beverage",
+        salary: "$45,000 - $85,000/yr",
+        description: "Sips and grades hundreds of loose leaf tea blends daily to select crops for world tea houses."
+      },
+      {
+        id: 30,
+        title: "Chimney Sweep",
+        category: "Trade",
+        salary: "$35,000 - $60,000/yr",
+        description: "Climbs steep rooftops and clears soot, creosote, and bird nests from narrow domestic chimneys."
+      }
+    ];
+
+    /* ========================================================================
+       2. LIGHTWEIGHT SOUND SYNTHESIZER (Web Audio API)
+       ======================================================================== */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+      playTick() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(540, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.03);
+          gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.03);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.035);
+        } catch(e) {}
+      }
+      playChime() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          [523.25, 659.25, 783.99].forEach((f, i) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, now + i * 0.08);
+            gain.gain.setValueAtTime(0.001, now + i * 0.08);
+            gain.gain.linearRampToValueAtTime(0.18, now + i * 0.08 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.4);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now + i * 0.08);
+            osc.stop(now + i * 0.08 + 0.45);
+          });
+        } catch(e) {}
+      }
+      toggle() {
+        this.enabled = !this.enabled;
+        return this.enabled;
+      }
+    }
+
+    const sound = new SoundEngine();
+
+    /* ========================================================================
+       3. WHEEL RENDERING & PHYSICS
+       ======================================================================== */
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    const totalSlices = JOBS.length;
+    const arc = (2 * Math.PI) / totalSlices;
+
+    // Harmonious modern light-friendly slice palette
+    const PALETTE = [
+      '#fecdd3', '#fed7aa', '#fef08a', '#d9f99d', '#a7f3d0',
+      '#bae6fd', '#c7d2fe', '#ddd6fe', '#f5d0fe', '#fbcfe8',
+      '#fed7aa', '#fde047', '#bbf7d0', '#99f6e4', '#bfdbfe',
+      '#e9d5ff', '#fecdd3', '#fef08a', '#bbf7d0', '#bae6fd',
+      '#fed7aa', '#fbcfe8', '#ddd6fe', '#a7f3d0', '#fde047',
+      '#fecdd3', '#bae6fd', '#d9f99d', '#e9d5ff', '#fef08a'
+    ];
+
+    let currentRotation = 0;
+    let isSpinning = false;
+    let lastTickIndex = -1;
+
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+      drawWheel();
+    }
+
+    function drawWheel() {
+      const rect = canvas.getBoundingClientRect();
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const radius = Math.min(cx, cy) - 6;
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      for (let i = 0; i < totalSlices; i++) {
+        const sliceAngle = currentRotation + i * arc;
+        const job = JOBS[i];
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, radius, sliceAngle, sliceAngle + arc);
+        ctx.closePath();
+
+        ctx.fillStyle = PALETTE[i % PALETTE.length];
+        ctx.fill();
+
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+
+        // Perimeter pin
+        const pegAngle = sliceAngle + arc;
+        const px = cx + (radius - 8) * Math.cos(pegAngle);
+        const py = cy + (radius - 8) * Math.sin(pegAngle);
+        ctx.beginPath();
+        ctx.arc(px, py, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = '#64748b';
+        ctx.fill();
+
+        // Label
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(sliceAngle + arc / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#1e293b";
+        ctx.font = "bold 10px Inter, sans-serif";
+
+        let label = job.title;
+        if (label.length > 17) label = label.substring(0, 15) + '…';
+        ctx.fillText(label, radius - 18, 3.5);
+        ctx.restore();
+
+        ctx.restore();
+      }
+
+      // Outer bezel ring
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function getTopSliceIndex(rot) {
+      const topAngle = (3 * Math.PI) / 2;
+      let normalized = (topAngle - (rot % (2 * Math.PI))) % (2 * Math.PI);
+      if (normalized < 0) normalized += 2 * Math.PI;
+      return Math.floor(normalized / arc) % totalSlices;
+    }
+
+    function spinWheel() {
+      if (isSpinning) return;
+      sound.init();
+      isSpinning = true;
+      document.getElementById('spinBtn').disabled = true;
+      document.getElementById('centerSpinBtn').disabled = true;
+
+      const minSpins = 4;
+      const maxSpins = 7;
+      const totalRotations = (minSpins + Math.random() * (maxSpins - minSpins)) * 2 * Math.PI;
+      const startRotation = currentRotation;
+      const targetRotation = startRotation + totalRotations + (Math.random() * arc);
+
+      const duration = 4800;
+      let startTime = null;
+      const pointer = document.getElementById('pointerIndicator');
+
+      function cubicOut(t) { return --t * t * t + 1; }
+
+      function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        currentRotation = startRotation + (targetRotation - startRotation) * cubicOut(progress);
+        drawWheel();
+
+        // Pointer tick
+        const activeIndex = getTopSliceIndex(currentRotation);
+        if (activeIndex !== lastTickIndex) {
+          lastTickIndex = activeIndex;
+          sound.playTick();
+          pointer.style.transform = 'rotate(-14deg)';
+          setTimeout(() => { pointer.style.transform = 'rotate(0deg)'; }, 40);
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          isSpinning = false;
+          document.getElementById('spinBtn').disabled = false;
+          document.getElementById('centerSpinBtn').disabled = false;
+          const winningIndex = getTopSliceIndex(currentRotation);
+          displayJob(JOBS[winningIndex]);
+          sound.playChime();
+          triggerConfetti();
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    /* ========================================================================
+       4. DISPLAY SELECTED JOB & VOTING
+       ======================================================================== */
+    const jobTitle = document.getElementById('jobTitle');
+    const jobSalary = document.getElementById('jobSalary');
+    const jobCategory = document.getElementById('jobCategory');
+    const jobDescription = document.getElementById('jobDescription');
+    const promptText = document.getElementById('promptText');
+
+    let votes = { yes: 0, no: 0, depends: 0 };
+
+    function displayJob(job) {
+      jobTitle.textContent = job.title;
+      jobSalary.textContent = job.salary;
+      jobCategory.textContent = job.category;
+      jobDescription.textContent = job.description;
+      promptText.textContent = "Explain your choice to your partner in 30 seconds.";
+    }
+
+    document.querySelectorAll('.vote-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-vote');
+        votes[type]++;
+        document.getElementById('countYes').textContent = votes.yes;
+        document.getElementById('countNo').textContent = votes.no;
+        document.getElementById('countDepends').textContent = votes.depends;
+
+        if (type === 'yes') {
+          promptText.textContent = "Why does the compensation outweigh the strange daily conditions for you?";
+        } else if (type === 'no') {
+          promptText.textContent = "What is the single biggest dealbreaker that made you say no?";
+        } else {
+          promptText.textContent = "What exact condition or higher salary would make you say yes?";
+        }
+      });
+    });
+
+    /* ========================================================================
+       5. CONFETTI EFFECT
+       ======================================================================== */
+    const cCanvas = document.getElementById('confettiCanvas');
+    const cCtx = cCanvas.getContext('2d');
+    let confetti = [];
+    let confettiFrame = null;
+
+    function resizeConfetti() {
+      cCanvas.width = window.innerWidth;
+      cCanvas.height = window.innerHeight;
+    }
+
+    function triggerConfetti() {
+      resizeConfetti();
+      confetti = [];
+      const colors = ['#f59e0b', '#ec4899', '#3b82f6', '#10b981', '#8b5cf6'];
+      for (let i = 0; i < 60; i++) {
+        confetti.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2 - 20,
+          vx: (Math.random() - 0.5) * 14,
+          vy: (Math.random() - 0.8) * 15,
+          size: Math.random() * 6 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: 1
+        });
+      }
+      if (confettiFrame) cancelAnimationFrame(confettiFrame);
+      animateConfetti();
+    }
+
+    function animateConfetti() {
+      cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+      let alive = false;
+      confetti.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35;
+        p.opacity -= 0.012;
+        if (p.opacity > 0) {
+          alive = true;
+          cCtx.save();
+          cCtx.globalAlpha = Math.max(0, p.opacity);
+          cCtx.fillStyle = p.color;
+          cCtx.fillRect(p.x, p.y, p.size, p.size * 0.7);
+          cCtx.restore();
+        }
+      });
+      if (alive) confettiFrame = requestAnimationFrame(animateConfetti);
+      else cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+    }
+
+    /* ========================================================================
+       6. DIRECTORY DRAWER & SEARCH
+       ======================================================================== */
+    const drawer = document.getElementById('directoryDrawer');
+    const drawerList = document.getElementById('drawerList');
+    const drawerSearch = document.getElementById('drawerSearch');
+
+    function renderDrawer(items) {
+      if (!items.length) {
+        drawerList.innerHTML = `<p class="text-xs text-slate-400 p-3 text-center">No jobs found.</p>`;
+        return;
+      }
+      drawerList.innerHTML = items.map(job => `
+        <div class="p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-colors flex items-center justify-between gap-2 cursor-pointer" onclick="selectJobDirectly(${job.id})">
+          <div class="overflow-hidden">
+            <h4 class="text-xs font-bold text-slate-900 truncate">${job.title}</h4>
+            <span class="text-[11px] font-semibold text-emerald-700">${job.salary}</span>
+          </div>
+          <span class="text-xs font-bold text-slate-400 hover:text-slate-900">Select →</span>
+        </div>
+      `).join('');
+    }
+
+    window.selectJobDirectly = function(id) {
+      const found = JOBS.find(j => j.id === id);
+      if (found) {
+        displayJob(found);
+        drawer.classList.add('hidden');
+      }
+    };
+
+    drawerSearch.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      renderDrawer(JOBS.filter(j => j.title.toLowerCase().includes(q) || j.description.toLowerCase().includes(q)));
+    });
+
+    document.getElementById('openDirectoryBtn').addEventListener('click', () => {
+      drawerSearch.value = "";
+      renderDrawer(JOBS);
+      drawer.classList.remove('hidden');
+    });
+    document.getElementById('closeDrawerBtn').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('drawerBackdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+
+    /* Quick Random Pick */
+    document.getElementById('randomPickBtn').addEventListener('click', () => {
+      const randomJob = JOBS[Math.floor(Math.random() * JOBS.length)];
+      displayJob(randomJob);
+    });
+
+    /* Audio Toggle */
+    document.getElementById('soundToggleBtn').addEventListener('click', () => {
+      const on = sound.toggle();
+      document.getElementById('soundIcon').textContent = on ? '🔊' : '🔇';
+    });
+
+    /* Listeners */
+    document.getElementById('spinBtn').addEventListener('click', spinWheel);
+    document.getElementById('centerSpinBtn').addEventListener('click', spinWheel);
+    canvas.addEventListener('click', spinWheel);
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      resizeConfetti();
+    });
+
+    /* Initialization */
+    window.addEventListener('DOMContentLoaded', () => {
+      resizeCanvas();
+      displayJob(JOBS[0]);
+    });
+  </script>
+</body>
+</html>
