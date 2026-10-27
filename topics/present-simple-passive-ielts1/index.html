@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Present Simple Passive - Mastering the Action</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animation elements for Learn Rules tab */
+        .grammar-element {
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            transform-origin: center;
+        }
+
+        .word-chip {
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .word-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .drop-zone {
+            min-height: 52px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .correct-anim { animation: pulseGreen 1s; }
+        .wrong-anim { animation: shakeRed 0.5s; }
+
+        @keyframes pulseGreen {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        @keyframes shakeRed {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* Custom styled radio buttons */
+        input[type="radio"] {
+            accent-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm pt-8 pb-6 px-4 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500"></div>
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-2 tracking-tight">Present Simple Passive</h1>
+            <p class="text-xl text-slate-600 mb-4 font-light">Mastering the Action</p>
+            <p class="text-sm text-gray-400 italic">Designed by Babak Alaee</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto mt-8 px-4">
+        
+        <!-- Tab Navigation -->
+        <nav class="flex justify-center space-x-2 md:space-x-4 mb-8 bg-white p-2 rounded-2xl shadow-sm overflow-x-auto">
+            <button onclick="switchTab('exposure')" id="tab-btn-exposure" class="flex-1 py-3 px-4 rounded-xl font-medium text-sm md:text-base transition-all duration-300 bg-blue-50 text-blue-700 shadow-sm border border-blue-100">
+                <i class="fa-solid fa-book-open mr-2"></i> 1. Exposure
+            </button>
+            <button onclick="switchTab('rules')" id="tab-btn-rules" class="flex-1 py-3 px-4 rounded-xl font-medium text-sm md:text-base transition-all duration-300 text-slate-600 hover:bg-slate-50">
+                <i class="fa-solid fa-lightbulb mr-2"></i> 2. Learn the Rules
+            </button>
+            <button onclick="switchTab('practice')" id="tab-btn-practice" class="flex-1 py-3 px-4 rounded-xl font-medium text-sm md:text-base transition-all duration-300 text-slate-600 hover:bg-slate-50">
+                <i class="fa-solid fa-dumbbell mr-2"></i> 3. Practice
+            </button>
+        </nav>
+
+        <!-- TAB 1: EXPOSURE -->
+        <div id="tab-exposure" class="tab-content active">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+                <div class="p-8 md:p-10 border-b border-slate-100 bg-amber-50/30">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 text-xl">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-800">How Chocolate is Made</h2>
+                    </div>
+                    
+                    <div class="prose prose-lg text-slate-600 leading-relaxed">
+                        <p class="mb-4">
+                            Chocolate is enjoyed all over the world, but the process of making it is quite complex. First, the cocoa pods <strong>are grown</strong> in tropical climates. When they are ripe, the pods <strong>are harvested</strong> by hand.
+                        </p>
+                        <p class="mb-4">
+                            Inside the pods are the beans. The beans <strong>are removed</strong> and then they <strong>are placed</strong> in large wooden boxes to ferment. After fermentation, the beans <strong>are dried</strong> in the sun for several days. Once they are fully dry, they <strong>are shipped</strong> to chocolate factories around the world.
+                        </p>
+                        <p>
+                            At the factory, the beans <strong>are roasted</strong> to develop their flavor. Then, the outer shells <strong>are removed</strong>, and the inner part is crushed into a thick paste. Sugar and milk <strong>are added</strong> to this paste. Finally, the liquid chocolate <strong>is poured</strong> into molds and cooled until it becomes a solid bar.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-8 md:p-10">
+                    <h3 class="text-xl font-semibold mb-6 text-slate-800"><i class="fa-regular fa-circle-question text-blue-500 mr-2"></i> Comprehension Check</h3>
+                    
+                    <div id="exposure-questions" class="space-y-6">
+                        <!-- Questions will be generated here by JS to keep HTML clean and answers hidden -->
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button onclick="checkExposureAnswers()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5">
+                            Check Answers
+                        </button>
+                    </div>
+                    <div id="exposure-feedback" class="mt-4 text-center font-medium hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: LEARN THE RULES -->
+        <div id="tab-rules" class="tab-content">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 p-8 md:p-10">
+                
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Sentence Transformation</h2>
+                <p class="text-slate-600 mb-8">Watch how an active sentence changes into a passive sentence.</p>
+
+                <!-- Animation Stage -->
+                <div class="relative h-64 md:h-48 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 mb-8 overflow-hidden flex items-center justify-center px-4" id="animation-stage">
+                    
+                    <div id="anim-subject" class="grammar-element absolute bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-semibold text-lg md:text-xl shadow-sm z-10">
+                        The chef
+                    </div>
+                    
+                    <div id="anim-verb" class="grammar-element absolute bg-emerald-100 text-emerald-800 px-4 py-2 rounded-lg font-semibold text-lg md:text-xl shadow-sm z-10">
+                        bakes
+                    </div>
+                    
+                    <div id="anim-object" class="grammar-element absolute bg-purple-100 text-purple-800 px-4 py-2 rounded-lg font-semibold text-lg md:text-xl shadow-sm z-10">
+                        the pizza
+                    </div>
+                    
+                    <!-- Hidden element for "by" -->
+                    <div id="anim-by" class="grammar-element absolute text-slate-500 font-medium text-lg opacity-0 transition-opacity duration-500">
+                        by
+                    </div>
+
+                </div>
+
+                <div class="flex justify-between items-center mb-10">
+                    <p id="anim-instruction" class="text-lg font-medium text-slate-700 max-w-[60%]">
+                        1. This is an <strong class="text-blue-600">Active</strong> sentence. The focus is on the doer (The chef).
+                    </p>
+                    <button onclick="nextAnimationStep()" id="anim-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition-colors flex items-center">
+                        Next Step <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Formula Box -->
+                <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-2xl border border-indigo-100">
+                    <h3 class="font-bold text-indigo-900 mb-4 text-center text-lg"><i class="fa-solid fa-flask text-indigo-500 mr-2"></i> The Formula</h3>
+                    <div class="flex flex-wrap justify-center items-center gap-3 text-lg md:text-xl font-bold">
+                        <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-lg">Object</span>
+                        <span class="text-slate-400">+</span>
+                        <div class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-lg text-center leading-tight">
+                            am / is / are<br><span class="text-xs font-normal opacity-80">(Verb To Be)</span>
+                        </div>
+                        <span class="text-slate-400">+</span>
+                        <div class="bg-emerald-200 text-emerald-900 px-4 py-2 rounded-lg text-center leading-tight">
+                            Past Participle<br><span class="text-xs font-normal opacity-80">(Verb 3)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TAB 3: PRACTICE -->
+        <div id="tab-practice" class="tab-content">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 p-6 md:p-10">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800">Practice Exercises</h2>
+                    <p class="text-slate-600">Apply what you've learned. Answer all 13 questions and submit at the bottom.</p>
+                </div>
+
+                <div id="practice-container" class="space-y-10">
+                    
+                    <!-- Unscramble Section (Q1, Q2) -->
+                    <div class="pb-6 border-b border-slate-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4"><i class="fa-solid fa-arrows-turn-right text-orange-500 mr-2"></i> Type A: Unscramble the words</h3>
+                        <p class="text-sm text-slate-500 mb-4">Click the words in the word bank to move them to your answer line.</p>
+                        
+                        <!-- Q1 -->
+                        <div class="mb-6 p-4 bg-slate-50 rounded-xl" id="q1-container">
+                            <p class="font-medium mb-3">1. Arrange to form a passive sentence:</p>
+                            <div class="drop-zone bg-white border-2 border-slate-200 border-dashed rounded-xl p-3 flex flex-wrap gap-2 mb-3" id="q1-answer"></div>
+                            <div class="flex flex-wrap gap-2" id="q1-bank">
+                                <!-- Generated by JS -->
+                            </div>
+                            <div class="hidden text-red-500 text-sm mt-2" id="q1-feedback"></div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="mb-2 p-4 bg-slate-50 rounded-xl" id="q2-container">
+                            <p class="font-medium mb-3">2. Arrange to form a passive sentence:</p>
+                            <div class="drop-zone bg-white border-2 border-slate-200 border-dashed rounded-xl p-3 flex flex-wrap gap-2 mb-3" id="q2-answer"></div>
+                            <div class="flex flex-wrap gap-2" id="q2-bank">
+                                <!-- Generated by JS -->
+                            </div>
+                            <div class="hidden text-red-500 text-sm mt-2" id="q2-feedback"></div>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Section (Q3, Q4, Q5) -->
+                    <div class="pb-6 border-b border-slate-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4"><i class="fa-solid fa-caret-down text-blue-500 mr-2"></i> Type B: Choose the correct verb form</h3>
+                        
+                        <div class="space-y-4 text-slate-700 leading-loose">
+                            <div class="p-4 bg-slate-50 rounded-xl flex flex-wrap items-center gap-2" id="q3-container">
+                                <span>3. Millions of emails</span>
+                                <select id="q3" class="border border-slate-300 rounded-lg px-3 py-1 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm">
+                                    <option value="" disabled selected>-- select --</option>
+                                    <option value="send">send</option>
+                                    <option value="are sent">are sent</option>
+                                    <option value="is sent">is sent</option>
+                                </select>
+                                <span>every minute around the world.</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl flex flex-wrap items-center gap-2" id="q4-container">
+                                <span>4. This famous cheese</span>
+                                <select id="q4" class="border border-slate-300 rounded-lg px-3 py-1 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm">
+                                    <option value="" disabled selected>-- select --</option>
+                                    <option value="produces">produces</option>
+                                    <option value="are produced">are produced</option>
+                                    <option value="is produced">is produced</option>
+                                </select>
+                                <span>in a small village in France.</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl flex flex-wrap items-center gap-2" id="q5-container">
+                                <span>5. The indoor plants in our office</span>
+                                <select id="q5" class="border border-slate-300 rounded-lg px-3 py-1 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm">
+                                    <option value="" disabled selected>-- select --</option>
+                                    <option value="are watered">are watered</option>
+                                    <option value="is watered">is watered</option>
+                                    <option value="water">water</option>
+                                </select>
+                                <span>twice a week.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sentence Transformation (Q6, Q7, Q8) -->
+                    <div class="pb-6 border-b border-slate-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4"><i class="fa-solid fa-pen text-emerald-500 mr-2"></i> Type C: Sentence Transformation</h3>
+                        <p class="text-sm text-slate-500 mb-4">Rewrite the active sentences into passive voice. Include 'by' if the original subject is important (like a specific name/company), but omit it if it's general (like 'people' or 'they'). Don't forget capital letters and full stops.</p>
+
+                        <div class="space-y-6">
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q6-container">
+                                <p class="mb-2"><span class="font-medium">6. Active:</span> The company pays the workers on Friday.</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-slate-500">Passive:</span>
+                                    <input type="text" id="q6" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-full" placeholder="Type here...">
+                                </div>
+                                <div class="hidden text-blue-600 text-sm mt-2" id="q6-feedback"></div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q7-container">
+                                <p class="mb-2"><span class="font-medium">7. Active:</span> People speak English in many countries.</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-slate-500">Passive:</span>
+                                    <input type="text" id="q7" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-full" placeholder="Type here...">
+                                </div>
+                                <div class="hidden text-blue-600 text-sm mt-2" id="q7-feedback"></div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q8-container">
+                                <p class="mb-2"><span class="font-medium">8. Active:</span> Mechanics fix cars in a garage.</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-slate-500">Passive:</span>
+                                    <input type="text" id="q8" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-full" placeholder="Type here...">
+                                </div>
+                                <div class="hidden text-blue-600 text-sm mt-2" id="q8-feedback"></div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q9-container">
+                                <p class="mb-2"><span class="font-medium">9. Active:</span> The postman delivers the mail every morning.</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-slate-500">Passive:</span>
+                                    <input type="text" id="q9" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-full" placeholder="Type here...">
+                                </div>
+                                <div class="hidden text-blue-600 text-sm mt-2" id="q9-feedback"></div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q10-container">
+                                <p class="mb-2"><span class="font-medium">10. Active:</span> They clean the windows once a month.</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-slate-500">Passive:</span>
+                                    <input type="text" id="q10" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-full" placeholder="Type here...">
+                                </div>
+                                <div class="hidden text-blue-600 text-sm mt-2" id="q10-feedback"></div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q11-container">
+                                <p class="mb-2"><span class="font-medium">11. Active:</span> The chef prepares the meals carefully.</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-slate-500">Passive:</span>
+                                    <input type="text" id="q11" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-full" placeholder="Type here...">
+                                </div>
+                                <div class="hidden text-blue-600 text-sm mt-2" id="q11-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Choice (Q12, Q13) -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4"><i class="fa-solid fa-list-check text-purple-500 mr-2"></i> Type D: Multiple Choice</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q12-container">
+                                <p class="font-medium mb-3">12. Which sentence is grammatically correct?</p>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 transition-colors">
+                                        <input type="radio" name="q12" value="a" class="w-4 h-4">
+                                        <span>The car is washes every week.</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 transition-colors">
+                                        <input type="radio" name="q12" value="b" class="w-4 h-4">
+                                        <span>The car is washed every week.</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 transition-colors">
+                                        <input type="radio" name="q12" value="c" class="w-4 h-4">
+                                        <span>The car are washed every week.</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl" id="q13-container">
+                                <p class="font-medium mb-3">13. Which sentence is grammatically correct?</p>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 transition-colors">
+                                        <input type="radio" name="q13" value="a" class="w-4 h-4">
+                                        <span>Important letters are written by the manager.</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 transition-colors">
+                                        <input type="radio" name="q13" value="b" class="w-4 h-4">
+                                        <span>Important letters is written by the manager.</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 transition-colors">
+                                        <input type="radio" name="q13" value="c" class="w-4 h-4">
+                                        <span>Important letters are wrote by the manager.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="pt-8 border-t border-slate-200 text-center">
+                        <button onclick="submitPractice()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-all transform hover:-translate-y-1 text-lg">
+                            Submit All Answers <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                        
+                        <div id="practice-result" class="mt-8 hidden flex flex-col items-center">
+                            <div class="relative w-32 h-32 mb-4">
+                                <svg class="w-full h-full" viewBox="0 0 36 36">
+                                    <path class="text-slate-200" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="100, 100" />
+                                    <path id="score-circle" class="text-emerald-500 transition-all duration-1000 ease-out" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="0, 100" />
+                                </svg>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-slate-700">
+                                    <span id="score-text">0</span>/13
+                                </div>
+                            </div>
+                            <p id="score-message" class="text-xl font-medium text-slate-700"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Application Logic -->
+    <script>
+        // --- 1. Tab Navigation ---
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            
+            // Reset all buttons styling
+            document.querySelectorAll('nav button').forEach(el => {
+                el.className = "flex-1 py-3 px-4 rounded-xl font-medium text-sm md:text-base transition-all duration-300 text-slate-600 hover:bg-slate-50";
+            });
+            
+            // Show active content
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            
+            // Highlight active button
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            activeBtn.className = "flex-1 py-3 px-4 rounded-xl font-medium text-sm md:text-base transition-all duration-300 bg-blue-50 text-blue-700 shadow-sm border border-blue-100";
+            
+            // If switching to rules, reset animation
+            if (tabId === 'rules') {
+                resetAnimation();
+            }
+        }
+
+        // --- 2. Exposure Section Logic ---
+        const exposureData = [
+            {
+                q: "What happens to the cocoa pods when they are ripe?",
+                options: ["They are shipped.", "They are harvested.", "They are roasted."],
+                a: 1 // index 1
+            },
+            {
+                q: "Where are the beans placed to ferment?",
+                options: ["In large wooden boxes", "In the sun", "In the roasting machine"],
+                a: 0
+            },
+            {
+                q: "What is added to the crushed bean paste?",
+                options: ["More cocoa", "Water and flour", "Sugar and milk"],
+                a: 2
+            },
+            {
+                q: "What is the final step before the chocolate becomes a solid bar?",
+                options: ["It is poured into molds and cooled.", "It is dried in the sun.", "The outer shells are removed."],
+                a: 0
+            }
+        ];
+
+        function initExposure() {
+            const container = document.getElementById('exposure-questions');
+            exposureData.forEach((item, index) => {
+                let html = `<div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <p class="font-medium text-slate-800 mb-3">${index + 1}. ${item.q}</p>
+                    <div class="space-y-2">`;
+                
+                item.options.forEach((opt, optIndex) => {
+                    html += `
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-200/50 transition cursor-pointer">
+                            <input type="radio" name="exp_q${index}" value="${optIndex}" class="w-4 h-4 text-blue-600">
+                            <span class="text-slate-700">${opt}</span>
+                        </label>`;
+                });
+                
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function checkExposureAnswers() {
+            let score = 0;
+            let allAnswered = true;
+
+            exposureData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="exp_q${index}"]:checked`);
+                const container = document.querySelectorAll('#exposure-questions > div')[index];
+                
+                if (!selected) {
+                    allAnswered = false;
+                    return;
+                }
+                
+                if (parseInt(selected.value) === item.a) {
+                    score++;
+                    container.classList.remove('border-red-300', 'bg-red-50');
+                    container.classList.add('border-emerald-300', 'bg-emerald-50');
+                } else {
+                    container.classList.remove('border-emerald-300', 'bg-emerald-50');
+                    container.classList.add('border-red-300', 'bg-red-50');
+                }
+            });
+
+            const feedback = document.getElementById('exposure-feedback');
+            feedback.classList.remove('hidden');
+            
+            if (!allAnswered) {
+                feedback.innerHTML = `<span class="text-orange-500"><i class="fa-solid fa-triangle-exclamation"></i> Please answer all questions first.</span>`;
+            } else {
+                if (score === exposureData.length) {
+                    feedback.innerHTML = `<span class="text-emerald-600"><i class="fa-solid fa-check-circle"></i> Perfect! You got ${score}/${exposureData.length} correct.</span>`;
+                } else {
+                    feedback.innerHTML = `<span class="text-blue-600">You got ${score}/${exposureData.length} correct. Review the text and try again!</span>`;
+                }
+            }
+        }
+
+        // --- 3. Animation Logic (Learn the Rules) ---
+        let animStep = 0;
+        
+        function updateAnimPositions() {
+            const stage = document.getElementById('animation-stage');
+            const subj = document.getElementById('anim-subject');
+            const verb = document.getElementById('anim-verb');
+            const obj = document.getElementById('anim-object');
+            const byWord = document.getElementById('anim-by');
+            
+            // Get center of stage for calculation
+            const stageWidth = stage.offsetWidth;
+            const stageHeight = stage.offsetHeight;
+            const cy = stageHeight / 2;
+            const cx = stageWidth / 2;
+
+            if (animStep === 0) {
+                // Active: Subject - Verb - Object (Centered together)
+                subj.style.left = `calc(50% - 150px)`; subj.style.top = `calc(50% - 20px)`;
+                verb.style.left = `calc(50% - 30px)`; verb.style.top = `calc(50% - 20px)`;
+                obj.style.left = `calc(50% + 50px)`; obj.style.top = `calc(50% - 20px)`;
+                
+                // Content reset
+                subj.innerHTML = "The chef";
+                verb.innerHTML = "bakes";
+                subj.style.opacity = "1";
+                byWord.style.opacity = "0";
+            } 
+            else if (animStep === 1) {
+                // Step 1: Object moves to front
+                obj.style.left = `calc(50% - 170px)`; obj.style.top = `calc(50% - 20px)`;
+                subj.style.left = `calc(50% - 150px)`; subj.style.top = `calc(50% - 80px)`; // Move subject out of way
+            }
+            else if (animStep === 2) {
+                // Step 2: Verb changes
+                verb.innerHTML = "is baked";
+                verb.classList.add('correct-anim');
+                setTimeout(() => verb.classList.remove('correct-anim'), 1000);
+            }
+            else if (animStep === 3) {
+                // Step 3: Subject moves to end with 'by'
+                subj.innerHTML = "by the chef";
+                subj.style.left = `calc(50% + 90px)`; subj.style.top = `calc(50% - 20px)`;
+                byWord.style.opacity = "0";
+            }
+        }
+
+        function nextAnimationStep() {
+            animStep++;
+            const instruction = document.getElementById('anim-instruction');
+            const btn = document.getElementById('anim-btn');
+
+            if (animStep === 1) {
+                instruction.innerHTML = "2. The <strong class='text-purple-600'>Object</strong> (the pizza) moves to the beginning of the sentence to become the focus.";
+                updateAnimPositions();
+            } else if (animStep === 2) {
+                instruction.innerHTML = "3. The <strong class='text-emerald-600'>Verb</strong> (bakes) changes to <strong class='text-emerald-600'>BE + Past Participle</strong> (is baked).";
+                updateAnimPositions();
+            } else if (animStep === 3) {
+                instruction.innerHTML = "4. The original <strong class='text-blue-600'>Subject</strong> moves to the end, introduced by 'by'. (Often, it's removed entirely!)";
+                btn.innerHTML = "<i class='fa-solid fa-rotate-left mr-2'></i> Reset";
+                updateAnimPositions();
+            } else {
+                resetAnimation();
+            }
+        }
+
+        function resetAnimation() {
+            animStep = 0;
+            document.getElementById('anim-instruction').innerHTML = "1. This is an <strong class='text-blue-600'>Active</strong> sentence. The focus is on the doer (The chef).";
+            document.getElementById('anim-btn').innerHTML = "Next Step <i class='fa-solid fa-arrow-right ml-2'></i>";
+            updateAnimPositions();
+        }
+
+        // Initialize positions on load and resize
+        window.addEventListener('resize', () => {
+            if(document.getElementById('tab-rules').classList.contains('active')) {
+                updateAnimPositions();
+            }
+        });
+
+
+        // --- 4. Practice Section Logic ---
+        
+        // Unscramble Data
+        const unscrambleData = {
+            q1: { words: ["Brazil.", "grown", "in", "Coffee", "is"], correct: ["Coffee", "is", "grown", "in", "Brazil."] },
+            q2: { words: ["cleaned", "every", "are", "The", "rooms", "day."], correct: ["The", "rooms", "are", "cleaned", "every", "day."] }
+        };
+
+        function initUnscramble() {
+            ['q1', 'q2'].forEach(qId => {
+                const bank = document.getElementById(`${qId}-bank`);
+                // Shuffle words a bit visually
+                let words = [...unscrambleData[qId].words].sort(() => Math.random() - 0.5);
+                
+                words.forEach(word => {
+                    const span = document.createElement('span');
+                    span.className = "word-chip bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg font-medium shadow-sm select-none";
+                    span.textContent = word;
+                    span.onclick = () => moveWord(span, qId);
+                    bank.appendChild(span);
+                });
+            });
+        }
+
+        function moveWord(element, qId) {
+            const bank = document.getElementById(`${qId}-bank`);
+            const answer = document.getElementById(`${qId}-answer`);
+            
+            // If it's in the bank, move to answer. If in answer, move to bank.
+            if (element.parentElement === bank) {
+                answer.appendChild(element);
+            } else {
+                bank.appendChild(element);
+            }
+        }
+
+        // Validation Logic Map
+        const practiceAnswers = {
+            q3: "are sent",
+            q4: "is produced",
+            q5: "are watered",
+            q6: ["the workers are paid by the company on friday", "the workers are paid on friday by the company", "the workers are paid by the company"],
+            q7: ["english is spoken in many countries", "english is spoken"],
+            q8: ["cars are fixed in a garage", "cars are fixed by mechanics in a garage", "cars are fixed in a garage by mechanics"],
+            q9: ["the mail is delivered every morning by the postman", "the mail is delivered by the postman every morning", "the mail is delivered by the postman"],
+            q10: ["the windows are cleaned once a month", "the windows are cleaned once a month by them", "the windows are cleaned by them once a month"],
+            q11: ["the meals are prepared carefully by the chef", "the meals are prepared by the chef carefully"],
+            q12: "b",
+            q13: "a"
+        };
+
+        function cleanString(str) {
+            return str.trim().toLowerCase().replace(/\.$/, '').replace(/\s+/g, ' ');
+        }
+
+        function validateUnscramble(qId) {
+            const answerBox = document.getElementById(`${qId}-answer`);
+            const currentWords = Array.from(answerBox.children).map(el => el.textContent);
+            const correctWords = unscrambleData[qId].correct;
+            
+            if (currentWords.length !== correctWords.length) return false;
+            
+            for(let i=0; i < currentWords.length; i++) {
+                if (currentWords[i] !== correctWords[i]) return false;
+            }
+            return true;
+        }
+
+        function submitPractice() {
+            let score = 0;
+            const total = 13;
+
+            // Helper to style containers
+            const setStyle = (id, isCorrect, feedbackText = "") => {
+                const el = document.getElementById(`${id}-container`);
+                if (isCorrect) {
+                    score++;
+                    el.className = "p-4 bg-emerald-50 border border-emerald-200 rounded-xl transition-colors duration-300";
+                    if (document.getElementById(`${id}-feedback`)) {
+                        document.getElementById(`${id}-feedback`).classList.add('hidden');
+                    }
+                } else {
+                    el.className = "p-4 bg-red-50 border border-red-200 rounded-xl transition-colors duration-300";
+                    const fb = document.getElementById(`${id}-feedback`);
+                    if (fb) {
+                        fb.textContent = feedbackText;
+                        fb.classList.remove('hidden');
+                        fb.className = "text-red-500 text-sm mt-2 font-medium block";
+                    }
+                }
+            }
+
+            // Type A: Unscramble
+            setStyle('q1', validateUnscramble('q1'), "Incorrect order. Make sure it follows: Subject + BE + Past Participle.");
+            setStyle('q2', validateUnscramble('q2'), "Incorrect order. Check subject-verb agreement.");
+
+            // Type B: Dropdowns
+            ['q3', 'q4', 'q5'].forEach(id => {
+                const val = document.getElementById(id).value;
+                setStyle(id, val === practiceAnswers[id]);
+            });
+
+            // Type C: Text inputs
+            ['q6', 'q7', 'q8', 'q9', 'q10', 'q11'].forEach(id => {
+                const val = cleanString(document.getElementById(id).value);
+                const acceptableAnswers = practiceAnswers[id];
+                const isCorrect = acceptableAnswers.some(ans => cleanString(ans) === val);
+                
+                let hint = "Check spelling and form (Object + am/is/are + V3).";
+                if(id === 'q7' || id === 'q10') hint = "Don't include 'by people' or 'by them' as they are general subjects.";
+                
+                setStyle(id, isCorrect, hint);
+            });
+
+            // Type D: Radio
+            ['q12', 'q13'].forEach(id => {
+                const selected = document.querySelector(`input[name="${id}"]:checked`);
+                setStyle(id, selected && selected.value === practiceAnswers[id]);
+            });
+
+            // Display Results
+            const resultDiv = document.getElementById('practice-result');
+            const scoreText = document.getElementById('score-text');
+            const scoreCircle = document.getElementById('score-circle');
+            const scoreMessage = document.getElementById('score-message');
+
+            resultDiv.classList.remove('hidden');
+            
+            // Animate numbers
+            let currentNum = 0;
+            const interval = setInterval(() => {
+                if (currentNum >= score) {
+                    clearInterval(interval);
+                } else {
+                    currentNum++;
+                    scoreText.textContent = currentNum;
+                }
+            }, 100);
+
+            if (score === 0) scoreText.textContent = "0";
+
+            // Animate circle SVG dash array (percentage)
+            const percentage = (score / total) * 100;
+            setTimeout(() => {
+                scoreCircle.setAttribute('stroke-dasharray', `${percentage}, 100`);
+                // Color change based on score
+                if (score < 6) scoreCircle.classList.replace('text-emerald-500', 'text-red-500');
+                else if (score < 10) scoreCircle.classList.replace('text-emerald-500', 'text-amber-500');
+                else {
+                    scoreCircle.classList.remove('text-red-500', 'text-amber-500');
+                    scoreCircle.classList.add('text-emerald-500');
+                }
+            }, 100);
+
+            // Message
+            if (score === 13) scoreMessage.textContent = "Outstanding! You have mastered the Passive Voice!";
+            else if (score >= 9) scoreMessage.textContent = "Great job! You have a solid understanding.";
+            else if (score >= 6) scoreMessage.textContent = "Good effort! Review the rules tab and try to correct your mistakes.";
+            else scoreMessage.textContent = "Keep practicing! Check the 'Learn the Rules' tab again.";
+        }
+
+        // --- Initialization ---
+        window.onload = function() {
+            initExposure();
+            initUnscramble();
+            // Need a slight delay for initial position calculation to ensure DOM is fully rendered
+            setTimeout(updateAnimPositions, 100); 
+        };
+
+    </script>
+</body>
+</html>
