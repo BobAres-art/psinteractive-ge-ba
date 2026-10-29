@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time at Home: Every Day vs. Yesterday</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4f46e5', // Indigo 600
+                        secondary: '#f97316', // Orange 500
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Tab transitions */
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Flip card styles */
+        .flip-card { background-color: transparent; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center; transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+
+        /* Unscramble buttons */
+        .word-tile {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .word-tile:hover { transform: scale(1.05); }
+
+        /* Accordion transition */
+        .accordion-content { transition: max-height 0.3s ease-out, padding 0.3s ease; max-height: 0; overflow: hidden; }
+        .accordion-content.expanded { max-height: 500px; }
+        .accordion-icon { transition: transform 0.3s ease; }
+        .accordion-icon.rotated { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-primary selection:text-white">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Time at Home: Every Day vs. Yesterday</h1>
+            <p class="text-sm text-slate-400 mt-2 italic">Designed by Babak Alaee</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-20">
+        
+        <!-- Tab Navigation -->
+        <div class="border-b border-gray-200 mb-8 overflow-x-auto">
+            <nav class="flex space-x-2 md:space-x-8 min-w-max pb-2" aria-label="Tabs">
+                <button onclick="openTab('story')" id="tab-btn-story" class="tab-btn active border-primary text-primary whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors rounded-t-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-book-open mr-2"></i> 1. Exposure Story
+                </button>
+                <button onclick="openTab('rules')" id="tab-btn-rules" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors rounded-t-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-chalkboard mr-2"></i> 2. Grammar Rules
+                </button>
+                <button onclick="openTab('verbs')" id="tab-btn-verbs" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors rounded-t-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-layer-group mr-2"></i> 3. Regular vs Irregular
+                </button>
+                <button onclick="openTab('practice')" id="tab-btn-practice" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors rounded-t-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-pencil mr-2"></i> 4. Practice
+                </button>
+                <button onclick="openTab('reference')" id="tab-btn-reference" class="tab-btn border-transparent text-gray-500 hover:text-gray-700 whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm transition-colors rounded-t-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-table-list mr-2"></i> 5. Verb Reference
+                </button>
+            </nav>
+        </div>
+
+        <!-- Section 1: Exposure Story -->
+        <section id="story" class="tab-content active">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4 text-primary"><i class="fa-solid fa-house-chimney-window mr-2"></i> A Tale of Two Days</h2>
+                    <div class="prose prose-slate text-lg leading-relaxed space-y-4">
+                        <p class="border-l-4 border-blue-400 pl-4 bg-blue-50/50 p-2 rounded-r-lg">
+                            <span class="font-semibold text-blue-800">Every day</span>, I <strong>wake up</strong> at 7:00 AM. I <strong>do not eat</strong> a big breakfast. I just <strong>drink</strong> coffee. <strong>Does</strong> my brother <strong>drink</strong> coffee? No, he <strong>doesn't</strong>. He <strong>drinks</strong> tea. We usually <strong>clean</strong> the house together in the afternoon.
+                        </p>
+                        <p class="border-l-4 border-orange-400 pl-4 bg-orange-50/50 p-2 rounded-r-lg">
+                            But <span class="font-semibold text-orange-800">yesterday</span>, things were different! I <strong>didn't wake up</strong> at 7:00 AM. I <strong>woke up</strong> at 9:00 AM because I was tired. I <strong>ate</strong> a huge breakfast with eggs and toast. <strong>Did</strong> my brother <strong>drink</strong> tea yesterday? Yes, he <strong>did</strong>, but he also <strong>drank</strong> orange juice. We <strong>didn't clean</strong> the house. We <strong>watched</strong> a movie instead.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-circle-question text-secondary mr-2"></i> Check Your Understanding</h3>
+                    <p class="text-sm text-slate-500 mb-4">Read the story and answer the questions. Click 'Check' to see if you are right!</p>
+                    
+                    <!-- Story Q1 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 relative">
+                        <p class="font-medium mb-3">1. What does the narrator usually drink in the morning?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+                                <input type="radio" name="sq1" value="A" class="form-radio text-primary focus:ring-primary h-4 w-4">
+                                <span>A) Coffee</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+                                <input type="radio" name="sq1" value="B" class="form-radio text-primary focus:ring-primary h-4 w-4">
+                                <span>B) Tea</span>
+                            </label>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button onclick="checkRadio('sq1', 'A')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Check Answer</button>
+                            <span id="fb-sq1" class="hidden text-sm font-bold"></span>
+                        </div>
+                    </div>
+
+                    <!-- Story Q2 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 relative">
+                        <p class="font-medium mb-3">2. Did they clean the house yesterday?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+                                <input type="radio" name="sq2" value="A" class="form-radio text-primary focus:ring-primary h-4 w-4">
+                                <span>A) Yes, they did.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+                                <input type="radio" name="sq2" value="B" class="form-radio text-primary focus:ring-primary h-4 w-4">
+                                <span>B) No, they didn't.</span>
+                            </label>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button onclick="checkRadio('sq2', 'B')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Check Answer</button>
+                            <span id="fb-sq2" class="hidden text-sm font-bold"></span>
+                        </div>
+                    </div>
+
+                    <!-- Story Q3 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 relative">
+                        <p class="font-medium mb-3">3. Why did the narrator wake up at 9:00 AM yesterday?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+                                <input type="radio" name="sq3" value="A" class="form-radio text-primary focus:ring-primary h-4 w-4">
+                                <span>A) Because it was the weekend.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded-lg">
+                                <input type="radio" name="sq3" value="B" class="form-radio text-primary focus:ring-primary h-4 w-4">
+                                <span>B) Because they were tired.</span>
+                            </label>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button onclick="checkRadio('sq3', 'B')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Check Answer</button>
+                            <span id="fb-sq3" class="hidden text-sm font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Grammar Rules -->
+        <section id="rules" class="tab-content">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-800">The Rules of Time</h2>
+                <p class="text-slate-500 mt-2">Click on the sections below to reveal how we build sentences in both tenses.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Present Simple Panel -->
+                <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100 shadow-sm">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                            <i class="fa-solid fa-rotate"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-900">Present Simple</h3>
+                        <p class="text-blue-700 text-sm mt-1">For habits, routines, and things that are always true.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Accordion + -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-blue-100 shadow-sm">
+                            <button onclick="toggleAccordion('acc-pres-pos', 'icon-pres-pos')" class="w-full px-5 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50">
+                                <span class="font-bold text-green-600"><i class="fa-solid fa-plus mr-2"></i> Affirmative (+)</span>
+                                <i id="icon-pres-pos" class="fa-solid fa-chevron-down text-slate-400 accordion-icon"></i>
+                            </button>
+                            <div id="acc-pres-pos" class="accordion-content bg-slate-50 px-5">
+                                <div class="py-4 border-t border-slate-100">
+                                    <p class="font-mono text-sm bg-slate-200 inline-block px-2 py-1 rounded mb-2">Subject + Verb (s/es for He/She/It)</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                        <li>I <strong>play</strong> tennis.</li>
+                                        <li>She <strong>plays</strong> tennis.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion - -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-blue-100 shadow-sm">
+                            <button onclick="toggleAccordion('acc-pres-neg', 'icon-pres-neg')" class="w-full px-5 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50">
+                                <span class="font-bold text-red-500"><i class="fa-solid fa-minus mr-2"></i> Negative (-)</span>
+                                <i id="icon-pres-neg" class="fa-solid fa-chevron-down text-slate-400 accordion-icon"></i>
+                            </button>
+                            <div id="acc-pres-neg" class="accordion-content bg-slate-50 px-5">
+                                <div class="py-4 border-t border-slate-100">
+                                    <p class="font-mono text-sm bg-slate-200 inline-block px-2 py-1 rounded mb-2">Subject + do/does not + Base Verb</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                        <li>I <strong>do not (don't) eat</strong> meat.</li>
+                                        <li>He <strong>does not (doesn't) eat</strong> meat.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion ? -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-blue-100 shadow-sm">
+                            <button onclick="toggleAccordion('acc-pres-q', 'icon-pres-q')" class="w-full px-5 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50">
+                                <span class="font-bold text-purple-600"><i class="fa-solid fa-question mr-2"></i> Question (?)</span>
+                                <i id="icon-pres-q" class="fa-solid fa-chevron-down text-slate-400 accordion-icon"></i>
+                            </button>
+                            <div id="acc-pres-q" class="accordion-content bg-slate-50 px-5">
+                                <div class="py-4 border-t border-slate-100">
+                                    <p class="font-mono text-sm bg-slate-200 inline-block px-2 py-1 rounded mb-2">Do/Does + Subject + Base Verb?</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                        <li><strong>Do</strong> you <strong>like</strong> coffee?</li>
+                                        <li><strong>Does</strong> she <strong>like</strong> coffee?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Simple Panel -->
+                <div class="bg-orange-50 rounded-2xl p-6 border border-orange-100 shadow-sm">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-orange-900">Past Simple</h3>
+                        <p class="text-orange-700 text-sm mt-1">For finished actions that happened in the past.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Accordion + -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-orange-100 shadow-sm">
+                            <button onclick="toggleAccordion('acc-past-pos', 'icon-past-pos')" class="w-full px-5 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50">
+                                <span class="font-bold text-green-600"><i class="fa-solid fa-plus mr-2"></i> Affirmative (+)</span>
+                                <i id="icon-past-pos" class="fa-solid fa-chevron-down text-slate-400 accordion-icon"></i>
+                            </button>
+                            <div id="acc-past-pos" class="accordion-content bg-slate-50 px-5">
+                                <div class="py-4 border-t border-slate-100">
+                                    <p class="font-mono text-sm bg-slate-200 inline-block px-2 py-1 rounded mb-2">Subject + Past Verb (V2)</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                        <li>I <strong>watched</strong> TV yesterday. (Regular)</li>
+                                        <li>She <strong>ate</strong> pizza last night. (Irregular)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion - -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-orange-100 shadow-sm">
+                            <button onclick="toggleAccordion('acc-past-neg', 'icon-past-neg')" class="w-full px-5 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50">
+                                <span class="font-bold text-red-500"><i class="fa-solid fa-minus mr-2"></i> Negative (-)</span>
+                                <i id="icon-past-neg" class="fa-solid fa-chevron-down text-slate-400 accordion-icon"></i>
+                            </button>
+                            <div id="acc-past-neg" class="accordion-content bg-slate-50 px-5">
+                                <div class="py-4 border-t border-slate-100">
+                                    <p class="font-mono text-sm bg-slate-200 inline-block px-2 py-1 rounded mb-2">Subject + did not + Base Verb</p>
+                                    <p class="text-xs text-red-500 mb-2 italic">Notice: We use the base verb here, NOT the past verb!</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                        <li>We <strong>did not (didn't) go</strong> out.</li>
+                                        <li>He <strong>didn't play</strong> football.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion ? -->
+                        <div class="bg-white rounded-lg overflow-hidden border border-orange-100 shadow-sm">
+                            <button onclick="toggleAccordion('acc-past-q', 'icon-past-q')" class="w-full px-5 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50">
+                                <span class="font-bold text-purple-600"><i class="fa-solid fa-question mr-2"></i> Question (?)</span>
+                                <i id="icon-past-q" class="fa-solid fa-chevron-down text-slate-400 accordion-icon"></i>
+                            </button>
+                            <div id="acc-past-q" class="accordion-content bg-slate-50 px-5">
+                                <div class="py-4 border-t border-slate-100">
+                                    <p class="font-mono text-sm bg-slate-200 inline-block px-2 py-1 rounded mb-2">Did + Subject + Base Verb?</p>
+                                    <p class="text-xs text-purple-500 mb-2 italic">Again, use the base verb after 'Did'!</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                        <li><strong>Did</strong> you <strong>see</strong> that?</li>
+                                        <li><strong>Did</strong> they <strong>arrive</strong> on time?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Regular vs Irregular -->
+        <section id="verbs" class="tab-content">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-10 text-center">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Making the Past</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto mb-8">
+                    In the past tense, verbs belong to two families. 
+                    <strong>Regular verbs</strong> follow the rules and just add <strong>-ed</strong> at the end. 
+                    <strong>Irregular verbs</strong> break the rules and change completely!
+                </p>
+                <p class="text-sm font-semibold text-primary mb-6 animate-pulse">Click the cards to reveal the past forms!</p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="flip-cards-container">
+                    <!-- Cards injected via JS to keep HTML clean -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Practice -->
+        <section id="practice" class="tab-content">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Time to Practice!</h2>
+            <p class="text-center text-slate-500 mb-10">Complete the 10 exercises below. Don't worry, answers are hidden until you click 'Check'.</p>
+
+            <div class="space-y-6">
+                <!-- Type 1: Contextualization (Dropdowns) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-700 mb-4 border-b pb-2"><i class="fa-solid fa-list-check text-primary mr-2"></i> Choose the right form</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Q1 -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-slate-400">1.</span>
+                            <span>Every Saturday, she</span>
+                            <select id="q1-select" class="border border-slate-300 rounded p-1 bg-slate-50 outline-primary">
+                                <option value="">---</option>
+                                <option value="visits">visits</option>
+                                <option value="visited">visited</option>
+                            </select>
+                            <span>her grandmother.</span>
+                            <button onclick="checkDropdown('q1', 'visits')" class="ml-auto bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded text-sm transition-colors">Check</button>
+                            <span id="fb-q1" class="hidden text-sm font-bold ml-2"></span>
+                        </div>
+                        
+                        <!-- Q2 -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-slate-400">2.</span>
+                            <span>Yesterday, we</span>
+                            <select id="q2-select" class="border border-slate-300 rounded p-1 bg-slate-50 outline-primary">
+                                <option value="">---</option>
+                                <option value="don't go">don't go</option>
+                                <option value="didn't go">didn't go</option>
+                            </select>
+                            <span>to the park because it was raining.</span>
+                            <button onclick="checkDropdown('q2', 'didn't go')" class="ml-auto bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded text-sm transition-colors">Check</button>
+                            <span id="fb-q2" class="hidden text-sm font-bold ml-2"></span>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-slate-400">3.</span>
+                            <select id="q3-select" class="border border-slate-300 rounded p-1 bg-slate-50 outline-primary">
+                                <option value="">---</option>
+                                <option value="Do you">Do you</option>
+                                <option value="Did you">Did you</option>
+                            </select>
+                            <span>finish your homework last night?</span>
+                            <button onclick="checkDropdown('q3', 'Did you')" class="ml-auto bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded text-sm transition-colors">Check</button>
+                            <span id="fb-q3" class="hidden text-sm font-bold ml-2"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Type 2: Unscramble -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-700 mb-4 border-b pb-2"><i class="fa-solid fa-puzzle-piece text-secondary mr-2"></i> Unscramble the sentences</h3>
+                    <p class="text-sm text-slate-500 mb-4">Click words in the blue box to move them to the dashed answer box. Click them in the answer box to put them back.</p>
+                    
+                    <!-- Q4 -->
+                    <div class="mb-8">
+                        <p class="font-bold text-slate-400 mb-2">4. Build an affirmative sentence in the past.</p>
+                        <div id="q4-pool" class="flex flex-wrap gap-2 mb-3 min-h-[40px] p-2 bg-blue-50 rounded border border-blue-100">
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">yesterday</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">TV</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">watched</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">I</button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div id="q4-answer" class="flex flex-wrap gap-2 flex-grow min-h-[48px] p-2 bg-slate-50 rounded border-2 border-dashed border-slate-300"></div>
+                            <button onclick="checkUnscramble('q4', 'I watched TV yesterday')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                        </div>
+                        <p id="fb-q4" class="hidden text-sm font-bold mt-2"></p>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="mb-8">
+                        <p class="font-bold text-slate-400 mb-2">5. Build a negative sentence in the present.</p>
+                        <div id="q5-pool" class="flex flex-wrap gap-2 mb-3 min-h-[40px] p-2 bg-blue-50 rounded border border-blue-100">
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">apples</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">not</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">like</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">does</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">She</button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div id="q5-answer" class="flex flex-wrap gap-2 flex-grow min-h-[48px] p-2 bg-slate-50 rounded border-2 border-dashed border-slate-300"></div>
+                            <button onclick="checkUnscramble('q5', 'She does not like apples')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                        </div>
+                        <p id="fb-q5" class="hidden text-sm font-bold mt-2"></p>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div>
+                        <p class="font-bold text-slate-400 mb-2">6. Build a question in the past.</p>
+                        <div id="q6-pool" class="flex flex-wrap gap-2 mb-3 min-h-[40px] p-2 bg-blue-50 rounded border border-blue-100">
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">play</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">they</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">football</button>
+                            <button class="word-tile bg-white shadow-sm border border-slate-200 px-3 py-1 rounded text-slate-700 font-medium">Did</button>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div id="q6-answer" class="flex flex-wrap gap-2 flex-grow min-h-[48px] p-2 bg-slate-50 rounded border-2 border-dashed border-slate-300"></div>
+                            <button onclick="checkUnscramble('q6', 'Did they play football')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                        </div>
+                        <p id="fb-q6" class="hidden text-sm font-bold mt-2"></p>
+                    </div>
+                </div>
+
+                <!-- Type 3: Sentence Writing -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-700 mb-4 border-b pb-2"><i class="fa-solid fa-keyboard text-green-500 mr-2"></i> Write the form</h3>
+                    <p class="text-sm text-slate-500 mb-4">Read the instructions and type the new sentence exactly (do not use punctuation like periods).</p>
+
+                    <!-- Q7 -->
+                    <div class="mb-6">
+                        <p class="mb-2"><span class="font-bold text-slate-400">7.</span> Change to <strong>Past Simple</strong>: "I go to the store"</p>
+                        <div class="flex items-center gap-3">
+                            <input type="text" id="q7-input" placeholder="Type here..." class="flex-grow border border-slate-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <button onclick="checkInput('q7', 'I went to the store')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                        </div>
+                        <p id="fb-q7" class="hidden text-sm font-bold mt-2"></p>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div>
+                        <p class="mb-2"><span class="font-bold text-slate-400">8.</span> Change to <strong>Present Simple</strong>: "She did not eat"</p>
+                        <div class="flex items-center gap-3">
+                            <input type="text" id="q8-input" placeholder="Type here..." class="flex-grow border border-slate-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <button onclick="checkInput('q8', 'She does not eat')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                        </div>
+                        <p id="fb-q8" class="hidden text-sm font-bold mt-2"></p>
+                    </div>
+                </div>
+
+                <!-- Type 4: Multiple Choice -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-700 mb-4 border-b pb-2"><i class="fa-regular fa-square-check text-purple-500 mr-2"></i> Final Choices</h3>
+                    
+                    <!-- Q9 -->
+                    <div class="mb-6">
+                        <p class="font-medium mb-2"><span class="font-bold text-slate-400">9.</span> Which sentence is perfectly correct?</p>
+                        <div class="space-y-2 mb-3">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded">
+                                <input type="radio" name="q9" value="A" class="form-radio text-primary h-4 w-4">
+                                <span>A) He didn't went home.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded">
+                                <input type="radio" name="q9" value="B" class="form-radio text-primary h-4 w-4">
+                                <span>B) He didn't go home.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded">
+                                <input type="radio" name="q9" value="C" class="form-radio text-primary h-4 w-4">
+                                <span>C) He doesn't went home.</span>
+                            </label>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="checkRadioExercise('q9', 'B')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                            <span id="fb-q9" class="hidden text-sm font-bold"></span>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div>
+                        <p class="font-medium mb-2"><span class="font-bold text-slate-400">10.</span> What is the correct past form of the verb <strong>buy</strong>?</p>
+                        <div class="space-y-2 mb-3">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded">
+                                <input type="radio" name="q10" value="A" class="form-radio text-primary h-4 w-4">
+                                <span>A) buyed</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded">
+                                <input type="radio" name="q10" value="B" class="form-radio text-primary h-4 w-4">
+                                <span>B) bought</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-slate-50 rounded">
+                                <input type="radio" name="q10" value="C" class="form-radio text-primary h-4 w-4">
+                                <span>C) brought</span>
+                            </label>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="checkRadioExercise('q10', 'B')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded text-sm transition-colors">Check</button>
+                            <span id="fb-q10" class="hidden text-sm font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 5: Verb Reference -->
+        <section id="reference" class="tab-content">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-6 bg-slate-50 border-b border-slate-200">
+                    <h2 class="text-2xl font-bold text-slate-800"><i class="fa-solid fa-list text-primary mr-2"></i> Verb Reference List</h2>
+                    <p class="text-slate-500 mt-1 text-sm">All the verbs used in our exercises and story.</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-600 text-sm uppercase tracking-wider">
+                                <th class="p-4 font-semibold">Base Form (Present)</th>
+                                <th class="p-4 font-semibold">Past Form</th>
+                                <th class="p-4 font-semibold">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="verb-table-body" class="divide-y divide-slate-100 text-slate-700">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- Navigation Logic ---
+        function openTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            // Reset all buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('active', 'border-primary', 'text-primary');
+                el.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+            // Highlight selected button
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            activeBtn.classList.remove('border-transparent', 'text-gray-500');
+            activeBtn.classList.add('active', 'border-primary', 'text-primary');
+        }
+
+        // --- UI Interactions ---
+        function toggleAccordion(contentId, iconId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(iconId);
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+
+        function toggleFlip(element) {
+            element.classList.toggle('flipped');
+        }
+
+        // --- Data & Injection ---
+        const verbData = [
+            { base: 'clean', past: 'cleaned', reg: true },
+            { base: 'visit', past: 'visited', reg: true },
+            { base: 'watch', past: 'watched', reg: true },
+            { base: 'play', past: 'played', reg: true },
+            { base: 'like', past: 'liked', reg: true },
+            { base: 'wake', past: 'woke', reg: false },
+            { base: 'eat', past: 'ate', reg: false },
+            { base: 'drink', past: 'drank', reg: false },
+            { base: 'do', past: 'did', reg: false },
+            { base: 'go', past: 'went', reg: false },
+            { base: 'see', past: 'saw', reg: false },
+            { base: 'buy', past: 'bought', reg: false }
+        ];
+
+        // Inject flip cards (only 8 selected for UI)
+        const flipContainer = document.getElementById('flip-cards-container');
+        const cardsToRender = ['clean', 'watch', 'wake', 'eat', 'drink', 'do', 'go', 'see'];
+        
+        cardsToRender.forEach(baseVerb => {
+            const verbInfo = verbData.find(v => v.base === baseVerb);
+            const cardHTML = `
+                <div class="flip-card h-32" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-50 border-2 border-slate-200">
+                            <span class="text-xl font-bold text-slate-700">${verbInfo.base}</span>
+                        </div>
+                        <div class="flip-card-back ${verbInfo.reg ? 'bg-blue-500' : 'bg-orange-500'} text-white">
+                            <div>
+                                <span class="block text-2xl font-bold mb-1">${verbInfo.past}</span>
+                                <span class="text-xs uppercase tracking-wider opacity-80">${verbInfo.reg ? 'Regular' : 'Irregular'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            flipContainer.innerHTML += cardHTML;
+        });
+
+        // Inject Verb Table
+        const tbody = document.getElementById('verb-table-body');
+        verbData.forEach((v, index) => {
+            const bgClass = index % 2 === 0 ? 'bg-white' : 'bg-slate-50';
+            const typeBadge = v.reg 
+                ? '<span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-medium">Regular</span>'
+                : '<span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full font-medium">Irregular</span>';
+            
+            tbody.innerHTML += `
+                <tr class="${bgClass} hover:bg-slate-100 transition-colors">
+                    <td class="p-4 font-medium text-slate-800">${v.base}</td>
+                    <td class="p-4 text-slate-600">${v.past}</td>
+                    <td class="p-4">${typeBadge}</td>
+                </tr>
+            `;
+        });
+
+        // --- Exercise Logic ---
+        
+        // Helper to show feedback
+        function showFeedback(id, isCorrect) {
+            const fbElement = document.getElementById('fb-' + id);
+            fbElement.classList.remove('hidden', 'text-green-600', 'text-red-500');
+            if (isCorrect) {
+                fbElement.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Correct!';
+                fbElement.classList.add('text-green-600');
+            } else {
+                fbElement.innerHTML = '<i class="fa-solid fa-xmark mr-1"></i> Try again.';
+                fbElement.classList.add('text-red-500');
+            }
+            // Flash animation
+            fbElement.classList.add('animate-pulse');
+            setTimeout(() => fbElement.classList.remove('animate-pulse'), 1000);
+        }
+
+        // Story & MC Radio checks
+        function checkRadio(name, correctAnswer) {
+            const selected = document.querySelector(`input[name="${name}"]:checked`);
+            if (!selected) {
+                showFeedback(name, false);
+                document.getElementById('fb-' + name).innerText = "Please select an answer.";
+                document.getElementById('fb-' + name).classList.add('text-orange-500');
+                return;
+            }
+            showFeedback(name, selected.value === correctAnswer);
+        }
+
+        // Wrapper for practice radio to match ID naming
+        function checkRadioExercise(id, correctAnswer) {
+            checkRadio(id, correctAnswer);
+        }
+
+        // Dropdown checks
+        function checkDropdown(id, correctAnswer) {
+            const val = document.getElementById(id + '-select').value;
+            if(!val) return;
+            showFeedback(id, val === correctAnswer);
+        }
+
+        // Unscramble Setup and Logic
+        function setupUnscramble(qId) {
+            const pool = document.getElementById(qId + '-pool');
+            const answerBox = document.getElementById(qId + '-answer');
+            
+            // Convert HTMLCollection to Array and attach listener to each tile
+            Array.from(pool.children).forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // If it's in the pool, move to answer. If in answer, move to pool.
+                    if (this.parentElement === pool) {
+                        answerBox.appendChild(this);
+                    } else {
+                        pool.appendChild(this);
+                    }
+                });
+            });
+        }
+        
+        // Initialize unscramble questions
+        setupUnscramble('q4');
+        setupUnscramble('q5');
+        setupUnscramble('q6');
+
+        function checkUnscramble(id, correctSentence) {
+            const answerBox = document.getElementById(id + '-answer');
+            const currentSentence = Array.from(answerBox.children)
+                                         .map(b => b.innerText)
+                                         .join(' ');
+            
+            showFeedback(id, currentSentence === correctSentence);
+        }
+
+        // Text input checks (ignoring punctuation and case)
+        function checkInput(id, correctAnswer) {
+            const inputVal = document.getElementById(id + '-input').value;
+            // Clean strings: lower case, remove punctuation, trim extra spaces
+            const clean = (str) => str.toLowerCase().replace(/[.,!?]/g, '').replace(/\s+/g, ' ').trim();
+            
+            if(!inputVal) return;
+            showFeedback(id, clean(inputVal) === clean(correctAnswer));
+        }
+
+    </script>
+</body>
+</html>
