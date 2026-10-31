@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Quantifiers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Accordion transition */
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* Drag and drop zones */
+        .drop-zone {
+            display: inline-block;
+            min-width: 100px;
+            height: 36px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.375rem;
+            vertical-align: middle;
+            margin: 0 0.5rem;
+            background-color: #f1f5f9;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .drop-zone.active {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .draggable-word {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            cursor: grab;
+            user-select: none;
+            font-weight: 500;
+            color: #3b82f6;
+            transition: transform 0.1s;
+        }
+        .draggable-word:active { cursor: grabbing; transform: scale(0.95); }
+        .draggable-word.selected { ring: 2px; ring-color: #3b82f6; background-color: #eff6ff; }
+
+        /* Unscramble */
+        .scramble-word {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .scramble-word:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* Feedback animations */
+        @keyframes pop {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop { animation: pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        /* Custom Radio Button Styling */
+        .color-radio:checked + div {
+            background-color: #10b981; /* Emerald 500 */
+            color: white;
+            border-color: #10b981;
+            transform: scale(1.02);
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Vibrant gradients for drag and drop */
+        .drop-zone.correct {
+            border-color: #10b981;
+            background: linear-gradient(to right, #ecfdf5, #d1fae5);
+            color: #065f46;
+            font-weight: bold;
+        }
+        .drop-zone.incorrect {
+            border-color: #f43f5e;
+            background: linear-gradient(to right, #fff1f2, #ffe4e6);
+            color: #9f1239;
+        }
+    </style>
+</head>
+<body class="antialiased bg-slate-100 selection:bg-fuchsia-200 selection:text-fuchsia-900">
+
+    <!-- Header -->
+    <header class="w-full bg-white shadow-md sticky top-0 z-50 border-b-4 border-transparent" style="border-image: linear-gradient(to right, #f43f5e, #8b5cf6, #3b82f6) 1;">
+        <div class="max-w-5xl mx-auto px-4 py-2 text-center">
+            <h1 class="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-purple-500 to-blue-500 tracking-tight drop-shadow-sm">
+                Mastering Quantifiers
+            </h1>
+            <p class="mt-1 text-xs text-slate-500 italic tracking-widest font-medium uppercase">
+                Designed by Babak Alaee
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-12 space-y-20">
+
+        <!-- Section 1: Exposure Text (Warm Theme) -->
+        <section id="reading" class="bg-white rounded-3xl shadow-xl border-t-8 border-rose-400 p-8 md:p-12 transform hover:-translate-y-1 transition duration-500 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-rose-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            
+            <div class="flex items-center gap-4 mb-8 relative z-10">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-400 to-orange-400 flex items-center justify-center text-white shadow-lg shadow-rose-200">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-800">Reading: The Future of Renewable Energy</h2>
+            </div>
+            
+            <div class="prose prose-slate max-w-none text-slate-700 leading-loose space-y-5 text-lg relative z-10">
+                <p>
+                    The transition to renewable energy is one of the most critical challenges of our time. While <strong class="text-rose-600 bg-rose-50 px-1 rounded">many</strong> countries are investing heavily in solar and wind power, <strong class="text-rose-600 bg-rose-50 px-1 rounded">few</strong> have completely abandoned fossil fuels. In the past, there was <strong class="text-rose-600 bg-rose-50 px-1 rounded">little</strong> interest in green technology because it cost too <strong class="text-rose-600 bg-rose-50 px-1 rounded">much</strong> money. Governments argued that they didn't have <strong class="text-rose-600 bg-rose-50 px-1 rounded">plenty of</strong> funds to spare for experimental projects. 
+                </p>
+                <p>
+                    However, today, <strong class="text-orange-600 bg-orange-50 px-1 rounded">a lot of</strong> people understand the importance of sustainability. We now have <strong class="text-orange-600 bg-orange-50 px-1 rounded">plenty of</strong> resources and knowledge to develop better batteries and more efficient turbines. With just <strong class="text-orange-600 bg-orange-50 px-1 rounded">a little</strong> effort from every community, we can dramatically reduce our global carbon footprint. 
+                </p>
+                <p>
+                    Fortunately, there are <strong class="text-rose-600 bg-rose-50 px-1 rounded">a few</strong> progressive nations leading the way, proving that we don't need <strong class="text-rose-600 bg-rose-50 px-1 rounded">much</strong> time to make a significant impact if we act decisively right now. We have spent <strong class="text-rose-600 bg-rose-50 px-1 rounded">so much</strong> time debating the issue, but today <strong class="text-rose-600 bg-rose-50 px-1 rounded">many</strong> scientists agree that we have <strong class="text-orange-600 bg-orange-50 px-1 rounded">lots of</strong> viable alternatives to secure our planet's future.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Comprehension Questions (Emerald Theme) -->
+        <section id="comprehension" class="bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 rounded-3xl shadow-xl border border-emerald-200 p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-200 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-3xl font-extrabold text-teal-800 mb-2">Comprehension Check</h2>
+                <p class="text-teal-600 mb-10 text-lg font-medium">Test your understanding of the text with these interactive questions.</p>
+
+                <form id="comp-form" class="space-y-10">
+                    <!-- Q1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-teal-100">
+                        <p class="font-bold text-slate-800 text-lg mb-4">1. According to the text, how many countries have completely abandoned fossil fuels?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q1" value="many" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">Many countries</div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q1" value="few" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">Few countries</div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q1" value="alot" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">A lot of countries</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-teal-100">
+                        <p class="font-bold text-slate-800 text-lg mb-4">2. Why was there little interest in green technology in the past?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q2" value="cost" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">Because it cost too much money.</div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q2" value="time" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">Because it took too much time.</div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q2" value="scientists" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">Because many scientists disagreed.</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-teal-100">
+                        <p class="font-bold text-slate-800 text-lg mb-4">3. What is needed from every community to reduce the global carbon footprint?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q3" value="lot" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">A lot of time.</div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q3" value="little" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">A little effort.</div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="q3" value="plenty" class="color-radio peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 text-center font-semibold text-slate-600 transition-all hover:bg-slate-50">Plenty of money.</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="button" onclick="checkComprehension()" class="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-emerald-200 transition-all active:scale-95 text-lg w-full md:w-auto">
+                            Check My Answers
+                        </button>
+                    </div>
+                    <div id="comp-feedback" class="hidden p-5 rounded-2xl font-bold text-lg text-center animate-pop shadow-md"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section 3: Interactive Rules Table (Violet/Fuchsia Theme) -->
+        <section id="rules" class="bg-white rounded-3xl shadow-xl border-t-8 border-violet-500 overflow-hidden">
+            <div class="bg-gradient-to-r from-violet-50 to-fuchsia-50 p-8 md:p-12 border-b border-violet-100">
+                <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 mb-2">Quantifier Rules & Usage</h2>
+                <p class="text-violet-700 text-lg">Master the logic of quantifiers visually. Study the table and the rule cards below.</p>
+            </div>
+            
+            <div class="p-8 md:p-12 space-y-12">
+                
+                <!-- The Core Table -->
+                <div class="overflow-x-auto rounded-2xl shadow-xl border border-violet-200 ring-1 ring-black/5">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-lg">
+                                <th class="p-5 font-bold border-b border-violet-700 w-1/4">Category</th>
+                                <th class="p-5 font-bold border-b border-violet-700 border-l border-violet-500/30 w-3/8">Uncountable Nouns</th>
+                                <th class="p-5 font-bold border-b border-violet-700 border-l border-violet-500/30 w-3/8">Plural Countable Nouns</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-violet-100">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-violet-50 transition duration-150">
+                                <td class="p-5 font-bold text-slate-800 bg-slate-50/50">Large Amount</td>
+                                <td class="p-5 border-l border-violet-50">
+                                    <span class="text-xl font-bold text-violet-600 block mb-1">much</span>
+                                    <span class="text-sm text-slate-500">e.g., much luck, much time</span>
+                                </td>
+                                <td class="p-5 border-l border-violet-50">
+                                    <span class="text-xl font-bold text-fuchsia-600 block mb-1">many</span>
+                                    <span class="text-sm text-slate-500">e.g., many friends, many people</span>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-violet-50 transition duration-150">
+                                <td class="p-5 font-bold text-slate-800 bg-slate-50/50">Small Amount <br><span class="text-xs text-rose-500 font-normal italic">(negative meaning, not enough)</span></td>
+                                <td class="p-5 border-l border-violet-50">
+                                    <span class="text-xl font-bold text-violet-600 block mb-1">little</span>
+                                    <span class="text-sm text-slate-500">e.g., little energy, little money</span>
+                                </td>
+                                <td class="p-5 border-l border-violet-50">
+                                    <span class="text-xl font-bold text-fuchsia-600 block mb-1">few</span>
+                                    <span class="text-sm text-slate-500">e.g., few cars, few children</span>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-violet-50 transition duration-150">
+                                <td class="p-5 font-bold text-slate-800 bg-slate-50/50">Small Amount <br><span class="text-xs text-emerald-500 font-normal italic">(positive meaning, some/enough)</span></td>
+                                <td class="p-5 border-l border-violet-50">
+                                    <span class="text-xl font-bold text-violet-600 block mb-1">a little</span>
+                                    <span class="text-sm text-slate-500">e.g., a little time, a little English</span>
+                                </td>
+                                <td class="p-5 border-l border-violet-50">
+                                    <span class="text-xl font-bold text-fuchsia-600 block mb-1">a few</span>
+                                    <span class="text-sm text-slate-500">e.g., a few friends, a few days</span>
+                                </td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="bg-gradient-to-r from-violet-100 to-fuchsia-100 border-t-2 border-violet-200">
+                                <td class="p-5 font-extrabold text-slate-800 shadow-inner">Used with BOTH</td>
+                                <td colspan="2" class="p-5 text-center shadow-inner">
+                                    <div class="flex flex-wrap justify-center gap-4">
+                                        <div class="px-5 py-2 bg-white rounded-xl shadow border border-violet-200 text-violet-700 font-bold text-lg">a lot of</div>
+                                        <div class="px-5 py-2 bg-white rounded-xl shadow border border-fuchsia-200 text-fuchsia-700 font-bold text-lg">lots of</div>
+                                        <div class="px-5 py-2 bg-white rounded-xl shadow border border-purple-200 text-purple-700 font-bold text-lg">plenty of</div>
+                                    </div>
+                                    <p class="text-sm text-slate-600 mt-3 italic">* Plenty = more than enough.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Nuance Cards -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Rule 4 Card -->
+                    <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
+                        <h4 class="text-xl font-bold text-slate-800 mb-3 ml-3">Sentence Types & "Much"</h4>
+                        <div class="space-y-3 text-slate-600 ml-3">
+                            <p><strong>Much</strong> is unusual in positive sentences (especially in spoken English). Instead, we use <em>a lot of</em>.</p>
+                            <div class="bg-rose-50 border border-rose-100 text-rose-700 p-3 rounded-lg text-sm">
+                                ❌ We spent much money.<br>
+                                ✅ We spent a lot of money.
+                            </div>
+                            <p class="mt-2 text-sm"><span class="font-bold text-blue-600">Exception:</span> We DO use <strong>too much, so much, as much</strong> in positive sentences.</p>
+                            <div class="bg-blue-50 border border-blue-100 text-blue-800 p-3 rounded-lg text-sm font-medium">
+                                "We spent too much money."
+                            </div>
+                            <p class="text-sm mt-2 border-t pt-2">Note: <strong>many</strong> and <strong>a lot of</strong> can be used in all kinds of sentences.</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 5 Card -->
+                    <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+                        <h4 class="text-xl font-bold text-slate-800 mb-3 ml-3">"Only a..." Limitation</h4>
+                        <div class="space-y-4 text-slate-600 ml-3">
+                            <p>When emphasizing a small amount, we use the word <strong>only</strong>.</p>
+                            <p>We say <strong>only a little</strong> (not "only little") and <strong>only a few</strong> (not "only few").</p>
+                            
+                            <div class="space-y-2 mt-4">
+                                <div class="bg-emerald-50 border-l-4 border-emerald-400 p-3 rounded-r-lg text-sm">
+                                    <span class="font-bold text-emerald-800">Uncountable:</span><br>
+                                    "Hurry! We <strong>only have a little</strong> time." <br>
+                                    <span class="italic text-slate-500">(some, but not much time)</span>
+                                </div>
+                                <div class="bg-teal-50 border-l-4 border-teal-400 p-3 rounded-r-lg text-sm">
+                                    <span class="font-bold text-teal-800">Plural Countable:</span><br>
+                                    "The village was small. There were <strong>only a few</strong> houses." <br>
+                                    <span class="italic text-slate-500">(some, but not many houses)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: 10 Exercises (Vibrant Blue/Indigo Theme) -->
+        <section id="exercises" class="bg-white rounded-3xl shadow-2xl border-t-8 border-indigo-500 overflow-hidden relative">
+            <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-8 md:p-12 text-white relative">
+                <div class="absolute inset-0 bg-black opacity-10 pattern-dots"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-extrabold mb-3">Interactive Practice Exercises</h2>
+                    <p class="text-indigo-100 text-lg">Apply what you've learned. Complete all 10 exercises across 4 different styles, then click "Check All Exercises".</p>
+                </div>
+            </div>
+            
+            <div class="p-8 md:p-12 space-y-16">
+                
+                <!-- Exercises 1-3: Drag & Drop -->
+                <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+                    <h3 class="text-2xl font-bold text-indigo-900 mb-2 flex items-center gap-3">
+                        <span class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex justify-center items-center text-lg shadow-md">1</span>
+                        Drag & Drop
+                    </h3>
+                    <p class="text-indigo-600 mb-6 font-medium">Drag the colorful quantifiers into the correct blanks, or tap a word then tap a blank to place it.</p>
+                    
+                    <!-- Word Bank -->
+                    <div id="word-bank" class="bg-white p-5 rounded-2xl border-2 border-indigo-200 min-h-[80px] flex flex-wrap gap-4 mb-8 shadow-sm" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <span id="drag-little" class="draggable-word bg-gradient-to-r from-pink-500 to-rose-500 text-white border-none shadow-md hover:scale-105" draggable="true" ondragstart="drag(event)" onclick="selectWord(this)">little</span>
+                        <span id="drag-few" class="draggable-word bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-none shadow-md hover:scale-105" draggable="true" ondragstart="drag(event)" onclick="selectWord(this)">few</span>
+                        <span id="drag-alittle" class="draggable-word bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-none shadow-md hover:scale-105" draggable="true" ondragstart="drag(event)" onclick="selectWord(this)">a little</span>
+                        <span id="drag-much" class="draggable-word bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-none shadow-md hover:scale-105" draggable="true" ondragstart="drag(event)" onclick="selectWord(this)">much</span>
+                        <span id="drag-alot" class="draggable-word bg-gradient-to-r from-orange-500 to-red-500 text-white border-none shadow-md hover:scale-105" draggable="true" ondragstart="drag(event)" onclick="selectWord(this)">a lot of</span>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-slate-700 font-medium leading-relaxed">
+                        <div class="flex flex-wrap items-center bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                            <span class="mr-3 text-slate-400 font-bold">1.</span> Despite the engineering team's relentless efforts, there was <div id="drop-1" class="drop-zone mx-2 shadow-inner" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="placeWord(this)" data-answer="little"></div> we could do to prevent the servers from crashing under the sudden heavy load.
+                        </div>
+                        <div class="flex flex-wrap items-center bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                            <span class="mr-3 text-slate-400 font-bold">2.</span> The legislation passed with surprising ease, as there were <div id="drop-2" class="drop-zone mx-2 shadow-inner" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="placeWord(this)" data-answer="few"></div> politicians willing to publicly oppose such a highly popular measure.
+                        </div>
+                        <div class="flex flex-wrap items-center bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                            <span class="mr-3 text-slate-400 font-bold">3.</span> I'd appreciate it if you could give me <div id="drop-3" class="drop-zone mx-2 shadow-inner" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="placeWord(this)" data-answer="a little"></div> advice on how to negotiate this contract; I've never dealt with this particular client before.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercises 4-6: Contextualization -->
+                <div class="bg-fuchsia-50/50 p-6 rounded-2xl border border-fuchsia-100">
+                    <h3 class="text-2xl font-bold text-fuchsia-900 mb-2 flex items-center gap-3">
+                        <span class="bg-fuchsia-600 text-white w-10 h-10 rounded-xl flex justify-center items-center text-lg shadow-md">2</span>
+                        Contextual Choice
+                    </h3>
+                    <p class="text-fuchsia-600 mb-6 font-medium">Select the correct quantifier based on the positive or negative context.</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Ex 4 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border-2 border-transparent transition-colors duration-300 flex flex-col" id="context-box-4">
+                            <p class="font-bold text-slate-800 mb-4 flex-grow">4. "We've invested _____ money in this venture, but unfortunately, we haven't seen a significant return yet."</p>
+                            <div class="flex flex-col gap-3">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="ex4" value="much" class="color-radio peer sr-only">
+                                    <div class="p-3 rounded-lg border-2 border-slate-200 text-center font-bold text-slate-600 transition-all hover:bg-slate-50">much</div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="ex4" value="a lot of" class="color-radio peer sr-only">
+                                    <div class="p-3 rounded-lg border-2 border-slate-200 text-center font-bold text-slate-600 transition-all hover:bg-slate-50">a lot of</div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Ex 5 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border-2 border-transparent transition-colors duration-300 flex flex-col" id="context-box-5">
+                            <p class="font-bold text-slate-800 mb-4 flex-grow">5. "There is _____ point in continuing the debate if neither side is willing to compromise."</p>
+                            <div class="flex flex-col gap-3">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="ex5" value="little" class="color-radio peer sr-only">
+                                    <div class="p-3 rounded-lg border-2 border-slate-200 text-center font-bold text-slate-600 transition-all hover:bg-slate-50">little</div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="ex5" value="a little" class="color-radio peer sr-only">
+                                    <div class="p-3 rounded-lg border-2 border-slate-200 text-center font-bold text-slate-600 transition-all hover:bg-slate-50">a little</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Ex 6 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border-2 border-transparent transition-colors duration-300 flex flex-col" id="context-box-6">
+                            <p class="font-bold text-slate-800 mb-4 flex-grow">6. "Only _____ attendees realized that the keynote speaker had completely skipped the main slide."</p>
+                            <div class="flex flex-col gap-3">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="ex6" value="few" class="color-radio peer sr-only">
+                                    <div class="p-3 rounded-lg border-2 border-slate-200 text-center font-bold text-slate-600 transition-all hover:bg-slate-50">few</div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="ex6" value="a few" class="color-radio peer sr-only">
+                                    <div class="p-3 rounded-lg border-2 border-slate-200 text-center font-bold text-slate-600 transition-all hover:bg-slate-50">a few</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercises 7-8: Unscrambling -->
+                <div class="bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100">
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-2 flex items-center gap-3">
+                        <span class="bg-emerald-600 text-white w-10 h-10 rounded-xl flex justify-center items-center text-lg shadow-md">3</span>
+                        Sentence Unscramble
+                    </h3>
+                    <p class="text-emerald-700 mb-6 font-medium">Tap the words in the correct order to form a perfect sentence.</p>
+                    
+                    <div class="space-y-10">
+                        <!-- Ex 7 -->
+                        <div id="unscramble-container-7" class="bg-white p-6 rounded-xl shadow-sm border border-emerald-100">
+                            <p class="font-bold text-slate-800 mb-3 text-lg">7. Build a sentence indicating he didn't speak enough English:</p>
+                            <div id="target-7" class="min-h-[60px] p-4 bg-slate-50 border-2 border-dashed border-emerald-300 rounded-xl flex flex-wrap gap-2 mb-4 cursor-pointer transition-colors" onclick="moveWordBack(event, 'source-7')"></div>
+                            <div id="source-7" class="flex flex-wrap gap-2 p-4 bg-emerald-100/50 rounded-xl border border-emerald-200" onclick="moveToTarget(event, 'target-7')">
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">He</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">spoke</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">little</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">English,</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">so</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">it</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">was</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">difficult</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">to</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">communicate.</span>
+                            </div>
+                            <input type="hidden" id="answer-7" value="He spoke little English, so it was difficult to communicate.">
+                        </div>
+
+                        <!-- Ex 8 -->
+                        <div id="unscramble-container-8" class="bg-white p-6 rounded-xl shadow-sm border border-emerald-100">
+                            <p class="font-bold text-slate-800 mb-3 text-lg">8. Build a sentence emphasizing a limited timeframe:</p>
+                            <div id="target-8" class="min-h-[60px] p-4 bg-slate-50 border-2 border-dashed border-emerald-300 rounded-xl flex flex-wrap gap-2 mb-4 cursor-pointer transition-colors" onclick="moveWordBack(event, 'source-8')"></div>
+                            <div id="source-8" class="flex flex-wrap gap-2 p-4 bg-emerald-100/50 rounded-xl border border-emerald-200" onclick="moveToTarget(event, 'target-8')">
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">We</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">only</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">have</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">a</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">little</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">time</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">to</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">finish</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">the</span>
+                                <span class="scramble-word text-emerald-800 font-bold border-emerald-200 hover:bg-emerald-50">project.</span>
+                            </div>
+                            <input type="hidden" id="answer-8" value="We only have a little time to finish the project.">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercises 9-10: Sentence Writing -->
+                <div class="bg-orange-50/50 p-6 rounded-2xl border border-orange-100">
+                    <h3 class="text-2xl font-bold text-orange-900 mb-2 flex items-center gap-3">
+                        <span class="bg-orange-500 text-white w-10 h-10 rounded-xl flex justify-center items-center text-lg shadow-md">4</span>
+                        Creative Writing
+                    </h3>
+                    <p class="text-orange-700 mb-6 font-medium">Write your own sentence using the provided words. Be creative!</p>
+                    
+                    <div class="space-y-8">
+                        <!-- Ex 9 -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100">
+                            <label for="write-9" class="block font-bold text-slate-800 mb-3 text-lg">9. Write a single complex sentence using BOTH <strong class="text-orange-600 bg-orange-50 px-2 py-1 rounded">"too much"</strong> (with an uncountable noun) AND <strong class="text-orange-600 bg-orange-50 px-2 py-1 rounded">"a few"</strong> (with a plural countable noun):</label>
+                            <textarea id="write-9" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-xl focus:ring-4 focus:ring-orange-100 focus:border-orange-500 outline-none transition-all resize-none text-lg" placeholder="Type your sentence here..."></textarea>
+                            <div id="feedback-9" class="mt-3 hidden text-base p-4 rounded-xl shadow-sm font-medium"></div>
+                        </div>
+
+                        <!-- Ex 10 -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100">
+                            <label for="write-10" class="block font-bold text-slate-800 mb-3 text-lg">10. Write a sentence demonstrating the meaning of <strong class="text-orange-600 bg-orange-50 px-2 py-1 rounded">"plenty of"</strong> in a context that clearly implies <em>"more than enough."</em>:</label>
+                            <textarea id="write-10" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-xl focus:ring-4 focus:ring-orange-100 focus:border-orange-500 outline-none transition-all resize-none text-lg" placeholder="Type your sentence here..."></textarea>
+                            <div id="feedback-10" class="mt-3 hidden text-base p-4 rounded-xl shadow-sm font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Global Check Button -->
+                <div class="pt-8 text-center">
+                    <button type="button" onclick="checkAllExercises()" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-extrabold py-5 px-12 rounded-full shadow-xl shadow-indigo-200 transition-all active:scale-95 text-xl w-full md:w-auto transform hover:-translate-y-1">
+                        ✨ Check All Exercises ✨
+                    </button>
+                    <div id="global-feedback" class="mt-8 hidden p-6 rounded-2xl font-bold text-xl animate-pop shadow-xl max-w-2xl mx-auto"></div>
+                </div>
+
+            </div>
+        </section>
+        
+        <footer class="text-center py-8 text-slate-400 text-sm font-medium">
+            <p>Interactive English Practice Toolkit &copy;</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // --- Comprehension Check Logic ---
+        function checkComprehension() {
+            const form = document.getElementById('comp-form');
+            const q1 = form.elements['q1'].value;
+            const q2 = form.elements['q2'].value;
+            const q3 = form.elements['q3'].value;
+            const feedback = document.getElementById('comp-feedback');
+
+            let score = 0;
+            if (q1 === 'few') score++;
+            if (q2 === 'cost') score++;
+            if (q3 === 'little') score++;
+
+            feedback.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            // Force reflow for animation restart
+            void feedback.offsetWidth;
+
+            if (score === 3) {
+                feedback.className = "p-5 rounded-2xl font-bold text-lg text-center animate-pop shadow-md bg-gradient-to-r from-emerald-400 to-teal-500 text-white";
+                feedback.innerHTML = "🎉 Fantastic! You got all 3 questions right.";
+            } else {
+                feedback.className = "p-5 rounded-2xl font-bold text-lg text-center animate-pop shadow-md bg-gradient-to-r from-rose-400 to-red-500 text-white";
+                feedback.innerHTML = `You got ${score} out of 3 correct. Keep trying! (Hint: review the highlighted sections mentally).`;
+            }
+        }
+
+        // --- Drag and Drop Logic ---
+        let selectedWordForClick = null;
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const draggedEl = document.getElementById(data);
+            handlePlacement(ev.target, draggedEl);
+        }
+
+        // Click-based fallback for mobile
+        function selectWord(el) {
+            if (selectedWordForClick) {
+                selectedWordForClick.classList.remove('selected');
+            }
+            selectedWordForClick = el;
+            el.classList.add('selected');
+        }
+
+        function placeWord(zoneEl) {
+            if (selectedWordForClick) {
+                handlePlacement(zoneEl, selectedWordForClick);
+                selectedWordForClick.classList.remove('selected');
+                selectedWordForClick = null;
+            } else if (zoneEl.children.length > 0) {
+                // Return to bank if clicked while containing a word
+                document.getElementById('word-bank').appendChild(zoneEl.children[0]);
+                zoneEl.classList.remove('active');
+            }
+        }
+
+        function handlePlacement(targetZone, elToPlace) {
+            if (!elToPlace) return;
+            
+            // If dropping on a drop-zone
+            if (targetZone.classList.contains("drop-zone")) {
+                // If zone already has a child, move it back to bank
+                if (targetZone.children.length > 0) {
+                    document.getElementById('word-bank').appendChild(targetZone.children[0]);
+                }
+                targetZone.appendChild(elToPlace);
+                targetZone.classList.add('active');
+            } 
+            // If dropping back to bank
+            else if (targetZone.id === 'word-bank' || targetZone.closest('#word-bank')) {
+                document.getElementById('word-bank').appendChild(elToPlace);
+                // Clean up any empty zones active state
+                document.querySelectorAll('.drop-zone').forEach(z => {
+                    if (z.children.length === 0) z.classList.remove('active');
+                });
+            }
+        }
+
+        // --- Unscramble Logic ---
+        function moveToTarget(ev, targetId) {
+            if (ev.target.classList.contains('scramble-word')) {
+                document.getElementById(targetId).appendChild(ev.target);
+            }
+        }
+
+        function moveWordBack(ev, sourceId) {
+            if (ev.target.classList.contains('scramble-word')) {
+                document.getElementById(sourceId).appendChild(ev.target);
+            }
+        }
+
+        // --- Global Validation Logic ---
+        function checkAllExercises() {
+            let totalCorrect = 0;
+            let totalExercises = 10;
+            
+            // Ex 1-3: Drag & Drop
+            for (let i = 1; i <= 3; i++) {
+                const zone = document.getElementById(`drop-${i}`);
+                const correctAnswer = zone.getAttribute('data-answer');
+                const userAnswer = zone.children.length > 0 ? zone.children[0].innerText.trim() : '';
+                
+                // Clear previous classes
+                zone.className = "drop-zone mx-2 shadow-inner active";
+                
+                if (userAnswer === correctAnswer) {
+                    zone.classList.add('correct');
+                    totalCorrect++;
+                } else if (userAnswer !== '') {
+                    zone.classList.add('incorrect');
+                }
+            }
+
+            // Ex 4-6: Contextualization
+            const answersMCQ = { ex4: 'a lot of', ex5: 'little', ex6: 'a few' };
+            for (const [name, correct] of Object.entries(answersMCQ)) {
+                const radios = document.getElementsByName(name);
+                let userVal = null;
+                radios.forEach(r => { if (r.checked) userVal = r.value; });
+                
+                const boxNum = name.replace('ex', '');
+                const box = document.getElementById(`context-box-${boxNum}`);
+                
+                if (userVal === correct) {
+                    box.className = "bg-white p-6 rounded-2xl shadow-sm border-2 transition-colors duration-300 border-emerald-400 bg-emerald-50/30";
+                    totalCorrect++;
+                } else if (userVal !== null) {
+                    box.className = "bg-white p-6 rounded-2xl shadow-sm border-2 transition-colors duration-300 border-rose-400 bg-rose-50/30";
+                }
+            }
+
+            // Ex 7-8: Unscramble
+            for (let i = 7; i <= 8; i++) {
+                const target = document.getElementById(`target-${i}`);
+                const words = Array.from(target.children).map(el => el.innerText.trim());
+                const userSentence = words.join(' ');
+                const correctSentence = document.getElementById(`answer-${i}`).value;
+                
+                if (userSentence === correctSentence && words.length > 0) {
+                    target.className = "min-h-[60px] p-4 border-2 rounded-xl flex flex-wrap gap-2 mb-4 cursor-pointer transition-colors border-emerald-400 bg-emerald-50 shadow-inner";
+                    totalCorrect++;
+                } else if (words.length > 0) {
+                    target.className = "min-h-[60px] p-4 border-2 rounded-xl flex flex-wrap gap-2 mb-4 cursor-pointer transition-colors border-rose-400 bg-rose-50 shadow-inner";
+                }
+            }
+
+            // Ex 9-10: Sentence Writing (Flexible checking)
+            for (let i = 9; i <= 10; i++) {
+                const text = document.getElementById(`write-${i}`).value.toLowerCase();
+                const feedbackBox = document.getElementById(`feedback-${i}`);
+                feedbackBox.classList.remove('hidden');
+                
+                let isCorrect = false;
+                let sampleAnswer = "";
+                let errorMsg = "❌ Make sure you include the exact required words.";
+
+                if (i === 9) {
+                    if (text.includes('too much') && text.includes('a few')) {
+                        isCorrect = true;
+                    } else {
+                        errorMsg = "❌ Make sure you use BOTH 'too much' and 'a few'.";
+                    }
+                    sampleAnswer = "Sample correct answer: <em>We spent too much money on the venue, so we only have a few dollars left for decorations.</em>";
+                } else if (i === 10) {
+                    if (text.includes('plenty of')) {
+                        isCorrect = true;
+                    } else {
+                        errorMsg = "❌ Make sure you use 'plenty of'.";
+                    }
+                    sampleAnswer = "Sample correct answer: <em>There's no need to rush to the airport; we have plenty of time before our flight.</em>";
+                }
+
+                if (isCorrect) {
+                    feedbackBox.className = "mt-3 p-4 rounded-xl shadow-sm font-medium animate-pop bg-emerald-100 text-emerald-900 border border-emerald-200";
+                    feedbackBox.innerHTML = `✅ Excellent! You used the words correctly. <br><span class="text-sm mt-1 block opacity-80">${sampleAnswer}</span>`;
+                    totalCorrect++;
+                } else {
+                    feedbackBox.className = "mt-3 p-4 rounded-xl shadow-sm font-medium animate-pop bg-rose-100 text-rose-900 border border-rose-200";
+                    if (text.trim() === '') {
+                        feedbackBox.innerHTML = `⚠️ Please write a sentence. <br><span class="text-sm mt-1 block opacity-80">${sampleAnswer}</span>`;
+                    } else {
+                        feedbackBox.innerHTML = `${errorMsg} <br><span class="text-sm mt-1 block opacity-80">${sampleAnswer}</span>`;
+                    }
+                }
+            }
+
+            // Show Global Feedback
+            const globalFeedback = document.getElementById('global-feedback');
+            
+            // Force reflow for animation restart
+            globalFeedback.className = "mt-8 p-6 rounded-2xl font-bold text-xl animate-pop shadow-xl max-w-2xl mx-auto text-white hidden";
+            void globalFeedback.offsetWidth;
+
+            if (totalCorrect === 10) {
+                globalFeedback.classList.remove('hidden');
+                globalFeedback.classList.add('bg-gradient-to-r', 'from-emerald-400', 'to-teal-500');
+                globalFeedback.innerHTML = "🏆 Flawless Victory! You scored 10/10. You have mastered these quantifiers!";
+            } else if (totalCorrect >= 5) {
+                globalFeedback.classList.remove('hidden');
+                globalFeedback.classList.add('bg-gradient-to-r', 'from-orange-400', 'to-amber-500');
+                globalFeedback.innerHTML = `🌟 You scored ${totalCorrect}/10. Great effort! Review the highlighted areas and try again.`;
+            } else {
+                globalFeedback.classList.remove('hidden');
+                globalFeedback.classList.add('bg-gradient-to-r', 'from-rose-500', 'to-red-500');
+                globalFeedback.innerHTML = `💡 You scored ${totalCorrect}/10. Don't worry! Review the colorful rules table and give it another shot.`;
+            }
+            
+            // Scroll slightly to show results if at bottom
+            globalFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
