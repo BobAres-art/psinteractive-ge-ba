@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Simple: Active & Passive</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f9f9f9',
+                            100: '#f2f2f2',
+                            200: '#e5e5e5',
+                            300: '#d1d1d1',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        },
+                        accent: {
+                            light: '#e0f2fe',
+                            DEFAULT: '#0f172a',
+                            gold: '#c2a67f'
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 40px -10px rgba(0,0,0,0.04)',
+                        'premium-hover': '0 20px 40px -10px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            body {
+                @apply bg-[#fdfcfb] text-brand-800 antialiased selection:bg-accent-gold selection:text-white;
+            }
+            .premium-card {
+                @apply bg-white p-8 md:p-12 rounded-3xl shadow-premium border border-brand-100 transition-all duration-500 hover:shadow-premium-hover;
+            }
+            .btn-primary {
+                @apply mt-6 px-8 py-3.5 bg-brand-900 hover:bg-brand-800 text-white rounded-full shadow-sm transition-all duration-300 font-medium text-sm tracking-wide active:scale-95 flex items-center justify-center gap-2;
+            }
+            .btn-option {
+                @apply px-6 py-4 bg-brand-50 hover:bg-brand-100 border border-transparent rounded-2xl text-brand-800 transition-all duration-300 font-medium text-left cursor-pointer flex-1;
+            }
+            .btn-option.selected {
+                @apply border-brand-900 bg-white shadow-sm ring-1 ring-brand-900;
+            }
+            .btn-word {
+                @apply px-5 py-2.5 bg-white border border-brand-200 text-brand-700 rounded-xl cursor-pointer transition-all duration-300 font-medium shadow-sm hover:border-brand-400 hover:shadow active:scale-95;
+            }
+            .input-line {
+                @apply border-b border-brand-300 bg-transparent px-3 py-1 focus:outline-none focus:border-brand-900 text-brand-900 font-medium transition-colors w-40 text-center mx-2 placeholder:text-brand-300 placeholder:font-normal;
+            }
+            .input-full {
+                @apply w-full mt-4 p-4 bg-brand-50 border border-brand-200 rounded-2xl focus:outline-none focus:border-brand-900 focus:bg-white transition-all font-medium text-brand-800 shadow-inner placeholder:text-brand-400;
+            }
+            .feedback-msg {
+                @apply mt-4 text-sm font-medium flex items-center gap-2 transition-all duration-300 opacity-0 transform translate-y-2 hidden;
+            }
+            .feedback-msg.show {
+                @apply opacity-100 translate-y-0 flex;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24">
+
+    <!-- Sticky Header & Progress -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-brand-100">
+        <div class="h-1 w-full bg-brand-50">
+            <div id="progress-bar" class="h-full bg-accent-gold transition-all duration-700 ease-out rounded-r-full" style="width: 0%"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 py-6 text-center relative">
+            <h1 class="font-serif text-3xl md:text-5xl font-medium text-brand-900 tracking-tight">Changes Over Time</h1>
+            <p class="text-xs font-medium text-brand-400 mt-3 tracking-[0.2em] uppercase">Designed by Babak Alaee</p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 md:px-6 py-12 space-y-16">
+        
+        <!-- Section 1: Exposure Phase -->
+        <section class="premium-card relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-accent-gold"></div>
+            <h2 class="font-serif text-3xl text-brand-900 mb-8">Part I. The Narrative</h2>
+            
+            <div class="text-lg md:text-xl leading-relaxed text-brand-700 space-y-6 font-light">
+                <p>Fifty years ago, Greenville was a small, quiet town. In 1980, the city council <strong class="font-medium text-brand-900">built</strong> a new bridge over the river. They <strong class="font-medium text-brand-900">did not destroy</strong> the old market, but they <strong class="font-medium text-brand-900">relocated</strong> it to the square.</p>
+                <p>Soon after, the old library <strong class="font-medium text-brand-900">was demolished</strong>, and a new shopping mall <strong class="font-medium text-brand-900">was constructed</strong> in its place. The local park <strong class="font-medium text-brand-900">wasn't reduced</strong>; instead, it <strong class="font-medium text-brand-900">was expanded</strong> to the north. Planners <strong class="font-medium text-brand-900">planted</strong> hundreds of trees, and a new railway station <strong class="font-medium text-brand-900">was opened</strong> to the public.</p>
+            </div>
+
+            <div class="mt-12 space-y-8 border-t border-brand-100 pt-10">
+                <h3 class="font-serif text-2xl text-brand-900">Comprehension</h3>
+                
+                <!-- Exp Q1 -->
+                <div class="space-y-4" id="card-exp1">
+                    <p class="font-medium text-brand-800 text-lg">1. Who built the new bridge over the river?</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="btn-option" onclick="checkExp('exp1', 0, this)">The city council</button>
+                        <button class="btn-option" onclick="checkExp('exp1', 1, this)">The developers</button>
+                    </div>
+                    <div id="exp1-fb" class="feedback-msg"></div>
+                </div>
+
+                <!-- Exp Q2 -->
+                <div class="space-y-4" id="card-exp2">
+                    <p class="font-medium text-brand-800 text-lg">2. Who demolished the old library?</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="btn-option" onclick="checkExp('exp2', 0, this)">The city planners</button>
+                        <button class="btn-option" onclick="checkExp('exp2', 1, this)">Unknown / Not important</button>
+                    </div>
+                    <div id="exp2-fb" class="feedback-msg"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Explanations -->
+        <section class="premium-card">
+            <h2 class="font-serif text-3xl text-brand-900 mb-6">Part II. The Mechanics</h2>
+            <p class="text-lg text-brand-600 leading-relaxed font-light mb-10">
+                When chronicling change, language shifts focus. The <span class="font-medium text-brand-900 border-b border-brand-300">Active Voice</span> illuminates the actor—<em>who</em> initiated the change. The <span class="font-medium text-accent-gold border-b border-accent-gold/40">Passive Voice</span> elevates the subject of change—<em>what</em> was transformed, allowing the actor to fade into the background.
+            </p>
+            
+            <div class="bg-brand-50 p-8 md:p-12 rounded-2xl border border-brand-100 text-center relative">
+                <h3 class="font-sans text-xs font-bold text-brand-400 mb-10 uppercase tracking-[0.2em]">Sentence Architecture</h3>
+                
+                <!-- Positive transformation -->
+                <div class="mb-14">
+                    <div id="sentence-pos" class="flex flex-wrap gap-3 justify-center text-lg md:text-xl font-medium min-h-[4rem] items-center">
+                        <!-- Populated by JS -->
+                    </div>
+                    <button onclick="togglePos()" class="mt-8 px-8 py-3 bg-white border border-brand-200 hover:border-brand-900 text-brand-900 rounded-full shadow-sm hover:shadow-md transition-all font-medium text-sm tracking-wide mx-auto flex items-center gap-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        Invert Focus
+                    </button>
+                </div>
+
+                <div class="w-16 h-px bg-brand-200 mx-auto my-10"></div>
+
+                <!-- Negative transformation -->
+                <div>
+                    <div id="sentence-neg" class="flex flex-wrap gap-3 justify-center text-lg md:text-xl font-medium min-h-[4rem] items-center">
+                        <!-- Populated by JS -->
+                    </div>
+                    <button onclick="toggleNeg()" class="mt-8 px-8 py-3 bg-white border border-brand-200 hover:border-brand-900 text-brand-900 rounded-full shadow-sm hover:shadow-md transition-all font-medium text-sm tracking-wide mx-auto flex items-center gap-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        Invert Focus
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Practice Exercises -->
+        <section class="premium-card">
+            <h2 class="font-serif text-3xl text-brand-900 mb-10">Part III. Application</h2>
+            
+            <div class="space-y-12" id="exercises-container">
+                
+                <!-- Ex 1: Context Input -->
+                <div class="space-y-4" id="card-ex1">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">1</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Formation</p>
+                    </div>
+                    <p class="text-xl font-light text-brand-800">The old school <input type="text" id="ex1-in" class="input-line" placeholder="(demolish)" autocomplete="off"> in 1990.</p>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkInput('ex1')">Verify Answer</button>
+                        <div id="ex1-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 2: Context Input (Negative) -->
+                <div class="space-y-4" id="card-ex2">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">2</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Formation (Negative)</p>
+                    </div>
+                    <p class="text-xl font-light text-brand-800">The developers <input type="text" id="ex2-in" class="input-line" placeholder="(not plant)" autocomplete="off"> any trees.</p>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkInput('ex2')">Verify Answer</button>
+                        <div id="ex2-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 3: Tap to Fill -->
+                <div class="space-y-4" id="card-ex3">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">3</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Selection</p>
+                    </div>
+                    <p class="text-xl font-light text-brand-800 mb-6">The new hospital <span id="ex3-blank" class="inline-block min-w-[140px] border-b border-brand-400 text-center text-brand-900 font-medium mx-2 pb-1 cursor-pointer transition-all hover:bg-brand-50" onclick="clearTap('ex3')"></span> last year.</p>
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <button class="btn-word" onclick="setTap('ex3', 'was opened')">was opened</button>
+                        <button class="btn-word" onclick="setTap('ex3', 'opened')">opened</button>
+                        <button class="btn-word" onclick="setTap('ex3', 'were opened')">were opened</button>
+                    </div>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkTap('ex3')">Verify Answer</button>
+                        <div id="ex3-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 4: Tap to Fill (Negative) -->
+                <div class="space-y-4" id="card-ex4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">4</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Selection (Negative)</p>
+                    </div>
+                    <p class="text-xl font-light text-brand-800 mb-6">The city planners <span id="ex4-blank" class="inline-block min-w-[160px] border-b border-brand-400 text-center text-brand-900 font-medium mx-2 pb-1 cursor-pointer transition-all hover:bg-brand-50" onclick="clearTap('ex4')"></span> the road.</p>
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <button class="btn-word" onclick="setTap('ex4', 'was not expanded')">was not expanded</button>
+                        <button class="btn-word" onclick="setTap('ex4', 'not expanded')">not expanded</button>
+                        <button class="btn-word" onclick="setTap('ex4', 'did not expand')">did not expand</button>
+                    </div>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkTap('ex4')">Verify Answer</button>
+                        <div id="ex4-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 5: Unscramble -->
+                <div class="space-y-4" id="card-ex5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">5</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Syntax Assembly</p>
+                    </div>
+                    <div id="ex5-ans" class="flex flex-wrap gap-3 min-h-[4rem] p-4 bg-brand-50 rounded-2xl border border-brand-200 mb-4 cursor-pointer"></div>
+                    <div id="ex5-bank" class="flex flex-wrap gap-3 mb-4">
+                        <button class="btn-word" onclick="moveWord('ex5', this)">library</button>
+                        <button class="btn-word" onclick="moveWord('ex5', this)">built.</button>
+                        <button class="btn-word" onclick="moveWord('ex5', this)">was</button>
+                        <button class="btn-word" onclick="moveWord('ex5', this)">new</button>
+                        <button class="btn-word" onclick="moveWord('ex5', this)">A</button>
+                    </div>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkUnscramble('ex5')">Verify Answer</button>
+                        <div id="ex5-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 6: Unscramble (Negative) -->
+                <div class="space-y-4" id="card-ex6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">6</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Syntax Assembly (Negative)</p>
+                    </div>
+                    <div id="ex6-ans" class="flex flex-wrap gap-3 min-h-[4rem] p-4 bg-brand-50 rounded-2xl border border-brand-200 mb-4 cursor-pointer"></div>
+                    <div id="ex6-bank" class="flex flex-wrap gap-3 mb-4">
+                        <button class="btn-word" onclick="moveWord('ex6', this)">The</button>
+                        <button class="btn-word" onclick="moveWord('ex6', this)">not</button>
+                        <button class="btn-word" onclick="moveWord('ex6', this)">market</button>
+                        <button class="btn-word" onclick="moveWord('ex6', this)">destroyed.</button>
+                        <button class="btn-word" onclick="moveWord('ex6', this)">old</button>
+                        <button class="btn-word" onclick="moveWord('ex6', this)">was</button>
+                    </div>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkUnscramble('ex6')">Verify Answer</button>
+                        <div id="ex6-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 7: Transform Active to Passive -->
+                <div class="space-y-4" id="card-ex7">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">7</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Transformation (To Passive)</p>
+                    </div>
+                    <p class="text-xl font-serif italic text-brand-800 mb-4">"They constructed a new stadium."</p>
+                    <input type="text" id="ex7-in" class="input-full" placeholder="Construct the passive equivalent..." autocomplete="off">
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkInput('ex7')">Verify Answer</button>
+                        <div id="ex7-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 8: Transform Passive to Active -->
+                <div class="space-y-4" id="card-ex8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">8</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Transformation (To Active)</p>
+                    </div>
+                    <p class="text-xl font-serif italic text-brand-800 mb-4">"The park was not destroyed by them."</p>
+                    <input type="text" id="ex8-in" class="input-full" placeholder="Construct the active equivalent..." autocomplete="off">
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkInput('ex8')">Verify Answer</button>
+                        <div id="ex8-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 9: Context Input -->
+                <div class="space-y-4" id="card-ex9">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">9</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Formation</p>
+                    </div>
+                    <p class="text-xl font-light text-brand-800">A new cinema <input type="text" id="ex9-in" class="input-line" placeholder="(build)" autocomplete="off"> next to the station.</p>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkInput('ex9')">Verify Answer</button>
+                        <div id="ex9-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-brand-50"></div>
+
+                <!-- Ex 10: Context Input -->
+                <div class="space-y-4" id="card-ex10">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">10</span>
+                        <p class="font-sans text-xs font-bold text-brand-400 uppercase tracking-widest">Formation</p>
+                    </div>
+                    <p class="text-xl font-light text-brand-800">We <input type="text" id="ex10-in" class="input-line" placeholder="(relocate)" autocomplete="off"> the bus stop to the main street.</p>
+                    <div>
+                        <button class="btn-primary w-full sm:w-auto" onclick="checkInput('ex10')">Verify Answer</button>
+                        <div id="ex10-fb" class="feedback-msg"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- Data & Answers ---
+        const answers = {
+            exp1: 0, // 0 = The city council
+            exp2: 1, // 1 = Unknown / Not important
+            ex1: ["was demolished"],
+            ex2: ["did not plant", "didn't plant"],
+            ex3: "was opened",
+            ex4: "did not expand",
+            ex5: "A new library was built.",
+            ex6: "The old market was not destroyed.",
+            ex7: ["a new stadium was constructed", "a new stadium was constructed by them"],
+            ex8: ["they did not destroy the park", "they didn't destroy the park"],
+            ex9: ["was built"],
+            ex10: ["relocated"]
+        };
+
+        // --- Progress Tracking ---
+        const totalTasks = 12;
+        let completedTasks = new Set();
+
+        function updateProgress(id) {
+            completedTasks.add(id);
+            const percentage = (completedTasks.size / totalTasks) * 100;
+            document.getElementById('progress-bar').style.width = percentage + '%';
+        }
+
+        // --- Audio Feedback (with error handling) ---
+        let audioCtx = null;
+
+        function initAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                return true;
+            } catch (e) {
+                console.warn("AudioContext not supported or blocked.", e);
+                return false;
+            }
+        }
+
+        function playSound(type) {
+            if (!initAudio()) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime); // A5
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, audioCtx.currentTime); 
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                }
+            } catch(e) {
+                console.warn("Error playing sound", e);
+            }
+        }
+
+        // --- UI Feedback ---
+        function displayFeedback(id, isCorrect) {
+            const fbElement = document.getElementById(id + '-fb');
+            if (!fbElement) return;
+
+            fbElement.classList.remove('hidden');
+            fbElement.classList.add('show');
+            
+            if (isCorrect) {
+                fbElement.innerHTML = `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span class="text-emerald-700">Excellent.</span>`;
+                playSound('correct');
+                updateProgress(id);
+            } else {
+                fbElement.innerHTML = `<svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> <span class="text-red-600">Review and try again.</span>`;
+                playSound('incorrect');
+            }
+        }
+
+        // --- Exercise Validators ---
+        
+        // Comprehension Choices
+        let currentExpSelections = { exp1: null, exp2: null };
+        
+        window.checkExp = function(id, selectedIdx, buttonElement) {
+            // Manage UI selection state
+            const parent = buttonElement.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            buttonElement.classList.add('selected');
+            
+            const isCorrect = (selectedIdx === answers[id]);
+            displayFeedback(id, isCorrect);
+        }
+
+        // Text Inputs
+        window.checkInput = function(id) {
+            const inputEl = document.getElementById(id + '-in');
+            if (!inputEl) return;
+            
+            const userVal = inputEl.value.toLowerCase().replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+            const validAnswers = answers[id];
+            
+            const isCorrect = validAnswers.some(ans => ans.toLowerCase() === userVal);
+            displayFeedback(id, isCorrect);
+        }
+
+        // Tap to Fill
+        window.setTap = function(id, text) {
+            const blank = document.getElementById(id + '-blank');
+            if (blank) blank.innerText = text;
+        }
+        
+        window.clearTap = function(id) {
+            const blank = document.getElementById(id + '-blank');
+            if (blank) blank.innerText = '';
+        }
+
+        window.checkTap = function(id) {
+            const blank = document.getElementById(id + '-blank');
+            if (!blank) return;
+            
+            const userVal = blank.innerText.trim();
+            const isCorrect = (userVal === answers[id]);
+            displayFeedback(id, isCorrect);
+        }
+
+        // Unscramble
+        window.moveWord = function(id, btn) {
+            const ansContainer = document.getElementById(id + '-ans');
+            const bankContainer = document.getElementById(id + '-bank');
+            
+            // Toggle location based on current parent
+            if (btn.parentElement.id === id + '-bank') {
+                ansContainer.appendChild(btn);
+            } else {
+                bankContainer.appendChild(btn);
+            }
+        }
+
+        window.checkUnscramble = function(id) {
+            const ansContainer = document.getElementById(id + '-ans');
+            if (!ansContainer) return;
+            
+            const words = Array.from(ansContainer.children).map(btn => btn.innerText.trim());
+            const userVal = words.join(' ');
+            const isCorrect = (userVal === answers[id]);
+            displayFeedback(id, isCorrect);
+        }
+
+        // --- Interactive Transformer Logic ---
+        let statePos = true;
+        const dataPosActive = [
+            { t: "The council", c: "bg-brand-900 text-white" },
+            { t: "built", c: "bg-brand-100 text-brand-900 border border-brand-200" },
+            { t: "a new bridge", c: "bg-white text-brand-800 border border-brand-200" }
+        ];
+        const dataPosPassive = [
+            { t: "A new bridge", c: "bg-brand-900 text-white" },
+            { t: "was built", c: "bg-accent-gold text-white" },
+            { t: "by the council", c: "bg-white text-brand-500 border border-brand-200" }
+        ];
+
+        let stateNeg = true;
+        const dataNegActive = [
+            { t: "They", c: "bg-brand-900 text-white" },
+            { t: "did not destroy", c: "bg-brand-100 text-brand-900 border border-brand-200" },
+            { t: "the old market", c: "bg-white text-brand-800 border border-brand-200" }
+        ];
+        const dataNegPassive = [
+            { t: "The old market", c: "bg-brand-900 text-white" },
+            { t: "was not destroyed", c: "bg-accent-gold text-white" },
+            { t: "by them", c: "bg-white text-brand-500 border border-brand-200" }
+        ];
+
+        function renderTransform(containerId, data) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = `px-5 py-2.5 rounded-xl shadow-sm transition-all duration-500 transform ${item.c}`;
+                div.innerText = item.t;
+                div.style.opacity = '0';
+                div.style.transform = 'translateY(10px)';
+                container.appendChild(div);
+                
+                // Staggered animation
+                setTimeout(() => {
+                    div.style.opacity = '1';
+                    div.style.transform = 'translateY(0)';
+                }, index * 100 + 50);
+            });
+        }
+
+        window.togglePos = function() {
+            statePos = !statePos;
+            renderTransform('sentence-pos', statePos ? dataPosActive : dataPosPassive);
+        }
+
+        window.toggleNeg = function() {
+            stateNeg = !stateNeg;
+            renderTransform('sentence-neg', stateNeg ? dataNegActive : dataNegPassive);
+        }
+
+        // Initialize components on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTransform('sentence-pos', dataPosActive);
+            renderTransform('sentence-neg', dataNegActive);
+        });
+
+    </script>
+</body>
+</html>
