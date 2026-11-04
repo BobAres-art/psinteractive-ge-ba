@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Essential Rules for School & Work: Must vs. Have to</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --accent: #06b6d4;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+    }
+
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem;
+      flex: 1;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: #e2e8f0;
+      padding: 0.35rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 110px;
+      padding: 0.7rem 0.5rem;
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: var(--card-bg);
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.25rem;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid #e0e7ff;
+      padding-bottom: 0.35rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin: 1rem 0 0.5rem;
+    }
+
+    /* Exposure Tab */
+    .dialogue-box {
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin: 1rem 0;
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .highlight-marker {
+      transition: background 0.3s ease, color 0.3s ease;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    .highlight-active {
+      background: #fef08a !important;
+      font-weight: 600;
+      color: #854d0e !important;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.2rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Form Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--primary);
+    }
+
+    .alert {
+      padding: 0.85rem;
+      border-radius: 8px;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .alert-warning {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    /* Interactive Exercises */
+    .exercise-item {
+      background: #fdfdfd;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .exercise-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .choice-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .choice-btn.selected {
+      background: #e0e7ff;
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    select.practice-select {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+
+    .word-pool, .drop-target-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      min-height: 44px;
+      padding: 0.4rem;
+      border-radius: 6px;
+      margin-top: 0.4rem;
+    }
+
+    .word-pool {
+      background: #f1f5f9;
+      border: 1px dashed var(--border);
+    }
+
+    .drop-target-area {
+      background: #fff;
+      border: 2px dashed #cbd5e1;
+    }
+
+    .word-chip {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .word-chip:hover {
+      background: #f8fafc;
+    }
+
+    .feedback-msg {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .correct {
+      color: var(--success);
+    }
+
+    .incorrect {
+      color: var(--error);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      padding: 1rem 0;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0.75rem;
+      }
+      .card {
+        padding: 1rem;
+      }
+      .tab-btn {
+        font-size: 0.82rem;
+        padding: 0.6rem 0.3rem;
+      }
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>School & Workplace Regulations</h1>
+    <p>Mastering Obligations: Must, Have to, Mustn't, and Don't have to</p>
+  </header>
+
+  <main class="container">
+    <!-- Tab Navigation -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab(0)">1. Exposure</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. Form & Rules</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. Practice Hub</button>
+      <button class="tab-btn" onclick="switchTab(3)">4. Decision Lab</button>
+    </nav>
+
+    <!-- Tab 1: Exposure -->
+    <section class="tab-content active" id="tab-0">
+      <div class="card">
+        <h2>Orientation Day: New Internship Briefing</h2>
+        <p>Read the conversation between Clara (a new intern) and Mr. Davis (the internship supervisor). Pay attention to how rules, responsibilities, and permissions are communicated.</p>
+        
+        <div class="dialogue-box" id="exposure-text">
+          <p><strong>Mr. Davis:</strong> Welcome to the team, Clara! Let’s cover a few essential office guidelines before you begin.</p>
+          <p><strong>Clara:</strong> Thank you, Mr. Davis. What time do I need to be here in the morning?</p>
+          <p><strong>Mr. Davis:</strong> Official work hours start at 9:00 AM. You <span class="highlight-marker">have to</span> arrive on time because our morning briefing starts promptly at 9:05 AM.</p>
+          <p><strong>Clara:</strong> Understood. Do we follow a formal dress code every day?</p>
+          <p><strong>Mr. Davis:</strong> On Mondays and client meeting days, you <span class="highlight-marker">must</span> wear business attire. However, on regular days, you <span class="highlight-marker">don't have to</span> wear a suit; smart casual is completely fine.</p>
+          <p><strong>Clara:</strong> That sounds very reasonable. What about digital security?</p>
+          <p><strong>Mr. Davis:</strong> This is crucial: you <span class="highlight-marker">mustn't</span> share client files on unsecured cloud drives or personal USBs. It is strictly against corporate data protection policies.</p>
+          <p><strong>Clara:</strong> Got it. What if I finish my training modules early today?</p>
+          <p><strong>Mr. Davis:</strong> If you complete them, you <span class="highlight-marker">don't have to</span> stay until 5:00 PM today. But remember, you <span class="highlight-marker">must</span> sign out at the front reception desk whenever you leave.</p>
+        </div>
+
+        <button class="action-btn" id="toggle-highlight-btn" onclick="toggleHighlights()">Toggle Grammar Focus</button>
+      </div>
+    </section>
+
+    <!-- Tab 2: Form & Rules -->
+    <section class="tab-content" id="tab-1">
+      <div class="card">
+        <h2>Grammar Rules: Positive vs. Negative</h2>
+        <p>While both <strong>must</strong> and <strong>have to</strong> convey necessity in the affirmative, their negative forms carry entirely different meanings.</p>
+
+        <h3>1. Positive: Obligation & Necessity</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Structure</th>
+                <th>Meaning</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>must + base verb</strong></td>
+                <td>Strong personal obligation or written official rule.</td>
+                <td><em>You <strong>must</strong> sign out at the desk.</em></td>
+              </tr>
+              <tr>
+                <td><strong>have to / has to + base verb</strong></td>
+                <td>External obligation (laws, timetables, work rules).</td>
+                <td><em>We <strong>have to</strong> submit the report by 9 AM.</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2. Negative: Prohibition vs. Lack of Obligation</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Structure</th>
+                <th>Meaning</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>mustn't + base verb</strong><br>(must not)</td>
+                <td><strong>Prohibition</strong> (0% permission / forbidden / illegal).</td>
+                <td><em>You <strong>mustn't</strong> share password files.</em><br>(Do not do it!)</td>
+              </tr>
+              <tr>
+                <td><strong>don't / doesn't have to + base verb</strong></td>
+                <td><strong>No obligation</strong> (optional / not necessary).</td>
+                <td><em>You <strong>don't have to</strong> wear a suit today.</em><br>(You can if you want, but it is not required.)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-warning">
+          <strong>Key Rule to Remember:</strong><br>
+          • <strong>Mustn't</strong> = <em>Forbidden</em> (Against the rules).<br>
+          • <strong>Don't have to</strong> = <em>Optional</em> (Free choice, zero obligation).
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Practice Hub -->
+    <section class="tab-content" id="tab-2">
+      <div class="card">
+        <h2>Interactive Practice</h2>
+        <p>Complete the exercises in ascending order of challenge. Immediate feedback will guide your learning.</p>
+
+        <!-- Exercise 1: Single Choice (Concept Identification) -->
+        <div class="exercise-item" id="ex-1">
+          <p class="exercise-title">1. Meaning Identification</p>
+          <p><em>"You don't have to pay for the museum ticket today."</em> What does this mean?</p>
+          <div class="options-grid">
+            <button class="choice-btn" onclick="checkRadio(1, this, false)">It is forbidden to pay.</button>
+            <button class="choice-btn" onclick="checkRadio(1, this, true)">Admission is free, but you can donate if you want.</button>
+            <button class="choice-btn" onclick="checkRadio(1, this, false)">You are legally forced to pay.</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 2: Single Choice (Prohibition vs Lack of Obligation) -->
+        <div class="exercise-item" id="ex-2">
+          <p class="exercise-title">2. Context Application</p>
+          <p>The library sign says: <em>"Silence please. Visitors _______ make phone calls inside."</em></p>
+          <div class="options-grid">
+            <button class="choice-btn" onclick="checkRadio(2, this, false)">don't have to</button>
+            <button class="choice-btn" onclick="checkRadio(2, this, true)">mustn't</button>
+            <button class="choice-btn" onclick="checkRadio(2, this, false)">doesn't have to</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 3: Drop-Down Selection -->
+        <div class="exercise-item" id="ex-3">
+          <p class="exercise-title">3. Fill in the Blank</p>
+          <p>Tomorrow is Sunday! I 
+            <select class="practice-select" onchange="checkSelect(3, this, 'dont_have_to')">
+              <option value="">-- Choose --</option>
+              <option value="mustn't">mustn't</option>
+              <option value="dont_have_to">don't have to</option>
+              <option value="must">must</option>
+            </select>
+            wake up early for school.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 4: Drop-Down Subject-Verb Agreement -->
+        <div class="exercise-item" id="ex-4">
+          <p class="exercise-title">4. Third-Person Agreement</p>
+          <p>Sarah is already fluent in French, so she 
+            <select class="practice-select" onchange="checkSelect(4, this, 'doesnt_have_to')">
+              <option value="">-- Choose --</option>
+              <option value="mustn't">mustn't</option>
+              <option value="dont_have_to">don't have to</option>
+              <option value="doesnt_have_to">doesn't have to</option>
+            </select>
+            take the introductory language module.
+          </p>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 5: Single Choice (Safety Regulations) -->
+        <div class="exercise-item" id="ex-5">
+          <p class="exercise-title">5. Safety Protocol</p>
+          <p>You _______ touch that electrical wire with wet hands. It is extremely hazardous!</p>
+          <div class="options-grid">
+            <button class="choice-btn" onclick="checkRadio(5, this, true)">mustn't</button>
+            <button class="choice-btn" onclick="checkRadio(5, this, false)">don't have to</button>
+            <button class="choice-btn" onclick="checkRadio(5, this, false)">have to</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 6: Sentence Unscrambler (1) -->
+        <div class="exercise-item" id="ex-6">
+          <p class="exercise-title">6. Sentence Builder: Prohibition</p>
+          <p>Tap the words to build a grammatically correct sentence:</p>
+          <div class="drop-target-area" id="target-6"></div>
+          <div class="word-pool" id="pool-6">
+            <span class="word-chip" onclick="moveChip(this, 'target-6', 'pool-6')">during</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-6', 'pool-6')">use</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-6', 'pool-6')">Students</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-6', 'pool-6')">mustn't</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-6', 'pool-6')">phones</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-6', 'pool-6')">the exam.</span>
+          </div>
+          <button class="action-btn" style="margin-top: 0.5rem;" onclick="checkUnscramble(6, ['Students', 'mustn't', 'use', 'phones', 'during', 'the exam.'])">Verify Sentence</button>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 7: Sentence Unscrambler (2) -->
+        <div class="exercise-item" id="ex-7">
+          <p class="exercise-title">7. Sentence Builder: Lack of Obligation</p>
+          <p>Tap the words to construct the proper statement:</p>
+          <div class="drop-target-area" id="target-7"></div>
+          <div class="word-pool" id="pool-7">
+            <span class="word-chip" onclick="moveChip(this, 'target-7', 'pool-7')">print</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-7', 'pool-7')">We</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-7', 'pool-7')">have to</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-7', 'pool-7')">tickets.</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-7', 'pool-7')">the digital</span>
+            <span class="word-chip" onclick="moveChip(this, 'target-7', 'pool-7')">don't</span>
+          </div>
+          <button class="action-btn" style="margin-top: 0.5rem;" onclick="checkUnscramble(7, ['We', 'don\'t', 'have to', 'print', 'the digital', 'tickets.'])">Verify Sentence</button>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Exercise 8: Contextual Nuance Selection -->
+        <div class="exercise-item" id="ex-8">
+          <p class="exercise-title">8. Precision Distinction</p>
+          <p><em>"You can join the webinar if you want, but you _______ attend if you have a scheduling conflict."</em></p>
+          <div class="options-grid">
+            <button class="choice-btn" onclick="checkRadio(8, this, true)">don't have to</button>
+            <button class="choice-btn" onclick="checkRadio(8, this, false)">mustn't</button>
+            <button class="choice-btn" onclick="checkRadio(8, this, false)">must</button>
+          </div>
+          <div class="feedback-msg"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tab 4: Decision Lab (Freer Practice) -->
+    <section class="tab-content" id="tab-3">
+      <div class="card">
+        <h2>Decision Lab: Real-World Scenarios</h2>
+        <p>Read each workplace scenario and determine whether the action is <strong>strictly prohibited (mustn't)</strong> or <strong>optional (doesn't/don't have to)</strong>.</p>
+
+        <div class="exercise-item" id="lab-1">
+          <p class="exercise-title">Scenario A: Company Cafeteria</p>
+          <p>The office provides complimentary lunches for employees every weekday. Bringing your own lunch from home is permitted.</p>
+          <p><em>Conclusion:</em> You <select class="practice-select" onchange="checkSelect('lab1', this, 'opt')">
+            <option value="">-- Choose Modal --</option>
+            <option value="prohib">mustn't</option>
+            <option value="opt">don't have to</option>
+          </select> buy food at the office cafeteria.</p>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <div class="exercise-item" id="lab-2">
+          <p class="exercise-title">Scenario B: Laboratory Safety</p>
+          <p>Chemical vapors in the testing lab can cause serious respiratory harm without protective equipment.</p>
+          <p><em>Conclusion:</em> Technicians <select class="practice-select" onchange="checkSelect('lab2', this, 'prohib')">
+            <option value="">-- Choose Modal --</option>
+            <option value="prohib">mustn't</option>
+            <option value="opt">don't have to</option>
+          </select> enter the testing room without safety goggles and a respirator mask.</p>
+          <div class="feedback-msg"></div>
+        </div>
+
+        <div class="exercise-item" id="lab-3">
+          <p class="exercise-title">Scenario C: Remote Work Day</p>
+          <p>On Fridays, staff can work from home or use the desk spaces in the main building as they prefer.</p>
+          <p><em>Conclusion:</em> Employees <select class="practice-select" onchange="checkSelect('lab3', this, 'opt')">
+            <option value="">-- Choose Modal --</option>
+            <option value="prohib">mustn't</option>
+            <option value="opt">don't have to</option>
+          </select> commute to the headquarters on Friday mornings.</p>
+          <div class="feedback-msg"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Designed by Babak Alaee &bull; Interactive Pedagogical Resources
+  </footer>
+
+  <script>
+    // Tab Switching
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-btn');
+      
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+
+    // Exposure Highlighting Toggle
+    let highlightsEnabled = false;
+    function toggleHighlights() {
+      highlightsEnabled = !highlightsEnabled;
+      const markers = document.querySelectorAll('.highlight-marker');
+      markers.forEach(el => {
+        el.classList.toggle('highlight-active', highlightsEnabled);
+      });
+      document.getElementById('toggle-highlight-btn').textContent = 
+        highlightsEnabled ? 'Hide Grammar Focus' : 'Toggle Grammar Focus';
+    }
+
+    // Radio Choice Evaluator
+    function checkRadio(exId, btn, isCorrect) {
+      const parent = document.getElementById('ex-' + exId);
+      const buttons = parent.querySelectorAll('.choice-btn');
+      const feedback = parent.querySelector('.feedback-msg');
+
+      buttons.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      feedback.style.display = 'block';
+      if (isCorrect) {
+        feedback.textContent = '✓ Correct! Well reasoned.';
+        feedback.className = 'feedback-msg correct';
+      } else {
+        feedback.textContent = '✗ Not quite. Consider whether this is forbidden or optional.';
+        feedback.className = 'feedback-msg incorrect';
+      }
+    }
+
+    // Drop-down Evaluator
+    function checkSelect(id, selectElem, correctValue) {
+      const parent = selectElem.closest('.exercise-item');
+      const feedback = parent.querySelector('.feedback-msg');
+
+      if (!selectElem.value) {
+        feedback.style.display = 'none';
+        return;
+      }
+
+      feedback.style.display = 'block';
+      if (selectElem.value === correctValue) {
+        feedback.textContent = '✓ Correct choice!';
+        feedback.className = 'feedback-msg correct';
+      } else {
+        feedback.textContent = '✗ Try again. Pay attention to subject agreement and whether the rule is an absolute ban or optional.';
+        feedback.className = 'feedback-msg incorrect';
+      }
+    }
+
+    // Sentence Unscrambler Interactive Logic (Touch/Click safe for mobile)
+    function moveChip(chip, targetId, poolId) {
+      const target = document.getElementById(targetId);
+      const pool = document.getElementById(poolId);
+      
+      if (chip.parentElement.id === poolId) {
+        target.appendChild(chip);
+      } else {
+        pool.appendChild(chip);
+      }
+    }
+
+    function checkUnscramble(exId, correctArray) {
+      const targetArea = document.getElementById('target-' + exId);
+      const feedback = document.getElementById('ex-' + exId).querySelector('.feedback-msg');
+      const chips = targetArea.querySelectorAll('.word-chip');
+      
+      const currentWords = Array.from(chips).map(c => c.textContent.trim());
+
+      feedback.style.display = 'block';
+      if (currentWords.length !== correctArray.length) {
+        feedback.textContent = '✗ Place all the words into the box in the correct sequence.';
+        feedback.className = 'feedback-msg incorrect';
+        return;
+      }
+
+      const isMatch = currentWords.every((word, idx) => word === correctArray[idx]);
+
+      if (isMatch) {
+        feedback.textContent = '✓ Perfect sentence structure!';
+        feedback.className = 'feedback-msg correct';
+      } else {
+        feedback.textContent = '✗ The word order is incorrect. Tap words to return and try again.';
+        feedback.className = 'feedback-msg incorrect';
+      }
+    }
+  </script>
+</body>
+</html>
