@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Present Perfect: Past Actions Connected to the Present</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+    }
+    .glass-header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+    }
+    .pulse-ring {
+      animation: pulseRing 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    .interactive-chip {
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .interactive-chip:hover {
+      transform: translateY(-2px);
+    }
+    .interactive-chip.active-selection {
+      outline: 3px solid #6366f1;
+      outline-offset: 2px;
+      transform: scale(1.04);
+    }
+    .slot-zone {
+      transition: all 0.2s ease;
+      min-height: 48px;
+    }
+    .slot-zone.over {
+      border-color: #6366f1;
+      background-color: #eef2ff;
+    }
+    @keyframes shakeAnimation {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .animate-shake {
+      animation: shakeAnimation 0.4s ease-in-out;
+    }
+    @keyframes successPop {
+      0% { transform: scale(0.98); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    .animate-success {
+      animation: successPop 0.3s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50/60 via-slate-50 to-blue-50/50 min-h-screen text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Fixed Top Nav Header -->
+  <header class="sticky top-0 z-50 glass-header shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 pt-4 pb-2">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold text-base shadow-sm">P</span>
+            <h1 class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight">Present Perfect: Past Actions Connected to the Present</h1>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Designed by Babak Alaee</p>
+        </div>
+
+        <!-- Global Practice Counter Badge -->
+        <div class="flex items-center gap-2 self-start md:self-auto bg-indigo-50/90 border border-indigo-100 rounded-full px-4 py-1.5 shadow-sm">
+          <span class="text-xs font-semibold text-indigo-700">Practice Score:</span>
+          <span id="global-score-pill" class="text-sm font-black text-indigo-900 bg-white px-2.5 py-0.5 rounded-full border border-indigo-200">0 / 10</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs (ALWAYS UNLOCKED) -->
+      <nav class="flex space-x-1 sm:space-x-2 mt-4 border-b border-slate-200" aria-label="Tabs">
+        <button id="nav-tab-1" onclick="switchTab(1)" class="tab-button inline-flex items-center gap-2 pb-3 px-3 sm:px-4 text-sm font-bold border-b-2 border-indigo-600 text-indigo-600 transition-colors">
+          <span>📖</span>
+          <span>Story & Culture</span>
+        </button>
+        <button id="nav-tab-2" onclick="switchTab(2)" class="tab-button inline-flex items-center gap-2 pb-3 px-3 sm:px-4 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors">
+          <span>💡</span>
+          <span>Rules & Movement</span>
+        </button>
+        <button id="nav-tab-3" onclick="switchTab(3)" class="tab-button inline-flex items-center gap-2 pb-3 px-3 sm:px-4 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors">
+          <span>🎯</span>
+          <span>10 Exercises</span>
+          <span id="nav-badge" class="ml-1 text-xs px-2 py-0.5 rounded-full bg-slate-200 text-slate-700 font-bold">10 Tasks</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    
+    <!-- ========================================== -->
+    <!-- TAB 1: EXPOSURE & TOWN CULTURE STORY      -->
+    <!-- ========================================== -->
+    <section id="tab-content-1" class="tab-page space-y-8">
+      
+      <!-- Town Hero Card -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div class="flex-1 space-y-4">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 uppercase tracking-wide">
+              <span>🏙️</span> Urban Renaissance
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Riverford: How Our Hometown Has Changed
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-base sm:text-lg">
+              Read the account below of our hometown's transformation. Pay special attention to the highlighted action phrases: notice how each action began in the past, yet its vivid consequences shape our daily life right now.
+            </p>
+          </div>
+          
+          <!-- Illustrated City Graphic -->
+          <div class="w-full lg:w-72 flex-shrink-0 flex items-center justify-center">
+            <svg viewBox="0 0 280 200" class="w-full max-w-[280px] h-auto drop-shadow-md rounded-2xl bg-gradient-to-tr from-indigo-100 via-sky-50 to-white p-3 border border-indigo-100/60" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="70" width="45" height="110" rx="4" fill="#818CF8"/>
+              <rect x="75" y="40" width="55" height="140" rx="4" fill="#6366F1"/>
+              <rect x="140" y="85" width="50" height="95" rx="4" fill="#4F46E5"/>
+              <rect x="200" y="60" width="60" height="120" rx="4" fill="#A5B4FC"/>
+              <!-- Windows -->
+              <g fill="#EEF2FF">
+                <rect x="85" y="55" width="10" height="12" rx="1"/>
+                <rect x="105" y="55" width="10" height="12" rx="1"/>
+                <rect x="85" y="80" width="10" height="12" rx="1"/>
+                <rect x="105" y="80" width="10" height="12" rx="1"/>
+                <rect x="85" y="105" width="10" height="12" rx="1"/>
+                <rect x="105" y="105" width="10" height="12" rx="1"/>
+                <rect x="30" y="85" width="8" height="10" rx="1"/>
+                <rect x="45" y="85" width="8" height="10" rx="1"/>
+                <rect x="150" y="100" width="10" height="10" rx="1"/>
+                <rect x="170" y="100" width="10" height="10" rx="1"/>
+              </g>
+              <!-- Bridge / Arch -->
+              <path d="M10 180 Q 140 135 270 180" stroke="#38BDF8" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <circle cx="140" cy="140" r="16" fill="#FBBF24" opacity="0.9"/>
+              <!-- Trees -->
+              <circle cx="35" cy="175" r="12" fill="#34D399"/>
+              <circle cx="245" cy="175" r="14" fill="#10B981"/>
+              <line x1="10" y1="185" x2="270" y2="185" stroke="#CBD5E1" stroke-width="4"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story Narrative with Inline Highlights -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="glass-panel rounded-3xl p-6 sm:p-8 space-y-4 border-l-4 border-indigo-500">
+          <div class="flex items-center gap-2 text-indigo-700 font-bold text-sm uppercase tracking-wider">
+            <span>🌿</span> Architecture & Green Spaces
+          </div>
+          <p class="text-slate-700 text-base leading-relaxed">
+            Over the past few years, our municipal council <span class="inline-block bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold border border-indigo-200">has transformed</span> the old industrial canal into an expansive waterfront promenade. Where smoke once rose, landscapers <span class="inline-block bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold border border-indigo-200">have planted</span> hundreds of native willow trees and flowering shrubs.
+          </p>
+          <p class="text-slate-700 text-base leading-relaxed">
+            The changes are not merely cosmetic; the town <span class="inline-block bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold border border-indigo-200">has built</span> a network of dedicated cycle corridors. Consequently, hundreds of daily commuters <span class="inline-block bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold border border-indigo-200">have left</span> their cars parked at home and now cycle along the river every morning.
+          </p>
+        </article>
+
+        <article class="glass-panel rounded-3xl p-6 sm:p-8 space-y-4 border-l-4 border-teal-500">
+          <div class="flex items-center gap-2 text-teal-700 font-bold text-sm uppercase tracking-wider">
+            <span>🎨</span> Cultural Identity & Community
+          </div>
+          <p class="text-slate-700 text-base leading-relaxed">
+            The cultural landscape <span class="inline-block bg-teal-50 text-teal-800 px-2 py-0.5 rounded-md font-bold border border-teal-200">has evolved</span> just as dramatically. Abandoned textile warehouses <span class="inline-block bg-teal-50 text-teal-800 px-2 py-0.5 rounded-md font-bold border border-teal-200">have become</span> shared artisan studios, recording spaces, and independent bakeries.
+          </p>
+          <p class="text-slate-700 text-base leading-relaxed">
+            Local painters <span class="inline-block bg-teal-50 text-teal-800 px-2 py-0.5 rounded-md font-bold border border-teal-200">have decorated</span> previously dull concrete facades with vibrant historical murals. Our community library <span class="inline-block bg-teal-50 text-teal-800 px-2 py-0.5 rounded-md font-bold border border-teal-200">has gained</span> a digital media lab, and younger generations <span class="inline-block bg-teal-50 text-teal-800 px-2 py-0.5 rounded-md font-bold border border-teal-200">have rediscovered</span> it as a center for collaborative learning.
+          </p>
+        </article>
+      </div>
+
+      <!-- Interactive Story Comprehension Checks -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-10 space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">Check Your Reading</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">Comprehension & Connection Check</h3>
+          <p class="text-sm text-slate-500">Select the best answer for each statement based on the text.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Question 1 -->
+          <div class="p-5 rounded-2xl bg-white/70 border border-slate-200" id="reading-card-1">
+            <p class="font-bold text-slate-800 text-base">1. What tangible present result has come from creating the cycle corridors?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-3">
+              <button onclick="checkStoryAnswer(1, 0)" class="r-btn-1 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">A) Commuters sold all their bicycles.</button>
+              <button onclick="checkStoryAnswer(1, 1)" class="r-btn-1 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">B) Many residents now cycle along the river instead of driving.</button>
+              <button onclick="checkStoryAnswer(1, 2)" class="r-btn-1 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">C) The municipal council closed the waterfront.</button>
+            </div>
+            <div id="r-feedback-1" class="hidden mt-3 text-sm font-semibold p-3 rounded-xl"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-5 rounded-2xl bg-white/70 border border-slate-200" id="reading-card-2">
+            <p class="font-bold text-slate-800 text-base">2. What have the historic textile warehouses transformed into today?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-3">
+              <button onclick="checkStoryAnswer(2, 0)" class="r-btn-2 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">A) Artisan studios, studios, and bakeries.</button>
+              <button onclick="checkStoryAnswer(2, 1)" class="r-btn-2 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">B) Large commercial parking lots.</button>
+              <button onclick="checkStoryAnswer(2, 2)" class="r-btn-2 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">C) Empty dilapidated structures.</button>
+            </div>
+            <div id="r-feedback-2" class="hidden mt-3 text-sm font-semibold p-3 rounded-xl"></div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-5 rounded-2xl bg-white/70 border border-slate-200" id="reading-card-3">
+            <p class="font-bold text-slate-800 text-base">3. Why does the author use 'has transformed' and 'have planted' rather than simple past?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-3">
+              <button onclick="checkStoryAnswer(3, 0)" class="r-btn-3 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">A) Because exact calendar dates in 1985 are specified.</button>
+              <button onclick="checkStoryAnswer(3, 1)" class="r-btn-3 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">B) Because the results of these past actions are active and evident now.</button>
+              <button onclick="checkStoryAnswer(3, 2)" class="r-btn-3 text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/60 font-medium text-sm transition-colors text-slate-700">C) Because the actions were completely forgotten years ago.</button>
+            </div>
+            <div id="r-feedback-3" class="hidden mt-3 text-sm font-semibold p-3 rounded-xl"></div>
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-end">
+          <button onclick="switchTab(2)" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-sm transition-all">
+            <span>Explore Grammar Rules & Movement</span>
+            <span>➡️</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: RULES, MOVEMENT & CONTRACTIONS     -->
+    <!-- ========================================== -->
+    <section id="tab-content-2" class="tab-page hidden space-y-8">
+      
+      <!-- Timeline Card -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-10 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">Core Meaning</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">The Bridge Between Past & Present</h2>
+          </div>
+          <button onclick="runTimelineAnimation()" class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-sm">
+            <span>Replay Dynamic Bridge</span>
+            <span>▶️</span>
+          </button>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed">
+          The <strong>Present Perfect</strong> connects two worlds: the <em>past</em> (when the action occurred or started) and the <em>present moment</em> (where we experience the result or continuing reality).
+        </p>
+
+        <!-- Interactive Animated Timeline -->
+        <div class="bg-gradient-to-r from-slate-100/90 via-indigo-50/60 to-emerald-50/80 p-6 sm:p-8 rounded-2xl border border-slate-200/90 relative overflow-hidden shadow-inner">
+          <div class="relative py-8">
+            <!-- Background Track between the past and present nodes -->
+            <div id="timeline-track" class="h-2.5 bg-slate-200/90 rounded-full absolute top-[52px] -translate-y-1/2 left-10 sm:left-14 right-10 sm:right-14 z-0">
+              <!-- Animated Bridge Line starting strictly from the past node origin and extending to the present node -->
+              <div id="timeline-flow" class="h-full bg-gradient-to-r from-indigo-600 via-sky-500 to-emerald-500 rounded-full transition-all duration-1000 ease-out relative" style="width: 0%;">
+                <!-- Dynamic traveling runner bead -->
+                <div id="timeline-runner" class="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-indigo-600 shadow-md opacity-0 transition-opacity duration-300"></div>
+              </div>
+            </div>
+
+            <div class="relative z-10 flex justify-between items-start">
+              <!-- Point 1: Past Starting Node -->
+              <div class="flex flex-col items-center text-center w-36 sm:w-44">
+                <span class="text-[11px] font-black text-indigo-700 uppercase tracking-wider bg-indigo-100/80 px-2.5 py-0.5 rounded-full border border-indigo-200 shadow-sm mb-2">Past Origin</span>
+                <div id="node-past" class="w-11 h-11 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-base shadow-md transition-all duration-300 ring-4 ring-white">
+                  ⚡
+                </div>
+                <div class="mt-2.5 text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                  "The town council built the bridge"
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold mt-1">(Action completed before now)</span>
+              </div>
+
+              <!-- Bridge Banner -->
+              <div id="bridge-badge" class="opacity-0 transition-opacity duration-700 text-center self-center mt-2 px-2">
+                <span class="px-3 py-1.5 rounded-full text-xs font-black bg-white/90 text-indigo-700 border border-indigo-200 shadow-sm inline-flex items-center gap-1.5">
+                  <span>🔗</span>
+                  <span>Present Perfect Connection</span>
+                </span>
+              </div>
+
+              <!-- Point 2: Present Situation Node -->
+              <div class="flex flex-col items-center text-center w-36 sm:w-44">
+                <span class="text-[11px] font-black text-emerald-800 uppercase tracking-wider bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-200 shadow-sm mb-2">Current Situation</span>
+                <div id="node-now" class="w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-base shadow-md transition-all duration-300 ring-4 ring-white">
+                  ✨
+                </div>
+                <div class="mt-2.5 text-xs sm:text-sm font-bold text-emerald-950 leading-snug">
+                  "It has connected the districts ever since"
+                </div>
+                <span class="text-[10px] text-emerald-600 font-semibold mt-1">(Active present result)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 rounded-xl bg-white/80 border border-slate-200 text-center text-sm font-bold text-slate-700" id="timeline-caption">
+            Formula: <span class="text-indigo-600 font-extrabold">The town council has built</span> a bridge = The construction started in the past, and it directly serves our daily community right now.
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Sentence Transformer -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-10 space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">Interactive Formula & Motion</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Sentence Transformation Matrix</h2>
+          <p class="text-slate-600 text-sm sm:text-base">Toggle between sentence modes to see auxiliary verbs and word orders shift in real time.</p>
+        </div>
+
+        <!-- Mode Selectors -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="setSentenceMode('aff')" id="mode-btn-aff" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-indigo-600 text-white shadow-sm transition-all">
+            Affirmative (+)
+          </button>
+          <button onclick="setSentenceMode('neg')" id="mode-btn-neg" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+            Negative (-)
+          </button>
+          <button onclick="setSentenceMode('que')" id="mode-btn-que" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+            Question (?)
+          </button>
+        </div>
+
+        <!-- Dynamic Visualization Box -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+          <div class="flex flex-wrap items-center justify-center gap-3 text-base sm:text-xl font-black text-center" id="dynamic-sentence-box">
+            <!-- Injected by setSentenceMode -->
+          </div>
+
+          <!-- Formula Anatomy Ribbon -->
+          <div class="mt-6 pt-6 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            <div class="p-3 bg-slate-50 rounded-xl">
+              <span class="block text-xs font-bold text-slate-400 uppercase">Auxiliary Verb</span>
+              <span class="text-sm font-extrabold text-indigo-700">have / has</span>
+              <span class="block text-xs text-slate-500 mt-0.5">(has for He / She / It / Singular)</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl">
+              <span class="block text-xs font-bold text-slate-400 uppercase">Main Verb</span>
+              <span class="text-sm font-extrabold text-emerald-700">Past Participle (V3)</span>
+              <span class="block text-xs text-slate-500 mt-0.5">(e.g., opened, seen, built)</span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl">
+              <span class="block text-xs font-bold text-slate-400 uppercase">Negative Attachment</span>
+              <span class="text-sm font-extrabold text-rose-600">not / n't</span>
+              <span class="block text-xs text-slate-500 mt-0.5">(placed directly after auxiliary)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Natural Spoken English: Contractions Laboratory -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-10 space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-100">Spoken Natural Rhythm</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Contraction Mechanics ('ve & 's)</h2>
+          <p class="text-slate-600 text-sm sm:text-base">In natural conversational English, fluent speakers contract helping verbs. Tap any card below to snap or expand the contraction.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Card 1 -->
+          <div onclick="toggleSingleContraction(this)" class="cursor-pointer p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all text-center space-y-2 group">
+            <span class="text-xs font-bold uppercase text-slate-400">Tap to Snap</span>
+            <div class="text-xl font-black text-indigo-900 h-10 flex items-center justify-center gap-1 font-mono">
+              <span class="cont-left">I have</span>
+              <span class="cont-right text-indigo-600 hidden font-bold">'ve</span>
+            </div>
+            <span class="text-xs font-semibold text-slate-500 block">I have visited ➔ I've visited</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div onclick="toggleSingleContraction(this)" class="cursor-pointer p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all text-center space-y-2 group">
+            <span class="text-xs font-bold uppercase text-slate-400">Tap to Snap</span>
+            <div class="text-xl font-black text-indigo-900 h-10 flex items-center justify-center gap-1 font-mono">
+              <span class="cont-left">She has</span>
+              <span class="cont-right text-indigo-600 hidden font-bold">She's</span>
+            </div>
+            <span class="text-xs font-semibold text-slate-500 block">She has seen ➔ She's seen</span>
+          </div>
+
+          <!-- Card 3 -->
+          <div onclick="toggleSingleContraction(this)" class="cursor-pointer p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all text-center space-y-2 group">
+            <span class="text-xs font-bold uppercase text-slate-400">Tap to Snap</span>
+            <div class="text-xl font-black text-indigo-900 h-10 flex items-center justify-center gap-1 font-mono">
+              <span class="cont-left">They have not</span>
+              <span class="cont-right text-rose-600 hidden font-bold">They haven't</span>
+            </div>
+            <span class="text-xs font-semibold text-slate-500 block">have not ➔ haven't</span>
+          </div>
+
+          <!-- Card 4 -->
+          <div onclick="toggleSingleContraction(this)" class="cursor-pointer p-5 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all text-center space-y-2 group">
+            <span class="text-xs font-bold uppercase text-slate-400">Tap to Snap</span>
+            <div class="text-xl font-black text-indigo-900 h-10 flex items-center justify-center gap-1 font-mono">
+              <span class="cont-left">It has not</span>
+              <span class="cont-right text-rose-600 hidden font-bold">It hasn't</span>
+            </div>
+            <span class="text-xs font-semibold text-slate-500 block">has not ➔ hasn't</span>
+          </div>
+        </div>
+
+        <!-- Special Spotting: 's = is OR 's = has? -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/80 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-600 font-extrabold text-lg">⚠️</span>
+            <h4 class="font-extrabold text-amber-950 text-base">Key Distinction: "He's" = "He is" OR "He has"?</h4>
+          </div>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Look at what follows the contraction. If followed by a <strong>Past Participle (V3)</strong>, it means <em>has</em>:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <div class="p-3 bg-white/80 rounded-xl border border-amber-200">
+              <span class="font-black text-indigo-900">"He's finished the project."</span>
+              <p class="text-xs text-slate-600 mt-1">➔ Followed by V3 <em>finished</em> = <strong>He has</strong> finished.</p>
+            </div>
+            <div class="p-3 bg-white/80 rounded-xl border border-amber-200">
+              <span class="font-black text-slate-800">"He's very happy today."</span>
+              <p class="text-xs text-slate-600 mt-1">➔ Followed by adjective <em>happy</em> = <strong>He is</strong> happy.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-between items-center">
+          <button onclick="switchTab(1)" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-all text-sm">
+            <span>⬅️</span>
+            <span>Back to Story</span>
+          </button>
+          <button onclick="switchTab(3)" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-7 rounded-2xl shadow-sm transition-all text-sm sm:text-base">
+            <span>Jump to 10 Practice Exercises</span>
+            <span>🎯</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: 10 COMPLETE INTERACTIVE EXERCISES  -->
+    <!-- ========================================== -->
+    <section id="tab-content-3" class="tab-page hidden space-y-8">
+      
+      <!-- Practice Banner -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">Hands-on Mastery</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">10 Targeted Practice Tasks</h2>
+          <p class="text-slate-600 text-sm mt-1">Work through all ten tasks below. Instant audio and visual feedback will validate your answers.</p>
+        </div>
+        <button onclick="resetAllExercises()" class="self-stretch sm:self-auto text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 transition-all flex items-center justify-center gap-1.5 shadow-sm">
+          <span>🔄</span>
+          <span>Reset All Tasks</span>
+        </button>
+      </div>
+
+      <!-- Exercise 1: Drag/Tap Since vs For -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-1">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">1</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Classification: "Since" vs "For"</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Tap a time chip below, then tap the appropriate column (<strong>Since</strong> for starting point; <strong>For</strong> for duration).</p>
+        
+        <!-- Word Chips Bank -->
+        <div class="flex flex-wrap gap-2.5 p-4 bg-slate-100/70 rounded-2xl border border-slate-200" id="ex1-bank">
+          <div onclick="selectEx1Chip(this, 'since')" class="interactive-chip px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-sm shadow-sm cursor-pointer">2016</div>
+          <div onclick="selectEx1Chip(this, 'for')" class="interactive-chip px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-sm shadow-sm cursor-pointer">three decades</div>
+          <div onclick="selectEx1Chip(this, 'since')" class="interactive-chip px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-sm shadow-sm cursor-pointer">last winter</div>
+          <div onclick="selectEx1Chip(this, 'for')" class="interactive-chip px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-sm shadow-sm cursor-pointer">six months</div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Since Box -->
+          <div onclick="placeEx1Chip('since')" class="slot-zone p-4 rounded-2xl bg-indigo-50/50 border-2 border-dashed border-indigo-200 cursor-pointer space-y-2">
+            <div class="text-xs font-black text-indigo-700 uppercase tracking-wider flex items-center justify-between">
+              <span>📍 SINCE (Specific Starting Point)</span>
+              <span class="text-indigo-400">Tap to place</span>
+            </div>
+            <div id="ex1-since-box" class="flex flex-wrap gap-2 min-h-[40px]"></div>
+          </div>
+
+          <!-- For Box -->
+          <div onclick="placeEx1Chip('for')" class="slot-zone p-4 rounded-2xl bg-teal-50/50 border-2 border-dashed border-teal-200 cursor-pointer space-y-2">
+            <div class="text-xs font-black text-teal-800 uppercase tracking-wider flex items-center justify-between">
+              <span>⏳ FOR (Length of Time / Duration)</span>
+              <span class="text-teal-500">Tap to place</span>
+            </div>
+            <div id="ex1-for-box" class="flex flex-wrap gap-2 min-h-[40px]"></div>
+          </div>
+        </div>
+
+        <button onclick="checkEx1()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Check Classification
+        </button>
+      </div>
+
+      <!-- Exercise 2: Contextual Fill-in -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">2</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Contextual Fill-in: The Historic Market</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Type the correct Present Perfect form of the verb in brackets into each blank space.</p>
+        
+        <div class="p-5 bg-white rounded-2xl border border-slate-200 space-y-4 text-base sm:text-lg font-medium text-slate-800 leading-loose">
+          <div>
+            1. The covered market has stood here for decades, but vendors 
+            <input type="text" id="ex2-input-1" placeholder="Type here..." class="mx-1 px-3 py-1 border-b-2 border-indigo-400 bg-indigo-50/40 font-bold text-indigo-900 rounded-t focus:outline-none focus:border-indigo-600 w-44 text-center text-base" autocomplete="off">
+            <span class="text-xs text-slate-500 font-semibold">(renovate)</span> the interior this season.
+          </div>
+          <div>
+            2. Our community <input type="text" id="ex2-input-2" placeholder="Type here..." class="mx-1 px-3 py-1 border-b-2 border-indigo-400 bg-indigo-50/40 font-bold text-indigo-900 rounded-t focus:outline-none focus:border-indigo-600 w-44 text-center text-base" autocomplete="off"> 
+            <span class="text-xs text-slate-500 font-semibold">(welcome)</span> dozens of new artisan traders so far.
+          </div>
+        </div>
+
+        <button onclick="checkEx2()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Check Verbs
+        </button>
+      </div>
+
+      <!-- Exercise 3: Sentence Unscramble 1 -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">3</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Sentence Unscramble: Park Renovation</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Tap the words below in the correct order to construct an affirmative Present Perfect sentence.</p>
+
+        <!-- Target Placement Strip -->
+        <div id="ex3-target" class="flex flex-wrap items-center gap-2 p-4 min-h-[56px] rounded-2xl bg-indigo-50/60 border-2 border-dashed border-indigo-200">
+          <span class="text-xs text-slate-400 font-bold select-none" id="ex3-placeholder">Tap words below to place them here...</span>
+        </div>
+
+        <!-- Words Bank with Uniform Clean Styling -->
+        <div id="ex3-bank" class="flex flex-wrap gap-2 p-3 bg-slate-100/80 rounded-2xl border border-slate-200">
+          <button onclick="unscrambleClick(this, 'ex3-target', 'ex3-bank', 'ex3-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">has</button>
+          <button onclick="unscrambleClick(this, 'ex3-target', 'ex3-bank', 'ex3-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">planted</button>
+          <button onclick="unscrambleClick(this, 'ex3-target', 'ex3-bank', 'ex3-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">The</button>
+          <button onclick="unscrambleClick(this, 'ex3-target', 'ex3-bank', 'ex3-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">gardener</button>
+          <button onclick="unscrambleClick(this, 'ex3-target', 'ex3-bank', 'ex3-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">wildflowers.</button>
+        </div>
+
+        <button onclick="checkEx3()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Check Sentence Order
+        </button>
+      </div>
+
+      <!-- Exercise 4: Contraction Match Pairs -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">4</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Pair Matching: Full Forms & Natural Contractions</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Tap one full form from the left, then tap its matching contraction on the right.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-2" id="ex4-left-col">
+            <button onclick="selectEx4Left(this, 'we-have')" class="ex4-left w-full text-left p-3.5 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50 font-bold text-sm text-slate-700 transition-all shadow-sm">1. We have</button>
+            <button onclick="selectEx4Left(this, 'he-has-not')" class="ex4-left w-full text-left p-3.5 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50 font-bold text-sm text-slate-700 transition-all shadow-sm">2. He has not</button>
+            <button onclick="selectEx4Left(this, 'they-have')" class="ex4-left w-full text-left p-3.5 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50 font-bold text-sm text-slate-700 transition-all shadow-sm">3. They have</button>
+          </div>
+
+          <div class="space-y-2" id="ex4-right-col">
+            <button onclick="selectEx4Right(this, 'they-have')" class="ex4-right w-full text-left p-3.5 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50 font-bold text-sm text-slate-700 transition-all shadow-sm">A. They've</button>
+            <button onclick="selectEx4Right(this, 'we-have')" class="ex4-right w-full text-left p-3.5 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50 font-bold text-sm text-slate-700 transition-all shadow-sm">B. We've</button>
+            <button onclick="selectEx4Right(this, 'he-has-not')" class="ex4-right w-full text-left p-3.5 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50 font-bold text-sm text-slate-700 transition-all shadow-sm">C. He hasn't</button>
+          </div>
+        </div>
+
+        <div id="ex4-feedback" class="text-xs font-bold text-indigo-700">Matched pairs: <span id="ex4-count">0</span> / 3</div>
+      </div>
+
+      <!-- Exercise 5: Sentence Transformation Form -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">5</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Sentence Transformation: Connection to Present</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Rewrite the prompt in the <strong>Present Perfect</strong> to express its present impact.</p>
+
+        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+          <span class="text-xs font-black text-slate-400 uppercase tracking-wide">Original Prompt</span>
+          <p class="font-extrabold text-slate-800 text-base sm:text-lg">"The council decided to build cycle paths. (Now the paths are ready to use)."</p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-500 mb-1">Type: The council ________ (decide) to build cycle paths.</label>
+          <input type="text" id="ex5-input" placeholder="Type complete verb phrase or sentence..." class="w-full p-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600 font-bold text-slate-800 text-base bg-white" autocomplete="off">
+        </div>
+
+        <button onclick="checkEx5()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Submit Transformation
+        </button>
+      </div>
+
+      <!-- Exercise 6: Irregular Past Participles Drag & Match -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">6</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Irregular Verb Matching (Base ➔ Past Participle V3)</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Tap a participle chip below, then tap its corresponding base form slot.</p>
+
+        <!-- Chips -->
+        <div class="flex flex-wrap gap-2 p-3 bg-slate-100/80 rounded-2xl border border-slate-200" id="ex6-chips">
+          <div onclick="selectEx6Chip(this, 'become')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 cursor-pointer shadow-sm">become</div>
+          <div onclick="selectEx6Chip(this, 'built')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 cursor-pointer shadow-sm">built</div>
+          <div onclick="selectEx6Chip(this, 'grown')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 cursor-pointer shadow-sm">grown</div>
+          <div onclick="selectEx6Chip(this, 'seen')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 cursor-pointer shadow-sm">seen</div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div onclick="placeEx6Chip('build')" data-target="build" class="slot-zone p-3.5 rounded-2xl bg-white border-2 border-dashed border-slate-300 text-center cursor-pointer">
+            <span class="block text-xs font-bold text-slate-400">BASE: build</span>
+            <span class="ex6-slot-val font-black text-indigo-700 text-sm mt-1 block">?</span>
+          </div>
+          <div onclick="placeEx6Chip('grow')" data-target="grow" class="slot-zone p-3.5 rounded-2xl bg-white border-2 border-dashed border-slate-300 text-center cursor-pointer">
+            <span class="block text-xs font-bold text-slate-400">BASE: grow</span>
+            <span class="ex6-slot-val font-black text-indigo-700 text-sm mt-1 block">?</span>
+          </div>
+          <div onclick="placeEx6Chip('see')" data-target="see" class="slot-zone p-3.5 rounded-2xl bg-white border-2 border-dashed border-slate-300 text-center cursor-pointer">
+            <span class="block text-xs font-bold text-slate-400">BASE: see</span>
+            <span class="ex6-slot-val font-black text-indigo-700 text-sm mt-1 block">?</span>
+          </div>
+          <div onclick="placeEx6Chip('become')" data-target="become" class="slot-zone p-3.5 rounded-2xl bg-white border-2 border-dashed border-slate-300 text-center cursor-pointer">
+            <span class="block text-xs font-bold text-slate-400">BASE: become</span>
+            <span class="ex6-slot-val font-black text-indigo-700 text-sm mt-1 block">?</span>
+          </div>
+        </div>
+
+        <button onclick="checkEx6()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Verify Participles
+        </button>
+      </div>
+
+      <!-- Exercise 7: Meaning & Contextual Distinction -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-7">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">7</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Meaning Check: Present Connection vs Finished Past</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Which statement indicates that the speaker <strong>still resides in Riverford today</strong>?</p>
+
+        <div class="space-y-3">
+          <button onclick="checkEx7(0)" class="ex7-btn w-full text-left p-4 rounded-2xl border border-slate-200 bg-white hover:bg-indigo-50 font-medium text-slate-800 text-sm sm:text-base transition-colors">
+            A) "I lived in Riverford for twelve years."
+          </button>
+          <button onclick="checkEx7(1)" class="ex7-btn w-full text-left p-4 rounded-2xl border border-slate-200 bg-white hover:bg-indigo-50 font-medium text-slate-800 text-sm sm:text-base transition-colors">
+            B) "I have lived in Riverford for twelve years."
+          </button>
+        </div>
+        <div id="ex7-explain" class="hidden p-3.5 rounded-xl text-sm font-semibold"></div>
+      </div>
+
+      <!-- Exercise 8: Question Form Unscramble -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">8</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Question Form Builder: The New Bridge</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Assemble the words to formulate a correct question asking about an action connected to the present.</p>
+
+        <!-- Target Strip -->
+        <div id="ex8-target" class="flex flex-wrap items-center gap-2 p-4 min-h-[56px] rounded-2xl bg-indigo-50/60 border-2 border-dashed border-indigo-200">
+          <span class="text-xs text-slate-400 font-bold select-none" id="ex8-placeholder">Tap words to build the question...</span>
+        </div>
+
+        <!-- Words Bank -->
+        <div id="ex8-bank" class="flex flex-wrap gap-2 p-3 bg-slate-100/80 rounded-2xl border border-slate-200">
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">Have</button>
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">seen</button>
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">you</button>
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">bridge</button>
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">the</button>
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">new</button>
+          <button onclick="unscrambleClick(this, 'ex8-target', 'ex8-bank', 'ex8-placeholder')" class="interactive-chip px-3.5 py-2 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-800 shadow-sm">yet?</button>
+        </div>
+
+        <button onclick="checkEx8()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Check Question
+        </button>
+      </div>
+
+      <!-- Exercise 9: Auxiliary Selection (Have vs Has) -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-9">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">9</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Auxiliary Precision: "Have" vs "Has"</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">Select the correct auxiliary verb based on whether the town subject is singular or plural.</p>
+
+        <div class="space-y-4">
+          <div class="p-4 bg-white rounded-2xl border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <span class="font-bold text-slate-800 text-sm sm:text-base">1. The town mayor [ _____ ] approved the budget.</span>
+            <div class="flex gap-2">
+              <button onclick="selectEx9(1, 'has', this)" class="ex9-group-1 px-4 py-2 rounded-xl border border-slate-200 font-bold text-sm hover:bg-indigo-50 transition-colors">has</button>
+              <button onclick="selectEx9(1, 'have', this)" class="ex9-group-1 px-4 py-2 rounded-xl border border-slate-200 font-bold text-sm hover:bg-indigo-50 transition-colors">have</button>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-2xl border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <span class="font-bold text-slate-800 text-sm sm:text-base">2. Local citizens [ _____ ] participated enthusiastically.</span>
+            <div class="flex gap-2">
+              <button onclick="selectEx9(2, 'has', this)" class="ex9-group-2 px-4 py-2 rounded-xl border border-slate-200 font-bold text-sm hover:bg-indigo-50 transition-colors">has</button>
+              <button onclick="selectEx9(2, 'have', this)" class="ex9-group-2 px-4 py-2 rounded-xl border border-slate-200 font-bold text-sm hover:bg-indigo-50 transition-colors">have</button>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="checkEx9()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Validate Auxiliaries
+        </button>
+      </div>
+
+      <!-- Exercise 10: Interactive Error Detection & Edit -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5" id="ex-card-10">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm">10</span>
+            <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Sentence Editing & Error Correction</h3>
+          </div>
+          <span class="status-indicator text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Unanswered</span>
+        </div>
+        <p class="text-sm text-slate-600">The sentence below contains two grammatical errors with agreement and time markers. Type the corrected sentence.</p>
+
+        <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-200 text-rose-900 font-mono text-sm sm:text-base font-bold">
+          "They has lived in this modern district since three years."
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-500 mb-1">Enter Corrected Sentence:</label>
+          <input type="text" id="ex10-input" placeholder="Type the corrected sentence here..." class="w-full p-3.5 rounded-xl border border-slate-300 focus:outline-none focus:border-indigo-600 font-bold text-slate-800 text-base bg-white" autocomplete="off">
+        </div>
+
+        <button onclick="checkEx10()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-sm">
+          Check Correction
+        </button>
+      </div>
+
+      <!-- Completion Banner -->
+      <div id="full-completion-card" class="hidden glass-panel rounded-3xl p-8 text-center space-y-4 border-2 border-emerald-400 bg-emerald-50/70">
+        <span class="text-5xl">🏆</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-emerald-900">Exceptional Mastery!</h3>
+        <p class="text-emerald-800 max-w-lg mx-auto font-medium">
+          You have successfully reviewed the form, meaning, contractions, and contextual usage of the Present Perfect tense!
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* ========================================================
+       VISUAL FEEDBACK ONLY (Audio Effects Removed)
+       ======================================================== */
+    function triggerFeedbackAnimation(element, isSuccess) {
+      if (!element) return;
+      if (isSuccess) {
+        element.classList.add('animate-success');
+        setTimeout(() => element.classList.remove('animate-success'), 400);
+      } else {
+        element.classList.add('animate-shake');
+        setTimeout(() => element.classList.remove('animate-shake'), 450);
+      }
+    }
+
+    /* ========================================================
+       TAB NAVIGATION (NEVER LOCKED)
+       ======================================================== */
+    function switchTab(tabIndex) {
+      document.querySelectorAll('.tab-page').forEach(page => page.classList.add('hidden'));
+      document.getElementById(`tab-content-${tabIndex}`).classList.remove('hidden');
+
+      // Update button styling
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`nav-tab-${i}`);
+        if (i === tabIndex) {
+          btn.className = "tab-button inline-flex items-center gap-2 pb-3 px-3 sm:px-4 text-sm font-bold border-b-2 border-indigo-600 text-indigo-600 transition-colors";
+        } else {
+          btn.className = "tab-button inline-flex items-center gap-2 pb-3 px-3 sm:px-4 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors";
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ========================================================
+       TAB 1: STORY COMPREHENSION LOGIC
+       ======================================================== */
+    const storyCorrectAnswers = { 1: 1, 2: 0, 3: 1 };
+    function checkStoryAnswer(questionId, selectedIdx) {
+      const fb = document.getElementById(`r-feedback-${questionId}`);
+      const btns = document.querySelectorAll(`.r-btn-${questionId}`);
+      fb.classList.remove('hidden');
+
+      if (selectedIdx === storyCorrectAnswers[questionId]) {
+        fb.className = "mt-3 text-sm font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 animate-success";
+        fb.innerText = "✓ Correct! The text emphasizes how this past change connects directly to life in the present.";
+        btns.forEach((b, idx) => {
+          if (idx === selectedIdx) {
+            b.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+          } else {
+            b.classList.remove('border-indigo-500', 'bg-indigo-50');
+          }
+        });
+      } else {
+        fb.className = "mt-3 text-sm font-semibold p-3 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 animate-shake";
+        fb.innerText = "✗ Re-read the highlighted sections of the story and try again.";
+        btns.forEach((b, idx) => {
+          if (idx === selectedIdx) {
+            b.classList.add('border-rose-400', 'bg-rose-50');
+            setTimeout(() => b.classList.remove('border-rose-400', 'bg-rose-50'), 600);
+          }
+        });
+      }
+    }
+
+    /* ========================================================
+       TAB 2: TIMELINE ANIMATION & SENTENCE TRANSFORMER
+       ======================================================== */
+    function runTimelineAnimation() {
+      const flow = document.getElementById('timeline-flow');
+      const runner = document.getElementById('timeline-runner');
+      const bridgeBadge = document.getElementById('bridge-badge');
+      const nodePast = document.getElementById('node-past');
+      const nodeNow = document.getElementById('node-now');
+
+      // Reset state cleanly to the origin (The Past node)
+      flow.style.transition = 'none';
+      flow.style.width = '0%';
+      runner.style.opacity = '0';
+      bridgeBadge.style.opacity = '0';
+      nodeNow.classList.remove('pulse-ring');
+      nodePast.classList.remove('scale-110');
+
+      // Pulse the past origin node to show where the action originates
+      nodePast.classList.add('scale-110');
+
+      setTimeout(() => {
+        // Trigger smooth travel starting from "The town council built the bridge" to the present
+        flow.style.transition = 'width 1.1s cubic-bezier(0.4, 0, 0.2, 1)';
+        flow.style.width = '100%';
+        runner.style.opacity = '1';
+      }, 80);
+
+      setTimeout(() => {
+        bridgeBadge.style.opacity = '1';
+      }, 550);
+
+      setTimeout(() => {
+        nodePast.classList.remove('scale-110');
+        nodeNow.classList.add('pulse-ring');
+        runner.style.opacity = '0';
+      }, 1200);
+    }
+
+    // Sentence Transformation States
+    const sentenceData = {
+      aff: [
+        { label: "Subject", text: "The council", color: "bg-slate-100 text-slate-800 border-slate-300" },
+        { label: "Auxiliary", text: "has", color: "bg-indigo-100 text-indigo-800 border-indigo-300" },
+        { label: "Past Participle", text: "opened", color: "bg-emerald-100 text-emerald-800 border-emerald-300" },
+        { label: "Complement", text: "a new waterfront cafe.", color: "bg-slate-100 text-slate-800 border-slate-300" }
+      ],
+      neg: [
+        { label: "Subject", text: "The council", color: "bg-slate-100 text-slate-800 border-slate-300" },
+        { label: "Aux + Not", text: "has not (hasn't)", color: "bg-rose-100 text-rose-800 border-rose-300" },
+        { label: "Past Participle", text: "opened", color: "bg-emerald-100 text-emerald-800 border-emerald-300" },
+        { label: "Complement", text: "the highway yet.", color: "bg-slate-100 text-slate-800 border-slate-300" }
+      ],
+      que: [
+        { label: "Auxiliary (Fronted)", text: "Has", color: "bg-indigo-100 text-indigo-800 border-indigo-300" },
+        { label: "Subject", text: "the council", color: "bg-slate-100 text-slate-800 border-slate-300" },
+        { label: "Past Participle", text: "opened", color: "bg-emerald-100 text-emerald-800 border-emerald-300" },
+        { label: "Complement", text: "the cycle bridge?", color: "bg-slate-100 text-slate-800 border-slate-300" }
+      ]
+    };
+
+    function setSentenceMode(mode) {
+      ['aff', 'neg', 'que'].forEach(m => {
+        const btn = document.getElementById(`mode-btn-${m}`);
+        if (m === mode) {
+          btn.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-indigo-600 text-white shadow-sm transition-all";
+        } else {
+          btn.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all";
+        }
+      });
+
+      const container = document.getElementById('dynamic-sentence-box');
+      container.innerHTML = '';
+      sentenceData[mode].forEach(item => {
+        const block = document.createElement('div');
+        block.className = `p-3 rounded-xl border text-center shadow-sm ${item.color} transition-all duration-300`;
+        block.innerHTML = `
+          <span class="block text-[10px] font-bold uppercase tracking-wider opacity-70">${item.label}</span>
+          <span class="block mt-0.5">${item.text}</span>
+        `;
+        container.appendChild(block);
+      });
+    }
+
+    // Contraction Interactive Card Toggles
+    function toggleSingleContraction(card) {
+      const left = card.querySelector('.cont-left');
+      const right = card.querySelector('.cont-right');
+      if (right.classList.contains('hidden')) {
+        left.classList.add('hidden');
+        right.classList.remove('hidden');
+      } else {
+        right.classList.add('hidden');
+        left.classList.remove('hidden');
+      }
+    }
+
+    /* ========================================================
+       TAB 3: 10 COMPLETE INTERACTIVE EXERCISES
+       ======================================================== */
+    const solvedExercises = new Set();
+
+    function markExerciseSuccess(exNum, cardId) {
+      if (!solvedExercises.has(exNum)) {
+        solvedExercises.add(exNum);
+        const card = document.getElementById(cardId);
+        card.classList.remove('border-slate-200');
+        card.classList.add('border-emerald-400', 'bg-emerald-50/20', 'animate-success');
+        
+        const badge = card.querySelector('.status-indicator');
+        if (badge) {
+          badge.className = "status-indicator text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800";
+          badge.innerText = "✓ Solved";
+        }
+        updateGlobalScore();
+      }
+    }
+
+    function markExerciseError(cardId) {
+      const card = document.getElementById(cardId);
+      card.classList.add('animate-shake', 'border-rose-300');
+      setTimeout(() => {
+        card.classList.remove('animate-shake', 'border-rose-300');
+      }, 500);
+    }
+
+    function updateGlobalScore() {
+      const count = solvedExercises.size;
+      document.getElementById('global-score-pill').innerText = `${count} / 10`;
+      document.getElementById('nav-badge').innerText = `${count}/10 Done`;
+      if (count === 10) {
+        document.getElementById('full-completion-card').classList.remove('hidden');
+        document.getElementById('full-completion-card').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Exercise 1: Since vs For
+    let currentSelectedEx1 = null;
+    function selectEx1Chip(el, targetType) {
+      document.querySelectorAll('#ex1-bank .interactive-chip').forEach(c => c.classList.remove('active-selection'));
+      currentSelectedEx1 = { element: el, targetType: targetType, text: el.innerText };
+      el.classList.add('active-selection');
+    }
+
+    function placeEx1Chip(destination) {
+      if (!currentSelectedEx1) return;
+      const targetContainer = document.getElementById(destination === 'since' ? 'ex1-since-box' : 'ex1-for-box');
+      
+      const chip = document.createElement('span');
+      chip.className = "px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-800 shadow-sm";
+      chip.innerText = currentSelectedEx1.text;
+      chip.dataset.correct = (currentSelectedEx1.targetType === destination) ? 'true' : 'false';
+      targetContainer.appendChild(chip);
+
+      currentSelectedEx1.element.remove();
+      currentSelectedEx1 = null;
+    }
+
+    function checkEx1() {
+      const bankRemaining = document.getElementById('ex1-bank').children.length;
+      if (bankRemaining > 0) {
+        markExerciseError('ex-card-1');
+        return;
+      }
+      const chips = document.querySelectorAll('#ex1-since-box span, #ex1-for-box span');
+      let allCorrect = true;
+      chips.forEach(c => {
+        if (c.dataset.correct !== 'true') allCorrect = false;
+      });
+
+      if (allCorrect) {
+        markExerciseSuccess(1, 'ex-card-1');
+      } else {
+        markExerciseError('ex-card-1');
+      }
+    }
+
+    // Exercise 2: Fill-in
+    function checkEx2() {
+      const v1 = document.getElementById('ex2-input-1').value.trim().toLowerCase();
+      const v2 = document.getElementById('ex2-input-2').value.trim().toLowerCase();
+      
+      const v1Valid = (v1 === 'have renovated' || v1 === "'ve renovated");
+      const v2Valid = (v2 === 'has welcomed' || v2 === "'s welcomed");
+
+      if (v1Valid && v2Valid) {
+        markExerciseSuccess(2, 'ex-card-2');
+      } else {
+        markExerciseError('ex-card-2');
+      }
+    }
+
+    // Exercise 3: Unscramble
+    function unscrambleClick(btn, targetId, bankId, placeholderId) {
+      const target = document.getElementById(targetId);
+      const bank = document.getElementById(bankId);
+      const ph = document.getElementById(placeholderId);
+
+      if (btn.parentElement.id === bankId) {
+        target.appendChild(btn);
+        if (ph) ph.style.display = 'none';
+      } else {
+        bank.appendChild(btn);
+        if (target.children.length === 1 && ph) {
+          ph.style.display = 'inline';
+        }
+      }
+    }
+
+    function checkEx3() {
+      const chips = Array.from(document.querySelectorAll('#ex3-target .interactive-chip'));
+      const text = chips.map(c => c.innerText).join(' ');
+      if (text === "The gardener has planted wildflowers.") {
+        markExerciseSuccess(3, 'ex-card-3');
+      } else {
+        markExerciseError('ex-card-3');
+      }
+    }
+
+    // Exercise 4: Pair Matching
+    let ex4SelectedLeft = null;
+    let ex4MatchedCount = 0;
+    function selectEx4Left(btn, key) {
+      if (btn.classList.contains('opacity-50')) return;
+      document.querySelectorAll('.ex4-left').forEach(b => {
+        b.classList.remove('border-indigo-600', 'bg-indigo-50', 'text-indigo-700', 'ring-2', 'ring-indigo-300');
+        b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+      });
+      btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+      btn.classList.add('border-indigo-600', 'bg-indigo-50', 'text-indigo-700', 'ring-2', 'ring-indigo-300');
+      ex4SelectedLeft = { button: btn, key: key };
+    }
+
+    function selectEx4Right(btn, key) {
+      if (!ex4SelectedLeft || btn.classList.contains('opacity-50')) return;
+      if (ex4SelectedLeft.key === key) {
+        // Successful Match!
+        const leftBtn = ex4SelectedLeft.button;
+        leftBtn.classList.remove('border-indigo-600', 'bg-indigo-50', 'text-indigo-700', 'ring-2', 'ring-indigo-300');
+        leftBtn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'opacity-50', 'pointer-events-none');
+        
+        btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+        btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'opacity-50', 'pointer-events-none');
+        
+        ex4SelectedLeft = null;
+        ex4MatchedCount++;
+        document.getElementById('ex4-count').innerText = ex4MatchedCount;
+        if (ex4MatchedCount === 3) {
+          markExerciseSuccess(4, 'ex-card-4');
+        }
+      } else {
+        btn.classList.add('border-rose-500', 'bg-rose-100', 'text-rose-900', 'ring-2', 'ring-rose-300');
+        setTimeout(() => {
+          btn.classList.remove('border-rose-500', 'bg-rose-100', 'text-rose-900', 'ring-2', 'ring-rose-300');
+        }, 500);
+      }
+    }
+
+    // Exercise 5: Sentence Transformation
+    function checkEx5() {
+      const val = document.getElementById('ex5-input').value.trim().toLowerCase().replace(/\s+/g, ' ');
+      // Accept variations: verb phrase or full sentence
+      const validAnswers = [
+        "has decided",
+        "the council has decided to build cycle paths",
+        "the council has decided to build cycle paths.",
+        "the council's decided to build cycle paths"
+      ];
+      if (validAnswers.includes(val)) {
+        markExerciseSuccess(5, 'ex-card-5');
+      } else {
+        markExerciseError('ex-card-5');
+      }
+    }
+
+    // Exercise 6: Irregular Participles
+    let currentSelectedEx6 = null;
+    function selectEx6Chip(el, value) {
+      document.querySelectorAll('#ex6-chips .interactive-chip').forEach(c => c.classList.remove('active-selection'));
+      currentSelectedEx6 = { element: el, value: value };
+      el.classList.add('active-selection');
+    }
+
+    const ex6Matches = { build: 'built', grow: 'grown', see: 'seen', become: 'become' };
+    const ex6UserPlaced = {};
+
+    function placeEx6Chip(baseTarget) {
+      if (!currentSelectedEx6) return;
+      const slot = document.querySelector(`.slot-zone[data-target="${baseTarget}"] .ex6-slot-val`);
+      slot.innerText = currentSelectedEx6.value;
+      ex6UserPlaced[baseTarget] = currentSelectedEx6.value;
+
+      currentSelectedEx6.element.classList.add('opacity-30', 'pointer-events-none');
+      currentSelectedEx6.element.classList.remove('active-selection');
+      currentSelectedEx6 = null;
+    }
+
+    function checkEx6() {
+      let correct = 0;
+      for (const [k, v] of Object.entries(ex6Matches)) {
+        if (ex6UserPlaced[k] === v) correct++;
+      }
+      if (correct === 4) {
+        markExerciseSuccess(6, 'ex-card-6');
+      } else {
+        markExerciseError('ex-card-6');
+      }
+    }
+
+    // Exercise 7: Meaning Check
+    function checkEx7(choice) {
+      const explain = document.getElementById('ex7-explain');
+      explain.classList.remove('hidden');
+      if (choice === 1) {
+        explain.className = "p-3.5 rounded-xl text-sm font-semibold bg-emerald-50 text-emerald-900 border border-emerald-200 animate-success";
+        explain.innerText = "✓ Perfect! 'have lived' links the 12 years to the present, indicating residency is still ongoing.";
+        markExerciseSuccess(7, 'ex-card-7');
+      } else {
+        explain.className = "p-3.5 rounded-xl text-sm font-semibold bg-rose-50 text-rose-900 border border-rose-200 animate-shake";
+        explain.innerText = "✗ 'lived' in the past simple implies the action is finished and the speaker no longer lives there.";
+        markExerciseError('ex-card-7');
+      }
+    }
+
+    // Exercise 8: Question Unscramble
+    function checkEx8() {
+      const chips = Array.from(document.querySelectorAll('#ex8-target .interactive-chip'));
+      const text = chips.map(c => c.innerText).join(' ');
+      if (text === "Have you seen the new bridge yet?") {
+        markExerciseSuccess(8, 'ex-card-8');
+      } else {
+        markExerciseError('ex-card-8');
+      }
+    }
+
+    // Exercise 9: Have vs Has Selection
+    const ex9Selected = {};
+    function selectEx9(itemNum, choice, btn) {
+      ex9Selected[itemNum] = choice;
+      document.querySelectorAll(`.ex9-group-${itemNum}`).forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+        b.classList.add('border-slate-200');
+      });
+      btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+    }
+
+    function checkEx9() {
+      if (ex9Selected[1] === 'has' && ex9Selected[2] === 'have') {
+        markExerciseSuccess(9, 'ex-card-9');
+      } else {
+        markExerciseError('ex-card-9');
+      }
+    }
+
+    // Exercise 10: Error Correction
+    function checkEx10() {
+      const val = document.getElementById('ex10-input').value.trim().toLowerCase().replace(/\s+/g, ' ');
+      const validOptions = [
+        "they have lived in this modern district for three years.",
+        "they have lived in this modern district for three years",
+        "they've lived in this modern district for three years.",
+        "they've lived in this modern district for three years"
+      ];
+      if (validOptions.includes(val)) {
+        markExerciseSuccess(10, 'ex-card-10');
+      } else {
+        markExerciseError('ex-card-10');
+      }
+    }
+
+    // Reset All Exercises
+    function resetAllExercises() {
+      location.reload();
+    }
+
+    // Initialize Default State
+    window.addEventListener('DOMContentLoaded', () => {
+      setSentenceMode('aff');
+      runTimelineAnimation();
+    });
+  </script>
+</body>
+</html>
