@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Trend Vocabulary: Upward & Downward Movements</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons for modern vector icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom animations and styling */
+    .trend-path {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawLine 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+    .draggable-card {
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+    .drop-active {
+      border-color: #6366f1 !important;
+      background-color: #e0e7ff !important;
+      transform: scale(1.02);
+    }
+    /* Smooth transitions */
+    .tab-transition {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-indigo-100 selection:text-indigo-800">
+
+  <!-- ================= TOP HEADER & PROGRESS BAR ================= -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold shadow-md shadow-indigo-200">
+            <i class="ph ph-chart-line-up text-lg"></i>
+          </span>
+          <h1 class="text-lg sm:text-xl font-bold font-display tracking-tight text-slate-900">
+            Mastering Trend Vocabulary: Upward & Downward Movements
+          </h1>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-500 font-medium pl-10">Designed by Babak Alaee</p>
+      </div>
+
+      <!-- Navigation Badges & Global Score -->
+      <div class="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
+        <nav class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold text-slate-600">
+          <button onclick="switchTab('explore')" id="nav-explore" class="tab-btn px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-sm transition-all flex items-center gap-1.5">
+            <i class="ph ph-compass"></i><span>Explore</span>
+          </button>
+          <button onclick="switchTab('grammar')" id="nav-grammar" class="tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5">
+            <i class="ph ph-book-open-text"></i><span>Grammar Hub</span>
+          </button>
+          <button onclick="switchTab('practice')" id="nav-practice" class="tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5">
+            <i class="ph ph-trophy"></i><span>Practice Arena</span>
+            <span id="badge-score" class="ml-1 px-1.5 py-0.5 text-[10px] bg-indigo-600 text-white rounded-full">0/10</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8">
+
+    <!-- ================= SECTION 1: EXPOSURE PHASE ================= -->
+    <section id="section-explore" class="space-y-6">
+      <!-- Intro Card -->
+      <div class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-indigo-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute right-0 bottom-0 opacity-10 translate-x-10 translate-y-10 pointer-events-none">
+          <i class="ph ph-trend-up text-[280px]"></i>
+        </div>
+        <div class="relative z-10 max-w-2xl space-y-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-sm text-indigo-100">
+            <i class="ph ph-sparkle text-amber-300"></i> Section 1: Real-World Trend Analysis
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display leading-tight">
+            See How Numbers Tell a Story
+          </h2>
+          <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+            Look at the sales chart below. Tap a segment on the graph or select a period to explore the movement, then choose the verb that best describes what the line is doing.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Story Chart Card -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+              <i class="ph ph-chart-line text-indigo-600 text-xl"></i>
+              Company Sales by Quarter
+            </h3>
+            <p class="text-xs text-slate-500">Select a section of the line, then choose the correct trend verb below.</p>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="inline-flex items-center gap-1 text-emerald-600 font-semibold bg-emerald-50 px-2 py-1 rounded-md">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Upward Trend
+            </span>
+            <span class="inline-flex items-center gap-1 text-rose-600 font-semibold bg-rose-50 px-2 py-1 rounded-md">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span> Downward Trend
+            </span>
+          </div>
+        </div>
+
+        <!-- SVG Interactive Graph -->
+        <div class="relative w-full aspect-[21/9] min-h-[220px] max-h-[340px] bg-slate-50/70 rounded-xl p-2 sm:p-4 border border-slate-100 flex items-center justify-center">
+          <svg id="story-svg" viewBox="0 0 800 320" class="w-full h-full overflow-visible">
+            <defs>
+              <linearGradient id="grad-up" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#10b981" stop-opacity="0.05" />
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0.3" />
+              </linearGradient>
+              <linearGradient id="grad-down" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.02" />
+              </linearGradient>
+            </defs>
+            <!-- Grid lines -->
+            <g class="stroke-slate-200 stroke-1" stroke-dasharray="4 4">
+              <line x1="50" y1="40" x2="750" y2="40" />
+              <line x1="50" y1="110" x2="750" y2="110" />
+              <line x1="50" y1="180" x2="750" y2="180" />
+              <line x1="50" y1="250" x2="750" y2="250" />
+            </g>
+            <!-- Axis Y labels -->
+            <g class="text-[11px] fill-slate-400 font-medium select-none">
+              <text x="35" y="45" text-anchor="end">80 units</text>
+              <text x="35" y="115" text-anchor="end">60 units</text>
+              <text x="35" y="185" text-anchor="end">40 units</text>
+              <text x="35" y="255" text-anchor="end">20 units</text>
+            </g>
+            <!-- Axis X labels -->
+            <g class="text-[12px] fill-slate-500 font-medium select-none">
+              <text x="60" y="280" text-anchor="middle">Jan</text>
+              <text x="200" y="280" text-anchor="middle">Apr</text>
+              <text x="350" y="280" text-anchor="middle">Jun</text>
+              <text x="500" y="280" text-anchor="middle">Sep</text>
+              <text x="650" y="280" text-anchor="middle">Dec</text>
+            </g>
+
+            <!-- Line segments -->
+            <!-- Seg 1: Jan to Apr (Rise) -->
+            <path id="path-seg-1" d="M 60 220 L 200 90" class="stroke-emerald-500 stroke-[4] fill-none transition-all duration-300 hover:stroke-[6] cursor-pointer" onclick="selectStorySegment(1)" />
+            <!-- Seg 2: Apr to Jun (Drop) -->
+            <path id="path-seg-2" d="M 200 90 L 350 200" class="stroke-rose-500 stroke-[4] fill-none transition-all duration-300 hover:stroke-[6] cursor-pointer" onclick="selectStorySegment(2)" />
+            <!-- Seg 3: Jun to Sep (Growth) -->
+            <path id="path-seg-3" d="M 350 200 L 500 70" class="stroke-emerald-500 stroke-[4] fill-none transition-all duration-300 hover:stroke-[6] cursor-pointer" onclick="selectStorySegment(3)" />
+            <!-- Seg 4: Sep to Dec (Decline) -->
+            <path id="path-seg-4" d="M 500 70 L 650 160" class="stroke-rose-500 stroke-[4] fill-none transition-all duration-300 hover:stroke-[6] cursor-pointer" onclick="selectStorySegment(4)" />
+
+            <!-- Interactive Nodes -->
+            <circle cx="60" cy="220" r="6" class="fill-white stroke-slate-500 stroke-2 cursor-pointer hover:r-8" onclick="selectStorySegment(1)" />
+            <circle id="node-1" cx="200" cy="90" r="7" class="fill-white stroke-emerald-600 stroke-3 cursor-pointer hover:r-9 transition-all" onclick="selectStorySegment(1)" />
+            <circle id="node-2" cx="350" cy="200" r="7" class="fill-white stroke-rose-600 stroke-3 cursor-pointer hover:r-9 transition-all" onclick="selectStorySegment(2)" />
+            <circle id="node-3" cx="500" cy="70" r="7" class="fill-white stroke-emerald-600 stroke-3 cursor-pointer hover:r-9 transition-all" onclick="selectStorySegment(3)" />
+            <circle id="node-4" cx="650" cy="160" r="7" class="fill-white stroke-rose-600 stroke-3 cursor-pointer hover:r-9 transition-all" onclick="selectStorySegment(4)" />
+          </svg>
+        </div>
+
+        <!-- Segment Selector Buttons -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <button onclick="selectStorySegment(1)" id="story-btn-1" class="story-btn p-3 rounded-xl border border-slate-200 text-left transition-all bg-indigo-50/60 border-indigo-300 ring-2 ring-indigo-500/20">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 flex items-center gap-1">
+              <i class="ph ph-arrow-up-right"></i> Jan - Apr
+            </span>
+            <p class="font-bold text-slate-800 text-sm mt-0.5">Part 1</p>
+          </button>
+          <button onclick="selectStorySegment(2)" id="story-btn-2" class="story-btn p-3 rounded-xl border border-slate-200 text-left transition-all hover:bg-slate-50">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-600 flex items-center gap-1">
+              <i class="ph ph-arrow-down-right"></i> Apr - Jun
+            </span>
+            <p class="font-bold text-slate-800 text-sm mt-0.5">Part 2</p>
+          </button>
+          <button onclick="selectStorySegment(3)" id="story-btn-3" class="story-btn p-3 rounded-xl border border-slate-200 text-left transition-all hover:bg-slate-50">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 flex items-center gap-1">
+              <i class="ph ph-arrow-up-right"></i> Jun - Sep
+            </span>
+            <p class="font-bold text-slate-800 text-sm mt-0.5">Part 3</p>
+          </button>
+          <button onclick="selectStorySegment(4)" id="story-btn-4" class="story-btn p-3 rounded-xl border border-slate-200 text-left transition-all hover:bg-slate-50">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-600 flex items-center gap-1">
+              <i class="ph ph-arrow-down-right"></i> Sep - Dec
+            </span>
+            <p class="font-bold text-slate-800 text-sm mt-0.5">Part 4</p>
+          </button>
+        </div>
+
+        <!-- NEW: Interactive Trend Verb Selection Prompt in Exposure -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-indigo-700 uppercase tracking-wide flex items-center gap-1">
+              <i class="ph ph-cursor-click"></i> Quick Check: Which verb describes this part?
+            </span>
+            <span id="story-quiz-status" class="text-xs font-semibold text-slate-500">Pick the best verb:</span>
+          </div>
+          <div id="story-verb-options" class="flex flex-wrap gap-2.5">
+            <!-- Rendered by JS -->
+          </div>
+          <div id="story-quiz-feedback" class="hidden p-2.5 rounded-lg text-xs font-medium"></div>
+        </div>
+
+        <!-- Dynamic Explanation Box -->
+        <div id="story-detail-card" class="bg-indigo-50/50 border border-indigo-100 rounded-xl p-5 space-y-3 transition-all">
+          <div class="flex items-center justify-between">
+            <span id="story-badge" class="px-2.5 py-1 text-xs font-bold rounded-md bg-emerald-100 text-emerald-800 inline-flex items-center gap-1">
+              <i class="ph ph-arrow-circle-up"></i> Upward Trend
+            </span>
+            <span id="story-time" class="text-xs font-semibold text-slate-500">Period: January - April</span>
+          </div>
+          <div class="space-y-1.5">
+            <h4 id="story-headline" class="font-bold text-slate-800 text-base">Sales rose from 30 to 70 units.</h4>
+            <p id="story-description" class="text-sm text-slate-600 leading-relaxed">
+              Between January and April, sales went up quickly. We use the verb <strong>rose</strong> (past simple of <em>rise</em>) or the noun: "There was a sharp <strong>rise</strong> in sales."
+            </p>
+          </div>
+          <div class="bg-white rounded-lg p-3 border border-indigo-100/70 text-xs text-slate-700 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div><span class="font-bold text-indigo-700">Verb sentence:</span> <span id="story-verb-ex">Sales rose quickly.</span></div>
+            <div><span class="font-bold text-indigo-700">Noun sentence:</span> <span id="story-noun-ex">There was a sharp rise in sales.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: GRAMMAR & INTERACTIVE HUB ================= -->
+    <section id="section-grammar" class="space-y-6 hidden">
+      <!-- Section Intro Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-2xl font-extrabold font-display text-slate-900">Grammar & Trend Reference Hub</h2>
+          <p class="text-slate-500 text-sm">Study the 7 fundamental trend words, their forms, and sentence structures.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="filterTrendCategory('all')" id="filter-all" class="filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-600 text-white">All (7)</button>
+          <button onclick="filterTrendCategory('up')" id="filter-up" class="filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">Upward (3)</button>
+          <button onclick="filterTrendCategory('down')" id="filter-down" class="filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">Downward (4)</button>
+        </div>
+      </div>
+
+      <!-- Live Interactive Trend Simulator -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <div class="w-full md:w-1/2 space-y-3">
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-100 text-indigo-800">
+              <i class="ph ph-sliders"></i> Interactive Trend Visualizer
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">Select a word to simulate its slope</h3>
+            <p class="text-sm text-slate-600">
+              Watch how each verb transforms the line trajectory. Notice how words like <em>grow</em> emphasize continuous upward expansion, while <em>drop</em> conveys a rapid descent.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2" id="sim-word-buttons">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Simulator Canvas Box -->
+          <div class="w-full md:w-1/2 bg-slate-900 rounded-xl p-5 text-white flex flex-col justify-between h-56 relative overflow-hidden shadow-inner">
+            <div class="flex justify-between items-center text-xs text-slate-400">
+              <span id="sim-display-name" class="font-bold text-white text-base">rise</span>
+              <span id="sim-display-type" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold">Upward Movement</span>
+            </div>
+
+            <!-- Dynamic Simulator SVG -->
+            <div class="relative w-full h-32 flex items-center justify-center">
+              <svg id="sim-svg" viewBox="0 0 360 120" class="w-full h-full overflow-visible">
+                <line x1="20" y1="100" x2="340" y2="100" stroke="#334155" stroke-dasharray="3 3" />
+                <line x1="20" y1="20" x2="340" y2="20" stroke="#334155" stroke-dasharray="3 3" />
+                <path id="sim-path" d="M 30 95 C 120 90, 200 40, 330 25" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" class="trend-path" />
+                <circle id="sim-end-point" cx="330" cy="25" r="5" fill="#34d399" />
+              </svg>
+            </div>
+
+            <div class="text-xs text-slate-300 font-mono bg-slate-800/80 p-2 rounded flex justify-between">
+              <span>Example: <span id="sim-example-text" class="text-indigo-300">Profits rose in the third quarter.</span></span>
+              <button onclick="playAudioTone(440, 'triangle')" title="Play Sound Feedback" class="hover:text-white"><i class="ph ph-speaker-high"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core 7 Vocabulary Cards Grid -->
+      <div id="word-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered by JS from VOCAB_DATA -->
+      </div>
+
+      <!-- Grammar Comparison Feature: Noun vs Verb Form -->
+      <div class="bg-gradient-to-br from-indigo-50 to-slate-100 rounded-2xl border border-indigo-200/80 p-6 space-y-4">
+        <div class="flex items-center gap-2">
+          <i class="ph ph-arrows-left-right text-indigo-600 text-xl font-bold"></i>
+          <h3 class="font-bold text-slate-900 text-lg">Sentence Architecture: Nouns vs. Verbs</h3>
+        </div>
+        <p class="text-sm text-slate-600">
+          Professional communication relies on alternating between <strong>verb + adverb</strong> patterns and <strong>there is/was + adjective + noun</strong> patterns.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Structure 1: Verb Pattern</span>
+            <p class="text-sm font-semibold text-slate-800">Subject + <span class="text-indigo-600 font-bold">Verb</span> + <span class="text-amber-600 font-bold">Adverb</span></p>
+            <div class="bg-slate-50 p-3 rounded-lg text-xs space-y-1.5 text-slate-700">
+              <p>• Prices <strong class="text-indigo-600">fell</strong> <span class="text-amber-600">sharply</span> last week.</p>
+              <p>• Sales <strong class="text-indigo-600">grew</strong> <span class="text-amber-600">quickly</span> this year.</p>
+              <p>• Costs have <strong class="text-indigo-600">decreased</strong> <span class="text-amber-600">slowly</span>.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Structure 2: Noun Pattern</span>
+            <p class="text-sm font-semibold text-slate-800">There was a + <span class="text-amber-600 font-bold">Adjective</span> + <span class="text-emerald-600 font-bold">Noun</span> + in...</p>
+            <div class="bg-slate-50 p-3 rounded-lg text-xs space-y-1.5 text-slate-700">
+              <p>• There was a <span class="text-amber-600">sharp</span> <strong class="text-emerald-600">fall</strong> in prices last week.</p>
+              <p>• We saw <span class="text-amber-600">fast</span> <strong class="text-emerald-600">growth</strong> in sales this year.</p>
+              <p>• There was a <span class="text-amber-600">slow</span> <strong class="text-emerald-600">decrease</strong> in costs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: PRACTICE ARENA (10 EXERCISES) ================= -->
+    <section id="section-practice" class="space-y-6 hidden">
+      <!-- Arena Header & Progress Dashboard -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-amber-100 text-amber-700">
+              <i class="ph ph-target text-xl"></i>
+            </span>
+            <div>
+              <h2 class="text-xl font-extrabold font-display text-slate-900">Interactive Practice Arena</h2>
+              <p class="text-xs text-slate-500">Test your mastery across 10 interactive challenges: Drag & Drop + Precision Typing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 w-full sm:w-auto justify-end">
+          <div class="text-right">
+            <div class="text-xs text-slate-400 font-semibold uppercase">Score</div>
+            <div class="text-2xl font-black text-indigo-600 font-display" id="total-score-display">0 / 10</div>
+          </div>
+          <button onclick="resetAllExercises()" class="px-3.5 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition flex items-center gap-1.5">
+            <i class="ph ph-arrow-counter-clockwise font-bold"></i> Reset All
+          </button>
+        </div>
+      </div>
+
+      <!-- Exercise Cards Container -->
+      <div id="exercises-list" class="space-y-6">
+        <!-- Injected dynamically by JS -->
+      </div>
+
+      <!-- Final Completion Modal Card (Hidden until all completed) -->
+      <div id="completion-banner" class="hidden bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-3xl p-8 text-center space-y-4 shadow-xl">
+        <div class="w-16 h-16 mx-auto bg-white/20 rounded-full flex items-center justify-center text-3xl">
+          🎉
+        </div>
+        <h3 class="text-3xl font-extrabold font-display">Splendid Work!</h3>
+        <p class="max-w-md mx-auto text-emerald-100 text-sm">
+          You have mastered the forms, nouns, verbs, and graph trends for fall, increase, grow, drop, decrease, rise, and decline!
+        </p>
+        <button onclick="switchTab('grammar')" class="px-6 py-2.5 rounded-xl bg-white text-emerald-800 font-bold text-sm shadow-md hover:bg-emerald-50 transition">
+          Review Grammar Hub
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-6">
+    <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500 space-y-1">
+      <p class="font-semibold text-slate-700">Mastering Trend Vocabulary</p>
+      <p class="text-slate-400 font-medium">Designed by Babak Alaee • Interactive Learning Experience</p>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT APPLICATION CODE ================= -->
+  <script>
+    /* ==========================================================
+       1. DATA STRUCTURES (7 WORDS & EXERCISES)
+       ========================================================== */
+    const VOCAB_DATA = [
+      {
+        word: "rise",
+        type: "up",
+        verb: { base: "rise", past: "rose", participle: "risen" },
+        noun: "a rise",
+        irregular: true,
+        def: "To go up or move to a higher level.",
+        example: "Ticket prices rose last month.",
+        nounExample: "There was a rise in ticket prices.",
+        svgPath: "M 20 75 Q 80 70 120 40 T 180 15",
+        color: "#10b981"
+      },
+      {
+        word: "increase",
+        type: "up",
+        verb: { base: "increase", past: "increased", participle: "increased" },
+        noun: "an increase",
+        irregular: false,
+        def: "To become bigger in number, amount, or size.",
+        example: "The school increased the number of computers.",
+        nounExample: "There was an increase in students this year.",
+        svgPath: "M 20 80 L 100 50 L 180 20",
+        color: "#10b981"
+      },
+      {
+        word: "grow",
+        type: "up",
+        verb: { base: "grow", past: "grew", participle: "grown" },
+        noun: "growth",
+        irregular: true,
+        def: "To become larger or develop over time.",
+        example: "Our company grew very fast last year.",
+        nounExample: "We saw strong growth in sales.",
+        svgPath: "M 20 85 C 60 85, 100 65, 180 15",
+        color: "#10b981"
+      },
+      {
+        word: "fall",
+        type: "down",
+        verb: { base: "fall", past: "fell", participle: "fallen" },
+        noun: "a fall",
+        irregular: true,
+        def: "To go down to a lower level or number.",
+        example: "The price of petrol fell yesterday.",
+        nounExample: "There was a fall in fuel prices.",
+        svgPath: "M 20 20 Q 80 25 120 60 T 180 85",
+        color: "#f43f5e"
+      },
+      {
+        word: "drop",
+        type: "down",
+        verb: { base: "drop", past: "dropped", participle: "dropped" },
+        noun: "a drop",
+        irregular: false,
+        def: "To go down quickly to a lower level.",
+        example: "The room temperature dropped suddenly.",
+        nounExample: "We noticed a sudden drop in website visitors.",
+        svgPath: "M 20 25 L 80 35 L 180 85",
+        color: "#f43f5e"
+      },
+      {
+        word: "decrease",
+        type: "down",
+        verb: { base: "decrease", past: "decreased", participle: "decreased" },
+        noun: "a decrease",
+        irregular: false,
+        def: "To become less or smaller.",
+        example: "Car accidents decreased by ten percent.",
+        nounExample: "There was a decrease in office spending.",
+        svgPath: "M 20 20 L 100 50 L 180 80",
+        color: "#f43f5e"
+      },
+      {
+        word: "decline",
+        type: "down",
+        verb: { base: "decline", past: "declined", participle: "declined" },
+        noun: "a decline",
+        irregular: false,
+        def: "To go down gradually over time.",
+        example: "The number of smokers declined last year.",
+        nounExample: "The town saw a decline in bus riders.",
+        svgPath: "M 20 25 C 70 30, 110 50, 180 85",
+        color: "#f43f5e"
+      }
+    ];
+
+    const STORY_SEGMENTS = {
+      1: {
+        badge: "Upward Trend",
+        type: "up",
+        time: "Period: January - April",
+        headline: "Sales rose quickly from 30 to 70 units.",
+        description: "Between January and April, sales went up. We can use the past simple verb <strong>rose</strong> (from <em>rise</em>) or the noun: 'There was a sharp <strong>rise</strong> in sales.'",
+        verbEx: "Sales rose quickly.",
+        nounEx: "There was a sharp rise in sales.",
+        correctVerb: "rose",
+        options: ["rose", "fell", "dropped"]
+      },
+      2: {
+        badge: "Downward Trend",
+        type: "down",
+        time: "Period: April - June",
+        headline: "Sales dropped from 70 to 35 units.",
+        description: "Between April and June, sales went down quickly. We use the past simple verb <strong>dropped</strong> (from <em>drop</em>) or the noun: 'There was a big <strong>drop</strong> in sales.'",
+        verbEx: "Sales dropped quickly.",
+        nounEx: "There was a sudden drop in sales.",
+        correctVerb: "dropped",
+        options: ["grew", "dropped", "rose"]
+      },
+      3: {
+        badge: "Upward Trend",
+        type: "up",
+        time: "Period: June - September",
+        headline: "The business grew steadily to 80 units.",
+        description: "Between June and September, sales moved upward again. We use the past simple verb <strong>grew</strong> (from <em>grow</em>) or the noun <strong>growth</strong>.",
+        verbEx: "Sales grew steadily.",
+        nounEx: "The company saw strong growth.",
+        correctVerb: "grew",
+        options: ["decreased", "grew", "fell"]
+      },
+      4: {
+        badge: "Downward Trend",
+        type: "down",
+        time: "Period: September - December",
+        headline: "Numbers declined to 50 units.",
+        description: "Between September and December, sales went down slowly. We use the past simple verb <strong>declined</strong> (from <em>decline</em>) or the noun <strong>decline</strong>.",
+        verbEx: "Numbers declined slowly.",
+        nounEx: "There was a gradual decline.",
+        correctVerb: "declined",
+        options: ["increased", "rose", "declined"]
+      }
+    };
+
+    /* 10 PRACTICE EXERCISES */
+    const EXERCISES_CONFIG = [
+      // 1. Drag & Drop: Direction Classification
+      {
+        id: 1,
+        type: "drag_bucket",
+        title: "Exercise 1: Sort by Trend Direction",
+        instruction: "Drag each word into either the Upward or Downward box.",
+        words: [
+          { text: "increase", category: "up" },
+          { text: "fall", category: "down" },
+          { text: "rise", category: "up" },
+          { text: "drop", category: "down" },
+          { text: "grow", category: "up" },
+          { text: "decline", category: "down" }
+        ],
+        buckets: [
+          { id: "up", label: "Upward Trend ↗", bg: "bg-emerald-50/70 border-emerald-300 text-emerald-800" },
+          { id: "down", label: "Downward Trend ↘", bg: "bg-rose-50/70 border-rose-300 text-rose-800" }
+        ],
+        explanation: "Upward words show numbers going up (increase, rise, grow). Downward words show numbers going down (fall, drop, decline)."
+      },
+      // 2. Typing: Irregular Past Simple of "rise"
+      {
+        id: 2,
+        type: "typing",
+        title: "Exercise 2: Past Simple Verb Form",
+        instruction: "Type the past simple of the verb in parentheses.",
+        sentence: "Last year, food prices (rise) {input} by ten percent.",
+        accepted: ["rose"],
+        hint: "Remember: 'rise' is irregular: rise -> ... -> risen.",
+        explanation: "The past simple of 'rise' is 'rose'. E.g., 'Prices rose last year.'"
+      },
+      // 3. Typing: Noun form of "grow"
+      {
+        id: 3,
+        type: "typing",
+        title: "Exercise 3: Verb to Noun Form",
+        instruction: "Type the noun form of 'grow' to complete the sentence.",
+        sentence: "The shop grew very fast. We saw amazing {input} this month.",
+        accepted: ["growth"],
+        hint: "This noun ends with the letters '-th'.",
+        explanation: "The noun form of 'grow' is 'growth'. E.g., 'fast growth'."
+      },
+      // 4. Drag & Drop: Fill in blank with correct noun vs verb
+      {
+        id: 4,
+        type: "drag_slots",
+        title: "Exercise 4: Choose Verb or Noun",
+        instruction: "Drag each word into the matching sentence.",
+        tokens: ["fell", "fall"],
+        slots: [
+          { id: "s1", correct: "fell", before: "Ticket prices", after: "by five dollars yesterday." },
+          { id: "s2", correct: "fall", before: "There was a big", after: "in ticket prices." }
+        ],
+        explanation: "'Fell' is the past simple verb. 'Fall' is the noun after 'a big'."
+      },
+      // 5. Typing: Past Participle of "fall"
+      {
+        id: 5,
+        type: "typing",
+        title: "Exercise 5: Past Participle Form",
+        instruction: "Complete the sentence with the past participle of 'fall'.",
+        sentence: "House prices have (fall) {input} a lot this winter.",
+        accepted: ["fallen"],
+        hint: "The three verb forms are: fall / fell / ...",
+        explanation: "The past participle of 'fall' is 'fallen' (have fallen)."
+      },
+      // 6. Typing: Past simple of "drop"
+      {
+        id: 6,
+        type: "typing",
+        title: "Exercise 6: Spelling the Past Simple",
+        instruction: "Type the past simple of 'drop' (watch the spelling).",
+        sentence: "The temperature (drop) {input} quickly last night.",
+        accepted: ["dropped"],
+        hint: "Double the letter 'p' before adding -ed.",
+        explanation: "'Drop' doubles the 'p' in the past simple: 'dropped'."
+      },
+      // 7. Drag & Drop: Match Past Participles
+      {
+        id: 7,
+        type: "drag_match",
+        title: "Exercise 7: Match with Past Participle",
+        instruction: "Match each base verb to its past participle.",
+        pairs: [
+          { base: "rise", correct: "risen" },
+          { base: "grow", correct: "grown" },
+          { base: "fall", correct: "fallen" }
+        ],
+        cards: ["risen", "grown", "fallen"],
+        explanation: "The past participles are: rise -> risen, grow -> grown, fall -> fallen."
+      },
+      // 8. Typing: Noun pattern with "decrease"
+      {
+        id: 8,
+        type: "typing",
+        title: "Exercise 8: Noun Form",
+        instruction: "Complete the sentence using the noun form of 'decrease'.",
+        sentence: "There was a small {input} in customer visits this week.",
+        accepted: ["decrease"],
+        hint: "The noun form is spelled the same as the base verb.",
+        explanation: "The noun is 'a decrease': 'There was a small decrease.'"
+      },
+      // 9. Typing: Past Simple of "decline"
+      {
+        id: 9,
+        type: "typing",
+        title: "Exercise 9: Regular Past Tense",
+        instruction: "Type the past simple of 'decline'.",
+        sentence: "The number of visitors (decline) {input} slowly last month.",
+        accepted: ["declined"],
+        hint: "This is a regular verb ending in -e; just add -d.",
+        explanation: "The past simple of 'decline' is 'declined'."
+      },
+      // 10. Drag & Drop: Adverb vs Adjective
+      {
+        id: 10,
+        type: "drag_slots",
+        title: "Exercise 10: Adjective vs Adverb",
+        instruction: "Drag the correct words to complete the two sentences.",
+        tokens: ["quickly", "quick"],
+        slots: [
+          { id: "s10_1", correct: "quickly", before: "Sales increased", after: "in summer." },
+          { id: "s10_2", correct: "quick", before: "There was a", after: "increase in sales." }
+        ],
+        explanation: "Use the adverb 'quickly' to describe the verb 'increased'. Use the adjective 'quick' before the noun 'increase'."
+      }
+    ];
+
+    /* ==========================================================
+       2. WEB AUDIO API SYNTHESIZER
+       ========================================================== */
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playAudioTone(freq, type = 'sine', duration = 0.15) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn("Audio play prevented:", e);
+      }
+    }
+
+    function playSuccessChime() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + i * 0.07);
+
+          gain.gain.setValueAtTime(0.1, now + i * 0.07);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 0.25);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(now + i * 0.07);
+          osc.stop(now + i * 0.07 + 0.25);
+        });
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    function playErrorThud() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.22);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.22);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    /* ==========================================================
+       3. NAVIGATION & TAB SWITCHING
+       ========================================================== */
+    function switchTab(tabId) {
+      const tabs = ['explore', 'grammar', 'practice'];
+      tabs.forEach(t => {
+        const section = document.getElementById(`section-${t}`);
+        const btn = document.getElementById(`nav-${t}`);
+        if (t === tabId) {
+          section.classList.remove('hidden');
+          btn.className = "tab-btn px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-sm transition-all flex items-center gap-1.5 font-bold";
+        } else {
+          section.classList.add('hidden');
+          btn.className = "tab-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5 font-semibold";
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ==========================================================
+       4. SECTION 1 LOGIC (EXPOSURE STORY SEGMENTS & QUIZ)
+       ========================================================== */
+    let currentStorySegment = 1;
+
+    function renderStoryQuizOptions(segId) {
+      const data = STORY_SEGMENTS[segId];
+      const container = document.getElementById('story-verb-options');
+      const feedback = document.getElementById('story-quiz-feedback');
+      const status = document.getElementById('story-quiz-status');
+
+      feedback.className = "hidden p-2.5 rounded-lg text-xs font-medium";
+      feedback.textContent = "";
+      status.textContent = "Pick the best verb:";
+      container.innerHTML = "";
+
+      data.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.type = "button";
+        btn.textContent = opt;
+        btn.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white border border-slate-300 text-slate-700 hover:border-indigo-500 hover:text-indigo-600 shadow-sm transition";
+        btn.onclick = () => checkStoryQuizAnswer(segId, opt, btn);
+        container.appendChild(btn);
+      });
+    }
+
+    function checkStoryQuizAnswer(segId, chosenVerb, clickedBtn) {
+      const data = STORY_SEGMENTS[segId];
+      const feedback = document.getElementById('story-quiz-feedback');
+      const status = document.getElementById('story-quiz-status');
+      const allButtons = document.querySelectorAll('#story-verb-options button');
+
+      if (chosenVerb === data.correctVerb) {
+        playSuccessChime();
+        status.textContent = "Great job!";
+        feedback.className = "p-2.5 rounded-lg text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200 block";
+        feedback.innerHTML = `<strong>Correct!</strong> In this period, sales <em>${data.correctVerb}</em>.`;
+        
+        allButtons.forEach(b => {
+          if (b.textContent === data.correctVerb) {
+            b.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-600 shadow-sm";
+          } else {
+            b.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed";
+            b.disabled = true;
+          }
+        });
+      } else {
+        playErrorThud();
+        status.textContent = "Try again!";
+        feedback.className = "p-2.5 rounded-lg text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200 block";
+        feedback.innerHTML = `<strong>Not quite.</strong> Look at the line: does it go up or down?`;
+        clickedBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-rose-50 text-rose-700 border border-rose-300";
+      }
+    }
+
+    function selectStorySegment(segId) {
+      currentStorySegment = segId;
+      const data = STORY_SEGMENTS[segId];
+      if (!data) return;
+
+      playAudioTone(380 + segId * 60, 'sine', 0.12);
+
+      // Reset button styles
+      for (let i = 1; i <= 4; i++) {
+        const b = document.getElementById(`story-btn-${i}`);
+        const path = document.getElementById(`path-seg-${i}`);
+        if (i === segId) {
+          b.className = "story-btn p-3 rounded-xl border border-indigo-300 text-left transition-all bg-indigo-50/70 ring-2 ring-indigo-500/20";
+          path.classList.add('stroke-[6]');
+        } else {
+          b.className = "story-btn p-3 rounded-xl border border-slate-200 text-left transition-all hover:bg-slate-50";
+          path.classList.remove('stroke-[6]');
+        }
+      }
+
+      // Update text
+      document.getElementById('story-badge').textContent = data.badge;
+      document.getElementById('story-badge').className = data.type === 'up'
+        ? "px-2.5 py-1 text-xs font-bold rounded-md bg-emerald-100 text-emerald-800 inline-flex items-center gap-1"
+        : "px-2.5 py-1 text-xs font-bold rounded-md bg-rose-100 text-rose-800 inline-flex items-center gap-1";
+      document.getElementById('story-time').textContent = data.time;
+      document.getElementById('story-headline').innerHTML = data.headline;
+      document.getElementById('story-description').innerHTML = data.description;
+      document.getElementById('story-verb-ex').textContent = data.verbEx;
+      document.getElementById('story-noun-ex').textContent = data.nounEx;
+
+      // Update interactive verb prompt
+      renderStoryQuizOptions(segId);
+    }
+
+    /* ==========================================================
+       5. SECTION 2 LOGIC (GRAMMAR CARDS & SIMULATOR)
+       ========================================================== */
+    function renderWordCards(filter = 'all') {
+      const container = document.getElementById('word-cards-container');
+      container.innerHTML = '';
+
+      const filtered = VOCAB_DATA.filter(item => {
+        if (filter === 'up') return item.type === 'up';
+        if (filter === 'down') return item.type === 'down';
+        return true;
+      });
+
+      filtered.forEach(v => {
+        const isUp = v.type === 'up';
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl border border-slate-200/90 hover:border-indigo-300 transition-all p-5 shadow-sm hover:shadow-md flex flex-col justify-between space-y-4 group";
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg ${isUp ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'} flex items-center justify-center font-bold">
+                  <i class="ph ${isUp ? 'ph-arrow-up-right' : 'ph-arrow-down-right'} text-lg"></i>
+                </span>
+                <div>
+                  <h4 class="font-extrabold text-lg text-slate-900 group-hover:text-indigo-600 transition-colors">${v.word}</h4>
+                  <span class="text-[11px] font-semibold text-slate-400 capitalize">${isUp ? 'Upward Trend' : 'Downward Trend'}</span>
+                </div>
+              </div>
+              <span class="text-xs font-mono px-2 py-0.5 rounded ${v.irregular ? 'bg-amber-100 text-amber-800 font-bold' : 'bg-slate-100 text-slate-600'}">
+                ${v.irregular ? 'Irregular' : 'Regular'}
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-600 mt-3 line-clamp-2">${v.def}</p>
+
+            <!-- Line representation preview -->
+            <div class="mt-3 py-1.5 px-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] font-medium text-slate-500">Visual Trajectory:</span>
+              <svg viewBox="0 0 200 100" class="w-24 h-8 overflow-visible">
+                <path d="${v.svgPath}" fill="none" stroke="${v.color}" stroke-width="3" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <!-- Forms Table -->
+            <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100/50">
+                <div class="text-[10px] font-bold uppercase text-indigo-700">Past Simple</div>
+                <div class="font-bold text-slate-800 font-mono mt-0.5">${v.verb.past}</div>
+              </div>
+              <div class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100/50">
+                <div class="text-[10px] font-bold uppercase text-indigo-700">Past Participle</div>
+                <div class="font-bold text-slate-800 font-mono mt-0.5">${v.verb.participle}</div>
+              </div>
+            </div>
+
+            <!-- Noun form -->
+            <div class="mt-2 bg-slate-100/80 p-2 rounded-lg text-xs flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500">Noun Equivalent:</span>
+              <span class="font-bold text-slate-800">${v.noun}</span>
+            </div>
+          </div>
+
+          <!-- Example sentence toggle -->
+          <div class="pt-3 border-t border-slate-100 text-xs space-y-1">
+            <p class="text-slate-700"><span class="font-semibold text-slate-400">Verb:</span> ${v.example}</p>
+            <p class="text-slate-500"><span class="font-semibold text-slate-400">Noun:</span> ${v.nounExample}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterTrendCategory(category) {
+      ['all', 'up', 'down'].forEach(cat => {
+        const btn = document.getElementById(`filter-${cat}`);
+        if (cat === category) {
+          btn.className = "filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-600 text-white shadow-sm";
+        } else {
+          btn.className = "filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200";
+        }
+      });
+      renderWordCards(category);
+    }
+
+    function setupSimulatorButtons() {
+      const container = document.getElementById('sim-word-buttons');
+      container.innerHTML = '';
+      VOCAB_DATA.forEach((v, index) => {
+        const btn = document.createElement('button');
+        btn.id = `sim-btn-${v.word}`;
+        btn.textContent = v.word;
+        btn.className = `text-xs font-bold px-3 py-1.5 rounded-lg border transition ${
+          index === 0 ? 'bg-indigo-600 text-white border-indigo-600 shadow' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
+        }`;
+        btn.onclick = () => selectSimulatorWord(v);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectSimulatorWord(item) {
+      VOCAB_DATA.forEach(v => {
+        const b = document.getElementById(`sim-btn-${v.word}`);
+        if (b) {
+          if (v.word === item.word) {
+            b.className = "text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-600 text-white border-indigo-600 shadow";
+          } else {
+            b.className = "text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200";
+          }
+        }
+      });
+
+      document.getElementById('sim-display-name').textContent = item.word;
+      const typeSpan = document.getElementById('sim-display-type');
+      typeSpan.textContent = item.type === 'up' ? "Upward Movement ↗" : "Downward Movement ↘";
+      typeSpan.className = item.type === 'up'
+        ? "px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold"
+        : "px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-semibold";
+
+      document.getElementById('sim-example-text').textContent = item.example;
+
+      // Animate SVG path
+      const pathEl = document.getElementById('sim-path');
+      const endPoint = document.getElementById('sim-end-point');
+
+      let d = "";
+      let targetX = 330;
+      let targetY = 25;
+
+      if (item.type === 'up') {
+        if (item.word === 'grow') {
+          d = "M 30 100 C 100 100, 180 80, 330 20";
+        } else if (item.word === 'rise') {
+          d = "M 30 95 C 120 90, 200 40, 330 25";
+        } else {
+          d = "M 30 95 L 180 60 L 330 25";
+        }
+        targetY = 22;
+        pathEl.setAttribute('stroke', '#10b981');
+        endPoint.setAttribute('fill', '#34d399');
+      } else {
+        if (item.word === 'drop') {
+          d = "M 30 25 L 140 35 L 330 100";
+        } else if (item.word === 'decline') {
+          d = "M 30 25 C 120 30, 200 60, 330 95";
+        } else {
+          d = "M 30 25 Q 160 30 330 98";
+        }
+        targetY = 98;
+        pathEl.setAttribute('stroke', '#f43f5e');
+        endPoint.setAttribute('fill', '#fb7185');
+      }
+
+      pathEl.setAttribute('d', d);
+      endPoint.setAttribute('cx', targetX);
+      endPoint.setAttribute('cy', targetY);
+
+      // Re-trigger animation
+      pathEl.classList.remove('trend-path');
+      void pathEl.offsetWidth; // trigger reflow
+      pathEl.classList.add('trend-path');
+
+      playAudioTone(item.type === 'up' ? 560 : 280, 'sine', 0.15);
+    }
+
+    /* ==========================================================
+       6. SECTION 3 LOGIC (EXERCISE GENERATION & VALIDATION)
+       ========================================================== */
+    const userAnswersState = {};
+
+    function renderExercises() {
+      const container = document.getElementById('exercises-list');
+      container.innerHTML = '';
+
+      EXERCISES_CONFIG.forEach(ex => {
+        const card = document.createElement('div');
+        card.id = `ex-card-${ex.id}`;
+        card.className = "bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6 space-y-4 transition-all";
+
+        let exerciseBody = '';
+
+        // TYPE 1: BUCKET DRAG & DROP
+        if (ex.type === "drag_bucket") {
+          exerciseBody = `
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-2.5 p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl min-h-[58px]" id="bucket-source-${ex.id}">
+                ${ex.words.map((w, idx) => `
+                  <div id="drag-item-${ex.id}-${idx}" 
+                       draggable="true" 
+                       ondragstart="handleDragStart(event)" 
+                       data-word="${w.text}"
+                       data-correct="${w.category}" 
+                       class="draggable-card cursor-grab active:cursor-grabbing bg-white px-3.5 py-1.5 rounded-lg border border-slate-300 shadow-sm text-xs font-bold text-slate-800 hover:border-indigo-400 hover:text-indigo-600 transition flex items-center gap-1.5">
+                    <i class="ph ph-dots-six-vertical text-slate-400"></i>
+                    <span>${w.text}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                ${ex.buckets.map(b => `
+                  <div id="bucket-${ex.id}-${b.id}" 
+                       ondragover="handleDragOver(event)" 
+                       ondragleave="handleDragLeave(event)" 
+                       ondrop="handleBucketDrop(event, ${ex.id}, '${b.id}')"
+                       class="p-4 rounded-xl border-2 border-dashed ${b.bg} min-h-[140px] flex flex-col justify-start transition-all">
+                    <span class="text-xs font-extrabold uppercase tracking-wide block mb-2">${b.label}</span>
+                    <div class="bucket-content flex flex-wrap gap-2" id="bucket-content-${ex.id}-${b.id}"></div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        // TYPE 2: TYPING EXERCISE
+        else if (ex.type === "typing") {
+          const formattedSentence = ex.sentence.replace('{input}', `
+            <input type="text" 
+                   id="input-ex-${ex.id}" 
+                   autocomplete="off" 
+                   spellcheck="false" 
+                   class="inline-block mx-1.5 px-3 py-1 w-32 sm:w-40 text-center font-bold font-mono text-indigo-700 bg-slate-50 border-2 border-slate-300 rounded-lg focus:outline-none focus:border-indigo-600 focus:bg-white text-sm transition" 
+                   placeholder="type form..." 
+                   onkeydown="if(event.key==='Enter') checkTypingExercise(${ex.id})">
+          `);
+
+          exerciseBody = `
+            <div class="space-y-3">
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+                ${formattedSentence}
+              </div>
+              <p class="text-xs text-slate-400 italic">${ex.hint || ''}</p>
+            </div>
+          `;
+        }
+
+        // TYPE 3: DRAG SLOTS (SENTENCE BLANKS)
+        else if (ex.type === "drag_slots") {
+          exerciseBody = `
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-2.5 p-3 bg-slate-50 border border-slate-200/80 rounded-xl min-h-[50px]" id="slot-source-${ex.id}">
+                ${ex.tokens.map((token, idx) => `
+                  <div id="drag-token-${ex.id}-${idx}" 
+                       draggable="true" 
+                       ondragstart="handleDragStart(event)" 
+                       data-word="${token}" 
+                       class="draggable-card cursor-grab active:cursor-grabbing bg-white px-3.5 py-1.5 rounded-lg border border-slate-300 shadow-sm text-xs font-bold text-slate-800 hover:border-indigo-400 transition flex items-center gap-1.5">
+                    <i class="ph ph-dots-six-vertical text-slate-400"></i>
+                    <span>${token}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="space-y-2.5">
+                ${ex.slots.map((s, idx) => `
+                  <div class="p-3 bg-slate-50/70 border border-slate-200/70 rounded-xl text-sm text-slate-800 flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-slate-400">${idx + 1}.</span>
+                    <span>${s.before}</span>
+                    <div id="slot-target-${ex.id}-${s.id}" 
+                         ondragover="handleDragOver(event)" 
+                         ondragleave="handleDragLeave(event)" 
+                         ondrop="handleSlotDrop(event, ${ex.id}, '${s.id}')"
+                         data-correct="${s.correct}"
+                         class="slot-target min-w-[100px] h-9 border-2 border-dashed border-slate-300 rounded-lg bg-white flex items-center justify-center text-xs font-bold text-indigo-700 px-2 transition-all">
+                      <span class="placeholder text-[11px] text-slate-400 font-normal">Drop here</span>
+                    </div>
+                    <span>${s.after}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        // TYPE 4: MATCHING CARDS
+        else if (ex.type === "drag_match") {
+          exerciseBody = `
+            <div class="space-y-4">
+              <div class="flex flex-wrap gap-2 p-3 bg-slate-50 border border-slate-200/80 rounded-xl min-h-[50px]" id="match-source-${ex.id}">
+                ${ex.cards.map((c, idx) => `
+                  <div id="drag-match-${ex.id}-${idx}" 
+                       draggable="true" 
+                       ondragstart="handleDragStart(event)" 
+                       data-word="${c}" 
+                       class="draggable-card cursor-grab active:cursor-grabbing bg-white px-3.5 py-1.5 rounded-lg border border-slate-300 shadow-sm text-xs font-bold text-slate-800 hover:border-indigo-400 transition flex items-center gap-1.5">
+                    <i class="ph ph-dots-six-vertical text-slate-400"></i>
+                    <span>${c}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                ${ex.pairs.map(p => `
+                  <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-between space-y-2">
+                    <div class="flex justify-between items-center">
+                      <span class="text-xs text-slate-500 font-medium">Infinitive:</span>
+                      <span class="text-xs font-bold text-indigo-700 font-mono">${p.base}</span>
+                    </div>
+                    <div id="match-target-${ex.id}-${p.base}" 
+                         ondragover="handleDragOver(event)" 
+                         ondragleave="handleDragLeave(event)" 
+                         ondrop="handleMatchDrop(event, ${ex.id}, '${p.base}')"
+                         data-correct="${p.correct}"
+                         class="match-target h-10 border-2 border-dashed border-slate-300 rounded-lg bg-white flex items-center justify-center text-xs font-bold text-indigo-700 transition-all">
+                      <span class="placeholder text-[11px] text-slate-400 font-normal">Drop participle</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        // Card Template
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <span class="text-[11px] font-extrabold tracking-wider uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">
+                ${ex.type.replace('_', ' ')}
+              </span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg mt-1">${ex.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">${ex.instruction}</p>
+            </div>
+            <div id="status-icon-${ex.id}" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-base">
+              <i class="ph ph-question"></i>
+            </div>
+          </div>
+
+          <!-- Dynamic Exercise Content Area -->
+          <div class="pt-2">
+            ${exerciseBody}
+          </div>
+
+          <!-- Feedback & Explanation Box -->
+          <div id="feedback-${ex.id}" class="hidden p-3.5 rounded-xl text-xs space-y-1 transition-all"></div>
+
+          <!-- Action Buttons -->
+          <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+            <button onclick="resetExercise(${ex.id})" class="text-xs font-semibold text-slate-500 hover:text-slate-800 transition">
+              Reset this question
+            </button>
+            <button onclick="checkExercise(${ex.id})" id="check-btn-${ex.id}" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-100 transition flex items-center gap-1.5">
+              <span>Check Answer</span>
+              <i class="ph ph-check-circle"></i>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    /* ==========================================================
+       7. DRAG AND DROP HANDLERS (HTML5 + TOUCH COMPATIBLE)
+       ========================================================== */
+    let draggedElement = null;
+
+    function handleDragStart(e) {
+      draggedElement = e.currentTarget;
+      e.dataTransfer.setData('text/plain', e.currentTarget.id);
+      e.dataTransfer.effectAllowed = 'move';
+      playAudioTone(300, 'sine', 0.05);
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      e.currentTarget.classList.add('drop-active');
+    }
+
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove('drop-active');
+    }
+
+    // Drop handler for Bucket classification (Ex 1)
+    function handleBucketDrop(e, exId, bucketId) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drop-active');
+      if (!draggedElement) return;
+
+      const targetContainer = document.getElementById(`bucket-content-${exId}-${bucketId}`);
+      targetContainer.appendChild(draggedElement);
+      draggedElement = null;
+      playAudioTone(400, 'sine', 0.08);
+    }
+
+    // Drop handler for Sentence blanks (Ex 4, Ex 10)
+    function handleSlotDrop(e, exId, slotId) {
+      e.preventDefault();
+      const dropZone = e.currentTarget;
+      dropZone.classList.remove('drop-active');
+      if (!draggedElement) return;
+
+      // If slot already contains a child, move it back to source
+      const existing = dropZone.querySelector('.draggable-card');
+      if (existing) {
+        document.getElementById(`slot-source-${exId}`).appendChild(existing);
+      }
+
+      // Hide placeholder text
+      const ph = dropZone.querySelector('.placeholder');
+      if (ph) ph.style.display = 'none';
+
+      dropZone.appendChild(draggedElement);
+      draggedElement = null;
+      playAudioTone(420, 'sine', 0.08);
+    }
+
+    // Drop handler for Matching Cards (Ex 7)
+    function handleMatchDrop(e, exId, baseWord) {
+      e.preventDefault();
+      const dropZone = e.currentTarget;
+      dropZone.classList.remove('drop-active');
+      if (!draggedElement) return;
+
+      const existing = dropZone.querySelector('.draggable-card');
+      if (existing) {
+        document.getElementById(`match-source-${exId}`).appendChild(existing);
+      }
+
+      const ph = dropZone.querySelector('.placeholder');
+      if (ph) ph.style.display = 'none';
+
+      dropZone.appendChild(draggedElement);
+      draggedElement = null;
+      playAudioTone(420, 'sine', 0.08);
+    }
+
+    /* ==========================================================
+       8. CHECKING LOGIC & FEEDBACK ENGINE
+       ========================================================== */
+    function checkExercise(exId) {
+      const ex = EXERCISES_CONFIG.find(item => item.id === exId);
+      if (!ex) return;
+
+      let isCorrect = false;
+
+      // EXERCISE TYPE: BUCKET
+      if (ex.type === 'drag_bucket') {
+        let allSorted = true;
+        let misclassified = false;
+
+        const source = document.getElementById(`bucket-source-${exId}`);
+        if (source.querySelectorAll('.draggable-card').length > 0) {
+          allSorted = false;
+        }
+
+        ex.buckets.forEach(b => {
+          const content = document.getElementById(`bucket-content-${exId}-${b.id}`);
+          const cards = content.querySelectorAll('.draggable-card');
+          cards.forEach(card => {
+            if (card.dataset.correct !== b.id) {
+              misclassified = true;
+            }
+          });
+        });
+
+        isCorrect = allSorted && !misclassified;
+      }
+
+      // EXERCISE TYPE: TYPING
+      else if (ex.type === 'typing') {
+        const input = document.getElementById(`input-ex-${exId}`);
+        const userVal = input ? input.value.trim().toLowerCase() : '';
+        isCorrect = ex.accepted.map(a => a.toLowerCase()).includes(userVal);
+      }
+
+      // EXERCISE TYPE: DRAG SLOTS
+      else if (ex.type === 'drag_slots') {
+        let correctSlots = 0;
+        ex.slots.forEach(s => {
+          const slotEl = document.getElementById(`slot-target-${exId}-${s.id}`);
+          const card = slotEl ? slotEl.querySelector('.draggable-card') : null;
+          if (card && card.dataset.word.trim().toLowerCase() === s.correct.toLowerCase()) {
+            correctSlots++;
+          }
+        });
+        isCorrect = correctSlots === ex.slots.length;
+      }
+
+      // EXERCISE TYPE: MATCHING
+      else if (ex.type === 'drag_match') {
+        let correctMatches = 0;
+        ex.pairs.forEach(p => {
+          const targetEl = document.getElementById(`match-target-${exId}-${p.base}`);
+          const card = targetEl ? targetEl.querySelector('.draggable-card') : null;
+          if (card && card.dataset.word.trim().toLowerCase() === p.correct.toLowerCase()) {
+            correctMatches++;
+          }
+        });
+        isCorrect = correctMatches === ex.pairs.length;
+      }
+
+      // Display Status & Sound
+      displayFeedback(exId, isCorrect, ex.explanation);
+    }
+
+    function checkTypingExercise(exId) {
+      checkExercise(exId);
+    }
+
+    function displayFeedback(exId, isCorrect, explanationText) {
+      const fbBox = document.getElementById(`feedback-${exId}`);
+      const iconBox = document.getElementById(`status-icon-${exId}`);
+      const card = document.getElementById(`ex-card-${exId}`);
+
+      fbBox.classList.remove('hidden');
+
+      if (isCorrect) {
+        userAnswersState[exId] = true;
+        playSuccessChime();
+
+        card.className = "bg-white rounded-2xl border-2 border-emerald-300 shadow-md shadow-emerald-50 p-5 sm:p-6 space-y-4 transition-all";
+        iconBox.className = "w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg font-bold";
+        iconBox.innerHTML = '<i class="ph ph-check"></i>';
+
+        fbBox.className = "p-3.5 rounded-xl text-xs bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-1 block";
+        fbBox.innerHTML = `
+          <div class="flex items-center gap-1.5 font-bold text-emerald-800">
+            <i class="ph ph-check-circle text-base"></i> Correct! Well done.
+          </div>
+          <p class="text-emerald-700 leading-relaxed">${explanationText}</p>
+        `;
+      } else {
+        userAnswersState[exId] = false;
+        playErrorThud();
+
+        card.className = "bg-white rounded-2xl border-2 border-rose-300 shadow-md shadow-rose-50 p-5 sm:p-6 space-y-4 transition-all";
+        iconBox.className = "w-8 h-8 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-lg font-bold";
+        iconBox.innerHTML = '<i class="ph ph-x"></i>';
+
+        fbBox.className = "p-3.5 rounded-xl text-xs bg-rose-50 border border-rose-200 text-rose-900 space-y-1 block";
+        fbBox.innerHTML = `
+          <div class="flex items-center gap-1.5 font-bold text-rose-800">
+            <i class="ph ph-warning-circle text-base"></i> Not quite. Give it another try!
+          </div>
+          <p class="text-rose-700 leading-relaxed">${explanationText}</p>
+        `;
+      }
+
+      updateGlobalScore();
+    }
+
+    function updateGlobalScore() {
+      const correctCount = Object.values(userAnswersState).filter(Boolean).length;
+      document.getElementById('badge-score').textContent = `${correctCount}/10`;
+      document.getElementById('total-score-display').textContent = `${correctCount} / 10`;
+
+      const celebration = document.getElementById('completion-banner');
+      if (correctCount === 10) {
+        celebration.classList.remove('hidden');
+        celebration.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        celebration.classList.add('hidden');
+      }
+    }
+
+    function resetExercise(exId) {
+      delete userAnswersState[exId];
+      updateGlobalScore();
+
+      const card = document.getElementById(`ex-card-${exId}`);
+      card.className = "bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6 space-y-4 transition-all";
+
+      const iconBox = document.getElementById(`status-icon-${exId}`);
+      iconBox.className = "w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-base";
+      iconBox.innerHTML = '<i class="ph ph-question"></i>';
+
+      const fbBox = document.getElementById(`feedback-${exId}`);
+      fbBox.classList.add('hidden');
+
+      const ex = EXERCISES_CONFIG.find(i => i.id === exId);
+      if (!ex) return;
+
+      if (ex.type === 'typing') {
+        const inp = document.getElementById(`input-ex-${exId}`);
+        if (inp) inp.value = '';
+      } else if (ex.type === 'drag_bucket') {
+        const source = document.getElementById(`bucket-source-${exId}`);
+        ex.buckets.forEach(b => {
+          const content = document.getElementById(`bucket-content-${exId}-${b.id}`);
+          while (content.firstChild) {
+            source.appendChild(content.firstChild);
+          }
+        });
+      } else if (ex.type === 'drag_slots') {
+        const source = document.getElementById(`slot-source-${exId}`);
+        ex.slots.forEach(s => {
+          const slot = document.getElementById(`slot-target-${exId}-${s.id}`);
+          const cardEl = slot.querySelector('.draggable-card');
+          if (cardEl) source.appendChild(cardEl);
+          const ph = slot.querySelector('.placeholder');
+          if (ph) ph.style.display = 'block';
+        });
+      } else if (ex.type === 'drag_match') {
+        const source = document.getElementById(`match-source-${exId}`);
+        ex.pairs.forEach(p => {
+          const matchTarget = document.getElementById(`match-target-${exId}-${p.base}`);
+          const cardEl = matchTarget.querySelector('.draggable-card');
+          if (cardEl) source.appendChild(cardEl);
+          const ph = matchTarget.querySelector('.placeholder');
+          if (ph) ph.style.display = 'block';
+        });
+      }
+    }
+
+    function resetAllExercises() {
+      EXERCISES_CONFIG.forEach(ex => resetExercise(ex.id));
+      playAudioTone(220, 'sine', 0.2);
+    }
+
+    /* ==========================================================
+       9. INITIALIZATION ON WINDOW LOAD
+       ========================================================== */
+    window.addEventListener('load', () => {
+      // Initialize Section 1 story
+      selectStorySegment(1);
+
+      // Initialize Section 2 words & simulator
+      renderWordCards('all');
+      setupSimulatorButtons();
+
+      // Initialize Section 3 exercises
+      renderExercises();
+    });
+  </script>
+</body>
+</html>
