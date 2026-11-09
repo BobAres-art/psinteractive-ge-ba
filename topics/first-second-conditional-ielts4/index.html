@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Festival Journeys: First & Second Conditionals</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#4f46e5',
+              600: '#4338ca',
+              700: '#3730a3',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .draggable-chip {
+      touch-action: none;
+      user-select: none;
+    }
+    .morph-block {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- ================= TOP HEADER & NAVIGATION ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="p-2.5 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-sm shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <div>
+            <h1 class="text-xl sm:text-2xl font-extrabold font-display tracking-tight text-slate-900 leading-tight">
+              Conditionals in Context: World Festivals
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-500 font-medium">Designed by Babak Alaee</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Steps -->
+      <nav class="flex items-center gap-1 sm:gap-2 bg-slate-100 p-1.5 rounded-full border border-slate-200 text-xs sm:text-sm font-medium">
+        <a href="#section-stories" class="px-3.5 py-1.5 rounded-full transition-all text-slate-600 hover:text-indigo-600 hover:bg-white">1. Festival Stories</a>
+        <a href="#section-rules" class="px-3.5 py-1.5 rounded-full transition-all text-slate-600 hover:text-indigo-600 hover:bg-white">2. Form & Logic</a>
+        <a href="#section-practice" class="px-3.5 py-1.5 rounded-full transition-all text-slate-600 hover:text-indigo-600 hover:bg-white flex items-center gap-1.5">
+          <span>3. Practice Arena</span>
+          <span id="arena-score-pill" class="bg-indigo-600 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">0/10</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-6 text-center">
+    <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
+      Explore Real Future Plans vs. Pure Fantasy Dreams
+    </span>
+    <h2 class="text-3xl sm:text-5xl font-black font-display tracking-tight text-slate-900 mb-3">
+      Celebrations Around the World
+    </h2>
+    <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+      Read about world festivals in Venice, Rio, Chiang Mai, Harbin, Buñol, and Oaxaca. Pay attention to what is genuinely planned and what is only imagined!
+    </p>
+  </section>
+
+  <!-- ================= SECTION 1: EXPOSURE STORIES ================= -->
+  <section id="section-stories" class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-10">
+    <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+      <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">1</span>
+      <div>
+        <h3 class="text-xl sm:text-2xl font-bold font-display text-slate-900">Festival Immersion & Reading</h3>
+        <p class="text-xs sm:text-sm text-slate-500">Read each story carefully, then answer the comprehension question about the content.</p>
+      </div>
+    </div>
+
+    <!-- Story Card A: Venice & Rio -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-5 order-2 lg:order-1 space-y-3">
+        <div class="w-full h-52 bg-gradient-to-tr from-amber-50 to-indigo-50 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-100">
+          <!-- Carnival Vector Art -->
+          <svg class="w-44 h-44 drop-shadow-md transition-transform hover:scale-105 duration-300" viewBox="0 0 100 100" fill="none">
+            <path d="M10 45 C20 20, 40 30, 50 48 C60 30, 80 20, 90 45 C85 68, 65 72, 50 62 C35 72, 15 68, 10 45 Z" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+            <circle cx="32" cy="48" r="8" fill="#1e1b4b"/>
+            <circle cx="68" cy="48" r="8" fill="#1e1b4b"/>
+            <path d="M50 20 C50 5, 42 2, 35 10 C42 16, 48 20, 50 20Z" fill="#ec4899"/>
+            <path d="M50 20 C50 2, 58 2, 65 10 C58 16, 52 20, 50 20Z" fill="#3b82f6"/>
+            <path d="M50 20 C48 -5, 52 -5, 50 20Z" fill="#8b5cf6"/>
+          </svg>
+          <div class="absolute bottom-2.5 left-3 text-[11px] font-semibold tracking-wider uppercase text-slate-700 bg-white/90 px-2.5 py-0.5 rounded-md border border-slate-200 shadow-sm">
+            Venice & Rio Carnivals
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 order-1 lg:order-2 space-y-4">
+        <h4 class="text-xl font-bold font-display text-slate-900">Masks in Venice and Music in Rio</h4>
+        <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-3">
+          <p>
+            Elena is preparing for her winter trip to the Venice Carnival. She has packed warm coats, boots, and a decorative mask. She says: 
+            <span class="inline-block bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200 text-indigo-900 font-medium">"If the sea water rises in the morning, I will take the wooden walking bridges across Saint Mark's Square."</span> 
+            She knows the winter high tide is normal in Venice and the city always builds temporary raised bridges.
+          </p>
+          <p>
+            Later, while drinking hot chocolate, Elena laughs about the famous Rio Carnival in Brazil: 
+            <span class="inline-block bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200 text-purple-900 font-medium">"If I had wings, I would fly across the Atlantic ocean to dance on a parade float tonight."</span> 
+            Of course, humans cannot grow wings, and she must go to work on Monday.
+          </p>
+        </div>
+
+        <!-- Comprehension Question 1 -->
+        <div class="mt-4 pt-4 border-t border-slate-100 bg-slate-50 p-4 rounded-2xl space-y-3" id="story-q1">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Story Content Question
+          </div>
+          <p class="text-sm font-semibold text-slate-800">What does Elena plan to do if the sea water rises in Saint Mark's Square?</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" data-q="q1">
+            <button onclick="checkStoryQ('q1', 0)" class="option-btn text-left p-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition-all">
+              A. She will cross the square using the wooden walking bridges.
+            </button>
+            <button onclick="checkStoryQ('q1', 1)" class="option-btn text-left p-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition-all">
+              B. She will rent a motorboat to drive inside the cathedral.
+            </button>
+          </div>
+          <div id="q1-feedback" class="hidden text-xs p-3 rounded-xl"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Story Card B: Chiang Mai & Harbin -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-4">
+        <h4 class="text-xl font-bold font-display text-slate-900">Glowing Lanterns and Ice Castles</h4>
+        <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-3">
+          <p>
+            At the Yi Peng Festival in Chiang Mai, Thailand, Kenji holds a paper lantern with his family. The tour leader tells the group:
+            <span class="inline-block bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200 text-indigo-900 font-medium">"If you hold the lantern straight until the air gets warm, it will rise safely into the sky."</span>
+            Kenji holds it steady, and a moment later it lifts into the starry evening.
+          </p>
+          <p>
+            Afterwards, Kenji looks at travel photos of the Harbin Ice Festival in northeast China, where builders make giant castles out of thick river ice. He smiles:
+            <span class="inline-block bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200 text-purple-900 font-medium">"If people lived in houses made of solid ice, we would melt our walls every time we made soup!"</span>
+            He knows people only visit the ice buildings for entertainment during the freezing winter.
+          </p>
+        </div>
+
+        <!-- Comprehension Question 2 -->
+        <div class="mt-4 pt-4 border-t border-slate-100 bg-slate-50 p-4 rounded-2xl space-y-3" id="story-q2">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Story Content Question
+          </div>
+          <p class="text-sm font-semibold text-slate-800">According to the tour leader in Chiang Mai, how do you make the paper lantern fly?</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" data-q="q2">
+            <button onclick="checkStoryQ('q2', 0)" class="option-btn text-left p-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition-all">
+              A. You hold the lantern straight until the warm air fills it.
+            </button>
+            <button onclick="checkStoryQ('q2', 1)" class="option-btn text-left p-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition-all">
+              B. You throw it into the river so the water pushes it up.
+            </button>
+          </div>
+          <div id="q2-feedback" class="hidden text-xs p-3 rounded-xl"></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 space-y-3">
+        <div class="w-full h-52 bg-gradient-to-tr from-cyan-50 to-amber-50 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-100">
+          <!-- Sky Lanterns and Ice Spire -->
+          <svg class="w-44 h-44 drop-shadow-md" viewBox="0 0 120 120" fill="none">
+            <path d="M30 65 C25 45, 45 45, 40 65 C38 70, 32 70, 30 65Z" fill="#f59e0b" opacity="0.9"/>
+            <polygon points="34,70 36,70 35,74" fill="#d97706"/>
+            <path d="M70 35 C60 10, 90 10, 80 35 C77 42, 73 42, 70 35Z" fill="#fbbf24"/>
+            <polygon points="90,110 105,65 120,110" fill="#38bdf8" opacity="0.8"/>
+            <polygon points="65,110 75,75 85,110" fill="#7dd3fc" opacity="0.7"/>
+            <polygon points="80,110 95,50 110,110" fill="#0284c7" opacity="0.9"/>
+          </svg>
+          <div class="absolute bottom-2.5 left-3 text-[11px] font-semibold tracking-wider uppercase text-slate-700 bg-white/90 px-2.5 py-0.5 rounded-md border border-slate-200 shadow-sm">
+            Chiang Mai & Harbin
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Story Card C: Buñol & Oaxaca -->
+    <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-5 space-y-3">
+        <div class="w-full h-52 bg-gradient-to-tr from-rose-50 to-amber-50 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-100">
+          <!-- Tomato and Marigold Blossom -->
+          <svg class="w-40 h-40 drop-shadow-md" viewBox="0 0 100 100" fill="none">
+            <circle cx="45" cy="55" r="26" fill="#ef4444"/>
+            <path d="M42 28 C45 22, 48 22, 50 28 C52 24, 56 25, 54 30 C56 31, 52 33, 45 32 Z" fill="#15803d"/>
+            <circle cx="38" cy="48" r="4" fill="#fca5a5"/>
+            <circle cx="72" cy="40" r="14" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+            <circle cx="72" cy="40" r="6" fill="#b45309"/>
+          </svg>
+          <div class="absolute bottom-2.5 left-3 text-[11px] font-semibold tracking-wider uppercase text-slate-700 bg-white/90 px-2.5 py-0.5 rounded-md border border-slate-200 shadow-sm">
+            Buñol & Oaxaca
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-4">
+        <h4 class="text-xl font-bold font-display text-slate-900">Red Streets in Spain and Orange Flowers in Mexico</h4>
+        <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-3">
+          <p>
+            In the small Spanish town of Buñol, crowds gather for the tomato fight, La Tomatina. The safety rules are simple and strict. An organizer announces:
+            <span class="inline-block bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200 text-indigo-900 font-medium">"If you squeeze the tomato before throwing it, you will not hurt anyone."</span>
+            Participants also wear swimming goggles to keep the sour tomato juice out of their eyes.
+          </p>
+          <p>
+            In Oaxaca, Mexico, families celebrate the Day of the Dead by decorating altars with bright marigold petals and favorite foods. Sofia sits with her grandmother and dreams:
+            <span class="inline-block bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200 text-purple-900 font-medium">"If sweet festival bread rained from the sky, we would never need to bake again!"</span>
+            Her grandmother laughs and passes her the rolling pin so they can start baking bread together in the kitchen.
+          </p>
+        </div>
+
+        <!-- Comprehension Question 3 -->
+        <div class="mt-4 pt-4 border-t border-slate-100 bg-slate-50 p-4 rounded-2xl space-y-3" id="story-q3">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Story Content Question
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Why do participants squeeze the tomatoes before throwing them in Buñol?</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" data-q="q3">
+            <button onclick="checkStoryQ('q3', 0)" class="option-btn text-left p-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition-all">
+              A. To protect other people from getting hurt by hard fruit.
+            </button>
+            <button onclick="checkStoryQ('q3', 1)" class="option-btn text-left p-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition-all">
+              B. To make tomato sauce for an Italian pizza contest.
+            </button>
+          </div>
+          <div id="q3-feedback" class="hidden text-xs p-3 rounded-xl"></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= SECTION 2: FORM & RULES STUDIO ================= -->
+  <section id="section-rules" class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+    <div class="flex items-center gap-3 border-b border-slate-200 pb-3">
+      <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">2</span>
+      <div>
+        <h3 class="text-xl sm:text-2xl font-bold font-display text-slate-900">Form & Meaning Studio</h3>
+        <p class="text-xs sm:text-sm text-slate-500">Compare real future situations with improbable possibilities and completely unreal fantasies.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Morphing Engine -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Sentence Transformer</span>
+          <h4 id="mode-main-heading" class="text-2xl font-black font-display text-slate-900 mt-1">Realistic Future Plan</h4>
+        </div>
+        <!-- 3-Way Mode Switcher -->
+        <div class="inline-flex flex-wrap p-1.5 bg-slate-100 rounded-2xl border border-slate-200 gap-1 self-start lg:self-auto">
+          <button id="toggle-first" onclick="setConditionalMode('first')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-indigo-600 text-white shadow">
+            1st: Real Future Plan
+          </button>
+          <button id="toggle-second-improbable" onclick="setConditionalMode('second-improbable')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 text-slate-600 hover:text-slate-900">
+            2nd: Improbable Future (Low Chance)
+          </button>
+          <button id="toggle-second-unreal" onclick="setConditionalMode('second-unreal')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 text-slate-600 hover:text-slate-900">
+            2nd: Completely Unreal / Fantasy
+          </button>
+        </div>
+      </div>
+
+      <!-- Morph Display Canvas -->
+      <div class="p-6 sm:p-8 rounded-2xl bg-slate-50 border border-slate-200 space-y-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span id="morph-badge" class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-indigo-100 text-indigo-700 border border-indigo-200">
+              First Conditional
+            </span>
+            <span id="morph-likelihood" class="text-xs font-semibold text-emerald-600 flex items-center gap-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              Realistic Opportunity (Possible Future)
+            </span>
+          </div>
+          <span class="text-xs text-slate-500">Meaning Category: <strong id="morph-distance" class="text-slate-800">Real Life Action</strong></span>
+        </div>
+
+        <!-- Sentence Blocks -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- IF Clause Block -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Condition Clause (If...)</span>
+            <div class="text-lg sm:text-xl font-display font-bold text-slate-800 flex flex-wrap items-baseline gap-2">
+              <span id="morph-subj1">If I</span>
+              <span id="morph-verb1" class="morph-block px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200">
+                buy
+              </span>
+              <span id="morph-obj1" class="text-slate-700">a ticket tomorrow,</span>
+            </div>
+            <div class="pt-2 text-xs text-slate-500 border-t border-slate-100 flex items-center justify-between">
+              <span>Verb Form: <strong id="morph-tense1" class="text-indigo-600">Present Simple</strong></span>
+            </div>
+          </div>
+
+          <!-- RESULT Clause Block -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Result Clause (Consequence)</span>
+            <div class="text-lg sm:text-xl font-display font-bold text-slate-800 flex flex-wrap items-baseline gap-2">
+              <span id="morph-subj2">I</span>
+              <span id="morph-verb2" class="morph-block px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
+                will visit
+              </span>
+              <span id="morph-obj2" class="text-slate-700">the lantern festival.</span>
+            </div>
+            <div class="pt-2 text-xs text-slate-500 border-t border-slate-100 flex items-center justify-between">
+              <span>Modal Form: <strong id="morph-tense2" class="text-emerald-600">will + base verb</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explanation Card with 2nd Conditional Dual-Contrast -->
+        <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-3">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-indigo-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div id="morph-analysis" class="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-1">
+              <p><strong>First Conditional:</strong> Real, practical future situations. After <em>if</em>, use the <strong>Present Simple</strong> (buy). In the result clause, use <strong>will + base verb</strong> (will visit).</p>
+            </div>
+          </div>
+
+          <!-- Second Conditional Dual-Insight Callout -->
+          <div class="mt-3 pt-3 border-t border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200">
+              <span class="font-bold text-amber-900 block mb-1">Second Conditional Nuance A: Improbable Situation</span>
+              <p class="text-amber-800">Technically possible in real life, but the probability is tiny: <em class="font-medium">"If I won the grand lottery tomorrow, I would buy tickets for everyone."</em></p>
+            </div>
+            <div class="p-3 rounded-xl bg-purple-50/70 border border-purple-200">
+              <span class="font-bold text-purple-900 block mb-1">Second Conditional Nuance B: Completely Unreal / Fantasy</span>
+              <p class="text-purple-800">Contrary to nature or human facts; 100% imaginary: <em class="font-medium">"If humans had wings, we would fly above the lantern festival."</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Probability Gauge & Comma Inversion Control -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold uppercase tracking-wider text-slate-500">Likelihood Meter</span>
+            <span id="prob-num" class="font-mono font-bold text-indigo-600 text-sm">Likely & Real (~85%)</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden p-0.5">
+            <div id="prob-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-500 h-full rounded-full transition-all duration-500" style="width: 85%;"></div>
+          </div>
+          <p id="prob-desc" class="text-[11px] text-slate-500">Use <strong>First Conditional</strong> when the condition is genuinely planned and likely to happen.</p>
+        </div>
+
+        <!-- Comma Rules & Clause Order -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Clause Order & Comma Rule</span>
+            <button onclick="toggleClauseOrder()" class="text-xs font-semibold px-3 py-1 rounded-lg bg-white hover:bg-slate-100 text-indigo-600 border border-slate-300 shadow-sm transition-colors">
+              Flip Clauses ⇄
+            </button>
+          </div>
+          <p id="clause-flip-sample" class="font-mono text-xs sm:text-sm p-3 rounded-xl bg-white text-slate-800 border border-slate-200">
+            <span class="text-indigo-600 font-semibold">If I buy a ticket</span><span class="text-amber-500 font-black">,</span> I will visit the lantern festival.
+          </p>
+          <p id="clause-flip-note" class="text-[11px] text-slate-500">
+            When the 'If' clause comes first, use a <strong>comma (,)</strong>. When the result clause comes first, <strong>do not use a comma</strong>!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3: PRACTICE ARENA (10 EXERCISES) ================= -->
+  <section id="section-practice" class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">3</span>
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold font-display text-slate-900">Practice Arena</h3>
+          <p class="text-xs sm:text-sm text-slate-500">Complete all 10 interactive festival challenges to test your knowledge.</p>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="text-xs text-slate-500 block font-medium">Your Progress</span>
+        <span id="arena-counter" class="text-lg font-bold font-mono text-indigo-600">0 / 10 Completed</span>
+      </div>
+    </div>
+
+    <div class="space-y-6" id="exercises-container">
+
+      <!-- EXERCISE 1: Clause Matching -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="1">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 1 • Clause Matching</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Match each festival situation to its correct logical partner:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <span class="text-xs font-bold text-slate-500 block">Condition:</span>
+            <div class="p-3 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 font-medium">
+              1. "If I <strong class="text-purple-600">had wings like a bird</strong>..." (Fantasy)
+            </div>
+            <div class="p-3 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 font-medium">
+              2. "If the rain <strong class="text-indigo-600">stops</strong> before 8 PM..." (Real Future)
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <span class="text-xs font-bold text-slate-500 block">Choose Consequence:</span>
+            <div>
+              <label class="text-[11px] text-slate-500">For "If I had wings like a bird...":</label>
+              <select id="ex1-sel1" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:border-indigo-500 outline-none">
+                <option value="">-- Choose matching consequence --</option>
+                <option value="wrong">...we will buy warm hats for the ice palace.</option>
+                <option value="correct">...I would fly over the Venice canals without a boat.</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[11px] text-slate-500">For "If the rain stops before 8 PM...":</label>
+              <select id="ex1-sel2" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:border-indigo-500 outline-none">
+                <option value="">-- Choose matching consequence --</option>
+                <option value="correct">...they will launch the night fireworks.</option>
+                <option value="wrong">...I would fly to the moon in ten seconds.</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx1()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Check Matches</button>
+          <div id="ex1-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 2: Context Choice (Real Future) -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 2 • Realistic Plan Choice</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          At the Harbin Ice Festival, it is freezing cold right now. Choose the correct verbs for this real warning:
+        </p>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm leading-loose">
+          "If you
+          <select id="ex2-v1" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-semibold text-xs mx-1">
+            <option value="">[choose]</option>
+            <option value="forget">forget</option>
+            <option value="forgot">forgot</option>
+          </select>
+          your warm gloves, your hands
+          <select id="ex2-v2" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-semibold text-xs mx-1">
+            <option value="">[choose]</option>
+            <option value="will get">will get</option>
+            <option value="would get">would get</option>
+          </select>
+          very cold in a few minutes."
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx2()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Check Verbs</button>
+          <div id="ex2-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 3: Interactive Word Unscramble -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 3 • Unscramble the Fantasy Dream</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Click the words in the correct order to make an impossible fantasy sentence about living on clouds:
+        </p>
+        <div id="ex3-dropzone" class="min-h-[50px] p-3 rounded-xl bg-slate-50 border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center">
+          <span id="ex3-placeholder" class="text-xs text-slate-400 italic">Click the word tiles below...</span>
+        </div>
+        <div id="ex3-chips" class="flex flex-wrap gap-2 pt-1"></div>
+        <div class="flex items-center justify-between pt-2">
+          <div class="flex gap-2">
+            <button onclick="checkEx3()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Check Order</button>
+            <button onclick="resetEx3()" class="px-3.5 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs transition-all">Reset</button>
+          </div>
+          <div id="ex3-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 4: Typing Form Generation (Real Plan) -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 4 • Fill in the Verb Forms</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Type the correct forms of the verbs in brackets for this real festival plan in Spain:
+        </p>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm leading-relaxed">
+          "If the clock <input id="ex4-inp1" type="text" placeholder="(strike)" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-mono text-xs w-28 focus:border-indigo-500 outline-none"> twelve, the festival organizers <input id="ex4-inp2" type="text" placeholder="(open)" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-mono text-xs w-32 focus:border-indigo-500 outline-none"> the main gate."
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx4()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Verify Spelling</button>
+          <div id="ex4-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 5: Modal Choice (will vs. would) -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="5">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 5 • Choose 'will' or 'would'</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Look at the scenario: "If tomatoes grew as big as houses, we _______ use ladders to pick them."
+        </p>
+        <div class="space-y-2 text-xs">
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+            <input type="radio" name="ex5-radio" value="will" class="text-indigo-600">
+            <span class="text-slate-700 font-medium">will (Because it is a real plan for next week)</span>
+          </label>
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+            <input type="radio" name="ex5-radio" value="would" class="text-indigo-600">
+            <span class="text-slate-700 font-medium">would (Because tomatoes the size of houses is pure fantasy)</span>
+          </label>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx5()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Submit Answer</button>
+          <div id="ex5-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 6: Sentence Transformation -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="6">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 6 • Turn Real Plan into Fantasy</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Change this realistic plan into an impossible fantasy dream:
+        </p>
+        <div class="p-3 bg-indigo-50 rounded-xl border border-indigo-100 text-xs text-indigo-900">
+          <strong>Real Plan:</strong> "If I visit Venice, I will take a boat."
+        </div>
+        <p class="text-xs text-slate-600">
+          Fill in the blanks to make it a fantasy about turning into a dolphin:
+        </p>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm flex flex-wrap items-center gap-2">
+          <span>"If I</span>
+          <input id="ex6-v1" type="text" placeholder="were / was" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-mono text-xs w-28 focus:border-indigo-500 outline-none">
+          <span>a dolphin, I</span>
+          <input id="ex6-v2" type="text" placeholder="would swim" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-mono text-xs w-36 focus:border-indigo-500 outline-none">
+          <span>along the Grand Canal."</span>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx6()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Check Transformation</button>
+          <div id="ex6-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 7: Error Spotter -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="7">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 7 • Find the Grammar Mistake</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Find the mistake in this sentence about a real upcoming flight to Thailand:
+        </p>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm space-y-3">
+          <p class="text-slate-700">
+            "If our flight <span class="text-indigo-600 font-bold">lands</span> on time tomorrow, we <span class="underline decoration-wavy decoration-rose-500 font-bold text-rose-600">would see</span> the opening lantern parade."
+          </p>
+          <div class="space-y-1.5 text-xs">
+            <label class="flex items-center gap-2 p-2 rounded-lg bg-white border border-slate-200 cursor-pointer">
+              <input type="radio" name="ex7-radio" value="wrong" class="text-indigo-600">
+              <span class="text-slate-700">Change "lands" to "landed" because flights are always imaginary.</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded-lg bg-white border border-slate-200 cursor-pointer">
+              <input type="radio" name="ex7-radio" value="correct" class="text-indigo-600">
+              <span class="text-slate-700">Change "would see" to "will see" because landing on time is a real future event.</span>
+            </label>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx7()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Confirm Choice</button>
+          <div id="ex7-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 8: Classification Matrix -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="8">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 8 • Sort Realistic vs. Fantasy</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Decide whether each festival sentence is a realistic future plan or an impossible fantasy dream:
+        </p>
+        <div class="space-y-2 text-xs">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="text-slate-700">1. "If I buy a ticket this afternoon, I will go to the ice festival."</span>
+            <select id="ex8-s1" class="bg-white border border-slate-300 rounded px-3 py-1.5 text-slate-800 outline-none">
+              <option value="">Select type...</option>
+              <option value="real">Real Future Plan</option>
+              <option value="unreal">Fantasy / Unreal Dream</option>
+            </select>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="text-slate-700">2. "If animals could talk, they would sing carnival songs with us."</span>
+            <select id="ex8-s2" class="bg-white border border-slate-300 rounded px-3 py-1.5 text-slate-800 outline-none">
+              <option value="">Select type...</option>
+              <option value="real">Real Future Plan</option>
+              <option value="unreal">Fantasy / Unreal Dream</option>
+            </select>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="text-slate-700">3. "If the bakery opens at 7 AM, Sofia will buy fresh bread."</span>
+            <select id="ex8-s3" class="bg-white border border-slate-300 rounded px-3 py-1.5 text-slate-800 outline-none">
+              <option value="">Select type...</option>
+              <option value="real">Real Future Plan</option>
+              <option value="unreal">Fantasy / Unreal Dream</option>
+            </select>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span class="text-slate-700">4. "If trees grew chocolate bars, festival visitors would eat them all day."</span>
+            <select id="ex8-s4" class="bg-white border border-slate-300 rounded px-3 py-1.5 text-slate-800 outline-none">
+              <option value="">Select type...</option>
+              <option value="real">Real Future Plan</option>
+              <option value="unreal">Fantasy / Unreal Dream</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx8()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Verify Classification</button>
+          <div id="ex8-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 9: Multiple Choice Communicative Response -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="9">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 9 • Conversation Choice</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Your friend says: "I don't have a million dollars and I don't own an airplane." Which sentence correctly shows they are dreaming?
+        </p>
+        <div class="space-y-2 text-xs">
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+            <input type="radio" name="ex9-radio" value="wrong" class="text-indigo-600">
+            <span class="text-slate-700">"If I have a million dollars, I will buy a plane tomorrow."</span>
+          </label>
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+            <input type="radio" name="ex9-radio" value="correct" class="text-indigo-600">
+            <span class="text-slate-700">"If I had a million dollars, I would buy a plane and fly to every festival in the world."</span>
+          </label>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx9()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Submit</button>
+          <div id="ex9-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 10: Fantasy Gap-Fill -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" data-ex="10">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Exercise 10 • Fantasy Sentence Completion</span>
+          <span class="status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>
+        </div>
+        <p class="text-sm font-semibold text-slate-800">
+          Complete this impossible fantasy sentence using the past form of 'live' and 'would see':
+        </p>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm leading-relaxed">
+          "If we <input id="ex10-inp1" type="text" placeholder="(live)" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-mono text-xs w-28 focus:border-indigo-500 outline-none"> on Mars, we <input id="ex10-inp2" type="text" placeholder="(see)" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-slate-800 font-mono text-xs w-36 focus:border-indigo-500 outline-none"> two moons during our nighttime festivals."
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="checkEx10()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow transition-all">Check Completion</button>
+          <div id="ex10-fb" class="text-xs font-semibold"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Final Score Banner -->
+    <div id="completion-banner" class="hidden p-8 rounded-3xl bg-gradient-to-r from-emerald-50 via-teal-50 to-indigo-50 border border-emerald-200 shadow-lg text-center space-y-3">
+      <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h4 class="text-2xl font-extrabold font-display text-slate-900">All 10 Challenges Complete!</h4>
+      <p class="text-sm text-slate-600 max-w-lg mx-auto">
+        Great work! You have practiced identifying realistic future plans (First Conditional) and completely unreal fantasy dreams (Second Conditional).
+      </p>
+      <div class="pt-2">
+        <button onclick="resetAllExercises()" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition-all">
+          Try Practice Again
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500 space-y-1">
+    <p class="font-medium text-slate-600">Festival Journeys • First & Second Conditionals</p>
+    <p>Designed by Babak Alaee</p>
+  </footer>
+
+  <!-- ================= JAVASCRIPT LOGIC ENGINE ================= -->
+  <script>
+    // Audio Synthesizer (Web Audio API)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const now = audioCtx.currentTime;
+
+      if (type === 'success') {
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'sine';
+        osc2.type = 'sine';
+
+        osc1.frequency.setValueAtTime(523.25, now);
+        osc1.frequency.exponentialRampToValueAtTime(659.25, now + 0.12);
+
+        osc2.frequency.setValueAtTime(659.25, now + 0.12);
+        osc2.frequency.exponentialRampToValueAtTime(783.99, now + 0.28);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now + 0.12);
+        osc1.stop(now + 0.12);
+        osc2.stop(now + 0.35);
+      } else {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(200, now);
+        osc.frequency.linearRampToValueAtTime(140, now + 0.2);
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.22);
+      }
+    }
+
+    // Story Comprehension Check
+    const storySolutions = { q1: 0, q2: 0, q3: 0 };
+
+    function checkStoryQ(qid, chosenIdx) {
+      const container = document.querySelector(`[data-q="${qid}"]`);
+      const buttons = container.querySelectorAll('.option-btn');
+      const feedback = document.getElementById(`${qid}-feedback`);
+      const isCorrect = chosenIdx === storySolutions[qid];
+
+      buttons.forEach((btn, idx) => {
+        btn.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-rose-400', 'bg-rose-50');
+        if (idx === chosenIdx) {
+          if (isCorrect) {
+            btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+          } else {
+            btn.classList.add('border-rose-400', 'bg-rose-50', 'text-rose-900');
+          }
+        }
+      });
+
+      feedback.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200');
+      feedback.classList.add('border');
+
+      if (isCorrect) {
+        playSound('success');
+        feedback.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+        feedback.innerHTML = `<strong>Correct!</strong> That matches what happens in the festival story.`;
+      } else {
+        playSound('error');
+        feedback.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+        feedback.innerHTML = `<strong>Try again.</strong> Re-read the short festival text above.`;
+      }
+    }
+
+    // Rules Section: 3-Way Mode Engine
+    let currentMode = 'first';
+    let isFlipped = false;
+
+    function setConditionalMode(mode) {
+      currentMode = mode;
+      const btnFirst = document.getElementById('toggle-first');
+      const btnImprob = document.getElementById('toggle-second-improbable');
+      const btnUnreal = document.getElementById('toggle-second-unreal');
+      const mainHeading = document.getElementById('mode-main-heading');
+
+      const badge = document.getElementById('morph-badge');
+      const likelihood = document.getElementById('morph-likelihood');
+      const distance = document.getElementById('morph-distance');
+      const subj1 = document.getElementById('morph-subj1');
+      const verb1 = document.getElementById('morph-verb1');
+      const obj1 = document.getElementById('morph-obj1');
+      const subj2 = document.getElementById('morph-subj2');
+      const verb2 = document.getElementById('morph-verb2');
+      const obj2 = document.getElementById('morph-obj2');
+      const tense1 = document.getElementById('morph-tense1');
+      const tense2 = document.getElementById('morph-tense2');
+      const analysis = document.getElementById('morph-analysis');
+      const probNum = document.getElementById('prob-num');
+      const probBar = document.getElementById('prob-bar');
+      const probDesc = document.getElementById('prob-desc');
+
+      // Reset button styles
+      [btnFirst, btnImprob, btnUnreal].forEach(b => {
+        b.className = 'px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 text-slate-600 hover:text-slate-900';
+      });
+
+      if (mode === 'first') {
+        btnFirst.className = 'px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-indigo-600 text-white shadow';
+        mainHeading.innerText = 'Realistic Future Plan';
+
+        badge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-indigo-100 text-indigo-700 border border-indigo-200';
+        badge.innerText = 'First Conditional';
+
+        likelihood.innerHTML = `<svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Realistic Opportunity (Possible Future)`;
+        distance.innerText = 'Real Life Action';
+
+        subj1.innerText = 'If I';
+        verb1.innerText = 'buy';
+        verb1.className = 'morph-block px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200';
+        obj1.innerText = 'a ticket tomorrow,';
+        tense1.innerText = 'Present Simple';
+
+        subj2.innerText = 'I';
+        verb2.innerText = 'will visit';
+        verb2.className = 'morph-block px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200';
+        obj2.innerText = 'the lantern festival.';
+        tense2.innerText = 'will + base verb';
+
+        analysis.innerHTML = `<p><strong>First Conditional:</strong> Use this for real and likely future situations. After <em>if</em>, use the <strong>Present Simple</strong> (buy). In the result clause, use <strong>will + base verb</strong> (will visit).</p>`;
+
+        probNum.innerText = 'Likely & Real (~85%)';
+        probBar.style.width = '85%';
+        probBar.className = 'bg-gradient-to-r from-indigo-500 to-emerald-500 h-full rounded-full transition-all duration-500';
+        probDesc.innerHTML = 'Use <strong>First Conditional</strong> when the condition is genuinely planned and likely to happen.';
+
+      } else if (mode === 'second-improbable') {
+        btnImprob.className = 'px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-amber-600 text-white shadow';
+        mainHeading.innerText = 'Second Conditional: Improbable Condition';
+
+        badge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-200';
+        badge.innerText = 'Second Conditional (Improbable)';
+
+        likelihood.innerHTML = `<svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg> Low Probability (Possible in Theory, Unlikely in Practice)`;
+        distance.innerText = 'Improbable / Very Unlikely';
+
+        subj1.innerText = 'If I';
+        verb1.innerText = 'won';
+        verb1.className = 'morph-block px-3 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200';
+        obj1.innerText = 'the grand festival lottery tomorrow,';
+        tense1.innerText = 'Past Simple';
+
+        subj2.innerText = 'I';
+        verb2.innerText = 'would buy';
+        verb2.className = 'morph-block px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200';
+        obj2.innerText = 'plane tickets for our entire class.';
+        tense2.innerText = 'would + base verb';
+
+        analysis.innerHTML = `<p><strong>Improbable Condition (Second Conditional):</strong> Winning a major lottery is <em>technically possible</em> in the real world, but the statistical chance is extremely low. English uses the <strong>Past Simple</strong> (won) and <strong>would + base verb</strong> to signal psychological distance—saying: <em>"Don't count on this happening!"</em></p>`;
+
+        probNum.innerText = 'Very Unlikely (~2%)';
+        probBar.style.width = '8%';
+        probBar.className = 'bg-gradient-to-r from-amber-400 to-amber-600 h-full rounded-full transition-all duration-500';
+        probDesc.innerHTML = 'Technically possible in the physical world, but practically improbable.';
+
+      } else if (mode === 'second-unreal') {
+        btnUnreal.className = 'px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-purple-600 text-white shadow';
+        mainHeading.innerText = 'Second Conditional: Hypothetical & Completely Unreal';
+
+        badge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-purple-100 text-purple-700 border border-purple-200';
+        badge.innerText = 'Second Conditional (Fantasy)';
+
+        likelihood.innerHTML = `<svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg> 100% Imaginary (Contrary to Nature or Reality)`;
+        distance.innerText = 'Completely Unreal / Fantasy';
+
+        subj1.innerText = 'If humans';
+        verb1.innerText = 'had';
+        verb1.className = 'morph-block px-3 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200';
+        obj1.innerText = 'wings like birds,';
+        tense1.innerText = 'Past Simple';
+
+        subj2.innerText = 'we';
+        verb2.innerText = 'would fly';
+        verb2.className = 'morph-block px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200';
+        obj2.innerText = 'above the lantern festival with the clouds.';
+        tense2.innerText = 'would + base verb';
+
+        analysis.innerHTML = `<p><strong>Hypothetical / Unreal Condition (Second Conditional):</strong> Humans do not have wings; this situation is completely contrary to reality and the laws of nature. We use <strong>Past Simple</strong> (had) and <strong>would + base verb</strong> (would fly) to explore pure imagination and impossible fantasy dreams.</p>`;
+
+        probNum.innerText = '0% Pure Fantasy';
+        probBar.style.width = '3%';
+        probBar.className = 'bg-gradient-to-r from-purple-500 to-rose-400 h-full rounded-full transition-all duration-500';
+        probDesc.innerHTML = 'Zero chance of happening; completely contrary to reality or nature.';
+      }
+
+      updateFlipDisplay();
+    }
+
+    function toggleClauseOrder() {
+      isFlipped = !isFlipped;
+      updateFlipDisplay();
+    }
+
+    function updateFlipDisplay() {
+      const sample = document.getElementById('clause-flip-sample');
+      const note = document.getElementById('clause-flip-note');
+
+      if (!isFlipped) {
+        if (currentMode === 'first') {
+          sample.innerHTML = `<span class="text-indigo-600 font-semibold">If I buy a ticket</span><span class="text-amber-500 font-black">,</span> I will visit the lantern festival.`;
+        } else if (currentMode === 'second-improbable') {
+          sample.innerHTML = `<span class="text-amber-700 font-semibold">If I won the lottery</span><span class="text-amber-500 font-black">,</span> I would buy tickets for everyone.`;
+        } else {
+          sample.innerHTML = `<span class="text-purple-600 font-semibold">If humans had wings</span><span class="text-amber-500 font-black">,</span> we would fly above the lantern festival.`;
+        }
+        note.innerHTML = `When the 'If' clause comes first, use a <strong class="text-slate-800">comma (,)</strong> before the result clause!`;
+      } else {
+        if (currentMode === 'first') {
+          sample.innerHTML = `I will visit the lantern festival <span class="text-indigo-600 font-semibold">if I buy a ticket</span>.`;
+        } else if (currentMode === 'second-improbable') {
+          sample.innerHTML = `I would buy tickets for everyone <span class="text-amber-700 font-semibold">if I won the lottery</span>.`;
+        } else {
+          sample.innerHTML = `We would fly above the lantern festival <span class="text-purple-600 font-semibold">if humans had wings</span>.`;
+        }
+        note.innerHTML = `When the result clause comes first, <strong class="text-indigo-600">do not use a comma</strong> before 'if'!`;
+      }
+    }
+
+    // Practice Arena Exercises
+    const exerciseState = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
+
+    function updateMasteryScore(exId, isCorrect) {
+      exerciseState[exId] = isCorrect;
+      const count = Object.values(exerciseState).filter(Boolean).length;
+      document.getElementById('arena-counter').innerText = `${count} / 10 Completed`;
+      document.getElementById('arena-score-pill').innerText = `${count}/10`;
+
+      const card = document.querySelector(`[data-ex="${exId}"]`);
+      const indicator = card.querySelector('.status-indicator');
+
+      if (isCorrect) {
+        indicator.className = 'status-indicator text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold';
+        indicator.innerText = 'Completed ✓';
+      } else {
+        indicator.className = 'status-indicator text-xs px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200 font-bold';
+        indicator.innerText = 'Needs Review ✗';
+      }
+
+      if (count === 10) {
+        document.getElementById('completion-banner').classList.remove('hidden');
+      }
+    }
+
+    // Ex 1
+    function checkEx1() {
+      const s1 = document.getElementById('ex1-sel1').value;
+      const s2 = document.getElementById('ex1-sel2').value;
+      const fb = document.getElementById('ex1-fb');
+
+      if (s1 === 'correct' && s2 === 'correct') {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Correct! Fantasy (wings) pairs with "would fly", and realistic weather pairs with "will launch".';
+        updateMasteryScore(1, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Check again: make sure the fantasy sentence has "would" and the realistic sentence has "will".';
+        updateMasteryScore(1, false);
+      }
+    }
+
+    // Ex 2
+    function checkEx2() {
+      const v1 = document.getElementById('ex2-v1').value;
+      const v2 = document.getElementById('ex2-v2').value;
+      const fb = document.getElementById('ex2-fb');
+
+      if (v1 === 'forget' && v2 === 'will get') {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Correct! This is a real future possibility: Present Simple (forget) + will get.';
+        updateMasteryScore(2, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Not quite. Because it is freezing right now, forgetting gloves is a real possibility.';
+        updateMasteryScore(2, false);
+      }
+    }
+
+    // Ex 3 Unscramble
+    const ex3Target = ["If", "we", "lived", "on", "a", "cloud,", "we", "would", "jump", "between", "rainbows."];
+    let ex3Current = [];
+
+    function initEx3() {
+      const pool = ["cloud,", "would", "we", "rainbows.", "If", "jump", "on", "lived", "between", "a", "we"];
+      const container = document.getElementById('ex3-chips');
+      container.innerHTML = '';
+      pool.forEach(word => {
+        const btn = document.createElement('button');
+        btn.innerText = word;
+        btn.className = 'draggable-chip px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs text-slate-700 transition-all font-medium';
+        btn.onclick = () => {
+          btn.classList.add('opacity-30', 'pointer-events-none');
+          ex3Current.push({ word, btn });
+          renderEx3Dropzone();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderEx3Dropzone() {
+      const dropzone = document.getElementById('ex3-dropzone');
+      dropzone.innerHTML = '';
+      if (ex3Current.length === 0) {
+        dropzone.innerHTML = `<span class="text-xs text-slate-400 italic">Click the word tiles below...</span>`;
+        return;
+      }
+      ex3Current.forEach((item, index) => {
+        const span = document.createElement('span');
+        span.innerText = item.word;
+        span.className = 'px-2.5 py-1 rounded bg-purple-100 border border-purple-200 text-purple-800 text-xs font-semibold cursor-pointer';
+        span.title = 'Click to remove';
+        span.onclick = () => {
+          item.btn.classList.remove('opacity-30', 'pointer-events-none');
+          ex3Current.splice(index, 1);
+          renderEx3Dropzone();
+        };
+        dropzone.appendChild(span);
+      });
+    }
+
+    function resetEx3() {
+      ex3Current = [];
+      initEx3();
+      renderEx3Dropzone();
+      document.getElementById('ex3-fb').innerText = '';
+    }
+
+    function checkEx3() {
+      const fb = document.getElementById('ex3-fb');
+      const assembled = ex3Current.map(i => i.word).join(' ');
+      const targetStr = ex3Target.join(' ');
+
+      if (assembled === targetStr) {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Perfect! "If we lived on a cloud, we would jump between rainbows."';
+        updateMasteryScore(3, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Sentence order is not correct yet. Start with "If we lived..."';
+        updateMasteryScore(3, false);
+      }
+    }
+
+    // Ex 4
+    function checkEx4() {
+      const i1 = document.getElementById('ex4-inp1').value.trim().toLowerCase();
+      const i2 = document.getElementById('ex4-inp2').value.trim().toLowerCase();
+      const fb = document.getElementById('ex4-fb');
+
+      if (i1 === 'strikes' && (i2 === 'will open' || i2 === "'ll open")) {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Great spelling! "strikes" (singular) and "will open".';
+        updateMasteryScore(4, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Remember: clock is singular (strikes) and the result needs "will open".';
+        updateMasteryScore(4, false);
+      }
+    }
+
+    // Ex 5
+    function checkEx5() {
+      const radios = document.getElementsByName('ex5-radio');
+      let val = null;
+      radios.forEach(r => { if (r.checked) val = r.value; });
+      const fb = document.getElementById('ex5-fb');
+
+      if (val === 'would') {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Correct! Tomatoes as big as houses is pure fantasy, so we use "would".';
+        updateMasteryScore(5, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Think again: can tomatoes really grow as big as houses in the real world?';
+        updateMasteryScore(5, false);
+      }
+    }
+
+    // Ex 6
+    function checkEx6() {
+      const v1 = document.getElementById('ex6-v1').value.trim().toLowerCase();
+      const v2 = document.getElementById('ex6-v2').value.trim().toLowerCase();
+      const fb = document.getElementById('ex6-fb');
+
+      const v1Ok = (v1 === 'were' || v1 === 'was');
+      const v2Ok = (v2 === 'would swim' || v2 === "'d swim");
+
+      if (v1Ok && v2Ok) {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Spot on! "If I were a dolphin, I would swim along the Grand Canal."';
+        updateMasteryScore(6, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Try typing "were" (or "was") for the first box, and "would swim" for the second box.';
+        updateMasteryScore(6, false);
+      }
+    }
+
+    // Ex 7
+    function checkEx7() {
+      const radios = document.getElementsByName('ex7-radio');
+      let val = null;
+      radios.forEach(r => { if (r.checked) val = r.value; });
+      const fb = document.getElementById('ex7-fb');
+
+      if (val === 'correct') {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Well done! A flight tomorrow is a real schedule, so we use "will see".';
+        updateMasteryScore(7, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Review the sentence: "lands" is present tense for a real future event, so pair it with "will".';
+        updateMasteryScore(7, false);
+      }
+    }
+
+    // Ex 8
+    function checkEx8() {
+      const s1 = document.getElementById('ex8-s1').value;
+      const s2 = document.getElementById('ex8-s2').value;
+      const s3 = document.getElementById('ex8-s3').value;
+      const s4 = document.getElementById('ex8-s4').value;
+      const fb = document.getElementById('ex8-fb');
+
+      if (s1 === 'real' && s2 === 'unreal' && s3 === 'real' && s4 === 'unreal') {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'All 4 classifications are correct!';
+        updateMasteryScore(8, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Some items are wrong. Remember: talking animals and chocolate trees are pure fantasy!';
+        updateMasteryScore(8, false);
+      }
+    }
+
+    // Ex 9
+    function checkEx9() {
+      const radios = document.getElementsByName('ex9-radio');
+      let val = null;
+      radios.forEach(r => { if (r.checked) val = r.value; });
+      const fb = document.getElementById('ex9-fb');
+
+      if (val === 'correct') {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Correct! Since your friend does not have the money or the plane, it is an unreal dream (had... would buy).';
+        updateMasteryScore(9, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Remember: your friend clearly said they DO NOT have the money right now.';
+        updateMasteryScore(9, false);
+      }
+    }
+
+    // Ex 10
+    function checkEx10() {
+      const i1 = document.getElementById('ex10-inp1').value.trim().toLowerCase();
+      const i2 = document.getElementById('ex10-inp2').value.trim().toLowerCase();
+      const fb = document.getElementById('ex10-fb');
+
+      if (i1 === 'lived' && (i2 === 'would see' || i2 === "'d see")) {
+        playSound('success');
+        fb.className = 'text-xs font-semibold text-emerald-600';
+        fb.innerText = 'Superb! Past simple "lived" + "would see" for an impossible fantasy scenario.';
+        updateMasteryScore(10, true);
+      } else {
+        playSound('error');
+        fb.className = 'text-xs font-semibold text-rose-600';
+        fb.innerText = 'Use the past tense "lived" in the first box, and "would see" in the second box.';
+        updateMasteryScore(10, false);
+      }
+    }
+
+    function resetAllExercises() {
+      Object.keys(exerciseState).forEach(k => { exerciseState[k] = false; });
+      document.getElementById('arena-counter').innerText = '0 / 10 Completed';
+      document.getElementById('arena-score-pill').innerText = '0/10';
+      document.getElementById('completion-banner').classList.add('hidden');
+      document.querySelectorAll('.status-indicator').forEach(el => {
+        el.className = 'status-indicator text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-semibold';
+        el.innerText = 'Pending';
+      });
+      resetEx3();
+    }
+
+    window.onload = function () {
+      initEx3();
+    };
+  </script>
+</body>
+</html>
