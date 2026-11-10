@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen & Pantry Grammar: Countable vs. Uncountable Nouns</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chef: {
+                            amber: '#F59E0B',
+                            orange: '#EA580C',
+                            warm: '#FFFBEB',
+                            card: '#FEF3C7',
+                            emerald: '#059669',
+                            slate: '#1E293B',
+                            cream: '#FAFAF9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF8F5;
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .badge-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .85; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="text-stone-800 antialiased min-h-screen flex flex-col justify-between selection:bg-amber-200">
+
+    <!-- Sticky Progress Bar & Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-amber-100">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+                <h1 class="serif-title text-xl sm:text-2xl font-bold text-stone-900 tracking-tight flex items-center gap-2">
+                    <span class="text-2xl">🍳</span> Kitchen &amp; Pantry Grammar: Countable vs. Uncountable Nouns
+                </h1>
+                <p class="text-xs text-stone-500 font-medium">Designed by Babak Alaee</p>
+            </div>
+            
+            <!-- Quick Progress Tracker -->
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <div class="flex flex-col flex-1 sm:w-44 text-right">
+                    <div class="flex justify-between text-xs font-semibold text-stone-600 mb-1">
+                        <span>Mastery Progress</span>
+                        <span id="progress-percent" class="text-amber-700">0%</span>
+                    </div>
+                    <div class="w-full bg-stone-200 rounded-full h-2.5 overflow-hidden">
+                        <div id="progress-bar-fill" class="bg-gradient-to-r from-amber-500 to-emerald-500 h-2.5 rounded-full transition-all duration-500 w-0"></div>
+                    </div>
+                </div>
+                <button id="audio-toggle-btn" class="p-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 transition text-sm flex items-center gap-1 border border-amber-200" title="Audio Feedback Enabled">
+                    <span id="sound-icon">🔔</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section Jump Anchors -->
+        <div class="bg-amber-50/70 border-t border-amber-100 py-1.5 px-4 text-xs font-medium text-stone-600 flex justify-center gap-4 sm:gap-8">
+            <a href="#section-story" class="hover:text-amber-700 flex items-center gap-1">📖 1. Chef's Story</a>
+            <a href="#section-rules" class="hover:text-amber-700 flex items-center gap-1">💡 2. Kitchen Rules &amp; Tools</a>
+            <a href="#section-practice" class="hover:text-amber-700 flex items-center gap-1">🎯 3. Practice Kitchen</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-1 w-full space-y-12">
+
+        <!-- INTRO BANNER -->
+        <section class="rounded-3xl bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white p-6 sm:p-10 shadow-lg relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-15 text-9xl pointer-events-none select-none">🥗</div>
+            <div class="relative z-10 max-w-2xl">
+                <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">Kitchen Masterclass</span>
+                <h2 class="serif-title text-2xl sm:text-4xl font-bold mb-3 leading-tight">Master Food Quantities: Some, Any, Much, &amp; Many</h2>
+                <p class="text-amber-100 text-sm sm:text-base leading-relaxed mb-4">
+                    Cooking is all about getting the right ingredients in the right amounts! Learn how to talk about ingredients you can count (like <span class="underline decoration-amber-300">apples</span>) and things you can't count individually (like <span class="underline decoration-amber-300">olive oil</span> or <span class="underline decoration-amber-300">pasta</span>).
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <span class="bg-amber-900/50 px-2.5 py-1 rounded-lg">🍎 Countable: many / a few</span>
+                    <span class="bg-amber-900/50 px-2.5 py-1 rounded-lg">🧀 Uncountable: much / a little</span>
+                    <span class="bg-amber-900/50 px-2.5 py-1 rounded-lg">✨ Both: some / any</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: EXPOSURE PHASE -->
+        <section id="section-story" class="scroll-mt-24 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200">
+            <div class="flex items-center gap-3 border-b border-stone-100 pb-4 mb-6">
+                <span class="w-9 h-9 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">1</span>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Exposure Phase: Chef Leo's Kitchen Prep</h2>
+                    <p class="text-xs sm:text-sm text-stone-500">Read Leo's prep notes for dinner. Notice the highlighted ingredient quantities!</p>
+                </div>
+            </div>
+
+            <!-- Story Card -->
+            <div class="bg-stone-50 rounded-2xl p-5 sm:p-7 border border-stone-200/80 mb-6 leading-relaxed space-y-4 text-stone-700 text-sm sm:text-base">
+                <p>
+                    Tonight, Chef Leo is hosting a special Italian dinner for his friends. On the wooden counter, there are 
+                    <span class="font-semibold text-amber-700 bg-amber-100/80 px-1.5 py-0.5 rounded cursor-pointer hover:bg-amber-200 transition" title="Countable plural noun">three crisp apples</span> 
+                    and <span class="font-semibold text-amber-700 bg-amber-100/80 px-1.5 py-0.5 rounded cursor-pointer hover:bg-amber-200 transition" title="Countable plural noun">four ripe tomatoes</span> for the salad. Leo examines the pantry cupboard:
+                </p>
+                <blockquote class="pl-4 border-l-4 border-amber-500 italic text-stone-800 bg-amber-50/50 py-2 pr-3 rounded-r-xl">
+                    "Do we have <span class="font-bold text-emerald-700 underline decoration-dotted">any pasta</span> in the container? Yes, we have <span class="font-bold text-emerald-700 underline decoration-dotted">some pasta</span>, but there isn't <span class="font-bold text-orange-700 underline decoration-dotted">much cheese</span> left on the shelf. I should check the fridge."
+                </blockquote>
+                <p>
+                    In the refrigerator, Leo looks around carefully. There isn't <span class="font-bold text-emerald-700 underline decoration-dotted">any milk</span> for the dessert cream, but there are <span class="font-bold text-orange-700 underline decoration-dotted">many eggs</span> in the carton—at least a dozen. He notices <span class="font-semibold text-amber-700 bg-amber-100/80 px-1.5 py-0.5 rounded">two bulbs of garlic</span> and pours <span class="font-bold text-emerald-700 underline decoration-dotted">some olive oil</span> into the skillet.
+                </p>
+                <p>
+                    "How <span class="font-bold text-orange-700">much olive oil</span> do we need? Just two spoons! And how <span class="font-bold text-orange-700">many tomatoes</span> are going into the dressing? Let's chop two of them."
+                </p>
+            </div>
+
+            <!-- 3 Quick Reading Comprehension Noticing Checks -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-stone-500">Quick Observation Checks:</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="exposure-checks">
+                    <!-- Q1 -->
+                    <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 flex flex-col justify-between" id="obs-card-1">
+                        <p class="text-xs font-semibold text-stone-800 mb-2">1. In the story, Chef Leo says: "There isn't <span class="text-amber-800 font-bold">much cheese</span>". Why do we use <em>much</em> here?</p>
+                        <div class="space-y-1.5 text-xs">
+                            <button onclick="checkObservation(1, 'A')" class="obs-btn w-full text-left p-2 rounded-xl border border-stone-200 bg-white hover:bg-amber-100 transition">A) Cheese is countable (1 cheese, 2 cheeses)</button>
+                            <button onclick="checkObservation(1, 'B')" class="obs-btn w-full text-left p-2 rounded-xl border border-stone-200 bg-white hover:bg-amber-100 transition">B) Cheese is uncountable &amp; used in a negative sentence</button>
+                        </div>
+                        <div class="obs-feedback hidden mt-2 text-xs font-medium"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 flex flex-col justify-between" id="obs-card-2">
+                        <p class="text-xs font-semibold text-stone-800 mb-2">2. Why does Leo say "there isn't <span class="text-amber-800 font-bold">any milk</span>"?</p>
+                        <div class="space-y-1.5 text-xs">
+                            <button onclick="checkObservation(2, 'A')" class="obs-btn w-full text-left p-2 rounded-xl border border-stone-200 bg-white hover:bg-amber-100 transition">A) We use <em>any</em> in negative sentences (zero quantity)</button>
+                            <button onclick="checkObservation(2, 'B')" class="obs-btn w-full text-left p-2 rounded-xl border border-stone-200 bg-white hover:bg-amber-100 transition">B) <em>Any</em> is only for countable items</button>
+                        </div>
+                        <div class="obs-feedback hidden mt-2 text-xs font-medium"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 flex flex-col justify-between" id="obs-card-3">
+                        <p class="text-xs font-semibold text-stone-800 mb-2">3. Leo asks: "How <span class="text-amber-800 font-bold">many tomatoes</span> are going into the dressing?" Why <em>many</em>?</p>
+                        <div class="space-y-1.5 text-xs">
+                            <button onclick="checkObservation(3, 'A')" class="obs-btn w-full text-left p-2 rounded-xl border border-stone-200 bg-white hover:bg-amber-100 transition">A) Because tomatoes are plural &amp; separate units you can count</button>
+                            <button onclick="checkObservation(3, 'B')" class="obs-btn w-full text-left p-2 rounded-xl border border-stone-200 bg-white hover:bg-amber-100 transition">B) Because tomatoes are a liquid</button>
+                        </div>
+                        <div class="obs-feedback hidden mt-2 text-xs font-medium"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTERACTIVE EXPLANATIONS & GRAMMAR RULES -->
+        <section id="section-rules" class="scroll-mt-24 space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200">
+                <div class="flex items-center gap-3 border-b border-stone-100 pb-4 mb-6">
+                    <span class="w-9 h-9 rounded-2xl bg-orange-100 text-orange-800 flex items-center justify-center font-bold text-lg">2</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Interactive Kitchen Rules &amp; Diagnostic Tools</h2>
+                        <p class="text-xs sm:text-sm text-stone-500">Explore rules through hands-on tabs, real culinary examples, and clickable sentence breakdowns.</p>
+                    </div>
+                </div>
+
+                <!-- Core Concept Tabs -->
+                <div class="flex flex-wrap gap-2 border-b border-stone-200 pb-3 mb-6">
+                    <button onclick="switchRuleTab('concept')" id="tab-btn-concept" class="rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-amber-600 text-white transition">1. Countable vs. Uncountable</button>
+                    <button onclick="switchRuleTab('someany')" id="tab-btn-someany" class="rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">2. Some vs. Any (+ Polite Requests)</button>
+                    <button onclick="switchRuleTab('muchmany')" id="tab-btn-muchmany" class="rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">3. Much vs. Many (+ Interactive Slider)</button>
+                    <button onclick="switchRuleTab('inspector')" id="tab-btn-inspector" class="rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">4. Sentence Inspector</button>
+                    <button onclick="switchRuleTab('mistakes')" id="tab-btn-mistakes" class="rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">5. Common Kitchen Traps</button>
+                </div>
+
+                <!-- TAB 1: COUNTABLE VS UNCOUNTABLE -->
+                <div id="tab-content-concept" class="rule-panel block space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Countable Box -->
+                        <div class="bg-amber-50/70 border-2 border-amber-200 rounded-2xl p-5">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-bold text-amber-900 text-lg flex items-center gap-2">
+                                    <span>🍎</span> Countable Nouns (Singular &amp; Plural)
+                                </h3>
+                                <span class="text-xs bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-bold">1, 2, 3...</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mb-3">Items you can divide into individual, distinct items and physically count with numbers.</p>
+                            <ul class="text-xs space-y-2 text-stone-700">
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-lg border border-amber-100">
+                                    <span class="text-base">🥚</span> <strong>An egg</strong> &rarr; <strong>Three eggs</strong>
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-lg border border-amber-100">
+                                    <span class="text-base">🥕</span> <strong>A carrot</strong> &rarr; <strong>Many carrots</strong>
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-lg border border-amber-100">
+                                    <span class="text-base">🥞</span> <strong>A pancake</strong> &rarr; <strong>Some pancakes</strong>
+                                </li>
+                            </ul>
+                            <div class="mt-4 p-2.5 bg-amber-100/70 rounded-xl text-xs text-amber-950 font-medium">
+                                💡 <strong>Grammar tip:</strong> Can take <em>a / an</em> when singular, or add <em>-s/-es</em> when plural.
+                            </div>
+                        </div>
+
+                        <!-- Uncountable Box -->
+                        <div class="bg-emerald-50/70 border-2 border-emerald-200 rounded-2xl p-5">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-bold text-emerald-900 text-lg flex items-center gap-2">
+                                    <span>🧀</span> Uncountable Nouns (Mass / Liquid)
+                                </h3>
+                                <span class="text-xs bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-full font-bold">Mass / Volume</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mb-3">Liquids, powders, grains, or bulk masses. You measure them in containers, not standalone numbers.</p>
+                            <ul class="text-xs space-y-2 text-stone-700">
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-lg border border-emerald-100">
+                                    <span class="text-base">🥛</span> <strong>Milk</strong> (NOT <span class="line-through text-red-500">two milks</span> &rarr; two <em>glasses</em> of milk)
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-lg border border-emerald-100">
+                                    <span class="text-base">🍚</span> <strong>Rice</strong> (a mass of tiny grains, treated as singular)
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-lg border border-emerald-100">
+                                    <span class="text-base">🧈</span> <strong>Butter / Sugar / Flour</strong> (always singular verb: <em>Flour is on the table</em>)
+                                </li>
+                            </ul>
+                            <div class="mt-4 p-2.5 bg-emerald-100/70 rounded-xl text-xs text-emerald-950 font-medium">
+                                💡 <strong>Grammar tip:</strong> Never use <em>a / an</em> directly before them, and DO NOT add <em>-s</em>!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: SOME VS ANY -->
+                <div id="tab-content-someany" class="rule-panel hidden space-y-5">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 p-5 rounded-2xl">
+                        <h3 class="text-base font-bold text-stone-800 mb-2">The Golden Rule for "Some" and "Any"</h3>
+                        <p class="text-xs text-stone-600 leading-relaxed">
+                            Both <strong>some</strong> and <strong>any</strong> can be used with <strong>countable plural nouns</strong> (some cookies, any cookies) and <strong>uncountable nouns</strong> (some soup, any soup). The choice depends on the <em>type of sentence</em>:
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl border border-emerald-300 bg-emerald-50/40">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-200 px-2 py-0.5 rounded">Affirmative (+) &amp; Offers</span>
+                            <h4 class="font-bold text-stone-900 mt-2 text-sm">Use SOME</h4>
+                            <p class="text-xs text-stone-600 my-2">1. Positive statements where something exists:</p>
+                            <p class="text-xs font-mono bg-white p-2 rounded border border-emerald-100 text-stone-800">"We have <strong>some</strong> olive oil in the pantry."</p>
+                            <p class="text-xs text-stone-600 mt-3 mb-1">2. <strong>Crucial Exception:</strong> Polite offers and requests:</p>
+                            <p class="text-xs font-mono bg-white p-2 rounded border border-emerald-100 text-stone-800">"Would you like <strong>some</strong> coffee?" ☕<br>"Can I have <strong>some</strong> salt, please?"</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-red-300 bg-red-50/40">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-800 bg-red-200 px-2 py-0.5 rounded">Negative (-) &amp; General Questions (?)</span>
+                            <h4 class="font-bold text-stone-900 mt-2 text-sm">Use ANY</h4>
+                            <p class="text-xs text-stone-600 my-2">1. Negative sentences (not / don't / isn't):</p>
+                            <p class="text-xs font-mono bg-white p-2 rounded border border-red-100 text-stone-800">"There isn't <strong>any</strong> milk in the fridge."<br>"We don't have <strong>any</strong> onions."</p>
+                            <p class="text-xs text-stone-600 mt-3 mb-1">2. General open questions about existence:</p>
+                            <p class="text-xs font-mono bg-white p-2 rounded border border-red-100 text-stone-800">"Do we have <strong>any</strong> butter left?"<br>"Are there <strong>any</strong> clean spoons?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: MUCH VS MANY -->
+                <div id="tab-content-muchmany" class="rule-panel hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
+                            <h4 class="font-bold text-amber-900 text-sm flex items-center gap-2"><span>🧀</span> MUCH (Uncountable)</h4>
+                            <p class="text-xs text-stone-600 mt-1">Used with things you cannot count individually. Often used in questions and negative statements.</p>
+                            <div class="mt-2 text-xs font-mono bg-white p-2.5 rounded-xl border border-amber-200 space-y-1">
+                                <div>"How <strong>much</strong> water do we boil?"</div>
+                                <div>"There isn't <strong>much</strong> sugar left."</div>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-2xl border border-orange-200">
+                            <h4 class="font-bold text-orange-900 text-sm flex items-center gap-2"><span>🍎</span> MANY (Countable Plural)</h4>
+                            <p class="text-xs text-stone-600 mt-1">Used with plural items you can count item by item.</p>
+                            <div class="mt-2 text-xs font-mono bg-white p-2.5 rounded-xl border border-orange-200 space-y-1">
+                                <div>"How <strong>many</strong> lemons are in the bowl?"</div>
+                                <div>"We don't need <strong>many</strong> potatoes for dinner."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Slider Visualizer -->
+                    <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-stone-700 uppercase">Interactive Quantity Gauge</span>
+                            <span class="text-xs text-stone-500">Slide to see how language changes</span>
+                        </div>
+                        <input id="quantity-slider" type="range" min="0" max="3" value="3" class="w-full accent-amber-600 h-2 bg-stone-200 rounded-lg cursor-pointer" oninput="updateSliderVisual(this.value)">
+                        
+                        <div id="slider-display" class="mt-4 p-4 rounded-xl bg-white border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <span id="slider-level-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Large Quantity</span>
+                                <p id="slider-countable" class="text-xs font-semibold text-stone-800 mt-2">Countable: "There are <strong>many</strong> apples on the counter."</p>
+                                <p id="slider-uncountable" class="text-xs font-semibold text-stone-800">Uncountable: "There is <strong>a lot of</strong> / <strong>much</strong> flour."</p>
+                            </div>
+                            <div id="slider-visual-icons" class="text-3xl tracking-widest">
+                                🍎🍎🍎🍎🍎 | 🌾🌾🌾
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: SENTENCE INSPECTOR -->
+                <div id="tab-content-inspector" class="rule-panel hidden space-y-4">
+                    <p class="text-xs text-stone-600">Click on any underlined word below to inspect why the chef chose this quantifier!</p>
+                    
+                    <div class="space-y-3">
+                        <div class="p-3 bg-stone-50 rounded-xl border border-stone-200 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                            <span>1.</span>
+                            <span class="text-stone-700">"Could you please pass me</span>
+                            <button onclick="inspectWord('some-butter')" class="font-bold text-amber-800 bg-amber-100 hover:bg-amber-200 px-2 py-0.5 rounded transition">some</button>
+                            <span class="text-stone-700">butter?"</span>
+                        </div>
+                        <div class="p-3 bg-stone-50 rounded-xl border border-stone-200 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                            <span>2.</span>
+                            <span class="text-stone-700">"I don't have</span>
+                            <button onclick="inspectWord('any-eggs')" class="font-bold text-red-700 bg-red-100 hover:bg-red-200 px-2 py-0.5 rounded transition">any</button>
+                            <span class="text-stone-700">eggs for the omelette."</span>
+                        </div>
+                        <div class="p-3 bg-stone-50 rounded-xl border border-stone-200 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                            <span>3.</span>
+                            <span class="text-stone-700">"How</span>
+                            <button onclick="inspectWord('much-sugar')" class="font-bold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded transition">much</button>
+                            <span class="text-stone-700">sugar is in this sauce?"</span>
+                        </div>
+                        <div class="p-3 bg-stone-50 rounded-xl border border-stone-200 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                            <span>4.</span>
+                            <span class="text-stone-700">"How</span>
+                            <button onclick="inspectWord('many-strawberries')" class="font-bold text-purple-800 bg-purple-100 hover:bg-purple-200 px-2 py-0.5 rounded transition">many</button>
+                            <span class="text-stone-700">strawberries do you want on the tart?"</span>
+                        </div>
+                    </div>
+
+                    <!-- Inspector explanation box -->
+                    <div id="inspector-result" class="p-4 rounded-xl bg-amber-50 border border-amber-300 text-xs sm:text-sm text-amber-950 min-h-[60px] flex items-center">
+                        <span class="italic text-stone-500">Click a quantifier button above to inspect its grammatical reason...</span>
+                    </div>
+                </div>
+
+                <!-- TAB 5: COMMON MISTAKES -->
+                <div id="tab-content-mistakes" class="rule-panel hidden space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-red-50/70 border border-red-200 space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-700 flex items-center gap-1">❌ Common Mistake</h4>
+                            <p class="text-xs font-semibold text-stone-800">"I'd like two milks and three breads, please."</p>
+                            <p class="text-xs text-stone-600"><em>Why it's wrong:</em> Milk and bread are uncountable mass nouns in English.</p>
+                            <div class="p-2.5 bg-emerald-100/70 rounded-xl text-xs text-emerald-900 font-medium">
+                                ✅ <strong>Say instead:</strong> "Two bottles of milk and three loaves of bread" or "some milk and some bread".
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-red-50/70 border border-red-200 space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-700 flex items-center gap-1">❌ Common Mistake</h4>
+                            <p class="text-xs font-semibold text-stone-800">"How many cheese is in the pizza?"</p>
+                            <p class="text-xs text-stone-600"><em>Why it's wrong:</em> Cheese is an uncountable solid dairy mass.</p>
+                            <div class="p-2.5 bg-emerald-100/70 rounded-xl text-xs text-emerald-900 font-medium">
+                                ✅ <strong>Say instead:</strong> "How <strong>much</strong> cheese..." or "How many slices of cheese...".
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-red-50/70 border border-red-200 space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-700 flex items-center gap-1">❌ Common Mistake</h4>
+                            <p class="text-xs font-semibold text-stone-800">"Do you want any tea?" (When offering politely to a guest)</p>
+                            <p class="text-xs text-stone-600"><em>Why it sounds cold/strange:</em> In genuine hospitality offers expecting a 'yes', we prefer <em>some</em>.</p>
+                            <div class="p-2.5 bg-emerald-100/70 rounded-xl text-xs text-emerald-900 font-medium">
+                                ✅ <strong>Say instead:</strong> "Would you like <strong>some</strong> tea?"
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-red-50/70 border border-red-200 space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-700 flex items-center gap-1">❌ Common Mistake</h4>
+                            <p class="text-xs font-semibold text-stone-800">"We don't have some salt."</p>
+                            <p class="text-xs text-stone-600"><em>Why it's wrong:</em> In standard negative clauses with 'not', change <em>some</em> to <em>any</em>.</p>
+                            <div class="p-2.5 bg-emerald-100/70 rounded-xl text-xs text-emerald-900 font-medium">
+                                ✅ <strong>Say instead:</strong> "We don't have <strong>any</strong> salt."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: 10 INTERACTIVE PRACTICE EXERCISES -->
+        <section id="section-practice" class="scroll-mt-24 space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between border-b border-stone-100 pb-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg">3</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Practice Kitchen (10 Culinary Tasks)</h2>
+                            <p class="text-xs sm:text-sm text-stone-500">Complete all 10 tasks to master your food grammar!</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-stone-500 font-medium block">Practice Score</span>
+                        <span id="practice-score-counter" class="text-lg font-bold text-emerald-700">0 / 10</span>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+
+                    <!-- TASK 1: INTERACTIVE FOOD SORTING CRATES -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-1">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 1: Kitchen Pantry Sorting</span>
+                            <span class="text-xs text-stone-400 font-mono">1 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-4">Click each ingredient below to send it to the correct crate: <strong>Countable</strong> (individual units) or <strong>Uncountable</strong> (bulk mass / liquid).</p>
+                        
+                        <!-- Food items pool -->
+                        <div id="sorting-pool" class="flex flex-wrap gap-2 mb-5 min-h-[46px] p-2 bg-white rounded-xl border border-stone-200">
+                            <button onclick="sortItem(this, 'c')" class="sort-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-900 hover:bg-amber-200 transition shadow-sm" data-id="egg">🥚 Egg</button>
+                            <button onclick="sortItem(this, 'u')" class="sort-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-900 hover:bg-amber-200 transition shadow-sm" data-id="rice">🍚 Rice</button>
+                            <button onclick="sortItem(this, 'c')" class="sort-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-900 hover:bg-amber-200 transition shadow-sm" data-id="carrot">🥕 Carrot</button>
+                            <button onclick="sortItem(this, 'u')" class="sort-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-900 hover:bg-amber-200 transition shadow-sm" data-id="olive-oil">🫒 Olive Oil</button>
+                            <button onclick="sortItem(this, 'u')" class="sort-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-900 hover:bg-amber-200 transition shadow-sm" data-id="soup">🍲 Soup</button>
+                            <button onclick="sortItem(this, 'c')" class="sort-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-900 hover:bg-amber-200 transition shadow-sm" data-id="strawberry">🍓 Strawberry</button>
+                        </div>
+
+                        <!-- Crates Dropzones -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div id="crate-countable" class="p-4 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/50 min-h-[90px]">
+                                <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wide mb-2 flex items-center gap-1">📦 Countable Crate</h4>
+                                <div class="crate-items flex flex-wrap gap-1.5"></div>
+                            </div>
+                            <div id="crate-uncountable" class="p-4 rounded-xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 min-h-[90px]">
+                                <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wide mb-2 flex items-center gap-1">🏺 Uncountable Jar / Crate</h4>
+                                <div class="crate-items flex flex-wrap gap-1.5"></div>
+                            </div>
+                        </div>
+
+                        <div id="task1-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 2: SOME VS ANY IN CONTEXT -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-2">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 2: Fridge Check (Some vs Any)</span>
+                            <span class="text-xs text-stone-400 font-mono">2 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3">Chef Leo opens the door: <em>"We have <span class="underline font-semibold">______</span> fresh butter on the top rack, but there isn't <span class="underline font-semibold">______</span> yogurt left."</em></p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="task2-options">
+                            <button onclick="answerTask(2, 'A', 'task2')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">A)</span> any / some
+                            </button>
+                            <button onclick="answerTask(2, 'B', 'task2')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">B)</span> some / any
+                            </button>
+                            <button onclick="answerTask(2, 'C', 'task2')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">C)</span> much / many
+                            </button>
+                            <button onclick="answerTask(2, 'D', 'task2')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">D)</span> any / any
+                            </button>
+                        </div>
+                        <div id="task2-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 3: MUCH VS MANY IN DIALOGUE -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-3">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 3: Recipe Measurements (Much vs Many)</span>
+                            <span class="text-xs text-stone-400 font-mono">3 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3">Sous-chef Marco asks: <em>"How <span class="underline font-semibold">______</span> flour should I add to the dough, and how <span class="underline font-semibold">______</span> egg yolks do we need?"</em></p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="task3-options">
+                            <button onclick="answerTask(3, 'A', 'task3')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">A)</span> much / many
+                            </button>
+                            <button onclick="answerTask(3, 'B', 'task3')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">B)</span> many / much
+                            </button>
+                            <button onclick="answerTask(3, 'C', 'task3')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">C)</span> much / much
+                            </button>
+                            <button onclick="answerTask(3, 'D', 'task3')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">D)</span> some / any
+                            </button>
+                        </div>
+                        <div id="task3-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 4: SENTENCE UNSCRAMBLE -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 4: Recipe Question Unscramble</span>
+                            <span class="text-xs text-stone-400 font-mono">4 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3">Click the words in the exact sequence to build a grammatically correct question:</p>
+                        
+                        <!-- Word Bank -->
+                        <div id="unscramble-bank" class="flex flex-wrap gap-2 p-3 bg-white rounded-xl border border-stone-200 mb-3">
+                            <button onclick="selectUnscrambleWord(this)" class="unscramble-word px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-amber-100 border border-stone-300 text-xs font-semibold text-stone-800 transition">cheese</button>
+                            <button onclick="selectUnscrambleWord(this)" class="unscramble-word px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-amber-100 border border-stone-300 text-xs font-semibold text-stone-800 transition">How</button>
+                            <button onclick="selectUnscrambleWord(this)" class="unscramble-word px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-amber-100 border border-stone-300 text-xs font-semibold text-stone-800 transition">need</button>
+                            <button onclick="selectUnscrambleWord(this)" class="unscramble-word px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-amber-100 border border-stone-300 text-xs font-semibold text-stone-800 transition">do</button>
+                            <button onclick="selectUnscrambleWord(this)" class="unscramble-word px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-amber-100 border border-stone-300 text-xs font-semibold text-stone-800 transition">much</button>
+                            <button onclick="selectUnscrambleWord(this)" class="unscramble-word px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-amber-100 border border-stone-300 text-xs font-semibold text-stone-800 transition">we</button>
+                        </div>
+
+                        <!-- Target Construction Area -->
+                        <div class="flex items-center gap-2 mb-3">
+                            <div id="unscramble-target" class="flex-1 min-h-[46px] p-2 bg-amber-50/60 rounded-xl border-2 border-dashed border-amber-300 flex flex-wrap gap-2 items-center">
+                                <span id="unscramble-placeholder" class="text-xs text-stone-400 italic">Click words above in order...</span>
+                            </div>
+                            <button onclick="resetUnscramble()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-stone-200 hover:bg-stone-300 text-stone-700 transition">Reset</button>
+                        </div>
+
+                        <button onclick="verifyUnscramble()" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition shadow-sm">Check Sentence</button>
+                        <div id="task4-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 5: ERROR SPOTTER -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 5: Kitchen Grocery Note (Spot the Error)</span>
+                            <span class="text-xs text-stone-400 font-mono">5 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3">One of the underlined words in this note has a grammatical error with countable/uncountable rules. Click the incorrect word!</p>
+                        
+                        <div class="p-4 bg-amber-100/50 rounded-xl border border-amber-200 text-xs sm:text-sm leading-relaxed space-y-2">
+                            <p>
+                                "Hi Leo, for the tomato basil soup, please buy 
+                                <button onclick="checkErrorWord(this, false)" class="err-word underline font-bold text-stone-800 hover:text-amber-700 decoration-stone-400">some tomatoes</button>, 
+                                two bottles of 
+                                <button onclick="checkErrorWord(this, false)" class="err-word underline font-bold text-stone-800 hover:text-amber-700 decoration-stone-400">olive oil</button>, 
+                                and 
+                                <button onclick="checkErrorWord(this, true)" class="err-word underline font-bold text-stone-800 hover:text-amber-700 decoration-stone-400">many salt</button> 
+                                because we don't have 
+                                <button onclick="checkErrorWord(this, false)" class="err-word underline font-bold text-stone-800 hover:text-amber-700 decoration-stone-400">any left</button>."
+                            </p>
+                        </div>
+                        <div id="task5-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 6: POLITE OFFER EXCEPTION -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 6: Polite Restaurant Offer</span>
+                            <span class="text-xs text-stone-400 font-mono">6 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3">The server welcomes the guests at the table: <em>"Good evening! Would you like <span class="underline font-semibold">______</span> sparkling water while you look over the menu?"</em></p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="task6-options">
+                            <button onclick="answerTask(6, 'A', 'task6')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">A)</span> some (polite offer)
+                            </button>
+                            <button onclick="answerTask(6, 'B', 'task6')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">B)</span> any (question word)
+                            </button>
+                            <button onclick="answerTask(6, 'C', 'task6')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">C)</span> many (large quantity)
+                            </button>
+                        </div>
+                        <div id="task6-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 7: PANTRY INVENTORY (NEGATIVE STATEMENT) -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-7">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 7: Checking the Storage Shelf</span>
+                            <span class="text-xs text-stone-400 font-mono">7 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3"><em>"We can't bake the chocolate cookies right now because we don't have <span class="underline font-semibold">______</span> brown sugar."</em></p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="task7-options">
+                            <button onclick="answerTask(7, 'A', 'task7')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">A)</span> some
+                            </button>
+                            <button onclick="answerTask(7, 'B', 'task7')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">B)</span> any
+                            </button>
+                            <button onclick="answerTask(7, 'C', 'task7')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">C)</span> many
+                            </button>
+                        </div>
+                        <div id="task7-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 8: PLURAL COUNTABLE QUANTIFIER -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 8: Counting Fresh Produce</span>
+                            <span class="text-xs text-stone-400 font-mono">8 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3"><em>"There are too <span class="underline font-semibold">______</span> onions in this basket; we only need two for the pasta sauce."</em></p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="task8-options">
+                            <button onclick="answerTask(8, 'A', 'task8')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">A)</span> much
+                            </button>
+                            <button onclick="answerTask(8, 'B', 'task8')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">B)</span> many
+                            </button>
+                            <button onclick="answerTask(8, 'C', 'task8')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">C)</span> little
+                            </button>
+                        </div>
+                        <div id="task8-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 9: UNCOUNTABLE LIQUID QUESTION -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-9">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 9: Lemonade Pitcher</span>
+                            <span class="text-xs text-stone-400 font-mono">9 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3"><em>"How <span class="underline font-semibold">______</span> lemon juice did you pour into the jug?"</em></p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="task9-options">
+                            <button onclick="answerTask(9, 'A', 'task9')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">A)</span> much
+                            </button>
+                            <button onclick="answerTask(9, 'B', 'task9')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">B)</span> many
+                            </button>
+                            <button onclick="answerTask(9, 'C', 'task9')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition">
+                                <span class="font-bold text-stone-400">C)</span> any
+                            </button>
+                        </div>
+                        <div id="task9-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                    <!-- TASK 10: COMPLEX DINNER QUESTION & ANSWER -->
+                    <div class="exercise-card p-5 sm:p-6 rounded-2xl bg-stone-50 border border-stone-200" id="task-10">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Task 10: Final Kitchen Dialogue</span>
+                            <span class="text-xs text-stone-400 font-mono">10 of 10</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-stone-700 mb-3">
+                            Chef: <em>"Do you have <span class="underline font-semibold">______</span> mushrooms for the pizza?"</em><br>
+                            Assistant: <em>"Yes, we have <span class="underline font-semibold">______</span> in the fridge!"</em>
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="task10-options">
+                            <button onclick="answerTask(10, 'A', 'task10')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">A)</span> any / some
+                            </button>
+                            <button onclick="answerTask(10, 'B', 'task10')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">B)</span> some / any
+                            </button>
+                            <button onclick="answerTask(10, 'C', 'task10')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">C)</span> much / many
+                            </button>
+                            <button onclick="answerTask(10, 'D', 'task10')" class="p-3 text-left rounded-xl bg-white border border-stone-200 hover:border-amber-400 text-xs sm:text-sm transition flex items-center gap-2">
+                                <span class="font-bold text-stone-400">D)</span> many / much
+                            </button>
+                        </div>
+                        <div id="task10-feedback" class="hidden mt-3 text-xs font-semibold"></div>
+                    </div>
+
+                </div>
+
+                <!-- SUMMARY CARD & RESET -->
+                <div id="final-summary-card" class="mt-8 p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-300 text-center space-y-4">
+                    <span class="text-4xl">👨‍🍳🥗</span>
+                    <h3 class="serif-title text-xl sm:text-2xl font-bold text-stone-900">Kitchen Grammar Summary</h3>
+                    <p id="summary-text" class="text-sm text-stone-600 max-w-md mx-auto">
+                        Complete all 10 practice tasks above to review your score and culinary grammar badge!
+                    </p>
+                    <div class="flex justify-center gap-3">
+                        <button onclick="resetAllExercises()" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-stone-800 hover:bg-stone-900 text-white transition shadow-sm">
+                            🔄 Reset All Exercises
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-stone-200 py-6 mt-12 text-center text-xs text-stone-500">
+        <div class="max-w-5xl mx-auto px-4 space-y-1">
+            <p class="font-medium text-stone-700">Kitchen &amp; Pantry Grammar: Countable vs. Uncountable Nouns</p>
+            <p>Designed by Babak Alaee</p>
+            <p class="text-[11px] text-stone-400">Focusing on food context, some / any, and much / many for clear communication.</p>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPT (Native Web Audio, Interactive State, Obfuscated Answer Validation) -->
+    <script>
+        // --- Web Audio API Feedback Generator ---
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playDingSound() {
+            if (!soundEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+            
+            try {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                // Bright high two-tone chord
+                osc.frequency.setValueAtTime(587.33, now); // D5
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.12); // A5
+
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.linearRampToValueAtTime(0.2, now + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.46);
+            } catch (e) {
+                console.warn("Audio play prevented", e);
+            }
+        }
+
+        function playThudSound() {
+            if (!soundEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+
+            try {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.exponentialRampToValueAtTime(95, now + 0.15);
+
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.26);
+            } catch (e) {
+                console.warn("Audio play prevented", e);
+            }
+        }
+
+        // Sound toggle button
+        document.getElementById('audio-toggle-btn').addEventListener('click', function() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('sound-icon').textContent = soundEnabled ? '🔔' : '🔕';
+            this.title = soundEnabled ? 'Audio Feedback Enabled' : 'Audio Feedback Muted';
+            this.classList.toggle('bg-stone-100', !soundEnabled);
+        });
+
+        // --- Global Progress & State ---
+        const totalMilestones = 13; // 3 story checks + 10 exercises
+        const completedMilestones = new Set();
+
+        function updateMasterProgress(key) {
+            completedMilestones.add(key);
+            const count = completedMilestones.size;
+            const pct = Math.min(100, Math.round((count / totalMilestones) * 100));
+            document.getElementById('progress-bar-fill').style.width = pct + '%';
+            document.getElementById('progress-percent').textContent = pct + '%';
+
+            // Count only task-1 to task-10 for the practice counter
+            let practiceCount = 0;
+            for (let i = 1; i <= 10; i++) {
+                if (completedMilestones.has('task-' + i)) {
+                    practiceCount++;
+                }
+            }
+            document.getElementById('practice-score-counter').textContent = `${practiceCount} / 10`;
+
+            if (practiceCount === 10) {
+                const summaryText = document.getElementById('summary-text');
+                summaryText.innerHTML = `🎉 <strong>Magnifico!</strong> You completed all 10 tasks correctly! You have mastered countable and uncountable nouns, as well as some, any, much, and many.`;
+            }
+        }
+
+        // --- Section 1: Exposure Observation Checks ---
+        // Internal obfuscated keys: 1 -> 'B', 2 -> 'A', 3 -> 'A'
+        const obsSolutions = { 1: 'B', 2: 'A', 3: 'A' };
+        const obsExplanations = {
+            1: "Correct! Cheese is an uncountable solid dairy mass. In negative sentences, we use 'much'.",
+            2: "Correct! 'Any' is used with negative statements ('there isn't') to mean zero quantity.",
+            3: "Correct! Tomatoes are countable individual items with a plural form (-es)."
+        };
+
+        function checkObservation(qNum, chosen) {
+            initAudio();
+            const card = document.getElementById(`obs-card-${qNum}`);
+            const feedback = card.querySelector('.obs-feedback');
+            const buttons = card.querySelectorAll('.obs-btn');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (chosen === obsSolutions[qNum]) {
+                playDingSound();
+                feedback.className = "obs-feedback mt-2 text-xs font-semibold text-emerald-800 bg-emerald-100 p-2 rounded-lg border border-emerald-200 block";
+                feedback.innerHTML = "✅ " + obsExplanations[qNum];
+                card.classList.add('ring-2', 'ring-emerald-400');
+                updateMasterProgress('obs-' + qNum);
+            } else {
+                playThudSound();
+                feedback.className = "obs-feedback mt-2 text-xs font-semibold text-red-800 bg-red-100 p-2 rounded-lg border border-red-200 block";
+                feedback.innerHTML = "❌ Try to review the sentence in Leo's prep note above. Click below to try again.";
+                const retry = document.createElement('button');
+                retry.textContent = "Retry";
+                retry.className = "mt-1 underline block font-bold text-red-900";
+                retry.onclick = () => {
+                    buttons.forEach(btn => btn.disabled = false);
+                    feedback.className = "obs-feedback hidden";
+                    card.classList.remove('ring-2', 'ring-emerald-400', 'ring-red-400');
+                };
+                feedback.appendChild(retry);
+            }
+        }
+
+        // --- Section 2: Interactive Tabs & Tools ---
+        function switchRuleTab(tabName) {
+            document.querySelectorAll('.rule-tab-btn').forEach(btn => {
+                btn.className = "rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition";
+            });
+            document.querySelectorAll('.rule-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('block');
+            });
+
+            const activeBtn = document.getElementById('tab-btn-' + tabName);
+            const activePanel = document.getElementById('tab-content-' + tabName);
+            if (activeBtn && activePanel) {
+                activeBtn.className = "rule-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-amber-600 text-white transition";
+                activePanel.classList.remove('hidden');
+                activePanel.classList.add('block');
+            }
+        }
+
+        // Interactive Slider Logic
+        function updateSliderVisual(val) {
+            const badge = document.getElementById('slider-level-badge');
+            const countableText = document.getElementById('slider-countable');
+            const uncountableText = document.getElementById('slider-uncountable');
+            const visualIcons = document.getElementById('slider-visual-icons');
+
+            switch(parseInt(val, 10)) {
+                case 0: // Zero
+                    badge.textContent = "Zero Quantity (Negative / Question)";
+                    badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800";
+                    countableText.innerHTML = `Countable: "There aren't <strong>any</strong> apples."`;
+                    uncountableText.innerHTML = `Uncountable: "There isn't <strong>any</strong> flour."`;
+                    visualIcons.innerHTML = `🚫 | 🚫`;
+                    break;
+                case 1: // Small
+                    badge.textContent = "Small / Modest Quantity";
+                    badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800";
+                    countableText.innerHTML = `Countable: "There are <strong>a few</strong> apples."`;
+                    uncountableText.innerHTML = `Uncountable: "There is <strong>a little</strong> flour."`;
+                    visualIcons.innerHTML = `🍎 | 🌾`;
+                    break;
+                case 2: // Moderate / Positive
+                    badge.textContent = "Unspecified / Some Quantity";
+                    badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800";
+                    countableText.innerHTML = `Countable: "There are <strong>some</strong> apples."`;
+                    uncountableText.innerHTML = `Uncountable: "There is <strong>some</strong> flour."`;
+                    visualIcons.innerHTML = `🍎🍎 | 🌾🌾`;
+                    break;
+                case 3: // Large
+                    badge.textContent = "Large Quantity";
+                    badge.className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
+                    countableText.innerHTML = `Countable: "There are <strong>many</strong> apples."`;
+                    uncountableText.innerHTML = `Uncountable: "There is <strong>much</strong> / <strong>a lot of</strong> flour."`;
+                    visualIcons.innerHTML = `🍎🍎🍎🍎🍎 | 🌾🌾🌾`;
+                    break;
+            }
+        }
+
+        // Sentence Inspector details
+        const inspectorData = {
+            'some-butter': "🧈 <strong>'Some'</strong> is used here because this is a <strong>polite request</strong> ('Could you please pass me...?'). Even though it's a question, we use 'some' when asking for or offering something politely!",
+            'any-eggs': "🥚 <strong>'Any'</strong> is used because this is a <strong>negative statement</strong> ('I don't have...'). We replace 'some' with 'any' when expressing absence or zero amount.",
+            'much-sugar': "🧂 <strong>'Much'</strong> is selected because <strong>sugar</strong> is an uncountable substance (a fine grain mass). We ask questions about uncountable nouns with 'How much'.",
+            'many-strawberries': "🍓 <strong>'Many'</strong> is used because <strong>strawberries</strong> are individual berries that can be counted (one strawberry, two strawberries). We ask with 'How many'."
+        };
+
+        function inspectWord(key) {
+            initAudio();
+            playDingSound();
+            const box = document.getElementById('inspector-result');
+            box.className = "p-4 rounded-xl bg-amber-100/90 border border-amber-300 text-xs sm:text-sm text-stone-900 transition-all";
+            box.innerHTML = inspectorData[key] || "Click a word to inspect.";
+        }
+
+        // --- Section 3: Interactive Practice Tasks ---
+
+        // Task 1: Food Sorting Crates
+        const crateInventory = {
+            'egg': 'c',
+            'rice': 'u',
+            'carrot': 'c',
+            'olive-oil': 'u',
+            'soup': 'u',
+            'strawberry': 'c'
+        };
+        let sortedCount = 0;
+
+        function sortItem(buttonEl, type) {
+            initAudio();
+            const id = buttonEl.getAttribute('data-id');
+            const targetCrateId = type === 'c' ? 'crate-countable' : 'crate-uncountable';
+            const crate = document.getElementById(targetCrateId).querySelector('.crate-items');
+
+            // Move the chip
+            crate.appendChild(buttonEl);
+            buttonEl.onclick = null; // lock movement
+            buttonEl.classList.remove('bg-amber-100', 'hover:bg-amber-200');
+            buttonEl.classList.add('bg-stone-200', 'text-stone-800', 'cursor-default');
+
+            sortedCount++;
+            playDingSound();
+
+            if (sortedCount === 6) {
+                const fb = document.getElementById('task1-feedback');
+                fb.className = "mt-3 text-xs font-semibold text-emerald-800 bg-emerald-100 p-2 rounded-lg border border-emerald-200 block";
+                fb.innerHTML = "✅ Well done! Eggs, carrots, and strawberries can be counted as single items. Rice, olive oil, and soup are bulk masses or liquids.";
+                updateMasterProgress('task-1');
+            }
+        }
+
+        // Generic Single / Multi-choice tasks logic
+        // Solutions encoded via basic lookup
+        const practiceAnswers = {
+            2: 'B', // Task 2: some / any
+            3: 'A', // Task 3: much / many
+            6: 'A', // Task 6: some (polite offer)
+            7: 'B', // Task 7: any (negative)
+            8: 'B', // Task 8: many (onions)
+            9: 'A', // Task 9: much (lemon juice)
+            10: 'A' // Task 10: any / some
+        };
+
+        const practiceExplanations = {
+            2: "Correct! Butter is positive affirmative ('We have some butter'), while yogurt is in a negative sentence ('there isn't any yogurt').",
+            3: "Correct! Flour is uncountable ('How much flour'), while egg yolks are countable plural units ('How many egg yolks').",
+            6: "Correct! When offering food or drink politely to a guest, we use 'Would you like some...?' rather than 'any'.",
+            7: "Correct! In negative sentences with uncountable nouns ('we don't have...'), we use 'any'.",
+            8: "Correct! Onions are countable nouns with plural -s, so we say 'too many onions'.",
+            9: "Correct! Lemon juice is a liquid (uncountable), so we ask 'How much lemon juice'.",
+            10: "Correct! In general questions about existence we ask 'Do you have any...?' and answer positively with 'we have some'."
+        };
+
+        function answerTask(taskNum, choice, optionsContainerId) {
+            initAudio();
+            const container = document.getElementById(optionsContainerId + '-options');
+            const feedback = document.getElementById(optionsContainerId + '-feedback');
+            const buttons = container.querySelectorAll('button');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (choice === practiceAnswers[taskNum]) {
+                playDingSound();
+                feedback.className = "mt-3 text-xs font-semibold text-emerald-800 bg-emerald-100 p-2.5 rounded-xl border border-emerald-300 block";
+                feedback.innerHTML = "✅ " + practiceExplanations[taskNum];
+                document.getElementById('task-' + taskNum).classList.add('ring-2', 'ring-emerald-400');
+                updateMasterProgress('task-' + taskNum);
+            } else {
+                playThudSound();
+                feedback.className = "mt-3 text-xs font-semibold text-red-800 bg-red-100 p-2.5 rounded-xl border border-red-300 block";
+                feedback.innerHTML = "❌ Not quite right for this culinary scenario. Remember the rules for positive, negative, or countable items. ";
+                const retryBtn = document.createElement('button');
+                retryBtn.textContent = "Try again";
+                retryBtn.className = "underline font-bold text-red-900 ml-2 inline-block";
+                retryBtn.onclick = () => {
+                    buttons.forEach(btn => btn.disabled = false);
+                    feedback.className = "hidden";
+                    document.getElementById('task-' + taskNum).classList.remove('ring-2', 'ring-emerald-400', 'ring-red-300');
+                };
+                feedback.appendChild(retryBtn);
+            }
+        }
+
+        // Task 4: Sentence Unscramble
+        const correctUnscramble = ["How", "much", "cheese", "do", "we", "need"];
+        let currentUnscramble = [];
+
+        function selectUnscrambleWord(btn) {
+            initAudio();
+            playDingSound();
+            const word = btn.textContent.trim();
+            currentUnscramble.push(word);
+
+            // Hide word from bank
+            btn.classList.add('hidden');
+
+            const placeholder = document.getElementById('unscramble-placeholder');
+            if (placeholder) placeholder.style.display = 'none';
+
+            const chip = document.createElement('span');
+            chip.className = "px-3 py-1 bg-amber-500 text-white rounded-lg text-xs font-bold";
+            chip.textContent = word;
+            document.getElementById('unscramble-target').appendChild(chip);
+        }
+
+        function resetUnscramble() {
+            currentUnscramble = [];
+            document.getElementById('unscramble-target').innerHTML = '<span id="unscramble-placeholder" class="text-xs text-stone-400 italic">Click words above in order...</span>';
+            document.querySelectorAll('#unscramble-bank .unscramble-word').forEach(btn => btn.classList.remove('hidden'));
+            const fb = document.getElementById('task4-feedback');
+            fb.className = "hidden";
+        }
+
+        function verifyUnscramble() {
+            initAudio();
+            const fb = document.getElementById('task4-feedback');
+            const isCorrect = currentUnscramble.length === correctUnscramble.length &&
+                              currentUnscramble.every((val, idx) => val === correctUnscramble[idx]);
+
+            if (isCorrect) {
+                playDingSound();
+                fb.className = "mt-3 text-xs font-semibold text-emerald-800 bg-emerald-100 p-2.5 rounded-xl border border-emerald-300 block";
+                fb.innerHTML = '✅ Excellent! <em>"How much cheese do we need?"</em> Cheese is uncountable, so it follows "How much".';
+                document.getElementById('task-4').classList.add('ring-2', 'ring-emerald-400');
+                updateMasterProgress('task-4');
+            } else {
+                playThudSound();
+                fb.className = "mt-3 text-xs font-semibold text-red-800 bg-red-100 p-2.5 rounded-xl border border-red-300 block";
+                fb.innerHTML = "❌ Order isn't quite right. Follow the question formula: Question word (How much) + Noun (cheese) + Auxiliary (do) + Subject (we) + Verb (need)?";
+            }
+        }
+
+        // Task 5: Error Spotter
+        function checkErrorWord(buttonEl, isError) {
+            initAudio();
+            const fb = document.getElementById('task5-feedback');
+            const allWords = document.querySelectorAll('.err-word');
+            allWords.forEach(w => w.disabled = true);
+
+            if (isError) {
+                playDingSound();
+                buttonEl.classList.add('bg-emerald-200', 'p-1', 'rounded');
+                fb.className = "mt-3 text-xs font-semibold text-emerald-800 bg-emerald-100 p-2.5 rounded-xl border border-emerald-300 block";
+                fb.innerHTML = '🎯 Spot on! <strong>"many salt"</strong> is incorrect because salt is an uncountable mineral powder. Say <strong>"a lot of salt"</strong> or <strong>"much salt"</strong>!';
+                document.getElementById('task-5').classList.add('ring-2', 'ring-emerald-400');
+                updateMasterProgress('task-5');
+            } else {
+                playThudSound();
+                buttonEl.classList.add('bg-red-200', 'p-1', 'rounded');
+                fb.className = "mt-3 text-xs font-semibold text-red-800 bg-red-100 p-2.5 rounded-xl border border-red-300 block";
+                fb.innerHTML = '❌ That part is grammatically correct! Look for a quantifier matched with the wrong noun type. ';
+                const retryBtn = document.createElement('button');
+                retryBtn.textContent = "Try again";
+                retryBtn.className = "underline font-bold text-red-900 ml-2 inline-block";
+                retryBtn.onclick = () => {
+                    allWords.forEach(w => {
+                        w.disabled = false;
+                        w.classList.remove('bg-red-200', 'bg-emerald-200', 'p-1');
+                    });
+                    fb.className = "hidden";
+                };
+                feedback.appendChild(retryBtn);
+            }
+        }
+
+        // Reset All Practice Exercises
+        function resetAllExercises() {
+            // Reload page state cleanly
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
