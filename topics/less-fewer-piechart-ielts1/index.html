@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Report Writing: Comparing Food & Drink Charts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,600;1,6..72,500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+          },
+          colors: {
+            cream: '#FAF8F5',
+            sand: '#F2EDE4',
+            countable: {
+              light: '#ECFDF5',
+              DEFAULT: '#059669',
+              dark: '#065F46',
+              border: '#A7F3D0'
+            },
+            uncountable: {
+              light: '#FFFBEB',
+              DEFAULT: '#D97706',
+              dark: '#92400E',
+              border: '#FDE68A'
+            },
+            accent: {
+              light: '#EEF2FF',
+              DEFAULT: '#4F46E5',
+              dark: '#3730A3'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Smooth custom transitions and tactile card interactions */
+    html {
+      scroll-behavior: smooth;
+    }
+    .pie-slice {
+      transition: transform 0.25s ease, filter 0.25s ease;
+      transform-origin: 160px 160px;
+      cursor: pointer;
+    }
+    .pie-slice:hover {
+      transform: scale(1.035);
+      filter: brightness(1.05);
+    }
+    .chip-draggable {
+      touch-action: manipulation;
+      user-select: none;
+    }
+    @keyframes pulseGentle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .animate-pop {
+      animation: pulseGentle 0.35s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-cream text-stone-800 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- Sticky Top Progress Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-indigo-600 text-white text-sm font-bold shadow-xs">📊</span>
+            <h1 class="text-base sm:text-xl font-bold text-stone-900 tracking-tight">
+              Academic Report Writing: Food &amp; Drink Pie Charts
+            </h1>
+          </div>
+          <p class="text-sm text-stone-500 mt-1">Designed by Babak Alaee</p>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Sound Effects Toggle -->
+          <button
+            id="audioToggleBtn"
+            type="button"
+            aria-label="Toggle sound effects"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-200 transition cursor-pointer"
+          >
+            <span id="audioIcon">🔊</span>
+            <span id="audioLabel" class="hidden sm:inline">Sound On</span>
+          </button>
+
+          <!-- Overall Progress Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-semibold">
+            <span>Progress:</span>
+            <span id="progressCountText">0 / 16</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Progress Bar & Phase Jump Links -->
+      <div class="mt-2.5">
+        <div class="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
+          <div
+            id="mainProgressBar"
+            class="h-full bg-gradient-to-r from-emerald-500 via-indigo-500 to-amber-500 transition-all duration-500 rounded-full"
+            style="width: 0%"
+          ></div>
+        </div>
+        <nav class="flex items-center justify-between text-xs text-stone-600 mt-1.5 font-medium">
+          <a href="#phase-exposure" class="hover:text-indigo-600 transition flex items-center gap-1">
+            <span id="badgePhase1" class="w-2 h-2 rounded-full bg-stone-300"></span>
+            1. Exposure (3)
+          </a>
+          <a href="#phase-rules" class="hover:text-indigo-600 transition flex items-center gap-1">
+            <span id="badgePhase2" class="w-2 h-2 rounded-full bg-stone-300"></span>
+            2. Interactive Rules (3)
+          </a>
+          <a href="#phase-practice" class="hover:text-indigo-600 transition flex items-center gap-1">
+            <span id="badgePhase3" class="w-2 h-2 rounded-full bg-stone-300"></span>
+            3. Practice Tasks (10)
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-12">
+
+    <!-- Intro Banner -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 border border-stone-200 shadow-xs">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-2 max-w-2xl">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-amber-100 text-amber-800">
+            Chart Comparison Grammar
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-serif font-semibold text-stone-900">
+            Comparing Numbers &amp; Amounts in Pie Chart Reports
+          </h2>
+          <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+            When describing a pie chart about food and drink spending, writers compare nouns using
+            <strong class="text-emerald-700">fewer</strong>, <strong class="text-amber-700">less</strong>, and <strong class="text-indigo-700">more</strong>,
+            and describe extreme categories with superlative adjectives using <strong class="text-indigo-700">the most + adjective</strong> and <strong class="text-indigo-700">the least + adjective</strong> (e.g., <em>the most popular</em>, <em>the least common</em>).
+          </p>
+        </div>
+        <div class="flex sm:flex-col gap-2 shrink-0 bg-sand/70 p-4 rounded-xl border border-stone-200/80 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span>
+            <span class="font-semibold text-emerald-900">Countable Nouns</span>
+            <span class="text-stone-500">(apples, biscuits)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-amber-600 inline-block"></span>
+            <span class="font-semibold text-amber-900">Uncountable Nouns</span>
+            <span class="text-stone-500">(milk, meat, sugar)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 1: EXPOSURE PHASE ("The Food & Drink Spending Pie Chart")
+         ===================================================================== -->
+    <section id="phase-exposure" class="scroll-mt-28 space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-600 text-white font-bold text-base shadow-xs">1</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Exposure: The Food &amp; Drink Spending Pie Chart</h2>
+          <p class="text-sm text-stone-500">Study the chart and read the model report paragraph carefully.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-stone-200 shadow-xs overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          <!-- Left Column: Interactive SVG Pie Chart -->
+          <div class="lg:col-span-5 p-6 bg-stone-50/70 border-b lg:border-b-0 lg:border-r border-stone-200 flex flex-col items-center justify-center">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-700 text-center mb-1">
+              Weekly Household Food &amp; Drink Spending
+            </h3>
+            <p class="text-xs text-stone-500 text-center mb-4">Tap or hover any slice to inspect its category</p>
+
+            <!-- Custom SVG Pie Chart (Center: 160,160; Radius: 120) -->
+            <!-- Angles:
+                 30% Meat & Fish: 0 to 108 deg (-90 to +18 deg)
+                 25% Fresh Vegetables: 108 to 198 deg (+18 to +108 deg)
+                 20% Milk & Dairy: 198 to 270 deg (+108 to +180 deg)
+                 15% Soft Drinks: 270 to 324 deg (+180 to +234 deg)
+                 10% Cakes & Biscuits: 324 to 360 deg (+234 to +270 deg)
+            -->
+            <div class="relative w-full max-w-[300px] mx-auto">
+              <svg viewBox="0 0 320 320" class="w-full h-auto drop-shadow-xs" role="img" aria-label="Pie chart showing weekly household food and drink spending">
+                <!-- Slice 1: Meat & Fish (30%) -> Amber/Terracotta (Uncountable) -->
+                <path
+                  class="pie-slice"
+                  data-slice="meat"
+                  d="M 160 160 L 160 40 A 120 120 0 0 1 274.13 197.08 Z"
+                  fill="#D97706"
+                  stroke="#FFFFFF"
+                  stroke-width="2.5"
+                />
+                <!-- Slice 2: Fresh Vegetables (25%) -> Emerald (Countable) -->
+                <path
+                  class="pie-slice"
+                  data-slice="veg"
+                  d="M 160 160 L 274.13 197.08 A 120 120 0 0 1 122.92 274.13 Z"
+                  fill="#059669"
+                  stroke="#FFFFFF"
+                  stroke-width="2.5"
+                />
+                <!-- Slice 3: Milk & Dairy (20%) -> Warm Gold/Orange (Uncountable) -->
+                <path
+                  class="pie-slice"
+                  data-slice="milk"
+                  d="M 160 160 L 122.92 274.13 A 120 120 0 0 1 40 160 Z"
+                  fill="#F59E0B"
+                  stroke="#FFFFFF"
+                  stroke-width="2.5"
+                />
+                <!-- Slice 4: Soft Drinks (15%) -> Teal (Countable) -->
+                <path
+                  class="pie-slice"
+                  data-slice="drinks"
+                  d="M 160 160 L 40 160 A 120 120 0 0 1 89.47 62.92 Z"
+                  fill="#0D9488"
+                  stroke="#FFFFFF"
+                  stroke-width="2.5"
+                />
+                <!-- Slice 5: Cakes & Biscuits (10%) -> Indigo/Slate (Countable) -->
+                <path
+                  class="pie-slice"
+                  data-slice="cakes"
+                  d="M 160 160 L 89.47 62.92 A 120 120 0 0 1 160 40 Z"
+                  fill="#4F46E5"
+                  stroke="#FFFFFF"
+                  stroke-width="2.5"
+                />
+
+                <!-- Percentage Labels inside slices -->
+                <text x="218" y="122" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle">30%</text>
+                <text x="192" y="226" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle">25%</text>
+                <text x="95" y="205" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle">20%</text>
+                <text x="92" y="124" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle">15%</text>
+                <text x="134" y="84" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle">10%</text>
+              </svg>
+            </div>
+
+            <!-- Interactive Slice Inspector Readout -->
+            <div id="sliceReadout" class="w-full mt-3 p-3 rounded-xl bg-white border border-stone-200 text-center text-xs text-stone-600 shadow-2xs">
+              Click a slice above to see noun type details.
+            </div>
+
+            <!-- Legend -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mt-4 text-xs">
+              <div class="flex items-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-stone-200">
+                <span class="w-3 h-3 rounded-xs bg-amber-600 shrink-0"></span>
+                <span class="font-medium text-stone-800">Meat &amp; Fish (30%)</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-stone-200">
+                <span class="w-3 h-3 rounded-xs bg-emerald-600 shrink-0"></span>
+                <span class="font-medium text-stone-800">Vegetables (25%)</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-stone-200">
+                <span class="w-3 h-3 rounded-xs bg-amber-500 shrink-0"></span>
+                <span class="font-medium text-stone-800">Milk &amp; Dairy (20%)</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-stone-200">
+                <span class="w-3 h-3 rounded-xs bg-teal-600 shrink-0"></span>
+                <span class="font-medium text-stone-800">Soft Drinks (15%)</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-stone-200 sm:col-span-2">
+                <span class="w-3 h-3 rounded-xs bg-indigo-600 shrink-0"></span>
+                <span class="font-medium text-stone-800">Cakes &amp; Biscuits (10%)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Model Academic Report Text -->
+          <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                  Model Chart Report
+                </span>
+                <span class="text-xs text-stone-500">Notice the highlighted words</span>
+              </div>
+
+              <div class="p-5 sm:p-6 rounded-2xl bg-cream border border-stone-200/90 text-stone-800 leading-relaxed text-base sm:text-lg space-y-4">
+                <p>
+                  The pie chart illustrates the proportion of weekly household spending on five food and drink categories. Overall, meat and fish were
+                  <mark class="bg-indigo-100 text-indigo-900 font-semibold px-1.5 py-0.5 rounded-md">the most popular</mark>
+                  and
+                  <mark class="bg-indigo-100 text-indigo-900 font-semibold px-1.5 py-0.5 rounded-md">the most common</mark>
+                  category at 30%, whereas cakes and biscuits were
+                  <mark class="bg-indigo-100 text-indigo-900 font-semibold px-1.5 py-0.5 rounded-md">the least popular</mark>
+                  choice at just 10%.
+                </p>
+                <p>
+                  Shoppers purchased
+                  <mark class="bg-indigo-100 text-indigo-900 font-semibold px-1.5 py-0.5 rounded-md">more</mark>
+                  fresh vegetables (25%) than milk and dairy products (20%). In contrast, households bought
+                  <mark class="bg-emerald-100 text-emerald-900 font-semibold px-1.5 py-0.5 rounded-md border border-emerald-300">fewer</mark>
+                  soft drinks (15%) and even
+                  <mark class="bg-emerald-100 text-emerald-900 font-semibold px-1.5 py-0.5 rounded-md border border-emerald-300">fewer</mark>
+                  cakes and biscuits (10%), making sweet snacks
+                  <mark class="bg-indigo-100 text-indigo-900 font-semibold px-1.5 py-0.5 rounded-md">the least common</mark>
+                  purchase. Similarly, consumers spent
+                  <mark class="bg-amber-100 text-amber-900 font-semibold px-1.5 py-0.5 rounded-md border border-amber-300">less</mark>
+                  milk money (20%) than meat money (30%), showing that families consumed
+                  <mark class="bg-amber-100 text-amber-900 font-semibold px-1.5 py-0.5 rounded-md border border-amber-300">less</mark>
+                  dairy than meat overall.
+                </p>
+              </div>
+            </div>
+
+            <!-- Key Pattern Callout -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                <div class="font-bold text-sm mb-0.5">fewer + plural noun</div>
+                <p><em>fewer soft drinks</em>, <em>fewer biscuits</em> (we can count them: 1, 2, 3...)</p>
+              </div>
+              <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900">
+                <div class="font-bold text-sm mb-0.5">less + uncountable noun</div>
+                <p><em>less dairy</em>, <em>less meat</em>, <em>less money</em> (cannot count individually)</p>
+              </div>
+              <div class="p-3 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-900">
+                <div class="font-bold text-sm mb-0.5">the most / the least + adj.</div>
+                <p><em>the most popular</em> (30%) &amp; <em>the least common</em> (10%) before adjectives</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Comprehension & Noticing Check Questions -->
+        <div class="border-t border-stone-200 bg-sand/40 p-6 sm:p-8">
+          <h3 class="text-base font-bold text-stone-900 mb-1">Noticing &amp; Comprehension Check (3 Quick Questions)</h3>
+          <p class="text-xs sm:text-sm text-stone-600 mb-4">Answer these 3 questions based on the pie chart and report above.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="exposureChecksContainer">
+            <!-- Populated cleanly via JS so no answer keys exist in HTML markup -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 2: INTERACTIVE EXPLANATIONS & RULE INSPECTOR
+         ===================================================================== -->
+    <section id="phase-rules" class="scroll-mt-28 space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-indigo-600 text-white font-bold text-base shadow-xs">2</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Interactive Rules: Countable vs. Uncountable &amp; Superlatives</h2>
+          <p class="text-sm text-stone-500">Click the food cards and error-fix toggles to explore how each rule works.</p>
+        </div>
+      </div>
+
+      <!-- Part 2A: Interactive Food & Drink Noun Inspector -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-stone-200 shadow-xs space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-lg font-bold text-stone-900">A. Food &amp; Drink Noun Inspector</h3>
+            <p class="text-sm text-stone-600">Tap any food or drink item to reveal whether it takes <strong>fewer</strong> or <strong>less</strong>.</p>
+          </div>
+          <span id="inspectorProgressBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 border border-stone-200 self-start">
+            Explored: 0 / 8 items
+          </span>
+        </div>
+
+        <div id="foodInspectorGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div id="foodInspectorDetail" class="p-4 rounded-xl bg-stone-50 border border-stone-200 text-sm text-stone-700 min-h-[76px] flex items-center justify-between gap-4">
+          <span>👆 Click any food or drink card above to inspect its grammar rule!</span>
+        </div>
+      </div>
+
+      <!-- Part 2B: Interactive Rule Switcher ("Compare Common Mistakes vs. Correct Report Sentences") -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-stone-200 shadow-xs space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-lg font-bold text-stone-900">B. Common Chart Mistakes vs. Accurate Sentences</h3>
+            <p class="text-sm text-stone-600">Switch each card from <strong>Incorrect</strong> to <strong>Corrected</strong> to see why the grammar changes.</p>
+          </div>
+          <span id="switcherProgressBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 border border-stone-200 self-start">
+            Fixed: 0 / 3 examples
+          </span>
+        </div>
+
+        <div id="ruleSwitcherList" class="space-y-4">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Quick Reference Cheat Sheet -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200">
+            <h4 class="font-bold text-emerald-900 text-sm mb-2 flex items-center gap-1.5">
+              <span>🔢</span> Countable Plural Nouns
+            </h4>
+            <ul class="text-xs sm:text-sm text-emerald-950 space-y-1.5">
+              <li>• <strong>fewer + plural noun:</strong> <em>People bought <strong>fewer biscuits</strong> than apples.</em></li>
+              <li>• <strong>more + plural noun:</strong> <em>Families ate <strong>more vegetables</strong> than cakes.</em></li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-xl bg-amber-50/80 border border-amber-200">
+            <h4 class="font-bold text-amber-900 text-sm mb-2 flex items-center gap-1.5">
+              <span>🥛</span> Uncountable Nouns
+            </h4>
+            <ul class="text-xs sm:text-sm text-amber-950 space-y-1.5">
+              <li>• <strong>less + uncountable noun:</strong> <em>Households drank <strong>less milk</strong> than water.</em></li>
+              <li>• <strong>more + uncountable noun:</strong> <em>People spent <strong>more money</strong> on meat.</em></li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-xl bg-indigo-50/80 border border-indigo-200">
+            <h4 class="font-bold text-indigo-900 text-sm mb-2 flex items-center gap-1.5">
+              <span>🏆</span> Superlative Adjectives
+            </h4>
+            <ul class="text-xs sm:text-sm text-indigo-950 space-y-1.5">
+              <li>• <strong>the most + adjective:</strong> <em>Meat was <strong>the most popular</strong> choice (30%).</em></li>
+              <li>• <strong>the least + adjective:</strong> <em>Cakes were <strong>the least common</strong> item (10%).</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 3: PRACTICE EXERCISES (EXACTLY 10 INTERACTIVE TASKS)
+         ===================================================================== -->
+    <section id="phase-practice" class="scroll-mt-28 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-600 text-white font-bold text-base shadow-xs">3</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Practice Exercises (10 Interactive Tasks)</h2>
+            <p class="text-sm text-stone-500">Complete all 10 tasks to test your chart comparison skills.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span id="practiceScoreBadge" class="px-3.5 py-1.5 rounded-full bg-white border border-stone-200 text-xs font-bold text-stone-800 shadow-2xs">
+            Completed: 0 of 10
+          </span>
+          <button
+            id="resetPracticeBtn"
+            type="button"
+            class="px-3.5 py-1.5 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs font-semibold transition cursor-pointer"
+          >
+            Reset Practice
+          </button>
+        </div>
+      </div>
+
+      <!-- Mini Data Reference Bar for Practice -->
+      <div class="bg-white rounded-xl p-4 border border-stone-200 shadow-2xs flex flex-wrap items-center justify-between gap-3 text-xs">
+        <span class="font-bold text-stone-800 uppercase tracking-wider">📌 Quick Chart Data Reference:</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 rounded-md bg-amber-100 text-amber-900 font-medium">Meat &amp; Fish: 30%</span>
+          <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-900 font-medium">Vegetables: 25%</span>
+          <span class="px-2.5 py-1 rounded-md bg-amber-100 text-amber-900 font-medium">Milk &amp; Dairy: 20%</span>
+          <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-900 font-medium">Soft Drinks: 15%</span>
+          <span class="px-2.5 py-1 rounded-md bg-indigo-100 text-indigo-900 font-medium">Cakes &amp; Biscuits: 10%</span>
+        </div>
+      </div>
+
+      <!-- Container for the 10 Numbered Exercise Cards -->
+      <div id="practiceExercisesContainer" class="space-y-5">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Final Celebration Banner (Hidden until all 10 are answered) -->
+      <div
+        id="completionBanner"
+        class="hidden rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-md space-y-3"
+      >
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">🎉</span>
+          <div>
+            <h3 class="text-xl sm:text-2xl font-bold">Practice Complete! Well Done!</h3>
+            <p id="finalScoreSummary" class="text-emerald-100 text-sm sm:text-base">
+              You completed all 10 chart comparison tasks.
+            </p>
+          </div>
+        </div>
+        <p class="text-xs sm:text-sm text-emerald-50 leading-relaxed">
+          Remember: use <strong>fewer</strong> with plural countable nouns (<em>fewer biscuits, fewer bottles</em>),
+          <strong>less</strong> with uncountable nouns (<em>less milk, less meat, less money</em>),
+          <strong>more</strong> with both noun types, and <strong>the most / the least</strong> before adjectives (<em>the most popular</em>, <em>the least common</em>).
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-5xl mx-auto px-4 sm:px-6 py-8 text-center text-xs text-stone-400 border-t border-stone-200/80 mt-12">
+    Academic Report Writing Interactive Module • Food &amp; Drink Pie Chart Comparisons
+  </footer>
+
+  <!-- =======================================================================
+       APPLICATION LOGIC & DATA (No localStorage, No Answer Leakage in DOM)
+       ======================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------------------------------------------------------------------
+         1. WEB AUDIO API SYNTHESIZER (Harmonious Chime & Soft Buzz)
+         --------------------------------------------------------------------- */
+      let audioCtx = null;
+      let isMuted = false;
+
+      function getAudioContext() {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            audioCtx = new AudioContextClass();
+          }
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      }
+
+      function playCorrectSound() {
+        if (isMuted) return;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        // Pleasant two-note major triad harmonic chime (C5 -> E5 -> G5)
+        const frequencies = [523.25, 659.25, 783.99];
+        frequencies.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+
+          gain.gain.setValueAtTime(0.0001, now + idx * 0.07);
+          gain.gain.exponentialRampToValueAtTime(0.14, now + idx * 0.07 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 0.35);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.07);
+          osc.stop(now + idx * 0.07 + 0.36);
+        });
+      }
+
+      function playIncorrectSound() {
+        if (isMuted) return;
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(165, now);
+        osc.frequency.linearRampToValueAtTime(135, now + 0.22);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.09, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.26);
+      }
+
+      const audioToggleBtn = document.getElementById('audioToggleBtn');
+      const audioIcon = document.getElementById('audioIcon');
+      const audioLabel = document.getElementById('audioLabel');
+
+      audioToggleBtn.addEventListener('click', () => {
+        isMuted = !isMuted;
+        audioIcon.textContent = isMuted ? '🔇' : '🔊';
+        audioLabel.textContent = isMuted ? 'Muted' : 'Sound On';
+      });
+
+      /* ---------------------------------------------------------------------
+         2. PIE CHART SLICE INTERACTIVITY
+         --------------------------------------------------------------------- */
+      const sliceInfoMap = {
+        meat: {
+          title: '🥩 Meat & Fish (30% — Largest Slice)',
+          type: 'Uncountable Nouns / Superlative Adjective',
+          badgeClass: 'bg-amber-100 text-amber-900 border-amber-300',
+          detail: 'Meat and fish are uncountable nouns ("less meat"). At 30%, this was "the most popular" and "the most common" category.'
+        },
+        veg: {
+          title: '🥕 Fresh Vegetables (25% — Second Largest)',
+          type: 'Countable Plural Noun',
+          badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+          detail: 'Vegetables is a plural countable noun (1 vegetable, 2 vegetables). We use "more vegetables" or "fewer vegetables".'
+        },
+        milk: {
+          title: '🥛 Milk & Dairy (20% — Middle Slice)',
+          type: 'Uncountable Nouns',
+          badgeClass: 'bg-amber-100 text-amber-900 border-amber-300',
+          detail: 'Milk and dairy are uncountable. In reports, we say: "Families consumed less dairy than meat."'
+        },
+        drinks: {
+          title: '🥤 Soft Drinks (15% — Fourth Slice)',
+          type: 'Countable Plural Noun',
+          badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+          detail: 'Soft drinks is plural countable here (referring to types/cans/bottles of drinks). We use "fewer soft drinks".'
+        },
+        cakes: {
+          title: '🍪 Cakes & Biscuits (10% — Smallest Slice)',
+          type: 'Countable Plural Nouns / Superlative Adjective',
+          badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+          detail: 'Cakes and biscuits are plural countable nouns ("fewer biscuits"). At 10%, this category was "the least popular" and "the least common".'
+        }
+      };
+
+      const sliceReadout = document.getElementById('sliceReadout');
+      document.querySelectorAll('.pie-slice').forEach((sliceEl) => {
+        sliceEl.addEventListener('click', () => {
+          const key = sliceEl.getAttribute('data-slice');
+          const info = sliceInfoMap[key];
+          if (!info) return;
+          sliceReadout.innerHTML = `
+            <div class="flex flex-col items-center gap-1 animate-pop">
+              <div class="font-bold text-stone-900">${info.title}</div>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold border ${info.badgeClass}">${info.type}</span>
+              <p class="text-stone-600 mt-0.5">${info.detail}</p>
+            </div>
+          `;
+        });
+      });
+
+      /* ---------------------------------------------------------------------
+         3. GLOBAL PROGRESS TRACKING (3 Exposure + 3 Rules + 10 Practice = 16)
+         --------------------------------------------------------------------- */
+      const appState = {
+        exposureSolved: [false, false, false],
+        rulesExploredItems: new Set(),
+        rulesFixedSwitchers: [false, false, false],
+        practiceStatus: Array(10).fill(null) // null | 'correct' | 'incorrect'
+      };
+
+      function updateOverallProgress() {
+        const expDone = appState.exposureSolved.filter(Boolean).length;
+        // Phase 2 counts up to 3 points: 1 point when >= 4 food items inspected, plus 1 point per switcher toggled (max 3 total for balanced progress, or we track switchers 0..3)
+        const rulesDone = appState.rulesFixedSwitchers.filter(Boolean).length;
+        const pracDone = appState.practiceStatus.filter((s) => s !== null).length;
+
+        const totalDone = expDone + rulesDone + pracDone;
+        const totalMax = 16;
+        const pct = Math.round((totalDone / totalMax) * 100);
+
+        document.getElementById('progressCountText').textContent = `${totalDone} / ${totalMax}`;
+        document.getElementById('mainProgressBar').style.width = `${pct}%`;
+
+        // Update phase indicator dots
+        document.getElementById('badgePhase1').className =
+          `w-2 h-2 rounded-full ${expDone === 3 ? 'bg-emerald-500' : expDone > 0 ? 'bg-amber-400' : 'bg-stone-300'}`;
+        document.getElementById('badgePhase2').className =
+          `w-2 h-2 rounded-full ${rulesDone === 3 ? 'bg-emerald-500' : rulesDone > 0 ? 'bg-amber-400' : 'bg-stone-300'}`;
+        document.getElementById('badgePhase3').className =
+          `w-2 h-2 rounded-full ${pracDone === 10 ? 'bg-emerald-500' : pracDone > 0 ? 'bg-amber-400' : 'bg-stone-300'}`;
+
+        document.getElementById('practiceScoreBadge').textContent = `Completed: ${pracDone} of 10`;
+
+        // Check if all 10 practice tasks are answered
+        const banner = document.getElementById('completionBanner');
+        if (pracDone === 10) {
+          const correctCount = appState.practiceStatus.filter((s) => s === 'correct').length;
+          document.getElementById('finalScoreSummary').textContent =
+            `You answered ${correctCount} out of 10 exercises correctly on your first check.`;
+          banner.classList.remove('hidden');
+        } else {
+          banner.classList.add('hidden');
+        }
+      }
+
+      /* ---------------------------------------------------------------------
+         4. PHASE 1: EXPOSURE COMPREHENSION & NOTICING CHECKS
+         --------------------------------------------------------------------- */
+      const exposureQuestions = [
+        {
+          question: '1. Why does the report say "fewer soft drinks" and "fewer cakes and biscuits"?',
+          options: [
+            'Because "soft drinks", "cakes", and "biscuits" are plural countable nouns.',
+            'Because 15% and 10% are uncountable percentages.'
+          ],
+          correctIdx: 0,
+          explanation: 'Correct! We use "fewer" before plural countable nouns like drinks, cakes, and biscuits.'
+        },
+        {
+          question: '2. Why does the report use "less" in "consumed less dairy than meat"?',
+          options: [
+            'Because "dairy" and "meat" are uncountable nouns.',
+            'Because "dairy" is the largest category in the chart.'
+          ],
+          correctIdx: 0,
+          explanation: 'Spot on! "Dairy", "milk", and "meat" are uncountable nouns, so they pair with "less".'
+        },
+        {
+          question: '3. In the chart, how are "the most" and "the least" used in the report?',
+          options: [
+            'Before multi-syllable adjectives ("the most popular", "the most common", "the least popular") to describe the top and bottom slices.',
+            'Directly before plural nouns like "the most biscuits".'
+          ],
+          correctIdx: 0,
+          explanation: 'Exactly! Superlative adjectives use "the most + adjective" and "the least + adjective" to describe the highest and lowest slices.'
+        }
+      ];
+
+      const exposureContainer = document.getElementById('exposureChecksContainer');
+      exposureQuestions.forEach((item, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl p-4 border border-stone-200 shadow-2xs flex flex-col justify-between space-y-3';
+
+        const qTitle = document.createElement('p');
+        qTitle.className = 'text-sm font-semibold text-stone-800';
+        qTitle.textContent = item.question;
+        card.appendChild(qTitle);
+
+        const btnGroup = document.createElement('div');
+        btnGroup.className = 'space-y-2';
+
+        const feedbackEl = document.createElement('div');
+        feedbackEl.className = 'text-xs font-medium hidden p-2.5 rounded-lg';
+
+        item.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className =
+            'w-full text-left text-xs p-2.5 rounded-lg border border-stone-200 hover:border-indigo-400 hover:bg-indigo-50/50 transition cursor-pointer font-medium text-stone-700';
+          btn.textContent = optText;
+
+          btn.addEventListener('click', () => {
+            const isRight = optIdx === item.correctIdx;
+            // Style buttons
+            Array.from(btnGroup.children).forEach((b, i) => {
+              b.classList.remove('border-emerald-500', 'bg-emerald-50', 'text-emerald-900', 'border-rose-500', 'bg-rose-50', 'text-rose-900');
+              if (i === optIdx) {
+                if (isRight) {
+                  b.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                } else {
+                  b.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+                }
+              }
+            });
+
+            feedbackEl.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200');
+            feedbackEl.classList.add('border');
+
+            if (isRight) {
+              playCorrectSound();
+              feedbackEl.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+              feedbackEl.textContent = '✓ ' + item.explanation;
+              appState.exposureSolved[qIdx] = true;
+              updateOverallProgress();
+            } else {
+              playIncorrectSound();
+              feedbackEl.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+              feedbackEl.textContent = '✕ Not quite. Look closely at whether the noun is plural countable or uncountable.';
+            }
+          });
+
+          btnGroup.appendChild(btn);
+        });
+
+        card.appendChild(btnGroup);
+        card.appendChild(feedbackEl);
+        exposureContainer.appendChild(card);
+      });
+
+      /* ---------------------------------------------------------------------
+         5. PHASE 2A: INTERACTIVE FOOD & DRINK NOUN INSPECTOR
+         --------------------------------------------------------------------- */
+      const foodInspectorItems = [
+        {
+          emoji: '🍎',
+          word: 'apples',
+          category: 'Countable Plural',
+          quantifier: 'fewer / more',
+          isCountable: true,
+          example: '"Customers bought fewer apples in winter." (1 apple, 2 apples...)'
+        },
+        {
+          emoji: '🥛',
+          word: 'milk',
+          category: 'Uncountable',
+          quantifier: 'less / more',
+          isCountable: false,
+          example: '"Households drank less milk than fruit juice." (Liquid — cannot count directly)'
+        },
+        {
+          emoji: '🍪',
+          word: 'biscuits',
+          category: 'Countable Plural',
+          quantifier: 'fewer / more',
+          isCountable: true,
+          example: '"Children ate fewer biscuits after school." (1 biscuit, 2 biscuits...)'
+        },
+        {
+          emoji: '🥩',
+          word: 'meat',
+          category: 'Uncountable',
+          quantifier: 'less / more',
+          isCountable: false,
+          example: '"Families purchased less meat in 2024." (Mass food noun)'
+        },
+        {
+          emoji: '🧴',
+          word: 'bottles of water',
+          category: 'Countable Plural',
+          quantifier: 'fewer / more',
+          isCountable: true,
+          example: '"Shoppers carried fewer bottles of water home." ("Bottles" is plural countable!)'
+        },
+        {
+          emoji: '🍬',
+          word: 'sugar',
+          category: 'Uncountable',
+          quantifier: 'less / more',
+          isCountable: false,
+          example: '"Tea drinkers added less sugar to their cups." (Grains/substance — uncountable)'
+        },
+        {
+          emoji: '🥕',
+          word: 'vegetables',
+          category: 'Countable Plural',
+          quantifier: 'fewer / more',
+          isCountable: true,
+          example: '"Students ate fewer vegetables than adults." (Plural noun ending in -s)'
+        },
+        {
+          emoji: '🐟',
+          word: 'fish',
+          category: 'Uncountable',
+          quantifier: 'less / more',
+          isCountable: false,
+          example: '"Shoppers bought less fish than meat." (Uncountable food noun)'
+        }
+      ];
+
+      const inspectorGrid = document.getElementById('foodInspectorGrid');
+      const inspectorDetail = document.getElementById('foodInspectorDetail');
+      const inspectorBadge = document.getElementById('inspectorProgressBadge');
+
+      foodInspectorItems.forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className =
+          'p-3.5 rounded-xl border border-stone-200 bg-stone-50/60 hover:bg-white hover:border-indigo-400 hover:shadow-xs transition flex flex-col items-center text-center gap-1.5 cursor-pointer';
+        btn.innerHTML = `
+          <span class="text-2xl">${item.emoji}</span>
+          <span class="font-bold text-stone-800 text-xs sm:text-sm">${item.word}</span>
+          <span class="text-[11px] text-stone-500">Tap to inspect</span>
+        `;
+
+        btn.addEventListener('click', () => {
+          appState.rulesExploredItems.add(idx);
+          inspectorBadge.textContent = `Explored: ${appState.rulesExploredItems.size} / ${foodInspectorItems.length} items`;
+
+          Array.from(inspectorGrid.children).forEach((child, cIdx) => {
+            child.classList.remove('ring-2', 'ring-emerald-500', 'ring-amber-500', 'bg-white');
+            if (cIdx === idx) {
+              child.classList.add('ring-2', item.isCountable ? 'ring-emerald-500' : 'ring-amber-500', 'bg-white');
+            }
+          });
+
+          const tagSpan = btn.querySelector('span:last-child');
+          tagSpan.className = item.isCountable
+            ? 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800'
+            : 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800';
+          tagSpan.textContent = item.quantifier;
+
+          inspectorDetail.className = `p-4 rounded-xl border text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-pop ${
+            item.isCountable
+              ? 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
+              : 'bg-amber-50/70 border-amber-200 text-amber-950'
+          }`;
+          inspectorDetail.innerHTML = `
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-bold text-base">${item.emoji} ${item.word}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                  item.isCountable ? 'bg-emerald-600 text-white' : 'bg-amber-600 text-white'
+                }">${item.category} → Use "${item.quantifier}"</span>
+              </div>
+              <p class="text-xs sm:text-sm">${item.example}</p>
+            </div>
+          `;
+        });
+
+        inspectorGrid.appendChild(btn);
+      });
+
+      /* ---------------------------------------------------------------------
+         6. PHASE 2B: INTERACTIVE RULE SWITCHER
+         --------------------------------------------------------------------- */
+      const switcherExamples = [
+        {
+          wrongHtml: 'Households purchased <span class="underline decoration-rose-500 decoration-wavy font-bold text-rose-700">less soft drinks</span> than fresh vegetables.',
+          rightHtml: 'Households purchased <span class="bg-emerald-100 text-emerald-900 px-1.5 py-0.5 rounded font-bold">fewer soft drinks</span> than fresh vegetables.',
+          ruleBadge: 'Rule: Plural Countable = "fewer"',
+          why: '"Soft drinks" is a plural countable noun (1 drink, 2 drinks), so we use "fewer", not "less".'
+        },
+        {
+          wrongHtml: 'Families spent <span class="underline decoration-rose-500 decoration-wavy font-bold text-rose-700">fewer money</span> on dairy than on meat and fish.',
+          rightHtml: 'Families spent <span class="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-bold">less money</span> on dairy than on meat and fish.',
+          ruleBadge: 'Rule: Uncountable Noun = "less"',
+          why: '"Money" (like "milk", "meat", and "sugar") is an uncountable noun, so it always takes "less".'
+        },
+        {
+          wrongHtml: 'Cakes and biscuits were <span class="underline decoration-rose-500 decoration-wavy font-bold text-rose-700">the less popular</span> category at only 10%.',
+          rightHtml: 'Cakes and biscuits were <span class="bg-indigo-100 text-indigo-900 px-1.5 py-0.5 rounded font-bold">the least popular</span> category at only 10%.',
+          ruleBadge: 'Rule: Superlative = "the least + adjective"',
+          why: 'When comparing three or more slices in a pie chart, place "the least" before an adjective like "popular" or "common" for the lowest proportion.'
+        }
+      ];
+
+      const switcherList = document.getElementById('ruleSwitcherList');
+      const switcherBadge = document.getElementById('switcherProgressBadge');
+
+      switcherExamples.forEach((ex, idx) => {
+        let showingCorrected = false;
+
+        const row = document.createElement('div');
+        row.className = 'p-4 sm:p-5 rounded-xl border border-rose-200 bg-rose-50/40 transition-all space-y-3';
+
+        const topBar = document.createElement('div');
+        topBar.className = 'flex flex-wrap items-center justify-between gap-2';
+
+        const statusTag = document.createElement('span');
+        statusTag.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800';
+        statusTag.textContent = '✕ Common Mistake';
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.type = 'button';
+        toggleBtn.className =
+          'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-2xs transition cursor-pointer';
+        toggleBtn.textContent = 'Fix Mistake →';
+
+        topBar.appendChild(statusTag);
+        topBar.appendChild(toggleBtn);
+
+        const sentenceBox = document.createElement('p');
+        sentenceBox.className = 'text-sm sm:text-base text-stone-800 font-medium';
+        sentenceBox.innerHTML = ex.wrongHtml;
+
+        const ruleInfo = document.createElement('div');
+        ruleInfo.className = 'hidden text-xs text-stone-700 bg-white p-3 rounded-lg border border-emerald-200 space-y-1';
+        ruleInfo.innerHTML = `
+          <div class="font-bold text-indigo-800">${ex.ruleBadge}</div>
+          <p>${ex.why}</p>
+        `;
+
+        toggleBtn.addEventListener('click', () => {
+          showingCorrected = !showingCorrected;
+          if (showingCorrected) {
+            row.classList.remove('border-rose-200', 'bg-rose-50/40');
+            row.classList.add('border-emerald-300', 'bg-emerald-50/40');
+            statusTag.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800';
+            statusTag.textContent = '✓ Accurate Report Sentence';
+            toggleBtn.textContent = 'Show Mistake Again';
+            sentenceBox.innerHTML = ex.rightHtml;
+            ruleInfo.classList.remove('hidden');
+
+            if (!appState.rulesFixedSwitchers[idx]) {
+              appState.rulesFixedSwitchers[idx] = true;
+              const fixedCount = appState.rulesFixedSwitchers.filter(Boolean).length;
+              switcherBadge.textContent = `Fixed: ${fixedCount} / ${switcherExamples.length} examples`;
+              updateOverallProgress();
+            }
+          } else {
+            row.classList.add('border-rose-200', 'bg-rose-50/40');
+            row.classList.remove('border-emerald-300', 'bg-emerald-50/40');
+            statusTag.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800';
+            statusTag.textContent = '✕ Common Mistake';
+            toggleBtn.textContent = 'Fix Mistake →';
+            sentenceBox.innerHTML = ex.wrongHtml;
+            ruleInfo.classList.add('hidden');
+          }
+        });
+
+        row.appendChild(topBar);
+        row.appendChild(sentenceBox);
+        row.appendChild(ruleInfo);
+        switcherList.appendChild(row);
+      });
+
+      /* ---------------------------------------------------------------------
+         7. PHASE 3: 10 INTERACTIVE PRACTICE EXERCISES
+         --------------------------------------------------------------------- */
+      const practiceExercises = [
+        // Exercise 1: Drag & Drop / Tap-to-Fill Sentence Blank
+        {
+          id: 1,
+          type: 'drag-fill',
+          tag: 'Drag or Tap to Fill',
+          prompt: 'Drag or tap the right quantifier into the blank to describe the countable noun "soft drinks" (15% vs. 25%).',
+          beforeBlank: 'Households purchased ',
+          afterBlank: ' soft drinks than fresh vegetables.',
+          choices: ['fewer', 'less', 'more'],
+          answer: 'fewer',
+          explanation: '"Soft drinks" is a plural countable noun, and 15% is lower than 25%, so "fewer" is required.'
+        },
+        // Exercise 2: Drag & Drop / Tap-to-Fill Sentence Blank
+        {
+          id: 2,
+          type: 'drag-fill',
+          tag: 'Drag or Tap to Fill',
+          prompt: 'Drag or tap the right quantifier into the blank to describe the uncountable noun "milk" (20% vs. 30%).',
+          beforeBlank: 'Families consumed ',
+          afterBlank: ' milk than meat and fish.',
+          choices: ['fewer', 'less', 'more'],
+          answer: 'less',
+          explanation: '"Milk" is an uncountable liquid noun, so we use "less" when comparing a smaller amount.'
+        },
+        // Exercise 3: Contextual Chart Completion (Superlative Adjective)
+        {
+          id: 3,
+          tag: 'Superlative Adjective',
+          prompt: 'Select the best superlative phrase before the adjective "popular" for the largest slice (Meat & Fish at 30%).',
+          sentence: 'Overall, meat and fish were ________ food category in the chart at 30%.',
+          options: ['the least popular', 'fewer popular', 'the most popular'],
+          answer: 'the most popular',
+          explanation: 'At 30%, Meat & Fish is the biggest slice, and "popular" is a multi-syllable adjective, so we use "the most popular".'
+        },
+        // Exercise 4: Contextual Chart Completion (Superlative Adjective)
+        {
+          id: 4,
+          tag: 'Superlative Adjective',
+          prompt: 'Select the best superlative phrase before the adjective "common" for the smallest category (Cakes & Biscuits at 10%).',
+          sentence: 'In contrast, cakes and biscuits were ________ purchase among households (only 10%).',
+          options: ['the least common', 'fewer common', 'less common'],
+          answer: 'the least common',
+          explanation: '10% is the lowest percentage in the chart, and "common" is an adjective, making "the least common" accurate.'
+        },
+        // Exercise 5: Multiple-Choice Contextual Chart Completion
+        {
+          id: 5,
+          tag: 'Chart Report Completion',
+          prompt: 'Compare Fresh Vegetables (25%) with Dairy Products (20%).',
+          sentence: 'Consumers bought ________ fresh vegetables (25%) than dairy products (20%).',
+          options: ['less', 'more', 'fewer'],
+          answer: 'more',
+          explanation: '25% is higher than 20%, and "more" works naturally before plural countable nouns like "vegetables".'
+        },
+        // Exercise 6: Error-Spotting / Fix-the-Mistake Selector
+        {
+          id: 6,
+          tag: 'Error Spotting & Correction',
+          prompt: 'Read this student draft sentence. Which correction fixes the grammar error?',
+          draftSentence: '"According to the chart, people ate less cakes and biscuits than fresh vegetables."',
+          options: [
+            'Change "less" to "fewer" (because "cakes and biscuits" are plural countable).',
+            'Change "less" to "more" (because 10% is higher than 25%).',
+            'Change "ate" to "eat" (no change needed to "less").'
+          ],
+          answer: 'Change "less" to "fewer" (because "cakes and biscuits" are plural countable).',
+          explanation: '"Cakes" and "biscuits" are plural countable nouns, so they require "fewer", not "less".'
+        },
+        // Exercise 7: Error-Spotting / Fix-the-Mistake Selector
+        {
+          id: 7,
+          tag: 'Error Spotting & Correction',
+          prompt: 'Find and fix the grammar error in this superlative sentence:',
+          draftSentence: '"At 30% of weekly spending, meat and fish were the less common category in the survey."',
+          options: [
+            'Change "the less common" to "the most common".',
+            'Change "the less common" to "fewer common".',
+            'Change "were" to "is".'
+          ],
+          answer: 'Change "the less common" to "the most common".',
+          explanation: 'At 30% (the highest slice), we use the superlative "the most" before the adjective "common".'
+        },
+        // Exercise 8: Click-to-Build / Word Unscramble Sentence
+        {
+          id: 8,
+          tag: 'Build a Report Sentence',
+          prompt: 'Tap the word tiles in order to build an accurate sentence comparing biscuits (10%) and vegetables (25%).',
+          tiles: ['Shoppers', 'bought', 'fewer', 'biscuits', 'than', 'vegetables.'],
+          answer: 'Shoppers bought fewer biscuits than vegetables.',
+          explanation: 'Great word order! "Shoppers bought fewer biscuits than vegetables." uses "fewer" before the plural noun "biscuits".'
+        },
+        // Exercise 9: Click-to-Build / Word Unscramble Sentence
+        {
+          id: 9,
+          tag: 'Build a Report Sentence',
+          prompt: 'Tap the word tiles in order to build a superlative adjective sentence about Cakes & Biscuits (10%).',
+          tiles: ['Cakes', 'were', 'the', 'least', 'popular', 'item.'],
+          answer: 'Cakes were the least popular item.',
+          explanation: 'Well done! "Cakes were the least popular item." correctly places "the least" before the adjective "popular".'
+        },
+        // Exercise 10: Short Text Input Completion based on Mini-Chart Stat
+        {
+          id: 10,
+          tag: 'Complete the Report Sentence',
+          prompt: 'Type ONE missing word (fewer, less, more, most, or least) to complete the superlative adjective phrase.',
+          beforeInput: 'At 30%, meat and fish were the ',
+          afterInput: ' popular category in the pie chart.',
+          acceptedAnswers: ['most'],
+          placeholder: 'Type one word...',
+          explanation: 'Because 30% is the highest slice and "popular" is an adjective, the missing superlative word is "most" ("the most popular").'
+        }
+      ];
+
+      const practiceContainer = document.getElementById('practiceExercisesContainer');
+
+      function renderAllPracticeExercises() {
+        practiceContainer.innerHTML = '';
+        appState.practiceStatus = Array(10).fill(null);
+        updateOverallProgress();
+
+        practiceExercises.forEach((ex, index) => {
+          const card = document.createElement('div');
+          card.id = `exercise-card-${ex.id}`;
+          card.className = 'bg-white rounded-2xl p-5 sm:p-6 border border-stone-200 shadow-xs transition-all space-y-4';
+
+          // Header row
+          const header = document.createElement('div');
+          header.className = 'flex flex-wrap items-center justify-between gap-2';
+          header.innerHTML = `
+            <div class="flex items-center gap-2.5">
+              <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-stone-900 text-white text-xs font-bold">
+                Exercise ${ex.id} of 10
+              </span>
+              <span class="text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">
+                ${ex.tag}
+              </span>
+            </div>
+            <span id="status-pill-${ex.id}" class="text-xs font-semibold text-stone-400">Not answered yet</span>
+          `;
+          card.appendChild(header);
+
+          // Prompt
+          const promptEl = document.createElement('p');
+          promptEl.className = 'text-sm sm:text-base font-semibold text-stone-800';
+          promptEl.textContent = ex.prompt;
+          card.appendChild(promptEl);
+
+          // Feedback box
+          const feedbackBox = document.createElement('div');
+          feedbackBox.className = 'hidden p-3.5 rounded-xl text-xs sm:text-sm font-medium border';
+
+          function handleResult(isCorrect) {
+            const pill = document.getElementById(`status-pill-${ex.id}`);
+            card.classList.remove('border-stone-200', 'border-emerald-400', 'bg-emerald-50/20', 'border-rose-400', 'bg-rose-50/20');
+            feedbackBox.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-200', 'bg-rose-50', 'text-rose-900', 'border-rose-200');
+
+            if (isCorrect) {
+              playCorrectSound();
+              card.classList.add('border-emerald-400', 'bg-emerald-50/20');
+              pill.className = 'text-xs font-bold text-emerald-700';
+              pill.textContent = '✓ Correct';
+              feedbackBox.classList.add('bg-emerald-50', 'text-emerald-900', 'border-emerald-200');
+              feedbackBox.innerHTML = `<strong>✓ Correct!</strong> ${ex.explanation}`;
+              appState.practiceStatus[index] = 'correct';
+            } else {
+              playIncorrectSound();
+              card.classList.add('border-rose-400', 'bg-rose-50/20');
+              pill.className = 'text-xs font-bold text-rose-700';
+              pill.textContent = '✕ Try Again';
+              feedbackBox.classList.add('bg-rose-50', 'text-rose-900', 'border-rose-200');
+              feedbackBox.innerHTML = `<strong>✕ Not quite.</strong> ${ex.explanation}`;
+              if (appState.practiceStatus[index] === null) {
+                appState.practiceStatus[index] = 'incorrect';
+              }
+            }
+            updateOverallProgress();
+          }
+
+          // Render interactive body by exercise type
+          if (ex.type === 'drag-fill') {
+            let selectedWord = '';
+
+            const bank = document.createElement('div');
+            bank.className = 'flex flex-wrap gap-2';
+
+            const sentenceBox = document.createElement('div');
+            sentenceBox.className = 'p-4 rounded-xl bg-cream border border-stone-200 text-sm sm:text-base text-stone-800 leading-relaxed flex flex-wrap items-center gap-1.5';
+
+            const dropZone = document.createElement('button');
+            dropZone.type = 'button';
+            dropZone.className =
+              'inline-flex items-center justify-center min-w-[110px] px-3 py-1 rounded-lg border-2 border-dashed border-indigo-400 bg-white text-indigo-700 font-bold text-sm transition cursor-pointer';
+            dropZone.textContent = 'drop / tap here';
+
+            // Support HTML5 Drag & Drop on dropZone
+            dropZone.addEventListener('dragover', (e) => {
+              e.preventDefault();
+              dropZone.classList.add('bg-indigo-50', 'border-indigo-600');
+            });
+            dropZone.addEventListener('dragleave', () => {
+              dropZone.classList.remove('bg-indigo-50', 'border-indigo-600');
+            });
+            dropZone.addEventListener('drop', (e) => {
+              e.preventDefault();
+              dropZone.classList.remove('bg-indigo-50', 'border-indigo-600');
+              const word = e.dataTransfer.getData('text/plain');
+              if (word) {
+                selectedWord = word;
+                dropZone.textContent = word;
+                dropZone.classList.remove('border-dashed');
+                dropZone.classList.add('border-solid', 'bg-indigo-50');
+                handleResult(selectedWord === ex.answer);
+              }
+            });
+
+            ex.choices.forEach((choice) => {
+              const chip = document.createElement('button');
+              chip.type = 'button';
+              chip.draggable = true;
+              chip.className =
+                'chip-draggable px-3.5 py-1.5 rounded-lg bg-white border border-stone-300 hover:border-indigo-500 hover:bg-indigo-50 text-stone-800 font-semibold text-sm shadow-2xs transition cursor-grab active:cursor-grabbing';
+              chip.textContent = choice;
+
+              chip.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', choice);
+              });
+
+              // Mobile-friendly tap-to-place fallback
+              chip.addEventListener('click', () => {
+                selectedWord = choice;
+                dropZone.textContent = choice;
+                dropZone.classList.remove('border-dashed');
+                dropZone.classList.add('border-solid', 'bg-indigo-50');
+                handleResult(selectedWord === ex.answer);
+              });
+
+              bank.appendChild(chip);
+            });
+
+            const beforeSpan = document.createElement('span');
+            beforeSpan.textContent = ex.beforeBlank;
+            const afterSpan = document.createElement('span');
+            afterSpan.textContent = ex.afterBlank;
+
+            sentenceBox.appendChild(beforeSpan);
+            sentenceBox.appendChild(dropZone);
+            sentenceBox.appendChild(afterSpan);
+
+            card.appendChild(bank);
+            card.appendChild(sentenceBox);
+          } else if (ex.type === 'dropdown' || ex.options) {
+            // Multiple-choice or Error-spotting cards
+            if (ex.sentence) {
+              const sBox = document.createElement('div');
+              sBox.className = 'p-3.5 rounded-xl bg-cream border border-stone-200 text-sm sm:text-base text-stone-800 font-medium';
+              sBox.textContent = ex.sentence;
+              card.appendChild(sBox);
+            }
+
+            if (ex.draftSentence) {
+              const dBox = document.createElement('div');
+              dBox.className = 'p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 text-sm sm:text-base text-stone-900 italic';
+              dBox.textContent = ex.draftSentence;
+              card.appendChild(dBox);
+            }
+
+            const optContainer = document.createElement('div');
+            optContainer.className = ex.draftSentence
+              ? 'grid grid-cols-1 gap-2'
+              : 'grid grid-cols-1 sm:grid-cols-3 gap-2.5';
+
+            ex.options.forEach((opt) => {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className =
+                'p-3 rounded-xl border border-stone-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-left sm:text-center text-xs sm:text-sm font-semibold text-stone-800 transition cursor-pointer';
+              if (ex.draftSentence) {
+                btn.classList.remove('sm:text-center');
+              }
+              btn.textContent = opt;
+
+              btn.addEventListener('click', () => {
+                const isCorrect = opt === ex.answer;
+                Array.from(optContainer.children).forEach((b) => {
+                  b.classList.remove('border-emerald-500', 'bg-emerald-50', 'text-emerald-900', 'border-rose-500', 'bg-rose-50', 'text-rose-900');
+                });
+                if (isCorrect) {
+                  btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                } else {
+                  btn.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+                }
+                handleResult(isCorrect);
+              });
+
+              optContainer.appendChild(btn);
+            });
+
+            card.appendChild(optContainer);
+          } else if (ex.tiles) {
+            // Word Unscramble / Click-to-Build Sentence
+            // Shuffle tiles deterministically for display
+            const shuffled = [...ex.tiles].sort((a, b) => a.length - b.length || a.localeCompare(b));
+            let builtWords = [];
+
+            const assembledBox = document.createElement('div');
+            assembledBox.className =
+              'min-h-[52px] p-3 rounded-xl bg-cream border-2 border-dashed border-stone-300 flex flex-wrap items-center gap-2 text-sm';
+
+            const tilePool = document.createElement('div');
+            tilePool.className = 'flex flex-wrap gap-2';
+
+            const actionRow = document.createElement('div');
+            actionRow.className = 'flex items-center gap-2';
+
+            const checkBtn = document.createElement('button');
+            checkBtn.type = 'button';
+            checkBtn.className =
+              'px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition cursor-pointer';
+            checkBtn.textContent = 'Check Sentence';
+
+            const clearBtn = document.createElement('button');
+            clearBtn.type = 'button';
+            clearBtn.className =
+              'px-3 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold transition cursor-pointer';
+            clearBtn.textContent = 'Clear';
+
+            function renderBuilder() {
+              assembledBox.innerHTML = '';
+              if (builtWords.length === 0) {
+                const hint = document.createElement('span');
+                hint.className = 'text-stone-400 text-xs';
+                hint.textContent = 'Tap words below to build your sentence here...';
+                assembledBox.appendChild(hint);
+              } else {
+                builtWords.forEach((wordObj, wIdx) => {
+                  const placedBtn = document.createElement('button');
+                  placedBtn.type = 'button';
+                  placedBtn.className =
+                    'px-3 py-1 rounded-lg bg-indigo-600 text-white font-semibold text-xs sm:text-sm shadow-2xs cursor-pointer';
+                  placedBtn.textContent = wordObj.text;
+                  placedBtn.addEventListener('click', () => {
+                    builtWords.splice(wIdx, 1);
+                    renderBuilder();
+                  });
+                  assembledBox.appendChild(placedBtn);
+                });
+              }
+
+              tilePool.innerHTML = '';
+              shuffled.forEach((word, tIdx) => {
+                const isUsed = builtWords.some((bw) => bw.tIdx === tIdx);
+                const tBtn = document.createElement('button');
+                tBtn.type = 'button';
+                tBtn.disabled = isUsed;
+                tBtn.className = isUsed
+                  ? 'px-3 py-1.5 rounded-lg bg-stone-100 text-stone-300 border border-stone-200 text-xs sm:text-sm font-medium cursor-not-allowed'
+                  : 'px-3 py-1.5 rounded-lg bg-white hover:bg-indigo-50 text-stone-800 border border-stone-300 hover:border-indigo-400 text-xs sm:text-sm font-semibold shadow-2xs transition cursor-pointer';
+                tBtn.textContent = word;
+                tBtn.addEventListener('click', () => {
+                  builtWords.push({ text: word, tIdx });
+                  renderBuilder();
+                });
+                tilePool.appendChild(tBtn);
+              });
+            }
+
+            checkBtn.addEventListener('click', () => {
+              const userSentence = builtWords.map((w) => w.text).join(' ');
+              handleResult(userSentence === ex.answer);
+            });
+
+            clearBtn.addEventListener('click', () => {
+              builtWords = [];
+              renderBuilder();
+            });
+
+            renderBuilder();
+            actionRow.appendChild(checkBtn);
+            actionRow.appendChild(clearBtn);
+
+            card.appendChild(assembledBox);
+            card.appendChild(tilePool);
+            card.appendChild(actionRow);
+          } else if (ex.acceptedAnswers) {
+            // Exercise 10: Short Text Input Completion
+            const inputRow = document.createElement('div');
+            inputRow.className = 'p-4 rounded-xl bg-cream border border-stone-200 flex flex-wrap items-center gap-2 text-sm sm:text-base text-stone-800';
+
+            const beforeSpan = document.createElement('span');
+            beforeSpan.textContent = ex.beforeInput;
+
+            const inputEl = document.createElement('input');
+            inputEl.type = 'text';
+            inputEl.placeholder = ex.placeholder;
+            inputEl.autocomplete = 'off';
+            inputEl.className =
+              'w-36 px-3 py-1.5 rounded-lg border border-stone-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none bg-white font-bold text-indigo-900 text-sm';
+
+            const afterSpan = document.createElement('span');
+            afterSpan.textContent = ex.afterInput;
+
+            const submitBtn = document.createElement('button');
+            submitBtn.type = 'button';
+            submitBtn.className =
+              'px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold transition cursor-pointer';
+            submitBtn.textContent = 'Check Answer';
+
+            function validateText() {
+              const val = inputEl.value.trim().toLowerCase();
+              const isCorrect = ex.acceptedAnswers.includes(val);
+              handleResult(isCorrect);
+            }
+
+            submitBtn.addEventListener('click', validateText);
+            inputEl.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                validateText();
+              }
+            });
+
+            inputRow.appendChild(beforeSpan);
+            inputRow.appendChild(inputEl);
+            inputRow.appendChild(afterSpan);
+            inputRow.appendChild(submitBtn);
+            card.appendChild(inputRow);
+          }
+
+          card.appendChild(feedbackBox);
+          practiceContainer.appendChild(card);
+        });
+      }
+
+      // Initialize practice tasks & reset handler
+      renderAllPracticeExercises();
+
+      document.getElementById('resetPracticeBtn').addEventListener('click', () => {
+        renderAllPracticeExercises();
+      });
+    })();
+  </script>
+</body>
+</html>
