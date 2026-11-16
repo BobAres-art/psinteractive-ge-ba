@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weekend Kitchen & Café Prep — Grammar Studio</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Fraunces for warm editorial headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fffbeb;
+      background-image:
+        radial-gradient(at 10% 10%, rgba(251, 191, 36, 0.16) 0px, transparent 50%),
+        radial-gradient(at 90% 15%, rgba(217, 119, 6, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 85%, rgba(245, 158, 11, 0.12) 0px, transparent 55%);
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    h1, h2, .font-display {
+      font-family: 'Fraunces', serif;
+    }
+
+    /* Glassmorphism panels */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      box-shadow: 0 10px 30px -10px rgba(120, 53, 15, 0.08);
+    }
+
+    .glass-header {
+      background: rgba(255, 251, 235, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    /* Subtle animations */
+    @keyframes popIn {
+      0% { transform: scale(0.96); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes gentleShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .animate-pop {
+      animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .animate-shake {
+      animation: gentleShake 0.3s ease-in-out;
+    }
+
+    /* Drag and drop slot styling */
+    .drop-slot {
+      min-width: 120px;
+      min-height: 38px;
+      transition: all 0.2s ease;
+    }
+    .drop-slot.drag-over {
+      background-color: rgba(217, 119, 6, 0.15);
+      border-color: #d97706;
+      transform: scale(1.03);
+    }
+    .token-chip {
+      touch-action: manipulation;
+      user-select: none;
+      transition: all 0.18s ease;
+    }
+    .token-chip:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 antialiased selection:bg-amber-200 selection:text-amber-950">
+
+  <!-- Sticky Top Progress Header -->
+  <header class="sticky top-0 z-40 glass-header">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <div class="flex items-center gap-2">
+          <span class="text-xl" aria-hidden="true">☕</span>
+          <span class="font-semibold text-sm sm:text-base text-amber-950 tracking-tight">Weekend Café Grammar Lab</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="sound-toggle-btn" type="button" onclick="toggleAudioMute()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-white/90 border border-amber-200 text-amber-900 hover:bg-amber-100 transition shadow-sm" title="Toggle Sound Effects">
+            <span id="sound-icon">🔊</span>
+            <span id="sound-label">Sound On</span>
+          </button>
+          <span id="progress-badge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-600 text-white shadow-sm">
+            0% Complete
+          </span>
+        </div>
+      </div>
+
+      <!-- Progress Bar Track -->
+      <div class="w-full h-2.5 bg-amber-200/70 rounded-full overflow-hidden">
+        <div id="global-progress-bar" class="h-full bg-gradient-to-r from-amber-500 via-orange-500 to-emerald-500 rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div>
+      </div>
+
+      <!-- Phase Stepper Pills -->
+      <nav aria-label="Lesson phases" class="grid grid-cols-3 gap-2 mt-2.5 text-center text-xs font-medium">
+        <a href="#phase-1" id="nav-phase-1" class="py-1 px-2 rounded-lg bg-amber-100/90 text-amber-900 border border-amber-300/70 transition">
+          1. Exposure <span id="status-p1" class="ml-1 text-amber-700 font-bold">0/3</span>
+        </a>
+        <a href="#phase-2" id="nav-phase-2" class="py-1 px-2 rounded-lg bg-white/70 text-slate-600 border border-slate-200/80 hover:bg-amber-50 transition">
+          2. Interactive Rules <span id="status-p2" class="ml-1 text-slate-500 font-bold">0/2</span>
+        </a>
+        <a href="#phase-3" id="nav-phase-3" class="py-1 px-2 rounded-lg bg-white/70 text-slate-600 border border-slate-200/80 hover:bg-amber-50 transition">
+          3. Practice <span id="status-p3" class="ml-1 text-slate-500 font-bold">0/10</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-8 space-y-12">
+
+    <!-- Hero Title Banner -->
+    <section class="glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold tracking-wide uppercase mb-4 border border-amber-200">
+        <span>🥐</span> Countable & Uncountable Nouns + Verb Agreement
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+        The Weekend Kitchen & Café Prep
+      </h1>
+      <!-- Mandatory Exact Attribution -->
+      <p class="text-sm text-slate-500 mt-2 font-medium">Designed by Babak Alaee</p>
+
+      <p class="max-w-2xl mx-auto mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+        Master how to choose between <strong class="text-amber-800">much, many, some,</strong> and <strong class="text-amber-800">a lot of</strong> in positive and negative sentences—and learn how to match singular or plural verbs before them.
+      </p>
+    </section>
+
+    <!-- =========================================================
+         SECTION 1: EXPOSURE PHASE ("Kitchen Inventory Story")
+    ========================================================= -->
+    <section id="phase-1" class="scroll-mt-32 space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Phase 1 • Context Discovery</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Kitchen Inventory Story</h2>
+        </div>
+        <span class="text-xs bg-white/90 border border-amber-200 text-slate-600 px-3 py-1.5 rounded-full">
+          Read the dialogue & answer 3 noticing checks
+        </span>
+      </div>
+
+      <!-- Story Dialogue Card -->
+      <article class="glass-card rounded-3xl p-6 sm:p-8 space-y-5">
+        <div class="flex items-center gap-3 pb-4 border-b border-amber-100">
+          <div class="w-11 h-11 rounded-2xl bg-amber-100 flex items-center justify-center text-2xl shadow-inner">🍳</div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base sm:text-lg">Saturday Morning, 7:30 AM — Sunrise Bistro</h3>
+            <p class="text-xs text-slate-500">Co-owners Leo and Maya are checking supplies before opening the doors.</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-sm sm:text-base leading-relaxed">
+          <!-- Dialogue Line 1 -->
+          <div class="flex items-start gap-3.5 bg-amber-50/70 p-4 rounded-2xl border border-amber-200/60">
+            <span class="text-2xl shrink-0 mt-0.5" aria-hidden="true">👨‍🍳</span>
+            <div>
+              <span class="font-bold text-amber-900 block text-xs uppercase tracking-wide mb-1">Leo</span>
+              <p class="text-slate-800">
+                "Let’s check the pantry before the rush starts! <span class="bg-amber-200/70 px-1.5 py-0.5 rounded font-semibold text-amber-950">There is a lot of fresh milk</span> 🥛 in the fridge, and <span class="bg-emerald-100 px-1.5 py-0.5 rounded font-semibold text-emerald-950">there are some ripe strawberries</span> 🍓 on the counter for the waffles."
+              </p>
+            </div>
+          </div>
+
+          <!-- Dialogue Line 2 -->
+          <div class="flex items-start gap-3.5 bg-white/80 p-4 rounded-2xl border border-slate-200/80">
+            <span class="text-2xl shrink-0 mt-0.5" aria-hidden="true">👩‍🍳</span>
+            <div>
+              <span class="font-bold text-orange-800 block text-xs uppercase tracking-wide mb-1">Maya</span>
+              <p class="text-slate-800">
+                "Great! However, we have a small problem. <span class="bg-rose-100/80 px-1.5 py-0.5 rounded font-semibold text-rose-950">There isn’t much sugar</span> ☕ left in the jar, and <span class="bg-indigo-100/80 px-1.5 py-0.5 rounded font-semibold text-indigo-950">there aren’t many clean cups</span> either! I’ll run the dishwasher right now."
+              </p>
+            </div>
+          </div>
+
+          <!-- Dialogue Line 3 -->
+          <div class="flex items-start gap-3.5 bg-amber-50/70 p-4 rounded-2xl border border-amber-200/60">
+            <span class="text-2xl shrink-0 mt-0.5" aria-hidden="true">👨‍🍳</span>
+            <div>
+              <span class="font-bold text-amber-900 block text-xs uppercase tracking-wide mb-1">Leo</span>
+              <p class="text-slate-800">
+                "Good idea. Everything else feels ready—<span class="bg-amber-200/70 px-1.5 py-0.5 rounded font-semibold text-amber-950">some music is playing</span> 🎶 softly in the dining room, while <span class="bg-emerald-100 px-1.5 py-0.5 rounded font-semibold text-emerald-950">some customers are already waiting</span> 🪑 outside near the window!"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Context Check (3 Clickable Noticing Questions) -->
+        <div class="pt-4 border-t border-amber-200/70">
+          <h4 class="font-bold text-slate-900 text-base mb-1 flex items-center gap-2">
+            <span>🔍</span> Interactive Context Check
+          </h4>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4">Click the best answer for each question based on the story above:</p>
+
+          <div id="noticing-container" class="space-y-4">
+            <!-- Populated dynamically via JS to keep HTML clean of answer attributes -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2: INTERACTIVE EXPLANATIONS ("The Grammar Lab")
+    ========================================================= -->
+    <section id="phase-2" class="scroll-mt-32 space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Phase 2 • Explore & Compare</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">The Grammar Lab</h2>
+        </div>
+        <span class="text-xs bg-white/90 border border-amber-200 text-slate-600 px-3 py-1.5 rounded-full">
+          Interact with both tools below to unlock full progress
+        </span>
+      </div>
+
+      <!-- Tool 1: Interactive Quantifier & Polarity Matrix -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-100 pb-4">
+          <div>
+            <span class="inline-block text-xs font-bold text-amber-700 uppercase tracking-wider mb-1">Tool 1</span>
+            <h3 class="text-xl font-bold text-slate-900">Quantifier & Polarity Matrix</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Switch noun types and sentence polarity to see which quantifiers are natural.</p>
+          </div>
+          <span id="tool1-badge" class="self-start sm:self-center text-xs font-semibold px-3 py-1 rounded-full bg-amber-100 text-amber-800">
+            Click toggles to explore
+          </span>
+        </div>
+
+        <!-- Controls Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Noun Type Switch -->
+          <div class="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200/70">
+            <span class="block text-xs font-bold uppercase tracking-wider text-amber-900 mb-2">1. Choose Noun Type</span>
+            <div class="grid grid-cols-2 gap-2" role="group" aria-label="Noun type toggle">
+              <button type="button" id="btn-noun-countable" onclick="setMatrixState('noun', 'countable')" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm bg-amber-600 text-white">
+                🍓 Countable Plural<br><span class="text-[11px] font-normal opacity-90">(cups, ideas, seats)</span>
+              </button>
+              <button type="button" id="btn-noun-uncountable" onclick="setMatrixState('noun', 'uncountable')" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-amber-100/60">
+                🥛 Uncountable<br><span class="text-[11px] font-normal opacity-80">(milk, traffic, advice)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Polarity Switch -->
+          <div class="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200/70">
+            <span class="block text-xs font-bold uppercase tracking-wider text-amber-900 mb-2">2. Choose Sentence Polarity</span>
+            <div class="grid grid-cols-2 gap-2" role="group" aria-label="Sentence polarity toggle">
+              <button type="button" id="btn-pol-positive" onclick="setMatrixState('polarity', 'positive')" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm bg-emerald-600 text-white">
+                ➕ Positive (+)<br><span class="text-[11px] font-normal opacity-90">(There is / There are)</span>
+              </button>
+              <button type="button" id="btn-pol-negative" onclick="setMatrixState('polarity', 'negative')" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-amber-100/60">
+                ➖ Negative (-)<br><span class="text-[11px] font-normal opacity-80">(There isn't / aren't)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Quantifier Cards Output -->
+        <div id="matrix-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Dynamically rendered by JS -->
+        </div>
+
+        <!-- Live Rule Summary Banner -->
+        <div id="matrix-live-banner" class="bg-slate-900 text-amber-50 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5">
+          <span class="text-xl shrink-0" aria-hidden="true">💡</span>
+          <div id="matrix-live-text" class="text-xs sm:text-sm leading-relaxed">
+            <!-- Dynamically updated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 2: Verb Agreement Inspector -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-100 pb-4">
+          <div>
+            <span class="inline-block text-xs font-bold text-amber-700 uppercase tracking-wider mb-1">Tool 2</span>
+            <h3 class="text-xl font-bold text-slate-900">Verb Agreement Inspector</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Click any sentence card to inspect the verb-noun link, and flip the switch to compare learner mistakes.</p>
+          </div>
+          <!-- Mistake vs Natural Switch -->
+          <div class="flex items-center gap-2 bg-amber-50 p-1.5 rounded-2xl border border-amber-200 self-start sm:self-center">
+            <button type="button" id="btn-mode-natural" onclick="setInspectorMode('natural')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-sm transition">
+              ✅ Natural English
+            </button>
+            <button type="button" id="btn-mode-mistake" onclick="setInspectorMode('mistake')" class="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-rose-100 transition">
+              ⚠️ Common Mistake
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Sentence Cards -->
+        <div id="inspector-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Detailed Inspector Spotlight Box -->
+        <div id="inspector-spotlight" class="rounded-2xl p-5 bg-amber-50/90 border border-amber-300/80 transition-all">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3: PRACTICE EXERCISES (10 Interactive Items)
+    ========================================================= -->
+    <section id="phase-3" class="scroll-mt-32 space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Phase 3 • Active Mastery</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Café Shift Practice (10 Exercises)</h2>
+        </div>
+        <button type="button" onclick="resetAllExercises()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 transition shadow-sm">
+          <span>↻</span> Reset All Exercises
+        </button>
+      </div>
+
+      <!-- Exercise Container -->
+      <div id="exercises-list" class="space-y-6">
+        <!-- All 10 exercises rendered cleanly by JS -->
+      </div>
+
+      <!-- Final Completion Celebration Banner (Hidden until all 10 solved) -->
+      <div id="completion-banner" class="hidden glass-card rounded-3xl p-8 text-center border-2 border-emerald-400 bg-emerald-50/90 animate-pop">
+        <div class="text-4xl mb-3">🎉🥐☕</div>
+        <h3 class="text-2xl font-bold text-emerald-950 font-display">Shift Complete! Outstanding Work!</h3>
+        <p class="text-sm sm:text-base text-emerald-800 max-w-xl mx-auto mt-2">
+          You have mastered <strong class="font-semibold">much, many, some,</strong> and <strong class="font-semibold">a lot of</strong> across countable and uncountable nouns—and nailed singular vs. plural verb agreement!
+        </p>
+        <button type="button" onclick="resetAllExercises()" class="mt-5 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow transition">
+          Practice Again
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* =====================================================================
+       1. WEB AUDIO API SOUND SYNTHESIS (Zero external audio files)
+    ===================================================================== */
+    let audioCtx = null;
+    let isMuted = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function toggleAudioMute() {
+      isMuted = !isMuted;
+      const icon = document.getElementById('sound-icon');
+      const label = document.getElementById('sound-label');
+      if (isMuted) {
+        icon.textContent = '🔇';
+        label.textContent = 'Muted';
+      } else {
+        icon.textContent = '🔊';
+        label.textContent = 'Sound On';
+        playClickTick();
+      }
+    }
+
+    // Subtle soft UI click sound
+    function playClickTick() {
+      if (isMuted) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, ctx.currentTime);
+        gain.gain.setValueAtTime(0.03, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch (e) {}
+    }
+
+    // Pleasant rising two-tone chime for correct answers
+    function playCorrectChime() {
+      if (isMuted) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        // Note 1: E5 (659.25 Hz)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(659.25, now);
+        gain1.gain.setValueAtTime(0.001, now);
+        gain1.gain.linearRampToValueAtTime(0.12, now + 0.02);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.24);
+
+        // Note 2: A5 (880 Hz)
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(880, now + 0.11);
+        gain2.gain.setValueAtTime(0.001, now + 0.11);
+        gain2.gain.linearRampToValueAtTime(0.14, now + 0.14);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.11);
+        osc2.stop(now + 0.44);
+      } catch (e) {}
+    }
+
+    // Soft low buzz for incorrect answers
+    function playIncorrectBuzz() {
+      if (isMuted) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(155, now);
+        osc.frequency.linearRampToValueAtTime(125, now + 0.24);
+
+        // Low-pass filter so the buzz is warm and gentle, never harsh
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(420, now);
+
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.09, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.28);
+      } catch (e) {}
+    }
+
+    /* =====================================================================
+       2. GLOBAL PROGRESS STATE (No localStorage, pure in-memory state)
+    ===================================================================== */
+    const progressState = {
+      noticingSolved: [false, false, false],
+      labToolsExplored: { matrix: false, inspector: false },
+      exercisesSolved: new Array(10).fill(false)
+    };
+
+    function updateGlobalProgress() {
+      const p1Count = progressState.noticingSolved.filter(Boolean).length;
+      const p2Count = (progressState.labToolsExplored.matrix ? 1 : 0) + (progressState.labToolsExplored.inspector ? 1 : 0);
+      const p3Count = progressState.exercisesSolved.filter(Boolean).length;
+
+      const totalSteps = 15; // 3 noticing + 2 lab tools + 10 exercises
+      const completedSteps = p1Count + p2Count + p3Count;
+      const pct = Math.round((completedSteps / totalSteps) * 100);
+
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('progress-badge').textContent = `${pct}% Complete`;
+
+      document.getElementById('status-p1').textContent = `${p1Count}/3`;
+      document.getElementById('status-p2').textContent = `${p2Count}/2`;
+      document.getElementById('status-p3').textContent = `${p3Count}/10`;
+
+      // Highlight completed phase pills
+      updateNavPill('nav-phase-1', p1Count === 3);
+      updateNavPill('nav-phase-2', p2Count === 2);
+      updateNavPill('nav-phase-3', p3Count === 10);
+
+      // Show completion banner if all 10 exercises are solved
+      const banner = document.getElementById('completion-banner');
+      if (p3Count === 10) {
+        banner.classList.remove('hidden');
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function updateNavPill(id, isDone) {
+      const el = document.getElementById(id);
+      if (isDone) {
+        el.className = 'py-1 px-2 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-400 transition font-semibold';
+      }
+    }
+
+    /* =====================================================================
+       3. SECTION 1: EXPOSURE PHASE NOTICING CHECKS
+    ===================================================================== */
+    const noticingQuestions = [
+      {
+        prompt: '1. Look at "There is a lot of fresh milk" and "There isn’t much sugar." Why does Leo use singular verbs (is / isn’t)?',
+        options: [
+          'Because "milk" and "sugar" are uncountable nouns, which always take a singular verb.',
+          'Because "a lot of" always requires a singular verb.'
+        ],
+        correctIndex: 0,
+        feedbackCorrect: 'Spot on! Uncountable nouns (milk, sugar, music) cannot be counted individually, so they always take a singular verb (is / isn’t).',
+        feedbackWrong: 'Not quite! Look closely at the nouns "milk" and "sugar"—they are uncountable substances, so they take singular verbs.'
+      },
+      {
+        prompt: '2. Compare "There are some ripe strawberries" and "There aren’t many clean cups." Which quantifiers appear with countable plural nouns?',
+        options: [
+          '"much" is used in negative sentences with plural nouns.',
+          '"some" (in positive) and "many" (in negative) are used with countable plural nouns.'
+        ],
+        correctIndex: 1,
+        feedbackCorrect: 'Exactly! Countable plural nouns take plural verbs (are / aren’t) and pair with "some" in positive statements and "many" in negative ones.',
+        feedbackWrong: 'Look back at Maya’s line: she says "there aren’t many clean cups" (not "much"). "Many" goes with countable plural nouns!'
+      },
+      {
+        prompt: '3. Notice "Some music is playing" vs. "Some customers are already waiting." What decides whether the verb after "Some + Noun" is singular or plural?',
+        options: [
+          'The word "Some" always forces a plural verb.',
+          'The noun itself: "music" is uncountable (is), while "customers" is countable plural (are).'
+        ],
+        correctIndex: 1,
+        feedbackCorrect: 'Brilliant! Quantifiers like "some" and "a lot of" don’t control the verb—the noun after them does!' ,
+        feedbackWrong: 'Check both sentences again: "music" uses "is" (singular) while "customers" uses "are" (plural). The noun decides the verb!'
+      }
+    ];
+
+    function renderNoticingChecks() {
+      const container = document.getElementById('noticing-container');
+      container.innerHTML = '';
+
+      noticingQuestions.forEach((q, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'p-4 rounded-2xl bg-white/90 border border-amber-200/80 space-y-2.5';
+        card.id = `noticing-q-${qIdx}`;
+
+        const promptEl = document.createElement('p');
+        promptEl.className = 'text-sm font-semibold text-slate-800';
+        promptEl.textContent = q.prompt;
+        card.appendChild(promptEl);
+
+        const btnGrid = document.createElement('div');
+        btnGrid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-2';
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.id = `noticing-btn-${qIdx}-${optIdx}`;
+          btn.className = 'text-left p-3 rounded-xl text-xs sm:text-sm border border-slate-200 bg-slate-50/80 hover:bg-amber-50 hover:border-amber-300 text-slate-700 font-medium transition';
+          btn.textContent = optText;
+          btn.onclick = () => handleNoticingClick(qIdx, optIdx);
+          btnGrid.appendChild(btn);
+        });
+
+        card.appendChild(btnGrid);
+
+        const fbEl = document.createElement('div');
+        fbEl.id = `noticing-fb-${qIdx}`;
+        fbEl.className = 'hidden text-xs sm:text-sm p-3 rounded-xl font-medium';
+        card.appendChild(fbEl);
+
+        container.appendChild(card);
+      });
+    }
+
+    function handleNoticingClick(qIdx, optIdx) {
+      const q = noticingQuestions[qIdx];
+      const isCorrect = optIdx === q.correctIndex;
+      const fbEl = document.getElementById(`noticing-fb-${qIdx}`);
+
+      // Reset button styles for this question
+      q.options.forEach((_, idx) => {
+        const b = document.getElementById(`noticing-btn-${qIdx}-${idx}`);
+        b.className = 'text-left p-3 rounded-xl text-xs sm:text-sm border border-slate-200 bg-slate-50/80 hover:bg-amber-50 hover:border-amber-300 text-slate-700 font-medium transition';
+      });
+
+      const selectedBtn = document.getElementById(`noticing-btn-${qIdx}-${optIdx}`);
+
+      if (isCorrect) {
+        playCorrectChime();
+        selectedBtn.className = 'text-left p-3 rounded-xl text-xs sm:text-sm border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-semibold transition';
+        fbEl.className = 'text-xs sm:text-sm p-3 rounded-xl font-medium bg-emerald-100/80 text-emerald-900 border border-emerald-300 animate-pop';
+        fbEl.textContent = '✅ ' + q.feedbackCorrect;
+        progressState.noticingSolved[qIdx] = true;
+        updateGlobalProgress();
+      } else {
+        playIncorrectBuzz();
+        selectedBtn.className = 'text-left p-3 rounded-xl text-xs sm:text-sm border-2 border-rose-500 bg-rose-50 text-rose-950 font-semibold transition animate-shake';
+        fbEl.className = 'text-xs sm:text-sm p-3 rounded-xl font-medium bg-rose-100/80 text-rose-900 border border-rose-300 animate-pop';
+        fbEl.textContent = '❌ ' + q.feedbackWrong;
+      }
+    }
+
+    /* =====================================================================
+       4. SECTION 2: INTERACTIVE EXPLANATIONS (Matrix & Inspector)
+    ===================================================================== */
+    const matrixState = {
+      noun: 'countable',    // 'countable' | 'uncountable'
+      polarity: 'positive', // 'positive' | 'negative'
+      interactions: 0
+    };
+
+    const matrixData = {
+      countable: {
+        positive: {
+          banner: 'With <strong>countable plural nouns</strong> (cups, ideas, seats) in <strong>positive (+)</strong> sentences, use <span class="text-emerald-300 font-bold">some</span> or <span class="text-emerald-300 font-bold">a lot of</span> with a <strong>plural verb</strong> (<em>are</em>). Avoid <em>many</em> in everyday positive statements.',
+          cards: [
+            {
+              word: 'some',
+              valid: true,
+              tag: 'Natural (+)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">are</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">some</span> great ideas on the board.',
+              note: 'Used for an indefinite, moderate number in positive sentences.'
+            },
+            {
+              word: 'a lot of',
+              valid: true,
+              tag: 'Natural (+)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">are</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">a lot of</span> customers waiting outside.',
+              note: 'Used for a large number in positive (and negative) sentences.'
+            },
+            {
+              word: 'many',
+              valid: false,
+              tag: 'Unnatural in (+)',
+              example: '<s>There are many seats left.</s> → Use <strong>a lot of</strong> instead.',
+              note: 'In conversational English, "many" sounds overly formal in positive statements.'
+            },
+            {
+              word: 'much',
+              valid: false,
+              tag: 'Incorrect',
+              example: '<s>There are much cups.</s> → Never use <strong>much</strong> with plural nouns.',
+              note: '"Much" is strictly for uncountable nouns.'
+            }
+          ]
+        },
+        negative: {
+          banner: 'With <strong>countable plural nouns</strong> in <strong>negative (-)</strong> sentences, use <span class="text-emerald-300 font-bold">many</span> or <span class="text-emerald-300 font-bold">a lot of</span> with a <strong>plural negative verb</strong> (<em>aren’t</em>). Do not use <em>some</em> in negative clauses.',
+          cards: [
+            {
+              word: 'many',
+              valid: true,
+              tag: 'Natural (-)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">aren’t</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">many</span> clean cups left.',
+              note: 'The most natural choice for small quantities in negative plural sentences.'
+            },
+            {
+              word: 'a lot of',
+              valid: true,
+              tag: 'Natural (-)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">aren’t</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">a lot of</span> empty tables today.',
+              note: 'Works smoothly in both positive and negative sentences.'
+            },
+            {
+              word: 'some',
+              valid: false,
+              tag: 'Incorrect in (-)',
+              example: '<s>There aren’t some seats.</s> → Use <strong>any</strong> or <strong>many</strong>.',
+              note: '"Some" belongs in positive statements, not standard negatives.'
+            },
+            {
+              word: 'much',
+              valid: false,
+              tag: 'Incorrect',
+              example: '<s>There aren’t much chairs.</s> → Use <strong>many</strong> for countable plurals.',
+              note: '"Much" cannot modify countable plural nouns.'
+            }
+          ]
+        }
+      },
+      uncountable: {
+        positive: {
+          banner: 'With <strong>uncountable nouns</strong> (milk, traffic, advice) in <strong>positive (+)</strong> sentences, use <span class="text-emerald-300 font-bold">some</span> or <span class="text-emerald-300 font-bold">a lot of</span> with a <strong>singular verb</strong> (<em>is</em>). Never use <em>much</em> in positive statements.',
+          cards: [
+            {
+              word: 'some',
+              valid: true,
+              tag: 'Natural (+)',
+              example: '<span class="bg-emerald-200/80 px-1 rounded font-bold">Some</span> advice <span class="underline decoration-emerald-500 decoration-2 font-bold">is</span> really helpful.',
+              note: 'Pairs with an uncountable noun + singular verb.'
+            },
+            {
+              word: 'a lot of',
+              valid: true,
+              tag: 'Natural (+)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">is</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">a lot of</span> traffic on Main Street.',
+              note: 'Notice "There is" (singular) even though "a lot of" sounds big!'
+            },
+            {
+              word: 'much',
+              valid: false,
+              tag: 'Unnatural in (+)',
+              example: '<s>There is much milk in the fridge.</s> → Use <strong>a lot of</strong>.',
+              note: '"Much" is almost never used in positive affirmative sentences.'
+            },
+            {
+              word: 'many',
+              valid: false,
+              tag: 'Incorrect',
+              example: '<s>There is many sugar.</s> → Never use <strong>many</strong> with uncountable nouns.',
+              note: '"Many" only works with countable plural nouns.'
+            }
+          ]
+        },
+        negative: {
+          banner: 'With <strong>uncountable nouns</strong> in <strong>negative (-)</strong> sentences, use <span class="text-emerald-300 font-bold">much</span> or <span class="text-emerald-300 font-bold">a lot of</span> with a <strong>singular negative verb</strong> (<em>isn’t</em>).',
+          cards: [
+            {
+              word: 'much',
+              valid: true,
+              tag: 'Natural (-)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">isn’t</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">much</span> sugar left in the jar.',
+              note: 'The classic, natural choice for negative uncountable sentences.'
+            },
+            {
+              word: 'a lot of',
+              valid: true,
+              tag: 'Natural (-)',
+              example: 'There <span class="underline decoration-emerald-500 decoration-2 font-bold">isn’t</span> <span class="bg-emerald-200/80 px-1 rounded font-bold">a lot of</span> time before we open.',
+              note: 'Also completely natural in negative sentences.'
+            },
+            {
+              word: 'some',
+              valid: false,
+              tag: 'Incorrect in (-)',
+              example: '<s>There isn’t some milk.</s> → Use <strong>any</strong> or <strong>much</strong>.',
+              note: 'Avoid "some" in negative statements.'
+            },
+            {
+              word: 'many',
+              valid: false,
+              tag: 'Incorrect',
+              example: '<s>There isn’t many traffic.</s> → Use <strong>much</strong> for uncountable nouns.',
+              note: '"Traffic" is uncountable, so "many" is ungrammatical.'
+            }
+          ]
+        }
+      }
+    };
+
+    function setMatrixState(key, val) {
+      playClickTick();
+      matrixState[key] = val;
+      matrixState.interactions++;
+
+      if (matrixState.interactions >= 2 && !progressState.labToolsExplored.matrix) {
+        progressState.labToolsExplored.matrix = true;
+        const badge = document.getElementById('tool1-badge');
+        badge.textContent = '✓ Explored';
+        badge.className = 'self-start sm:self-center text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300';
+        updateGlobalProgress();
+      }
+
+      renderMatrix();
+    }
+
+    function renderMatrix() {
+      // Update button styles
+      const btnCount = document.getElementById('btn-noun-countable');
+      const btnUncount = document.getElementById('btn-noun-uncountable');
+      const btnPos = document.getElementById('btn-pol-positive');
+      const btnNeg = document.getElementById('btn-pol-negative');
+
+      const activeNounClass = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm bg-amber-600 text-white';
+      const inactiveNounClass = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition bg-white text-slate-700 border border-slate-200 hover:bg-amber-100/60';
+
+      btnCount.className = matrixState.noun === 'countable' ? activeNounClass : inactiveNounClass;
+      btnUncount.className = matrixState.noun === 'uncountable' ? activeNounClass : inactiveNounClass;
+
+      btnPos.className = matrixState.polarity === 'positive'
+        ? 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm bg-emerald-600 text-white'
+        : inactiveNounClass;
+
+      btnNeg.className = matrixState.polarity === 'negative'
+        ? 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm bg-rose-600 text-white'
+        : inactiveNounClass;
+
+      const currentData = matrixData[matrixState.noun][matrixState.polarity];
+      document.getElementById('matrix-live-text').innerHTML = currentData.banner;
+
+      const grid = document.getElementById('matrix-cards-grid');
+      grid.innerHTML = '';
+
+      currentData.cards.forEach(item => {
+        const card = document.createElement('div');
+        if (item.valid) {
+          card.className = 'p-4 rounded-2xl bg-emerald-50/70 border-2 border-emerald-400/80 transition animate-pop';
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-bold text-emerald-950 font-display">${item.word}</span>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white">✓ ${item.tag}</span>
+            </div>
+            <p class="text-sm text-slate-800 mb-1.5">${item.example}</p>
+            <p class="text-xs text-emerald-800">${item.note}</p>
+          `;
+        } else {
+          card.className = 'p-4 rounded-2xl bg-slate-100/75 border border-slate-300/80 opacity-75 transition';
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-bold text-slate-500 line-through font-display">${item.word}</span>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">✕ ${item.tag}</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-1.5">${item.example}</p>
+            <p class="text-xs text-slate-500">${item.note}</p>
+          `;
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    /* Tool 2: Verb Agreement Inspector */
+    const inspectorExamples = [
+      {
+        id: 'ex1',
+        category: 'Uncountable + "a lot of"',
+        naturalHtml: '<span class="text-amber-800 font-bold underline">There is</span> a lot of <span class="text-emerald-800 font-bold">traffic</span> outside.',
+        mistakeHtml: '<span class="text-rose-700 font-bold underline">There are</span> a lot of <span class="text-rose-700 font-bold">traffic</span> outside.',
+        explanation: 'Even though <strong>"a lot of"</strong> means a large amount, <strong>traffic</strong> is an uncountable noun. Always use singular <strong>There is</strong> before uncountable nouns!'
+      },
+      {
+        id: 'ex2',
+        category: 'Countable Plural + Negative "many"',
+        naturalHtml: '<span class="text-amber-800 font-bold underline">There aren’t</span> many <span class="text-emerald-800 font-bold">seats</span> left.',
+        mistakeHtml: '<span class="text-rose-700 font-bold underline">There isn’t</span> many <span class="text-rose-700 font-bold">seats</span> left.',
+        explanation: '<strong>Seats</strong> is countable plural, so the verb before it must be plural negative (<strong>There aren’t</strong>), paired with <strong>many</strong>.'
+      },
+      {
+        id: 'ex3',
+        category: 'Subject Position: "Some" + Uncountable',
+        naturalHtml: 'Some <span class="text-emerald-800 font-bold">advice</span> <span class="text-amber-800 font-bold underline">is</span> really helpful.',
+        mistakeHtml: 'Some <span class="text-rose-700 font-bold">advice</span> <span class="text-rose-700 font-bold underline">are</span> really helpful.',
+        explanation: 'When <strong>Some + Noun</strong> starts the sentence, look at the noun: <strong>advice</strong> is uncountable (never "advices"), so it takes singular <strong>is</strong>.'
+      },
+      {
+        id: 'ex4',
+        category: 'Subject Position: "Some" + Countable Plural',
+        naturalHtml: 'Some <span class="text-emerald-800 font-bold">ideas</span> <span class="text-amber-800 font-bold underline">are</span> super creative!',
+        mistakeHtml: 'Some <span class="text-rose-700 font-bold">ideas</span> <span class="text-rose-700 font-bold underline">is</span> super creative!',
+        explanation: 'Here, <strong>ideas</strong> is a countable plural noun, so the linking verb after it must be plural <strong>are</strong>.'
+      }
+    ];
+
+    const inspectorState = {
+      mode: 'natural', // 'natural' | 'mistake'
+      selectedIdx: 0,
+      clickedCards: new Set([0])
+    };
+
+    function setInspectorMode(mode) {
+      playClickTick();
+      inspectorState.mode = mode;
+      markInspectorExplored();
+      renderInspector();
+    }
+
+    function selectInspectorCard(idx) {
+      playClickTick();
+      inspectorState.selectedIdx = idx;
+      inspectorState.clickedCards.add(idx);
+      markInspectorExplored();
+      renderInspector();
+    }
+
+    function markInspectorExplored() {
+      if (!progressState.labToolsExplored.inspector) {
+        progressState.labToolsExplored.inspector = true;
+        updateGlobalProgress();
+      }
+    }
+
+    function renderInspector() {
+      const btnNat = document.getElementById('btn-mode-natural');
+      const btnMis = document.getElementById('btn-mode-mistake');
+
+      if (inspectorState.mode === 'natural') {
+        btnNat.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-sm transition';
+        btnMis.className = 'px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-rose-100 transition';
+      } else {
+        btnNat.className = 'px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-emerald-100 transition';
+        btnMis.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-600 text-white shadow-sm transition';
+      }
+
+      const cardsContainer = document.getElementById('inspector-cards');
+      cardsContainer.innerHTML = '';
+
+      inspectorExamples.forEach((item, idx) => {
+        const isSelected = idx === inspectorState.selectedIdx;
+        const isMistake = inspectorState.mode === 'mistake';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => selectInspectorCard(idx);
+
+        btn.className = `text-left p-4 rounded-2xl border-2 transition ${
+          isSelected
+            ? (isMistake ? 'bg-rose-50/90 border-rose-500 shadow-md' : 'bg-white border-amber-500 shadow-md')
+            : 'bg-white/75 border-slate-200 hover:border-amber-300'
+        }`;
+
+        btn.innerHTML = `
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="font-semibold text-slate-500">${item.category}</span>
+            <span class="font-bold ${isMistake ? 'text-rose-600' : 'text-emerald-600'}">
+              ${isMistake ? '⚠️ Incorrect' : '✅ Natural'}
+            </span>
+          </div>
+          <p class="text-sm sm:text-base font-medium text-slate-900">
+            ${isMistake ? item.mistakeHtml : item.naturalHtml}
+          </p>
+        `;
+        cardsContainer.appendChild(btn);
+      });
+
+      const activeItem = inspectorExamples[inspectorState.selectedIdx];
+      const spotlight = document.getElementById('inspector-spotlight');
+      spotlight.innerHTML = `
+        <div class="flex items-start gap-3">
+          <span class="text-xl shrink-0" aria-hidden="true">🔎</span>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-amber-900 mb-1">Grammar Breakdown: ${activeItem.category}</h4>
+            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${activeItem.explanation}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    /* =====================================================================
+       5. SECTION 3: 10 INTERACTIVE PRACTICE EXERCISES
+    ===================================================================== */
+    const exercisesData = [
+      // Items 1-3: Contextual Dropdown / Pill Selection (Verb + Quantifier)
+      {
+        id: 1,
+        type: 'dual-select',
+        badge: 'Contextual Choice • Verb & Quantifier',
+        prompt: 'We need to buy butter before the bakery opens! ________ ________ butter left in the fridge.',
+        select1Options: ['There is', 'There isn’t', 'There are', 'There aren’t'],
+        select2Options: ['much', 'many', 'some', 'a lot of'],
+        answer1: 'There isn’t',
+        answer2: 'much',
+        hintSuccess: 'Correct! "Butter" is uncountable, and because we need to buy more, the sentence is negative: "There isn’t much butter."',
+        hintError: 'Check the meaning and noun type: we need to buy butter (negative!), and "butter" is uncountable (singular verb + much).'
+      },
+      {
+        id: 2,
+        type: 'dual-select',
+        badge: 'Contextual Choice • Verb & Quantifier',
+        prompt: 'Look at the patio! ________ ________ customers sitting outside enjoying the sunshine.',
+        select1Options: ['There is', 'There isn’t', 'There are', 'There aren’t'],
+        select2Options: ['much', 'many', 'a lot of'],
+        answer1: 'There are',
+        answer2: 'a lot of',
+        hintSuccess: 'Awesome! "Customers" is countable plural (There are), and in a positive statement about a large group, "a lot of" is natural (whereas "many" sounds unnatural in positive statements).',
+        hintError: 'Notice this is a positive sentence (+) with a countable plural noun ("customers"). Choose a plural verb and the quantifier that works naturally in positive sentences.'
+      },
+      {
+        id: 3,
+        type: 'dual-select',
+        badge: 'Contextual Choice • Subject-Verb Agreement',
+        prompt: 'Don’t worry about the menu changes—________ great advice ________ always welcome in our kitchen.',
+        select1Options: ['some', 'many', 'much'],
+        select2Options: ['is', 'are'],
+        answer1: 'some',
+        answer2: 'is',
+        hintSuccess: 'Well done! In a positive statement, "some" pairs with "advice" (an uncountable noun), so the verb must be singular: "is".',
+        hintError: 'Remember: "advice" is an uncountable noun in English, and the sentence is positive (+).'
+      },
+
+      // Items 4-6: Mobile-Friendly Drag-and-Drop / Tap-to-Place
+      {
+        id: 4,
+        type: 'tap-drop',
+        badge: 'Drag or Tap to Complete',
+        tokens: ['There isn’t', 'There aren’t', 'much', 'many'],
+        parts: ['Hurry up! ', ' ', ' time before our first delivery arrives.'],
+        answers: ['There isn’t', 'much'],
+        hintSuccess: 'Spot on! "Time" is uncountable, so we use singular negative "There isn’t" + "much".',
+        hintError: 'Look at the noun "time"—is it countable or uncountable? Match the singular negative verb with the uncountable quantifier.'
+      },
+      {
+        id: 5,
+        type: 'tap-drop',
+        badge: 'Drag or Tap to Complete',
+        tokens: ['There is', 'There are', 'some', 'much'],
+        parts: ['Good news! ', ' ', ' fresh croissants warming in the oven right now.'],
+        answers: ['There are', 'some'],
+        hintSuccess: 'Delicious! "Croissants" is countable plural, so we use "There are" + "some" in this positive sentence.',
+        hintError: '"Croissants" ends in -s (countable plural), and this is a positive statement (+).'
+      },
+      {
+        id: 6,
+        type: 'tap-drop',
+        badge: 'Drag or Tap to Complete',
+        tokens: ['is', 'are', 'a lot of', 'many'],
+        parts: ['Why is the street so noisy? Because there ', ' ', ' construction work today.'],
+        answers: ['is', 'a lot of'],
+        hintSuccess: 'Nailed it! "Construction work" is uncountable (singular "is"), and in a positive sentence we use "a lot of" (not "much").',
+        hintError: '"Construction work" is uncountable, so it needs a singular verb and a positive-friendly quantifier.'
+      },
+
+      // Items 7-8: Word Unscramble (Click/Tap tiles in order)
+      {
+        id: 7,
+        type: 'unscramble',
+        badge: 'Sentence Builder • Tap Tiles in Order',
+        instruction: 'Build a negative sentence about empty chairs in the café:',
+        scrambled: ['chairs', 'aren’t', 'in', 'There', 'many', 'the café.'],
+        targetSentence: 'There aren’t many chairs in the café.',
+        hintSuccess: 'Perfect word order! Plural negative "There aren’t" + "many" + plural noun "chairs".',
+        hintError: 'Start with "There aren’t", followed by the quantifier "many" and the plural noun "chairs".'
+      },
+      {
+        id: 8,
+        type: 'unscramble',
+        badge: 'Sentence Builder • Tap Tiles in Order',
+        instruction: 'Build a positive sentence about traffic on the road:',
+        scrambled: ['a lot of', 'is', 'on', 'There', 'traffic', 'the road.'],
+        targetSentence: 'There is a lot of traffic on the road.',
+        hintSuccess: 'Excellent! Singular "There is" + "a lot of" + uncountable noun "traffic".',
+        hintError: 'Start with "There is" (singular for uncountable "traffic"), then "a lot of traffic on the road."'
+      },
+
+      // Items 9-10: Sentence Correction / Writing Input
+      {
+        id: 9,
+        type: 'text-fix',
+        badge: 'Error Correction • Fix the Sentence',
+        instruction: 'This sentence has TWO grammar mistakes (verb agreement + quantifier). Rewrite it correctly:',
+        brokenSentence: 'There aren’t much milk in the bottle.',
+        placeholder: 'Type the corrected sentence...',
+        validAnswers: [
+          "there isn't much milk in the bottle",
+          "there is not much milk in the bottle",
+          "there isn't a lot of milk in the bottle",
+          "there is not a lot of milk in the bottle"
+        ],
+        hintSuccess: 'Fantastic correction! "Milk" is uncountable, so it needs singular "There isn’t" and "much" (or "a lot of").',
+        hintError: 'Look at "milk" (uncountable): change "aren’t" to singular "isn’t", and change "much/many" appropriately.'
+      },
+      {
+        id: 10,
+        type: 'text-fix',
+        badge: 'Error Correction • Fix the Sentence',
+        instruction: 'Fix the verb and quantifier mistake in this positive sentence:',
+        brokenSentence: 'Some new ideas is very helpful for our weekend menu.',
+        placeholder: 'Type the corrected sentence...',
+        validAnswers: [
+          "some new ideas are very helpful for our weekend menu",
+          "a lot of new ideas are very helpful for our weekend menu"
+        ],
+        hintSuccess: 'Brilliant! "Ideas" is a countable plural noun, so the verb after it must be plural "are".',
+        hintError: 'Look at the subject "Some new ideas"—it is plural! Change the singular verb "is" to plural.'
+      }
+    ];
+
+    // State storage for interactive widgets in Phase 3
+    const exerciseWidgetState = {};
+
+    function renderAllExercises() {
+      const container = document.getElementById('exercises-list');
+      container.innerHTML = '';
+
+      exercisesData.forEach((ex, idx) => {
+        const card = document.createElement('div');
+        card.id = `ex-card-${idx}`;
+        card.className = 'glass-card rounded-3xl p-5 sm:p-7 space-y-4 transition-all';
+
+        // Top Header Row
+        const header = document.createElement('div');
+        header.className = 'flex items-center justify-between gap-2 flex-wrap';
+        header.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span id="ex-num-${idx}" class="w-8 h-8 rounded-xl bg-amber-600 text-white font-bold text-sm flex items-center justify-center shadow-sm">${ex.id}</span>
+            <span class="text-xs font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-1 rounded-full">${ex.badge}</span>
+          </div>
+          <span id="ex-status-${idx}" class="text-xs font-bold text-slate-400">Not checked yet</span>
+        `;
+        card.appendChild(header);
+
+        // Render specific exercise body
+        if (ex.type === 'dual-select') {
+          renderDualSelectBody(card, ex, idx);
+        } else if (ex.type === 'tap-drop') {
+          renderTapDropBody(card, ex, idx);
+        } else if (ex.type === 'unscramble') {
+          renderUnscrambleBody(card, ex, idx);
+        } else if (ex.type === 'text-fix') {
+          renderTextFixBody(card, ex, idx);
+        }
+
+        // Action & Feedback Footer
+        const footer = document.createElement('div');
+        footer.className = 'pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3';
+
+        const checkBtn = document.createElement('button');
+        checkBtn.type = 'button';
+        checkBtn.id = `ex-check-btn-${idx}`;
+        checkBtn.className = 'px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition self-start';
+        checkBtn.textContent = 'Check Answer';
+        checkBtn.onclick = () => validateExercise(idx);
+        footer.appendChild(checkBtn);
+
+        card.appendChild(footer);
+
+        const feedbackBox = document.createElement('div');
+        feedbackBox.id = `ex-fb-${idx}`;
+        feedbackBox.className = 'hidden p-3.5 rounded-2xl text-xs sm:text-sm font-medium';
+        card.appendChild(feedbackBox);
+
+        container.appendChild(card);
+      });
+    }
+
+    /* Type A: Dual Dropdown Select */
+    function renderDualSelectBody(card, ex, idx) {
+      const parts = ex.prompt.split('________');
+      const wrap = document.createElement('div');
+      wrap.className = 'text-sm sm:text-base text-slate-800 leading-loose bg-white/80 p-4 rounded-2xl border border-amber-200/70';
+
+      const sel1 = document.createElement('select');
+      sel1.id = `ex-${idx}-sel1`;
+      sel1.className = 'mx-1 px-3 py-1.5 rounded-xl border-2 border-amber-300 bg-amber-50/70 font-semibold text-amber-950 focus:outline-none focus:border-amber-600 cursor-pointer';
+      sel1.innerHTML = `<option value="">-- choose --</option>` + ex.select1Options.map(o => `<option value="${o}">${o}</option>`).join('');
+
+      const sel2 = document.createElement('select');
+      sel2.id = `ex-${idx}-sel2`;
+      sel2.className = 'mx-1 px-3 py-1.5 rounded-xl border-2 border-amber-300 bg-amber-50/70 font-semibold text-amber-950 focus:outline-none focus:border-amber-600 cursor-pointer';
+      sel2.innerHTML = `<option value="">-- choose --</option>` + ex.select2Options.map(o => `<option value="${o}">${o}</option>`).join('');
+
+      wrap.appendChild(document.createTextNode(parts[0]));
+      wrap.appendChild(sel1);
+      wrap.appendChild(document.createTextNode(parts[1]));
+      wrap.appendChild(sel2);
+      wrap.appendChild(document.createTextNode(parts[2] || ''));
+
+      card.appendChild(wrap);
+    }
+
+    /* Type B: Drag-and-Drop & Tap-to-Place */
+    function renderTapDropBody(card, ex, idx) {
+      exerciseWidgetState[idx] = {
+        selectedToken: null,
+        slots: [null, null]
+      };
+
+      const helper = document.createElement('p');
+      helper.className = 'text-xs text-slate-500';
+      helper.textContent = 'Drag a word chip into each blank—or tap a chip and then tap a blank box:';
+      card.appendChild(helper);
+
+      // Token Bank
+      const bank = document.createElement('div');
+      bank.id = `ex-${idx}-bank`;
+      bank.className = 'flex flex-wrap gap-2 p-3 rounded-2xl bg-amber-50/80 border border-amber-200/70';
+      ex.tokens.forEach((tok, tIdx) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.id = `ex-${idx}-tok-${tIdx}`;
+        chip.draggable = true;
+        chip.textContent = tok;
+        chip.className = 'token-chip px-3.5 py-2 rounded-xl bg-white border-2 border-amber-300 text-amber-950 font-semibold text-xs sm:text-sm shadow-sm hover:border-amber-500';
+
+        // Click/Tap select
+        chip.onclick = () => {
+          playClickTick();
+          const st = exerciseWidgetState[idx];
+          st.selectedToken = (st.selectedToken === tok) ? null : tok;
+          refreshTapDropUI(idx);
+        };
+
+        // HTML5 Drag start
+        chip.ondragstart = (e) => {
+          e.dataTransfer.setData('text/plain', tok);
+          exerciseWidgetState[idx].selectedToken = tok;
+        };
+
+        bank.appendChild(chip);
+      });
+      card.appendChild(bank);
+
+      // Sentence with 2 drop slots
+      const sentenceRow = document.createElement('div');
+      sentenceRow.className = 'text-sm sm:text-base text-slate-800 leading-loose bg-white/85 p-4 rounded-2xl border border-slate-200 flex flex-wrap items-center gap-1.5';
+
+      sentenceRow.appendChild(document.createTextNode(ex.parts[0]));
+
+      for (let s = 0; s < 2; s++) {
+        const slot = document.createElement('button');
+        slot.type = 'button';
+        slot.id = `ex-${idx}-slot-${s}`;
+        slot.className = 'drop-slot inline-flex items-center justify-center px-3 py-1 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/50 text-xs sm:text-sm font-bold text-amber-900';
+        slot.textContent = `Blank ${s + 1}`;
+
+        // Tap slot to place selected token or clear existing
+        slot.onclick = () => {
+          playClickTick();
+          const st = exerciseWidgetState[idx];
+          if (st.selectedToken) {
+            st.slots[s] = st.selectedToken;
+            st.selectedToken = null;
+          } else if (st.slots[s]) {
+            st.slots[s] = null;
+          }
+          refreshTapDropUI(idx);
+        };
+
+        // Drag over & drop support
+        slot.ondragover = (e) => {
+          e.preventDefault();
+          slot.classList.add('drag-over');
+        };
+        slot.ondragleave = () => {
+          slot.classList.remove('drag-over');
+        };
+        slot.ondrop = (e) => {
+          e.preventDefault();
+          slot.classList.remove('drag-over');
+          const dropped = e.dataTransfer.getData('text/plain') || exerciseWidgetState[idx].selectedToken;
+          if (dropped) {
+            playClickTick();
+            exerciseWidgetState[idx].slots[s] = dropped;
+            exerciseWidgetState[idx].selectedToken = null;
+            refreshTapDropUI(idx);
+          }
+        };
+
+        sentenceRow.appendChild(slot);
+        if (ex.parts[s + 1]) {
+          sentenceRow.appendChild(document.createTextNode(ex.parts[s + 1]));
+        }
+      }
+
+      card.appendChild(sentenceRow);
+    }
+
+    function refreshTapDropUI(idx) {
+      const ex = exercisesData[idx];
+      const st = exerciseWidgetState[idx];
+
+      ex.tokens.forEach((tok, tIdx) => {
+        const chip = document.getElementById(`ex-${idx}-tok-${tIdx}`);
+        const isSelected = st.selectedToken === tok;
+        chip.className = isSelected
+          ? 'token-chip px-3.5 py-2 rounded-xl bg-amber-600 border-2 border-amber-700 text-white font-semibold text-xs sm:text-sm shadow-md scale-105'
+          : 'token-chip px-3.5 py-2 rounded-xl bg-white border-2 border-amber-300 text-amber-950 font-semibold text-xs sm:text-sm shadow-sm hover:border-amber-500';
+      });
+
+      for (let s = 0; s < 2; s++) {
+        const slot = document.getElementById(`ex-${idx}-slot-${s}`);
+        if (st.slots[s]) {
+          slot.textContent = st.slots[s] + ' ✕';
+          slot.className = 'drop-slot inline-flex items-center justify-center px-3 py-1 rounded-xl border-2 border-solid border-amber-600 bg-amber-100 text-xs sm:text-sm font-bold text-amber-950 shadow-sm';
+        } else {
+          slot.textContent = `Blank ${s + 1}`;
+          slot.className = 'drop-slot inline-flex items-center justify-center px-3 py-1 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/50 text-xs sm:text-sm font-medium text-amber-700/70';
+        }
+      }
+    }
+
+    /* Type C: Word Unscramble */
+    function renderUnscrambleBody(card, ex, idx) {
+      exerciseWidgetState[idx] = {
+        chosenIndices: []
+      };
+
+      const inst = document.createElement('p');
+      inst.className = 'text-xs sm:text-sm font-medium text-slate-700';
+      inst.textContent = ex.instruction;
+      card.appendChild(inst);
+
+      // Answer Assembly Strip
+      const assemblyBox = document.createElement('div');
+      assemblyBox.id = `ex-${idx}-assembly`;
+      assemblyBox.className = 'min-h-[52px] p-3 rounded-2xl bg-white border-2 border-dashed border-amber-300 flex flex-wrap items-center gap-2';
+      assemblyBox.innerHTML = '<span class="text-xs text-slate-400">Tap the word tiles below in the right order...</span>';
+      card.appendChild(assemblyBox);
+
+      // Source Tiles Pool
+      const pool = document.createElement('div');
+      pool.id = `ex-${idx}-pool`;
+      pool.className = 'flex flex-wrap gap-2';
+
+      ex.scrambled.forEach((word, wIdx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = `ex-${idx}-word-${wIdx}`;
+        btn.textContent = word;
+        btn.className = 'token-chip px-3.5 py-2 rounded-xl bg-amber-50 border border-amber-300 text-amber-950 font-semibold text-xs sm:text-sm hover:bg-amber-100 shadow-sm';
+        btn.onclick = () => {
+          playClickTick();
+          const st = exerciseWidgetState[idx];
+          if (!st.chosenIndices.includes(wIdx)) {
+            st.chosenIndices.push(wIdx);
+            refreshUnscrambleUI(idx);
+          }
+        };
+        pool.appendChild(btn);
+      });
+
+      card.appendChild(pool);
+    }
+
+    function refreshUnscrambleUI(idx) {
+      const ex = exercisesData[idx];
+      const st = exerciseWidgetState[idx];
+      const assemblyBox = document.getElementById(`ex-${idx}-assembly`);
+
+      // Update pool visibility
+      ex.scrambled.forEach((_, wIdx) => {
+        const btn = document.getElementById(`ex-${idx}-word-${wIdx}`);
+        if (st.chosenIndices.includes(wIdx)) {
+          btn.classList.add('opacity-30', 'pointer-events-none');
+        } else {
+          btn.classList.remove('opacity-30', 'pointer-events-none');
+        }
+      });
+
+      // Render chosen chips inside assembly strip
+      assemblyBox.innerHTML = '';
+      if (st.chosenIndices.length === 0) {
+        assemblyBox.innerHTML = '<span class="text-xs text-slate-400">Tap the word tiles below in the right order...</span>';
+        return;
+      }
+
+      st.chosenIndices.forEach((wIdx, pos) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'px-3 py-1.5 rounded-xl bg-amber-600 text-white font-semibold text-xs sm:text-sm shadow-sm hover:bg-amber-700 transition';
+        chip.textContent = ex.scrambled[wIdx];
+        chip.title = 'Tap to remove';
+        chip.onclick = () => {
+          playClickTick();
+          st.chosenIndices.splice(pos, 1);
+          refreshUnscrambleUI(idx);
+        };
+        assemblyBox.appendChild(chip);
+      });
+    }
+
+    /* Type D: Sentence Correction / Writing Input */
+    function renderTextFixBody(card, ex, idx) {
+      const inst = document.createElement('p');
+      inst.className = 'text-xs sm:text-sm font-medium text-slate-700';
+      inst.textContent = ex.instruction;
+      card.appendChild(inst);
+
+      const brokenBox = document.createElement('div');
+      brokenBox.className = 'p-3.5 rounded-2xl bg-rose-50/80 border border-rose-200 text-rose-950 text-xs sm:text-sm font-medium flex items-center gap-2';
+      brokenBox.innerHTML = `<span class="text-base">⚠️</span> <span><s>${ex.brokenSentence}</s></span>`;
+      card.appendChild(brokenBox);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = `ex-${idx}-input`;
+      input.placeholder = ex.placeholder;
+      input.autocomplete = 'off';
+      input.className = 'w-full px-4 py-3 rounded-2xl bg-white border-2 border-amber-300 text-sm sm:text-base text-slate-900 font-medium focus:outline-none focus:border-amber-600';
+      input.onkeydown = (e) => {
+        if (e.key === 'Enter') validateExercise(idx);
+      };
+      card.appendChild(input);
+    }
+
+    /* Validation Engine */
+    function normalizeText(str) {
+      return str
+        .toLowerCase()
+        .replace(/[’']/g, "'")
+        .replace(/[.!?]+$/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function validateExercise(idx) {
+      const ex = exercisesData[idx];
+      let isCorrect = false;
+
+      if (ex.type === 'dual-select') {
+        const v1 = document.getElementById(`ex-${idx}-sel1`).value;
+        const v2 = document.getElementById(`ex-${idx}-sel2`).value;
+        isCorrect = (v1 === ex.answer1 && v2 === ex.answer2);
+      } else if (ex.type === 'tap-drop') {
+        const st = exerciseWidgetState[idx];
+        isCorrect = (st.slots[0] === ex.answers[0] && st.slots[1] === ex.answers[1]);
+      } else if (ex.type === 'unscramble') {
+        const st = exerciseWidgetState[idx];
+        const built = st.chosenIndices.map(i => ex.scrambled[i]).join(' ');
+        isCorrect = normalizeText(built) === normalizeText(ex.targetSentence);
+      } else if (ex.type === 'text-fix') {
+        const raw = document.getElementById(`ex-${idx}-input`).value;
+        const norm = normalizeText(raw);
+        isCorrect = ex.validAnswers.some(ans => normalizeText(ans) === norm);
+      }
+
+      const card = document.getElementById(`ex-card-${idx}`);
+      const fb = document.getElementById(`ex-fb-${idx}`);
+      const status = document.getElementById(`ex-status-${idx}`);
+      const numBadge = document.getElementById(`ex-num-${idx}`);
+
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        playCorrectChime();
+        card.className = 'glass-card rounded-3xl p-5 sm:p-7 space-y-4 transition-all border-2 border-emerald-500 bg-emerald-50/40';
+        numBadge.className = 'w-8 h-8 rounded-xl bg-emerald-600 text-white font-bold text-sm flex items-center justify-center shadow-sm';
+        status.textContent = '✓ Solved';
+        status.className = 'text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full';
+
+        fb.className = 'p-3.5 rounded-2xl text-xs sm:text-sm font-medium bg-emerald-100/90 text-emerald-950 border border-emerald-300 animate-pop';
+        fb.textContent = '✅ ' + ex.hintSuccess;
+
+        progressState.exercisesSolved[idx] = true;
+        updateGlobalProgress();
+      } else {
+        playIncorrectBuzz();
+        card.className = 'glass-card rounded-3xl p-5 sm:p-7 space-y-4 transition-all border-2 border-rose-400 animate-shake';
+        status.textContent = 'Try Again';
+        status.className = 'text-xs font-bold text-rose-700 bg-rose-100 px-2.5 py-1 rounded-full';
+
+        fb.className = 'p-3.5 rounded-2xl text-xs sm:text-sm font-medium bg-rose-100/90 text-rose-950 border border-rose-300 animate-pop';
+        fb.textContent = '❌ ' + ex.hintError;
+      }
+    }
+
+    function resetAllExercises() {
+      playClickTick();
+      progressState.exercisesSolved = new Array(10).fill(false);
+      updateGlobalProgress();
+      renderAllExercises();
+    }
+
+    /* =====================================================================
+       6. INITIALIZE APPLICATION ON LOAD
+    ===================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      renderNoticingChecks();
+      renderMatrix();
+      renderInspector();
+      renderAllExercises();
+      updateGlobalProgress();
+    });
+  </script>
+</body>
+</html>
